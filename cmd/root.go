@@ -4,6 +4,7 @@ import (
 	"os"
 	"ouaf/cmd/roles"
 	"ouaf/cmd/users"
+	"ouaf/cmd/util"
 
 	"github.com/spf13/cobra"
 )
@@ -15,6 +16,10 @@ var rootCmd = &cobra.Command{
 }
 
 func Execute() {
+	rootCmd.PersistentFlags().StringVar(&util.ApiKey, "api-key", os.Getenv("DD_API_KEY"), "Datadog API Key")
+	rootCmd.PersistentFlags().StringVar(&util.AppKey, "app-key", os.Getenv("DD_APP_KEY"), "Datadog App Key")
+	rootCmd.PersistentFlags().StringVar(&util.Site, "site", "datadoghq.eu", "Datadog Site")
+
 	rootCmd.AddCommand(
 		roles.Cmd,
 		users.Cmd,
