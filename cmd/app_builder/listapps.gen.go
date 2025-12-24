@@ -1,16 +1,32 @@
 package app_builder
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var ListAppsCmd = &cobra.Command{
 	Use:   "listapps",
 	Short: "List Apps",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/app-builder/apps")
-		fmt.Println("OperationID: ListApps")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewAppBuilderApi(client.NewAPIClient())
+		res, _, err := api.ListApps(client.NewContext(apiKey, appKey, site))
+		if err != nil {
+			log.Fatalf("failed to listapps: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "app_builder")
 	},
 }
 

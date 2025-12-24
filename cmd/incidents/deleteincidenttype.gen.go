@@ -1,16 +1,32 @@
 package incidents
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var DeleteIncidentTypeCmd = &cobra.Command{
-	Use:   "deleteincidenttype",
+	Use:   "deleteincidenttype [incident_type_id]",
 	Short: "Delete an incident type",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: DELETE /api/v2/incidents/config/types/{incident_type_id}")
-		fmt.Println("OperationID: DeleteIncidentType")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
+		_, err := api.DeleteIncidentType(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to deleteincidenttype: %v", err)
+		}
+
+		
 	},
 }
 

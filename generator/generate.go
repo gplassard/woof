@@ -21,23 +21,70 @@ func main() {
 }
 
 type OpenAPI struct {
-	Paths map[string]map[string]Operation `yaml:"paths"`
+	Paths      map[string]map[string]Operation `yaml:"paths"`
+	Components struct {
+		Parameters map[string]struct {
+			Name     string                 `yaml:"name"`
+			In       string                 `yaml:"in"`
+			Required bool                   `yaml:"required"`
+			Schema   map[string]interface{} `yaml:"schema"`
+		} `yaml:"parameters"`
+		Schemas map[string]struct {
+			Type   string                 `yaml:"type"`
+			Format string                 `yaml:"format"`
+			Ref    string                 `yaml:"$ref"`
+			Schema map[string]interface{} `yaml:"schema"`
+		} `yaml:"schemas"`
+	} `yaml:"components"`
 }
 
 type Operation struct {
 	OperationID string   `yaml:"operationId"`
 	Summary     string   `yaml:"summary"`
 	Tags        []string `yaml:"tags"`
+	Parameters  []struct {
+		Name     string                 `yaml:"name"`
+		In       string                 `yaml:"in"`
+		Required bool                   `yaml:"required"`
+		Ref      string                 `yaml:"$ref"`
+		Schema   map[string]interface{} `yaml:"schema"`
+	} `yaml:"parameters"`
+	RequestBody *struct {
+		Required bool `yaml:"required"`
+		Content  map[string]struct {
+			Schema struct {
+				Ref        string `yaml:"$ref"`
+				Extensions struct {
+					GoName string `yaml:"x-go-name"`
+				} `yaml:"x-go-name"`
+			} `yaml:"schema"`
+		} `yaml:"content"`
+		Extensions struct {
+			GoName string `yaml:"x-go-name"`
+		} `yaml:"x-go-name"`
+	} `yaml:"requestBody"`
+	Responses map[string]struct {
+		Content map[string]interface{} `yaml:"content"`
+	} `yaml:"responses"`
 }
 
 type TemplateData struct {
-	PackageName string
-	CommandName string
-	Use         string
-	Short       string
-	Method      string
-	Path        string
-	OperationID string
+	PackageName        string
+	CommandName        string
+	Use                string
+	Short              string
+	Method             string
+	Path               string
+	OperationID        string
+	TagName            string
+	ApiTagName         string
+	Args               []string
+	ArgTypes           []string
+	HasRequestBody     bool
+	RequestBodyType    string
+	IsOptionalParams   bool
+	HasResponse        bool
+	ReturnsThreeValues bool
 }
 
 func runGenerate() error {
@@ -77,12 +124,19 @@ func runGenerate() error {
 		return fmt.Errorf("failed to unmarshal yaml: %w", err)
 	}
 
-	tmpl, err := template.ParseFiles("generator/command.go.tmpl")
+	funcMap := template.FuncMap{
+		"replace": func(old, new, src string) string {
+			return strings.ReplaceAll(src, old, new)
+		},
+		"lower": strings.ToLower,
+	}
+
+	tmpl, err := template.New("command.go.tmpl").Funcs(funcMap).ParseFiles("generator/command.go.tmpl")
 	if err != nil {
 		return fmt.Errorf("failed to parse command template: %w", err)
 	}
 
-	entrypointTmpl, err := template.ParseFiles("generator/entrypoint.go.tmpl")
+	entrypointTmpl, err := template.New("entrypoint.go.tmpl").Funcs(funcMap).ParseFiles("generator/entrypoint.go.tmpl")
 	if err != nil {
 		return fmt.Errorf("failed to parse entrypoint template: %w", err)
 	}
@@ -91,17 +145,37 @@ func runGenerate() error {
 
 	for path, methods := range spec.Paths {
 		for method, op := range methods {
-			if op.OperationID == "" {
+			// Hardcoded list of operations to skip (e.g., missing from SDK)
+			skipOps := map[string]bool{
+				"CreateIncidentAttachment":   true,
+				"DeleteIncidentAttachment":   true,
+				"UpdateIncidentAttachment":   true,
+				"CreateUserNotificationRule": true,
+				"DeleteUserNotificationRule": true,
+				"GetUserNotificationRule":    true,
+				"ListUserNotificationRules":  true,
+				"UpdateUserNotificationRule": true,
+				"MakeGCPSTSDelegateRequest":  true, // This one might be a type mismatch but skipping for now
+				"UploadCustomCostsFile":      true, // Undefined type
+				"MakeGCPSTSDelegate":         true,
+				"SubmitLog":                  true, // Undefined type HTTPLog
+			}
+			if skipOps[op.OperationID] {
 				continue
 			}
 
 			tag := "general"
+			rawTag := "general"
 			if len(op.Tags) > 0 {
-				tag = strings.ToLower(op.Tags[0])
+				rawTag = op.Tags[0]
+				tag = strings.ToLower(rawTag)
 				tag = strings.ReplaceAll(tag, " ", "_")
 				tag = strings.ReplaceAll(tag, "-", "_")
 			}
 			tags[tag] = true
+
+			apiTagName := strings.ReplaceAll(rawTag, " ", "")
+			apiTagName = strings.ReplaceAll(apiTagName, "-", "")
 
 			pkgDir := filepath.Join("cmd", tag)
 			if err := os.MkdirAll(pkgDir, 0755); err != nil {
@@ -127,17 +201,176 @@ func runGenerate() error {
 				f.Close()
 			}
 
+			var args []string
+			var argTypes []string
+			use := strings.ToLower(op.OperationID)
+			for _, param := range op.Parameters {
+				name := param.Name
+				in := param.In
+				required := param.Required
+				schema := param.Schema
+
+				if param.Ref != "" {
+					refName := filepath.Base(param.Ref)
+					if p, ok := spec.Components.Parameters[refName]; ok {
+						name = p.Name
+						in = p.In
+						required = p.Required
+						schema = p.Schema
+					}
+				}
+
+				if (in == "path" || required) && in != "header" && in != "cookie" {
+					args = append(args, name)
+					use += fmt.Sprintf(" [%s]", name)
+					argType := "string"
+
+					// Resolve schema if it's a ref
+					resolvedSchema := schema
+					if schema != nil {
+						if ref, ok := schema["$ref"].(string); ok {
+							refName := filepath.Base(ref)
+							if s, ok := spec.Components.Schemas[refName]; ok {
+								resolvedSchema = map[string]interface{}{
+									"type":   s.Type,
+									"format": s.Format,
+								}
+							}
+						}
+					}
+
+					if resolvedSchema != nil {
+						sType, _ := resolvedSchema["type"].(string)
+						sFormat, _ := resolvedSchema["format"].(string)
+						switch sType {
+						case "integer":
+							argType = "int64"
+						case "number":
+							argType = "float64"
+						case "string":
+							if sFormat == "uuid" {
+								argType = "uuid.UUID"
+							} else if sFormat == "date-time" {
+								argType = "time.Time"
+							}
+						case "array":
+							items, _ := resolvedSchema["items"].(map[string]interface{})
+							if items != nil {
+								iType, _ := items["type"].(string)
+								if iType == "string" {
+									argType = "[]string"
+								}
+							}
+						}
+					}
+
+					// Custom type overrides for some known SDK arguments
+					if op.OperationID == "GetSBOM" && name == "asset_type" {
+						argType = "datadogV2.AssetType"
+					}
+					if op.OperationID == "GetTeamSync" && name == "filter[source]" {
+						argType = "datadogV2.TeamSyncAttributesSource"
+					}
+					if op.OperationID == "GetSignalNotificationRules" || op.OperationID == "GetVulnerabilityNotificationRules" {
+						// Special case, will be handled by hasResponse later
+					}
+					if op.OperationID == "GetCostByOrg" && name == "start_month" {
+						argType = "time.Time"
+					}
+					if op.OperationID == "GetHistoricalCostByOrg" && name == "start_month" {
+						argType = "time.Time"
+					}
+					if op.OperationID == "GetHourlyUsage" && name == "start_hr" {
+						argType = "time.Time"
+					}
+					if op.OperationID == "GetMonthlyCostAttribution" && name == "start_month" {
+						argType = "time.Time"
+					}
+					if op.OperationID == "GetUsageApplicationSecurityMonitoring" && name == "start_hr" {
+						argType = "time.Time"
+					}
+					if op.OperationID == "GetUsageLambdaTracedInvocations" && name == "start_hr" {
+						argType = "time.Time"
+					}
+					if op.OperationID == "GetUsageObservabilityPipelines" && name == "start_hr" {
+						argType = "time.Time"
+					}
+
+					argTypes = append(argTypes, argType)
+				}
+			}
+
 			fileName := fmt.Sprintf("%s.gen.go", strings.ToLower(op.OperationID))
 			filePath := filepath.Join(pkgDir, fileName)
 
+			hasResponse := false
+			var responseCodes []string
+			for code, resp := range op.Responses {
+				responseCodes = append(responseCodes, code)
+				if code == "200" || code == "201" || code == "202" {
+					if resp.Content != nil {
+						hasResponse = true
+					}
+				}
+			}
+			sort.Strings(responseCodes)
+
+			if op.OperationID == "GetSignalNotificationRules" || op.OperationID == "GetVulnerabilityNotificationRules" {
+				hasResponse = true
+			}
+
+			hasRequestBody := op.RequestBody != nil
+			requestBodyType := ""
+			isOptionalParams := false
+			if hasRequestBody {
+				for _, content := range op.RequestBody.Content {
+					if content.Schema.Ref != "" {
+						requestBodyType = filepath.Base(content.Schema.Ref)
+						break
+					}
+				}
+				if requestBodyType == "" {
+					requestBodyType = op.OperationID + "Request"
+				}
+
+				// Hardcoded list of operations known to use OptionalParameters in the Go SDK
+				// This is a workaround because the OpenAPI spec doesn't explicitly flag these
+				optionalParamsOps := map[string]string{
+					"SearchCIAppTestEvents":               "SearchCIAppTestEventsOptionalParameters",
+					"SearchCIAppPipelineEvents":           "SearchCIAppPipelineEventsOptionalParameters",
+					"SearchAuditLogs":                     "SearchAuditLogsOptionalParameters",
+					"SearchEvents":                        "SearchEventsOptionalParameters",
+					"CreateOpenAPI":                       "CreateOpenAPIOptionalParameters",
+					"UpdateOpenAPI":                       "UpdateOpenAPIOptionalParameters",
+					"ListLogs":                            "ListLogsOptionalParameters",
+					"UploadIdPMetadata":                   "UploadIdPMetadataOptionalParameters",
+					"SearchFlakyTests":                    "SearchFlakyTestsOptionalParameters",
+					"SearchSecurityMonitoringHistsignals": "SearchSecurityMonitoringHistsignalsOptionalParameters",
+					"SearchSecurityMonitoringSignals":     "SearchSecurityMonitoringSignalsOptionalParameters",
+				}
+
+				if optType, ok := optionalParamsOps[op.OperationID]; ok {
+					isOptionalParams = true
+					requestBodyType = optType
+				}
+			}
+
 			data := TemplateData{
-				PackageName: tag,
-				CommandName: strings.ToUpper(op.OperationID[:1]) + op.OperationID[1:] + "Cmd",
-				Use:         strings.ToLower(op.OperationID),
-				Short:       op.Summary,
-				Method:      strings.ToUpper(method),
-				Path:        path,
-				OperationID: op.OperationID,
+				PackageName:      tag,
+				CommandName:      strings.ToUpper(op.OperationID[:1]) + op.OperationID[1:] + "Cmd",
+				Use:              use,
+				Short:            op.Summary,
+				Method:           strings.ToUpper(method),
+				Path:             path,
+				OperationID:      op.OperationID,
+				TagName:          rawTag,
+				ApiTagName:       apiTagName,
+				Args:             args,
+				ArgTypes:         argTypes,
+				HasRequestBody:   hasRequestBody,
+				RequestBodyType:  requestBodyType,
+				IsOptionalParams: isOptionalParams,
+				HasResponse:      hasResponse,
 			}
 
 			f, err := os.Create(filePath)

@@ -1,16 +1,32 @@
 package restriction_policies
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var DeleteRestrictionPolicyCmd = &cobra.Command{
-	Use:   "deleterestrictionpolicy",
+	Use:   "deleterestrictionpolicy [resource_id]",
 	Short: "Delete a restriction policy",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: DELETE /api/v2/restriction_policy/{resource_id}")
-		fmt.Println("OperationID: DeleteRestrictionPolicy")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewRestrictionPoliciesApi(client.NewAPIClient())
+		_, err := api.DeleteRestrictionPolicy(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to deleterestrictionpolicy: %v", err)
+		}
+
+		
 	},
 }
 

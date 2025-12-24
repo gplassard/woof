@@ -1,16 +1,32 @@
 package apm_retention_filters
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var GetApmRetentionFilterCmd = &cobra.Command{
-	Use:   "getapmretentionfilter",
+	Use:   "getapmretentionfilter [filter_id]",
 	Short: "Get a given APM retention filter",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/apm/config/retention-filters/{filter_id}")
-		fmt.Println("OperationID: GetApmRetentionFilter")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewAPMRetentionFiltersApi(client.NewAPIClient())
+		res, _, err := api.GetApmRetentionFilter(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to getapmretentionfilter: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "apm_retention_filters")
 	},
 }
 

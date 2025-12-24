@@ -1,16 +1,32 @@
 package incidents
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var UpdateIncidentTodoCmd = &cobra.Command{
-	Use:   "updateincidenttodo",
+	Use:   "updateincidenttodo [incident_id] [todo_id]",
 	Short: "Update an incident todo",
+	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: PATCH /api/v2/incidents/{incident_id}/relationships/todos/{todo_id}")
-		fmt.Println("OperationID: UpdateIncidentTodo")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
+		res, _, err := api.UpdateIncidentTodo(client.NewContext(apiKey, appKey, site), args[0], args[1], datadogV2.IncidentTodoPatchRequest{})
+		if err != nil {
+			log.Fatalf("failed to updateincidenttodo: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "incidents")
 	},
 }
 

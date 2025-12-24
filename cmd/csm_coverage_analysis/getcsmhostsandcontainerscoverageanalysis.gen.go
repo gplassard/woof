@@ -1,16 +1,32 @@
 package csm_coverage_analysis
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var GetCSMHostsAndContainersCoverageAnalysisCmd = &cobra.Command{
 	Use:   "getcsmhostsandcontainerscoverageanalysis",
 	Short: "Get the CSM Hosts and Containers Coverage Analysis",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/csm/onboarding/coverage_analysis/hosts_and_containers")
-		fmt.Println("OperationID: GetCSMHostsAndContainersCoverageAnalysis")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewCSMCoverageAnalysisApi(client.NewAPIClient())
+		res, _, err := api.GetCSMHostsAndContainersCoverageAnalysis(client.NewContext(apiKey, appKey, site))
+		if err != nil {
+			log.Fatalf("failed to getcsmhostsandcontainerscoverageanalysis: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "csm_coverage_analysis")
 	},
 }
 

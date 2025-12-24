@@ -1,16 +1,32 @@
 package incidents
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var ListIncidentTodosCmd = &cobra.Command{
-	Use:   "listincidenttodos",
+	Use:   "listincidenttodos [incident_id]",
 	Short: "Get a list of an incident's todos",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/incidents/{incident_id}/relationships/todos")
-		fmt.Println("OperationID: ListIncidentTodos")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
+		res, _, err := api.ListIncidentTodos(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to listincidenttodos: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "incidents")
 	},
 }
 

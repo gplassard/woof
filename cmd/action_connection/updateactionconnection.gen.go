@@ -1,16 +1,32 @@
 package action_connection
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var UpdateActionConnectionCmd = &cobra.Command{
-	Use:   "updateactionconnection",
+	Use:   "updateactionconnection [connection_id]",
 	Short: "Update an existing Action Connection",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: PATCH /api/v2/actions/connections/{connection_id}")
-		fmt.Println("OperationID: UpdateActionConnection")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewActionConnectionApi(client.NewAPIClient())
+		res, _, err := api.UpdateActionConnection(client.NewContext(apiKey, appKey, site), args[0], datadogV2.UpdateActionConnectionRequest{})
+		if err != nil {
+			log.Fatalf("failed to updateactionconnection: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "action_connection")
 	},
 }
 

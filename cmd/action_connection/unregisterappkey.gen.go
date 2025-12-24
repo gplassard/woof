@@ -1,16 +1,32 @@
 package action_connection
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var UnregisterAppKeyCmd = &cobra.Command{
-	Use:   "unregisterappkey",
+	Use:   "unregisterappkey [app_key_id]",
 	Short: "Unregister an App Key",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: DELETE /api/v2/actions/app_key_registrations/{app_key_id}")
-		fmt.Println("OperationID: UnregisterAppKey")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewActionConnectionApi(client.NewAPIClient())
+		_, err := api.UnregisterAppKey(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to unregisterappkey: %v", err)
+		}
+
+		
 	},
 }
 

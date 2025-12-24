@@ -1,16 +1,32 @@
 package spa
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var GetSPARecommendationsCmd = &cobra.Command{
-	Use:   "getsparecommendations",
+	Use:   "getsparecommendations [shard] [service]",
 	Short: "Get SPA Recommendations",
+	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/spa/recommendations/{service}/{shard}")
-		fmt.Println("OperationID: GetSPARecommendations")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewSpaApi(client.NewAPIClient())
+		res, _, err := api.GetSPARecommendations(client.NewContext(apiKey, appKey, site), args[0], args[1])
+		if err != nil {
+			log.Fatalf("failed to getsparecommendations: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "spa")
 	},
 }
 

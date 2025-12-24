@@ -1,16 +1,32 @@
 package csm_threats
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var UpdateCSMThreatsAgentRuleCmd = &cobra.Command{
-	Use:   "updatecsmthreatsagentrule",
+	Use:   "updatecsmthreatsagentrule [agent_rule_id]",
 	Short: "Update a Workload Protection agent rule",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: PATCH /api/v2/remote_config/products/cws/agent_rules/{agent_rule_id}")
-		fmt.Println("OperationID: UpdateCSMThreatsAgentRule")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewCSMThreatsApi(client.NewAPIClient())
+		res, _, err := api.UpdateCSMThreatsAgentRule(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CloudWorkloadSecurityAgentRuleUpdateRequest{})
+		if err != nil {
+			log.Fatalf("failed to updatecsmthreatsagentrule: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "csm_threats")
 	},
 }
 

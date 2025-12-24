@@ -1,16 +1,32 @@
 package authn_mappings
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var GetAuthNMappingCmd = &cobra.Command{
-	Use:   "getauthnmapping",
+	Use:   "getauthnmapping [authn_mapping_id]",
 	Short: "Get an AuthN Mapping by UUID",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/authn_mappings/{authn_mapping_id}")
-		fmt.Println("OperationID: GetAuthNMapping")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewAuthNMappingsApi(client.NewAPIClient())
+		res, _, err := api.GetAuthNMapping(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to getauthnmapping: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "authn_mappings")
 	},
 }
 

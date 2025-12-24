@@ -1,16 +1,32 @@
 package powerpack
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var UpdatePowerpackCmd = &cobra.Command{
-	Use:   "updatepowerpack",
+	Use:   "updatepowerpack [powerpack_id]",
 	Short: "Update a powerpack",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: PATCH /api/v2/powerpacks/{powerpack_id}")
-		fmt.Println("OperationID: UpdatePowerpack")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewPowerpackApi(client.NewAPIClient())
+		res, _, err := api.UpdatePowerpack(client.NewContext(apiKey, appKey, site), args[0], datadogV2.Powerpack{})
+		if err != nil {
+			log.Fatalf("failed to updatepowerpack: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "powerpack")
 	},
 }
 

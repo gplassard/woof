@@ -1,16 +1,32 @@
 package security_monitoring
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var GetSecurityFilterCmd = &cobra.Command{
-	Use:   "getsecurityfilter",
+	Use:   "getsecurityfilter [security_filter_id]",
 	Short: "Get a security filter",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/security_monitoring/configuration/security_filters/{security_filter_id}")
-		fmt.Println("OperationID: GetSecurityFilter")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
+		res, _, err := api.GetSecurityFilter(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to getsecurityfilter: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "security_monitoring")
 	},
 }
 

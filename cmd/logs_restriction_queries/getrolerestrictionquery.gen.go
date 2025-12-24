@@ -1,16 +1,32 @@
 package logs_restriction_queries
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var GetRoleRestrictionQueryCmd = &cobra.Command{
-	Use:   "getrolerestrictionquery",
+	Use:   "getrolerestrictionquery [role_id]",
 	Short: "Get restriction query for a given role",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/logs/config/restriction_queries/role/{role_id}")
-		fmt.Println("OperationID: GetRoleRestrictionQuery")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewLogsRestrictionQueriesApi(client.NewAPIClient())
+		res, _, err := api.GetRoleRestrictionQuery(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to getrolerestrictionquery: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "logs_restriction_queries")
 	},
 }
 

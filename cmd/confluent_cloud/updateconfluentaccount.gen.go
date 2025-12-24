@@ -1,16 +1,32 @@
 package confluent_cloud
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var UpdateConfluentAccountCmd = &cobra.Command{
-	Use:   "updateconfluentaccount",
+	Use:   "updateconfluentaccount [account_id]",
 	Short: "Update Confluent account",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: PATCH /api/v2/integrations/confluent-cloud/accounts/{account_id}")
-		fmt.Println("OperationID: UpdateConfluentAccount")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewConfluentCloudApi(client.NewAPIClient())
+		res, _, err := api.UpdateConfluentAccount(client.NewContext(apiKey, appKey, site), args[0], datadogV2.ConfluentAccountUpdateRequest{})
+		if err != nil {
+			log.Fatalf("failed to updateconfluentaccount: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "confluent_cloud")
 	},
 }
 

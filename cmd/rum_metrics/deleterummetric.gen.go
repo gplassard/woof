@@ -1,16 +1,32 @@
 package rum_metrics
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var DeleteRumMetricCmd = &cobra.Command{
-	Use:   "deleterummetric",
+	Use:   "deleterummetric [metric_id]",
 	Short: "Delete a rum-based metric",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: DELETE /api/v2/rum/config/metrics/{metric_id}")
-		fmt.Println("OperationID: DeleteRumMetric")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewRumMetricsApi(client.NewAPIClient())
+		_, err := api.DeleteRumMetric(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to deleterummetric: %v", err)
+		}
+
+		
 	},
 }
 

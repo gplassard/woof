@@ -1,16 +1,32 @@
 package confluent_cloud
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var CreateConfluentResourceCmd = &cobra.Command{
-	Use:   "createconfluentresource",
+	Use:   "createconfluentresource [account_id]",
 	Short: "Add resource to Confluent account",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: POST /api/v2/integrations/confluent-cloud/accounts/{account_id}/resources")
-		fmt.Println("OperationID: CreateConfluentResource")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewConfluentCloudApi(client.NewAPIClient())
+		res, _, err := api.CreateConfluentResource(client.NewContext(apiKey, appKey, site), args[0], datadogV2.ConfluentResourceRequest{})
+		if err != nil {
+			log.Fatalf("failed to createconfluentresource: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "confluent_cloud")
 	},
 }
 

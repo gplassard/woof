@@ -1,16 +1,32 @@
 package microsoft_teams_integration
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var UpdateTenantBasedHandleCmd = &cobra.Command{
-	Use:   "updatetenantbasedhandle",
+	Use:   "updatetenantbasedhandle [handle_id]",
 	Short: "Update tenant-based handle",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: PATCH /api/v2/integration/ms-teams/configuration/tenant-based-handles/{handle_id}")
-		fmt.Println("OperationID: UpdateTenantBasedHandle")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewMicrosoftTeamsIntegrationApi(client.NewAPIClient())
+		res, _, err := api.UpdateTenantBasedHandle(client.NewContext(apiKey, appKey, site), args[0], datadogV2.MicrosoftTeamsUpdateTenantBasedHandleRequest{})
+		if err != nil {
+			log.Fatalf("failed to updatetenantbasedhandle: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "microsoft_teams_integration")
 	},
 }
 

@@ -1,16 +1,32 @@
 package csm_coverage_analysis
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var GetCSMServerlessCoverageAnalysisCmd = &cobra.Command{
 	Use:   "getcsmserverlesscoverageanalysis",
 	Short: "Get the CSM Serverless Coverage Analysis",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/csm/onboarding/coverage_analysis/serverless")
-		fmt.Println("OperationID: GetCSMServerlessCoverageAnalysis")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewCSMCoverageAnalysisApi(client.NewAPIClient())
+		res, _, err := api.GetCSMServerlessCoverageAnalysis(client.NewContext(apiKey, appKey, site))
+		if err != nil {
+			log.Fatalf("failed to getcsmserverlesscoverageanalysis: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "csm_coverage_analysis")
 	},
 }
 

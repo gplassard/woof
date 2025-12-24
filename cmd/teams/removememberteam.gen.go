@@ -1,16 +1,32 @@
 package teams
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var RemoveMemberTeamCmd = &cobra.Command{
-	Use:   "removememberteam",
+	Use:   "removememberteam [super_team_id] [member_team_id]",
 	Short: "Remove a member team",
+	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: DELETE /api/v2/team/{super_team_id}/member_teams/{member_team_id}")
-		fmt.Println("OperationID: RemoveMemberTeam")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewTeamsApi(client.NewAPIClient())
+		_, err := api.RemoveMemberTeam(client.NewContext(apiKey, appKey, site), args[0], args[1])
+		if err != nil {
+			log.Fatalf("failed to removememberteam: %v", err)
+		}
+
+		
 	},
 }
 

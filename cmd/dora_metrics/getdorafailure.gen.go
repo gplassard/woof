@@ -1,16 +1,32 @@
 package dora_metrics
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var GetDORAFailureCmd = &cobra.Command{
-	Use:   "getdorafailure",
+	Use:   "getdorafailure [failure_id]",
 	Short: "Get a failure event",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/dora/failures/{failure_id}")
-		fmt.Println("OperationID: GetDORAFailure")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewDORAMetricsApi(client.NewAPIClient())
+		res, _, err := api.GetDORAFailure(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to getdorafailure: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "dora_metrics")
 	},
 }
 

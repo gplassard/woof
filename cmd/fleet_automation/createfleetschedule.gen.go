@@ -1,16 +1,32 @@
 package fleet_automation
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var CreateFleetScheduleCmd = &cobra.Command{
 	Use:   "createfleetschedule",
 	Short: "Create a schedule",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: POST /api/unstable/fleet/schedules")
-		fmt.Println("OperationID: CreateFleetSchedule")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewFleetAutomationApi(client.NewAPIClient())
+		res, _, err := api.CreateFleetSchedule(client.NewContext(apiKey, appKey, site), datadogV2.FleetScheduleCreateRequest{})
+		if err != nil {
+			log.Fatalf("failed to createfleetschedule: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "fleet_automation")
 	},
 }
 

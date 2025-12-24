@@ -1,16 +1,32 @@
 package datasets
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var GetDatasetCmd = &cobra.Command{
-	Use:   "getdataset",
+	Use:   "getdataset [dataset_id]",
 	Short: "Get a single dataset by ID",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/datasets/{dataset_id}")
-		fmt.Println("OperationID: GetDataset")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewDatasetsApi(client.NewAPIClient())
+		res, _, err := api.GetDataset(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to getdataset: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "datasets")
 	},
 }
 

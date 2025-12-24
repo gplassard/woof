@@ -1,16 +1,32 @@
 package ci_visibility_tests
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var SearchCIAppTestEventsCmd = &cobra.Command{
 	Use:   "searchciapptestevents",
 	Short: "Search tests events",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: POST /api/v2/ci/tests/events/search")
-		fmt.Println("OperationID: SearchCIAppTestEvents")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewCIVisibilityTestsApi(client.NewAPIClient())
+		res, _, err := api.SearchCIAppTestEvents(client.NewContext(apiKey, appKey, site), *datadogV2.NewSearchCIAppTestEventsOptionalParameters())
+		if err != nil {
+			log.Fatalf("failed to searchciapptestevents: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "ci_visibility_tests")
 	},
 }
 

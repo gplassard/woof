@@ -1,16 +1,32 @@
 package workflow_automation
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var CreateWorkflowCmd = &cobra.Command{
 	Use:   "createworkflow",
 	Short: "Create a Workflow",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: POST /api/v2/workflows")
-		fmt.Println("OperationID: CreateWorkflow")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewWorkflowAutomationApi(client.NewAPIClient())
+		res, _, err := api.CreateWorkflow(client.NewContext(apiKey, appKey, site), datadogV2.CreateWorkflowRequest{})
+		if err != nil {
+			log.Fatalf("failed to createworkflow: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "workflow_automation")
 	},
 }
 

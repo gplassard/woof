@@ -1,16 +1,32 @@
 package roles
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var RemoveUserFromRoleCmd = &cobra.Command{
-	Use:   "removeuserfromrole",
+	Use:   "removeuserfromrole [role_id]",
 	Short: "Remove a user from a role",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: DELETE /api/v2/roles/{role_id}/users")
-		fmt.Println("OperationID: RemoveUserFromRole")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewRolesApi(client.NewAPIClient())
+		res, _, err := api.RemoveUserFromRole(client.NewContext(apiKey, appKey, site), args[0], datadogV2.RelationshipToUser{})
+		if err != nil {
+			log.Fatalf("failed to removeuserfromrole: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "roles")
 	},
 }
 

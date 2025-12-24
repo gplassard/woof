@@ -1,16 +1,32 @@
 package teams
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var UpdateTeamCmd = &cobra.Command{
-	Use:   "updateteam",
+	Use:   "updateteam [team_id]",
 	Short: "Update a team",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: PATCH /api/v2/team/{team_id}")
-		fmt.Println("OperationID: UpdateTeam")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewTeamsApi(client.NewAPIClient())
+		res, _, err := api.UpdateTeam(client.NewContext(apiKey, appKey, site), args[0], datadogV2.TeamUpdateRequest{})
+		if err != nil {
+			log.Fatalf("failed to updateteam: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "teams")
 	},
 }
 

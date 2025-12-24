@@ -1,16 +1,32 @@
 package logs_restriction_queries
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var RemoveRoleFromRestrictionQueryCmd = &cobra.Command{
-	Use:   "removerolefromrestrictionquery",
+	Use:   "removerolefromrestrictionquery [restriction_query_id]",
 	Short: "Revoke role from a restriction query",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: DELETE /api/v2/logs/config/restriction_queries/{restriction_query_id}/roles")
-		fmt.Println("OperationID: RemoveRoleFromRestrictionQuery")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewLogsRestrictionQueriesApi(client.NewAPIClient())
+		_, err := api.RemoveRoleFromRestrictionQuery(client.NewContext(apiKey, appKey, site), args[0], datadogV2.RelationshipToRole{})
+		if err != nil {
+			log.Fatalf("failed to removerolefromrestrictionquery: %v", err)
+		}
+
+		
 	},
 }
 

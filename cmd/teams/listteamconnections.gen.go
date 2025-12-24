@@ -1,16 +1,32 @@
 package teams
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var ListTeamConnectionsCmd = &cobra.Command{
 	Use:   "listteamconnections",
 	Short: "List team connections",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/team/connections")
-		fmt.Println("OperationID: ListTeamConnections")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewTeamsApi(client.NewAPIClient())
+		res, _, err := api.ListTeamConnections(client.NewContext(apiKey, appKey, site))
+		if err != nil {
+			log.Fatalf("failed to listteamconnections: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "teams")
 	},
 }
 

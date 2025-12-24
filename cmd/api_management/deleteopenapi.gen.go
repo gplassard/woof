@@ -1,16 +1,32 @@
 package api_management
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var DeleteOpenAPICmd = &cobra.Command{
-	Use:   "deleteopenapi",
+	Use:   "deleteopenapi [id]",
 	Short: "Delete an API",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: DELETE /api/v2/apicatalog/api/{id}")
-		fmt.Println("OperationID: DeleteOpenAPI")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewAPIManagementApi(client.NewAPIClient())
+		_, err := api.DeleteOpenAPI(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
+		if err != nil {
+			log.Fatalf("failed to deleteopenapi: %v", err)
+		}
+
+		
 	},
 }
 

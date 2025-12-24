@@ -1,16 +1,32 @@
 package logs_restriction_queries
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var CreateRestrictionQueryCmd = &cobra.Command{
 	Use:   "createrestrictionquery",
 	Short: "Create a restriction query",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: POST /api/v2/logs/config/restriction_queries")
-		fmt.Println("OperationID: CreateRestrictionQuery")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewLogsRestrictionQueriesApi(client.NewAPIClient())
+		res, _, err := api.CreateRestrictionQuery(client.NewContext(apiKey, appKey, site), datadogV2.RestrictionQueryCreatePayload{})
+		if err != nil {
+			log.Fatalf("failed to createrestrictionquery: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "logs_restriction_queries")
 	},
 }
 

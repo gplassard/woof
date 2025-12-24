@@ -1,16 +1,32 @@
 package dashboard_lists
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	"strconv"
 )
 
 var CreateDashboardListItemsCmd = &cobra.Command{
-	Use:   "createdashboardlistitems",
+	Use:   "createdashboardlistitems [dashboard_list_id]",
 	Short: "Add Items to a Dashboard List",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: POST /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards")
-		fmt.Println("OperationID: CreateDashboardListItems")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewDashboardListsApi(client.NewAPIClient())
+		res, _, err := api.CreateDashboardListItems(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }(), datadogV2.DashboardListAddItemsRequest{})
+		if err != nil {
+			log.Fatalf("failed to createdashboardlistitems: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "dashboard_lists")
 	},
 }
 

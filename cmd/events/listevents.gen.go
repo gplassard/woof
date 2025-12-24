@@ -1,16 +1,32 @@
 package events
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var ListEventsCmd = &cobra.Command{
 	Use:   "listevents",
 	Short: "Get a list of events",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/events")
-		fmt.Println("OperationID: ListEvents")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewEventsApi(client.NewAPIClient())
+		res, _, err := api.ListEvents(client.NewContext(apiKey, appKey, site))
+		if err != nil {
+			log.Fatalf("failed to listevents: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "events")
 	},
 }
 

@@ -1,16 +1,32 @@
 package security_monitoring
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var GetSignalNotificationRulesCmd = &cobra.Command{
 	Use:   "getsignalnotificationrules",
 	Short: "Get the list of signal-based notification rules",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/security/signals/notification_rules")
-		fmt.Println("OperationID: GetSignalNotificationRules")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
+		res, _, err := api.GetSignalNotificationRules(client.NewContext(apiKey, appKey, site))
+		if err != nil {
+			log.Fatalf("failed to getsignalnotificationrules: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "security_monitoring")
 	},
 }
 

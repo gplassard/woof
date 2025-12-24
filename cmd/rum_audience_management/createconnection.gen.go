@@ -1,16 +1,32 @@
 package rum_audience_management
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var CreateConnectionCmd = &cobra.Command{
-	Use:   "createconnection",
+	Use:   "createconnection [entity]",
 	Short: "Create connection",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: POST /api/v2/product-analytics/{entity}/mapping/connection")
-		fmt.Println("OperationID: CreateConnection")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewRumAudienceManagementApi(client.NewAPIClient())
+		_, err := api.CreateConnection(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CreateConnectionRequest{})
+		if err != nil {
+			log.Fatalf("failed to createconnection: %v", err)
+		}
+
+		
 	},
 }
 

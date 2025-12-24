@@ -1,16 +1,32 @@
 package security_monitoring
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var DeleteSecurityMonitoringRuleCmd = &cobra.Command{
-	Use:   "deletesecuritymonitoringrule",
+	Use:   "deletesecuritymonitoringrule [rule_id]",
 	Short: "Delete an existing rule",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: DELETE /api/v2/security_monitoring/rules/{rule_id}")
-		fmt.Println("OperationID: DeleteSecurityMonitoringRule")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
+		_, err := api.DeleteSecurityMonitoringRule(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to deletesecuritymonitoringrule: %v", err)
+		}
+
+		
 	},
 }
 

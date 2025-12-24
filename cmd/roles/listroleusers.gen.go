@@ -1,16 +1,32 @@
 package roles
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var ListRoleUsersCmd = &cobra.Command{
-	Use:   "listroleusers",
+	Use:   "listroleusers [role_id]",
 	Short: "Get all users of a role",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/roles/{role_id}/users")
-		fmt.Println("OperationID: ListRoleUsers")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewRolesApi(client.NewAPIClient())
+		res, _, err := api.ListRoleUsers(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to listroleusers: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "roles")
 	},
 }
 

@@ -1,16 +1,32 @@
 package ci_visibility_pipelines
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var CreateCIAppPipelineEventCmd = &cobra.Command{
 	Use:   "createciapppipelineevent",
 	Short: "Send pipeline event",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: POST /api/v2/ci/pipeline")
-		fmt.Println("OperationID: CreateCIAppPipelineEvent")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewCIVisibilityPipelinesApi(client.NewAPIClient())
+		res, _, err := api.CreateCIAppPipelineEvent(client.NewContext(apiKey, appKey, site), datadogV2.CIAppCreatePipelineEventRequest{})
+		if err != nil {
+			log.Fatalf("failed to createciapppipelineevent: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "ci_visibility_pipelines")
 	},
 }
 

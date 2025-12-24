@@ -1,16 +1,32 @@
 package cloud_network_monitoring
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var GetAggregatedDnsCmd = &cobra.Command{
 	Use:   "getaggregateddns",
 	Short: "Get all aggregated DNS traffic",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/network/dns/aggregate")
-		fmt.Println("OperationID: GetAggregatedDns")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewCloudNetworkMonitoringApi(client.NewAPIClient())
+		res, _, err := api.GetAggregatedDns(client.NewContext(apiKey, appKey, site))
+		if err != nil {
+			log.Fatalf("failed to getaggregateddns: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "cloud_network_monitoring")
 	},
 }
 

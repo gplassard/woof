@@ -1,16 +1,32 @@
 package events
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var CreateEventCmd = &cobra.Command{
 	Use:   "createevent",
 	Short: "Post an event",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: POST /api/v2/events")
-		fmt.Println("OperationID: CreateEvent")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewEventsApi(client.NewAPIClient())
+		res, _, err := api.CreateEvent(client.NewContext(apiKey, appKey, site), datadogV2.EventCreateRequestPayload{})
+		if err != nil {
+			log.Fatalf("failed to createevent: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "events")
 	},
 }
 

@@ -1,16 +1,32 @@
 package service_accounts
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var CreateServiceAccountCmd = &cobra.Command{
 	Use:   "createserviceaccount",
 	Short: "Create a service account",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: POST /api/v2/service_accounts")
-		fmt.Println("OperationID: CreateServiceAccount")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewServiceAccountsApi(client.NewAPIClient())
+		res, _, err := api.CreateServiceAccount(client.NewContext(apiKey, appKey, site), datadogV2.ServiceAccountCreateRequest{})
+		if err != nil {
+			log.Fatalf("failed to createserviceaccount: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "service_accounts")
 	},
 }
 

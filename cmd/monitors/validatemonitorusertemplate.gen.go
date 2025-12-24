@@ -1,16 +1,32 @@
 package monitors
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var ValidateMonitorUserTemplateCmd = &cobra.Command{
 	Use:   "validatemonitorusertemplate",
 	Short: "Validate a monitor user template",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: POST /api/v2/monitor/template/validate")
-		fmt.Println("OperationID: ValidateMonitorUserTemplate")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewMonitorsApi(client.NewAPIClient())
+		_, err := api.ValidateMonitorUserTemplate(client.NewContext(apiKey, appKey, site), datadogV2.MonitorUserTemplateCreateRequest{})
+		if err != nil {
+			log.Fatalf("failed to validatemonitorusertemplate: %v", err)
+		}
+
+		
 	},
 }
 

@@ -1,16 +1,32 @@
 package security_monitoring
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var GetSuppressionsAffectingFutureRuleCmd = &cobra.Command{
 	Use:   "getsuppressionsaffectingfuturerule",
 	Short: "Get suppressions affecting future rule",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: POST /api/v2/security_monitoring/configuration/suppressions/rules")
-		fmt.Println("OperationID: GetSuppressionsAffectingFutureRule")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
+		res, _, err := api.GetSuppressionsAffectingFutureRule(client.NewContext(apiKey, appKey, site), datadogV2.SecurityMonitoringRuleCreatePayload{})
+		if err != nil {
+			log.Fatalf("failed to getsuppressionsaffectingfuturerule: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "security_monitoring")
 	},
 }
 

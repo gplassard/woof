@@ -1,16 +1,32 @@
 package security_monitoring
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var ValidateSecurityMonitoringRuleCmd = &cobra.Command{
 	Use:   "validatesecuritymonitoringrule",
 	Short: "Validate a detection rule",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: POST /api/v2/security_monitoring/rules/validation")
-		fmt.Println("OperationID: ValidateSecurityMonitoringRule")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
+		_, err := api.ValidateSecurityMonitoringRule(client.NewContext(apiKey, appKey, site), datadogV2.SecurityMonitoringRuleValidatePayload{})
+		if err != nil {
+			log.Fatalf("failed to validatesecuritymonitoringrule: %v", err)
+		}
+
+		
 	},
 }
 

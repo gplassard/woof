@@ -1,16 +1,32 @@
 package spans_metrics
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var GetSpansMetricCmd = &cobra.Command{
-	Use:   "getspansmetric",
+	Use:   "getspansmetric [metric_id]",
 	Short: "Get a span-based metric",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/apm/config/metrics/{metric_id}")
-		fmt.Println("OperationID: GetSpansMetric")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewSpansMetricsApi(client.NewAPIClient())
+		res, _, err := api.GetSpansMetric(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to getspansmetric: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "spans_metrics")
 	},
 }
 

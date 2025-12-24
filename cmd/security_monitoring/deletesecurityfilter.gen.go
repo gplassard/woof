@@ -1,16 +1,32 @@
 package security_monitoring
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var DeleteSecurityFilterCmd = &cobra.Command{
-	Use:   "deletesecurityfilter",
+	Use:   "deletesecurityfilter [security_filter_id]",
 	Short: "Delete a security filter",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: DELETE /api/v2/security_monitoring/configuration/security_filters/{security_filter_id}")
-		fmt.Println("OperationID: DeleteSecurityFilter")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
+		_, err := api.DeleteSecurityFilter(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to deletesecurityfilter: %v", err)
+		}
+
+		
 	},
 }
 

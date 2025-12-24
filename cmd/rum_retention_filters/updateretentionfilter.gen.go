@@ -1,16 +1,32 @@
 package rum_retention_filters
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var UpdateRetentionFilterCmd = &cobra.Command{
-	Use:   "updateretentionfilter",
+	Use:   "updateretentionfilter [app_id] [rf_id]",
 	Short: "Update a RUM retention filter",
+	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: PATCH /api/v2/rum/applications/{app_id}/retention_filters/{rf_id}")
-		fmt.Println("OperationID: UpdateRetentionFilter")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewRumRetentionFiltersApi(client.NewAPIClient())
+		res, _, err := api.UpdateRetentionFilter(client.NewContext(apiKey, appKey, site), args[0], args[1], datadogV2.RumRetentionFilterUpdateRequest{})
+		if err != nil {
+			log.Fatalf("failed to updateretentionfilter: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "rum_retention_filters")
 	},
 }
 

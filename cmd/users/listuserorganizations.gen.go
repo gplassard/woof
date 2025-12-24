@@ -1,16 +1,32 @@
 package users
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var ListUserOrganizationsCmd = &cobra.Command{
-	Use:   "listuserorganizations",
+	Use:   "listuserorganizations [user_id]",
 	Short: "Get a user organization",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/users/{user_id}/orgs")
-		fmt.Println("OperationID: ListUserOrganizations")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewUsersApi(client.NewAPIClient())
+		res, _, err := api.ListUserOrganizations(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to listuserorganizations: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "users")
 	},
 }
 

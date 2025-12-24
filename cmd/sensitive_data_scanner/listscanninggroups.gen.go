@@ -1,16 +1,32 @@
 package sensitive_data_scanner
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var ListScanningGroupsCmd = &cobra.Command{
 	Use:   "listscanninggroups",
 	Short: "List Scanning Groups",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/sensitive-data-scanner/config")
-		fmt.Println("OperationID: ListScanningGroups")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewSensitiveDataScannerApi(client.NewAPIClient())
+		res, _, err := api.ListScanningGroups(client.NewContext(apiKey, appKey, site))
+		if err != nil {
+			log.Fatalf("failed to listscanninggroups: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "sensitive_data_scanner")
 	},
 }
 

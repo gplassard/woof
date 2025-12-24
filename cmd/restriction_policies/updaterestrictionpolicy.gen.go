@@ -1,16 +1,32 @@
 package restriction_policies
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var UpdateRestrictionPolicyCmd = &cobra.Command{
-	Use:   "updaterestrictionpolicy",
+	Use:   "updaterestrictionpolicy [resource_id]",
 	Short: "Update a restriction policy",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: POST /api/v2/restriction_policy/{resource_id}")
-		fmt.Println("OperationID: UpdateRestrictionPolicy")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewRestrictionPoliciesApi(client.NewAPIClient())
+		res, _, err := api.UpdateRestrictionPolicy(client.NewContext(apiKey, appKey, site), args[0], datadogV2.RestrictionPolicyUpdateRequest{})
+		if err != nil {
+			log.Fatalf("failed to updaterestrictionpolicy: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "restriction_policies")
 	},
 }
 

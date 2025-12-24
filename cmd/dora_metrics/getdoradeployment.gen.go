@@ -1,16 +1,32 @@
 package dora_metrics
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var GetDORADeploymentCmd = &cobra.Command{
-	Use:   "getdoradeployment",
+	Use:   "getdoradeployment [deployment_id]",
 	Short: "Get a deployment event",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/dora/deployments/{deployment_id}")
-		fmt.Println("OperationID: GetDORADeployment")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewDORAMetricsApi(client.NewAPIClient())
+		res, _, err := api.GetDORADeployment(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to getdoradeployment: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "dora_metrics")
 	},
 }
 

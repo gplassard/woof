@@ -1,16 +1,32 @@
 package users
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var UpdateUserCmd = &cobra.Command{
-	Use:   "updateuser",
+	Use:   "updateuser [user_id]",
 	Short: "Update a user",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: PATCH /api/v2/users/{user_id}")
-		fmt.Println("OperationID: UpdateUser")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewUsersApi(client.NewAPIClient())
+		res, _, err := api.UpdateUser(client.NewContext(apiKey, appKey, site), args[0], datadogV2.UserUpdateRequest{})
+		if err != nil {
+			log.Fatalf("failed to updateuser: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "users")
 	},
 }
 

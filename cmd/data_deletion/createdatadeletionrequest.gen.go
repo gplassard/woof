@@ -1,16 +1,32 @@
 package data_deletion
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var CreateDataDeletionRequestCmd = &cobra.Command{
-	Use:   "createdatadeletionrequest",
+	Use:   "createdatadeletionrequest [product]",
 	Short: "Creates a data deletion request",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: POST /api/v2/deletion/data/{product}")
-		fmt.Println("OperationID: CreateDataDeletionRequest")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewDataDeletionApi(client.NewAPIClient())
+		res, _, err := api.CreateDataDeletionRequest(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CreateDataDeletionRequestBody{})
+		if err != nil {
+			log.Fatalf("failed to createdatadeletionrequest: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "data_deletion")
 	},
 }
 

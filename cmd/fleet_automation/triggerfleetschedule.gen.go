@@ -1,16 +1,32 @@
 package fleet_automation
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var TriggerFleetScheduleCmd = &cobra.Command{
-	Use:   "triggerfleetschedule",
+	Use:   "triggerfleetschedule [id]",
 	Short: "Trigger a schedule deployment",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: POST /api/unstable/fleet/schedules/{id}/trigger")
-		fmt.Println("OperationID: TriggerFleetSchedule")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewFleetAutomationApi(client.NewAPIClient())
+		res, _, err := api.TriggerFleetSchedule(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to triggerfleetschedule: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "fleet_automation")
 	},
 }
 

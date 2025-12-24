@@ -1,16 +1,32 @@
 package teams
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var GetTeamLinksCmd = &cobra.Command{
-	Use:   "getteamlinks",
+	Use:   "getteamlinks [team_id]",
 	Short: "Get links for a team",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/team/{team_id}/links")
-		fmt.Println("OperationID: GetTeamLinks")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewTeamsApi(client.NewAPIClient())
+		res, _, err := api.GetTeamLinks(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to getteamlinks: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "teams")
 	},
 }
 

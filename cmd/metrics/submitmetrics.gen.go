@@ -1,16 +1,32 @@
 package metrics
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var SubmitMetricsCmd = &cobra.Command{
 	Use:   "submitmetrics",
 	Short: "Submit metrics",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: POST /api/v2/series")
-		fmt.Println("OperationID: SubmitMetrics")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewMetricsApi(client.NewAPIClient())
+		res, _, err := api.SubmitMetrics(client.NewContext(apiKey, appKey, site), datadogV2.MetricPayload{})
+		if err != nil {
+			log.Fatalf("failed to submitmetrics: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "metrics")
 	},
 }
 

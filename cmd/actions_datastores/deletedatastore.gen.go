@@ -1,16 +1,32 @@
 package actions_datastores
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var DeleteDatastoreCmd = &cobra.Command{
-	Use:   "deletedatastore",
+	Use:   "deletedatastore [datastore_id]",
 	Short: "Delete datastore",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: DELETE /api/v2/actions-datastores/{datastore_id}")
-		fmt.Println("OperationID: DeleteDatastore")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewActionsDatastoresApi(client.NewAPIClient())
+		_, err := api.DeleteDatastore(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to deletedatastore: %v", err)
+		}
+
+		
 	},
 }
 

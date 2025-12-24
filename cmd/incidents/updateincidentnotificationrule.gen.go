@@ -1,16 +1,32 @@
 package incidents
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var UpdateIncidentNotificationRuleCmd = &cobra.Command{
-	Use:   "updateincidentnotificationrule",
+	Use:   "updateincidentnotificationrule [id]",
 	Short: "Update an incident notification rule",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: PUT /api/v2/incidents/config/notification-rules/{id}")
-		fmt.Println("OperationID: UpdateIncidentNotificationRule")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
+		res, _, err := api.UpdateIncidentNotificationRule(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]), datadogV2.PutIncidentNotificationRuleRequest{})
+		if err != nil {
+			log.Fatalf("failed to updateincidentnotificationrule: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "incidents")
 	},
 }
 

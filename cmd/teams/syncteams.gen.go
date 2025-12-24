@@ -1,16 +1,32 @@
 package teams
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var SyncTeamsCmd = &cobra.Command{
 	Use:   "syncteams",
 	Short: "Link Teams with GitHub Teams",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: POST /api/v2/team/sync")
-		fmt.Println("OperationID: SyncTeams")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewTeamsApi(client.NewAPIClient())
+		_, err := api.SyncTeams(client.NewContext(apiKey, appKey, site), datadogV2.TeamSyncRequest{})
+		if err != nil {
+			log.Fatalf("failed to syncteams: %v", err)
+		}
+
+		
 	},
 }
 

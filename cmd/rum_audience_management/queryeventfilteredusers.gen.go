@@ -1,16 +1,32 @@
 package rum_audience_management
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var QueryEventFilteredUsersCmd = &cobra.Command{
 	Use:   "queryeventfilteredusers",
 	Short: "Query event filtered users",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: POST /api/v2/product-analytics/users/event_filtered_query")
-		fmt.Println("OperationID: QueryEventFilteredUsers")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewRumAudienceManagementApi(client.NewAPIClient())
+		res, _, err := api.QueryEventFilteredUsers(client.NewContext(apiKey, appKey, site), datadogV2.QueryEventFilteredUsersRequest{})
+		if err != nil {
+			log.Fatalf("failed to queryeventfilteredusers: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "rum_audience_management")
 	},
 }
 

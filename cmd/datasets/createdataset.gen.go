@@ -1,16 +1,32 @@
 package datasets
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var CreateDatasetCmd = &cobra.Command{
 	Use:   "createdataset",
 	Short: "Create a dataset",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: POST /api/v2/datasets")
-		fmt.Println("OperationID: CreateDataset")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewDatasetsApi(client.NewAPIClient())
+		res, _, err := api.CreateDataset(client.NewContext(apiKey, appKey, site), datadogV2.DatasetCreateRequest{})
+		if err != nil {
+			log.Fatalf("failed to createdataset: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "datasets")
 	},
 }
 

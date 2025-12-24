@@ -1,16 +1,32 @@
 package rum_audience_management
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var GetMappingCmd = &cobra.Command{
-	Use:   "getmapping",
+	Use:   "getmapping [entity]",
 	Short: "Get mapping",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/product-analytics/{entity}/mapping")
-		fmt.Println("OperationID: GetMapping")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewRumAudienceManagementApi(client.NewAPIClient())
+		res, _, err := api.GetMapping(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to getmapping: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "rum_audience_management")
 	},
 }
 

@@ -1,16 +1,32 @@
 package cloud_cost_management
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	"strconv"
 )
 
 var DeleteCostGCPUsageCostConfigCmd = &cobra.Command{
-	Use:   "deletecostgcpusagecostconfig",
+	Use:   "deletecostgcpusagecostconfig [cloud_account_id]",
 	Short: "Delete Google Cloud Usage Cost config",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: DELETE /api/v2/cost/gcp_uc_config/{cloud_account_id}")
-		fmt.Println("OperationID: DeleteCostGCPUsageCostConfig")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
+		_, err := api.DeleteCostGCPUsageCostConfig(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }())
+		if err != nil {
+			log.Fatalf("failed to deletecostgcpusagecostconfig: %v", err)
+		}
+
+		
 	},
 }
 

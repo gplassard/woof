@@ -1,16 +1,32 @@
 package metrics
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var CreateBulkTagsMetricsConfigurationCmd = &cobra.Command{
 	Use:   "createbulktagsmetricsconfiguration",
 	Short: "Configure tags for multiple metrics",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: POST /api/v2/metrics/config/bulk-tags")
-		fmt.Println("OperationID: CreateBulkTagsMetricsConfiguration")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewMetricsApi(client.NewAPIClient())
+		res, _, err := api.CreateBulkTagsMetricsConfiguration(client.NewContext(apiKey, appKey, site), datadogV2.MetricBulkTagConfigCreateRequest{})
+		if err != nil {
+			log.Fatalf("failed to createbulktagsmetricsconfiguration: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "metrics")
 	},
 }
 

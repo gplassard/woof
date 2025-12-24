@@ -1,16 +1,32 @@
 package monitors
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var DeleteMonitorNotificationRuleCmd = &cobra.Command{
-	Use:   "deletemonitornotificationrule",
+	Use:   "deletemonitornotificationrule [rule_id]",
 	Short: "Delete a monitor notification rule",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: DELETE /api/v2/monitor/notification_rule/{rule_id}")
-		fmt.Println("OperationID: DeleteMonitorNotificationRule")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewMonitorsApi(client.NewAPIClient())
+		_, err := api.DeleteMonitorNotificationRule(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to deletemonitornotificationrule: %v", err)
+		}
+
+		
 	},
 }
 

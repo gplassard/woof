@@ -1,16 +1,32 @@
 package incident_services
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var GetIncidentServiceCmd = &cobra.Command{
-	Use:   "getincidentservice",
+	Use:   "getincidentservice [service_id]",
 	Short: "Get details of an incident service",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/services/{service_id}")
-		fmt.Println("OperationID: GetIncidentService")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewIncidentServicesApi(client.NewAPIClient())
+		res, _, err := api.GetIncidentService(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to getincidentservice: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "incident_services")
 	},
 }
 

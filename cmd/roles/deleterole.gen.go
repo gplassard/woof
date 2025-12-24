@@ -1,16 +1,32 @@
 package roles
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var DeleteRoleCmd = &cobra.Command{
-	Use:   "deleterole",
+	Use:   "deleterole [role_id]",
 	Short: "Delete role",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: DELETE /api/v2/roles/{role_id}")
-		fmt.Println("OperationID: DeleteRole")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewRolesApi(client.NewAPIClient())
+		_, err := api.DeleteRole(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to deleterole: %v", err)
+		}
+
+		
 	},
 }
 

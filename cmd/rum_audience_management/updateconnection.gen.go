@@ -1,16 +1,32 @@
 package rum_audience_management
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var UpdateConnectionCmd = &cobra.Command{
-	Use:   "updateconnection",
+	Use:   "updateconnection [entity]",
 	Short: "Update connection",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: PUT /api/v2/product-analytics/{entity}/mapping/connection")
-		fmt.Println("OperationID: UpdateConnection")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewRumAudienceManagementApi(client.NewAPIClient())
+		_, err := api.UpdateConnection(client.NewContext(apiKey, appKey, site), args[0], datadogV2.UpdateConnectionRequest{})
+		if err != nil {
+			log.Fatalf("failed to updateconnection: %v", err)
+		}
+
+		
 	},
 }
 

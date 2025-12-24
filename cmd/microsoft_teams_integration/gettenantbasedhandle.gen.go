@@ -1,16 +1,32 @@
 package microsoft_teams_integration
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var GetTenantBasedHandleCmd = &cobra.Command{
-	Use:   "gettenantbasedhandle",
+	Use:   "gettenantbasedhandle [handle_id]",
 	Short: "Get tenant-based handle information",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/integration/ms-teams/configuration/tenant-based-handles/{handle_id}")
-		fmt.Println("OperationID: GetTenantBasedHandle")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewMicrosoftTeamsIntegrationApi(client.NewAPIClient())
+		res, _, err := api.GetTenantBasedHandle(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to gettenantbasedhandle: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "microsoft_teams_integration")
 	},
 }
 

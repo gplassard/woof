@@ -1,16 +1,32 @@
 package security_monitoring
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var ListFindingsCmd = &cobra.Command{
 	Use:   "listfindings",
 	Short: "List findings",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/posture_management/findings")
-		fmt.Println("OperationID: ListFindings")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
+		res, _, err := api.ListFindings(client.NewContext(apiKey, appKey, site))
+		if err != nil {
+			log.Fatalf("failed to listfindings: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "security_monitoring")
 	},
 }
 

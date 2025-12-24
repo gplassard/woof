@@ -1,16 +1,32 @@
 package security_monitoring
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var ListMultipleRulesetsCmd = &cobra.Command{
 	Use:   "listmultiplerulesets",
 	Short: "Ruleset get multiple",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: POST /api/v2/static-analysis/rulesets")
-		fmt.Println("OperationID: ListMultipleRulesets")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
+		res, _, err := api.ListMultipleRulesets(client.NewContext(apiKey, appKey, site), datadogV2.GetMultipleRulesetsRequest{})
+		if err != nil {
+			log.Fatalf("failed to listmultiplerulesets: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "security_monitoring")
 	},
 }
 

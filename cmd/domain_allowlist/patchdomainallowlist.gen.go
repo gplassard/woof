@@ -1,16 +1,32 @@
 package domain_allowlist
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var PatchDomainAllowlistCmd = &cobra.Command{
 	Use:   "patchdomainallowlist",
 	Short: "Sets Domain Allowlist",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: PATCH /api/v2/domain_allowlist")
-		fmt.Println("OperationID: PatchDomainAllowlist")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewDomainAllowlistApi(client.NewAPIClient())
+		res, _, err := api.PatchDomainAllowlist(client.NewContext(apiKey, appKey, site), datadogV2.DomainAllowlistRequest{})
+		if err != nil {
+			log.Fatalf("failed to patchdomainallowlist: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "domain_allowlist")
 	},
 }
 

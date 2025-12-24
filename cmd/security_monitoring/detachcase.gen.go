@@ -1,16 +1,32 @@
 package security_monitoring
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var DetachCaseCmd = &cobra.Command{
 	Use:   "detachcase",
 	Short: "Detach security findings from their case",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: DELETE /api/v2/security/findings/cases")
-		fmt.Println("OperationID: DetachCase")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
+		_, err := api.DetachCase(client.NewContext(apiKey, appKey, site), datadogV2.DetachCaseRequest{})
+		if err != nil {
+			log.Fatalf("failed to detachcase: %v", err)
+		}
+
+		
 	},
 }
 

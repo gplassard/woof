@@ -1,16 +1,32 @@
 package app_builder
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var PublishAppCmd = &cobra.Command{
-	Use:   "publishapp",
+	Use:   "publishapp [app_id]",
 	Short: "Publish App",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: POST /api/v2/app-builder/apps/{app_id}/deployment")
-		fmt.Println("OperationID: PublishApp")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewAppBuilderApi(client.NewAPIClient())
+		res, _, err := api.PublishApp(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
+		if err != nil {
+			log.Fatalf("failed to publishapp: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "app_builder")
 	},
 }
 

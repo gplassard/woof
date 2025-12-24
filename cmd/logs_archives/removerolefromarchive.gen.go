@@ -1,16 +1,32 @@
 package logs_archives
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var RemoveRoleFromArchiveCmd = &cobra.Command{
-	Use:   "removerolefromarchive",
+	Use:   "removerolefromarchive [archive_id]",
 	Short: "Revoke role from an archive",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: DELETE /api/v2/logs/config/archives/{archive_id}/readers")
-		fmt.Println("OperationID: RemoveRoleFromArchive")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewLogsArchivesApi(client.NewAPIClient())
+		_, err := api.RemoveRoleFromArchive(client.NewContext(apiKey, appKey, site), args[0], datadogV2.RelationshipToRole{})
+		if err != nil {
+			log.Fatalf("failed to removerolefromarchive: %v", err)
+		}
+
+		
 	},
 }
 

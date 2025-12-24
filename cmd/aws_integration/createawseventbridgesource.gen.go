@@ -1,16 +1,32 @@
 package aws_integration
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var CreateAWSEventBridgeSourceCmd = &cobra.Command{
 	Use:   "createawseventbridgesource",
 	Short: "Create an Amazon EventBridge source",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: POST /api/v2/integration/aws/event_bridge")
-		fmt.Println("OperationID: CreateAWSEventBridgeSource")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewAWSIntegrationApi(client.NewAPIClient())
+		res, _, err := api.CreateAWSEventBridgeSource(client.NewContext(apiKey, appKey, site), datadogV2.AWSEventBridgeCreateRequest{})
+		if err != nil {
+			log.Fatalf("failed to createawseventbridgesource: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "aws_integration")
 	},
 }
 

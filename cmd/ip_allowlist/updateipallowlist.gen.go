@@ -1,16 +1,32 @@
 package ip_allowlist
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var UpdateIPAllowlistCmd = &cobra.Command{
 	Use:   "updateipallowlist",
 	Short: "Update IP Allowlist",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: PATCH /api/v2/ip_allowlist")
-		fmt.Println("OperationID: UpdateIPAllowlist")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewIPAllowlistApi(client.NewAPIClient())
+		res, _, err := api.UpdateIPAllowlist(client.NewContext(apiKey, appKey, site), datadogV2.IPAllowlistUpdateRequest{})
+		if err != nil {
+			log.Fatalf("failed to updateipallowlist: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "ip_allowlist")
 	},
 }
 

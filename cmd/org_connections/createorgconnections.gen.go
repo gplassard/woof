@@ -1,16 +1,32 @@
 package org_connections
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var CreateOrgConnectionsCmd = &cobra.Command{
 	Use:   "createorgconnections",
 	Short: "Create Org Connection",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: POST /api/v2/org_connections")
-		fmt.Println("OperationID: CreateOrgConnections")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewOrgConnectionsApi(client.NewAPIClient())
+		res, _, err := api.CreateOrgConnections(client.NewContext(apiKey, appKey, site), datadogV2.OrgConnectionCreateRequest{})
+		if err != nil {
+			log.Fatalf("failed to createorgconnections: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "org_connections")
 	},
 }
 

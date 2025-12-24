@@ -1,16 +1,32 @@
 package key_management
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var DeleteApplicationKeyCmd = &cobra.Command{
-	Use:   "deleteapplicationkey",
+	Use:   "deleteapplicationkey [app_key_id]",
 	Short: "Delete an application key",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: DELETE /api/v2/application_keys/{app_key_id}")
-		fmt.Println("OperationID: DeleteApplicationKey")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewKeyManagementApi(client.NewAPIClient())
+		_, err := api.DeleteApplicationKey(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to deleteapplicationkey: %v", err)
+		}
+
+		
 	},
 }
 

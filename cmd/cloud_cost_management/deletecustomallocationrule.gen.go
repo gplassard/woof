@@ -1,16 +1,32 @@
 package cloud_cost_management
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	"strconv"
 )
 
 var DeleteCustomAllocationRuleCmd = &cobra.Command{
-	Use:   "deletecustomallocationrule",
+	Use:   "deletecustomallocationrule [rule_id]",
 	Short: "Delete custom allocation rule",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: DELETE /api/v2/cost/arbitrary_rule/{rule_id}")
-		fmt.Println("OperationID: DeleteCustomAllocationRule")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
+		_, err := api.DeleteCustomAllocationRule(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }())
+		if err != nil {
+			log.Fatalf("failed to deletecustomallocationrule: %v", err)
+		}
+
+		
 	},
 }
 

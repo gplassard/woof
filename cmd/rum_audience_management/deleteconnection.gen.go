@@ -1,16 +1,32 @@
 package rum_audience_management
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var DeleteConnectionCmd = &cobra.Command{
-	Use:   "deleteconnection",
+	Use:   "deleteconnection [id] [entity]",
 	Short: "Delete connection",
+	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: DELETE /api/v2/product-analytics/{entity}/mapping/connection/{id}")
-		fmt.Println("OperationID: DeleteConnection")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewRumAudienceManagementApi(client.NewAPIClient())
+		_, err := api.DeleteConnection(client.NewContext(apiKey, appKey, site), args[0], args[1])
+		if err != nil {
+			log.Fatalf("failed to deleteconnection: %v", err)
+		}
+
+		
 	},
 }
 

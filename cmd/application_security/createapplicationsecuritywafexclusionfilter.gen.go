@@ -1,16 +1,32 @@
 package application_security
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var CreateApplicationSecurityWafExclusionFilterCmd = &cobra.Command{
 	Use:   "createapplicationsecuritywafexclusionfilter",
 	Short: "Create a WAF exclusion filter",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: POST /api/v2/remote_config/products/asm/waf/exclusion_filters")
-		fmt.Println("OperationID: CreateApplicationSecurityWafExclusionFilter")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewApplicationSecurityApi(client.NewAPIClient())
+		res, _, err := api.CreateApplicationSecurityWafExclusionFilter(client.NewContext(apiKey, appKey, site), datadogV2.ApplicationSecurityWafExclusionFilterCreateRequest{})
+		if err != nil {
+			log.Fatalf("failed to createapplicationsecuritywafexclusionfilter: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "application_security")
 	},
 }
 

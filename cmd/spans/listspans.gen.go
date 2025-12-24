@@ -1,16 +1,32 @@
 package spans
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var ListSpansCmd = &cobra.Command{
 	Use:   "listspans",
 	Short: "Search spans",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: POST /api/v2/spans/events/search")
-		fmt.Println("OperationID: ListSpans")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewSpansApi(client.NewAPIClient())
+		res, _, err := api.ListSpans(client.NewContext(apiKey, appKey, site), datadogV2.SpansListRequest{})
+		if err != nil {
+			log.Fatalf("failed to listspans: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "spans")
 	},
 }
 

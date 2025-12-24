@@ -1,16 +1,32 @@
 package on_call
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var SetOnCallTeamRoutingRulesCmd = &cobra.Command{
-	Use:   "setoncallteamroutingrules",
+	Use:   "setoncallteamroutingrules [team_id]",
 	Short: "Set On-Call team routing rules",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: PUT /api/v2/on-call/teams/{team_id}/routing-rules")
-		fmt.Println("OperationID: SetOnCallTeamRoutingRules")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewOnCallApi(client.NewAPIClient())
+		res, _, err := api.SetOnCallTeamRoutingRules(client.NewContext(apiKey, appKey, site), args[0], datadogV2.TeamRoutingRulesRequest{})
+		if err != nil {
+			log.Fatalf("failed to setoncallteamroutingrules: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "on_call")
 	},
 }
 

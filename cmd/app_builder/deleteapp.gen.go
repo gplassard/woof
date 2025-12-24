@@ -1,16 +1,32 @@
 package app_builder
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var DeleteAppCmd = &cobra.Command{
-	Use:   "deleteapp",
+	Use:   "deleteapp [app_id]",
 	Short: "Delete App",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: DELETE /api/v2/app-builder/apps/{app_id}")
-		fmt.Println("OperationID: DeleteApp")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewAppBuilderApi(client.NewAPIClient())
+		res, _, err := api.DeleteApp(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
+		if err != nil {
+			log.Fatalf("failed to deleteapp: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "app_builder")
 	},
 }
 

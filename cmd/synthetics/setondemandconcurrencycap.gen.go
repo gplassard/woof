@@ -1,16 +1,32 @@
 package synthetics
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var SetOnDemandConcurrencyCapCmd = &cobra.Command{
 	Use:   "setondemandconcurrencycap",
 	Short: "Save new value for on-demand concurrency cap",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: POST /api/v2/synthetics/settings/on_demand_concurrency_cap")
-		fmt.Println("OperationID: SetOnDemandConcurrencyCap")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewSyntheticsApi(client.NewAPIClient())
+		res, _, err := api.SetOnDemandConcurrencyCap(client.NewContext(apiKey, appKey, site), datadogV2.OnDemandConcurrencyCapAttributes{})
+		if err != nil {
+			log.Fatalf("failed to setondemandconcurrencycap: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "synthetics")
 	},
 }
 

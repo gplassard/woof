@@ -1,16 +1,32 @@
 package security_monitoring
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var AttachCaseCmd = &cobra.Command{
-	Use:   "attachcase",
+	Use:   "attachcase [case_id]",
 	Short: "Attach security findings to a case",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: PATCH /api/v2/security/findings/cases/{case_id}")
-		fmt.Println("OperationID: AttachCase")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
+		res, _, err := api.AttachCase(client.NewContext(apiKey, appKey, site), args[0], datadogV2.AttachCaseRequest{})
+		if err != nil {
+			log.Fatalf("failed to attachcase: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "security_monitoring")
 	},
 }
 

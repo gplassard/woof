@@ -1,16 +1,32 @@
 package security_monitoring
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var UpdateResourceEvaluationFiltersCmd = &cobra.Command{
 	Use:   "updateresourceevaluationfilters",
 	Short: "Update resource filters",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: PUT /api/v2/cloud_security_management/resource_filters")
-		fmt.Println("OperationID: UpdateResourceEvaluationFilters")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
+		res, _, err := api.UpdateResourceEvaluationFilters(client.NewContext(apiKey, appKey, site), datadogV2.UpdateResourceEvaluationFiltersRequest{})
+		if err != nil {
+			log.Fatalf("failed to updateresourceevaluationfilters: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "security_monitoring")
 	},
 }
 

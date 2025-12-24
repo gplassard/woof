@@ -1,16 +1,32 @@
 package application_security
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var GetApplicationSecurityWafCustomRuleCmd = &cobra.Command{
-	Use:   "getapplicationsecuritywafcustomrule",
+	Use:   "getapplicationsecuritywafcustomrule [custom_rule_id]",
 	Short: "Get a WAF custom rule",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/remote_config/products/asm/waf/custom_rules/{custom_rule_id}")
-		fmt.Println("OperationID: GetApplicationSecurityWafCustomRule")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewApplicationSecurityApi(client.NewAPIClient())
+		res, _, err := api.GetApplicationSecurityWafCustomRule(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to getapplicationsecuritywafcustomrule: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "application_security")
 	},
 }
 

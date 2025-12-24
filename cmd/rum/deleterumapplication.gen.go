@@ -1,16 +1,32 @@
 package rum
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var DeleteRUMApplicationCmd = &cobra.Command{
-	Use:   "deleterumapplication",
+	Use:   "deleterumapplication [id]",
 	Short: "Delete a RUM application",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: DELETE /api/v2/rum/applications/{id}")
-		fmt.Println("OperationID: DeleteRUMApplication")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewRUMApi(client.NewAPIClient())
+		_, err := api.DeleteRUMApplication(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to deleterumapplication: %v", err)
+		}
+
+		
 	},
 }
 

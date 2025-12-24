@@ -1,16 +1,32 @@
 package action_connection
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var CreateActionConnectionCmd = &cobra.Command{
 	Use:   "createactionconnection",
 	Short: "Create a new Action Connection",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: POST /api/v2/actions/connections")
-		fmt.Println("OperationID: CreateActionConnection")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewActionConnectionApi(client.NewAPIClient())
+		res, _, err := api.CreateActionConnection(client.NewContext(apiKey, appKey, site), datadogV2.CreateActionConnectionRequest{})
+		if err != nil {
+			log.Fatalf("failed to createactionconnection: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "action_connection")
 	},
 }
 

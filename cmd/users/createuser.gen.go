@@ -1,16 +1,32 @@
 package users
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var CreateUserCmd = &cobra.Command{
 	Use:   "createuser",
 	Short: "Create a user",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: POST /api/v2/users")
-		fmt.Println("OperationID: CreateUser")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewUsersApi(client.NewAPIClient())
+		res, _, err := api.CreateUser(client.NewContext(apiKey, appKey, site), datadogV2.UserCreateRequest{})
+		if err != nil {
+			log.Fatalf("failed to createuser: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "users")
 	},
 }
 

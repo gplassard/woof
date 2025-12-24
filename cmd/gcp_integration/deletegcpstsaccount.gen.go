@@ -1,16 +1,32 @@
 package gcp_integration
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var DeleteGCPSTSAccountCmd = &cobra.Command{
-	Use:   "deletegcpstsaccount",
+	Use:   "deletegcpstsaccount [account_id]",
 	Short: "Delete an STS enabled GCP Account",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: DELETE /api/v2/integration/gcp/accounts/{account_id}")
-		fmt.Println("OperationID: DeleteGCPSTSAccount")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewGCPIntegrationApi(client.NewAPIClient())
+		_, err := api.DeleteGCPSTSAccount(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to deletegcpstsaccount: %v", err)
+		}
+
+		
 	},
 }
 

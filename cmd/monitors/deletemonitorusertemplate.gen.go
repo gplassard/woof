@@ -1,16 +1,32 @@
 package monitors
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var DeleteMonitorUserTemplateCmd = &cobra.Command{
-	Use:   "deletemonitorusertemplate",
+	Use:   "deletemonitorusertemplate [template_id]",
 	Short: "Delete a monitor user template",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: DELETE /api/v2/monitor/template/{template_id}")
-		fmt.Println("OperationID: DeleteMonitorUserTemplate")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewMonitorsApi(client.NewAPIClient())
+		_, err := api.DeleteMonitorUserTemplate(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to deletemonitorusertemplate: %v", err)
+		}
+
+		
 	},
 }
 

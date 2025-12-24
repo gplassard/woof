@@ -1,16 +1,32 @@
 package actions_datastores
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var GetDatastoreCmd = &cobra.Command{
-	Use:   "getdatastore",
+	Use:   "getdatastore [datastore_id]",
 	Short: "Get datastore",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/actions-datastores/{datastore_id}")
-		fmt.Println("OperationID: GetDatastore")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewActionsDatastoresApi(client.NewAPIClient())
+		res, _, err := api.GetDatastore(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to getdatastore: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "actions_datastores")
 	},
 }
 

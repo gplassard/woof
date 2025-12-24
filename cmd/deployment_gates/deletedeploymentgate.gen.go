@@ -1,16 +1,32 @@
 package deployment_gates
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var DeleteDeploymentGateCmd = &cobra.Command{
-	Use:   "deletedeploymentgate",
+	Use:   "deletedeploymentgate [id]",
 	Short: "Delete deployment gate",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: DELETE /api/v2/deployment_gates/{id}")
-		fmt.Println("OperationID: DeleteDeploymentGate")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewDeploymentGatesApi(client.NewAPIClient())
+		_, err := api.DeleteDeploymentGate(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to deletedeploymentgate: %v", err)
+		}
+
+		
 	},
 }
 

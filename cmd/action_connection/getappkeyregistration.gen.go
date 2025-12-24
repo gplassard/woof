@@ -1,16 +1,32 @@
 package action_connection
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var GetAppKeyRegistrationCmd = &cobra.Command{
-	Use:   "getappkeyregistration",
+	Use:   "getappkeyregistration [app_key_id]",
 	Short: "Get an existing App Key Registration",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/actions/app_key_registrations/{app_key_id}")
-		fmt.Println("OperationID: GetAppKeyRegistration")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewActionConnectionApi(client.NewAPIClient())
+		res, _, err := api.GetAppKeyRegistration(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to getappkeyregistration: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "action_connection")
 	},
 }
 

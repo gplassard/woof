@@ -1,16 +1,32 @@
 package confluent_cloud
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var DeleteConfluentResourceCmd = &cobra.Command{
-	Use:   "deleteconfluentresource",
+	Use:   "deleteconfluentresource [account_id] [resource_id]",
 	Short: "Delete resource from Confluent account",
+	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: DELETE /api/v2/integrations/confluent-cloud/accounts/{account_id}/resources/{resource_id}")
-		fmt.Println("OperationID: DeleteConfluentResource")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewConfluentCloudApi(client.NewAPIClient())
+		_, err := api.DeleteConfluentResource(client.NewContext(apiKey, appKey, site), args[0], args[1])
+		if err != nil {
+			log.Fatalf("failed to deleteconfluentresource: %v", err)
+		}
+
+		
 	},
 }
 

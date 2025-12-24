@@ -1,16 +1,32 @@
 package security_monitoring
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var ListScannedAssetsMetadataCmd = &cobra.Command{
 	Use:   "listscannedassetsmetadata",
 	Short: "List scanned assets metadata",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/security/scanned-assets-metadata")
-		fmt.Println("OperationID: ListScannedAssetsMetadata")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
+		res, _, err := api.ListScannedAssetsMetadata(client.NewContext(apiKey, appKey, site))
+		if err != nil {
+			log.Fatalf("failed to listscannedassetsmetadata: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "security_monitoring")
 	},
 }
 

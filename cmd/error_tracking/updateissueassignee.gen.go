@@ -1,16 +1,32 @@
 package error_tracking
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var UpdateIssueAssigneeCmd = &cobra.Command{
-	Use:   "updateissueassignee",
+	Use:   "updateissueassignee [issue_id]",
 	Short: "Update the assignee of an issue",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: PUT /api/v2/error-tracking/issues/{issue_id}/assignee")
-		fmt.Println("OperationID: UpdateIssueAssignee")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewErrorTrackingApi(client.NewAPIClient())
+		res, _, err := api.UpdateIssueAssignee(client.NewContext(apiKey, appKey, site), args[0], datadogV2.IssueUpdateAssigneeRequest{})
+		if err != nil {
+			log.Fatalf("failed to updateissueassignee: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "error_tracking")
 	},
 }
 

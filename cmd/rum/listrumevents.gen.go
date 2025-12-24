@@ -1,16 +1,32 @@
 package rum
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var ListRUMEventsCmd = &cobra.Command{
 	Use:   "listrumevents",
 	Short: "Get a list of RUM events",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/rum/events")
-		fmt.Println("OperationID: ListRUMEvents")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewRUMApi(client.NewAPIClient())
+		res, _, err := api.ListRUMEvents(client.NewContext(apiKey, appKey, site))
+		if err != nil {
+			log.Fatalf("failed to listrumevents: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "rum")
 	},
 }
 

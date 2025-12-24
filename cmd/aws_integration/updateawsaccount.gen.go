@@ -1,16 +1,32 @@
 package aws_integration
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var UpdateAWSAccountCmd = &cobra.Command{
-	Use:   "updateawsaccount",
+	Use:   "updateawsaccount [aws_account_config_id]",
 	Short: "Update an AWS integration",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: PATCH /api/v2/integration/aws/accounts/{aws_account_config_id}")
-		fmt.Println("OperationID: UpdateAWSAccount")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewAWSIntegrationApi(client.NewAPIClient())
+		res, _, err := api.UpdateAWSAccount(client.NewContext(apiKey, appKey, site), args[0], datadogV2.AWSAccountUpdateRequest{})
+		if err != nil {
+			log.Fatalf("failed to updateawsaccount: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "aws_integration")
 	},
 }
 

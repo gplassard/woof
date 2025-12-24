@@ -1,16 +1,32 @@
 package metrics
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var ListTagConfigurationsCmd = &cobra.Command{
 	Use:   "listtagconfigurations",
 	Short: "Get a list of metrics",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/metrics")
-		fmt.Println("OperationID: ListTagConfigurations")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewMetricsApi(client.NewAPIClient())
+		res, _, err := api.ListTagConfigurations(client.NewContext(apiKey, appKey, site))
+		if err != nil {
+			log.Fatalf("failed to listtagconfigurations: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "metrics")
 	},
 }
 

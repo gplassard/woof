@@ -1,16 +1,32 @@
 package monitors
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var DeleteMonitorConfigPolicyCmd = &cobra.Command{
-	Use:   "deletemonitorconfigpolicy",
+	Use:   "deletemonitorconfigpolicy [policy_id]",
 	Short: "Delete a monitor configuration policy",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: DELETE /api/v2/monitor/policy/{policy_id}")
-		fmt.Println("OperationID: DeleteMonitorConfigPolicy")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewMonitorsApi(client.NewAPIClient())
+		_, err := api.DeleteMonitorConfigPolicy(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to deletemonitorconfigpolicy: %v", err)
+		}
+
+		
 	},
 }
 

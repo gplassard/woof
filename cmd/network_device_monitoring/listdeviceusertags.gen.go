@@ -1,16 +1,32 @@
 package network_device_monitoring
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var ListDeviceUserTagsCmd = &cobra.Command{
-	Use:   "listdeviceusertags",
+	Use:   "listdeviceusertags [device_id]",
 	Short: "Get the list of tags for a device",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/ndm/tags/devices/{device_id}")
-		fmt.Println("OperationID: ListDeviceUserTags")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewNetworkDeviceMonitoringApi(client.NewAPIClient())
+		res, _, err := api.ListDeviceUserTags(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to listdeviceusertags: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "network_device_monitoring")
 	},
 }
 

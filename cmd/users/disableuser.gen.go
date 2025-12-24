@@ -1,16 +1,32 @@
 package users
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var DisableUserCmd = &cobra.Command{
-	Use:   "disableuser",
+	Use:   "disableuser [user_id]",
 	Short: "Disable a user",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: DELETE /api/v2/users/{user_id}")
-		fmt.Println("OperationID: DisableUser")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewUsersApi(client.NewAPIClient())
+		_, err := api.DisableUser(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to disableuser: %v", err)
+		}
+
+		
 	},
 }
 

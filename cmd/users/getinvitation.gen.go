@@ -1,16 +1,32 @@
 package users
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var GetInvitationCmd = &cobra.Command{
-	Use:   "getinvitation",
+	Use:   "getinvitation [user_invitation_uuid]",
 	Short: "Get a user invitation",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/user_invitations/{user_invitation_uuid}")
-		fmt.Println("OperationID: GetInvitation")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewUsersApi(client.NewAPIClient())
+		res, _, err := api.GetInvitation(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to getinvitation: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "users")
 	},
 }
 

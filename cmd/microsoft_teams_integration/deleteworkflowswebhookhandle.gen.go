@@ -1,16 +1,32 @@
 package microsoft_teams_integration
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var DeleteWorkflowsWebhookHandleCmd = &cobra.Command{
-	Use:   "deleteworkflowswebhookhandle",
+	Use:   "deleteworkflowswebhookhandle [handle_id]",
 	Short: "Delete Workflows webhook handle",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: DELETE /api/v2/integration/ms-teams/configuration/workflows-webhook-handles/{handle_id}")
-		fmt.Println("OperationID: DeleteWorkflowsWebhookHandle")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewMicrosoftTeamsIntegrationApi(client.NewAPIClient())
+		_, err := api.DeleteWorkflowsWebhookHandle(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to deleteworkflowswebhookhandle: %v", err)
+		}
+
+		
 	},
 }
 

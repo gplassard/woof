@@ -1,16 +1,32 @@
 package confluent_cloud
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var CreateConfluentAccountCmd = &cobra.Command{
 	Use:   "createconfluentaccount",
 	Short: "Add Confluent account",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: POST /api/v2/integrations/confluent-cloud/accounts")
-		fmt.Println("OperationID: CreateConfluentAccount")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewConfluentCloudApi(client.NewAPIClient())
+		res, _, err := api.CreateConfluentAccount(client.NewContext(apiKey, appKey, site), datadogV2.ConfluentAccountCreateRequest{})
+		if err != nil {
+			log.Fatalf("failed to createconfluentaccount: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "confluent_cloud")
 	},
 }
 

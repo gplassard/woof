@@ -1,16 +1,32 @@
 package on_call_paging
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var AcknowledgeOnCallPageCmd = &cobra.Command{
-	Use:   "acknowledgeoncallpage",
+	Use:   "acknowledgeoncallpage [page_id]",
 	Short: "Acknowledge On-Call Page",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: POST /api/v2/on-call/pages/{page_id}/acknowledge")
-		fmt.Println("OperationID: AcknowledgeOnCallPage")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewOnCallPagingApi(client.NewAPIClient())
+		_, err := api.AcknowledgeOnCallPage(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
+		if err != nil {
+			log.Fatalf("failed to acknowledgeoncallpage: %v", err)
+		}
+
+		
 	},
 }
 

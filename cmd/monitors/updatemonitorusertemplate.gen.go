@@ -1,16 +1,32 @@
 package monitors
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var UpdateMonitorUserTemplateCmd = &cobra.Command{
-	Use:   "updatemonitorusertemplate",
+	Use:   "updatemonitorusertemplate [template_id]",
 	Short: "Update a monitor user template to a new version",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: PUT /api/v2/monitor/template/{template_id}")
-		fmt.Println("OperationID: UpdateMonitorUserTemplate")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewMonitorsApi(client.NewAPIClient())
+		res, _, err := api.UpdateMonitorUserTemplate(client.NewContext(apiKey, appKey, site), args[0], datadogV2.MonitorUserTemplateUpdateRequest{})
+		if err != nil {
+			log.Fatalf("failed to updatemonitorusertemplate: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "monitors")
 	},
 }
 

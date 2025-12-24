@@ -1,16 +1,32 @@
 package case_management
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var GetProjectCmd = &cobra.Command{
-	Use:   "getproject",
+	Use:   "getproject [project_id]",
 	Short: "Get the details of a project",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/cases/projects/{project_id}")
-		fmt.Println("OperationID: GetProject")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewCaseManagementApi(client.NewAPIClient())
+		res, _, err := api.GetProject(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to getproject: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "case_management")
 	},
 }
 

@@ -1,16 +1,32 @@
 package fastly_integration
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var CreateFastlyAccountCmd = &cobra.Command{
 	Use:   "createfastlyaccount",
 	Short: "Add Fastly account",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: POST /api/v2/integrations/fastly/accounts")
-		fmt.Println("OperationID: CreateFastlyAccount")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewFastlyIntegrationApi(client.NewAPIClient())
+		res, _, err := api.CreateFastlyAccount(client.NewContext(apiKey, appKey, site), datadogV2.FastlyAccountCreateRequest{})
+		if err != nil {
+			log.Fatalf("failed to createfastlyaccount: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "fastly_integration")
 	},
 }
 

@@ -1,16 +1,32 @@
 package agentless_scanning
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var UpdateGcpScanOptionsCmd = &cobra.Command{
-	Use:   "updategcpscanoptions",
+	Use:   "updategcpscanoptions [project_id]",
 	Short: "Update GCP scan options",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: PATCH /api/v2/agentless_scanning/accounts/gcp/{project_id}")
-		fmt.Println("OperationID: UpdateGcpScanOptions")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewAgentlessScanningApi(client.NewAPIClient())
+		res, _, err := api.UpdateGcpScanOptions(client.NewContext(apiKey, appKey, site), args[0], datadogV2.GcpScanOptionsInputUpdate{})
+		if err != nil {
+			log.Fatalf("failed to updategcpscanoptions: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "agentless_scanning")
 	},
 }
 

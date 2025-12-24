@@ -1,16 +1,32 @@
 package ci_visibility_pipelines
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var AggregateCIAppPipelineEventsCmd = &cobra.Command{
 	Use:   "aggregateciapppipelineevents",
 	Short: "Aggregate pipelines events",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: POST /api/v2/ci/pipelines/analytics/aggregate")
-		fmt.Println("OperationID: AggregateCIAppPipelineEvents")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewCIVisibilityPipelinesApi(client.NewAPIClient())
+		res, _, err := api.AggregateCIAppPipelineEvents(client.NewContext(apiKey, appKey, site), datadogV2.CIAppPipelinesAggregateRequest{})
+		if err != nil {
+			log.Fatalf("failed to aggregateciapppipelineevents: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "ci_visibility_pipelines")
 	},
 }
 

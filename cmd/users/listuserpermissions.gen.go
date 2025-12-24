@@ -1,16 +1,32 @@
 package users
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var ListUserPermissionsCmd = &cobra.Command{
-	Use:   "listuserpermissions",
+	Use:   "listuserpermissions [user_id]",
 	Short: "Get a user permissions",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/users/{user_id}/permissions")
-		fmt.Println("OperationID: ListUserPermissions")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewUsersApi(client.NewAPIClient())
+		res, _, err := api.ListUserPermissions(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to listuserpermissions: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "users")
 	},
 }
 

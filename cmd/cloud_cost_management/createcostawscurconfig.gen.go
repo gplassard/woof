@@ -1,16 +1,32 @@
 package cloud_cost_management
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var CreateCostAWSCURConfigCmd = &cobra.Command{
 	Use:   "createcostawscurconfig",
 	Short: "Create Cloud Cost Management AWS CUR config",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: POST /api/v2/cost/aws_cur_config")
-		fmt.Println("OperationID: CreateCostAWSCURConfig")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
+		res, _, err := api.CreateCostAWSCURConfig(client.NewContext(apiKey, appKey, site), datadogV2.AwsCURConfigPostRequest{})
+		if err != nil {
+			log.Fatalf("failed to createcostawscurconfig: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "cloud_cost_management")
 	},
 }
 

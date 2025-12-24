@@ -1,16 +1,32 @@
 package fastly_integration
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var GetFastlyServiceCmd = &cobra.Command{
-	Use:   "getfastlyservice",
+	Use:   "getfastlyservice [account_id] [service_id]",
 	Short: "Get Fastly service",
+	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/integrations/fastly/accounts/{account_id}/services/{service_id}")
-		fmt.Println("OperationID: GetFastlyService")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewFastlyIntegrationApi(client.NewAPIClient())
+		res, _, err := api.GetFastlyService(client.NewContext(apiKey, appKey, site), args[0], args[1])
+		if err != nil {
+			log.Fatalf("failed to getfastlyservice: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "fastly_integration")
 	},
 }
 

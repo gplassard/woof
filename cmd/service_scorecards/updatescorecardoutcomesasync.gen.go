@@ -1,16 +1,32 @@
 package service_scorecards
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var UpdateScorecardOutcomesAsyncCmd = &cobra.Command{
 	Use:   "updatescorecardoutcomesasync",
 	Short: "Update Scorecard outcomes asynchronously",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: POST /api/v2/scorecard/outcomes")
-		fmt.Println("OperationID: UpdateScorecardOutcomesAsync")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewServiceScorecardsApi(client.NewAPIClient())
+		_, err := api.UpdateScorecardOutcomesAsync(client.NewContext(apiKey, appKey, site), datadogV2.UpdateOutcomesAsyncRequest{})
+		if err != nil {
+			log.Fatalf("failed to updatescorecardoutcomesasync: %v", err)
+		}
+
+		
 	},
 }
 

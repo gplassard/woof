@@ -1,16 +1,32 @@
 package on_call
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var GetOnCallTeamRoutingRulesCmd = &cobra.Command{
-	Use:   "getoncallteamroutingrules",
+	Use:   "getoncallteamroutingrules [team_id]",
 	Short: "Get On-Call team routing rules",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/on-call/teams/{team_id}/routing-rules")
-		fmt.Println("OperationID: GetOnCallTeamRoutingRules")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewOnCallApi(client.NewAPIClient())
+		res, _, err := api.GetOnCallTeamRoutingRules(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to getoncallteamroutingrules: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "on_call")
 	},
 }
 

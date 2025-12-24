@@ -1,16 +1,32 @@
 package security_monitoring
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var ConvertExistingSecurityMonitoringRuleCmd = &cobra.Command{
-	Use:   "convertexistingsecuritymonitoringrule",
+	Use:   "convertexistingsecuritymonitoringrule [rule_id]",
 	Short: "Convert an existing rule from JSON to Terraform",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/security_monitoring/rules/{rule_id}/convert")
-		fmt.Println("OperationID: ConvertExistingSecurityMonitoringRule")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
+		res, _, err := api.ConvertExistingSecurityMonitoringRule(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to convertexistingsecuritymonitoringrule: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "security_monitoring")
 	},
 }
 

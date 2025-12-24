@@ -1,16 +1,32 @@
 package incidents
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var CreateIncidentTodoCmd = &cobra.Command{
-	Use:   "createincidenttodo",
+	Use:   "createincidenttodo [incident_id]",
 	Short: "Create an incident todo",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: POST /api/v2/incidents/{incident_id}/relationships/todos")
-		fmt.Println("OperationID: CreateIncidentTodo")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
+		res, _, err := api.CreateIncidentTodo(client.NewContext(apiKey, appKey, site), args[0], datadogV2.IncidentTodoCreateRequest{})
+		if err != nil {
+			log.Fatalf("failed to createincidenttodo: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "incidents")
 	},
 }
 

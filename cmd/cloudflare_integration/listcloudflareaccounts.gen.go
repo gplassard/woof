@@ -1,16 +1,32 @@
 package cloudflare_integration
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var ListCloudflareAccountsCmd = &cobra.Command{
 	Use:   "listcloudflareaccounts",
 	Short: "List Cloudflare accounts",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/integrations/cloudflare/accounts")
-		fmt.Println("OperationID: ListCloudflareAccounts")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewCloudflareIntegrationApi(client.NewAPIClient())
+		res, _, err := api.ListCloudflareAccounts(client.NewContext(apiKey, appKey, site))
+		if err != nil {
+			log.Fatalf("failed to listcloudflareaccounts: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "cloudflare_integration")
 	},
 }
 

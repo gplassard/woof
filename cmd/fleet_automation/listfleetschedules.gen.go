@@ -1,16 +1,32 @@
 package fleet_automation
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var ListFleetSchedulesCmd = &cobra.Command{
 	Use:   "listfleetschedules",
 	Short: "List all schedules",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/unstable/fleet/schedules")
-		fmt.Println("OperationID: ListFleetSchedules")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewFleetAutomationApi(client.NewAPIClient())
+		res, _, err := api.ListFleetSchedules(client.NewContext(apiKey, appKey, site))
+		if err != nil {
+			log.Fatalf("failed to listfleetschedules: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "fleet_automation")
 	},
 }
 

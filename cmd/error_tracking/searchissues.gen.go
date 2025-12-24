@@ -1,16 +1,32 @@
 package error_tracking
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var SearchIssuesCmd = &cobra.Command{
 	Use:   "searchissues",
 	Short: "Search error tracking issues",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: POST /api/v2/error-tracking/issues/search")
-		fmt.Println("OperationID: SearchIssues")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewErrorTrackingApi(client.NewAPIClient())
+		res, _, err := api.SearchIssues(client.NewContext(apiKey, appKey, site), datadogV2.IssuesSearchRequest{})
+		if err != nil {
+			log.Fatalf("failed to searchissues: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "error_tracking")
 	},
 }
 

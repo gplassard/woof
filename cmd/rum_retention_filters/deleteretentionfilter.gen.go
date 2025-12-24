@@ -1,16 +1,32 @@
 package rum_retention_filters
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var DeleteRetentionFilterCmd = &cobra.Command{
-	Use:   "deleteretentionfilter",
+	Use:   "deleteretentionfilter [app_id] [rf_id]",
 	Short: "Delete a RUM retention filter",
+	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: DELETE /api/v2/rum/applications/{app_id}/retention_filters/{rf_id}")
-		fmt.Println("OperationID: DeleteRetentionFilter")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewRumRetentionFiltersApi(client.NewAPIClient())
+		_, err := api.DeleteRetentionFilter(client.NewContext(apiKey, appKey, site), args[0], args[1])
+		if err != nil {
+			log.Fatalf("failed to deleteretentionfilter: %v", err)
+		}
+
+		
 	},
 }
 

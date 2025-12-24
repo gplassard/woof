@@ -1,16 +1,32 @@
 package rum_metrics
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var ListRumMetricsCmd = &cobra.Command{
 	Use:   "listrummetrics",
 	Short: "Get all rum-based metrics",
+	
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/rum/config/metrics")
-		fmt.Println("OperationID: ListRumMetrics")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewRumMetricsApi(client.NewAPIClient())
+		res, _, err := api.ListRumMetrics(client.NewContext(apiKey, appKey, site))
+		if err != nil {
+			log.Fatalf("failed to listrummetrics: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "rum_metrics")
 	},
 }
 

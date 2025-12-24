@@ -1,16 +1,32 @@
 package case_management_attribute
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var CreateCustomAttributeConfigCmd = &cobra.Command{
-	Use:   "createcustomattributeconfig",
+	Use:   "createcustomattributeconfig [case_type_id]",
 	Short: "Create custom attribute config for a case type",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: POST /api/v2/cases/types/{case_type_id}/custom_attributes")
-		fmt.Println("OperationID: CreateCustomAttributeConfig")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewCaseManagementAttributeApi(client.NewAPIClient())
+		res, _, err := api.CreateCustomAttributeConfig(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CustomAttributeConfigCreateRequest{})
+		if err != nil {
+			log.Fatalf("failed to createcustomattributeconfig: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "case_management_attribute")
 	},
 }
 

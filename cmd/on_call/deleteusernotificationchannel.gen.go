@@ -1,16 +1,32 @@
 package on_call
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var DeleteUserNotificationChannelCmd = &cobra.Command{
-	Use:   "deleteusernotificationchannel",
+	Use:   "deleteusernotificationchannel [user_id] [channel_id]",
 	Short: "Delete an On-Call notification channel for a user",
+	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: DELETE /api/v2/on-call/users/{user_id}/notification-channels/{channel_id}")
-		fmt.Println("OperationID: DeleteUserNotificationChannel")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewOnCallApi(client.NewAPIClient())
+		_, err := api.DeleteUserNotificationChannel(client.NewContext(apiKey, appKey, site), args[0], args[1])
+		if err != nil {
+			log.Fatalf("failed to deleteusernotificationchannel: %v", err)
+		}
+
+		
 	},
 }
 

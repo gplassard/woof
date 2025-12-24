@@ -1,16 +1,32 @@
 package service_level_objectives
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var GetSLOReportJobStatusCmd = &cobra.Command{
-	Use:   "getsloreportjobstatus",
+	Use:   "getsloreportjobstatus [report_id]",
 	Short: "Get SLO report status",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: GET /api/v2/slo/report/{report_id}/status")
-		fmt.Println("OperationID: GetSLOReportJobStatus")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewServiceLevelObjectivesApi(client.NewAPIClient())
+		res, _, err := api.GetSLOReportJobStatus(client.NewContext(apiKey, appKey, site), args[0])
+		if err != nil {
+			log.Fatalf("failed to getsloreportjobstatus: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "service_level_objectives")
 	},
 }
 

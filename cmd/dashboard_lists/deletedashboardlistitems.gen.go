@@ -1,16 +1,32 @@
 package dashboard_lists
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	"strconv"
 )
 
 var DeleteDashboardListItemsCmd = &cobra.Command{
-	Use:   "deletedashboardlistitems",
+	Use:   "deletedashboardlistitems [dashboard_list_id]",
 	Short: "Delete items from a dashboard list",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: DELETE /api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards")
-		fmt.Println("OperationID: DeleteDashboardListItems")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewDashboardListsApi(client.NewAPIClient())
+		res, _, err := api.DeleteDashboardListItems(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }(), datadogV2.DashboardListDeleteItemsRequest{})
+		if err != nil {
+			log.Fatalf("failed to deletedashboardlistitems: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "dashboard_lists")
 	},
 }
 

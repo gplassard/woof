@@ -1,16 +1,32 @@
 package key_management
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var UpdateApplicationKeyCmd = &cobra.Command{
-	Use:   "updateapplicationkey",
+	Use:   "updateapplicationkey [app_key_id]",
 	Short: "Edit an application key",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: PATCH /api/v2/application_keys/{app_key_id}")
-		fmt.Println("OperationID: UpdateApplicationKey")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewKeyManagementApi(client.NewAPIClient())
+		res, _, err := api.UpdateApplicationKey(client.NewContext(apiKey, appKey, site), args[0], datadogV2.ApplicationKeyUpdateRequest{})
+		if err != nil {
+			log.Fatalf("failed to updateapplicationkey: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "key_management")
 	},
 }
 

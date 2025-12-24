@@ -1,16 +1,32 @@
 package agentless_scanning
 
 import (
-	"fmt"
+	"log"
+	"ouaf/cmd/util"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
 	"github.com/spf13/cobra"
+	
 )
 
 var UpdateAzureScanOptionsCmd = &cobra.Command{
-	Use:   "updateazurescanoptions",
+	Use:   "updateazurescanoptions [subscription_id]",
 	Short: "Update Azure scan options",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Endpoint: PATCH /api/v2/agentless_scanning/accounts/azure/{subscription_id}")
-		fmt.Println("OperationID: UpdateAzureScanOptions")
+		apiKey, appKey, site := util.GetConfig()
+		api := datadogV2.NewAgentlessScanningApi(client.NewAPIClient())
+		res, _, err := api.UpdateAzureScanOptions(client.NewContext(apiKey, appKey, site), args[0], datadogV2.AzureScanOptionsInputUpdate{})
+		if err != nil {
+			log.Fatalf("failed to updateazurescanoptions: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "agentless_scanning")
 	},
 }
 
