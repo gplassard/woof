@@ -2,10 +2,9 @@ package cmd
 
 import (
 	"os"
-	"ouaf/cmd/roles"
-	"ouaf/cmd/users"
 	"ouaf/cmd/util"
-
+{{range .Imports}}	"{{.}}"
+{{end}}
 	"github.com/spf13/cobra"
 )
 
@@ -21,9 +20,8 @@ func Execute() {
 	rootCmd.PersistentFlags().StringVar(&util.Site, "site", "datadoghq.eu", "Datadog Site")
 
 	rootCmd.AddCommand(
-		roles.Cmd,
-		users.Cmd,
-	)
+{{range .Commands}}		{{.}},
+{{end}}	)
 	err := rootCmd.Execute()
 	if err != nil {
 		os.Exit(1)

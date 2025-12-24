@@ -1,0 +1,19 @@
+package {{.PackageName}}
+
+import (
+	"fmt"
+	"github.com/spf13/cobra"
+)
+
+var {{.CommandName}} = &cobra.Command{
+	Use:   "{{.Use}}",
+	Short: "{{.Short}}",
+	Run: func(cmd *cobra.Command, args []string) {
+		fmt.Println("Endpoint: {{.Method}} {{.Path}}")
+		fmt.Println("OperationID: {{.OperationID}}")
+	},
+}
+
+func init() {
+	Cmd.AddCommand({{.CommandName}})
+}
