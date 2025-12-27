@@ -107,6 +107,7 @@ func Execute() {
 	rootCmd.PersistentFlags().StringVar(&config.ApiKey, "api-key", os.Getenv("DD_API_KEY"), "Datadog API Key")
 	rootCmd.PersistentFlags().StringVar(&config.AppKey, "app-key", os.Getenv("DD_APP_KEY"), "Datadog App Key")
 	rootCmd.PersistentFlags().StringVar(&config.Site, "site", defaultSite, "Datadog Site")
+	rootCmd.PersistentFlags().BoolVar(&config.Debug, "debug", false, "Enable debug logging")
 
 	rootCmd.AddCommand(
 		action_connection.Cmd,

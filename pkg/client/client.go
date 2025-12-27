@@ -2,6 +2,7 @@ package client
 
 import (
 	"context"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -29,5 +30,6 @@ func NewContext(apiKey, appKey, site string) context.Context {
 
 func NewAPIClient() *datadog.APIClient {
 	configuration := datadog.NewConfiguration()
+	configuration.Debug = config.Debug
 	return datadog.NewAPIClient(configuration)
 }
