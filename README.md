@@ -22,7 +22,7 @@
 
 3. **Build the CLI**:
    ```bash
-   go build -o ouaf main.go
+   go build .
    ```
 
 ## Configuration
