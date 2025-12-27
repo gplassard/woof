@@ -1,0 +1,35 @@
+package csm_threats
+
+import (
+	"log"
+	"ouaf/pkg/config"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
+	"github.com/spf13/cobra"
+	
+)
+
+var DownloadCSMThreatsPolicyCmd = &cobra.Command{
+	Use:   "download_c_s_m_threats_policy",
+	Short: "Download the Workload Protection policy",
+	
+	Run: func(cmd *cobra.Command, args []string) {
+		apiKey, appKey, site := config.GetConfig()
+		api := datadogV2.NewCSMThreatsApi(client.NewAPIClient())
+		res, _, err := api.DownloadCSMThreatsPolicy(client.NewContext(apiKey, appKey, site))
+		if err != nil {
+			log.Fatalf("failed to download_c_s_m_threats_policy: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "csm_threats")
+	},
+}
+
+func init() {
+	Cmd.AddCommand(DownloadCSMThreatsPolicyCmd)
+}

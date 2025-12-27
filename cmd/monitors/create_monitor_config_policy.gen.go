@@ -1,0 +1,35 @@
+package monitors
+
+import (
+	"log"
+	"ouaf/pkg/config"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
+	"github.com/spf13/cobra"
+	
+)
+
+var CreateMonitorConfigPolicyCmd = &cobra.Command{
+	Use:   "create_monitor_config_policy",
+	Short: "Create a monitor configuration policy",
+	
+	Run: func(cmd *cobra.Command, args []string) {
+		apiKey, appKey, site := config.GetConfig()
+		api := datadogV2.NewMonitorsApi(client.NewAPIClient())
+		res, _, err := api.CreateMonitorConfigPolicy(client.NewContext(apiKey, appKey, site), datadogV2.MonitorConfigPolicyCreateRequest{})
+		if err != nil {
+			log.Fatalf("failed to create_monitor_config_policy: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "monitors")
+	},
+}
+
+func init() {
+	Cmd.AddCommand(CreateMonitorConfigPolicyCmd)
+}

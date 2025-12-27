@@ -9,6 +9,17 @@ import (
 	"text/template"
 )
 
+func toSnakeCase(s string) string {
+	var res strings.Builder
+	for i, r := range s {
+		if i > 0 && r >= 'A' && r <= 'Z' {
+			res.WriteRune('_')
+		}
+		res.WriteRune(r)
+	}
+	return strings.ToLower(res.String())
+}
+
 func ensureEntrypoint(pkgDir, tag string, tmpl *template.Template) error {
 	entrypointPath := filepath.Join(pkgDir, "entrypoint.gen.go")
 	if _, err := os.Stat(entrypointPath); os.IsNotExist(err) {
@@ -32,7 +43,7 @@ func ensureEntrypoint(pkgDir, tag string, tmpl *template.Template) error {
 func prepareTemplateData(tag, rawTag, apiTagName, method, path string, op Operation, spec *OpenAPI, config *Config) TemplateData {
 	var args []string
 	var argTypes []string
-	use := strings.ToLower(op.OperationID)
+	use := toSnakeCase(op.OperationID)
 
 	for _, param := range op.Parameters {
 		name := param.Name
@@ -163,7 +174,7 @@ func prepareTemplateData(tag, rawTag, apiTagName, method, path string, op Operat
 }
 
 func generateCommandFile(pkgDir, operationID string, data TemplateData, tmpl *template.Template) error {
-	fileName := fmt.Sprintf("%s.gen.go", strings.ToLower(operationID))
+	fileName := fmt.Sprintf("%s.gen.go", toSnakeCase(operationID))
 	filePath := filepath.Join(pkgDir, fileName)
 	f, err := os.Create(filePath)
 	if err != nil {

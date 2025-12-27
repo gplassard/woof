@@ -64,7 +64,8 @@ func parseTemplates() (*template.Template, *template.Template, error) {
 		"replace": func(old, new, src string) string {
 			return strings.ReplaceAll(src, old, new)
 		},
-		"lower": strings.ToLower,
+		"lower":       strings.ToLower,
+		"toSnakeCase": toSnakeCase,
 	}
 
 	tmpl, err := template.New("command.go.tmpl").Funcs(funcMap).ParseFiles("generator/command.go.tmpl")

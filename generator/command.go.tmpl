@@ -23,7 +23,7 @@ var {{.CommandName}} = &cobra.Command{
 		api := datadogV2.New{{.ApiTagName}}Api(client.NewAPIClient())
 		{{if .HasResponse}}res, _, err := {{else}}_, err := {{end}}api.{{.OperationID}}(client.NewContext(apiKey, appKey, site){{range $i, $type := .ArgTypes}}{{if eq $type "uuid.UUID"}}, uuid.MustParse(args[{{$i}}]){{else if eq $type "int64"}}, func() int64 { i, _ := strconv.ParseInt(args[{{$i}}], 10, 64); return i }(){{else if eq $type "float64"}}, func() float64 { f, _ := strconv.ParseFloat(args[{{$i}}], 64); return f }(){{else if eq $type "time.Time"}}, func() time.Time { t, _ := time.Parse(time.RFC3339, args[{{$i}}]); return t }(){{else if eq $type "datadogV2.AssetType"}}, datadogV2.AssetType(args[{{$i}}]){{else if eq $type "datadogV2.TeamSyncAttributesSource"}}, datadogV2.TeamSyncAttributesSource(args[{{$i}}]){{else if eq $type "[]string"}}, strings.Split(args[{{$i}}], ","){{else}}, args[{{$i}}]{{end}}{{end}}{{if .HasRequestBody}}{{if .IsOptionalParams}}, *datadogV2.New{{.RequestBodyType}}(){{else}}, datadogV2.{{.RequestBodyType}}{}{{end}}{{end}})
 		if err != nil {
-			log.Fatalf("failed to {{.OperationID | lower}}: %v", err)
+			log.Fatalf("failed to {{.OperationID | toSnakeCase}}: %v", err)
 		}
 
 		{{if .HasResponse}}cmdutil.PrintJSON(res, "{{.PackageName}}"){{end}}

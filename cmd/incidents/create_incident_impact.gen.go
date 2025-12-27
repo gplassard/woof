@@ -1,0 +1,35 @@
+package incidents
+
+import (
+	"log"
+	"ouaf/pkg/config"
+	"ouaf/pkg/client"
+	"ouaf/pkg/cmdutil"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	
+	
+	
+	"github.com/spf13/cobra"
+	
+)
+
+var CreateIncidentImpactCmd = &cobra.Command{
+	Use:   "create_incident_impact [incident_id]",
+	Short: "Create an incident impact",
+	Args:  cobra.ExactArgs(1),
+	Run: func(cmd *cobra.Command, args []string) {
+		apiKey, appKey, site := config.GetConfig()
+		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
+		res, _, err := api.CreateIncidentImpact(client.NewContext(apiKey, appKey, site), args[0], datadogV2.IncidentImpactCreateRequest{})
+		if err != nil {
+			log.Fatalf("failed to create_incident_impact: %v", err)
+		}
+
+		cmdutil.PrintJSON(res, "incidents")
+	},
+}
+
+func init() {
+	Cmd.AddCommand(CreateIncidentImpactCmd)
+}
