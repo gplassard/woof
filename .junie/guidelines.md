@@ -45,6 +45,9 @@ The `cmd/` directory is fully generated. Do not manually edit any files in this 
 - **Configuration**: `generator/config.yaml` allows skipping specific operations.
 - **Important**: If you modify templates or the generator logic, run the generator and ensure `TestGenerationNoChanges` in `generator/generator_test.go` passes (it checks if `git status` is clean after generation).
 
+#### Important Development Constraints
+- **Never commit from Junie**: Do not use Junie to commit changes to the repository. All commits should be done manually by the developer after reviewing the changes.
+
 #### Directory Structure
 - `cmd/`: Generated Cobra commands. Everything under this directory should be generated; do not add manual changes here.
 - `pkg/config/`: Configuration and credential management.
