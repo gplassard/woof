@@ -2,7 +2,7 @@ package users
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
 
@@ -19,7 +19,7 @@ var ListUsersCmd = &cobra.Command{
 	Short: "List all users",
 	
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewUsersApi(client.NewAPIClient())
 		res, _, err := api.ListUsers(client.NewContext(apiKey, appKey, site))
 		if err != nil {

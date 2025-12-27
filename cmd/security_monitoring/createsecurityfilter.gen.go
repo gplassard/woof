@@ -2,7 +2,7 @@ package security_monitoring
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
 
@@ -19,7 +19,7 @@ var CreateSecurityFilterCmd = &cobra.Command{
 	Short: "Create a security filter",
 	
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.CreateSecurityFilter(client.NewContext(apiKey, appKey, site), datadogV2.SecurityFilterCreateRequest{})
 		if err != nil {

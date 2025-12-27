@@ -2,7 +2,7 @@ package cloud_cost_management
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	
 
@@ -19,7 +19,7 @@ var DeleteCustomAllocationRuleCmd = &cobra.Command{
 	Short: "Delete custom allocation rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
 		_, err := api.DeleteCustomAllocationRule(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }())
 		if err != nil {

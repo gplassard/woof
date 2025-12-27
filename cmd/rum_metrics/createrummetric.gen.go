@@ -2,7 +2,7 @@ package rum_metrics
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
 
@@ -19,7 +19,7 @@ var CreateRumMetricCmd = &cobra.Command{
 	Short: "Create a rum-based metric",
 	
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewRumMetricsApi(client.NewAPIClient())
 		res, _, err := api.CreateRumMetric(client.NewContext(apiKey, appKey, site), datadogV2.RumMetricCreateRequest{})
 		if err != nil {

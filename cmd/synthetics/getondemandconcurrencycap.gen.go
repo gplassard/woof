@@ -2,7 +2,7 @@ package synthetics
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
 
@@ -19,7 +19,7 @@ var GetOnDemandConcurrencyCapCmd = &cobra.Command{
 	Short: "Get the on-demand concurrency cap",
 	
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewSyntheticsApi(client.NewAPIClient())
 		res, _, err := api.GetOnDemandConcurrencyCap(client.NewContext(apiKey, appKey, site))
 		if err != nil {

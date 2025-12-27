@@ -2,7 +2,7 @@ package software_catalog
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
 
@@ -19,7 +19,7 @@ var PreviewCatalogEntitiesCmd = &cobra.Command{
 	Short: "Preview catalog entities",
 	
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewSoftwareCatalogApi(client.NewAPIClient())
 		res, _, err := api.PreviewCatalogEntities(client.NewContext(apiKey, appKey, site))
 		if err != nil {

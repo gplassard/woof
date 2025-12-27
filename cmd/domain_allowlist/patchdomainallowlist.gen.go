@@ -2,7 +2,7 @@ package domain_allowlist
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
 
@@ -19,7 +19,7 @@ var PatchDomainAllowlistCmd = &cobra.Command{
 	Short: "Sets Domain Allowlist",
 	
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewDomainAllowlistApi(client.NewAPIClient())
 		res, _, err := api.PatchDomainAllowlist(client.NewContext(apiKey, appKey, site), datadogV2.DomainAllowlistRequest{})
 		if err != nil {

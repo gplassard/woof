@@ -2,7 +2,7 @@ package reference_tables
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
 
@@ -19,7 +19,7 @@ var ListTablesCmd = &cobra.Command{
 	Short: "List tables",
 	
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewReferenceTablesApi(client.NewAPIClient())
 		res, _, err := api.ListTables(client.NewContext(apiKey, appKey, site))
 		if err != nil {

@@ -2,7 +2,7 @@ package incident_teams
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
 
@@ -19,7 +19,7 @@ var ListIncidentTeamsCmd = &cobra.Command{
 	Short: "Get a list of all incident teams",
 	
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewIncidentTeamsApi(client.NewAPIClient())
 		res, _, err := api.ListIncidentTeams(client.NewContext(apiKey, appKey, site))
 		if err != nil {

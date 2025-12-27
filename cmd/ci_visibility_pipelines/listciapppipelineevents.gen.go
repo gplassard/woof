@@ -2,7 +2,7 @@ package ci_visibility_pipelines
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
 
@@ -19,7 +19,7 @@ var ListCIAppPipelineEventsCmd = &cobra.Command{
 	Short: "Get a list of pipelines events",
 	
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCIVisibilityPipelinesApi(client.NewAPIClient())
 		res, _, err := api.ListCIAppPipelineEvents(client.NewContext(apiKey, appKey, site))
 		if err != nil {

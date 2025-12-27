@@ -2,7 +2,7 @@ package apm_retention_filters
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
 
@@ -19,7 +19,7 @@ var ListApmRetentionFiltersCmd = &cobra.Command{
 	Short: "List all APM retention filters",
 	
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewAPMRetentionFiltersApi(client.NewAPIClient())
 		res, _, err := api.ListApmRetentionFilters(client.NewContext(apiKey, appKey, site))
 		if err != nil {

@@ -2,7 +2,7 @@ package case_management
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
 
@@ -19,7 +19,7 @@ var UpdateCaseCustomAttributeCmd = &cobra.Command{
 	Short: "Update case custom attribute",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCaseManagementApi(client.NewAPIClient())
 		res, _, err := api.UpdateCaseCustomAttribute(client.NewContext(apiKey, appKey, site), args[0], args[1], datadogV2.CaseUpdateCustomAttributeRequest{})
 		if err != nil {

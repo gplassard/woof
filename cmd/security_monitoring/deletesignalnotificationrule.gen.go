@@ -2,7 +2,7 @@ package security_monitoring
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	
 
@@ -19,7 +19,7 @@ var DeleteSignalNotificationRuleCmd = &cobra.Command{
 	Short: "Delete a signal-based notification rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		_, err := api.DeleteSignalNotificationRule(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {

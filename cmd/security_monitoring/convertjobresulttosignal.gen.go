@@ -2,7 +2,7 @@ package security_monitoring
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	
 
@@ -19,7 +19,7 @@ var ConvertJobResultToSignalCmd = &cobra.Command{
 	Short: "Convert a job result to a signal",
 	
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		_, err := api.ConvertJobResultToSignal(client.NewContext(apiKey, appKey, site), datadogV2.ConvertJobResultsToSignalsRequest{})
 		if err != nil {

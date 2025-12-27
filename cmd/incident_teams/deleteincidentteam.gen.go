@@ -2,7 +2,7 @@ package incident_teams
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	
 
@@ -19,7 +19,7 @@ var DeleteIncidentTeamCmd = &cobra.Command{
 	Short: "Delete an existing incident team",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewIncidentTeamsApi(client.NewAPIClient())
 		_, err := api.DeleteIncidentTeam(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {

@@ -2,7 +2,7 @@ package ip_allowlist
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
 
@@ -19,7 +19,7 @@ var GetIPAllowlistCmd = &cobra.Command{
 	Short: "Get IP Allowlist",
 	
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewIPAllowlistApi(client.NewAPIClient())
 		res, _, err := api.GetIPAllowlist(client.NewContext(apiKey, appKey, site))
 		if err != nil {

@@ -2,7 +2,7 @@ package logs_custom_destinations
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	
 
@@ -19,7 +19,7 @@ var DeleteLogsCustomDestinationCmd = &cobra.Command{
 	Short: "Delete a custom destination",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewLogsCustomDestinationsApi(client.NewAPIClient())
 		_, err := api.DeleteLogsCustomDestination(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {

@@ -2,7 +2,7 @@ package case_management
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
 
@@ -19,7 +19,7 @@ var CreateCaseCmd = &cobra.Command{
 	Short: "Create a case",
 	
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCaseManagementApi(client.NewAPIClient())
 		res, _, err := api.CreateCase(client.NewContext(apiKey, appKey, site), datadogV2.CaseCreateRequest{})
 		if err != nil {

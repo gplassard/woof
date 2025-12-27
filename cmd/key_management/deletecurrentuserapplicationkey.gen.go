@@ -2,7 +2,7 @@ package key_management
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	
 
@@ -19,7 +19,7 @@ var DeleteCurrentUserApplicationKeyCmd = &cobra.Command{
 	Short: "Delete an application key owned by current user",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewKeyManagementApi(client.NewAPIClient())
 		_, err := api.DeleteCurrentUserApplicationKey(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {

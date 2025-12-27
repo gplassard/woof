@@ -2,7 +2,7 @@ package incident_teams
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
 
@@ -19,7 +19,7 @@ var UpdateIncidentTeamCmd = &cobra.Command{
 	Short: "Update an existing incident team",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewIncidentTeamsApi(client.NewAPIClient())
 		res, _, err := api.UpdateIncidentTeam(client.NewContext(apiKey, appKey, site), args[0], datadogV2.IncidentTeamUpdateRequest{})
 		if err != nil {

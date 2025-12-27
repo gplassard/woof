@@ -2,7 +2,7 @@ package reference_tables
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	
 
@@ -19,7 +19,7 @@ var DeleteTableCmd = &cobra.Command{
 	Short: "Delete table",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewReferenceTablesApi(client.NewAPIClient())
 		_, err := api.DeleteTable(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {

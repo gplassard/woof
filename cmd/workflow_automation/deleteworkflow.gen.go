@@ -2,7 +2,7 @@ package workflow_automation
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	
 
@@ -19,7 +19,7 @@ var DeleteWorkflowCmd = &cobra.Command{
 	Short: "Delete an existing Workflow",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewWorkflowAutomationApi(client.NewAPIClient())
 		_, err := api.DeleteWorkflow(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {

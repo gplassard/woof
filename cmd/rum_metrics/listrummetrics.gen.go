@@ -2,7 +2,7 @@ package rum_metrics
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
 
@@ -19,7 +19,7 @@ var ListRumMetricsCmd = &cobra.Command{
 	Short: "Get all rum-based metrics",
 	
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewRumMetricsApi(client.NewAPIClient())
 		res, _, err := api.ListRumMetrics(client.NewContext(apiKey, appKey, site))
 		if err != nil {

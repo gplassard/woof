@@ -2,7 +2,7 @@ package incident_services
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
 
@@ -19,7 +19,7 @@ var ListIncidentServicesCmd = &cobra.Command{
 	Short: "Get a list of all incident services",
 	
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewIncidentServicesApi(client.NewAPIClient())
 		res, _, err := api.ListIncidentServices(client.NewContext(apiKey, appKey, site))
 		if err != nil {

@@ -2,7 +2,7 @@ package incidents
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	
 
@@ -19,7 +19,7 @@ var DeleteIncidentNotificationRuleCmd = &cobra.Command{
 	Short: "Delete an incident notification rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
 		_, err := api.DeleteIncidentNotificationRule(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
 		if err != nil {

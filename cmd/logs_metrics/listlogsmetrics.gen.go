@@ -2,7 +2,7 @@ package logs_metrics
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
 
@@ -19,7 +19,7 @@ var ListLogsMetricsCmd = &cobra.Command{
 	Short: "Get all log-based metrics",
 	
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewLogsMetricsApi(client.NewAPIClient())
 		res, _, err := api.ListLogsMetrics(client.NewContext(apiKey, appKey, site))
 		if err != nil {

@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"os"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/cmd/action_connection"
 	"ouaf/cmd/actions_datastores"
 	"ouaf/cmd/agentless_scanning"
@@ -99,14 +99,14 @@ var rootCmd = &cobra.Command{
 }
 
 func Execute() {
-    defaultSite := os.Getenv("DD_SITE")
+	defaultSite := os.Getenv("DD_SITE")
 	if defaultSite == "" {
 		defaultSite = "datadoghq.com"
 	}
 
-	rootCmd.PersistentFlags().StringVar(&util.ApiKey, "api-key", os.Getenv("DD_API_KEY"), "Datadog API Key")
-	rootCmd.PersistentFlags().StringVar(&util.AppKey, "app-key", os.Getenv("DD_APP_KEY"), "Datadog App Key")
-	rootCmd.PersistentFlags().StringVar(&util.Site, "site", defaultSite, "Datadog Site")
+	rootCmd.PersistentFlags().StringVar(&config.ApiKey, "api-key", os.Getenv("DD_API_KEY"), "Datadog API Key")
+	rootCmd.PersistentFlags().StringVar(&config.AppKey, "app-key", os.Getenv("DD_APP_KEY"), "Datadog App Key")
+	rootCmd.PersistentFlags().StringVar(&config.Site, "site", defaultSite, "Datadog Site")
 
 	rootCmd.AddCommand(
 		action_connection.Cmd,

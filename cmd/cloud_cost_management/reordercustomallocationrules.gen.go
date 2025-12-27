@@ -2,7 +2,7 @@ package cloud_cost_management
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	
 
@@ -19,7 +19,7 @@ var ReorderCustomAllocationRulesCmd = &cobra.Command{
 	Short: "Reorder custom allocation rules",
 	
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
 		_, err := api.ReorderCustomAllocationRules(client.NewContext(apiKey, appKey, site), datadogV2.ReorderRuleResourceArray{})
 		if err != nil {

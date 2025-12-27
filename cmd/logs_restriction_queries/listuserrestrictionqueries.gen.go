@@ -2,7 +2,7 @@ package logs_restriction_queries
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
 
@@ -19,7 +19,7 @@ var ListUserRestrictionQueriesCmd = &cobra.Command{
 	Short: "Get all restriction queries for a given user",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewLogsRestrictionQueriesApi(client.NewAPIClient())
 		res, _, err := api.ListUserRestrictionQueries(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {

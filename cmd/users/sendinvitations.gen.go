@@ -2,7 +2,7 @@ package users
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
 
@@ -19,7 +19,7 @@ var SendInvitationsCmd = &cobra.Command{
 	Short: "Send invitation emails",
 	
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewUsersApi(client.NewAPIClient())
 		res, _, err := api.SendInvitations(client.NewContext(apiKey, appKey, site), datadogV2.UserInvitationsRequest{})
 		if err != nil {

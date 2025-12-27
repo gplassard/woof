@@ -2,7 +2,7 @@ package powerpack
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
 
@@ -19,7 +19,7 @@ var CreatePowerpackCmd = &cobra.Command{
 	Short: "Create a new powerpack",
 	
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewPowerpackApi(client.NewAPIClient())
 		res, _, err := api.CreatePowerpack(client.NewContext(apiKey, appKey, site), datadogV2.Powerpack{})
 		if err != nil {

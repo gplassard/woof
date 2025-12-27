@@ -2,7 +2,7 @@ package rum
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
 
@@ -19,7 +19,7 @@ var AggregateRUMEventsCmd = &cobra.Command{
 	Short: "Aggregate RUM events",
 	
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewRUMApi(client.NewAPIClient())
 		res, _, err := api.AggregateRUMEvents(client.NewContext(apiKey, appKey, site), datadogV2.RUMAggregateRequest{})
 		if err != nil {

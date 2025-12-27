@@ -2,7 +2,7 @@ package logs_restriction_queries
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	
 
@@ -19,7 +19,7 @@ var AddRoleToRestrictionQueryCmd = &cobra.Command{
 	Short: "Grant role to a restriction query",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewLogsRestrictionQueriesApi(client.NewAPIClient())
 		_, err := api.AddRoleToRestrictionQuery(client.NewContext(apiKey, appKey, site), args[0], datadogV2.RelationshipToRole{})
 		if err != nil {

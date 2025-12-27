@@ -2,7 +2,7 @@ package rum_audience_management
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	
 
@@ -19,7 +19,7 @@ var UpdateConnectionCmd = &cobra.Command{
 	Short: "Update connection",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewRumAudienceManagementApi(client.NewAPIClient())
 		_, err := api.UpdateConnection(client.NewContext(apiKey, appKey, site), args[0], datadogV2.UpdateConnectionRequest{})
 		if err != nil {

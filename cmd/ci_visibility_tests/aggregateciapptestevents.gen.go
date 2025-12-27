@@ -2,7 +2,7 @@ package ci_visibility_tests
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
 
@@ -19,7 +19,7 @@ var AggregateCIAppTestEventsCmd = &cobra.Command{
 	Short: "Aggregate tests events",
 	
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCIVisibilityTestsApi(client.NewAPIClient())
 		res, _, err := api.AggregateCIAppTestEvents(client.NewContext(apiKey, appKey, site), datadogV2.CIAppTestsAggregateRequest{})
 		if err != nil {

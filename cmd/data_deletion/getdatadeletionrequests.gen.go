@@ -2,7 +2,7 @@ package data_deletion
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
 
@@ -19,7 +19,7 @@ var GetDataDeletionRequestsCmd = &cobra.Command{
 	Short: "Gets a list of data deletion requests",
 	
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewDataDeletionApi(client.NewAPIClient())
 		res, _, err := api.GetDataDeletionRequests(client.NewContext(apiKey, appKey, site))
 		if err != nil {

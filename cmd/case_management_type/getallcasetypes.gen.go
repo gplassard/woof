@@ -2,7 +2,7 @@ package case_management_type
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
 
@@ -19,7 +19,7 @@ var GetAllCaseTypesCmd = &cobra.Command{
 	Short: "Get all case types",
 	
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCaseManagementTypeApi(client.NewAPIClient())
 		res, _, err := api.GetAllCaseTypes(client.NewContext(apiKey, appKey, site))
 		if err != nil {

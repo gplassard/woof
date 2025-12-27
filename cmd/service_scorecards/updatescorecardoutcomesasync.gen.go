@@ -2,7 +2,7 @@ package service_scorecards
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	
 
@@ -19,7 +19,7 @@ var UpdateScorecardOutcomesAsyncCmd = &cobra.Command{
 	Short: "Update Scorecard outcomes asynchronously",
 	
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewServiceScorecardsApi(client.NewAPIClient())
 		_, err := api.UpdateScorecardOutcomesAsync(client.NewContext(apiKey, appKey, site), datadogV2.UpdateOutcomesAsyncRequest{})
 		if err != nil {

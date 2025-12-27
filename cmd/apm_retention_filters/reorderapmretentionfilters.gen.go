@@ -2,7 +2,7 @@ package apm_retention_filters
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	
 
@@ -19,7 +19,7 @@ var ReorderApmRetentionFiltersCmd = &cobra.Command{
 	Short: "Re-order retention filters",
 	
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewAPMRetentionFiltersApi(client.NewAPIClient())
 		_, err := api.ReorderApmRetentionFilters(client.NewContext(apiKey, appKey, site), datadogV2.ReorderRetentionFiltersRequest{})
 		if err != nil {

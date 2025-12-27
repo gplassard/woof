@@ -2,7 +2,7 @@ package fleet_automation
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
 
@@ -19,7 +19,7 @@ var CreateFleetDeploymentConfigureCmd = &cobra.Command{
 	Short: "Create a configuration deployment",
 	
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewFleetAutomationApi(client.NewAPIClient())
 		res, _, err := api.CreateFleetDeploymentConfigure(client.NewContext(apiKey, appKey, site), datadogV2.FleetDeploymentConfigureCreateRequest{})
 		if err != nil {

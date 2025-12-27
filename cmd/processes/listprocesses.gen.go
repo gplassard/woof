@@ -2,7 +2,7 @@ package processes
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
 
@@ -19,7 +19,7 @@ var ListProcessesCmd = &cobra.Command{
 	Short: "Get all processes",
 	
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewProcessesApi(client.NewAPIClient())
 		res, _, err := api.ListProcesses(client.NewContext(apiKey, appKey, site))
 		if err != nil {

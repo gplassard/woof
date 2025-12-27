@@ -2,7 +2,7 @@ package dora_metrics
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
 
@@ -19,7 +19,7 @@ var CreateDORAFailureCmd = &cobra.Command{
 	Short: "Send a failure event",
 	
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewDORAMetricsApi(client.NewAPIClient())
 		res, _, err := api.CreateDORAFailure(client.NewContext(apiKey, appKey, site), datadogV2.DORAFailureRequest{})
 		if err != nil {

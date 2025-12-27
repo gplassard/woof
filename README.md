@@ -70,7 +70,7 @@ The project features a code generator located in the `generator/` directory. It 
 To update the generated commands:
 
 ```bash
-go run generator/*.go
+go run ./generator
 ```
 
 The generator uses templates found in `generator/*.tmpl` and configuration from `generator/config.yaml`.
@@ -78,7 +78,7 @@ The generator uses templates found in `generator/*.tmpl` and configuration from 
 ## Project Structure
 
 - `main.go`: Entry point for the CLI application.
-- `cmd/`: Contains the CLI command implementations.
+- `cmd/`: Contains the CLI command implementations. Everything under this directory is generated.
   - `root.gen.go`: The root command definition (generated).
   - Subdirectories (e.g., `cmd/roles/`): Generated commands grouped by API tags.
 - `generator/`: Logic and templates for the code generator.
@@ -86,6 +86,7 @@ The generator uses templates found in `generator/*.tmpl` and configuration from 
   - `config.yaml`: Configuration for skipping or customizing operations.
   - `*.tmpl`: Go templates for generating command files.
 - `pkg/`: Shared packages and utilities.
+  - `config/`: Configuration and credential management.
   - `client/`: Datadog API client initialization.
   - `cmdutil/`: Utilities for command execution and output formatting.
   - `output/`: Placeholder for output formatting logic.

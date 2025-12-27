@@ -2,7 +2,7 @@ package okta_integration
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
 
@@ -19,7 +19,7 @@ var ListOktaAccountsCmd = &cobra.Command{
 	Short: "List Okta accounts",
 	
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewOktaIntegrationApi(client.NewAPIClient())
 		res, _, err := api.ListOktaAccounts(client.NewContext(apiKey, appKey, site))
 		if err != nil {

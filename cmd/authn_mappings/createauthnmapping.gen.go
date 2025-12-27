@@ -2,7 +2,7 @@ package authn_mappings
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
 
@@ -19,7 +19,7 @@ var CreateAuthNMappingCmd = &cobra.Command{
 	Short: "Create an AuthN Mapping",
 	
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewAuthNMappingsApi(client.NewAPIClient())
 		res, _, err := api.CreateAuthNMapping(client.NewContext(apiKey, appKey, site), datadogV2.AuthNMappingCreateRequest{})
 		if err != nil {

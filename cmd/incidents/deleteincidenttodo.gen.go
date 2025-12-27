@@ -2,7 +2,7 @@ package incidents
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	
 
@@ -19,7 +19,7 @@ var DeleteIncidentTodoCmd = &cobra.Command{
 	Short: "Delete an incident todo",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
 		_, err := api.DeleteIncidentTodo(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		if err != nil {

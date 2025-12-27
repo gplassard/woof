@@ -2,7 +2,7 @@ package security_monitoring
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	
 
@@ -19,7 +19,7 @@ var DetachCaseCmd = &cobra.Command{
 	Short: "Detach security findings from their case",
 	
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		_, err := api.DetachCase(client.NewContext(apiKey, appKey, site), datadogV2.DetachCaseRequest{})
 		if err != nil {

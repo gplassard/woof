@@ -39,14 +39,15 @@ When adding new features or fixing bugs, add tests in the corresponding package.
 - API interactions use the [Datadog Go API Client V2](https://github.com/DataDog/datadog-api-client-go).
 
 #### Code Generator
-The `cmd/` directory is largely generated.
-- **Run Generator**: `go run generator/*.go`
+The `cmd/` directory is fully generated. Do not manually edit any files in this directory.
+- **Run Generator**: `go run ./generator`
 - **Templates**: Located in `generator/*.tmpl`.
 - **Configuration**: `generator/config.yaml` allows skipping specific operations.
 - **Important**: If you modify templates or the generator logic, run the generator and ensure `TestGenerationNoChanges` in `generator/generator_test.go` passes (it checks if `git status` is clean after generation).
 
 #### Directory Structure
-- `cmd/`: Generated Cobra commands.
+- `cmd/`: Generated Cobra commands. Everything under this directory should be generated; do not add manual changes here.
+- `pkg/config/`: Configuration and credential management.
 - `pkg/client/`: API client setup.
 - `pkg/cmdutil/`: Command utilities and output formatting.
 - `generator/`: Code generation logic.

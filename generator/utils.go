@@ -33,14 +33,7 @@ func cleanupGeneratedFiles() error {
 	for _, entry := range entries {
 		if entry.IsDir() {
 			pkgDir := filepath.Join("cmd", entry.Name())
-			files, err := os.ReadDir(pkgDir)
-			if err == nil {
-				for _, f := range files {
-					if strings.HasSuffix(f.Name(), ".gen.go") {
-						os.Remove(filepath.Join(pkgDir, f.Name()))
-					}
-				}
-			}
+			os.RemoveAll(pkgDir)
 		}
 	}
 	return nil

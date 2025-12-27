@@ -2,7 +2,7 @@ package service_accounts
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
 
@@ -19,7 +19,7 @@ var ListServiceAccountApplicationKeysCmd = &cobra.Command{
 	Short: "List application keys for this service account",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewServiceAccountsApi(client.NewAPIClient())
 		res, _, err := api.ListServiceAccountApplicationKeys(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {

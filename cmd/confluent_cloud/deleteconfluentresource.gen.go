@@ -2,7 +2,7 @@ package confluent_cloud
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	
 
@@ -19,7 +19,7 @@ var DeleteConfluentResourceCmd = &cobra.Command{
 	Short: "Delete resource from Confluent account",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewConfluentCloudApi(client.NewAPIClient())
 		_, err := api.DeleteConfluentResource(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		if err != nil {

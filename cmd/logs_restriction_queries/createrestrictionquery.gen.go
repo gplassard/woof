@@ -2,7 +2,7 @@ package logs_restriction_queries
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
 
@@ -19,7 +19,7 @@ var CreateRestrictionQueryCmd = &cobra.Command{
 	Short: "Create a restriction query",
 	
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewLogsRestrictionQueriesApi(client.NewAPIClient())
 		res, _, err := api.CreateRestrictionQuery(client.NewContext(apiKey, appKey, site), datadogV2.RestrictionQueryCreatePayload{})
 		if err != nil {

@@ -2,7 +2,7 @@ package service_scorecards
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
 
@@ -19,7 +19,7 @@ var ListScorecardOutcomesCmd = &cobra.Command{
 	Short: "List all rule outcomes",
 	
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewServiceScorecardsApi(client.NewAPIClient())
 		res, _, err := api.ListScorecardOutcomes(client.NewContext(apiKey, appKey, site))
 		if err != nil {

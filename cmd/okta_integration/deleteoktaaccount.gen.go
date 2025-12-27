@@ -2,7 +2,7 @@ package okta_integration
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	
 
@@ -19,7 +19,7 @@ var DeleteOktaAccountCmd = &cobra.Command{
 	Short: "Delete Okta account",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewOktaIntegrationApi(client.NewAPIClient())
 		_, err := api.DeleteOktaAccount(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {

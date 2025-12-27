@@ -2,7 +2,7 @@ package audit
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
 
@@ -19,7 +19,7 @@ var SearchAuditLogsCmd = &cobra.Command{
 	Short: "Search Audit Logs events",
 	
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewAuditApi(client.NewAPIClient())
 		res, _, err := api.SearchAuditLogs(client.NewContext(apiKey, appKey, site), *datadogV2.NewSearchAuditLogsOptionalParameters())
 		if err != nil {

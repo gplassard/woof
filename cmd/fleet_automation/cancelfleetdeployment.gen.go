@@ -2,7 +2,7 @@ package fleet_automation
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	
 
@@ -19,7 +19,7 @@ var CancelFleetDeploymentCmd = &cobra.Command{
 	Short: "Cancel a deployment",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewFleetAutomationApi(client.NewAPIClient())
 		_, err := api.CancelFleetDeployment(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {

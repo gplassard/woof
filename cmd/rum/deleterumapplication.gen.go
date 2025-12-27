@@ -2,7 +2,7 @@ package rum
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	
 
@@ -19,7 +19,7 @@ var DeleteRUMApplicationCmd = &cobra.Command{
 	Short: "Delete a RUM application",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewRUMApi(client.NewAPIClient())
 		_, err := api.DeleteRUMApplication(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {

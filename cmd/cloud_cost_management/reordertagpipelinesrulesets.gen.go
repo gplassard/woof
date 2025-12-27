@@ -2,7 +2,7 @@ package cloud_cost_management
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	
 
@@ -19,7 +19,7 @@ var ReorderTagPipelinesRulesetsCmd = &cobra.Command{
 	Short: "Reorder tag pipeline rulesets",
 	
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
 		_, err := api.ReorderTagPipelinesRulesets(client.NewContext(apiKey, appKey, site), datadogV2.ReorderRulesetResourceArray{})
 		if err != nil {

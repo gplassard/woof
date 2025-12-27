@@ -2,7 +2,7 @@ package service_definition
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
 
@@ -19,7 +19,7 @@ var GetServiceDefinitionCmd = &cobra.Command{
 	Short: "Get a single service definition",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewServiceDefinitionApi(client.NewAPIClient())
 		res, _, err := api.GetServiceDefinition(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {

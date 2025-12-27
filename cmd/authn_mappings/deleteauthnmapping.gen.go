@@ -2,7 +2,7 @@ package authn_mappings
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	
 
@@ -19,7 +19,7 @@ var DeleteAuthNMappingCmd = &cobra.Command{
 	Short: "Delete an AuthN Mapping",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewAuthNMappingsApi(client.NewAPIClient())
 		_, err := api.DeleteAuthNMapping(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {

@@ -2,7 +2,7 @@ package microsoft_teams_integration
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
 
@@ -19,7 +19,7 @@ var GetTenantBasedHandleCmd = &cobra.Command{
 	Short: "Get tenant-based handle information",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewMicrosoftTeamsIntegrationApi(client.NewAPIClient())
 		res, _, err := api.GetTenantBasedHandle(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {

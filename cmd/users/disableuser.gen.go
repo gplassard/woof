@@ -2,7 +2,7 @@ package users
 
 import (
 	"log"
-	"ouaf/cmd/util"
+	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	
 
@@ -19,7 +19,7 @@ var DisableUserCmd = &cobra.Command{
 	Short: "Disable a user",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		apiKey, appKey, site := util.GetConfig()
+		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewUsersApi(client.NewAPIClient())
 		_, err := api.DisableUser(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
