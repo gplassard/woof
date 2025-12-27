@@ -7,13 +7,13 @@ import (
 )
 
 func main() {
-	if err := runGenerate(); err != nil {
+	if err := RunGenerate(); err != nil {
 		fmt.Fprintf(os.Stderr, "Error: %v\n", err)
 		os.Exit(1)
 	}
 }
 
-func runGenerate() error {
+func RunGenerate() error {
 	config, err := loadConfig("generator/config.yaml")
 	if err != nil {
 		return err
