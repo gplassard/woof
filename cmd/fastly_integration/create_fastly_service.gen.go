@@ -26,7 +26,7 @@ var CreateFastlyServiceCmd = &cobra.Command{
 			log.Fatalf("failed to create_fastly_service: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "fastly_integration")
+		cmdutil.PrintJSON(res, "fastly-services")
 	},
 }
 

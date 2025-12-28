@@ -26,7 +26,7 @@ var GetMappingCmd = &cobra.Command{
 			log.Fatalf("failed to get_mapping: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "rum_audience_management")
+		cmdutil.PrintJSON(res, "get_mappings_response")
 	},
 }
 

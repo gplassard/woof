@@ -26,7 +26,7 @@ var UpdateCustomFrameworkCmd = &cobra.Command{
 			log.Fatalf("failed to update_custom_framework: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "security_monitoring")
+		cmdutil.PrintJSON(res, "custom_framework")
 	},
 }
 

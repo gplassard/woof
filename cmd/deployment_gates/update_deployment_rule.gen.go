@@ -26,7 +26,7 @@ var UpdateDeploymentRuleCmd = &cobra.Command{
 			log.Fatalf("failed to update_deployment_rule: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "deployment_gates")
+		cmdutil.PrintJSON(res, "deployment_rule")
 	},
 }
 

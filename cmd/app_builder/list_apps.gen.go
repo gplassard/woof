@@ -26,7 +26,7 @@ var ListAppsCmd = &cobra.Command{
 			log.Fatalf("failed to list_apps: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "app_builder")
+		cmdutil.PrintJSON(res, "appDefinitions")
 	},
 }
 

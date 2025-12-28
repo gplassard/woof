@@ -26,7 +26,7 @@ var CreateReferenceTableUploadCmd = &cobra.Command{
 			log.Fatalf("failed to create_reference_table_upload: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "reference_tables")
+		cmdutil.PrintJSON(res, "upload")
 	},
 }
 

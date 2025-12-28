@@ -26,7 +26,7 @@ var ListAwsScanOptionsCmd = &cobra.Command{
 			log.Fatalf("failed to list_aws_scan_options: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "agentless_scanning")
+		cmdutil.PrintJSON(res, "aws_scan_options")
 	},
 }
 

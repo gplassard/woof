@@ -26,7 +26,7 @@ var AggregateSpansCmd = &cobra.Command{
 			log.Fatalf("failed to aggregate_spans: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "spans")
+		cmdutil.PrintJSON(res, "bucket")
 	},
 }
 

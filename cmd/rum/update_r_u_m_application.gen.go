@@ -26,7 +26,7 @@ var UpdateRUMApplicationCmd = &cobra.Command{
 			log.Fatalf("failed to update_r_u_m_application: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "rum")
+		cmdutil.PrintJSON(res, "rum_application")
 	},
 }
 

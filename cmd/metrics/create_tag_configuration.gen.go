@@ -26,7 +26,7 @@ var CreateTagConfigurationCmd = &cobra.Command{
 			log.Fatalf("failed to create_tag_configuration: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "metrics")
+		cmdutil.PrintJSON(res, "manage_tags")
 	},
 }
 

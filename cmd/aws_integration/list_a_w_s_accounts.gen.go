@@ -26,7 +26,7 @@ var ListAWSAccountsCmd = &cobra.Command{
 			log.Fatalf("failed to list_a_w_s_accounts: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "aws_integration")
+		cmdutil.PrintJSON(res, "account")
 	},
 }
 

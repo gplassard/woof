@@ -26,7 +26,7 @@ var {{.CommandName}} = &cobra.Command{
 			log.Fatalf("failed to {{.OperationID | toSnakeCase}}: %v", err)
 		}
 
-		{{if .HasResponse}}cmdutil.PrintJSON(res, "{{.PackageName}}"){{end}}
+		{{if .HasResponse}}cmdutil.PrintJSON(res, "{{.ResourceType}}"){{end}}
 	},
 }
 

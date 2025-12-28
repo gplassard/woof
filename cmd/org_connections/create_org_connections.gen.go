@@ -26,7 +26,7 @@ var CreateOrgConnectionsCmd = &cobra.Command{
 			log.Fatalf("failed to create_org_connections: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "org_connections")
+		cmdutil.PrintJSON(res, "org_connection")
 	},
 }
 

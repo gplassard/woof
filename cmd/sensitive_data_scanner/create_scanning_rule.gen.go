@@ -26,7 +26,7 @@ var CreateScanningRuleCmd = &cobra.Command{
 			log.Fatalf("failed to create_scanning_rule: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "sensitive_data_scanner")
+		cmdutil.PrintJSON(res, "sensitive_data_scanner_rule")
 	},
 }
 

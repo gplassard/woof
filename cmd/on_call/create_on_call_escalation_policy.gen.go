@@ -26,7 +26,7 @@ var CreateOnCallEscalationPolicyCmd = &cobra.Command{
 			log.Fatalf("failed to create_on_call_escalation_policy: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "on_call")
+		cmdutil.PrintJSON(res, "policies")
 	},
 }
 

@@ -26,7 +26,7 @@ var ListTablesCmd = &cobra.Command{
 			log.Fatalf("failed to list_tables: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "reference_tables")
+		cmdutil.PrintJSON(res, "reference_table")
 	},
 }
 

@@ -26,7 +26,7 @@ var UpdateIncidentTypeCmd = &cobra.Command{
 			log.Fatalf("failed to update_incident_type: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "incidents")
+		cmdutil.PrintJSON(res, "incident_types")
 	},
 }
 

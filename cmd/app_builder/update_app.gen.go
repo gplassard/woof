@@ -26,7 +26,7 @@ var UpdateAppCmd = &cobra.Command{
 			log.Fatalf("failed to update_app: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "app_builder")
+		cmdutil.PrintJSON(res, "appDefinitions")
 	},
 }
 

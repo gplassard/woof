@@ -26,7 +26,7 @@ var UpdateServiceAccountApplicationKeyCmd = &cobra.Command{
 			log.Fatalf("failed to update_service_account_application_key: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "service_accounts")
+		cmdutil.PrintJSON(res, "application_keys")
 	},
 }
 

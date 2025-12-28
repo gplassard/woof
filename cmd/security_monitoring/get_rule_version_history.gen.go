@@ -26,7 +26,7 @@ var GetRuleVersionHistoryCmd = &cobra.Command{
 			log.Fatalf("failed to get_rule_version_history: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "security_monitoring")
+		cmdutil.PrintJSON(res, "GetRuleVersionHistoryResponse")
 	},
 }
 

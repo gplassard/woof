@@ -26,7 +26,7 @@ var UpdateCloudWorkloadSecurityAgentRuleCmd = &cobra.Command{
 			log.Fatalf("failed to update_cloud_workload_security_agent_rule: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "csm_threats")
+		cmdutil.PrintJSON(res, "agent_rule")
 	},
 }
 

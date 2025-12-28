@@ -26,7 +26,7 @@ var GetDowntimeCmd = &cobra.Command{
 			log.Fatalf("failed to get_downtime: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "downtimes")
+		cmdutil.PrintJSON(res, "downtime")
 	},
 }
 

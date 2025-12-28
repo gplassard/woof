@@ -26,7 +26,7 @@ var GetServiceListCmd = &cobra.Command{
 			log.Fatalf("failed to get_service_list: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "apm")
+		cmdutil.PrintJSON(res, "services_list")
 	},
 }
 

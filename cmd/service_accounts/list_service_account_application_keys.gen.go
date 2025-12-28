@@ -26,7 +26,7 @@ var ListServiceAccountApplicationKeysCmd = &cobra.Command{
 			log.Fatalf("failed to list_service_account_application_keys: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "service_accounts")
+		cmdutil.PrintJSON(res, "application_keys")
 	},
 }
 

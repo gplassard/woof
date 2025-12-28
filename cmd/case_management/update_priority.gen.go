@@ -26,7 +26,7 @@ var UpdatePriorityCmd = &cobra.Command{
 			log.Fatalf("failed to update_priority: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "case_management")
+		cmdutil.PrintJSON(res, "case")
 	},
 }
 

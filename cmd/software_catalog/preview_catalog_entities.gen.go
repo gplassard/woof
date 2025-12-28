@@ -26,7 +26,7 @@ var PreviewCatalogEntitiesCmd = &cobra.Command{
 			log.Fatalf("failed to preview_catalog_entities: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "software_catalog")
+		cmdutil.PrintJSON(res, "entity")
 	},
 }
 

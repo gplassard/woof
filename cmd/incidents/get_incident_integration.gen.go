@@ -26,7 +26,7 @@ var GetIncidentIntegrationCmd = &cobra.Command{
 			log.Fatalf("failed to get_incident_integration: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "incidents")
+		cmdutil.PrintJSON(res, "incident_integrations")
 	},
 }
 

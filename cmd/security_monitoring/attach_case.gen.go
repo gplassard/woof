@@ -26,7 +26,7 @@ var AttachCaseCmd = &cobra.Command{
 			log.Fatalf("failed to attach_case: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "security_monitoring")
+		cmdutil.PrintJSON(res, "cases")
 	},
 }
 

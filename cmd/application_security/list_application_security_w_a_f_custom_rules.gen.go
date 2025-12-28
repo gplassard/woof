@@ -26,7 +26,7 @@ var ListApplicationSecurityWAFCustomRulesCmd = &cobra.Command{
 			log.Fatalf("failed to list_application_security_w_a_f_custom_rules: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "application_security")
+		cmdutil.PrintJSON(res, "custom_rule")
 	},
 }
 

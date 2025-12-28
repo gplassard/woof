@@ -26,7 +26,7 @@ var ListFleetDeploymentsCmd = &cobra.Command{
 			log.Fatalf("failed to list_fleet_deployments: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "fleet_automation")
+		cmdutil.PrintJSON(res, "deployment")
 	},
 }
 

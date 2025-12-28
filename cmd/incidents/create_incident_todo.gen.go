@@ -26,7 +26,7 @@ var CreateIncidentTodoCmd = &cobra.Command{
 			log.Fatalf("failed to create_incident_todo: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "incidents")
+		cmdutil.PrintJSON(res, "incident_todos")
 	},
 }
 

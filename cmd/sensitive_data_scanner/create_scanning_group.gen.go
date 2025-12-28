@@ -26,7 +26,7 @@ var CreateScanningGroupCmd = &cobra.Command{
 			log.Fatalf("failed to create_scanning_group: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "sensitive_data_scanner")
+		cmdutil.PrintJSON(res, "sensitive_data_scanner_group")
 	},
 }
 

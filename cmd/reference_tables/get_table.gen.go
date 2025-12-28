@@ -26,7 +26,7 @@ var GetTableCmd = &cobra.Command{
 			log.Fatalf("failed to get_table: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "reference_tables")
+		cmdutil.PrintJSON(res, "reference_table")
 	},
 }
 

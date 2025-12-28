@@ -26,7 +26,7 @@ var CreateGCPSTSAccountCmd = &cobra.Command{
 			log.Fatalf("failed to create_g_c_p_s_t_s_account: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "gcp_integration")
+		cmdutil.PrintJSON(res, "gcp_service_account")
 	},
 }
 

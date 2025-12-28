@@ -26,7 +26,7 @@ var DeleteAppCmd = &cobra.Command{
 			log.Fatalf("failed to delete_app: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "app_builder")
+		cmdutil.PrintJSON(res, "appDefinitions")
 	},
 }
 

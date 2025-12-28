@@ -26,7 +26,7 @@ var GetDatastoreCmd = &cobra.Command{
 			log.Fatalf("failed to get_datastore: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "actions_datastores")
+		cmdutil.PrintJSON(res, "datastores")
 	},
 }
 

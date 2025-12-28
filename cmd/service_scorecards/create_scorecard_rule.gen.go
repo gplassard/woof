@@ -26,7 +26,7 @@ var CreateScorecardRuleCmd = &cobra.Command{
 			log.Fatalf("failed to create_scorecard_rule: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "service_scorecards")
+		cmdutil.PrintJSON(res, "rule")
 	},
 }
 

@@ -26,7 +26,7 @@ var ListWorkflowsWebhookHandlesCmd = &cobra.Command{
 			log.Fatalf("failed to list_workflows_webhook_handles: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "microsoft_teams_integration")
+		cmdutil.PrintJSON(res, "workflows-webhook-handle")
 	},
 }
 

@@ -26,7 +26,7 @@ var ListVulnerabilitiesCmd = &cobra.Command{
 			log.Fatalf("failed to list_vulnerabilities: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "security_monitoring")
+		cmdutil.PrintJSON(res, "vulnerabilities")
 	},
 }
 

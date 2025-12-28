@@ -26,7 +26,7 @@ var ListOpsgenieServicesCmd = &cobra.Command{
 			log.Fatalf("failed to list_opsgenie_services: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "opsgenie_integration")
+		cmdutil.PrintJSON(res, "opsgenie-service")
 	},
 }
 

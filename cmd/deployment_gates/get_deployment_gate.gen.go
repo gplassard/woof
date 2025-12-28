@@ -26,7 +26,7 @@ var GetDeploymentGateCmd = &cobra.Command{
 			log.Fatalf("failed to get_deployment_gate: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "deployment_gates")
+		cmdutil.PrintJSON(res, "deployment_gate")
 	},
 }
 

@@ -26,7 +26,7 @@ var GetIssueCmd = &cobra.Command{
 			log.Fatalf("failed to get_issue: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "error_tracking")
+		cmdutil.PrintJSON(res, "issue")
 	},
 }
 

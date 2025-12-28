@@ -7,6 +7,15 @@ import (
 )
 
 func PrintJSON(res interface{}, filterType string) {
+	if filterType == "" {
+		s, err := json.MarshalIndent(res, "", "  ")
+		if err != nil {
+			log.Fatalf("failed to marshal: %v", err)
+		}
+		fmt.Println(string(s))
+		return
+	}
+
 	b, err := json.Marshal(res)
 	if err != nil {
 		log.Fatalf("failed to marshal for filtering: %v", err)
@@ -20,12 +29,24 @@ func PrintJSON(res interface{}, filterType string) {
 		var filteredData []interface{}
 		for _, item := range data {
 			if obj, ok := item.(map[string]interface{}); ok {
-				if t, ok := obj["type"].(string); ok && t == filterType {
+				t, ok := obj["type"].(string)
+				if ok && t == filterType {
+					filteredData = append(filteredData, obj)
+				} else if !ok {
+					// If there is no type field, don't filter it out
 					filteredData = append(filteredData, obj)
 				}
+			} else {
+				// If item is not an object, don't filter it out
+				filteredData = append(filteredData, item)
 			}
 		}
 		m["data"] = filteredData
+	} else if obj, ok := m["data"].(map[string]interface{}); ok {
+		// Single object data
+		if t, ok := obj["type"].(string); ok && t != filterType {
+			m["data"] = nil
+		}
 	}
 
 	delete(m, "included")

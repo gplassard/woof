@@ -26,7 +26,7 @@ var SearchFlakyTestsCmd = &cobra.Command{
 			log.Fatalf("failed to search_flaky_tests: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "test_optimization")
+		cmdutil.PrintJSON(res, "flaky_test")
 	},
 }
 

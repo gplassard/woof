@@ -26,7 +26,7 @@ var UpdateLogsArchiveOrderCmd = &cobra.Command{
 			log.Fatalf("failed to update_logs_archive_order: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "logs_archives")
+		cmdutil.PrintJSON(res, "archive_order")
 	},
 }
 

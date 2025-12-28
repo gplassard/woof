@@ -26,7 +26,7 @@ var UpdateCurrentUserApplicationKeyCmd = &cobra.Command{
 			log.Fatalf("failed to update_current_user_application_key: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "key_management")
+		cmdutil.PrintJSON(res, "application_keys")
 	},
 }
 

@@ -26,7 +26,7 @@ var GetCustomFrameworkCmd = &cobra.Command{
 			log.Fatalf("failed to get_custom_framework: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "security_monitoring")
+		cmdutil.PrintJSON(res, "custom_framework")
 	},
 }
 

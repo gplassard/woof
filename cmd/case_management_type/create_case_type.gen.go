@@ -26,7 +26,7 @@ var CreateCaseTypeCmd = &cobra.Command{
 			log.Fatalf("failed to create_case_type: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "case_management_type")
+		cmdutil.PrintJSON(res, "case_type")
 	},
 }
 

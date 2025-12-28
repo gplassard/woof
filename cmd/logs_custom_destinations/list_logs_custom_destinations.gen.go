@@ -26,7 +26,7 @@ var ListLogsCustomDestinationsCmd = &cobra.Command{
 			log.Fatalf("failed to list_logs_custom_destinations: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "logs_custom_destinations")
+		cmdutil.PrintJSON(res, "custom_destination")
 	},
 }
 

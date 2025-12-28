@@ -26,7 +26,7 @@ var CreateDORADeploymentCmd = &cobra.Command{
 			log.Fatalf("failed to create_d_o_r_a_deployment: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "dora_metrics")
+		cmdutil.PrintJSON(res, "dora_deployment")
 	},
 }
 

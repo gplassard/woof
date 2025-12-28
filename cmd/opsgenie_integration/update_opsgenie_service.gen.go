@@ -26,7 +26,7 @@ var UpdateOpsgenieServiceCmd = &cobra.Command{
 			log.Fatalf("failed to update_opsgenie_service: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "opsgenie_integration")
+		cmdutil.PrintJSON(res, "opsgenie-service")
 	},
 }
 

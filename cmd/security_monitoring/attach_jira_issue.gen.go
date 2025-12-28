@@ -26,7 +26,7 @@ var AttachJiraIssueCmd = &cobra.Command{
 			log.Fatalf("failed to attach_jira_issue: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "security_monitoring")
+		cmdutil.PrintJSON(res, "cases")
 	},
 }
 

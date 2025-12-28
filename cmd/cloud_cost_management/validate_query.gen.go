@@ -26,7 +26,7 @@ var ValidateQueryCmd = &cobra.Command{
 			log.Fatalf("failed to validate_query: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "cloud_cost_management")
+		cmdutil.PrintJSON(res, "validate_response")
 	},
 }
 

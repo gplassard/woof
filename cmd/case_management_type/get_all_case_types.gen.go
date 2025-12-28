@@ -26,7 +26,7 @@ var GetAllCaseTypesCmd = &cobra.Command{
 			log.Fatalf("failed to get_all_case_types: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "case_management_type")
+		cmdutil.PrintJSON(res, "case_type")
 	},
 }
 

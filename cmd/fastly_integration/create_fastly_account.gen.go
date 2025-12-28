@@ -26,7 +26,7 @@ var CreateFastlyAccountCmd = &cobra.Command{
 			log.Fatalf("failed to create_fastly_account: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "fastly_integration")
+		cmdutil.PrintJSON(res, "fastly-accounts")
 	},
 }
 

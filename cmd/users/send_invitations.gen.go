@@ -26,7 +26,7 @@ var SendInvitationsCmd = &cobra.Command{
 			log.Fatalf("failed to send_invitations: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "users")
+		cmdutil.PrintJSON(res, "user_invitations")
 	},
 }
 

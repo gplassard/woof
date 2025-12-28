@@ -26,7 +26,7 @@ var EditSecurityMonitoringSignalStateCmd = &cobra.Command{
 			log.Fatalf("failed to edit_security_monitoring_signal_state: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "security_monitoring")
+		cmdutil.PrintJSON(res, "signal_metadata")
 	},
 }
 

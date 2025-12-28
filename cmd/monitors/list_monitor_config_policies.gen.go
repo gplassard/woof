@@ -26,7 +26,7 @@ var ListMonitorConfigPoliciesCmd = &cobra.Command{
 			log.Fatalf("failed to list_monitor_config_policies: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "monitors")
+		cmdutil.PrintJSON(res, "monitor-config-policy")
 	},
 }
 

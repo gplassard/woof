@@ -26,7 +26,7 @@ var ListMonitorDowntimesCmd = &cobra.Command{
 			log.Fatalf("failed to list_monitor_downtimes: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "downtimes")
+		cmdutil.PrintJSON(res, "downtime_match")
 	},
 }
 

@@ -26,7 +26,7 @@ var GetFleetDeploymentCmd = &cobra.Command{
 			log.Fatalf("failed to get_fleet_deployment: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "fleet_automation")
+		cmdutil.PrintJSON(res, "deployment")
 	},
 }
 

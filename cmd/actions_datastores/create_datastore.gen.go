@@ -26,7 +26,7 @@ var CreateDatastoreCmd = &cobra.Command{
 			log.Fatalf("failed to create_datastore: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "actions_datastores")
+		cmdutil.PrintJSON(res, "datastores")
 	},
 }
 

@@ -26,7 +26,7 @@ var QueryEventFilteredUsersCmd = &cobra.Command{
 			log.Fatalf("failed to query_event_filtered_users: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "rum_audience_management")
+		cmdutil.PrintJSON(res, "query_response")
 	},
 }
 

@@ -26,7 +26,7 @@ var UnassignCaseCmd = &cobra.Command{
 			log.Fatalf("failed to unassign_case: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "case_management")
+		cmdutil.PrintJSON(res, "case")
 	},
 }
 

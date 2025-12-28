@@ -26,7 +26,7 @@ var ListScanningGroupsCmd = &cobra.Command{
 			log.Fatalf("failed to list_scanning_groups: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "sensitive_data_scanner")
+		cmdutil.PrintJSON(res, "sensitive_data_scanner_configuration")
 	},
 }
 

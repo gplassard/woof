@@ -26,7 +26,7 @@ var QueryTimeseriesDataCmd = &cobra.Command{
 			log.Fatalf("failed to query_timeseries_data: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "metrics")
+		cmdutil.PrintJSON(res, "timeseries_response")
 	},
 }
 

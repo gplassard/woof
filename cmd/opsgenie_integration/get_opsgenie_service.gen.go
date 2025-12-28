@@ -26,7 +26,7 @@ var GetOpsgenieServiceCmd = &cobra.Command{
 			log.Fatalf("failed to get_opsgenie_service: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "opsgenie_integration")
+		cmdutil.PrintJSON(res, "opsgenie-service")
 	},
 }
 

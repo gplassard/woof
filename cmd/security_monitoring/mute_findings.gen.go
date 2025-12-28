@@ -26,7 +26,7 @@ var MuteFindingsCmd = &cobra.Command{
 			log.Fatalf("failed to mute_findings: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "security_monitoring")
+		cmdutil.PrintJSON(res, "finding")
 	},
 }
 

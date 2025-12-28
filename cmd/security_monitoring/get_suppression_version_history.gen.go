@@ -26,7 +26,7 @@ var GetSuppressionVersionHistoryCmd = &cobra.Command{
 			log.Fatalf("failed to get_suppression_version_history: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "security_monitoring")
+		cmdutil.PrintJSON(res, "suppression_version_history")
 	},
 }
 

@@ -26,7 +26,7 @@ var DeleteDatastoreItemCmd = &cobra.Command{
 			log.Fatalf("failed to delete_datastore_item: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "actions_datastores")
+		cmdutil.PrintJSON(res, "items")
 	},
 }
 

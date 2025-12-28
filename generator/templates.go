@@ -40,6 +40,40 @@ func ensureEntrypoint(pkgDir, tag string, tmpl *template.Template) error {
 	return nil
 }
 
+func resolveResourceType(spec *OpenAPI, schema map[string]interface{}) string {
+	if schema == nil {
+		return ""
+	}
+
+	if props, ok := schema["properties"].(map[string]interface{}); ok {
+		if dataProp, ok := props["data"].(map[string]interface{}); ok {
+			// Check if data is an array
+			if items, ok := dataProp["items"].(map[string]interface{}); ok {
+				return resolveResourceType(spec, resolveSchema(spec, items))
+			}
+			// Check if data is an object
+			return resolveResourceType(spec, resolveSchema(spec, dataProp))
+		}
+		if typeProp, ok := props["type"].(map[string]interface{}); ok {
+			resolvedTypeProp := resolveSchema(spec, typeProp)
+			if enum, ok := resolvedTypeProp["enum"].([]interface{}); ok && len(enum) > 0 {
+				return enum[0].(string)
+			}
+		}
+	}
+	return ""
+}
+
+func resolveSchema(spec *OpenAPI, schema map[string]interface{}) map[string]interface{} {
+	if ref, ok := schema["$ref"].(string); ok {
+		refName := filepath.Base(ref)
+		if s, ok := spec.Components.Schemas[refName]; ok {
+			return s.Schema
+		}
+	}
+	return schema
+}
+
 func prepareTemplateData(tag, rawTag, apiTagName, method, path string, op Operation, spec *OpenAPI, config *Config) TemplateData {
 	var args []string
 	var argTypes []string
@@ -154,6 +188,25 @@ func prepareTemplateData(tag, rawTag, apiTagName, method, path string, op Operat
 		}
 	}
 
+	resourceType := ""
+	if hasResponse {
+		for code, resp := range op.Responses {
+			if code == "200" || code == "201" || code == "202" {
+				if resp.Content != nil {
+					if jsonContent, ok := resp.Content["application/json"].(map[string]interface{}); ok {
+						if schema, ok := jsonContent["schema"].(map[string]interface{}); ok {
+							resourceType = resolveResourceType(spec, resolveSchema(spec, schema))
+						}
+					}
+				}
+			}
+		}
+	}
+	// Fallback to package name if we can't find it, or use special logic
+	if resourceType == "" {
+		resourceType = tag
+	}
+
 	return TemplateData{
 		PackageName:      tag,
 		CommandName:      strings.ToUpper(op.OperationID[:1]) + op.OperationID[1:] + "Cmd",
@@ -170,6 +223,7 @@ func prepareTemplateData(tag, rawTag, apiTagName, method, path string, op Operat
 		RequestBodyType:  requestBodyType,
 		IsOptionalParams: isOptionalParams,
 		HasResponse:      hasResponse,
+		ResourceType:     resourceType,
 	}
 }
 

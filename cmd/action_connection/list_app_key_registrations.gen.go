@@ -26,7 +26,7 @@ var ListAppKeyRegistrationsCmd = &cobra.Command{
 			log.Fatalf("failed to list_app_key_registrations: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "action_connection")
+		cmdutil.PrintJSON(res, "app_key_registration")
 	},
 }
 

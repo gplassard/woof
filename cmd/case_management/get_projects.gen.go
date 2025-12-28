@@ -26,7 +26,7 @@ var GetProjectsCmd = &cobra.Command{
 			log.Fatalf("failed to get_projects: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "case_management")
+		cmdutil.PrintJSON(res, "project")
 	},
 }
 

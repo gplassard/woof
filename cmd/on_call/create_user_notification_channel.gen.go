@@ -26,7 +26,7 @@ var CreateUserNotificationChannelCmd = &cobra.Command{
 			log.Fatalf("failed to create_user_notification_channel: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "on_call")
+		cmdutil.PrintJSON(res, "notification_channels")
 	},
 }
 

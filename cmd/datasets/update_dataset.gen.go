@@ -26,7 +26,7 @@ var UpdateDatasetCmd = &cobra.Command{
 			log.Fatalf("failed to update_dataset: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "datasets")
+		cmdutil.PrintJSON(res, "dataset")
 	},
 }
 

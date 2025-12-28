@@ -26,7 +26,7 @@ var GetApplicationKeyCmd = &cobra.Command{
 			log.Fatalf("failed to get_application_key: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "key_management")
+		cmdutil.PrintJSON(res, "application_keys")
 	},
 }
 

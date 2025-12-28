@@ -26,7 +26,7 @@ var UpdateOrgConnectionsCmd = &cobra.Command{
 			log.Fatalf("failed to update_org_connections: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "org_connections")
+		cmdutil.PrintJSON(res, "org_connection")
 	},
 }
 

@@ -26,7 +26,7 @@ var GetRestrictionPolicyCmd = &cobra.Command{
 			log.Fatalf("failed to get_restriction_policy: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "restriction_policies")
+		cmdutil.PrintJSON(res, "restriction_policy")
 	},
 }
 

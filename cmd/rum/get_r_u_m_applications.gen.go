@@ -26,7 +26,7 @@ var GetRUMApplicationsCmd = &cobra.Command{
 			log.Fatalf("failed to get_r_u_m_applications: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "rum")
+		cmdutil.PrintJSON(res, "rum_application")
 	},
 }
 

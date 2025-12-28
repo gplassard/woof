@@ -26,7 +26,7 @@ var CreateProjectCmd = &cobra.Command{
 			log.Fatalf("failed to create_project: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "case_management")
+		cmdutil.PrintJSON(res, "project")
 	},
 }
 

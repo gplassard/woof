@@ -26,7 +26,7 @@ var GetSecurityMonitoringSuppressionCmd = &cobra.Command{
 			log.Fatalf("failed to get_security_monitoring_suppression: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "security_monitoring")
+		cmdutil.PrintJSON(res, "suppressions")
 	},
 }
 

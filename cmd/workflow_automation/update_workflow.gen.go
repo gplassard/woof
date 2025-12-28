@@ -26,7 +26,7 @@ var UpdateWorkflowCmd = &cobra.Command{
 			log.Fatalf("failed to update_workflow: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "workflow_automation")
+		cmdutil.PrintJSON(res, "workflows")
 	},
 }
 

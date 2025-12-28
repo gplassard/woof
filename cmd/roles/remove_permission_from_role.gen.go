@@ -26,7 +26,7 @@ var RemovePermissionFromRoleCmd = &cobra.Command{
 			log.Fatalf("failed to remove_permission_from_role: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "roles")
+		cmdutil.PrintJSON(res, "permissions")
 	},
 }
 

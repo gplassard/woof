@@ -26,7 +26,7 @@ var CreateCasesCmd = &cobra.Command{
 			log.Fatalf("failed to create_cases: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "security_monitoring")
+		cmdutil.PrintJSON(res, "cases")
 	},
 }
 

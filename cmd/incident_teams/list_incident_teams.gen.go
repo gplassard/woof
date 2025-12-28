@@ -26,7 +26,7 @@ var ListIncidentTeamsCmd = &cobra.Command{
 			log.Fatalf("failed to list_incident_teams: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "incident_teams")
+		cmdutil.PrintJSON(res, "teams")
 	},
 }
 

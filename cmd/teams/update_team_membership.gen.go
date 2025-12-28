@@ -26,7 +26,7 @@ var UpdateTeamMembershipCmd = &cobra.Command{
 			log.Fatalf("failed to update_team_membership: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "teams")
+		cmdutil.PrintJSON(res, "team_memberships")
 	},
 }
 

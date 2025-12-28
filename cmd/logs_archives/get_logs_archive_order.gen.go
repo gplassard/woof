@@ -26,7 +26,7 @@ var GetLogsArchiveOrderCmd = &cobra.Command{
 			log.Fatalf("failed to get_logs_archive_order: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "logs_archives")
+		cmdutil.PrintJSON(res, "archive_order")
 	},
 }
 

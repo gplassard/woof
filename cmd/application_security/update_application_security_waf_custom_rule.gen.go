@@ -26,7 +26,7 @@ var UpdateApplicationSecurityWafCustomRuleCmd = &cobra.Command{
 			log.Fatalf("failed to update_application_security_waf_custom_rule: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "application_security")
+		cmdutil.PrintJSON(res, "custom_rule")
 	},
 }
 

@@ -26,7 +26,7 @@ var ListGCPSTSAccountsCmd = &cobra.Command{
 			log.Fatalf("failed to list_g_c_p_s_t_s_accounts: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "gcp_integration")
+		cmdutil.PrintJSON(res, "gcp_service_account")
 	},
 }
 

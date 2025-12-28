@@ -26,7 +26,7 @@ var GetAzureScanOptionsCmd = &cobra.Command{
 			log.Fatalf("failed to get_azure_scan_options: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "agentless_scanning")
+		cmdutil.PrintJSON(res, "azure_scan_options")
 	},
 }
 

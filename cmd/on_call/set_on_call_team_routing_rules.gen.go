@@ -26,7 +26,7 @@ var SetOnCallTeamRoutingRulesCmd = &cobra.Command{
 			log.Fatalf("failed to set_on_call_team_routing_rules: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "on_call")
+		cmdutil.PrintJSON(res, "team_routing_rules")
 	},
 }
 

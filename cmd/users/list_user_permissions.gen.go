@@ -26,7 +26,7 @@ var ListUserPermissionsCmd = &cobra.Command{
 			log.Fatalf("failed to list_user_permissions: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "users")
+		cmdutil.PrintJSON(res, "permissions")
 	},
 }
 

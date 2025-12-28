@@ -26,7 +26,7 @@ var UpdateSecurityFilterCmd = &cobra.Command{
 			log.Fatalf("failed to update_security_filter: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "security_monitoring")
+		cmdutil.PrintJSON(res, "security_filters")
 	},
 }
 

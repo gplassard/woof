@@ -26,7 +26,7 @@ var QueryScalarDataCmd = &cobra.Command{
 			log.Fatalf("failed to query_scalar_data: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "metrics")
+		cmdutil.PrintJSON(res, "scalar_response")
 	},
 }
 

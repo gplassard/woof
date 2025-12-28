@@ -26,7 +26,7 @@ var ListConnectionsCmd = &cobra.Command{
 			log.Fatalf("failed to list_connections: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "rum_audience_management")
+		cmdutil.PrintJSON(res, "list_connections_response")
 	},
 }
 

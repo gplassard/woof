@@ -26,7 +26,7 @@ var SearchSecurityMonitoringSignalsCmd = &cobra.Command{
 			log.Fatalf("failed to search_security_monitoring_signals: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "security_monitoring")
+		cmdutil.PrintJSON(res, "signal")
 	},
 }
 

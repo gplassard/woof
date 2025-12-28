@@ -26,7 +26,7 @@ var UpdateOktaAccountCmd = &cobra.Command{
 			log.Fatalf("failed to update_okta_account: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "okta_integration")
+		cmdutil.PrintJSON(res, "okta-accounts")
 	},
 }
 

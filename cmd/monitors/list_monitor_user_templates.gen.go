@@ -26,7 +26,7 @@ var ListMonitorUserTemplatesCmd = &cobra.Command{
 			log.Fatalf("failed to list_monitor_user_templates: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "monitors")
+		cmdutil.PrintJSON(res, "monitor-user-template")
 	},
 }
 

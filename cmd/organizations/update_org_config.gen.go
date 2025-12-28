@@ -26,7 +26,7 @@ var UpdateOrgConfigCmd = &cobra.Command{
 			log.Fatalf("failed to update_org_config: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "organizations")
+		cmdutil.PrintJSON(res, "org_configs")
 	},
 }
 

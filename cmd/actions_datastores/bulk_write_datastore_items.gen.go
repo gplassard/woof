@@ -26,7 +26,7 @@ var BulkWriteDatastoreItemsCmd = &cobra.Command{
 			log.Fatalf("failed to bulk_write_datastore_items: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "actions_datastores")
+		cmdutil.PrintJSON(res, "items")
 	},
 }
 

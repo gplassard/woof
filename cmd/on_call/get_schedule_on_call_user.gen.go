@@ -26,7 +26,7 @@ var GetScheduleOnCallUserCmd = &cobra.Command{
 			log.Fatalf("failed to get_schedule_on_call_user: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "on_call")
+		cmdutil.PrintJSON(res, "shifts")
 	},
 }
 

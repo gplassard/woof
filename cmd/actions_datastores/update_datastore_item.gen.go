@@ -26,7 +26,7 @@ var UpdateDatastoreItemCmd = &cobra.Command{
 			log.Fatalf("failed to update_datastore_item: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "actions_datastores")
+		cmdutil.PrintJSON(res, "items")
 	},
 }
 

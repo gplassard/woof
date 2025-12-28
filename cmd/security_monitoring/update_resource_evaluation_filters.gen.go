@@ -26,7 +26,7 @@ var UpdateResourceEvaluationFiltersCmd = &cobra.Command{
 			log.Fatalf("failed to update_resource_evaluation_filters: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "security_monitoring")
+		cmdutil.PrintJSON(res, "csm_resource_filter")
 	},
 }
 

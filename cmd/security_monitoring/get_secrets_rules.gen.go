@@ -26,7 +26,7 @@ var GetSecretsRulesCmd = &cobra.Command{
 			log.Fatalf("failed to get_secrets_rules: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "security_monitoring")
+		cmdutil.PrintJSON(res, "secret_rule")
 	},
 }
 

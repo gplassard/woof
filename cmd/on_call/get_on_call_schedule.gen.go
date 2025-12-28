@@ -26,7 +26,7 @@ var GetOnCallScheduleCmd = &cobra.Command{
 			log.Fatalf("failed to get_on_call_schedule: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "on_call")
+		cmdutil.PrintJSON(res, "schedules")
 	},
 }
 

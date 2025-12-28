@@ -26,7 +26,7 @@ var UpdateTagConfigurationCmd = &cobra.Command{
 			log.Fatalf("failed to update_tag_configuration: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "metrics")
+		cmdutil.PrintJSON(res, "manage_tags")
 	},
 }
 

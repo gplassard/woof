@@ -26,7 +26,7 @@ var ListUserNotificationChannelsCmd = &cobra.Command{
 			log.Fatalf("failed to list_user_notification_channels: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "on_call")
+		cmdutil.PrintJSON(res, "notification_channels")
 	},
 }
 

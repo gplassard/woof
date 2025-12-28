@@ -26,7 +26,7 @@ var AddPermissionToRoleCmd = &cobra.Command{
 			log.Fatalf("failed to add_permission_to_role: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "roles")
+		cmdutil.PrintJSON(res, "permissions")
 	},
 }
 

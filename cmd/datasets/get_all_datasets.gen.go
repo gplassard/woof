@@ -26,7 +26,7 @@ var GetAllDatasetsCmd = &cobra.Command{
 			log.Fatalf("failed to get_all_datasets: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "datasets")
+		cmdutil.PrintJSON(res, "dataset")
 	},
 }
 

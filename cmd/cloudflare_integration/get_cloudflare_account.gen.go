@@ -26,7 +26,7 @@ var GetCloudflareAccountCmd = &cobra.Command{
 			log.Fatalf("failed to get_cloudflare_account: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "cloudflare_integration")
+		cmdutil.PrintJSON(res, "cloudflare-accounts")
 	},
 }
 

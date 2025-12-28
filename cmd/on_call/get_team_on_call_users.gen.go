@@ -26,7 +26,7 @@ var GetTeamOnCallUsersCmd = &cobra.Command{
 			log.Fatalf("failed to get_team_on_call_users: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "on_call")
+		cmdutil.PrintJSON(res, "team_oncall_responders")
 	},
 }
 

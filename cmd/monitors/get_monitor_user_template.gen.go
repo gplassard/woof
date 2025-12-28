@@ -26,7 +26,7 @@ var GetMonitorUserTemplateCmd = &cobra.Command{
 			log.Fatalf("failed to get_monitor_user_template: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "monitors")
+		cmdutil.PrintJSON(res, "monitor-user-template")
 	},
 }
 

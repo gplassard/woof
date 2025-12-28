@@ -26,7 +26,7 @@ var OrderRetentionFiltersCmd = &cobra.Command{
 			log.Fatalf("failed to order_retention_filters: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "rum_retention_filters")
+		cmdutil.PrintJSON(res, "retention_filters")
 	},
 }
 

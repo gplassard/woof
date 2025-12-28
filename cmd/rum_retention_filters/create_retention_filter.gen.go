@@ -26,7 +26,7 @@ var CreateRetentionFilterCmd = &cobra.Command{
 			log.Fatalf("failed to create_retention_filter: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "rum_retention_filters")
+		cmdutil.PrintJSON(res, "retention_filters")
 	},
 }
 

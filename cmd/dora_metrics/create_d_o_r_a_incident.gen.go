@@ -26,7 +26,7 @@ var CreateDORAIncidentCmd = &cobra.Command{
 			log.Fatalf("failed to create_d_o_r_a_incident: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "dora_metrics")
+		cmdutil.PrintJSON(res, "dora_failure")
 	},
 }
 

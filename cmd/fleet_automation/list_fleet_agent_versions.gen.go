@@ -26,7 +26,7 @@ var ListFleetAgentVersionsCmd = &cobra.Command{
 			log.Fatalf("failed to list_fleet_agent_versions: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "fleet_automation")
+		cmdutil.PrintJSON(res, "agent_version")
 	},
 }
 

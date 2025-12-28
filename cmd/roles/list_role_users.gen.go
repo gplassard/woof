@@ -26,7 +26,7 @@ var ListRoleUsersCmd = &cobra.Command{
 			log.Fatalf("failed to list_role_users: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "roles")
+		cmdutil.PrintJSON(res, "users")
 	},
 }
 

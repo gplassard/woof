@@ -26,7 +26,7 @@ var GetAllCustomAttributeConfigsByCaseTypeCmd = &cobra.Command{
 			log.Fatalf("failed to get_all_custom_attribute_configs_by_case_type: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "case_management_attribute")
+		cmdutil.PrintJSON(res, "custom_attribute")
 	},
 }
 

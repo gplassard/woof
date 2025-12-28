@@ -26,7 +26,7 @@ var CreateWorkflowCmd = &cobra.Command{
 			log.Fatalf("failed to create_workflow: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "workflow_automation")
+		cmdutil.PrintJSON(res, "workflows")
 	},
 }
 

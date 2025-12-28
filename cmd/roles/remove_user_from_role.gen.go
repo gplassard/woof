@@ -26,7 +26,7 @@ var RemoveUserFromRoleCmd = &cobra.Command{
 			log.Fatalf("failed to remove_user_from_role: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "roles")
+		cmdutil.PrintJSON(res, "users")
 	},
 }
 

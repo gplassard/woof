@@ -26,7 +26,7 @@ var CreateCSMThreatsAgentRuleCmd = &cobra.Command{
 			log.Fatalf("failed to create_c_s_m_threats_agent_rule: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "csm_threats")
+		cmdutil.PrintJSON(res, "agent_rule")
 	},
 }
 

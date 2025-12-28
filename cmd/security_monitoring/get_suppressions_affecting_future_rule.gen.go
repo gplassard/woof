@@ -26,7 +26,7 @@ var GetSuppressionsAffectingFutureRuleCmd = &cobra.Command{
 			log.Fatalf("failed to get_suppressions_affecting_future_rule: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "security_monitoring")
+		cmdutil.PrintJSON(res, "suppressions")
 	},
 }
 

@@ -26,7 +26,7 @@ var ListActiveMetricConfigurationsCmd = &cobra.Command{
 			log.Fatalf("failed to list_active_metric_configurations: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "metrics")
+		cmdutil.PrintJSON(res, "actively_queried_configurations")
 	},
 }
 

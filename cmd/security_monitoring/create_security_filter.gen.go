@@ -26,7 +26,7 @@ var CreateSecurityFilterCmd = &cobra.Command{
 			log.Fatalf("failed to create_security_filter: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "security_monitoring")
+		cmdutil.PrintJSON(res, "security_filters")
 	},
 }
 

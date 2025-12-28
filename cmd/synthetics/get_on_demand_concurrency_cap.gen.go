@@ -26,7 +26,7 @@ var GetOnDemandConcurrencyCapCmd = &cobra.Command{
 			log.Fatalf("failed to get_on_demand_concurrency_cap: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "synthetics")
+		cmdutil.PrintJSON(res, "on_demand_concurrency_cap")
 	},
 }
 

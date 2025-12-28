@@ -26,7 +26,7 @@ var ListAssetsSBOMsCmd = &cobra.Command{
 			log.Fatalf("failed to list_assets_s_b_o_ms: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "security_monitoring")
+		cmdutil.PrintJSON(res, "sboms")
 	},
 }
 

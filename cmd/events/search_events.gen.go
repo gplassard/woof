@@ -26,7 +26,7 @@ var SearchEventsCmd = &cobra.Command{
 			log.Fatalf("failed to search_events: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "events")
+		cmdutil.PrintJSON(res, "event")
 	},
 }
 

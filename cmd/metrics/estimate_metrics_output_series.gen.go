@@ -26,7 +26,7 @@ var EstimateMetricsOutputSeriesCmd = &cobra.Command{
 			log.Fatalf("failed to estimate_metrics_output_series: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "metrics")
+		cmdutil.PrintJSON(res, "metric_cardinality_estimate")
 	},
 }
 

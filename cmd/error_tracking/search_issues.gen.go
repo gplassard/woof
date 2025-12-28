@@ -26,7 +26,7 @@ var SearchIssuesCmd = &cobra.Command{
 			log.Fatalf("failed to search_issues: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "error_tracking")
+		cmdutil.PrintJSON(res, "error_tracking_search_result")
 	},
 }
 

@@ -26,7 +26,7 @@ var UpdateIncidentServiceCmd = &cobra.Command{
 			log.Fatalf("failed to update_incident_service: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "incident_services")
+		cmdutil.PrintJSON(res, "services")
 	},
 }
 

@@ -26,7 +26,7 @@ var ListTenantBasedHandlesCmd = &cobra.Command{
 			log.Fatalf("failed to list_tenant_based_handles: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "microsoft_teams_integration")
+		cmdutil.PrintJSON(res, "ms-teams-tenant-based-handle-info")
 	},
 }
 

@@ -26,7 +26,7 @@ var GetAWSAccountCmd = &cobra.Command{
 			log.Fatalf("failed to get_a_w_s_account: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "aws_integration")
+		cmdutil.PrintJSON(res, "account")
 	},
 }
 

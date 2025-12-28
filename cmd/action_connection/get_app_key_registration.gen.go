@@ -26,7 +26,7 @@ var GetAppKeyRegistrationCmd = &cobra.Command{
 			log.Fatalf("failed to get_app_key_registration: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "action_connection")
+		cmdutil.PrintJSON(res, "app_key_registration")
 	},
 }
 

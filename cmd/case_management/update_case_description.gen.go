@@ -26,7 +26,7 @@ var UpdateCaseDescriptionCmd = &cobra.Command{
 			log.Fatalf("failed to update_case_description: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "case_management")
+		cmdutil.PrintJSON(res, "case")
 	},
 }
 

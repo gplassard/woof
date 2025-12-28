@@ -26,7 +26,7 @@ var UpdateCostAzureUCConfigsCmd = &cobra.Command{
 			log.Fatalf("failed to update_cost_azure_u_c_configs: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "cloud_cost_management")
+		cmdutil.PrintJSON(res, "azure_uc_configs")
 	},
 }
 

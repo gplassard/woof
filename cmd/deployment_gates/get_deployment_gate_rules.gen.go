@@ -26,7 +26,7 @@ var GetDeploymentGateRulesCmd = &cobra.Command{
 			log.Fatalf("failed to get_deployment_gate_rules: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "deployment_gates")
+		cmdutil.PrintJSON(res, "list_deployment_rules")
 	},
 }
 

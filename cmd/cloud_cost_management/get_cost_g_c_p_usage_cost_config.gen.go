@@ -26,7 +26,7 @@ var GetCostGCPUsageCostConfigCmd = &cobra.Command{
 			log.Fatalf("failed to get_cost_g_c_p_usage_cost_config: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "cloud_cost_management")
+		cmdutil.PrintJSON(res, "gcp_uc_config")
 	},
 }
 

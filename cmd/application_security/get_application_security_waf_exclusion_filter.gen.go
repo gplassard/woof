@@ -26,7 +26,7 @@ var GetApplicationSecurityWafExclusionFilterCmd = &cobra.Command{
 			log.Fatalf("failed to get_application_security_waf_exclusion_filter: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "application_security")
+		cmdutil.PrintJSON(res, "exclusion_filter")
 	},
 }
 

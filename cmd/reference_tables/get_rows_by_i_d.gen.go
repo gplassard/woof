@@ -26,7 +26,7 @@ var GetRowsByIDCmd = &cobra.Command{
 			log.Fatalf("failed to get_rows_by_i_d: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "reference_tables")
+		cmdutil.PrintJSON(res, "row")
 	},
 }
 

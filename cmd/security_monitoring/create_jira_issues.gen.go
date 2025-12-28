@@ -26,7 +26,7 @@ var CreateJiraIssuesCmd = &cobra.Command{
 			log.Fatalf("failed to create_jira_issues: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "security_monitoring")
+		cmdutil.PrintJSON(res, "cases")
 	},
 }
 

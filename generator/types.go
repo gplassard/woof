@@ -18,7 +18,7 @@ type OpenAPI struct {
 			Type   string                 `yaml:"type"`
 			Format string                 `yaml:"format"`
 			Ref    string                 `yaml:"$ref"`
-			Schema map[string]interface{} `yaml:"schema"`
+			Schema map[string]interface{} `yaml:",inline"`
 		} `yaml:"schemas"`
 	} `yaml:"components"`
 }
@@ -63,6 +63,7 @@ type TemplateData struct {
 	RequestBodyType  string
 	IsOptionalParams bool
 	HasResponse      bool
+	ResourceType     string
 }
 
 type RootTemplateData struct {

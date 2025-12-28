@@ -26,7 +26,7 @@ var CreateServiceAccountCmd = &cobra.Command{
 			log.Fatalf("failed to create_service_account: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "service_accounts")
+		cmdutil.PrintJSON(res, "users")
 	},
 }
 

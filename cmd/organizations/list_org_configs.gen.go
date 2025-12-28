@@ -26,7 +26,7 @@ var ListOrgConfigsCmd = &cobra.Command{
 			log.Fatalf("failed to list_org_configs: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "organizations")
+		cmdutil.PrintJSON(res, "org_configs")
 	},
 }
 

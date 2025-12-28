@@ -26,7 +26,7 @@ var GetAggregatedConnectionsCmd = &cobra.Command{
 			log.Fatalf("failed to get_aggregated_connections: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "cloud_network_monitoring")
+		cmdutil.PrintJSON(res, "aggregated_connection")
 	},
 }
 

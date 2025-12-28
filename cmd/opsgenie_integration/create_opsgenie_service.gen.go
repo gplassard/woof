@@ -26,7 +26,7 @@ var CreateOpsgenieServiceCmd = &cobra.Command{
 			log.Fatalf("failed to create_opsgenie_service: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "opsgenie_integration")
+		cmdutil.PrintJSON(res, "opsgenie-service")
 	},
 }
 

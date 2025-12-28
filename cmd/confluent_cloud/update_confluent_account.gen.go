@@ -26,7 +26,7 @@ var UpdateConfluentAccountCmd = &cobra.Command{
 			log.Fatalf("failed to update_confluent_account: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "confluent_cloud")
+		cmdutil.PrintJSON(res, "confluent-cloud-accounts")
 	},
 }
 

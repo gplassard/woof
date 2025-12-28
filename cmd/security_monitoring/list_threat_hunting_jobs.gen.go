@@ -26,7 +26,7 @@ var ListThreatHuntingJobsCmd = &cobra.Command{
 			log.Fatalf("failed to list_threat_hunting_jobs: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "security_monitoring")
+		cmdutil.PrintJSON(res, "historicalDetectionsJob")
 	},
 }
 

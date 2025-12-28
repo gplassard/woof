@@ -26,7 +26,7 @@ var GetGCPSTSDelegateCmd = &cobra.Command{
 			log.Fatalf("failed to get_g_c_p_s_t_s_delegate: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "gcp_integration")
+		cmdutil.PrintJSON(res, "gcp_sts_delegate")
 	},
 }
 

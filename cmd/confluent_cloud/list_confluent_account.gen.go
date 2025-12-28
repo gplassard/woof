@@ -26,7 +26,7 @@ var ListConfluentAccountCmd = &cobra.Command{
 			log.Fatalf("failed to list_confluent_account: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "confluent_cloud")
+		cmdutil.PrintJSON(res, "confluent-cloud-accounts")
 	},
 }
 

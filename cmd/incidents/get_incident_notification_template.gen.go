@@ -26,7 +26,7 @@ var GetIncidentNotificationTemplateCmd = &cobra.Command{
 			log.Fatalf("failed to get_incident_notification_template: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "incidents")
+		cmdutil.PrintJSON(res, "notification_templates")
 	},
 }
 

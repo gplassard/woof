@@ -26,7 +26,7 @@ var PatchSignalNotificationRuleCmd = &cobra.Command{
 			log.Fatalf("failed to patch_signal_notification_rule: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "security_monitoring")
+		cmdutil.PrintJSON(res, "notification_rules")
 	},
 }
 

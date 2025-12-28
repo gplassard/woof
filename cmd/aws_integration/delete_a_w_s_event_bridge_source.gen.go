@@ -26,7 +26,7 @@ var DeleteAWSEventBridgeSourceCmd = &cobra.Command{
 			log.Fatalf("failed to delete_a_w_s_event_bridge_source: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "aws_integration")
+		cmdutil.PrintJSON(res, "event_bridge")
 	},
 }
 

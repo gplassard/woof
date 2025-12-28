@@ -26,7 +26,7 @@ var CreateBulkTagsMetricsConfigurationCmd = &cobra.Command{
 			log.Fatalf("failed to create_bulk_tags_metrics_configuration: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "metrics")
+		cmdutil.PrintJSON(res, "metric_bulk_configure_tags")
 	},
 }
 

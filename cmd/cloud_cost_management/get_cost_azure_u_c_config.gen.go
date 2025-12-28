@@ -26,7 +26,7 @@ var GetCostAzureUCConfigCmd = &cobra.Command{
 			log.Fatalf("failed to get_cost_azure_u_c_config: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "cloud_cost_management")
+		cmdutil.PrintJSON(res, "azure_uc_configs")
 	},
 }
 

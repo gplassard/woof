@@ -26,7 +26,7 @@ var ListCSMThreatsAgentRulesCmd = &cobra.Command{
 			log.Fatalf("failed to list_c_s_m_threats_agent_rules: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "csm_threats")
+		cmdutil.PrintJSON(res, "agent_rule")
 	},
 }
 

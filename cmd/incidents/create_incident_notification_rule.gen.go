@@ -26,7 +26,7 @@ var CreateIncidentNotificationRuleCmd = &cobra.Command{
 			log.Fatalf("failed to create_incident_notification_rule: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "incidents")
+		cmdutil.PrintJSON(res, "incident_notification_rules")
 	},
 }
 

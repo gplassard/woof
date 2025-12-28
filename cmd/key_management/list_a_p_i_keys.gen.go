@@ -26,7 +26,7 @@ var ListAPIKeysCmd = &cobra.Command{
 			log.Fatalf("failed to list_a_p_i_keys: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "key_management")
+		cmdutil.PrintJSON(res, "api_keys")
 	},
 }
 

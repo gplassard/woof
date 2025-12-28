@@ -26,7 +26,7 @@ var ListOktaAccountsCmd = &cobra.Command{
 			log.Fatalf("failed to list_okta_accounts: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "okta_integration")
+		cmdutil.PrintJSON(res, "okta-accounts")
 	},
 }
 

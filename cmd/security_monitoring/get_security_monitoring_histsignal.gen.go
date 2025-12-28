@@ -26,7 +26,7 @@ var GetSecurityMonitoringHistsignalCmd = &cobra.Command{
 			log.Fatalf("failed to get_security_monitoring_histsignal: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "security_monitoring")
+		cmdutil.PrintJSON(res, "signal")
 	},
 }
 

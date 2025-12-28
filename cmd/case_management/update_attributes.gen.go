@@ -26,7 +26,7 @@ var UpdateAttributesCmd = &cobra.Command{
 			log.Fatalf("failed to update_attributes: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "case_management")
+		cmdutil.PrintJSON(res, "case")
 	},
 }
 

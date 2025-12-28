@@ -26,7 +26,7 @@ var ListAWSLogsServicesCmd = &cobra.Command{
 			log.Fatalf("failed to list_a_w_s_logs_services: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "aws_logs_integration")
+		cmdutil.PrintJSON(res, "logs_services")
 	},
 }
 

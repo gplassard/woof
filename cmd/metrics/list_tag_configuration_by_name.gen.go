@@ -26,7 +26,7 @@ var ListTagConfigurationByNameCmd = &cobra.Command{
 			log.Fatalf("failed to list_tag_configuration_by_name: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "metrics")
+		cmdutil.PrintJSON(res, "manage_tags")
 	},
 }
 

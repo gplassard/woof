@@ -26,7 +26,7 @@ var CreateOktaAccountCmd = &cobra.Command{
 			log.Fatalf("failed to create_okta_account: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "okta_integration")
+		cmdutil.PrintJSON(res, "okta-accounts")
 	},
 }
 

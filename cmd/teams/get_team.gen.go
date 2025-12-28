@@ -26,7 +26,7 @@ var GetTeamCmd = &cobra.Command{
 			log.Fatalf("failed to get_team: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "teams")
+		cmdutil.PrintJSON(res, "team")
 	},
 }
 

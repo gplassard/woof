@@ -26,7 +26,7 @@ var UpdateGcpScanOptionsCmd = &cobra.Command{
 			log.Fatalf("failed to update_gcp_scan_options: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "agentless_scanning")
+		cmdutil.PrintJSON(res, "gcp_scan_options")
 	},
 }
 

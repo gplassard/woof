@@ -26,7 +26,7 @@ var UpdateIssueStateCmd = &cobra.Command{
 			log.Fatalf("failed to update_issue_state: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "error_tracking")
+		cmdutil.PrintJSON(res, "issue")
 	},
 }
 

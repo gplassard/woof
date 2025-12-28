@@ -26,7 +26,7 @@ var GetAggregatedDnsCmd = &cobra.Command{
 			log.Fatalf("failed to get_aggregated_dns: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "cloud_network_monitoring")
+		cmdutil.PrintJSON(res, "aggregated_dns")
 	},
 }
 

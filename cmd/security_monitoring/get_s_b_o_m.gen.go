@@ -26,7 +26,7 @@ var GetSBOMCmd = &cobra.Command{
 			log.Fatalf("failed to get_s_b_o_m: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "security_monitoring")
+		cmdutil.PrintJSON(res, "sboms")
 	},
 }
 

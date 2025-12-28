@@ -26,7 +26,7 @@ var CreateCustomAttributeConfigCmd = &cobra.Command{
 			log.Fatalf("failed to create_custom_attribute_config: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "case_management_attribute")
+		cmdutil.PrintJSON(res, "custom_attribute")
 	},
 }
 

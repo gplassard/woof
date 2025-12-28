@@ -26,7 +26,7 @@ var UpdateLogsCustomDestinationCmd = &cobra.Command{
 			log.Fatalf("failed to update_logs_custom_destination: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "logs_custom_destinations")
+		cmdutil.PrintJSON(res, "custom_destination")
 	},
 }
 

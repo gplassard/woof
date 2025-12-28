@@ -26,7 +26,7 @@ var UpdateTeamPermissionSettingCmd = &cobra.Command{
 			log.Fatalf("failed to update_team_permission_setting: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "teams")
+		cmdutil.PrintJSON(res, "team_permission_settings")
 	},
 }
 

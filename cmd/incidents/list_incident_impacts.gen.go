@@ -26,7 +26,7 @@ var ListIncidentImpactsCmd = &cobra.Command{
 			log.Fatalf("failed to list_incident_impacts: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "incidents")
+		cmdutil.PrintJSON(res, "incident_impacts")
 	},
 }
 

@@ -26,7 +26,7 @@ var CreateAppCmd = &cobra.Command{
 			log.Fatalf("failed to create_app: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "app_builder")
+		cmdutil.PrintJSON(res, "appDefinitions")
 	},
 }
 

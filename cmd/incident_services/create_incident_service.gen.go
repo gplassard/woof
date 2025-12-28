@@ -26,7 +26,7 @@ var CreateIncidentServiceCmd = &cobra.Command{
 			log.Fatalf("failed to create_incident_service: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "incident_services")
+		cmdutil.PrintJSON(res, "services")
 	},
 }
 

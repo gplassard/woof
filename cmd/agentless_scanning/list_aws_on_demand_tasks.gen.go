@@ -26,7 +26,7 @@ var ListAwsOnDemandTasksCmd = &cobra.Command{
 			log.Fatalf("failed to list_aws_on_demand_tasks: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "agentless_scanning")
+		cmdutil.PrintJSON(res, "aws_resource")
 	},
 }
 

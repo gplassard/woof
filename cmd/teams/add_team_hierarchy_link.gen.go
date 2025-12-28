@@ -26,7 +26,7 @@ var AddTeamHierarchyLinkCmd = &cobra.Command{
 			log.Fatalf("failed to add_team_hierarchy_link: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "teams")
+		cmdutil.PrintJSON(res, "team_hierarchy_links")
 	},
 }
 

@@ -26,7 +26,7 @@ var ListTeamConnectionsCmd = &cobra.Command{
 			log.Fatalf("failed to list_team_connections: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "teams")
+		cmdutil.PrintJSON(res, "team_connection")
 	},
 }
 

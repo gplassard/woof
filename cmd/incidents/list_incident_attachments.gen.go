@@ -26,7 +26,7 @@ var ListIncidentAttachmentsCmd = &cobra.Command{
 			log.Fatalf("failed to list_incident_attachments: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "incidents")
+		cmdutil.PrintJSON(res, "incident_attachments")
 	},
 }
 

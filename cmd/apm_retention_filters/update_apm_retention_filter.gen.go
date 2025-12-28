@@ -26,7 +26,7 @@ var UpdateApmRetentionFilterCmd = &cobra.Command{
 			log.Fatalf("failed to update_apm_retention_filter: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "apm_retention_filters")
+		cmdutil.PrintJSON(res, "apm_retention_filter")
 	},
 }
 

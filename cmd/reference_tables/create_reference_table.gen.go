@@ -26,7 +26,7 @@ var CreateReferenceTableCmd = &cobra.Command{
 			log.Fatalf("failed to create_reference_table: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "reference_tables")
+		cmdutil.PrintJSON(res, "reference_table")
 	},
 }
 

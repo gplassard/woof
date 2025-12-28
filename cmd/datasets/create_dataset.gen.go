@@ -26,7 +26,7 @@ var CreateDatasetCmd = &cobra.Command{
 			log.Fatalf("failed to create_dataset: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "datasets")
+		cmdutil.PrintJSON(res, "dataset")
 	},
 }
 

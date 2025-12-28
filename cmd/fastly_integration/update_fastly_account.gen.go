@@ -26,7 +26,7 @@ var UpdateFastlyAccountCmd = &cobra.Command{
 			log.Fatalf("failed to update_fastly_account: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "fastly_integration")
+		cmdutil.PrintJSON(res, "fastly-accounts")
 	},
 }
 

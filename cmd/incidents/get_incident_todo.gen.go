@@ -26,7 +26,7 @@ var GetIncidentTodoCmd = &cobra.Command{
 			log.Fatalf("failed to get_incident_todo: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "incidents")
+		cmdutil.PrintJSON(res, "incident_todos")
 	},
 }
 

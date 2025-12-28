@@ -26,7 +26,7 @@ var CreateMonitorNotificationRuleCmd = &cobra.Command{
 			log.Fatalf("failed to create_monitor_notification_rule: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "monitors")
+		cmdutil.PrintJSON(res, "monitor-notification-rule")
 	},
 }
 

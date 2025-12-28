@@ -26,7 +26,7 @@ var GetFleetAgentInfoCmd = &cobra.Command{
 			log.Fatalf("failed to get_fleet_agent_info: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "fleet_automation")
+		cmdutil.PrintJSON(res, "datadog_agent_key")
 	},
 }
 

@@ -26,7 +26,7 @@ var ListRestrictionQueryRolesCmd = &cobra.Command{
 			log.Fatalf("failed to list_restriction_query_roles: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "logs_restriction_queries")
+		cmdutil.PrintJSON(res, "roles")
 	},
 }
 

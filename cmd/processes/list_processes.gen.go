@@ -26,7 +26,7 @@ var ListProcessesCmd = &cobra.Command{
 			log.Fatalf("failed to list_processes: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "processes")
+		cmdutil.PrintJSON(res, "process")
 	},
 }
 

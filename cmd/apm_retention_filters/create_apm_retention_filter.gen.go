@@ -26,7 +26,7 @@ var CreateApmRetentionFilterCmd = &cobra.Command{
 			log.Fatalf("failed to create_apm_retention_filter: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "apm_retention_filters")
+		cmdutil.PrintJSON(res, "apm_retention_filter")
 	},
 }
 

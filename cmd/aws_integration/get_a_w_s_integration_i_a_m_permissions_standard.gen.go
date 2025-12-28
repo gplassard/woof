@@ -26,7 +26,7 @@ var GetAWSIntegrationIAMPermissionsStandardCmd = &cobra.Command{
 			log.Fatalf("failed to get_a_w_s_integration_i_a_m_permissions_standard: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "aws_integration")
+		cmdutil.PrintJSON(res, "permissions")
 	},
 }
 

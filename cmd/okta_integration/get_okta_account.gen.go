@@ -26,7 +26,7 @@ var GetOktaAccountCmd = &cobra.Command{
 			log.Fatalf("failed to get_okta_account: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "okta_integration")
+		cmdutil.PrintJSON(res, "okta-accounts")
 	},
 }
 

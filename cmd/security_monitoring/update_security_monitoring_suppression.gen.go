@@ -26,7 +26,7 @@ var UpdateSecurityMonitoringSuppressionCmd = &cobra.Command{
 			log.Fatalf("failed to update_security_monitoring_suppression: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "security_monitoring")
+		cmdutil.PrintJSON(res, "suppressions")
 	},
 }
 

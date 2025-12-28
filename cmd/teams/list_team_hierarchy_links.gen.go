@@ -26,7 +26,7 @@ var ListTeamHierarchyLinksCmd = &cobra.Command{
 			log.Fatalf("failed to list_team_hierarchy_links: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "teams")
+		cmdutil.PrintJSON(res, "team_hierarchy_links")
 	},
 }
 

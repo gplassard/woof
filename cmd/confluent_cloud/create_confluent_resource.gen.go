@@ -26,7 +26,7 @@ var CreateConfluentResourceCmd = &cobra.Command{
 			log.Fatalf("failed to create_confluent_resource: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "confluent_cloud")
+		cmdutil.PrintJSON(res, "confluent-cloud-resources")
 	},
 }
 

@@ -26,7 +26,7 @@ var DeleteBulkTagsMetricsConfigurationCmd = &cobra.Command{
 			log.Fatalf("failed to delete_bulk_tags_metrics_configuration: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "metrics")
+		cmdutil.PrintJSON(res, "metric_bulk_configure_tags")
 	},
 }
 

@@ -26,7 +26,7 @@ var CreateFleetDeploymentUpgradeCmd = &cobra.Command{
 			log.Fatalf("failed to create_fleet_deployment_upgrade: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "fleet_automation")
+		cmdutil.PrintJSON(res, "deployment")
 	},
 }
 

@@ -26,7 +26,7 @@ var GetSPARecommendationsCmd = &cobra.Command{
 			log.Fatalf("failed to get_s_p_a_recommendations: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "spa")
+		cmdutil.PrintJSON(res, "recommendation")
 	},
 }
 

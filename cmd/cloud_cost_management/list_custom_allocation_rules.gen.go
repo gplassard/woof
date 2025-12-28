@@ -26,7 +26,7 @@ var ListCustomAllocationRulesCmd = &cobra.Command{
 			log.Fatalf("failed to list_custom_allocation_rules: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "cloud_cost_management")
+		cmdutil.PrintJSON(res, "arbitrary_rule")
 	},
 }
 

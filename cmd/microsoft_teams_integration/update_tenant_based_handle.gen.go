@@ -26,7 +26,7 @@ var UpdateTenantBasedHandleCmd = &cobra.Command{
 			log.Fatalf("failed to update_tenant_based_handle: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "microsoft_teams_integration")
+		cmdutil.PrintJSON(res, "tenant-based-handle")
 	},
 }
 

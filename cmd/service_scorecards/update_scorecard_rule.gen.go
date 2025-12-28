@@ -26,7 +26,7 @@ var UpdateScorecardRuleCmd = &cobra.Command{
 			log.Fatalf("failed to update_scorecard_rule: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "service_scorecards")
+		cmdutil.PrintJSON(res, "rule")
 	},
 }
 

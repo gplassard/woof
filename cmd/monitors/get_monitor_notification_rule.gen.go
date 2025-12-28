@@ -26,7 +26,7 @@ var GetMonitorNotificationRuleCmd = &cobra.Command{
 			log.Fatalf("failed to get_monitor_notification_rule: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "monitors")
+		cmdutil.PrintJSON(res, "monitor-notification-rule")
 	},
 }
 

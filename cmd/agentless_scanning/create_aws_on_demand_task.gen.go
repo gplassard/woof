@@ -26,7 +26,7 @@ var CreateAwsOnDemandTaskCmd = &cobra.Command{
 			log.Fatalf("failed to create_aws_on_demand_task: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "agentless_scanning")
+		cmdutil.PrintJSON(res, "aws_resource")
 	},
 }
 

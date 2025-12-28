@@ -26,7 +26,7 @@ var CreateAPIKeyCmd = &cobra.Command{
 			log.Fatalf("failed to create_a_p_i_key: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "key_management")
+		cmdutil.PrintJSON(res, "api_keys")
 	},
 }
 

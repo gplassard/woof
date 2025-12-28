@@ -26,7 +26,7 @@ var UpdateTeamLinkCmd = &cobra.Command{
 			log.Fatalf("failed to update_team_link: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "teams")
+		cmdutil.PrintJSON(res, "team_links")
 	},
 }
 

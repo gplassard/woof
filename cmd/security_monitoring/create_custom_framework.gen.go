@@ -26,7 +26,7 @@ var CreateCustomFrameworkCmd = &cobra.Command{
 			log.Fatalf("failed to create_custom_framework: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "security_monitoring")
+		cmdutil.PrintJSON(res, "custom_framework")
 	},
 }
 

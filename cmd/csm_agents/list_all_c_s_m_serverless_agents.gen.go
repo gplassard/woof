@@ -26,7 +26,7 @@ var ListAllCSMServerlessAgentsCmd = &cobra.Command{
 			log.Fatalf("failed to list_all_c_s_m_serverless_agents: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "csm_agents")
+		cmdutil.PrintJSON(res, "datadog_agent")
 	},
 }
 

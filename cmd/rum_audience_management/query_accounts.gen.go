@@ -26,7 +26,7 @@ var QueryAccountsCmd = &cobra.Command{
 			log.Fatalf("failed to query_accounts: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "rum_audience_management")
+		cmdutil.PrintJSON(res, "query_response")
 	},
 }
 

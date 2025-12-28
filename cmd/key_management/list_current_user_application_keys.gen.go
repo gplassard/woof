@@ -26,7 +26,7 @@ var ListCurrentUserApplicationKeysCmd = &cobra.Command{
 			log.Fatalf("failed to list_current_user_application_keys: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "key_management")
+		cmdutil.PrintJSON(res, "application_keys")
 	},
 }
 

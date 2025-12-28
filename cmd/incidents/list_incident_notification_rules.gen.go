@@ -26,7 +26,7 @@ var ListIncidentNotificationRulesCmd = &cobra.Command{
 			log.Fatalf("failed to list_incident_notification_rules: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "incidents")
+		cmdutil.PrintJSON(res, "incident_notification_rules")
 	},
 }
 

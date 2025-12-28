@@ -26,7 +26,7 @@ var CreateTeamCmd = &cobra.Command{
 			log.Fatalf("failed to create_team: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "teams")
+		cmdutil.PrintJSON(res, "team")
 	},
 }
 

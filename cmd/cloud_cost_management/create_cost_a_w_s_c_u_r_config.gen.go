@@ -26,7 +26,7 @@ var CreateCostAWSCURConfigCmd = &cobra.Command{
 			log.Fatalf("failed to create_cost_a_w_s_c_u_r_config: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "cloud_cost_management")
+		cmdutil.PrintJSON(res, "aws_cur_config")
 	},
 }
 

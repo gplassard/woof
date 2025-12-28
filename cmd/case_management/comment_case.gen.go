@@ -26,7 +26,7 @@ var CommentCaseCmd = &cobra.Command{
 			log.Fatalf("failed to comment_case: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "case_management")
+		cmdutil.PrintJSON(res, "timeline_cell")
 	},
 }
 

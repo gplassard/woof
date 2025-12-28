@@ -26,7 +26,7 @@ var GetTeamSyncCmd = &cobra.Command{
 			log.Fatalf("failed to get_team_sync: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "teams")
+		cmdutil.PrintJSON(res, "team_sync_bulk")
 	},
 }
 

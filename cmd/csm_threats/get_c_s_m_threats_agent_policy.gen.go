@@ -26,7 +26,7 @@ var GetCSMThreatsAgentPolicyCmd = &cobra.Command{
 			log.Fatalf("failed to get_c_s_m_threats_agent_policy: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "csm_threats")
+		cmdutil.PrintJSON(res, "policy")
 	},
 }
 

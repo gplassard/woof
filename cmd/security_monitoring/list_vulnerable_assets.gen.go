@@ -26,7 +26,7 @@ var ListVulnerableAssetsCmd = &cobra.Command{
 			log.Fatalf("failed to list_vulnerable_assets: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "security_monitoring")
+		cmdutil.PrintJSON(res, "assets")
 	},
 }
 

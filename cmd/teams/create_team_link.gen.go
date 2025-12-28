@@ -26,7 +26,7 @@ var CreateTeamLinkCmd = &cobra.Command{
 			log.Fatalf("failed to create_team_link: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "teams")
+		cmdutil.PrintJSON(res, "team_links")
 	},
 }
 

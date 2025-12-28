@@ -26,7 +26,7 @@ var CreateOnCallPageCmd = &cobra.Command{
 			log.Fatalf("failed to create_on_call_page: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "on_call_paging")
+		cmdutil.PrintJSON(res, "pages")
 	},
 }
 

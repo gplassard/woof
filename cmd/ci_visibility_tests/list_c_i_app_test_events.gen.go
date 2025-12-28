@@ -26,7 +26,7 @@ var ListCIAppTestEventsCmd = &cobra.Command{
 			log.Fatalf("failed to list_c_i_app_test_events: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "ci_visibility_tests")
+		cmdutil.PrintJSON(res, "citest")
 	},
 }
 

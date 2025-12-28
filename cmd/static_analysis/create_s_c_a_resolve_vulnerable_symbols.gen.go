@@ -26,7 +26,7 @@ var CreateSCAResolveVulnerableSymbolsCmd = &cobra.Command{
 			log.Fatalf("failed to create_s_c_a_resolve_vulnerable_symbols: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "static_analysis")
+		cmdutil.PrintJSON(res, "resolve-vulnerable-symbols-response")
 	},
 }
 

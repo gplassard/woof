@@ -26,7 +26,7 @@ var ListSecurityFiltersCmd = &cobra.Command{
 			log.Fatalf("failed to list_security_filters: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "security_monitoring")
+		cmdutil.PrintJSON(res, "security_filters")
 	},
 }
 

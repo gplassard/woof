@@ -26,7 +26,7 @@ var GetChannelByNameCmd = &cobra.Command{
 			log.Fatalf("failed to get_channel_by_name: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "microsoft_teams_integration")
+		cmdutil.PrintJSON(res, "ms-teams-channel-info")
 	},
 }
 

@@ -26,7 +26,7 @@ var ListCloudflareAccountsCmd = &cobra.Command{
 			log.Fatalf("failed to list_cloudflare_accounts: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "cloudflare_integration")
+		cmdutil.PrintJSON(res, "cloudflare-accounts")
 	},
 }
 

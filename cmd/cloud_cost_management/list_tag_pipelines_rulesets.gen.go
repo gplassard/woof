@@ -26,7 +26,7 @@ var ListTagPipelinesRulesetsCmd = &cobra.Command{
 			log.Fatalf("failed to list_tag_pipelines_rulesets: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "cloud_cost_management")
+		cmdutil.PrintJSON(res, "ruleset")
 	},
 }
 

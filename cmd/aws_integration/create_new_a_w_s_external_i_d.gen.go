@@ -26,7 +26,7 @@ var CreateNewAWSExternalIDCmd = &cobra.Command{
 			log.Fatalf("failed to create_new_a_w_s_external_i_d: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "aws_integration")
+		cmdutil.PrintJSON(res, "external_id")
 	},
 }
 

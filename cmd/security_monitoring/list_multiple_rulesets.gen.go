@@ -26,7 +26,7 @@ var ListMultipleRulesetsCmd = &cobra.Command{
 			log.Fatalf("failed to list_multiple_rulesets: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "security_monitoring")
+		cmdutil.PrintJSON(res, "get_multiple_rulesets_response")
 	},
 }
 

@@ -26,7 +26,7 @@ var UpdateConfluentResourceCmd = &cobra.Command{
 			log.Fatalf("failed to update_confluent_resource: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "confluent_cloud")
+		cmdutil.PrintJSON(res, "confluent-cloud-resources")
 	},
 }
 

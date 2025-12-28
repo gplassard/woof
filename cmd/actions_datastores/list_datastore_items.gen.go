@@ -26,7 +26,7 @@ var ListDatastoreItemsCmd = &cobra.Command{
 			log.Fatalf("failed to list_datastore_items: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "actions_datastores")
+		cmdutil.PrintJSON(res, "items")
 	},
 }
 

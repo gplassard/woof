@@ -26,7 +26,7 @@ var GetInvitationCmd = &cobra.Command{
 			log.Fatalf("failed to get_invitation: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "users")
+		cmdutil.PrintJSON(res, "user_invitations")
 	},
 }
 

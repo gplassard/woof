@@ -26,7 +26,7 @@ var TriggerFleetScheduleCmd = &cobra.Command{
 			log.Fatalf("failed to trigger_fleet_schedule: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "fleet_automation")
+		cmdutil.PrintJSON(res, "deployment")
 	},
 }
 

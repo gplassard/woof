@@ -26,7 +26,7 @@ var ListFleetSchedulesCmd = &cobra.Command{
 			log.Fatalf("failed to list_fleet_schedules: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "fleet_automation")
+		cmdutil.PrintJSON(res, "schedule")
 	},
 }
 

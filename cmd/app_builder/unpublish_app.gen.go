@@ -26,7 +26,7 @@ var UnpublishAppCmd = &cobra.Command{
 			log.Fatalf("failed to unpublish_app: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "app_builder")
+		cmdutil.PrintJSON(res, "deployment")
 	},
 }
 

@@ -26,7 +26,7 @@ var GetAccountFacetInfoCmd = &cobra.Command{
 			log.Fatalf("failed to get_account_facet_info: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "rum_audience_management")
+		cmdutil.PrintJSON(res, "users_facet_info")
 	},
 }
 

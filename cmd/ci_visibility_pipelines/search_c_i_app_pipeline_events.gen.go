@@ -26,7 +26,7 @@ var SearchCIAppPipelineEventsCmd = &cobra.Command{
 			log.Fatalf("failed to search_c_i_app_pipeline_events: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "ci_visibility_pipelines")
+		cmdutil.PrintJSON(res, "cipipeline")
 	},
 }
 

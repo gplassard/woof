@@ -26,7 +26,7 @@ var ListArchiveReadRolesCmd = &cobra.Command{
 			log.Fatalf("failed to list_archive_read_roles: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "logs_archives")
+		cmdutil.PrintJSON(res, "roles")
 	},
 }
 

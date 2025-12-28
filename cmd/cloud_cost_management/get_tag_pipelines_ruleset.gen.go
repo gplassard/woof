@@ -26,7 +26,7 @@ var GetTagPipelinesRulesetCmd = &cobra.Command{
 			log.Fatalf("failed to get_tag_pipelines_ruleset: %v", err)
 		}
 
-		cmdutil.PrintJSON(res, "cloud_cost_management")
+		cmdutil.PrintJSON(res, "ruleset")
 	},
 }
 
