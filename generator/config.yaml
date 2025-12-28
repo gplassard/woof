@@ -34,7 +34,7 @@ tag_aliases:
   cloud_cost_management:
     - ccm
   microsoft_teams_integration:
-    - microsoft_teams
+    - msteams-integration
   networkd_device_monitoring:
     - ndm
   sensitive_data_scanner:

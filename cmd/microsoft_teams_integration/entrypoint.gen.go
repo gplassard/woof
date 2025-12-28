@@ -6,6 +6,6 @@ var Cmd = &cobra.Command{
 	Use:   "microsoft-teams-integration",
 	Short: "microsoft_teams_integration endpoints",
 	Aliases: []string{
-		"microsoft_teams",
+		"msteams-integration",
 	},
 }
