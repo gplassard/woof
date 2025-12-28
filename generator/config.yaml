@@ -23,3 +23,26 @@ optional_parameters_operations:
   SearchFlakyTests: SearchFlakyTestsOptionalParameters
   SearchSecurityMonitoringHistsignals: SearchSecurityMonitoringHistsignalsOptionalParameters
   SearchSecurityMonitoringSignals: SearchSecurityMonitoringSignalsOptionalParameters
+
+tag_aliases:
+  actions_datastores:
+    - datastores
+  action_connection:
+    - connection
+  application_security:
+    - appsec
+  cloud_cost_management:
+    - ccm
+  microsoft_teams_integration:
+    - microsoft_teams
+  networkd_device_monitoring:
+    - ndm
+  sensitive_data_scanner:
+    - sds
+  service_level_objectives:
+    - slo
+  service_scorecards:
+    - scorecards
+  workflow_automation:
+    - workflow
+    - wf

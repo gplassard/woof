@@ -56,7 +56,7 @@ func RunGenerate() error {
 				return fmt.Errorf("failed to create directory %s: %w", pkgDir, err)
 			}
 
-			if err := ensureEntrypoint(pkgDir, tag, entrypointTmpl); err != nil {
+			if err := ensureEntrypoint(pkgDir, tag, entrypointTmpl, config); err != nil {
 				return err
 			}
 

@@ -20,7 +20,7 @@ func toSnakeCase(s string) string {
 	return strings.ToLower(res.String())
 }
 
-func ensureEntrypoint(pkgDir, tag string, tmpl *template.Template) error {
+func ensureEntrypoint(pkgDir, tag string, tmpl *template.Template, config *Config) error {
 	entrypointPath := filepath.Join(pkgDir, "entrypoint.gen.go")
 	if _, err := os.Stat(entrypointPath); os.IsNotExist(err) {
 		f, err := os.Create(entrypointPath)
@@ -32,6 +32,7 @@ func ensureEntrypoint(pkgDir, tag string, tmpl *template.Template) error {
 			PackageName: tag,
 			Use:         tag,
 			Short:       fmt.Sprintf("%s endpoints", tag),
+			Aliases:     config.TagAliases[tag],
 		}
 		if err := tmpl.Execute(f, data); err != nil {
 			return fmt.Errorf("failed to execute entrypoint template for %s: %w", tag, err)

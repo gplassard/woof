@@ -1,8 +1,9 @@
 package main
 
 type Config struct {
-	SkipOperations               []string          `yaml:"skip_operations"`
-	OptionalParametersOperations map[string]string `yaml:"optional_parameters_operations"`
+	SkipOperations               []string            `yaml:"skip_operations"`
+	OptionalParametersOperations map[string]string   `yaml:"optional_parameters_operations"`
+	TagAliases                   map[string][]string `yaml:"tag_aliases"`
 }
 
 type OpenAPI struct {
@@ -64,6 +65,7 @@ type TemplateData struct {
 	IsOptionalParams bool
 	HasResponse      bool
 	ResourceType     string
+	Aliases          []string
 }
 
 type RootTemplateData struct {
