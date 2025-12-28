@@ -59,14 +59,18 @@ func downloadOpenAPI() (*OpenAPI, error) {
 	return &spec, nil
 }
 
-func parseTemplates() (*template.Template, *template.Template, error) {
+func parseTemplates(config *Config) (*template.Template, *template.Template, error) {
 	funcMap := template.FuncMap{
 		"replace": func(old, new, src string) string {
 			return strings.ReplaceAll(src, old, new)
 		},
-		"lower":       strings.ToLower,
-		"toSnakeCase": toSnakeCase,
-		"toKebabCase": toKebabCase,
+		"lower": strings.ToLower,
+		"toSnakeCase": func(s string) string {
+			return toSnakeCase(s, config)
+		},
+		"toKebabCase": func(s string) string {
+			return toKebabCase(s, config)
+		},
 	}
 
 	tmpl, err := template.New("command.go.tmpl").Funcs(funcMap).ParseFiles("generator/command.go.tmpl")

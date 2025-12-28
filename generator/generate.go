@@ -30,7 +30,7 @@ func RunGenerate() error {
 		return err
 	}
 
-	tmpl, entrypointTmpl, err := parseTemplates()
+	tmpl, entrypointTmpl, err := parseTemplates(config)
 	if err != nil {
 		return err
 	}
@@ -62,7 +62,7 @@ func RunGenerate() error {
 
 			data := prepareTemplateData(tag, rawTag, apiTagName, method, path, op, spec, config)
 
-			if err := generateCommandFile(pkgDir, op.OperationID, data, tmpl); err != nil {
+			if err := generateCommandFile(pkgDir, op.OperationID, data, tmpl, config); err != nil {
 				return err
 			}
 		}

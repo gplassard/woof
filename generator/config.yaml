@@ -46,3 +46,26 @@ tag_aliases:
   workflow_automation:
     - workflow
     - wf
+
+acronyms:
+  - AD
+  - AI
+  - API
+  - AWS
+  - CI
+  - GCP
+  - CPU
+  - CSM
+  - DORA
+  - IAM
+  - ID
+  - IP
+  - JSON
+  - RUM
+  - SBOM
+  - SCA
+  - SLO
+  - STS
+  - WAF
+  - CUR
+  - UC

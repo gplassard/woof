@@ -4,6 +4,7 @@ type Config struct {
 	SkipOperations               []string            `yaml:"skip_operations"`
 	OptionalParametersOperations map[string]string   `yaml:"optional_parameters_operations"`
 	TagAliases                   map[string][]string `yaml:"tag_aliases"`
+	Acronyms                     []string            `yaml:"acronyms"`
 }
 
 type OpenAPI struct {

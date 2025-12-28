@@ -9,26 +9,58 @@ import (
 	"text/template"
 )
 
-func toKebabCase(s string) string {
-	var res strings.Builder
-	for i, r := range s {
-		if i > 0 && r >= 'A' && r <= 'Z' {
-			res.WriteRune('-')
-		}
-		res.WriteRune(r)
+func toKebabCase(s string, config *Config) string {
+	var acronyms []string
+	if config != nil {
+		acronyms = config.Acronyms
 	}
-	return strings.ToLower(res.String())
+
+	res := s
+	for _, acronym := range acronyms {
+		// Replace acronym with its lowercase version surrounded by markers to avoid further splitting
+		// e.g. CSM -> -csm-
+		// We use a temporary placeholder to avoid double replacement or splitting
+		res = strings.ReplaceAll(res, acronym, "-"+strings.ToLower(acronym)+"-")
+	}
+
+	var finalRes strings.Builder
+	for i, r := range res {
+		if i > 0 && r >= 'A' && r <= 'Z' {
+			finalRes.WriteRune('-')
+		}
+		finalRes.WriteRune(r)
+	}
+
+	s = strings.ToLower(finalRes.String())
+	// Clean up double hyphens and hyphens at start/end
+	s = strings.ReplaceAll(s, "--", "-")
+	s = strings.Trim(s, "-")
+	return s
 }
 
-func toSnakeCase(s string) string {
-	var res strings.Builder
-	for i, r := range s {
-		if i > 0 && r >= 'A' && r <= 'Z' {
-			res.WriteRune('_')
-		}
-		res.WriteRune(r)
+func toSnakeCase(s string, config *Config) string {
+	var acronyms []string
+	if config != nil {
+		acronyms = config.Acronyms
 	}
-	return strings.ToLower(res.String())
+
+	res := s
+	for _, acronym := range acronyms {
+		res = strings.ReplaceAll(res, acronym, "_"+strings.ToLower(acronym)+"_")
+	}
+
+	var finalRes strings.Builder
+	for i, r := range res {
+		if i > 0 && r >= 'A' && r <= 'Z' {
+			finalRes.WriteRune('_')
+		}
+		finalRes.WriteRune(r)
+	}
+
+	s = strings.ToLower(finalRes.String())
+	s = strings.ReplaceAll(s, "__", "_")
+	s = strings.Trim(s, "_")
+	return s
 }
 
 func ensureEntrypoint(pkgDir, tag string, tmpl *template.Template, config *Config) error {
@@ -89,7 +121,7 @@ func resolveSchema(spec *OpenAPI, schema map[string]interface{}) map[string]inte
 func prepareTemplateData(tag, rawTag, apiTagName, method, path string, op Operation, spec *OpenAPI, config *Config) TemplateData {
 	var args []string
 	var argTypes []string
-	use := toKebabCase(op.OperationID)
+	use := toKebabCase(op.OperationID, config)
 
 	for _, param := range op.Parameters {
 		name := param.Name
@@ -221,7 +253,7 @@ func prepareTemplateData(tag, rawTag, apiTagName, method, path string, op Operat
 
 	var aliases []string
 	tagKebab := strings.ReplaceAll(tag, "_", "-")
-	opKebab := toKebabCase(op.OperationID)
+	opKebab := toKebabCase(op.OperationID, config)
 
 	tagSingular := strings.TrimSuffix(tagKebab, "s")
 	variants := []string{tagKebab, tagSingular}
@@ -262,8 +294,8 @@ func prepareTemplateData(tag, rawTag, apiTagName, method, path string, op Operat
 	}
 }
 
-func generateCommandFile(pkgDir, operationID string, data TemplateData, tmpl *template.Template) error {
-	fileName := fmt.Sprintf("%s.gen.go", toSnakeCase(operationID))
+func generateCommandFile(pkgDir, operationID string, data TemplateData, tmpl *template.Template, config *Config) error {
+	fileName := fmt.Sprintf("%s.gen.go", toSnakeCase(operationID, config))
 	filePath := filepath.Join(pkgDir, fileName)
 	f, err := os.Create(filePath)
 	if err != nil {
