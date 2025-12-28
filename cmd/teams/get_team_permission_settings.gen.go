@@ -15,7 +15,7 @@ import (
 )
 
 var GetTeamPermissionSettingsCmd = &cobra.Command{
-	Use:   "get_team_permission_settings [team_id]",
+	Use:   "get-team-permission-settings [team_id]",
 	Short: "Get permission settings for a team",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetTeamPermissionSettingsCmd = &cobra.Command{
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
 		res, _, err := api.GetTeamPermissionSettings(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_team_permission_settings: %v", err)
+			log.Fatalf("failed to get-team-permission-settings: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "team_permission_settings")

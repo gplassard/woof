@@ -15,7 +15,7 @@ import (
 )
 
 var EditSecurityMonitoringSignalStateCmd = &cobra.Command{
-	Use:   "edit_security_monitoring_signal_state [signal_id]",
+	Use:   "edit-security-monitoring-signal-state [signal_id]",
 	Short: "Change the triage state of a security signal",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var EditSecurityMonitoringSignalStateCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.EditSecurityMonitoringSignalState(client.NewContext(apiKey, appKey, site), args[0], datadogV2.SecurityMonitoringSignalStateUpdateRequest{})
 		if err != nil {
-			log.Fatalf("failed to edit_security_monitoring_signal_state: %v", err)
+			log.Fatalf("failed to edit-security-monitoring-signal-state: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "signal_metadata")

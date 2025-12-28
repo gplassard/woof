@@ -15,7 +15,7 @@ import (
 )
 
 var ListApplicationSecurityWAFCustomRulesCmd = &cobra.Command{
-	Use:   "list_application_security_w_a_f_custom_rules",
+	Use:   "list-application-security-w-a-f-custom-rules",
 	Short: "List all WAF custom rules",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListApplicationSecurityWAFCustomRulesCmd = &cobra.Command{
 		api := datadogV2.NewApplicationSecurityApi(client.NewAPIClient())
 		res, _, err := api.ListApplicationSecurityWAFCustomRules(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_application_security_w_a_f_custom_rules: %v", err)
+			log.Fatalf("failed to list-application-security-w-a-f-custom-rules: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "custom_rule")

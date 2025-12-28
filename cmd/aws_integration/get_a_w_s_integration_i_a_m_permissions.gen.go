@@ -15,7 +15,7 @@ import (
 )
 
 var GetAWSIntegrationIAMPermissionsCmd = &cobra.Command{
-	Use:   "get_a_w_s_integration_i_a_m_permissions",
+	Use:   "get-a-w-s-integration-i-a-m-permissions",
 	Short: "Get AWS integration IAM permissions",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetAWSIntegrationIAMPermissionsCmd = &cobra.Command{
 		api := datadogV2.NewAWSIntegrationApi(client.NewAPIClient())
 		res, _, err := api.GetAWSIntegrationIAMPermissions(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to get_a_w_s_integration_i_a_m_permissions: %v", err)
+			log.Fatalf("failed to get-a-w-s-integration-i-a-m-permissions: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "permissions")

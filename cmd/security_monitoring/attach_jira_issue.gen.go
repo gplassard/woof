@@ -15,7 +15,7 @@ import (
 )
 
 var AttachJiraIssueCmd = &cobra.Command{
-	Use:   "attach_jira_issue",
+	Use:   "attach-jira-issue",
 	Short: "Attach security findings to a Jira issue",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var AttachJiraIssueCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.AttachJiraIssue(client.NewContext(apiKey, appKey, site), datadogV2.AttachJiraIssueRequest{})
 		if err != nil {
-			log.Fatalf("failed to attach_jira_issue: %v", err)
+			log.Fatalf("failed to attach-jira-issue: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "cases")

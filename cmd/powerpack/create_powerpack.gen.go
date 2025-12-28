@@ -15,7 +15,7 @@ import (
 )
 
 var CreatePowerpackCmd = &cobra.Command{
-	Use:   "create_powerpack",
+	Use:   "create-powerpack",
 	Short: "Create a new powerpack",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreatePowerpackCmd = &cobra.Command{
 		api := datadogV2.NewPowerpackApi(client.NewAPIClient())
 		res, _, err := api.CreatePowerpack(client.NewContext(apiKey, appKey, site), datadogV2.Powerpack{})
 		if err != nil {
-			log.Fatalf("failed to create_powerpack: %v", err)
+			log.Fatalf("failed to create-powerpack: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "powerpack")

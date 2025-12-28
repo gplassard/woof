@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteIncidentNotificationRuleCmd = &cobra.Command{
-	Use:   "delete_incident_notification_rule [id]",
+	Use:   "delete-incident-notification-rule [id]",
 	Short: "Delete an incident notification rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteIncidentNotificationRuleCmd = &cobra.Command{
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
 		_, err := api.DeleteIncidentNotificationRule(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
 		if err != nil {
-			log.Fatalf("failed to delete_incident_notification_rule: %v", err)
+			log.Fatalf("failed to delete-incident-notification-rule: %v", err)
 		}
 
 		

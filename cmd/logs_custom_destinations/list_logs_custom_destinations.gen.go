@@ -15,7 +15,7 @@ import (
 )
 
 var ListLogsCustomDestinationsCmd = &cobra.Command{
-	Use:   "list_logs_custom_destinations",
+	Use:   "list-logs-custom-destinations",
 	Short: "Get all custom destinations",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListLogsCustomDestinationsCmd = &cobra.Command{
 		api := datadogV2.NewLogsCustomDestinationsApi(client.NewAPIClient())
 		res, _, err := api.ListLogsCustomDestinations(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_logs_custom_destinations: %v", err)
+			log.Fatalf("failed to list-logs-custom-destinations: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "custom_destination")

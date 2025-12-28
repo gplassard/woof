@@ -15,7 +15,7 @@ import (
 )
 
 var CreateDowntimeCmd = &cobra.Command{
-	Use:   "create_downtime",
+	Use:   "create-downtime",
 	Short: "Schedule a downtime",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateDowntimeCmd = &cobra.Command{
 		api := datadogV2.NewDowntimesApi(client.NewAPIClient())
 		res, _, err := api.CreateDowntime(client.NewContext(apiKey, appKey, site), datadogV2.DowntimeCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_downtime: %v", err)
+			log.Fatalf("failed to create-downtime: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "downtime")

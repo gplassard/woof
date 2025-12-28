@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateStatusCmd = &cobra.Command{
-	Use:   "update_status [case_id]",
+	Use:   "update-status [case_id]",
 	Short: "Update case status",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateStatusCmd = &cobra.Command{
 		api := datadogV2.NewCaseManagementApi(client.NewAPIClient())
 		res, _, err := api.UpdateStatus(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CaseUpdateStatusRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_status: %v", err)
+			log.Fatalf("failed to update-status: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "case")

@@ -15,7 +15,7 @@ import (
 )
 
 var AggregateLogsCmd = &cobra.Command{
-	Use:   "aggregate_logs",
+	Use:   "aggregate-logs",
 	Short: "Aggregate events",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var AggregateLogsCmd = &cobra.Command{
 		api := datadogV2.NewLogsApi(client.NewAPIClient())
 		res, _, err := api.AggregateLogs(client.NewContext(apiKey, appKey, site), datadogV2.LogsAggregateRequest{})
 		if err != nil {
-			log.Fatalf("failed to aggregate_logs: %v", err)
+			log.Fatalf("failed to aggregate-logs: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "logs")

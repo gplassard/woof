@@ -15,7 +15,7 @@ import (
 )
 
 var CreateOnCallEscalationPolicyCmd = &cobra.Command{
-	Use:   "create_on_call_escalation_policy",
+	Use:   "create-on-call-escalation-policy",
 	Short: "Create On-Call escalation policy",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateOnCallEscalationPolicyCmd = &cobra.Command{
 		api := datadogV2.NewOnCallApi(client.NewAPIClient())
 		res, _, err := api.CreateOnCallEscalationPolicy(client.NewContext(apiKey, appKey, site), datadogV2.EscalationPolicyCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_on_call_escalation_policy: %v", err)
+			log.Fatalf("failed to create-on-call-escalation-policy: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "policies")

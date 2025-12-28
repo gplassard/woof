@@ -15,7 +15,7 @@ import (
 )
 
 var CreateConfluentAccountCmd = &cobra.Command{
-	Use:   "create_confluent_account",
+	Use:   "create-confluent-account",
 	Short: "Add Confluent account",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateConfluentAccountCmd = &cobra.Command{
 		api := datadogV2.NewConfluentCloudApi(client.NewAPIClient())
 		res, _, err := api.CreateConfluentAccount(client.NewContext(apiKey, appKey, site), datadogV2.ConfluentAccountCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_confluent_account: %v", err)
+			log.Fatalf("failed to create-confluent-account: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "confluent-cloud-accounts")

@@ -15,7 +15,7 @@ import (
 )
 
 var ListIncidentIntegrationsCmd = &cobra.Command{
-	Use:   "list_incident_integrations [incident_id]",
+	Use:   "list-incident-integrations [incident_id]",
 	Short: "Get a list of an incident's integration metadata",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListIncidentIntegrationsCmd = &cobra.Command{
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
 		res, _, err := api.ListIncidentIntegrations(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to list_incident_integrations: %v", err)
+			log.Fatalf("failed to list-incident-integrations: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "incident_integrations")

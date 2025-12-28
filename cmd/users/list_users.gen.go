@@ -15,7 +15,7 @@ import (
 )
 
 var ListUsersCmd = &cobra.Command{
-	Use:   "list_users",
+	Use:   "list-users",
 	Short: "List all users",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListUsersCmd = &cobra.Command{
 		api := datadogV2.NewUsersApi(client.NewAPIClient())
 		res, _, err := api.ListUsers(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_users: %v", err)
+			log.Fatalf("failed to list-users: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "users")

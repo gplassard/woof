@@ -15,7 +15,7 @@ import (
 )
 
 var CreateDORADeploymentCmd = &cobra.Command{
-	Use:   "create_d_o_r_a_deployment",
+	Use:   "create-d-o-r-a-deployment",
 	Short: "Send a deployment event",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateDORADeploymentCmd = &cobra.Command{
 		api := datadogV2.NewDORAMetricsApi(client.NewAPIClient())
 		res, _, err := api.CreateDORADeployment(client.NewContext(apiKey, appKey, site), datadogV2.DORADeploymentRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_d_o_r_a_deployment: %v", err)
+			log.Fatalf("failed to create-d-o-r-a-deployment: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "dora_deployment")

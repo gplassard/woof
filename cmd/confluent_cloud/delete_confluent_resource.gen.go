@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteConfluentResourceCmd = &cobra.Command{
-	Use:   "delete_confluent_resource [account_id] [resource_id]",
+	Use:   "delete-confluent-resource [account_id] [resource_id]",
 	Short: "Delete resource from Confluent account",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteConfluentResourceCmd = &cobra.Command{
 		api := datadogV2.NewConfluentCloudApi(client.NewAPIClient())
 		_, err := api.DeleteConfluentResource(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		if err != nil {
-			log.Fatalf("failed to delete_confluent_resource: %v", err)
+			log.Fatalf("failed to delete-confluent-resource: %v", err)
 		}
 
 		

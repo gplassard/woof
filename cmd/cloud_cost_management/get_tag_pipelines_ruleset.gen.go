@@ -15,7 +15,7 @@ import (
 )
 
 var GetTagPipelinesRulesetCmd = &cobra.Command{
-	Use:   "get_tag_pipelines_ruleset [ruleset_id]",
+	Use:   "get-tag-pipelines-ruleset [ruleset_id]",
 	Short: "Get a tag pipeline ruleset",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetTagPipelinesRulesetCmd = &cobra.Command{
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
 		res, _, err := api.GetTagPipelinesRuleset(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_tag_pipelines_ruleset: %v", err)
+			log.Fatalf("failed to get-tag-pipelines-ruleset: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "ruleset")

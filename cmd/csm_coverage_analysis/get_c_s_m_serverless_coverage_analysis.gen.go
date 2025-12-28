@@ -15,7 +15,7 @@ import (
 )
 
 var GetCSMServerlessCoverageAnalysisCmd = &cobra.Command{
-	Use:   "get_c_s_m_serverless_coverage_analysis",
+	Use:   "get-c-s-m-serverless-coverage-analysis",
 	Short: "Get the CSM Serverless Coverage Analysis",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetCSMServerlessCoverageAnalysisCmd = &cobra.Command{
 		api := datadogV2.NewCSMCoverageAnalysisApi(client.NewAPIClient())
 		res, _, err := api.GetCSMServerlessCoverageAnalysis(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to get_c_s_m_serverless_coverage_analysis: %v", err)
+			log.Fatalf("failed to get-c-s-m-serverless-coverage-analysis: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "csm_coverage_analysis")

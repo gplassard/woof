@@ -15,7 +15,7 @@ import (
 )
 
 var GetCurrentUserApplicationKeyCmd = &cobra.Command{
-	Use:   "get_current_user_application_key [app_key_id]",
+	Use:   "get-current-user-application-key [app_key_id]",
 	Short: "Get one application key owned by current user",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetCurrentUserApplicationKeyCmd = &cobra.Command{
 		api := datadogV2.NewKeyManagementApi(client.NewAPIClient())
 		res, _, err := api.GetCurrentUserApplicationKey(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_current_user_application_key: %v", err)
+			log.Fatalf("failed to get-current-user-application-key: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "application_keys")

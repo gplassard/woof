@@ -15,7 +15,7 @@ import (
 )
 
 var GetDatastoreCmd = &cobra.Command{
-	Use:   "get_datastore [datastore_id]",
+	Use:   "get-datastore [datastore_id]",
 	Short: "Get datastore",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetDatastoreCmd = &cobra.Command{
 		api := datadogV2.NewActionsDatastoresApi(client.NewAPIClient())
 		res, _, err := api.GetDatastore(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_datastore: %v", err)
+			log.Fatalf("failed to get-datastore: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "datastores")

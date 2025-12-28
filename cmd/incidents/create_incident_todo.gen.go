@@ -15,7 +15,7 @@ import (
 )
 
 var CreateIncidentTodoCmd = &cobra.Command{
-	Use:   "create_incident_todo [incident_id]",
+	Use:   "create-incident-todo [incident_id]",
 	Short: "Create an incident todo",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateIncidentTodoCmd = &cobra.Command{
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
 		res, _, err := api.CreateIncidentTodo(client.NewContext(apiKey, appKey, site), args[0], datadogV2.IncidentTodoCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_incident_todo: %v", err)
+			log.Fatalf("failed to create-incident-todo: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "incident_todos")

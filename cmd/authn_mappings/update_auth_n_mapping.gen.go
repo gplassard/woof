@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateAuthNMappingCmd = &cobra.Command{
-	Use:   "update_auth_n_mapping [authn_mapping_id]",
+	Use:   "update-auth-n-mapping [authn_mapping_id]",
 	Short: "Edit an AuthN Mapping",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateAuthNMappingCmd = &cobra.Command{
 		api := datadogV2.NewAuthNMappingsApi(client.NewAPIClient())
 		res, _, err := api.UpdateAuthNMapping(client.NewContext(apiKey, appKey, site), args[0], datadogV2.AuthNMappingUpdateRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_auth_n_mapping: %v", err)
+			log.Fatalf("failed to update-auth-n-mapping: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "authn_mappings")

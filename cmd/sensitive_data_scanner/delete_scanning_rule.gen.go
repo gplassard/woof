@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteScanningRuleCmd = &cobra.Command{
-	Use:   "delete_scanning_rule [rule_id]",
+	Use:   "delete-scanning-rule [rule_id]",
 	Short: "Delete Scanning Rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteScanningRuleCmd = &cobra.Command{
 		api := datadogV2.NewSensitiveDataScannerApi(client.NewAPIClient())
 		res, _, err := api.DeleteScanningRule(client.NewContext(apiKey, appKey, site), args[0], datadogV2.SensitiveDataScannerRuleDeleteRequest{})
 		if err != nil {
-			log.Fatalf("failed to delete_scanning_rule: %v", err)
+			log.Fatalf("failed to delete-scanning-rule: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "sensitive_data_scanner")

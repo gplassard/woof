@@ -15,7 +15,7 @@ import (
 )
 
 var ListTagsByMetricNameCmd = &cobra.Command{
-	Use:   "list_tags_by_metric_name [metric_name]",
+	Use:   "list-tags-by-metric-name [metric_name]",
 	Short: "List tags by metric name",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListTagsByMetricNameCmd = &cobra.Command{
 		api := datadogV2.NewMetricsApi(client.NewAPIClient())
 		res, _, err := api.ListTagsByMetricName(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to list_tags_by_metric_name: %v", err)
+			log.Fatalf("failed to list-tags-by-metric-name: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "metrics")

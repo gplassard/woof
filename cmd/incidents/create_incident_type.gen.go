@@ -15,7 +15,7 @@ import (
 )
 
 var CreateIncidentTypeCmd = &cobra.Command{
-	Use:   "create_incident_type",
+	Use:   "create-incident-type",
 	Short: "Create an incident type",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateIncidentTypeCmd = &cobra.Command{
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
 		res, _, err := api.CreateIncidentType(client.NewContext(apiKey, appKey, site), datadogV2.IncidentTypeCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_incident_type: %v", err)
+			log.Fatalf("failed to create-incident-type: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "incident_types")

@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteDatastoreCmd = &cobra.Command{
-	Use:   "delete_datastore [datastore_id]",
+	Use:   "delete-datastore [datastore_id]",
 	Short: "Delete datastore",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteDatastoreCmd = &cobra.Command{
 		api := datadogV2.NewActionsDatastoresApi(client.NewAPIClient())
 		_, err := api.DeleteDatastore(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_datastore: %v", err)
+			log.Fatalf("failed to delete-datastore: %v", err)
 		}
 
 		

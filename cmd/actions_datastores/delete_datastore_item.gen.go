@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteDatastoreItemCmd = &cobra.Command{
-	Use:   "delete_datastore_item [datastore_id]",
+	Use:   "delete-datastore-item [datastore_id]",
 	Short: "Delete datastore item",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteDatastoreItemCmd = &cobra.Command{
 		api := datadogV2.NewActionsDatastoresApi(client.NewAPIClient())
 		res, _, err := api.DeleteDatastoreItem(client.NewContext(apiKey, appKey, site), args[0], datadogV2.DeleteAppsDatastoreItemRequest{})
 		if err != nil {
-			log.Fatalf("failed to delete_datastore_item: %v", err)
+			log.Fatalf("failed to delete-datastore-item: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "items")

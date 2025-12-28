@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateCSMThreatsAgentPolicyCmd = &cobra.Command{
-	Use:   "update_c_s_m_threats_agent_policy [policy_id]",
+	Use:   "update-c-s-m-threats-agent-policy [policy_id]",
 	Short: "Update a Workload Protection policy",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateCSMThreatsAgentPolicyCmd = &cobra.Command{
 		api := datadogV2.NewCSMThreatsApi(client.NewAPIClient())
 		res, _, err := api.UpdateCSMThreatsAgentPolicy(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CloudWorkloadSecurityAgentPolicyUpdateRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_c_s_m_threats_agent_policy: %v", err)
+			log.Fatalf("failed to update-c-s-m-threats-agent-policy: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "policy")

@@ -15,7 +15,7 @@ import (
 )
 
 var GetProjectedCostCmd = &cobra.Command{
-	Use:   "get_projected_cost",
+	Use:   "get-projected-cost",
 	Short: "Get projected cost across your account",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetProjectedCostCmd = &cobra.Command{
 		api := datadogV2.NewUsageMeteringApi(client.NewAPIClient())
 		res, _, err := api.GetProjectedCost(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to get_projected_cost: %v", err)
+			log.Fatalf("failed to get-projected-cost: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "usage_metering")

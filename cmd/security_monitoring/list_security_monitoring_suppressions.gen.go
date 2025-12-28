@@ -15,7 +15,7 @@ import (
 )
 
 var ListSecurityMonitoringSuppressionsCmd = &cobra.Command{
-	Use:   "list_security_monitoring_suppressions",
+	Use:   "list-security-monitoring-suppressions",
 	Short: "Get all suppression rules",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListSecurityMonitoringSuppressionsCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.ListSecurityMonitoringSuppressions(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_security_monitoring_suppressions: %v", err)
+			log.Fatalf("failed to list-security-monitoring-suppressions: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "suppressions")

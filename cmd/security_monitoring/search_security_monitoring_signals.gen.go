@@ -15,7 +15,7 @@ import (
 )
 
 var SearchSecurityMonitoringSignalsCmd = &cobra.Command{
-	Use:   "search_security_monitoring_signals",
+	Use:   "search-security-monitoring-signals",
 	Short: "Get a list of security signals",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var SearchSecurityMonitoringSignalsCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.SearchSecurityMonitoringSignals(client.NewContext(apiKey, appKey, site), *datadogV2.NewSearchSecurityMonitoringSignalsOptionalParameters())
 		if err != nil {
-			log.Fatalf("failed to search_security_monitoring_signals: %v", err)
+			log.Fatalf("failed to search-security-monitoring-signals: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "signal")

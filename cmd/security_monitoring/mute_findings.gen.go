@@ -15,7 +15,7 @@ import (
 )
 
 var MuteFindingsCmd = &cobra.Command{
-	Use:   "mute_findings",
+	Use:   "mute-findings",
 	Short: "Mute or unmute a batch of findings",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var MuteFindingsCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.MuteFindings(client.NewContext(apiKey, appKey, site), datadogV2.BulkMuteFindingsRequest{})
 		if err != nil {
-			log.Fatalf("failed to mute_findings: %v", err)
+			log.Fatalf("failed to mute-findings: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "finding")

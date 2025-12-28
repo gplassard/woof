@@ -15,7 +15,7 @@ import (
 )
 
 var GetRUMApplicationsCmd = &cobra.Command{
-	Use:   "get_r_u_m_applications",
+	Use:   "get-r-u-m-applications",
 	Short: "List all the RUM applications",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetRUMApplicationsCmd = &cobra.Command{
 		api := datadogV2.NewRUMApi(client.NewAPIClient())
 		res, _, err := api.GetRUMApplications(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to get_r_u_m_applications: %v", err)
+			log.Fatalf("failed to get-r-u-m-applications: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "rum_application")

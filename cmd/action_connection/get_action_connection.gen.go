@@ -15,7 +15,7 @@ import (
 )
 
 var GetActionConnectionCmd = &cobra.Command{
-	Use:   "get_action_connection [connection_id]",
+	Use:   "get-action-connection [connection_id]",
 	Short: "Get an existing Action Connection",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetActionConnectionCmd = &cobra.Command{
 		api := datadogV2.NewActionConnectionApi(client.NewAPIClient())
 		res, _, err := api.GetActionConnection(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_action_connection: %v", err)
+			log.Fatalf("failed to get-action-connection: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "action_connection")

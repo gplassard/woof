@@ -15,7 +15,7 @@ import (
 )
 
 var GetCustomAllocationRuleCmd = &cobra.Command{
-	Use:   "get_custom_allocation_rule [rule_id]",
+	Use:   "get-custom-allocation-rule [rule_id]",
 	Short: "Get custom allocation rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetCustomAllocationRuleCmd = &cobra.Command{
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
 		res, _, err := api.GetCustomAllocationRule(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }())
 		if err != nil {
-			log.Fatalf("failed to get_custom_allocation_rule: %v", err)
+			log.Fatalf("failed to get-custom-allocation-rule: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "arbitrary_rule")

@@ -15,7 +15,7 @@ import (
 )
 
 var PreviewCatalogEntitiesCmd = &cobra.Command{
-	Use:   "preview_catalog_entities",
+	Use:   "preview-catalog-entities",
 	Short: "Preview catalog entities",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var PreviewCatalogEntitiesCmd = &cobra.Command{
 		api := datadogV2.NewSoftwareCatalogApi(client.NewAPIClient())
 		res, _, err := api.PreviewCatalogEntities(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to preview_catalog_entities: %v", err)
+			log.Fatalf("failed to preview-catalog-entities: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "entity")

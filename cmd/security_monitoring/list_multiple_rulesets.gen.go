@@ -15,7 +15,7 @@ import (
 )
 
 var ListMultipleRulesetsCmd = &cobra.Command{
-	Use:   "list_multiple_rulesets",
+	Use:   "list-multiple-rulesets",
 	Short: "Ruleset get multiple",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListMultipleRulesetsCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.ListMultipleRulesets(client.NewContext(apiKey, appKey, site), datadogV2.GetMultipleRulesetsRequest{})
 		if err != nil {
-			log.Fatalf("failed to list_multiple_rulesets: %v", err)
+			log.Fatalf("failed to list-multiple-rulesets: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "get_multiple_rulesets_response")

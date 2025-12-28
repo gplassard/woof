@@ -15,7 +15,7 @@ import (
 )
 
 var ListDevicesCmd = &cobra.Command{
-	Use:   "list_devices",
+	Use:   "list-devices",
 	Short: "Get the list of devices",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListDevicesCmd = &cobra.Command{
 		api := datadogV2.NewNetworkDeviceMonitoringApi(client.NewAPIClient())
 		res, _, err := api.ListDevices(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_devices: %v", err)
+			log.Fatalf("failed to list-devices: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "network_device_monitoring")

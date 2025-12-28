@@ -15,7 +15,7 @@ import (
 )
 
 var ListServiceDefinitionsCmd = &cobra.Command{
-	Use:   "list_service_definitions",
+	Use:   "list-service-definitions",
 	Short: "Get all service definitions",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListServiceDefinitionsCmd = &cobra.Command{
 		api := datadogV2.NewServiceDefinitionApi(client.NewAPIClient())
 		res, _, err := api.ListServiceDefinitions(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_service_definitions: %v", err)
+			log.Fatalf("failed to list-service-definitions: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "service_definition")

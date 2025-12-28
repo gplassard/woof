@@ -15,7 +15,7 @@ import (
 )
 
 var CreateRestrictionQueryCmd = &cobra.Command{
-	Use:   "create_restriction_query",
+	Use:   "create-restriction-query",
 	Short: "Create a restriction query",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateRestrictionQueryCmd = &cobra.Command{
 		api := datadogV2.NewLogsRestrictionQueriesApi(client.NewAPIClient())
 		res, _, err := api.CreateRestrictionQuery(client.NewContext(apiKey, appKey, site), datadogV2.RestrictionQueryCreatePayload{})
 		if err != nil {
-			log.Fatalf("failed to create_restriction_query: %v", err)
+			log.Fatalf("failed to create-restriction-query: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "logs_restriction_queries")

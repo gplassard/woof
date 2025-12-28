@@ -15,7 +15,7 @@ import (
 )
 
 var ListActiveMetricConfigurationsCmd = &cobra.Command{
-	Use:   "list_active_metric_configurations [metric_name]",
+	Use:   "list-active-metric-configurations [metric_name]",
 	Short: "List active tags and aggregations",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListActiveMetricConfigurationsCmd = &cobra.Command{
 		api := datadogV2.NewMetricsApi(client.NewAPIClient())
 		res, _, err := api.ListActiveMetricConfigurations(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to list_active_metric_configurations: %v", err)
+			log.Fatalf("failed to list-active-metric-configurations: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "actively_queried_configurations")

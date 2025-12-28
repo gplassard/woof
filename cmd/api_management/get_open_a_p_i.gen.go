@@ -15,7 +15,7 @@ import (
 )
 
 var GetOpenAPICmd = &cobra.Command{
-	Use:   "get_open_a_p_i [id]",
+	Use:   "get-open-a-p-i [id]",
 	Short: "Get an API",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetOpenAPICmd = &cobra.Command{
 		api := datadogV2.NewAPIManagementApi(client.NewAPIClient())
 		res, _, err := api.GetOpenAPI(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
 		if err != nil {
-			log.Fatalf("failed to get_open_a_p_i: %v", err)
+			log.Fatalf("failed to get-open-a-p-i: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "api_management")

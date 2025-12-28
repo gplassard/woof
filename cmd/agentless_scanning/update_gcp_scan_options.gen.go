@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateGcpScanOptionsCmd = &cobra.Command{
-	Use:   "update_gcp_scan_options [project_id]",
+	Use:   "update-gcp-scan-options [project_id]",
 	Short: "Update GCP scan options",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateGcpScanOptionsCmd = &cobra.Command{
 		api := datadogV2.NewAgentlessScanningApi(client.NewAPIClient())
 		res, _, err := api.UpdateGcpScanOptions(client.NewContext(apiKey, appKey, site), args[0], datadogV2.GcpScanOptionsInputUpdate{})
 		if err != nil {
-			log.Fatalf("failed to update_gcp_scan_options: %v", err)
+			log.Fatalf("failed to update-gcp-scan-options: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "gcp_scan_options")

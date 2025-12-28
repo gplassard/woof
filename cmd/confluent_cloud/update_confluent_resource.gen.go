@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateConfluentResourceCmd = &cobra.Command{
-	Use:   "update_confluent_resource [account_id] [resource_id]",
+	Use:   "update-confluent-resource [account_id] [resource_id]",
 	Short: "Update resource in Confluent account",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateConfluentResourceCmd = &cobra.Command{
 		api := datadogV2.NewConfluentCloudApi(client.NewAPIClient())
 		res, _, err := api.UpdateConfluentResource(client.NewContext(apiKey, appKey, site), args[0], args[1], datadogV2.ConfluentResourceRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_confluent_resource: %v", err)
+			log.Fatalf("failed to update-confluent-resource: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "confluent-cloud-resources")

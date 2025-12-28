@@ -15,7 +15,7 @@ import (
 )
 
 var GetHourlyUsageCmd = &cobra.Command{
-	Use:   "get_hourly_usage [filter[timestamp][start]] [filter[product_families]]",
+	Use:   "get-hourly-usage [filter[timestamp][start]] [filter[product_families]]",
 	Short: "Get hourly usage by product family",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetHourlyUsageCmd = &cobra.Command{
 		api := datadogV2.NewUsageMeteringApi(client.NewAPIClient())
 		res, _, err := api.GetHourlyUsage(client.NewContext(apiKey, appKey, site), func() time.Time { t, _ := time.Parse(time.RFC3339, args[0]); return t }(), args[1])
 		if err != nil {
-			log.Fatalf("failed to get_hourly_usage: %v", err)
+			log.Fatalf("failed to get-hourly-usage: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "usage_metering")

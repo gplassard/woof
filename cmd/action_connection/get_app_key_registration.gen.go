@@ -15,7 +15,7 @@ import (
 )
 
 var GetAppKeyRegistrationCmd = &cobra.Command{
-	Use:   "get_app_key_registration [app_key_id]",
+	Use:   "get-app-key-registration [app_key_id]",
 	Short: "Get an existing App Key Registration",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetAppKeyRegistrationCmd = &cobra.Command{
 		api := datadogV2.NewActionConnectionApi(client.NewAPIClient())
 		res, _, err := api.GetAppKeyRegistration(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_app_key_registration: %v", err)
+			log.Fatalf("failed to get-app-key-registration: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "app_key_registration")

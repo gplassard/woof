@@ -15,7 +15,7 @@ import (
 )
 
 var GetApmRetentionFilterCmd = &cobra.Command{
-	Use:   "get_apm_retention_filter [filter_id]",
+	Use:   "get-apm-retention-filter [filter_id]",
 	Short: "Get a given APM retention filter",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetApmRetentionFilterCmd = &cobra.Command{
 		api := datadogV2.NewAPMRetentionFiltersApi(client.NewAPIClient())
 		res, _, err := api.GetApmRetentionFilter(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_apm_retention_filter: %v", err)
+			log.Fatalf("failed to get-apm-retention-filter: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "apm_retention_filter")

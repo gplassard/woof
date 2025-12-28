@@ -15,7 +15,7 @@ import (
 )
 
 var AddPermissionToRoleCmd = &cobra.Command{
-	Use:   "add_permission_to_role [role_id]",
+	Use:   "add-permission-to-role [role_id]",
 	Short: "Grant permission to a role",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var AddPermissionToRoleCmd = &cobra.Command{
 		api := datadogV2.NewRolesApi(client.NewAPIClient())
 		res, _, err := api.AddPermissionToRole(client.NewContext(apiKey, appKey, site), args[0], datadogV2.RelationshipToPermission{})
 		if err != nil {
-			log.Fatalf("failed to add_permission_to_role: %v", err)
+			log.Fatalf("failed to add-permission-to-role: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "permissions")

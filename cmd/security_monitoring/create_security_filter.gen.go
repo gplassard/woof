@@ -15,7 +15,7 @@ import (
 )
 
 var CreateSecurityFilterCmd = &cobra.Command{
-	Use:   "create_security_filter",
+	Use:   "create-security-filter",
 	Short: "Create a security filter",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateSecurityFilterCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.CreateSecurityFilter(client.NewContext(apiKey, appKey, site), datadogV2.SecurityFilterCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_security_filter: %v", err)
+			log.Fatalf("failed to create-security-filter: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "security_filters")

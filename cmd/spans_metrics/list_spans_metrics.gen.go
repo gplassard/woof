@@ -15,7 +15,7 @@ import (
 )
 
 var ListSpansMetricsCmd = &cobra.Command{
-	Use:   "list_spans_metrics",
+	Use:   "list-spans-metrics",
 	Short: "Get all span-based metrics",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListSpansMetricsCmd = &cobra.Command{
 		api := datadogV2.NewSpansMetricsApi(client.NewAPIClient())
 		res, _, err := api.ListSpansMetrics(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_spans_metrics: %v", err)
+			log.Fatalf("failed to list-spans-metrics: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "spans_metrics")

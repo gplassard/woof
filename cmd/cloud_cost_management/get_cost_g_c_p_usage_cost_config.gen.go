@@ -15,7 +15,7 @@ import (
 )
 
 var GetCostGCPUsageCostConfigCmd = &cobra.Command{
-	Use:   "get_cost_g_c_p_usage_cost_config [cloud_account_id]",
+	Use:   "get-cost-g-c-p-usage-cost-config [cloud_account_id]",
 	Short: "Get Google Cloud Usage Cost config",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetCostGCPUsageCostConfigCmd = &cobra.Command{
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
 		res, _, err := api.GetCostGCPUsageCostConfig(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }())
 		if err != nil {
-			log.Fatalf("failed to get_cost_g_c_p_usage_cost_config: %v", err)
+			log.Fatalf("failed to get-cost-g-c-p-usage-cost-config: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "gcp_uc_config")

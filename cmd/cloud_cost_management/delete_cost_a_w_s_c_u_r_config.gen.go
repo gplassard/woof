@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteCostAWSCURConfigCmd = &cobra.Command{
-	Use:   "delete_cost_a_w_s_c_u_r_config [cloud_account_id]",
+	Use:   "delete-cost-a-w-s-c-u-r-config [cloud_account_id]",
 	Short: "Delete Cloud Cost Management AWS CUR config",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteCostAWSCURConfigCmd = &cobra.Command{
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
 		_, err := api.DeleteCostAWSCURConfig(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }())
 		if err != nil {
-			log.Fatalf("failed to delete_cost_a_w_s_c_u_r_config: %v", err)
+			log.Fatalf("failed to delete-cost-a-w-s-c-u-r-config: %v", err)
 		}
 
 		

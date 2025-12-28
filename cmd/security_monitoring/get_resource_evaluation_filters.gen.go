@@ -15,7 +15,7 @@ import (
 )
 
 var GetResourceEvaluationFiltersCmd = &cobra.Command{
-	Use:   "get_resource_evaluation_filters",
+	Use:   "get-resource-evaluation-filters",
 	Short: "List resource filters",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetResourceEvaluationFiltersCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.GetResourceEvaluationFilters(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to get_resource_evaluation_filters: %v", err)
+			log.Fatalf("failed to get-resource-evaluation-filters: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "csm_resource_filter")

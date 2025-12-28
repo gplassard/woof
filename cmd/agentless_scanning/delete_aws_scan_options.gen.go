@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteAwsScanOptionsCmd = &cobra.Command{
-	Use:   "delete_aws_scan_options [account_id]",
+	Use:   "delete-aws-scan-options [account_id]",
 	Short: "Delete AWS scan options",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteAwsScanOptionsCmd = &cobra.Command{
 		api := datadogV2.NewAgentlessScanningApi(client.NewAPIClient())
 		_, err := api.DeleteAwsScanOptions(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_aws_scan_options: %v", err)
+			log.Fatalf("failed to delete-aws-scan-options: %v", err)
 		}
 
 		

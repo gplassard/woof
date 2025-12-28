@@ -15,7 +15,7 @@ import (
 )
 
 var GetSuppressionsAffectingFutureRuleCmd = &cobra.Command{
-	Use:   "get_suppressions_affecting_future_rule",
+	Use:   "get-suppressions-affecting-future-rule",
 	Short: "Get suppressions affecting future rule",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetSuppressionsAffectingFutureRuleCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.GetSuppressionsAffectingFutureRule(client.NewContext(apiKey, appKey, site), datadogV2.SecurityMonitoringRuleCreatePayload{})
 		if err != nil {
-			log.Fatalf("failed to get_suppressions_affecting_future_rule: %v", err)
+			log.Fatalf("failed to get-suppressions-affecting-future-rule: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "suppressions")

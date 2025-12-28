@@ -15,7 +15,7 @@ import (
 )
 
 var GetEstimatedCostByOrgCmd = &cobra.Command{
-	Use:   "get_estimated_cost_by_org",
+	Use:   "get-estimated-cost-by-org",
 	Short: "Get estimated cost across your account",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetEstimatedCostByOrgCmd = &cobra.Command{
 		api := datadogV2.NewUsageMeteringApi(client.NewAPIClient())
 		res, _, err := api.GetEstimatedCostByOrg(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to get_estimated_cost_by_org: %v", err)
+			log.Fatalf("failed to get-estimated-cost-by-org: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "usage_metering")

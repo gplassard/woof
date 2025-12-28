@@ -15,7 +15,7 @@ import (
 )
 
 var CreateAzureScanOptionsCmd = &cobra.Command{
-	Use:   "create_azure_scan_options",
+	Use:   "create-azure-scan-options",
 	Short: "Create Azure scan options",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateAzureScanOptionsCmd = &cobra.Command{
 		api := datadogV2.NewAgentlessScanningApi(client.NewAPIClient())
 		res, _, err := api.CreateAzureScanOptions(client.NewContext(apiKey, appKey, site), datadogV2.AzureScanOptions{})
 		if err != nil {
-			log.Fatalf("failed to create_azure_scan_options: %v", err)
+			log.Fatalf("failed to create-azure-scan-options: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "azure_scan_options")

@@ -15,7 +15,7 @@ import (
 )
 
 var GetUsageObservabilityPipelinesCmd = &cobra.Command{
-	Use:   "get_usage_observability_pipelines [start_hr]",
+	Use:   "get-usage-observability-pipelines [start_hr]",
 	Short: "Get hourly usage for observability pipelines",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetUsageObservabilityPipelinesCmd = &cobra.Command{
 		api := datadogV2.NewUsageMeteringApi(client.NewAPIClient())
 		res, _, err := api.GetUsageObservabilityPipelines(client.NewContext(apiKey, appKey, site), func() time.Time { t, _ := time.Parse(time.RFC3339, args[0]); return t }())
 		if err != nil {
-			log.Fatalf("failed to get_usage_observability_pipelines: %v", err)
+			log.Fatalf("failed to get-usage-observability-pipelines: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "usage_metering")

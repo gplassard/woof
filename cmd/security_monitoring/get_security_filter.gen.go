@@ -15,7 +15,7 @@ import (
 )
 
 var GetSecurityFilterCmd = &cobra.Command{
-	Use:   "get_security_filter [security_filter_id]",
+	Use:   "get-security-filter [security_filter_id]",
 	Short: "Get a security filter",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetSecurityFilterCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.GetSecurityFilter(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_security_filter: %v", err)
+			log.Fatalf("failed to get-security-filter: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "security_filters")

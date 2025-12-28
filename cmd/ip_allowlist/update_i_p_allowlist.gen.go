@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateIPAllowlistCmd = &cobra.Command{
-	Use:   "update_i_p_allowlist",
+	Use:   "update-i-p-allowlist",
 	Short: "Update IP Allowlist",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateIPAllowlistCmd = &cobra.Command{
 		api := datadogV2.NewIPAllowlistApi(client.NewAPIClient())
 		res, _, err := api.UpdateIPAllowlist(client.NewContext(apiKey, appKey, site), datadogV2.IPAllowlistUpdateRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_i_p_allowlist: %v", err)
+			log.Fatalf("failed to update-i-p-allowlist: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "ip_allowlist")

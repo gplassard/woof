@@ -15,7 +15,7 @@ import (
 )
 
 var ListCustomAllocationRulesCmd = &cobra.Command{
-	Use:   "list_custom_allocation_rules",
+	Use:   "list-custom-allocation-rules",
 	Short: "List custom allocation rules",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListCustomAllocationRulesCmd = &cobra.Command{
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
 		res, _, err := api.ListCustomAllocationRules(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_custom_allocation_rules: %v", err)
+			log.Fatalf("failed to list-custom-allocation-rules: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "arbitrary_rule")

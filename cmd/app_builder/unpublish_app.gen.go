@@ -15,7 +15,7 @@ import (
 )
 
 var UnpublishAppCmd = &cobra.Command{
-	Use:   "unpublish_app [app_id]",
+	Use:   "unpublish-app [app_id]",
 	Short: "Unpublish App",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UnpublishAppCmd = &cobra.Command{
 		api := datadogV2.NewAppBuilderApi(client.NewAPIClient())
 		res, _, err := api.UnpublishApp(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
 		if err != nil {
-			log.Fatalf("failed to unpublish_app: %v", err)
+			log.Fatalf("failed to unpublish-app: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "deployment")

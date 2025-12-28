@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateReferenceTableCmd = &cobra.Command{
-	Use:   "update_reference_table [id]",
+	Use:   "update-reference-table [id]",
 	Short: "Update reference table",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateReferenceTableCmd = &cobra.Command{
 		api := datadogV2.NewReferenceTablesApi(client.NewAPIClient())
 		_, err := api.UpdateReferenceTable(client.NewContext(apiKey, appKey, site), args[0], datadogV2.PatchTableRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_reference_table: %v", err)
+			log.Fatalf("failed to update-reference-table: %v", err)
 		}
 
 		

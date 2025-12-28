@@ -15,7 +15,7 @@ import (
 )
 
 var SendInvitationsCmd = &cobra.Command{
-	Use:   "send_invitations",
+	Use:   "send-invitations",
 	Short: "Send invitation emails",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var SendInvitationsCmd = &cobra.Command{
 		api := datadogV2.NewUsersApi(client.NewAPIClient())
 		res, _, err := api.SendInvitations(client.NewContext(apiKey, appKey, site), datadogV2.UserInvitationsRequest{})
 		if err != nil {
-			log.Fatalf("failed to send_invitations: %v", err)
+			log.Fatalf("failed to send-invitations: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "user_invitations")

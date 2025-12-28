@@ -15,7 +15,7 @@ import (
 )
 
 var CreateFastlyAccountCmd = &cobra.Command{
-	Use:   "create_fastly_account",
+	Use:   "create-fastly-account",
 	Short: "Add Fastly account",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateFastlyAccountCmd = &cobra.Command{
 		api := datadogV2.NewFastlyIntegrationApi(client.NewAPIClient())
 		res, _, err := api.CreateFastlyAccount(client.NewContext(apiKey, appKey, site), datadogV2.FastlyAccountCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_fastly_account: %v", err)
+			log.Fatalf("failed to create-fastly-account: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "fastly-accounts")

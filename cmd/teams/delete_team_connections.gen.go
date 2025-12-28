@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteTeamConnectionsCmd = &cobra.Command{
-	Use:   "delete_team_connections",
+	Use:   "delete-team-connections",
 	Short: "Delete team connections",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteTeamConnectionsCmd = &cobra.Command{
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
 		_, err := api.DeleteTeamConnections(client.NewContext(apiKey, appKey, site), datadogV2.TeamConnectionDeleteRequest{})
 		if err != nil {
-			log.Fatalf("failed to delete_team_connections: %v", err)
+			log.Fatalf("failed to delete-team-connections: %v", err)
 		}
 
 		

@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateDatasetCmd = &cobra.Command{
-	Use:   "update_dataset [dataset_id]",
+	Use:   "update-dataset [dataset_id]",
 	Short: "Edit a dataset",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateDatasetCmd = &cobra.Command{
 		api := datadogV2.NewDatasetsApi(client.NewAPIClient())
 		res, _, err := api.UpdateDataset(client.NewContext(apiKey, appKey, site), args[0], datadogV2.DatasetUpdateRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_dataset: %v", err)
+			log.Fatalf("failed to update-dataset: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "dataset")

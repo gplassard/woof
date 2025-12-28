@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteCustomAllocationRuleCmd = &cobra.Command{
-	Use:   "delete_custom_allocation_rule [rule_id]",
+	Use:   "delete-custom-allocation-rule [rule_id]",
 	Short: "Delete custom allocation rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteCustomAllocationRuleCmd = &cobra.Command{
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
 		_, err := api.DeleteCustomAllocationRule(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }())
 		if err != nil {
-			log.Fatalf("failed to delete_custom_allocation_rule: %v", err)
+			log.Fatalf("failed to delete-custom-allocation-rule: %v", err)
 		}
 
 		

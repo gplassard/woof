@@ -15,7 +15,7 @@ import (
 )
 
 var ListConnectionsCmd = &cobra.Command{
-	Use:   "list_connections [entity]",
+	Use:   "list-connections [entity]",
 	Short: "List connections",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListConnectionsCmd = &cobra.Command{
 		api := datadogV2.NewRumAudienceManagementApi(client.NewAPIClient())
 		res, _, err := api.ListConnections(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to list_connections: %v", err)
+			log.Fatalf("failed to list-connections: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "list_connections_response")

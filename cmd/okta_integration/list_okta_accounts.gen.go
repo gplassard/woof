@@ -15,7 +15,7 @@ import (
 )
 
 var ListOktaAccountsCmd = &cobra.Command{
-	Use:   "list_okta_accounts",
+	Use:   "list-okta-accounts",
 	Short: "List Okta accounts",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListOktaAccountsCmd = &cobra.Command{
 		api := datadogV2.NewOktaIntegrationApi(client.NewAPIClient())
 		res, _, err := api.ListOktaAccounts(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_okta_accounts: %v", err)
+			log.Fatalf("failed to list-okta-accounts: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "okta-accounts")

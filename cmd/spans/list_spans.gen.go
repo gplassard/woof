@@ -15,7 +15,7 @@ import (
 )
 
 var ListSpansCmd = &cobra.Command{
-	Use:   "list_spans",
+	Use:   "list-spans",
 	Short: "Search spans",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListSpansCmd = &cobra.Command{
 		api := datadogV2.NewSpansApi(client.NewAPIClient())
 		res, _, err := api.ListSpans(client.NewContext(apiKey, appKey, site), datadogV2.SpansListRequest{})
 		if err != nil {
-			log.Fatalf("failed to list_spans: %v", err)
+			log.Fatalf("failed to list-spans: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "spans")

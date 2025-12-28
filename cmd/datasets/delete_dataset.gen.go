@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteDatasetCmd = &cobra.Command{
-	Use:   "delete_dataset [dataset_id]",
+	Use:   "delete-dataset [dataset_id]",
 	Short: "Delete a dataset",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteDatasetCmd = &cobra.Command{
 		api := datadogV2.NewDatasetsApi(client.NewAPIClient())
 		_, err := api.DeleteDataset(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_dataset: %v", err)
+			log.Fatalf("failed to delete-dataset: %v", err)
 		}
 
 		

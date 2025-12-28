@@ -15,7 +15,7 @@ import (
 )
 
 var CreateGcpScanOptionsCmd = &cobra.Command{
-	Use:   "create_gcp_scan_options",
+	Use:   "create-gcp-scan-options",
 	Short: "Create GCP scan options",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateGcpScanOptionsCmd = &cobra.Command{
 		api := datadogV2.NewAgentlessScanningApi(client.NewAPIClient())
 		res, _, err := api.CreateGcpScanOptions(client.NewContext(apiKey, appKey, site), datadogV2.GcpScanOptions{})
 		if err != nil {
-			log.Fatalf("failed to create_gcp_scan_options: %v", err)
+			log.Fatalf("failed to create-gcp-scan-options: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "gcp_scan_options")

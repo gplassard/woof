@@ -15,7 +15,7 @@ import (
 )
 
 var CreateGCPSTSAccountCmd = &cobra.Command{
-	Use:   "create_g_c_p_s_t_s_account",
+	Use:   "create-g-c-p-s-t-s-account",
 	Short: "Create a new entry for your service account",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateGCPSTSAccountCmd = &cobra.Command{
 		api := datadogV2.NewGCPIntegrationApi(client.NewAPIClient())
 		res, _, err := api.CreateGCPSTSAccount(client.NewContext(apiKey, appKey, site), datadogV2.GCPSTSServiceAccountCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_g_c_p_s_t_s_account: %v", err)
+			log.Fatalf("failed to create-g-c-p-s-t-s-account: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "gcp_service_account")

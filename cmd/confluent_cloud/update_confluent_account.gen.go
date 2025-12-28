@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateConfluentAccountCmd = &cobra.Command{
-	Use:   "update_confluent_account [account_id]",
+	Use:   "update-confluent-account [account_id]",
 	Short: "Update Confluent account",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateConfluentAccountCmd = &cobra.Command{
 		api := datadogV2.NewConfluentCloudApi(client.NewAPIClient())
 		res, _, err := api.UpdateConfluentAccount(client.NewContext(apiKey, appKey, site), args[0], datadogV2.ConfluentAccountUpdateRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_confluent_account: %v", err)
+			log.Fatalf("failed to update-confluent-account: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "confluent-cloud-accounts")

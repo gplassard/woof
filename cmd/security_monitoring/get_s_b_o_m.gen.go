@@ -15,7 +15,7 @@ import (
 )
 
 var GetSBOMCmd = &cobra.Command{
-	Use:   "get_s_b_o_m [asset_type] [filter[asset_name]]",
+	Use:   "get-s-b-o-m [asset_type] [filter[asset_name]]",
 	Short: "Get SBOM",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetSBOMCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.GetSBOM(client.NewContext(apiKey, appKey, site), datadogV2.AssetType(args[0]), args[1])
 		if err != nil {
-			log.Fatalf("failed to get_s_b_o_m: %v", err)
+			log.Fatalf("failed to get-s-b-o-m: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "sboms")

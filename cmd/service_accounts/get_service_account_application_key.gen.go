@@ -15,7 +15,7 @@ import (
 )
 
 var GetServiceAccountApplicationKeyCmd = &cobra.Command{
-	Use:   "get_service_account_application_key [service_account_id] [app_key_id]",
+	Use:   "get-service-account-application-key [service_account_id] [app_key_id]",
 	Short: "Get one application key for this service account",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetServiceAccountApplicationKeyCmd = &cobra.Command{
 		api := datadogV2.NewServiceAccountsApi(client.NewAPIClient())
 		res, _, err := api.GetServiceAccountApplicationKey(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		if err != nil {
-			log.Fatalf("failed to get_service_account_application_key: %v", err)
+			log.Fatalf("failed to get-service-account-application-key: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "application_keys")

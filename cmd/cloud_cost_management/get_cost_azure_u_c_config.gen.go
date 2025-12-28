@@ -15,7 +15,7 @@ import (
 )
 
 var GetCostAzureUCConfigCmd = &cobra.Command{
-	Use:   "get_cost_azure_u_c_config [cloud_account_id]",
+	Use:   "get-cost-azure-u-c-config [cloud_account_id]",
 	Short: "Get cost Azure UC config",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetCostAzureUCConfigCmd = &cobra.Command{
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
 		res, _, err := api.GetCostAzureUCConfig(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }())
 		if err != nil {
-			log.Fatalf("failed to get_cost_azure_u_c_config: %v", err)
+			log.Fatalf("failed to get-cost-azure-u-c-config: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "azure_uc_configs")

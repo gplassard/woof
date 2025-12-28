@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteFleetScheduleCmd = &cobra.Command{
-	Use:   "delete_fleet_schedule [id]",
+	Use:   "delete-fleet-schedule [id]",
 	Short: "Delete a schedule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteFleetScheduleCmd = &cobra.Command{
 		api := datadogV2.NewFleetAutomationApi(client.NewAPIClient())
 		_, err := api.DeleteFleetSchedule(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_fleet_schedule: %v", err)
+			log.Fatalf("failed to delete-fleet-schedule: %v", err)
 		}
 
 		

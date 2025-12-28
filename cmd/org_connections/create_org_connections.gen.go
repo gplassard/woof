@@ -15,7 +15,7 @@ import (
 )
 
 var CreateOrgConnectionsCmd = &cobra.Command{
-	Use:   "create_org_connections",
+	Use:   "create-org-connections",
 	Short: "Create Org Connection",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateOrgConnectionsCmd = &cobra.Command{
 		api := datadogV2.NewOrgConnectionsApi(client.NewAPIClient())
 		res, _, err := api.CreateOrgConnections(client.NewContext(apiKey, appKey, site), datadogV2.OrgConnectionCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_org_connections: %v", err)
+			log.Fatalf("failed to create-org-connections: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "org_connection")

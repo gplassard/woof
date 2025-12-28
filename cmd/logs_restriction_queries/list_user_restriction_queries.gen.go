@@ -15,7 +15,7 @@ import (
 )
 
 var ListUserRestrictionQueriesCmd = &cobra.Command{
-	Use:   "list_user_restriction_queries [user_id]",
+	Use:   "list-user-restriction-queries [user_id]",
 	Short: "Get all restriction queries for a given user",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListUserRestrictionQueriesCmd = &cobra.Command{
 		api := datadogV2.NewLogsRestrictionQueriesApi(client.NewAPIClient())
 		res, _, err := api.ListUserRestrictionQueries(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to list_user_restriction_queries: %v", err)
+			log.Fatalf("failed to list-user-restriction-queries: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "logs_restriction_queries")

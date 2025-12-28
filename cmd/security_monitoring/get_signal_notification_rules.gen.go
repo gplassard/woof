@@ -15,7 +15,7 @@ import (
 )
 
 var GetSignalNotificationRulesCmd = &cobra.Command{
-	Use:   "get_signal_notification_rules",
+	Use:   "get-signal-notification-rules",
 	Short: "Get the list of signal-based notification rules",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetSignalNotificationRulesCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.GetSignalNotificationRules(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to get_signal_notification_rules: %v", err)
+			log.Fatalf("failed to get-signal-notification-rules: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "security_monitoring")

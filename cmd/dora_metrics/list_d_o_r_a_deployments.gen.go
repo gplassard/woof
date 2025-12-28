@@ -15,7 +15,7 @@ import (
 )
 
 var ListDORADeploymentsCmd = &cobra.Command{
-	Use:   "list_d_o_r_a_deployments",
+	Use:   "list-d-o-r-a-deployments",
 	Short: "Get a list of deployment events",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListDORADeploymentsCmd = &cobra.Command{
 		api := datadogV2.NewDORAMetricsApi(client.NewAPIClient())
 		res, _, err := api.ListDORADeployments(client.NewContext(apiKey, appKey, site), datadogV2.DORAListDeploymentsRequest{})
 		if err != nil {
-			log.Fatalf("failed to list_d_o_r_a_deployments: %v", err)
+			log.Fatalf("failed to list-d-o-r-a-deployments: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "dora_metrics")

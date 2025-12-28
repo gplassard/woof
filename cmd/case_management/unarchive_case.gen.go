@@ -15,7 +15,7 @@ import (
 )
 
 var UnarchiveCaseCmd = &cobra.Command{
-	Use:   "unarchive_case [case_id]",
+	Use:   "unarchive-case [case_id]",
 	Short: "Unarchive case",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UnarchiveCaseCmd = &cobra.Command{
 		api := datadogV2.NewCaseManagementApi(client.NewAPIClient())
 		res, _, err := api.UnarchiveCase(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CaseEmptyRequest{})
 		if err != nil {
-			log.Fatalf("failed to unarchive_case: %v", err)
+			log.Fatalf("failed to unarchive-case: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "case")

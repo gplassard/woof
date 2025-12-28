@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteBulkTagsMetricsConfigurationCmd = &cobra.Command{
-	Use:   "delete_bulk_tags_metrics_configuration",
+	Use:   "delete-bulk-tags-metrics-configuration",
 	Short: "Delete tags for multiple metrics",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteBulkTagsMetricsConfigurationCmd = &cobra.Command{
 		api := datadogV2.NewMetricsApi(client.NewAPIClient())
 		res, _, err := api.DeleteBulkTagsMetricsConfiguration(client.NewContext(apiKey, appKey, site), datadogV2.MetricBulkTagConfigDeleteRequest{})
 		if err != nil {
-			log.Fatalf("failed to delete_bulk_tags_metrics_configuration: %v", err)
+			log.Fatalf("failed to delete-bulk-tags-metrics-configuration: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "metric_bulk_configure_tags")

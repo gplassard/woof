@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteIncidentCmd = &cobra.Command{
-	Use:   "delete_incident [incident_id]",
+	Use:   "delete-incident [incident_id]",
 	Short: "Delete an existing incident",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteIncidentCmd = &cobra.Command{
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
 		_, err := api.DeleteIncident(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_incident: %v", err)
+			log.Fatalf("failed to delete-incident: %v", err)
 		}
 
 		

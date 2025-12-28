@@ -15,7 +15,7 @@ import (
 )
 
 var ListApplicationKeysCmd = &cobra.Command{
-	Use:   "list_application_keys",
+	Use:   "list-application-keys",
 	Short: "Get all application keys",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListApplicationKeysCmd = &cobra.Command{
 		api := datadogV2.NewKeyManagementApi(client.NewAPIClient())
 		res, _, err := api.ListApplicationKeys(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_application_keys: %v", err)
+			log.Fatalf("failed to list-application-keys: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "application_keys")

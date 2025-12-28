@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteApmRetentionFilterCmd = &cobra.Command{
-	Use:   "delete_apm_retention_filter [filter_id]",
+	Use:   "delete-apm-retention-filter [filter_id]",
 	Short: "Delete a retention filter",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteApmRetentionFilterCmd = &cobra.Command{
 		api := datadogV2.NewAPMRetentionFiltersApi(client.NewAPIClient())
 		_, err := api.DeleteApmRetentionFilter(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_apm_retention_filter: %v", err)
+			log.Fatalf("failed to delete-apm-retention-filter: %v", err)
 		}
 
 		

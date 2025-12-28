@@ -15,7 +15,7 @@ import (
 )
 
 var CreateFleetScheduleCmd = &cobra.Command{
-	Use:   "create_fleet_schedule",
+	Use:   "create-fleet-schedule",
 	Short: "Create a schedule",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateFleetScheduleCmd = &cobra.Command{
 		api := datadogV2.NewFleetAutomationApi(client.NewAPIClient())
 		res, _, err := api.CreateFleetSchedule(client.NewContext(apiKey, appKey, site), datadogV2.FleetScheduleCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_fleet_schedule: %v", err)
+			log.Fatalf("failed to create-fleet-schedule: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "schedule")

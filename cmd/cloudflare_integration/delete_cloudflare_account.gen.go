@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteCloudflareAccountCmd = &cobra.Command{
-	Use:   "delete_cloudflare_account [account_id]",
+	Use:   "delete-cloudflare-account [account_id]",
 	Short: "Delete Cloudflare account",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteCloudflareAccountCmd = &cobra.Command{
 		api := datadogV2.NewCloudflareIntegrationApi(client.NewAPIClient())
 		_, err := api.DeleteCloudflareAccount(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_cloudflare_account: %v", err)
+			log.Fatalf("failed to delete-cloudflare-account: %v", err)
 		}
 
 		

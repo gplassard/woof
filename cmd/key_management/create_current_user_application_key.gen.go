@@ -15,7 +15,7 @@ import (
 )
 
 var CreateCurrentUserApplicationKeyCmd = &cobra.Command{
-	Use:   "create_current_user_application_key",
+	Use:   "create-current-user-application-key",
 	Short: "Create an application key for current user",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateCurrentUserApplicationKeyCmd = &cobra.Command{
 		api := datadogV2.NewKeyManagementApi(client.NewAPIClient())
 		res, _, err := api.CreateCurrentUserApplicationKey(client.NewContext(apiKey, appKey, site), datadogV2.ApplicationKeyCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_current_user_application_key: %v", err)
+			log.Fatalf("failed to create-current-user-application-key: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "application_keys")

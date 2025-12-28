@@ -15,7 +15,7 @@ import (
 )
 
 var AggregateSpansCmd = &cobra.Command{
-	Use:   "aggregate_spans",
+	Use:   "aggregate-spans",
 	Short: "Aggregate spans",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var AggregateSpansCmd = &cobra.Command{
 		api := datadogV2.NewSpansApi(client.NewAPIClient())
 		res, _, err := api.AggregateSpans(client.NewContext(apiKey, appKey, site), datadogV2.SpansAggregateRequest{})
 		if err != nil {
-			log.Fatalf("failed to aggregate_spans: %v", err)
+			log.Fatalf("failed to aggregate-spans: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "bucket")

@@ -15,7 +15,7 @@ import (
 )
 
 var ListTeamHierarchyLinksCmd = &cobra.Command{
-	Use:   "list_team_hierarchy_links",
+	Use:   "list-team-hierarchy-links",
 	Short: "Get team hierarchy links",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListTeamHierarchyLinksCmd = &cobra.Command{
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
 		res, _, err := api.ListTeamHierarchyLinks(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_team_hierarchy_links: %v", err)
+			log.Fatalf("failed to list-team-hierarchy-links: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "team_hierarchy_links")

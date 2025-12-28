@@ -15,7 +15,7 @@ import (
 )
 
 var GetDORADeploymentCmd = &cobra.Command{
-	Use:   "get_d_o_r_a_deployment [deployment_id]",
+	Use:   "get-d-o-r-a-deployment [deployment_id]",
 	Short: "Get a deployment event",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetDORADeploymentCmd = &cobra.Command{
 		api := datadogV2.NewDORAMetricsApi(client.NewAPIClient())
 		res, _, err := api.GetDORADeployment(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_d_o_r_a_deployment: %v", err)
+			log.Fatalf("failed to get-d-o-r-a-deployment: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "dora_metrics")

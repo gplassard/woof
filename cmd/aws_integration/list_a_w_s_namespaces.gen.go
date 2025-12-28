@@ -15,7 +15,7 @@ import (
 )
 
 var ListAWSNamespacesCmd = &cobra.Command{
-	Use:   "list_a_w_s_namespaces",
+	Use:   "list-a-w-s-namespaces",
 	Short: "List available namespaces",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListAWSNamespacesCmd = &cobra.Command{
 		api := datadogV2.NewAWSIntegrationApi(client.NewAPIClient())
 		res, _, err := api.ListAWSNamespaces(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_a_w_s_namespaces: %v", err)
+			log.Fatalf("failed to list-a-w-s-namespaces: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "namespaces")

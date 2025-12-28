@@ -15,7 +15,7 @@ import (
 )
 
 var GetMonitorNotificationRulesCmd = &cobra.Command{
-	Use:   "get_monitor_notification_rules",
+	Use:   "get-monitor-notification-rules",
 	Short: "Get all monitor notification rules",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetMonitorNotificationRulesCmd = &cobra.Command{
 		api := datadogV2.NewMonitorsApi(client.NewAPIClient())
 		res, _, err := api.GetMonitorNotificationRules(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to get_monitor_notification_rules: %v", err)
+			log.Fatalf("failed to get-monitor-notification-rules: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "monitor-notification-rule")

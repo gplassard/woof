@@ -15,7 +15,7 @@ import (
 )
 
 var SearchAuditLogsCmd = &cobra.Command{
-	Use:   "search_audit_logs",
+	Use:   "search-audit-logs",
 	Short: "Search Audit Logs events",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var SearchAuditLogsCmd = &cobra.Command{
 		api := datadogV2.NewAuditApi(client.NewAPIClient())
 		res, _, err := api.SearchAuditLogs(client.NewContext(apiKey, appKey, site), *datadogV2.NewSearchAuditLogsOptionalParameters())
 		if err != nil {
-			log.Fatalf("failed to search_audit_logs: %v", err)
+			log.Fatalf("failed to search-audit-logs: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "audit")

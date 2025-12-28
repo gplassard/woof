@@ -15,7 +15,7 @@ import (
 )
 
 var ListCatalogEntityCmd = &cobra.Command{
-	Use:   "list_catalog_entity",
+	Use:   "list-catalog-entity",
 	Short: "Get a list of entities",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListCatalogEntityCmd = &cobra.Command{
 		api := datadogV2.NewSoftwareCatalogApi(client.NewAPIClient())
 		res, _, err := api.ListCatalogEntity(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_catalog_entity: %v", err)
+			log.Fatalf("failed to list-catalog-entity: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "software_catalog")

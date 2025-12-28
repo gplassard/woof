@@ -15,7 +15,7 @@ import (
 )
 
 var ListMonitorDowntimesCmd = &cobra.Command{
-	Use:   "list_monitor_downtimes [monitor_id]",
+	Use:   "list-monitor-downtimes [monitor_id]",
 	Short: "Get active downtimes for a monitor",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListMonitorDowntimesCmd = &cobra.Command{
 		api := datadogV2.NewDowntimesApi(client.NewAPIClient())
 		res, _, err := api.ListMonitorDowntimes(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }())
 		if err != nil {
-			log.Fatalf("failed to list_monitor_downtimes: %v", err)
+			log.Fatalf("failed to list-monitor-downtimes: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "downtime_match")

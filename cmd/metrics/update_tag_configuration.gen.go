@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateTagConfigurationCmd = &cobra.Command{
-	Use:   "update_tag_configuration [metric_name]",
+	Use:   "update-tag-configuration [metric_name]",
 	Short: "Update a tag configuration",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateTagConfigurationCmd = &cobra.Command{
 		api := datadogV2.NewMetricsApi(client.NewAPIClient())
 		res, _, err := api.UpdateTagConfiguration(client.NewContext(apiKey, appKey, site), args[0], datadogV2.MetricTagConfigurationUpdateRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_tag_configuration: %v", err)
+			log.Fatalf("failed to update-tag-configuration: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "manage_tags")

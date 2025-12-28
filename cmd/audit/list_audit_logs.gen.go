@@ -15,7 +15,7 @@ import (
 )
 
 var ListAuditLogsCmd = &cobra.Command{
-	Use:   "list_audit_logs",
+	Use:   "list-audit-logs",
 	Short: "Get a list of Audit Logs events",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListAuditLogsCmd = &cobra.Command{
 		api := datadogV2.NewAuditApi(client.NewAPIClient())
 		res, _, err := api.ListAuditLogs(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_audit_logs: %v", err)
+			log.Fatalf("failed to list-audit-logs: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "audit")

@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteLogsMetricCmd = &cobra.Command{
-	Use:   "delete_logs_metric [metric_id]",
+	Use:   "delete-logs-metric [metric_id]",
 	Short: "Delete a log-based metric",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteLogsMetricCmd = &cobra.Command{
 		api := datadogV2.NewLogsMetricsApi(client.NewAPIClient())
 		_, err := api.DeleteLogsMetric(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_logs_metric: %v", err)
+			log.Fatalf("failed to delete-logs-metric: %v", err)
 		}
 
 		

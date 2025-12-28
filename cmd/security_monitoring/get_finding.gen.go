@@ -15,7 +15,7 @@ import (
 )
 
 var GetFindingCmd = &cobra.Command{
-	Use:   "get_finding [finding_id]",
+	Use:   "get-finding [finding_id]",
 	Short: "Get a finding",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetFindingCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.GetFinding(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_finding: %v", err)
+			log.Fatalf("failed to get-finding: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "detailed_finding")

@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateAttributesCmd = &cobra.Command{
-	Use:   "update_attributes [case_id]",
+	Use:   "update-attributes [case_id]",
 	Short: "Update case attributes",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateAttributesCmd = &cobra.Command{
 		api := datadogV2.NewCaseManagementApi(client.NewAPIClient())
 		res, _, err := api.UpdateAttributes(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CaseUpdateAttributesRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_attributes: %v", err)
+			log.Fatalf("failed to update-attributes: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "case")

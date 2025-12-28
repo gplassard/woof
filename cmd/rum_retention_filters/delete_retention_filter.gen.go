@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteRetentionFilterCmd = &cobra.Command{
-	Use:   "delete_retention_filter [app_id] [rf_id]",
+	Use:   "delete-retention-filter [app_id] [rf_id]",
 	Short: "Delete a RUM retention filter",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteRetentionFilterCmd = &cobra.Command{
 		api := datadogV2.NewRumRetentionFiltersApi(client.NewAPIClient())
 		_, err := api.DeleteRetentionFilter(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		if err != nil {
-			log.Fatalf("failed to delete_retention_filter: %v", err)
+			log.Fatalf("failed to delete-retention-filter: %v", err)
 		}
 
 		

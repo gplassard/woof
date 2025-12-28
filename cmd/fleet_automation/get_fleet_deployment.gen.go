@@ -15,7 +15,7 @@ import (
 )
 
 var GetFleetDeploymentCmd = &cobra.Command{
-	Use:   "get_fleet_deployment [deployment_id]",
+	Use:   "get-fleet-deployment [deployment_id]",
 	Short: "Get a configuration deployment by ID",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetFleetDeploymentCmd = &cobra.Command{
 		api := datadogV2.NewFleetAutomationApi(client.NewAPIClient())
 		res, _, err := api.GetFleetDeployment(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_fleet_deployment: %v", err)
+			log.Fatalf("failed to get-fleet-deployment: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "deployment")

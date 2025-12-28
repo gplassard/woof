@@ -15,7 +15,7 @@ import (
 )
 
 var CreateSpansMetricCmd = &cobra.Command{
-	Use:   "create_spans_metric",
+	Use:   "create-spans-metric",
 	Short: "Create a span-based metric",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateSpansMetricCmd = &cobra.Command{
 		api := datadogV2.NewSpansMetricsApi(client.NewAPIClient())
 		res, _, err := api.CreateSpansMetric(client.NewContext(apiKey, appKey, site), datadogV2.SpansMetricCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_spans_metric: %v", err)
+			log.Fatalf("failed to create-spans-metric: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "spans_metrics")

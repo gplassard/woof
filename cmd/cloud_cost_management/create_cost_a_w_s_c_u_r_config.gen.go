@@ -15,7 +15,7 @@ import (
 )
 
 var CreateCostAWSCURConfigCmd = &cobra.Command{
-	Use:   "create_cost_a_w_s_c_u_r_config",
+	Use:   "create-cost-a-w-s-c-u-r-config",
 	Short: "Create Cloud Cost Management AWS CUR config",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateCostAWSCURConfigCmd = &cobra.Command{
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
 		res, _, err := api.CreateCostAWSCURConfig(client.NewContext(apiKey, appKey, site), datadogV2.AwsCURConfigPostRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_cost_a_w_s_c_u_r_config: %v", err)
+			log.Fatalf("failed to create-cost-a-w-s-c-u-r-config: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "aws_cur_config")

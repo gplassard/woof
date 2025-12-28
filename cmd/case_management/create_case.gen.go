@@ -15,7 +15,7 @@ import (
 )
 
 var CreateCaseCmd = &cobra.Command{
-	Use:   "create_case",
+	Use:   "create-case",
 	Short: "Create a case",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateCaseCmd = &cobra.Command{
 		api := datadogV2.NewCaseManagementApi(client.NewAPIClient())
 		res, _, err := api.CreateCase(client.NewContext(apiKey, appKey, site), datadogV2.CaseCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_case: %v", err)
+			log.Fatalf("failed to create-case: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "case")

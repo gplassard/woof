@@ -15,7 +15,7 @@ import (
 )
 
 var GetDeviceCmd = &cobra.Command{
-	Use:   "get_device [device_id]",
+	Use:   "get-device [device_id]",
 	Short: "Get the device details",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetDeviceCmd = &cobra.Command{
 		api := datadogV2.NewNetworkDeviceMonitoringApi(client.NewAPIClient())
 		res, _, err := api.GetDevice(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_device: %v", err)
+			log.Fatalf("failed to get-device: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "network_device_monitoring")

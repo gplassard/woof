@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateAppCmd = &cobra.Command{
-	Use:   "update_app [app_id]",
+	Use:   "update-app [app_id]",
 	Short: "Update App",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateAppCmd = &cobra.Command{
 		api := datadogV2.NewAppBuilderApi(client.NewAPIClient())
 		res, _, err := api.UpdateApp(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]), datadogV2.UpdateAppRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_app: %v", err)
+			log.Fatalf("failed to update-app: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "appDefinitions")

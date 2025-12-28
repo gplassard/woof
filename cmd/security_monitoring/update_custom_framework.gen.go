@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateCustomFrameworkCmd = &cobra.Command{
-	Use:   "update_custom_framework [handle] [version]",
+	Use:   "update-custom-framework [handle] [version]",
 	Short: "Update a custom framework",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateCustomFrameworkCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.UpdateCustomFramework(client.NewContext(apiKey, appKey, site), args[0], args[1], datadogV2.UpdateCustomFrameworkRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_custom_framework: %v", err)
+			log.Fatalf("failed to update-custom-framework: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "custom_framework")

@@ -15,7 +15,7 @@ import (
 )
 
 var GetAggregatedConnectionsCmd = &cobra.Command{
-	Use:   "get_aggregated_connections",
+	Use:   "get-aggregated-connections",
 	Short: "Get all aggregated connections",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetAggregatedConnectionsCmd = &cobra.Command{
 		api := datadogV2.NewCloudNetworkMonitoringApi(client.NewAPIClient())
 		res, _, err := api.GetAggregatedConnections(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to get_aggregated_connections: %v", err)
+			log.Fatalf("failed to get-aggregated-connections: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "aggregated_connection")

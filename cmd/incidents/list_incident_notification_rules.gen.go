@@ -15,7 +15,7 @@ import (
 )
 
 var ListIncidentNotificationRulesCmd = &cobra.Command{
-	Use:   "list_incident_notification_rules",
+	Use:   "list-incident-notification-rules",
 	Short: "List incident notification rules",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListIncidentNotificationRulesCmd = &cobra.Command{
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
 		res, _, err := api.ListIncidentNotificationRules(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_incident_notification_rules: %v", err)
+			log.Fatalf("failed to list-incident-notification-rules: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "incident_notification_rules")

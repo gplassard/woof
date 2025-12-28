@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteDORAFailureCmd = &cobra.Command{
-	Use:   "delete_d_o_r_a_failure [failure_id]",
+	Use:   "delete-d-o-r-a-failure [failure_id]",
 	Short: "Delete a failure event",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteDORAFailureCmd = &cobra.Command{
 		api := datadogV2.NewDORAMetricsApi(client.NewAPIClient())
 		_, err := api.DeleteDORAFailure(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_d_o_r_a_failure: %v", err)
+			log.Fatalf("failed to delete-d-o-r-a-failure: %v", err)
 		}
 
 		

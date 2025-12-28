@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteBudgetCmd = &cobra.Command{
-	Use:   "delete_budget [budget_id]",
+	Use:   "delete-budget [budget_id]",
 	Short: "Delete a budget",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteBudgetCmd = &cobra.Command{
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
 		_, err := api.DeleteBudget(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_budget: %v", err)
+			log.Fatalf("failed to delete-budget: %v", err)
 		}
 
 		

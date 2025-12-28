@@ -15,7 +15,7 @@ import (
 )
 
 var CreateLogsArchiveCmd = &cobra.Command{
-	Use:   "create_logs_archive",
+	Use:   "create-logs-archive",
 	Short: "Create an archive",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateLogsArchiveCmd = &cobra.Command{
 		api := datadogV2.NewLogsArchivesApi(client.NewAPIClient())
 		res, _, err := api.CreateLogsArchive(client.NewContext(apiKey, appKey, site), datadogV2.LogsArchiveCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_logs_archive: %v", err)
+			log.Fatalf("failed to create-logs-archive: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "logs_archives")

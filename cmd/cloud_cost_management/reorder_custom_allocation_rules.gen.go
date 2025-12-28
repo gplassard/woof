@@ -15,7 +15,7 @@ import (
 )
 
 var ReorderCustomAllocationRulesCmd = &cobra.Command{
-	Use:   "reorder_custom_allocation_rules",
+	Use:   "reorder-custom-allocation-rules",
 	Short: "Reorder custom allocation rules",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ReorderCustomAllocationRulesCmd = &cobra.Command{
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
 		_, err := api.ReorderCustomAllocationRules(client.NewContext(apiKey, appKey, site), datadogV2.ReorderRuleResourceArray{})
 		if err != nil {
-			log.Fatalf("failed to reorder_custom_allocation_rules: %v", err)
+			log.Fatalf("failed to reorder-custom-allocation-rules: %v", err)
 		}
 
 		

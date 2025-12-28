@@ -15,7 +15,7 @@ import (
 )
 
 var ListCloudWorkloadSecurityAgentRulesCmd = &cobra.Command{
-	Use:   "list_cloud_workload_security_agent_rules",
+	Use:   "list-cloud-workload-security-agent-rules",
 	Short: "Get all Workload Protection agent rules (US1-FED)",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListCloudWorkloadSecurityAgentRulesCmd = &cobra.Command{
 		api := datadogV2.NewCSMThreatsApi(client.NewAPIClient())
 		res, _, err := api.ListCloudWorkloadSecurityAgentRules(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_cloud_workload_security_agent_rules: %v", err)
+			log.Fatalf("failed to list-cloud-workload-security-agent-rules: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "agent_rule")

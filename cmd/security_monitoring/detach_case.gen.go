@@ -15,7 +15,7 @@ import (
 )
 
 var DetachCaseCmd = &cobra.Command{
-	Use:   "detach_case",
+	Use:   "detach-case",
 	Short: "Detach security findings from their case",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DetachCaseCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		_, err := api.DetachCase(client.NewContext(apiKey, appKey, site), datadogV2.DetachCaseRequest{})
 		if err != nil {
-			log.Fatalf("failed to detach_case: %v", err)
+			log.Fatalf("failed to detach-case: %v", err)
 		}
 
 		

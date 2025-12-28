@@ -15,7 +15,7 @@ import (
 )
 
 var ListMetricAssetsCmd = &cobra.Command{
-	Use:   "list_metric_assets [metric_name]",
+	Use:   "list-metric-assets [metric_name]",
 	Short: "Related Assets to a Metric",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListMetricAssetsCmd = &cobra.Command{
 		api := datadogV2.NewMetricsApi(client.NewAPIClient())
 		res, _, err := api.ListMetricAssets(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to list_metric_assets: %v", err)
+			log.Fatalf("failed to list-metric-assets: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "metrics")

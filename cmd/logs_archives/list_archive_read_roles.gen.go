@@ -15,7 +15,7 @@ import (
 )
 
 var ListArchiveReadRolesCmd = &cobra.Command{
-	Use:   "list_archive_read_roles [archive_id]",
+	Use:   "list-archive-read-roles [archive_id]",
 	Short: "List read roles for an archive",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListArchiveReadRolesCmd = &cobra.Command{
 		api := datadogV2.NewLogsArchivesApi(client.NewAPIClient())
 		res, _, err := api.ListArchiveReadRoles(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to list_archive_read_roles: %v", err)
+			log.Fatalf("failed to list-archive-read-roles: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "roles")

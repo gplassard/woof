@@ -15,7 +15,7 @@ import (
 )
 
 var CreateJiraIssuesCmd = &cobra.Command{
-	Use:   "create_jira_issues",
+	Use:   "create-jira-issues",
 	Short: "Create Jira issues for security findings",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateJiraIssuesCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.CreateJiraIssues(client.NewContext(apiKey, appKey, site), datadogV2.CreateJiraIssueRequestArray{})
 		if err != nil {
-			log.Fatalf("failed to create_jira_issues: %v", err)
+			log.Fatalf("failed to create-jira-issues: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "cases")

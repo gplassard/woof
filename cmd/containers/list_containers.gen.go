@@ -15,7 +15,7 @@ import (
 )
 
 var ListContainersCmd = &cobra.Command{
-	Use:   "list_containers",
+	Use:   "list-containers",
 	Short: "Get All Containers",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListContainersCmd = &cobra.Command{
 		api := datadogV2.NewContainersApi(client.NewAPIClient())
 		res, _, err := api.ListContainers(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_containers: %v", err)
+			log.Fatalf("failed to list-containers: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "containers")

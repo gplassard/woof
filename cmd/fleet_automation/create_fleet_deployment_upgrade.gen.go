@@ -15,7 +15,7 @@ import (
 )
 
 var CreateFleetDeploymentUpgradeCmd = &cobra.Command{
-	Use:   "create_fleet_deployment_upgrade",
+	Use:   "create-fleet-deployment-upgrade",
 	Short: "Upgrade hosts",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateFleetDeploymentUpgradeCmd = &cobra.Command{
 		api := datadogV2.NewFleetAutomationApi(client.NewAPIClient())
 		res, _, err := api.CreateFleetDeploymentUpgrade(client.NewContext(apiKey, appKey, site), datadogV2.FleetDeploymentPackageUpgradeCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_fleet_deployment_upgrade: %v", err)
+			log.Fatalf("failed to create-fleet-deployment-upgrade: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "deployment")

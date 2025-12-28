@@ -15,7 +15,7 @@ import (
 )
 
 var CreateRetentionFilterCmd = &cobra.Command{
-	Use:   "create_retention_filter [app_id]",
+	Use:   "create-retention-filter [app_id]",
 	Short: "Create a RUM retention filter",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateRetentionFilterCmd = &cobra.Command{
 		api := datadogV2.NewRumRetentionFiltersApi(client.NewAPIClient())
 		res, _, err := api.CreateRetentionFilter(client.NewContext(apiKey, appKey, site), args[0], datadogV2.RumRetentionFilterCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_retention_filter: %v", err)
+			log.Fatalf("failed to create-retention-filter: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "retention_filters")

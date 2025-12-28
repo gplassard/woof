@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteDeploymentRuleCmd = &cobra.Command{
-	Use:   "delete_deployment_rule [gate_id] [id]",
+	Use:   "delete-deployment-rule [gate_id] [id]",
 	Short: "Delete deployment rule",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteDeploymentRuleCmd = &cobra.Command{
 		api := datadogV2.NewDeploymentGatesApi(client.NewAPIClient())
 		_, err := api.DeleteDeploymentRule(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		if err != nil {
-			log.Fatalf("failed to delete_deployment_rule: %v", err)
+			log.Fatalf("failed to delete-deployment-rule: %v", err)
 		}
 
 		

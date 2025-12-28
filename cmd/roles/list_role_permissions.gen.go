@@ -15,7 +15,7 @@ import (
 )
 
 var ListRolePermissionsCmd = &cobra.Command{
-	Use:   "list_role_permissions [role_id]",
+	Use:   "list-role-permissions [role_id]",
 	Short: "List permissions for a role",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListRolePermissionsCmd = &cobra.Command{
 		api := datadogV2.NewRolesApi(client.NewAPIClient())
 		res, _, err := api.ListRolePermissions(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to list_role_permissions: %v", err)
+			log.Fatalf("failed to list-role-permissions: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "permissions")

@@ -15,7 +15,7 @@ import (
 )
 
 var GetSuppressionsAffectingRuleCmd = &cobra.Command{
-	Use:   "get_suppressions_affecting_rule [rule_id]",
+	Use:   "get-suppressions-affecting-rule [rule_id]",
 	Short: "Get suppressions affecting a specific rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetSuppressionsAffectingRuleCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.GetSuppressionsAffectingRule(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_suppressions_affecting_rule: %v", err)
+			log.Fatalf("failed to get-suppressions-affecting-rule: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "suppressions")

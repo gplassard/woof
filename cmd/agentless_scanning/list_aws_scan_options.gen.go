@@ -15,7 +15,7 @@ import (
 )
 
 var ListAwsScanOptionsCmd = &cobra.Command{
-	Use:   "list_aws_scan_options",
+	Use:   "list-aws-scan-options",
 	Short: "List AWS scan options",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListAwsScanOptionsCmd = &cobra.Command{
 		api := datadogV2.NewAgentlessScanningApi(client.NewAPIClient())
 		res, _, err := api.ListAwsScanOptions(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_aws_scan_options: %v", err)
+			log.Fatalf("failed to list-aws-scan-options: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "aws_scan_options")

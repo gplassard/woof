@@ -15,7 +15,7 @@ import (
 )
 
 var CreateLogsCustomDestinationCmd = &cobra.Command{
-	Use:   "create_logs_custom_destination",
+	Use:   "create-logs-custom-destination",
 	Short: "Create a custom destination",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateLogsCustomDestinationCmd = &cobra.Command{
 		api := datadogV2.NewLogsCustomDestinationsApi(client.NewAPIClient())
 		res, _, err := api.CreateLogsCustomDestination(client.NewContext(apiKey, appKey, site), datadogV2.CustomDestinationCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_logs_custom_destination: %v", err)
+			log.Fatalf("failed to create-logs-custom-destination: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "custom_destination")

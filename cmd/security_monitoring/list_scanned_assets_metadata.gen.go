@@ -15,7 +15,7 @@ import (
 )
 
 var ListScannedAssetsMetadataCmd = &cobra.Command{
-	Use:   "list_scanned_assets_metadata",
+	Use:   "list-scanned-assets-metadata",
 	Short: "List scanned assets metadata",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListScannedAssetsMetadataCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.ListScannedAssetsMetadata(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_scanned_assets_metadata: %v", err)
+			log.Fatalf("failed to list-scanned-assets-metadata: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "security_monitoring")

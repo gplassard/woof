@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateAwsScanOptionsCmd = &cobra.Command{
-	Use:   "update_aws_scan_options [account_id]",
+	Use:   "update-aws-scan-options [account_id]",
 	Short: "Update AWS scan options",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateAwsScanOptionsCmd = &cobra.Command{
 		api := datadogV2.NewAgentlessScanningApi(client.NewAPIClient())
 		_, err := api.UpdateAwsScanOptions(client.NewContext(apiKey, appKey, site), args[0], datadogV2.AwsScanOptionsUpdateRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_aws_scan_options: %v", err)
+			log.Fatalf("failed to update-aws-scan-options: %v", err)
 		}
 
 		

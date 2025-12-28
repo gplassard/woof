@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateConnectionCmd = &cobra.Command{
-	Use:   "update_connection [entity]",
+	Use:   "update-connection [entity]",
 	Short: "Update connection",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateConnectionCmd = &cobra.Command{
 		api := datadogV2.NewRumAudienceManagementApi(client.NewAPIClient())
 		_, err := api.UpdateConnection(client.NewContext(apiKey, appKey, site), args[0], datadogV2.UpdateConnectionRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_connection: %v", err)
+			log.Fatalf("failed to update-connection: %v", err)
 		}
 
 		

@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteMonitorUserTemplateCmd = &cobra.Command{
-	Use:   "delete_monitor_user_template [template_id]",
+	Use:   "delete-monitor-user-template [template_id]",
 	Short: "Delete a monitor user template",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteMonitorUserTemplateCmd = &cobra.Command{
 		api := datadogV2.NewMonitorsApi(client.NewAPIClient())
 		_, err := api.DeleteMonitorUserTemplate(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_monitor_user_template: %v", err)
+			log.Fatalf("failed to delete-monitor-user-template: %v", err)
 		}
 
 		

@@ -15,7 +15,7 @@ import (
 )
 
 var CreateProjectCmd = &cobra.Command{
-	Use:   "create_project",
+	Use:   "create-project",
 	Short: "Create a project",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateProjectCmd = &cobra.Command{
 		api := datadogV2.NewCaseManagementApi(client.NewAPIClient())
 		res, _, err := api.CreateProject(client.NewContext(apiKey, appKey, site), datadogV2.ProjectCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_project: %v", err)
+			log.Fatalf("failed to create-project: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "project")

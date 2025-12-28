@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateApmRetentionFilterCmd = &cobra.Command{
-	Use:   "update_apm_retention_filter [filter_id]",
+	Use:   "update-apm-retention-filter [filter_id]",
 	Short: "Update a retention filter",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateApmRetentionFilterCmd = &cobra.Command{
 		api := datadogV2.NewAPMRetentionFiltersApi(client.NewAPIClient())
 		res, _, err := api.UpdateApmRetentionFilter(client.NewContext(apiKey, appKey, site), args[0], datadogV2.RetentionFilterUpdateRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_apm_retention_filter: %v", err)
+			log.Fatalf("failed to update-apm-retention-filter: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "apm_retention_filter")

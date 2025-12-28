@@ -15,7 +15,7 @@ import (
 )
 
 var CreateIncidentCmd = &cobra.Command{
-	Use:   "create_incident",
+	Use:   "create-incident",
 	Short: "Create an incident",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateIncidentCmd = &cobra.Command{
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
 		res, _, err := api.CreateIncident(client.NewContext(apiKey, appKey, site), datadogV2.IncidentCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_incident: %v", err)
+			log.Fatalf("failed to create-incident: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "incidents")

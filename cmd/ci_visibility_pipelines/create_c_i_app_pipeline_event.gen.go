@@ -15,7 +15,7 @@ import (
 )
 
 var CreateCIAppPipelineEventCmd = &cobra.Command{
-	Use:   "create_c_i_app_pipeline_event",
+	Use:   "create-c-i-app-pipeline-event",
 	Short: "Send pipeline event",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateCIAppPipelineEventCmd = &cobra.Command{
 		api := datadogV2.NewCIVisibilityPipelinesApi(client.NewAPIClient())
 		res, _, err := api.CreateCIAppPipelineEvent(client.NewContext(apiKey, appKey, site), datadogV2.CIAppCreatePipelineEventRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_c_i_app_pipeline_event: %v", err)
+			log.Fatalf("failed to create-c-i-app-pipeline-event: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "ci_visibility_pipelines")

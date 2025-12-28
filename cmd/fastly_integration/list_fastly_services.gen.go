@@ -15,7 +15,7 @@ import (
 )
 
 var ListFastlyServicesCmd = &cobra.Command{
-	Use:   "list_fastly_services [account_id]",
+	Use:   "list-fastly-services [account_id]",
 	Short: "List Fastly services",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListFastlyServicesCmd = &cobra.Command{
 		api := datadogV2.NewFastlyIntegrationApi(client.NewAPIClient())
 		res, _, err := api.ListFastlyServices(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to list_fastly_services: %v", err)
+			log.Fatalf("failed to list-fastly-services: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "fastly-services")

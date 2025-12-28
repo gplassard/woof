@@ -15,7 +15,7 @@ import (
 )
 
 var GetWorkflowInstanceCmd = &cobra.Command{
-	Use:   "get_workflow_instance [workflow_id] [instance_id]",
+	Use:   "get-workflow-instance [workflow_id] [instance_id]",
 	Short: "Get a workflow instance",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetWorkflowInstanceCmd = &cobra.Command{
 		api := datadogV2.NewWorkflowAutomationApi(client.NewAPIClient())
 		res, _, err := api.GetWorkflowInstance(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		if err != nil {
-			log.Fatalf("failed to get_workflow_instance: %v", err)
+			log.Fatalf("failed to get-workflow-instance: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "workflow_automation")

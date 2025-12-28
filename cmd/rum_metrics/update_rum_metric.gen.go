@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateRumMetricCmd = &cobra.Command{
-	Use:   "update_rum_metric [metric_id]",
+	Use:   "update-rum-metric [metric_id]",
 	Short: "Update a rum-based metric",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateRumMetricCmd = &cobra.Command{
 		api := datadogV2.NewRumMetricsApi(client.NewAPIClient())
 		res, _, err := api.UpdateRumMetric(client.NewContext(apiKey, appKey, site), args[0], datadogV2.RumMetricUpdateRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_rum_metric: %v", err)
+			log.Fatalf("failed to update-rum-metric: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "rum_metrics")

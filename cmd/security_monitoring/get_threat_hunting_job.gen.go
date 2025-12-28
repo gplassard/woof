@@ -15,7 +15,7 @@ import (
 )
 
 var GetThreatHuntingJobCmd = &cobra.Command{
-	Use:   "get_threat_hunting_job [job_id]",
+	Use:   "get-threat-hunting-job [job_id]",
 	Short: "Get a job's details",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetThreatHuntingJobCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.GetThreatHuntingJob(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_threat_hunting_job: %v", err)
+			log.Fatalf("failed to get-threat-hunting-job: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "historicalDetectionsJob")

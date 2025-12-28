@@ -15,7 +15,7 @@ import (
 )
 
 var ListContainerImagesCmd = &cobra.Command{
-	Use:   "list_container_images",
+	Use:   "list-container-images",
 	Short: "Get all Container Images",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListContainerImagesCmd = &cobra.Command{
 		api := datadogV2.NewContainerImagesApi(client.NewAPIClient())
 		res, _, err := api.ListContainerImages(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_container_images: %v", err)
+			log.Fatalf("failed to list-container-images: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "container_images")

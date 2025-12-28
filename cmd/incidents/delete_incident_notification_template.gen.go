@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteIncidentNotificationTemplateCmd = &cobra.Command{
-	Use:   "delete_incident_notification_template [id]",
+	Use:   "delete-incident-notification-template [id]",
 	Short: "Delete a notification template",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteIncidentNotificationTemplateCmd = &cobra.Command{
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
 		_, err := api.DeleteIncidentNotificationTemplate(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
 		if err != nil {
-			log.Fatalf("failed to delete_incident_notification_template: %v", err)
+			log.Fatalf("failed to delete-incident-notification-template: %v", err)
 		}
 
 		

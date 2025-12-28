@@ -15,7 +15,7 @@ import (
 )
 
 var GetTableCmd = &cobra.Command{
-	Use:   "get_table [id]",
+	Use:   "get-table [id]",
 	Short: "Get table",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetTableCmd = &cobra.Command{
 		api := datadogV2.NewReferenceTablesApi(client.NewAPIClient())
 		res, _, err := api.GetTable(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_table: %v", err)
+			log.Fatalf("failed to get-table: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "reference_table")

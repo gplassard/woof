@@ -15,7 +15,7 @@ import (
 )
 
 var ResolveOnCallPageCmd = &cobra.Command{
-	Use:   "resolve_on_call_page [page_id]",
+	Use:   "resolve-on-call-page [page_id]",
 	Short: "Resolve On-Call Page",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ResolveOnCallPageCmd = &cobra.Command{
 		api := datadogV2.NewOnCallPagingApi(client.NewAPIClient())
 		_, err := api.ResolveOnCallPage(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
 		if err != nil {
-			log.Fatalf("failed to resolve_on_call_page: %v", err)
+			log.Fatalf("failed to resolve-on-call-page: %v", err)
 		}
 
 		

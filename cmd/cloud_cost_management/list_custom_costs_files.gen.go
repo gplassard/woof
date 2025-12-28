@@ -15,7 +15,7 @@ import (
 )
 
 var ListCustomCostsFilesCmd = &cobra.Command{
-	Use:   "list_custom_costs_files",
+	Use:   "list-custom-costs-files",
 	Short: "List Custom Costs files",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListCustomCostsFilesCmd = &cobra.Command{
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
 		res, _, err := api.ListCustomCostsFiles(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_custom_costs_files: %v", err)
+			log.Fatalf("failed to list-custom-costs-files: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "cloud_cost_management")

@@ -15,7 +15,7 @@ import (
 )
 
 var ListAWSAccountsCmd = &cobra.Command{
-	Use:   "list_a_w_s_accounts",
+	Use:   "list-a-w-s-accounts",
 	Short: "List all AWS integrations",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListAWSAccountsCmd = &cobra.Command{
 		api := datadogV2.NewAWSIntegrationApi(client.NewAPIClient())
 		res, _, err := api.ListAWSAccounts(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_a_w_s_accounts: %v", err)
+			log.Fatalf("failed to list-a-w-s-accounts: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "account")

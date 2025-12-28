@@ -15,7 +15,7 @@ import (
 )
 
 var CreateIncidentNotificationRuleCmd = &cobra.Command{
-	Use:   "create_incident_notification_rule",
+	Use:   "create-incident-notification-rule",
 	Short: "Create an incident notification rule",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateIncidentNotificationRuleCmd = &cobra.Command{
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
 		res, _, err := api.CreateIncidentNotificationRule(client.NewContext(apiKey, appKey, site), datadogV2.CreateIncidentNotificationRuleRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_incident_notification_rule: %v", err)
+			log.Fatalf("failed to create-incident-notification-rule: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "incident_notification_rules")

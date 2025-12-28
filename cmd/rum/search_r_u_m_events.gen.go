@@ -15,7 +15,7 @@ import (
 )
 
 var SearchRUMEventsCmd = &cobra.Command{
-	Use:   "search_r_u_m_events",
+	Use:   "search-r-u-m-events",
 	Short: "Search RUM events",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var SearchRUMEventsCmd = &cobra.Command{
 		api := datadogV2.NewRUMApi(client.NewAPIClient())
 		res, _, err := api.SearchRUMEvents(client.NewContext(apiKey, appKey, site), datadogV2.RUMSearchEventsRequest{})
 		if err != nil {
-			log.Fatalf("failed to search_r_u_m_events: %v", err)
+			log.Fatalf("failed to search-r-u-m-events: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "rum")

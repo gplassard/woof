@@ -15,7 +15,7 @@ import (
 )
 
 var GetConfluentResourceCmd = &cobra.Command{
-	Use:   "get_confluent_resource [account_id] [resource_id]",
+	Use:   "get-confluent-resource [account_id] [resource_id]",
 	Short: "Get resource from Confluent account",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetConfluentResourceCmd = &cobra.Command{
 		api := datadogV2.NewConfluentCloudApi(client.NewAPIClient())
 		res, _, err := api.GetConfluentResource(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		if err != nil {
-			log.Fatalf("failed to get_confluent_resource: %v", err)
+			log.Fatalf("failed to get-confluent-resource: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "confluent-cloud-resources")

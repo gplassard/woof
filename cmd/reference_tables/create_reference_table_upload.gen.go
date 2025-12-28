@@ -15,7 +15,7 @@ import (
 )
 
 var CreateReferenceTableUploadCmd = &cobra.Command{
-	Use:   "create_reference_table_upload",
+	Use:   "create-reference-table-upload",
 	Short: "Create reference table upload",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateReferenceTableUploadCmd = &cobra.Command{
 		api := datadogV2.NewReferenceTablesApi(client.NewAPIClient())
 		res, _, err := api.CreateReferenceTableUpload(client.NewContext(apiKey, appKey, site), datadogV2.CreateUploadRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_reference_table_upload: %v", err)
+			log.Fatalf("failed to create-reference-table-upload: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "upload")

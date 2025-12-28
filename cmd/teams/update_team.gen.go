@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateTeamCmd = &cobra.Command{
-	Use:   "update_team [team_id]",
+	Use:   "update-team [team_id]",
 	Short: "Update a team",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateTeamCmd = &cobra.Command{
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
 		res, _, err := api.UpdateTeam(client.NewContext(apiKey, appKey, site), args[0], datadogV2.TeamUpdateRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_team: %v", err)
+			log.Fatalf("failed to update-team: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "team")

@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteThreatHuntingJobCmd = &cobra.Command{
-	Use:   "delete_threat_hunting_job [job_id]",
+	Use:   "delete-threat-hunting-job [job_id]",
 	Short: "Delete an existing job",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteThreatHuntingJobCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		_, err := api.DeleteThreatHuntingJob(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_threat_hunting_job: %v", err)
+			log.Fatalf("failed to delete-threat-hunting-job: %v", err)
 		}
 
 		

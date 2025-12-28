@@ -15,7 +15,7 @@ import (
 )
 
 var CreateFleetDeploymentConfigureCmd = &cobra.Command{
-	Use:   "create_fleet_deployment_configure",
+	Use:   "create-fleet-deployment-configure",
 	Short: "Create a configuration deployment",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateFleetDeploymentConfigureCmd = &cobra.Command{
 		api := datadogV2.NewFleetAutomationApi(client.NewAPIClient())
 		res, _, err := api.CreateFleetDeploymentConfigure(client.NewContext(apiKey, appKey, site), datadogV2.FleetDeploymentConfigureCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_fleet_deployment_configure: %v", err)
+			log.Fatalf("failed to create-fleet-deployment-configure: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "deployment")

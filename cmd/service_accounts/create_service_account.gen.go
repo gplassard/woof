@@ -15,7 +15,7 @@ import (
 )
 
 var CreateServiceAccountCmd = &cobra.Command{
-	Use:   "create_service_account",
+	Use:   "create-service-account",
 	Short: "Create a service account",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateServiceAccountCmd = &cobra.Command{
 		api := datadogV2.NewServiceAccountsApi(client.NewAPIClient())
 		res, _, err := api.CreateServiceAccount(client.NewContext(apiKey, appKey, site), datadogV2.ServiceAccountCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_service_account: %v", err)
+			log.Fatalf("failed to create-service-account: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "users")

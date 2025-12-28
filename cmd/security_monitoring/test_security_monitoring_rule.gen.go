@@ -15,7 +15,7 @@ import (
 )
 
 var TestSecurityMonitoringRuleCmd = &cobra.Command{
-	Use:   "test_security_monitoring_rule",
+	Use:   "test-security-monitoring-rule",
 	Short: "Test a rule",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var TestSecurityMonitoringRuleCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.TestSecurityMonitoringRule(client.NewContext(apiKey, appKey, site), datadogV2.SecurityMonitoringRuleTestRequest{})
 		if err != nil {
-			log.Fatalf("failed to test_security_monitoring_rule: %v", err)
+			log.Fatalf("failed to test-security-monitoring-rule: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "security_monitoring")

@@ -15,7 +15,7 @@ import (
 )
 
 var GetAllDatasetsCmd = &cobra.Command{
-	Use:   "get_all_datasets",
+	Use:   "get-all-datasets",
 	Short: "Get all datasets",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetAllDatasetsCmd = &cobra.Command{
 		api := datadogV2.NewDatasetsApi(client.NewAPIClient())
 		res, _, err := api.GetAllDatasets(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to get_all_datasets: %v", err)
+			log.Fatalf("failed to get-all-datasets: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "dataset")

@@ -15,7 +15,7 @@ import (
 )
 
 var ListIncidentAttachmentsCmd = &cobra.Command{
-	Use:   "list_incident_attachments [incident_id]",
+	Use:   "list-incident-attachments [incident_id]",
 	Short: "List incident attachments",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListIncidentAttachmentsCmd = &cobra.Command{
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
 		res, _, err := api.ListIncidentAttachments(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to list_incident_attachments: %v", err)
+			log.Fatalf("failed to list-incident-attachments: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "incident_attachments")

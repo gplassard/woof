@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteDashboardListItemsCmd = &cobra.Command{
-	Use:   "delete_dashboard_list_items [dashboard_list_id]",
+	Use:   "delete-dashboard-list-items [dashboard_list_id]",
 	Short: "Delete items from a dashboard list",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteDashboardListItemsCmd = &cobra.Command{
 		api := datadogV2.NewDashboardListsApi(client.NewAPIClient())
 		res, _, err := api.DeleteDashboardListItems(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }(), datadogV2.DashboardListDeleteItemsRequest{})
 		if err != nil {
-			log.Fatalf("failed to delete_dashboard_list_items: %v", err)
+			log.Fatalf("failed to delete-dashboard-list-items: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "dashboard_lists")

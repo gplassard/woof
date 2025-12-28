@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteLogsCustomDestinationCmd = &cobra.Command{
-	Use:   "delete_logs_custom_destination [custom_destination_id]",
+	Use:   "delete-logs-custom-destination [custom_destination_id]",
 	Short: "Delete a custom destination",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteLogsCustomDestinationCmd = &cobra.Command{
 		api := datadogV2.NewLogsCustomDestinationsApi(client.NewAPIClient())
 		_, err := api.DeleteLogsCustomDestination(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_logs_custom_destination: %v", err)
+			log.Fatalf("failed to delete-logs-custom-destination: %v", err)
 		}
 
 		

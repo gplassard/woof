@@ -15,7 +15,7 @@ import (
 )
 
 var ListGcpScanOptionsCmd = &cobra.Command{
-	Use:   "list_gcp_scan_options",
+	Use:   "list-gcp-scan-options",
 	Short: "List GCP scan options",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListGcpScanOptionsCmd = &cobra.Command{
 		api := datadogV2.NewAgentlessScanningApi(client.NewAPIClient())
 		res, _, err := api.ListGcpScanOptions(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_gcp_scan_options: %v", err)
+			log.Fatalf("failed to list-gcp-scan-options: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "gcp_scan_options")

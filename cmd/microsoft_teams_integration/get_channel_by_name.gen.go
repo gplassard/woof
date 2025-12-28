@@ -15,7 +15,7 @@ import (
 )
 
 var GetChannelByNameCmd = &cobra.Command{
-	Use:   "get_channel_by_name [tenant_name] [team_name] [channel_name]",
+	Use:   "get-channel-by-name [tenant_name] [team_name] [channel_name]",
 	Short: "Get channel information by name",
 	Args:  cobra.ExactArgs(3),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetChannelByNameCmd = &cobra.Command{
 		api := datadogV2.NewMicrosoftTeamsIntegrationApi(client.NewAPIClient())
 		res, _, err := api.GetChannelByName(client.NewContext(apiKey, appKey, site), args[0], args[1], args[2])
 		if err != nil {
-			log.Fatalf("failed to get_channel_by_name: %v", err)
+			log.Fatalf("failed to get-channel-by-name: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "ms-teams-channel-info")

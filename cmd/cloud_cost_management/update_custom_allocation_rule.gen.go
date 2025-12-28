@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateCustomAllocationRuleCmd = &cobra.Command{
-	Use:   "update_custom_allocation_rule [rule_id]",
+	Use:   "update-custom-allocation-rule [rule_id]",
 	Short: "Update custom allocation rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateCustomAllocationRuleCmd = &cobra.Command{
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
 		res, _, err := api.UpdateCustomAllocationRule(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }(), datadogV2.ArbitraryCostUpsertRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_custom_allocation_rule: %v", err)
+			log.Fatalf("failed to update-custom-allocation-rule: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "arbitrary_rule")

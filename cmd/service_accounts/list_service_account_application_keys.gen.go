@@ -15,7 +15,7 @@ import (
 )
 
 var ListServiceAccountApplicationKeysCmd = &cobra.Command{
-	Use:   "list_service_account_application_keys [service_account_id]",
+	Use:   "list-service-account-application-keys [service_account_id]",
 	Short: "List application keys for this service account",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListServiceAccountApplicationKeysCmd = &cobra.Command{
 		api := datadogV2.NewServiceAccountsApi(client.NewAPIClient())
 		res, _, err := api.ListServiceAccountApplicationKeys(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to list_service_account_application_keys: %v", err)
+			log.Fatalf("failed to list-service-account-application-keys: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "application_keys")

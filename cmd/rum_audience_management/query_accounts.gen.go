@@ -15,7 +15,7 @@ import (
 )
 
 var QueryAccountsCmd = &cobra.Command{
-	Use:   "query_accounts",
+	Use:   "query-accounts",
 	Short: "Query accounts",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var QueryAccountsCmd = &cobra.Command{
 		api := datadogV2.NewRumAudienceManagementApi(client.NewAPIClient())
 		res, _, err := api.QueryAccounts(client.NewContext(apiKey, appKey, site), datadogV2.QueryAccountRequest{})
 		if err != nil {
-			log.Fatalf("failed to query_accounts: %v", err)
+			log.Fatalf("failed to query-accounts: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "query_response")

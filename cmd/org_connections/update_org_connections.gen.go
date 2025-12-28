@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateOrgConnectionsCmd = &cobra.Command{
-	Use:   "update_org_connections [connection_id]",
+	Use:   "update-org-connections [connection_id]",
 	Short: "Update Org Connection",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateOrgConnectionsCmd = &cobra.Command{
 		api := datadogV2.NewOrgConnectionsApi(client.NewAPIClient())
 		res, _, err := api.UpdateOrgConnections(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]), datadogV2.OrgConnectionUpdateRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_org_connections: %v", err)
+			log.Fatalf("failed to update-org-connections: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "org_connection")

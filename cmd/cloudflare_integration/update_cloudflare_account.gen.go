@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateCloudflareAccountCmd = &cobra.Command{
-	Use:   "update_cloudflare_account [account_id]",
+	Use:   "update-cloudflare-account [account_id]",
 	Short: "Update Cloudflare account",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateCloudflareAccountCmd = &cobra.Command{
 		api := datadogV2.NewCloudflareIntegrationApi(client.NewAPIClient())
 		res, _, err := api.UpdateCloudflareAccount(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CloudflareAccountUpdateRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_cloudflare_account: %v", err)
+			log.Fatalf("failed to update-cloudflare-account: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "cloudflare-accounts")

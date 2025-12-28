@@ -15,7 +15,7 @@ import (
 )
 
 var GetRUMApplicationCmd = &cobra.Command{
-	Use:   "get_r_u_m_application [id]",
+	Use:   "get-r-u-m-application [id]",
 	Short: "Get a RUM application",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetRUMApplicationCmd = &cobra.Command{
 		api := datadogV2.NewRUMApi(client.NewAPIClient())
 		res, _, err := api.GetRUMApplication(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_r_u_m_application: %v", err)
+			log.Fatalf("failed to get-r-u-m-application: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "rum_application")

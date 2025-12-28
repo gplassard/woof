@@ -15,7 +15,7 @@ import (
 )
 
 var ListCIAppPipelineEventsCmd = &cobra.Command{
-	Use:   "list_c_i_app_pipeline_events",
+	Use:   "list-c-i-app-pipeline-events",
 	Short: "Get a list of pipelines events",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListCIAppPipelineEventsCmd = &cobra.Command{
 		api := datadogV2.NewCIVisibilityPipelinesApi(client.NewAPIClient())
 		res, _, err := api.ListCIAppPipelineEvents(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_c_i_app_pipeline_events: %v", err)
+			log.Fatalf("failed to list-c-i-app-pipeline-events: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "cipipeline")

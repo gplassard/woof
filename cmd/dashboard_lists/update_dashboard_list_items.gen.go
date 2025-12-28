@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateDashboardListItemsCmd = &cobra.Command{
-	Use:   "update_dashboard_list_items [dashboard_list_id]",
+	Use:   "update-dashboard-list-items [dashboard_list_id]",
 	Short: "Update items of a dashboard list",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateDashboardListItemsCmd = &cobra.Command{
 		api := datadogV2.NewDashboardListsApi(client.NewAPIClient())
 		res, _, err := api.UpdateDashboardListItems(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }(), datadogV2.DashboardListUpdateItemsRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_dashboard_list_items: %v", err)
+			log.Fatalf("failed to update-dashboard-list-items: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "dashboard_lists")

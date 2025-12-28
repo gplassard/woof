@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateIncidentNotificationTemplateCmd = &cobra.Command{
-	Use:   "update_incident_notification_template [id]",
+	Use:   "update-incident-notification-template [id]",
 	Short: "Update incident notification template",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateIncidentNotificationTemplateCmd = &cobra.Command{
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
 		res, _, err := api.UpdateIncidentNotificationTemplate(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]), datadogV2.PatchIncidentNotificationTemplateRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_incident_notification_template: %v", err)
+			log.Fatalf("failed to update-incident-notification-template: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "notification_templates")

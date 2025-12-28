@@ -15,7 +15,7 @@ import (
 )
 
 var GetOktaAccountCmd = &cobra.Command{
-	Use:   "get_okta_account [account_id]",
+	Use:   "get-okta-account [account_id]",
 	Short: "Get Okta account",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetOktaAccountCmd = &cobra.Command{
 		api := datadogV2.NewOktaIntegrationApi(client.NewAPIClient())
 		res, _, err := api.GetOktaAccount(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_okta_account: %v", err)
+			log.Fatalf("failed to get-okta-account: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "okta-accounts")

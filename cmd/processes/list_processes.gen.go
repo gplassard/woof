@@ -15,7 +15,7 @@ import (
 )
 
 var ListProcessesCmd = &cobra.Command{
-	Use:   "list_processes",
+	Use:   "list-processes",
 	Short: "Get all processes",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListProcessesCmd = &cobra.Command{
 		api := datadogV2.NewProcessesApi(client.NewAPIClient())
 		res, _, err := api.ListProcesses(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_processes: %v", err)
+			log.Fatalf("failed to list-processes: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "process")

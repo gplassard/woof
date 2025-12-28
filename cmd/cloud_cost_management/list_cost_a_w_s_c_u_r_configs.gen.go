@@ -15,7 +15,7 @@ import (
 )
 
 var ListCostAWSCURConfigsCmd = &cobra.Command{
-	Use:   "list_cost_a_w_s_c_u_r_configs",
+	Use:   "list-cost-a-w-s-c-u-r-configs",
 	Short: "List Cloud Cost Management AWS CUR configs",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListCostAWSCURConfigsCmd = &cobra.Command{
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
 		res, _, err := api.ListCostAWSCURConfigs(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_cost_a_w_s_c_u_r_configs: %v", err)
+			log.Fatalf("failed to list-cost-a-w-s-c-u-r-configs: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "aws_cur_config")

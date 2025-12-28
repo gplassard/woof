@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteOrgConnectionsCmd = &cobra.Command{
-	Use:   "delete_org_connections [connection_id]",
+	Use:   "delete-org-connections [connection_id]",
 	Short: "Delete Org Connection",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteOrgConnectionsCmd = &cobra.Command{
 		api := datadogV2.NewOrgConnectionsApi(client.NewAPIClient())
 		_, err := api.DeleteOrgConnections(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
 		if err != nil {
-			log.Fatalf("failed to delete_org_connections: %v", err)
+			log.Fatalf("failed to delete-org-connections: %v", err)
 		}
 
 		

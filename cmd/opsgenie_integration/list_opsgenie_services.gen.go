@@ -15,7 +15,7 @@ import (
 )
 
 var ListOpsgenieServicesCmd = &cobra.Command{
-	Use:   "list_opsgenie_services",
+	Use:   "list-opsgenie-services",
 	Short: "Get all service objects",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListOpsgenieServicesCmd = &cobra.Command{
 		api := datadogV2.NewOpsgenieIntegrationApi(client.NewAPIClient())
 		res, _, err := api.ListOpsgenieServices(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_opsgenie_services: %v", err)
+			log.Fatalf("failed to list-opsgenie-services: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "opsgenie-service")

@@ -15,7 +15,7 @@ import (
 )
 
 var ListWorkflowInstancesCmd = &cobra.Command{
-	Use:   "list_workflow_instances [workflow_id]",
+	Use:   "list-workflow-instances [workflow_id]",
 	Short: "List workflow instances",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListWorkflowInstancesCmd = &cobra.Command{
 		api := datadogV2.NewWorkflowAutomationApi(client.NewAPIClient())
 		res, _, err := api.ListWorkflowInstances(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to list_workflow_instances: %v", err)
+			log.Fatalf("failed to list-workflow-instances: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "workflow_automation")

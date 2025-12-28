@@ -15,7 +15,7 @@ import (
 )
 
 var CreateAwsScanOptionsCmd = &cobra.Command{
-	Use:   "create_aws_scan_options",
+	Use:   "create-aws-scan-options",
 	Short: "Create AWS scan options",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateAwsScanOptionsCmd = &cobra.Command{
 		api := datadogV2.NewAgentlessScanningApi(client.NewAPIClient())
 		res, _, err := api.CreateAwsScanOptions(client.NewContext(apiKey, appKey, site), datadogV2.AwsScanOptionsCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_aws_scan_options: %v", err)
+			log.Fatalf("failed to create-aws-scan-options: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "aws_scan_options")

@@ -15,7 +15,7 @@ import (
 )
 
 var ListRUMEventsCmd = &cobra.Command{
-	Use:   "list_r_u_m_events",
+	Use:   "list-r-u-m-events",
 	Short: "Get a list of RUM events",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListRUMEventsCmd = &cobra.Command{
 		api := datadogV2.NewRUMApi(client.NewAPIClient())
 		res, _, err := api.ListRUMEvents(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_r_u_m_events: %v", err)
+			log.Fatalf("failed to list-r-u-m-events: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "rum")

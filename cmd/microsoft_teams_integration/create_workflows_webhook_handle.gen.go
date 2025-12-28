@@ -15,7 +15,7 @@ import (
 )
 
 var CreateWorkflowsWebhookHandleCmd = &cobra.Command{
-	Use:   "create_workflows_webhook_handle",
+	Use:   "create-workflows-webhook-handle",
 	Short: "Create Workflows webhook handle",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateWorkflowsWebhookHandleCmd = &cobra.Command{
 		api := datadogV2.NewMicrosoftTeamsIntegrationApi(client.NewAPIClient())
 		res, _, err := api.CreateWorkflowsWebhookHandle(client.NewContext(apiKey, appKey, site), datadogV2.MicrosoftTeamsCreateWorkflowsWebhookHandleRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_workflows_webhook_handle: %v", err)
+			log.Fatalf("failed to create-workflows-webhook-handle: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "workflows-webhook-handle")

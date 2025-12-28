@@ -15,7 +15,7 @@ import (
 )
 
 var ListLogsCmd = &cobra.Command{
-	Use:   "list_logs",
+	Use:   "list-logs",
 	Short: "Search logs (POST)",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListLogsCmd = &cobra.Command{
 		api := datadogV2.NewLogsApi(client.NewAPIClient())
 		res, _, err := api.ListLogs(client.NewContext(apiKey, appKey, site), *datadogV2.NewListLogsOptionalParameters())
 		if err != nil {
-			log.Fatalf("failed to list_logs: %v", err)
+			log.Fatalf("failed to list-logs: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "log")

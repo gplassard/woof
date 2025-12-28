@@ -15,7 +15,7 @@ import (
 )
 
 var GetFleetScheduleCmd = &cobra.Command{
-	Use:   "get_fleet_schedule [id]",
+	Use:   "get-fleet-schedule [id]",
 	Short: "Get a schedule by ID",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetFleetScheduleCmd = &cobra.Command{
 		api := datadogV2.NewFleetAutomationApi(client.NewAPIClient())
 		res, _, err := api.GetFleetSchedule(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_fleet_schedule: %v", err)
+			log.Fatalf("failed to get-fleet-schedule: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "schedule")

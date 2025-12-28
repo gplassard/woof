@@ -15,7 +15,7 @@ import (
 )
 
 var GetApplicationSecurityWafCustomRuleCmd = &cobra.Command{
-	Use:   "get_application_security_waf_custom_rule [custom_rule_id]",
+	Use:   "get-application-security-waf-custom-rule [custom_rule_id]",
 	Short: "Get a WAF custom rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetApplicationSecurityWafCustomRuleCmd = &cobra.Command{
 		api := datadogV2.NewApplicationSecurityApi(client.NewAPIClient())
 		res, _, err := api.GetApplicationSecurityWafCustomRule(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_application_security_waf_custom_rule: %v", err)
+			log.Fatalf("failed to get-application-security-waf-custom-rule: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "custom_rule")

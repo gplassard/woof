@@ -15,7 +15,7 @@ import (
 )
 
 var QueryUsersCmd = &cobra.Command{
-	Use:   "query_users",
+	Use:   "query-users",
 	Short: "Query users",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var QueryUsersCmd = &cobra.Command{
 		api := datadogV2.NewRumAudienceManagementApi(client.NewAPIClient())
 		res, _, err := api.QueryUsers(client.NewContext(apiKey, appKey, site), datadogV2.QueryUsersRequest{})
 		if err != nil {
-			log.Fatalf("failed to query_users: %v", err)
+			log.Fatalf("failed to query-users: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "query_response")

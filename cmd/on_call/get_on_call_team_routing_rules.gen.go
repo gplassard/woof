@@ -15,7 +15,7 @@ import (
 )
 
 var GetOnCallTeamRoutingRulesCmd = &cobra.Command{
-	Use:   "get_on_call_team_routing_rules [team_id]",
+	Use:   "get-on-call-team-routing-rules [team_id]",
 	Short: "Get On-Call team routing rules",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetOnCallTeamRoutingRulesCmd = &cobra.Command{
 		api := datadogV2.NewOnCallApi(client.NewAPIClient())
 		res, _, err := api.GetOnCallTeamRoutingRules(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_on_call_team_routing_rules: %v", err)
+			log.Fatalf("failed to get-on-call-team-routing-rules: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "team_routing_rules")

@@ -15,7 +15,7 @@ import (
 )
 
 var CreateSignalNotificationRuleCmd = &cobra.Command{
-	Use:   "create_signal_notification_rule",
+	Use:   "create-signal-notification-rule",
 	Short: "Create a new signal-based notification rule",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateSignalNotificationRuleCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.CreateSignalNotificationRule(client.NewContext(apiKey, appKey, site), datadogV2.CreateNotificationRuleParameters{})
 		if err != nil {
-			log.Fatalf("failed to create_signal_notification_rule: %v", err)
+			log.Fatalf("failed to create-signal-notification-rule: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "notification_rules")

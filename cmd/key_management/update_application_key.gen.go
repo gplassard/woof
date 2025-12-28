@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateApplicationKeyCmd = &cobra.Command{
-	Use:   "update_application_key [app_key_id]",
+	Use:   "update-application-key [app_key_id]",
 	Short: "Edit an application key",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateApplicationKeyCmd = &cobra.Command{
 		api := datadogV2.NewKeyManagementApi(client.NewAPIClient())
 		res, _, err := api.UpdateApplicationKey(client.NewContext(apiKey, appKey, site), args[0], datadogV2.ApplicationKeyUpdateRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_application_key: %v", err)
+			log.Fatalf("failed to update-application-key: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "application_keys")

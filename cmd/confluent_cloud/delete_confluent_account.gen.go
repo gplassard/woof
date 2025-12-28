@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteConfluentAccountCmd = &cobra.Command{
-	Use:   "delete_confluent_account [account_id]",
+	Use:   "delete-confluent-account [account_id]",
 	Short: "Delete Confluent account",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteConfluentAccountCmd = &cobra.Command{
 		api := datadogV2.NewConfluentCloudApi(client.NewAPIClient())
 		_, err := api.DeleteConfluentAccount(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_confluent_account: %v", err)
+			log.Fatalf("failed to delete-confluent-account: %v", err)
 		}
 
 		

@@ -15,7 +15,7 @@ import (
 )
 
 var CreateAPIKeyCmd = &cobra.Command{
-	Use:   "create_a_p_i_key",
+	Use:   "create-a-p-i-key",
 	Short: "Create an API key",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateAPIKeyCmd = &cobra.Command{
 		api := datadogV2.NewKeyManagementApi(client.NewAPIClient())
 		res, _, err := api.CreateAPIKey(client.NewContext(apiKey, appKey, site), datadogV2.APIKeyCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_a_p_i_key: %v", err)
+			log.Fatalf("failed to create-a-p-i-key: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "api_keys")

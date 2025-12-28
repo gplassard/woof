@@ -15,7 +15,7 @@ import (
 )
 
 var ListCostGCPUsageCostConfigsCmd = &cobra.Command{
-	Use:   "list_cost_g_c_p_usage_cost_configs",
+	Use:   "list-cost-g-c-p-usage-cost-configs",
 	Short: "List Google Cloud Usage Cost configs",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListCostGCPUsageCostConfigsCmd = &cobra.Command{
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
 		res, _, err := api.ListCostGCPUsageCostConfigs(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_cost_g_c_p_usage_cost_configs: %v", err)
+			log.Fatalf("failed to list-cost-g-c-p-usage-cost-configs: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "gcp_uc_config")

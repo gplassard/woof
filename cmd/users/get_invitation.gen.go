@@ -15,7 +15,7 @@ import (
 )
 
 var GetInvitationCmd = &cobra.Command{
-	Use:   "get_invitation [user_invitation_uuid]",
+	Use:   "get-invitation [user_invitation_uuid]",
 	Short: "Get a user invitation",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetInvitationCmd = &cobra.Command{
 		api := datadogV2.NewUsersApi(client.NewAPIClient())
 		res, _, err := api.GetInvitation(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_invitation: %v", err)
+			log.Fatalf("failed to get-invitation: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "user_invitations")

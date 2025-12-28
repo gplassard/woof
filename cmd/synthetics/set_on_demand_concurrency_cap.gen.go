@@ -15,7 +15,7 @@ import (
 )
 
 var SetOnDemandConcurrencyCapCmd = &cobra.Command{
-	Use:   "set_on_demand_concurrency_cap",
+	Use:   "set-on-demand-concurrency-cap",
 	Short: "Save new value for on-demand concurrency cap",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var SetOnDemandConcurrencyCapCmd = &cobra.Command{
 		api := datadogV2.NewSyntheticsApi(client.NewAPIClient())
 		res, _, err := api.SetOnDemandConcurrencyCap(client.NewContext(apiKey, appKey, site), datadogV2.OnDemandConcurrencyCapAttributes{})
 		if err != nil {
-			log.Fatalf("failed to set_on_demand_concurrency_cap: %v", err)
+			log.Fatalf("failed to set-on-demand-concurrency-cap: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "on_demand_concurrency_cap")

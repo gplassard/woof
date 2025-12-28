@@ -15,7 +15,7 @@ import (
 )
 
 var OrderRetentionFiltersCmd = &cobra.Command{
-	Use:   "order_retention_filters [app_id]",
+	Use:   "order-retention-filters [app_id]",
 	Short: "Order RUM retention filters",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var OrderRetentionFiltersCmd = &cobra.Command{
 		api := datadogV2.NewRumRetentionFiltersApi(client.NewAPIClient())
 		res, _, err := api.OrderRetentionFilters(client.NewContext(apiKey, appKey, site), args[0], datadogV2.RumRetentionFiltersOrderRequest{})
 		if err != nil {
-			log.Fatalf("failed to order_retention_filters: %v", err)
+			log.Fatalf("failed to order-retention-filters: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "retention_filters")

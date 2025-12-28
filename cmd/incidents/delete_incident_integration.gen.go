@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteIncidentIntegrationCmd = &cobra.Command{
-	Use:   "delete_incident_integration [incident_id] [integration_metadata_id]",
+	Use:   "delete-incident-integration [incident_id] [integration_metadata_id]",
 	Short: "Delete an incident integration metadata",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteIncidentIntegrationCmd = &cobra.Command{
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
 		_, err := api.DeleteIncidentIntegration(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		if err != nil {
-			log.Fatalf("failed to delete_incident_integration: %v", err)
+			log.Fatalf("failed to delete-incident-integration: %v", err)
 		}
 
 		

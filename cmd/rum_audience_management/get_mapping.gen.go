@@ -15,7 +15,7 @@ import (
 )
 
 var GetMappingCmd = &cobra.Command{
-	Use:   "get_mapping [entity]",
+	Use:   "get-mapping [entity]",
 	Short: "Get mapping",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetMappingCmd = &cobra.Command{
 		api := datadogV2.NewRumAudienceManagementApi(client.NewAPIClient())
 		res, _, err := api.GetMapping(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_mapping: %v", err)
+			log.Fatalf("failed to get-mapping: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "get_mappings_response")

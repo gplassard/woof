@@ -15,7 +15,7 @@ import (
 )
 
 var GetTeamLinksCmd = &cobra.Command{
-	Use:   "get_team_links [team_id]",
+	Use:   "get-team-links [team_id]",
 	Short: "Get links for a team",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetTeamLinksCmd = &cobra.Command{
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
 		res, _, err := api.GetTeamLinks(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_team_links: %v", err)
+			log.Fatalf("failed to get-team-links: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "team_links")

@@ -15,7 +15,7 @@ import (
 )
 
 var SearchIssuesCmd = &cobra.Command{
-	Use:   "search_issues",
+	Use:   "search-issues",
 	Short: "Search error tracking issues",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var SearchIssuesCmd = &cobra.Command{
 		api := datadogV2.NewErrorTrackingApi(client.NewAPIClient())
 		res, _, err := api.SearchIssues(client.NewContext(apiKey, appKey, site), datadogV2.IssuesSearchRequest{})
 		if err != nil {
-			log.Fatalf("failed to search_issues: %v", err)
+			log.Fatalf("failed to search-issues: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "error_tracking_search_result")

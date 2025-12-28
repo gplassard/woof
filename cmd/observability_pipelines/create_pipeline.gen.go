@@ -15,7 +15,7 @@ import (
 )
 
 var CreatePipelineCmd = &cobra.Command{
-	Use:   "create_pipeline",
+	Use:   "create-pipeline",
 	Short: "Create a new pipeline",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreatePipelineCmd = &cobra.Command{
 		api := datadogV2.NewObservabilityPipelinesApi(client.NewAPIClient())
 		res, _, err := api.CreatePipeline(client.NewContext(apiKey, appKey, site), datadogV2.ObservabilityPipelineSpec{})
 		if err != nil {
-			log.Fatalf("failed to create_pipeline: %v", err)
+			log.Fatalf("failed to create-pipeline: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "observability_pipelines")

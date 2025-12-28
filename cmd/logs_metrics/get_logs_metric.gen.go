@@ -15,7 +15,7 @@ import (
 )
 
 var GetLogsMetricCmd = &cobra.Command{
-	Use:   "get_logs_metric [metric_id]",
+	Use:   "get-logs-metric [metric_id]",
 	Short: "Get a log-based metric",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetLogsMetricCmd = &cobra.Command{
 		api := datadogV2.NewLogsMetricsApi(client.NewAPIClient())
 		res, _, err := api.GetLogsMetric(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_logs_metric: %v", err)
+			log.Fatalf("failed to get-logs-metric: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "logs_metrics")

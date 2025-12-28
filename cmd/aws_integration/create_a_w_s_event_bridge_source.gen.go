@@ -15,7 +15,7 @@ import (
 )
 
 var CreateAWSEventBridgeSourceCmd = &cobra.Command{
-	Use:   "create_a_w_s_event_bridge_source",
+	Use:   "create-a-w-s-event-bridge-source",
 	Short: "Create an Amazon EventBridge source",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateAWSEventBridgeSourceCmd = &cobra.Command{
 		api := datadogV2.NewAWSIntegrationApi(client.NewAPIClient())
 		res, _, err := api.CreateAWSEventBridgeSource(client.NewContext(apiKey, appKey, site), datadogV2.AWSEventBridgeCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_a_w_s_event_bridge_source: %v", err)
+			log.Fatalf("failed to create-a-w-s-event-bridge-source: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "event_bridge")

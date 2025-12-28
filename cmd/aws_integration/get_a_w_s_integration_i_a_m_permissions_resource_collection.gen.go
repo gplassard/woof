@@ -15,7 +15,7 @@ import (
 )
 
 var GetAWSIntegrationIAMPermissionsResourceCollectionCmd = &cobra.Command{
-	Use:   "get_a_w_s_integration_i_a_m_permissions_resource_collection",
+	Use:   "get-a-w-s-integration-i-a-m-permissions-resource-collection",
 	Short: "Get resource collection IAM permissions",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetAWSIntegrationIAMPermissionsResourceCollectionCmd = &cobra.Command{
 		api := datadogV2.NewAWSIntegrationApi(client.NewAPIClient())
 		res, _, err := api.GetAWSIntegrationIAMPermissionsResourceCollection(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to get_a_w_s_integration_i_a_m_permissions_resource_collection: %v", err)
+			log.Fatalf("failed to get-a-w-s-integration-i-a-m-permissions-resource-collection: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "permissions")

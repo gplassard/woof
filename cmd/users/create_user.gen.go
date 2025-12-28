@@ -15,7 +15,7 @@ import (
 )
 
 var CreateUserCmd = &cobra.Command{
-	Use:   "create_user",
+	Use:   "create-user",
 	Short: "Create a user",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateUserCmd = &cobra.Command{
 		api := datadogV2.NewUsersApi(client.NewAPIClient())
 		res, _, err := api.CreateUser(client.NewContext(apiKey, appKey, site), datadogV2.UserCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_user: %v", err)
+			log.Fatalf("failed to create-user: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "users")

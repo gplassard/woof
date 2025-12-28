@@ -15,7 +15,7 @@ import (
 )
 
 var CreateTagConfigurationCmd = &cobra.Command{
-	Use:   "create_tag_configuration [metric_name]",
+	Use:   "create-tag-configuration [metric_name]",
 	Short: "Create a tag configuration",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateTagConfigurationCmd = &cobra.Command{
 		api := datadogV2.NewMetricsApi(client.NewAPIClient())
 		res, _, err := api.CreateTagConfiguration(client.NewContext(apiKey, appKey, site), args[0], datadogV2.MetricTagConfigurationCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_tag_configuration: %v", err)
+			log.Fatalf("failed to create-tag-configuration: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "manage_tags")

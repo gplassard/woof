@@ -15,7 +15,7 @@ import (
 )
 
 var CreateScanningRuleCmd = &cobra.Command{
-	Use:   "create_scanning_rule",
+	Use:   "create-scanning-rule",
 	Short: "Create Scanning Rule",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateScanningRuleCmd = &cobra.Command{
 		api := datadogV2.NewSensitiveDataScannerApi(client.NewAPIClient())
 		res, _, err := api.CreateScanningRule(client.NewContext(apiKey, appKey, site), datadogV2.SensitiveDataScannerRuleCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_scanning_rule: %v", err)
+			log.Fatalf("failed to create-scanning-rule: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "sensitive_data_scanner_rule")

@@ -15,7 +15,7 @@ import (
 )
 
 var GetGCPSTSDelegateCmd = &cobra.Command{
-	Use:   "get_g_c_p_s_t_s_delegate",
+	Use:   "get-g-c-p-s-t-s-delegate",
 	Short: "List delegate account",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetGCPSTSDelegateCmd = &cobra.Command{
 		api := datadogV2.NewGCPIntegrationApi(client.NewAPIClient())
 		res, _, err := api.GetGCPSTSDelegate(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to get_g_c_p_s_t_s_delegate: %v", err)
+			log.Fatalf("failed to get-g-c-p-s-t-s-delegate: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "gcp_sts_delegate")

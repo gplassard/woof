@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateOnCallEscalationPolicyCmd = &cobra.Command{
-	Use:   "update_on_call_escalation_policy [policy_id]",
+	Use:   "update-on-call-escalation-policy [policy_id]",
 	Short: "Update On-Call escalation policy",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateOnCallEscalationPolicyCmd = &cobra.Command{
 		api := datadogV2.NewOnCallApi(client.NewAPIClient())
 		res, _, err := api.UpdateOnCallEscalationPolicy(client.NewContext(apiKey, appKey, site), args[0], datadogV2.EscalationPolicyUpdateRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_on_call_escalation_policy: %v", err)
+			log.Fatalf("failed to update-on-call-escalation-policy: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "policies")

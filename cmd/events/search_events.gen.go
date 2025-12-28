@@ -15,7 +15,7 @@ import (
 )
 
 var SearchEventsCmd = &cobra.Command{
-	Use:   "search_events",
+	Use:   "search-events",
 	Short: "Search events",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var SearchEventsCmd = &cobra.Command{
 		api := datadogV2.NewEventsApi(client.NewAPIClient())
 		res, _, err := api.SearchEvents(client.NewContext(apiKey, appKey, site), *datadogV2.NewSearchEventsOptionalParameters())
 		if err != nil {
-			log.Fatalf("failed to search_events: %v", err)
+			log.Fatalf("failed to search-events: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "event")

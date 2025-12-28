@@ -15,7 +15,7 @@ import (
 )
 
 var ListCSMThreatsAgentPoliciesCmd = &cobra.Command{
-	Use:   "list_c_s_m_threats_agent_policies",
+	Use:   "list-c-s-m-threats-agent-policies",
 	Short: "Get all Workload Protection policies",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListCSMThreatsAgentPoliciesCmd = &cobra.Command{
 		api := datadogV2.NewCSMThreatsApi(client.NewAPIClient())
 		res, _, err := api.ListCSMThreatsAgentPolicies(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_c_s_m_threats_agent_policies: %v", err)
+			log.Fatalf("failed to list-c-s-m-threats-agent-policies: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "policy")

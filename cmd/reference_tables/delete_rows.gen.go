@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteRowsCmd = &cobra.Command{
-	Use:   "delete_rows [id]",
+	Use:   "delete-rows [id]",
 	Short: "Delete rows",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteRowsCmd = &cobra.Command{
 		api := datadogV2.NewReferenceTablesApi(client.NewAPIClient())
 		_, err := api.DeleteRows(client.NewContext(apiKey, appKey, site), args[0], datadogV2.BatchDeleteRowsRequestArray{})
 		if err != nil {
-			log.Fatalf("failed to delete_rows: %v", err)
+			log.Fatalf("failed to delete-rows: %v", err)
 		}
 
 		

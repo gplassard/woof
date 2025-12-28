@@ -15,7 +15,7 @@ import (
 )
 
 var CreateDatasetCmd = &cobra.Command{
-	Use:   "create_dataset",
+	Use:   "create-dataset",
 	Short: "Create a dataset",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateDatasetCmd = &cobra.Command{
 		api := datadogV2.NewDatasetsApi(client.NewAPIClient())
 		res, _, err := api.CreateDataset(client.NewContext(apiKey, appKey, site), datadogV2.DatasetCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_dataset: %v", err)
+			log.Fatalf("failed to create-dataset: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "dataset")

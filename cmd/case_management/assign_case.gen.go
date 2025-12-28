@@ -15,7 +15,7 @@ import (
 )
 
 var AssignCaseCmd = &cobra.Command{
-	Use:   "assign_case [case_id]",
+	Use:   "assign-case [case_id]",
 	Short: "Assign case",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var AssignCaseCmd = &cobra.Command{
 		api := datadogV2.NewCaseManagementApi(client.NewAPIClient())
 		res, _, err := api.AssignCase(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CaseAssignRequest{})
 		if err != nil {
-			log.Fatalf("failed to assign_case: %v", err)
+			log.Fatalf("failed to assign-case: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "case")

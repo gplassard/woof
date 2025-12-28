@@ -15,7 +15,7 @@ import (
 )
 
 var ListAllCSMAgentsCmd = &cobra.Command{
-	Use:   "list_all_c_s_m_agents",
+	Use:   "list-all-c-s-m-agents",
 	Short: "Get all CSM Agents",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListAllCSMAgentsCmd = &cobra.Command{
 		api := datadogV2.NewCSMAgentsApi(client.NewAPIClient())
 		res, _, err := api.ListAllCSMAgents(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_all_c_s_m_agents: %v", err)
+			log.Fatalf("failed to list-all-c-s-m-agents: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "datadog_agent")

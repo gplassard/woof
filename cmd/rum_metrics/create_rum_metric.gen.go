@@ -15,7 +15,7 @@ import (
 )
 
 var CreateRumMetricCmd = &cobra.Command{
-	Use:   "create_rum_metric",
+	Use:   "create-rum-metric",
 	Short: "Create a rum-based metric",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateRumMetricCmd = &cobra.Command{
 		api := datadogV2.NewRumMetricsApi(client.NewAPIClient())
 		res, _, err := api.CreateRumMetric(client.NewContext(apiKey, appKey, site), datadogV2.RumMetricCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_rum_metric: %v", err)
+			log.Fatalf("failed to create-rum-metric: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "rum_metrics")

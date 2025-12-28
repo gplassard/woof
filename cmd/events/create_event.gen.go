@@ -15,7 +15,7 @@ import (
 )
 
 var CreateEventCmd = &cobra.Command{
-	Use:   "create_event",
+	Use:   "create-event",
 	Short: "Post an event",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateEventCmd = &cobra.Command{
 		api := datadogV2.NewEventsApi(client.NewAPIClient())
 		res, _, err := api.CreateEvent(client.NewContext(apiKey, appKey, site), datadogV2.EventCreateRequestPayload{})
 		if err != nil {
-			log.Fatalf("failed to create_event: %v", err)
+			log.Fatalf("failed to create-event: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "events")

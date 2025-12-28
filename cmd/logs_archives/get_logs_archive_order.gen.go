@@ -15,7 +15,7 @@ import (
 )
 
 var GetLogsArchiveOrderCmd = &cobra.Command{
-	Use:   "get_logs_archive_order",
+	Use:   "get-logs-archive-order",
 	Short: "Get archive order",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetLogsArchiveOrderCmd = &cobra.Command{
 		api := datadogV2.NewLogsArchivesApi(client.NewAPIClient())
 		res, _, err := api.GetLogsArchiveOrder(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to get_logs_archive_order: %v", err)
+			log.Fatalf("failed to get-logs-archive-order: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "archive_order")

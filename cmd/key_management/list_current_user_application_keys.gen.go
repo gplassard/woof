@@ -15,7 +15,7 @@ import (
 )
 
 var ListCurrentUserApplicationKeysCmd = &cobra.Command{
-	Use:   "list_current_user_application_keys",
+	Use:   "list-current-user-application-keys",
 	Short: "Get all application keys owned by current user",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListCurrentUserApplicationKeysCmd = &cobra.Command{
 		api := datadogV2.NewKeyManagementApi(client.NewAPIClient())
 		res, _, err := api.ListCurrentUserApplicationKeys(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_current_user_application_keys: %v", err)
+			log.Fatalf("failed to list-current-user-application-keys: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "application_keys")

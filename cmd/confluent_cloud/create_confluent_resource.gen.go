@@ -15,7 +15,7 @@ import (
 )
 
 var CreateConfluentResourceCmd = &cobra.Command{
-	Use:   "create_confluent_resource [account_id]",
+	Use:   "create-confluent-resource [account_id]",
 	Short: "Add resource to Confluent account",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateConfluentResourceCmd = &cobra.Command{
 		api := datadogV2.NewConfluentCloudApi(client.NewAPIClient())
 		res, _, err := api.CreateConfluentResource(client.NewContext(apiKey, appKey, site), args[0], datadogV2.ConfluentResourceRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_confluent_resource: %v", err)
+			log.Fatalf("failed to create-confluent-resource: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "confluent-cloud-resources")

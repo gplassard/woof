@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateScanningRuleCmd = &cobra.Command{
-	Use:   "update_scanning_rule [rule_id]",
+	Use:   "update-scanning-rule [rule_id]",
 	Short: "Update Scanning Rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateScanningRuleCmd = &cobra.Command{
 		api := datadogV2.NewSensitiveDataScannerApi(client.NewAPIClient())
 		res, _, err := api.UpdateScanningRule(client.NewContext(apiKey, appKey, site), args[0], datadogV2.SensitiveDataScannerRuleUpdateRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_scanning_rule: %v", err)
+			log.Fatalf("failed to update-scanning-rule: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "sensitive_data_scanner")

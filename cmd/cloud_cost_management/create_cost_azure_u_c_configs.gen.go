@@ -15,7 +15,7 @@ import (
 )
 
 var CreateCostAzureUCConfigsCmd = &cobra.Command{
-	Use:   "create_cost_azure_u_c_configs",
+	Use:   "create-cost-azure-u-c-configs",
 	Short: "Create Cloud Cost Management Azure configs",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateCostAzureUCConfigsCmd = &cobra.Command{
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
 		res, _, err := api.CreateCostAzureUCConfigs(client.NewContext(apiKey, appKey, site), datadogV2.AzureUCConfigPostRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_cost_azure_u_c_configs: %v", err)
+			log.Fatalf("failed to create-cost-azure-u-c-configs: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "azure_uc_configs")

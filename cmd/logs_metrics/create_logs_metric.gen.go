@@ -15,7 +15,7 @@ import (
 )
 
 var CreateLogsMetricCmd = &cobra.Command{
-	Use:   "create_logs_metric",
+	Use:   "create-logs-metric",
 	Short: "Create a log-based metric",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateLogsMetricCmd = &cobra.Command{
 		api := datadogV2.NewLogsMetricsApi(client.NewAPIClient())
 		res, _, err := api.CreateLogsMetric(client.NewContext(apiKey, appKey, site), datadogV2.LogsMetricCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_logs_metric: %v", err)
+			log.Fatalf("failed to create-logs-metric: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "logs_metrics")

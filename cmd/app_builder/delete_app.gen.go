@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteAppCmd = &cobra.Command{
-	Use:   "delete_app [app_id]",
+	Use:   "delete-app [app_id]",
 	Short: "Delete App",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteAppCmd = &cobra.Command{
 		api := datadogV2.NewAppBuilderApi(client.NewAPIClient())
 		res, _, err := api.DeleteApp(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
 		if err != nil {
-			log.Fatalf("failed to delete_app: %v", err)
+			log.Fatalf("failed to delete-app: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "appDefinitions")

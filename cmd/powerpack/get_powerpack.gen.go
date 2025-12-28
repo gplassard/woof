@@ -15,7 +15,7 @@ import (
 )
 
 var GetPowerpackCmd = &cobra.Command{
-	Use:   "get_powerpack [powerpack_id]",
+	Use:   "get-powerpack [powerpack_id]",
 	Short: "Get a Powerpack",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetPowerpackCmd = &cobra.Command{
 		api := datadogV2.NewPowerpackApi(client.NewAPIClient())
 		res, _, err := api.GetPowerpack(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_powerpack: %v", err)
+			log.Fatalf("failed to get-powerpack: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "powerpack")

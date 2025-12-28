@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteFastlyAccountCmd = &cobra.Command{
-	Use:   "delete_fastly_account [account_id]",
+	Use:   "delete-fastly-account [account_id]",
 	Short: "Delete Fastly account",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteFastlyAccountCmd = &cobra.Command{
 		api := datadogV2.NewFastlyIntegrationApi(client.NewAPIClient())
 		_, err := api.DeleteFastlyAccount(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_fastly_account: %v", err)
+			log.Fatalf("failed to delete-fastly-account: %v", err)
 		}
 
 		

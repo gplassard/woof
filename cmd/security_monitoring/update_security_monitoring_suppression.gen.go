@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateSecurityMonitoringSuppressionCmd = &cobra.Command{
-	Use:   "update_security_monitoring_suppression [suppression_id]",
+	Use:   "update-security-monitoring-suppression [suppression_id]",
 	Short: "Update a suppression rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateSecurityMonitoringSuppressionCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.UpdateSecurityMonitoringSuppression(client.NewContext(apiKey, appKey, site), args[0], datadogV2.SecurityMonitoringSuppressionUpdateRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_security_monitoring_suppression: %v", err)
+			log.Fatalf("failed to update-security-monitoring-suppression: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "suppressions")

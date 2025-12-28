@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteCustomAttributeConfigCmd = &cobra.Command{
-	Use:   "delete_custom_attribute_config [case_type_id] [custom_attribute_id]",
+	Use:   "delete-custom-attribute-config [case_type_id] [custom_attribute_id]",
 	Short: "Delete custom attributes config",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteCustomAttributeConfigCmd = &cobra.Command{
 		api := datadogV2.NewCaseManagementAttributeApi(client.NewAPIClient())
 		_, err := api.DeleteCustomAttributeConfig(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		if err != nil {
-			log.Fatalf("failed to delete_custom_attribute_config: %v", err)
+			log.Fatalf("failed to delete-custom-attribute-config: %v", err)
 		}
 
 		

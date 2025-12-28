@@ -15,7 +15,7 @@ import (
 )
 
 var CreateDORAFailureCmd = &cobra.Command{
-	Use:   "create_d_o_r_a_failure",
+	Use:   "create-d-o-r-a-failure",
 	Short: "Send a failure event",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateDORAFailureCmd = &cobra.Command{
 		api := datadogV2.NewDORAMetricsApi(client.NewAPIClient())
 		res, _, err := api.CreateDORAFailure(client.NewContext(apiKey, appKey, site), datadogV2.DORAFailureRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_d_o_r_a_failure: %v", err)
+			log.Fatalf("failed to create-d-o-r-a-failure: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "dora_failure")

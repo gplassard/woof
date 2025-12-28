@@ -15,7 +15,7 @@ import (
 )
 
 var GetDataDeletionRequestsCmd = &cobra.Command{
-	Use:   "get_data_deletion_requests",
+	Use:   "get-data-deletion-requests",
 	Short: "Gets a list of data deletion requests",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetDataDeletionRequestsCmd = &cobra.Command{
 		api := datadogV2.NewDataDeletionApi(client.NewAPIClient())
 		res, _, err := api.GetDataDeletionRequests(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to get_data_deletion_requests: %v", err)
+			log.Fatalf("failed to get-data-deletion-requests: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "data_deletion")

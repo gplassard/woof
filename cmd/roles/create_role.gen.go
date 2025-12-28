@@ -15,7 +15,7 @@ import (
 )
 
 var CreateRoleCmd = &cobra.Command{
-	Use:   "create_role",
+	Use:   "create-role",
 	Short: "Create role",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateRoleCmd = &cobra.Command{
 		api := datadogV2.NewRolesApi(client.NewAPIClient())
 		res, _, err := api.CreateRole(client.NewContext(apiKey, appKey, site), datadogV2.RoleCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_role: %v", err)
+			log.Fatalf("failed to create-role: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "roles")

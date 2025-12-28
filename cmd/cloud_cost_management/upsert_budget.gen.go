@@ -15,7 +15,7 @@ import (
 )
 
 var UpsertBudgetCmd = &cobra.Command{
-	Use:   "upsert_budget",
+	Use:   "upsert-budget",
 	Short: "Create or update a budget",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpsertBudgetCmd = &cobra.Command{
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
 		res, _, err := api.UpsertBudget(client.NewContext(apiKey, appKey, site), datadogV2.BudgetWithEntries{})
 		if err != nil {
-			log.Fatalf("failed to upsert_budget: %v", err)
+			log.Fatalf("failed to upsert-budget: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "cloud_cost_management")

@@ -15,7 +15,7 @@ import (
 )
 
 var ListSecurityMonitoringRulesCmd = &cobra.Command{
-	Use:   "list_security_monitoring_rules",
+	Use:   "list-security-monitoring-rules",
 	Short: "List rules",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListSecurityMonitoringRulesCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.ListSecurityMonitoringRules(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_security_monitoring_rules: %v", err)
+			log.Fatalf("failed to list-security-monitoring-rules: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "security_monitoring")

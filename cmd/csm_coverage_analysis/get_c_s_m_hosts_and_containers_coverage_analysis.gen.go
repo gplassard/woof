@@ -15,7 +15,7 @@ import (
 )
 
 var GetCSMHostsAndContainersCoverageAnalysisCmd = &cobra.Command{
-	Use:   "get_c_s_m_hosts_and_containers_coverage_analysis",
+	Use:   "get-c-s-m-hosts-and-containers-coverage-analysis",
 	Short: "Get the CSM Hosts and Containers Coverage Analysis",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetCSMHostsAndContainersCoverageAnalysisCmd = &cobra.Command{
 		api := datadogV2.NewCSMCoverageAnalysisApi(client.NewAPIClient())
 		res, _, err := api.GetCSMHostsAndContainersCoverageAnalysis(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to get_c_s_m_hosts_and_containers_coverage_analysis: %v", err)
+			log.Fatalf("failed to get-c-s-m-hosts-and-containers-coverage-analysis: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "csm_coverage_analysis")

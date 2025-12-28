@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteGcpScanOptionsCmd = &cobra.Command{
-	Use:   "delete_gcp_scan_options [project_id]",
+	Use:   "delete-gcp-scan-options [project_id]",
 	Short: "Delete GCP scan options",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteGcpScanOptionsCmd = &cobra.Command{
 		api := datadogV2.NewAgentlessScanningApi(client.NewAPIClient())
 		_, err := api.DeleteGcpScanOptions(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_gcp_scan_options: %v", err)
+			log.Fatalf("failed to delete-gcp-scan-options: %v", err)
 		}
 
 		

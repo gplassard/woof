@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteSecurityMonitoringSuppressionCmd = &cobra.Command{
-	Use:   "delete_security_monitoring_suppression [suppression_id]",
+	Use:   "delete-security-monitoring-suppression [suppression_id]",
 	Short: "Delete a suppression rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteSecurityMonitoringSuppressionCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		_, err := api.DeleteSecurityMonitoringSuppression(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_security_monitoring_suppression: %v", err)
+			log.Fatalf("failed to delete-security-monitoring-suppression: %v", err)
 		}
 
 		

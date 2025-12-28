@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteAPIKeyCmd = &cobra.Command{
-	Use:   "delete_a_p_i_key [api_key_id]",
+	Use:   "delete-a-p-i-key [api_key_id]",
 	Short: "Delete an API key",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteAPIKeyCmd = &cobra.Command{
 		api := datadogV2.NewKeyManagementApi(client.NewAPIClient())
 		_, err := api.DeleteAPIKey(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_a_p_i_key: %v", err)
+			log.Fatalf("failed to delete-a-p-i-key: %v", err)
 		}
 
 		

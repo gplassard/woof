@@ -15,7 +15,7 @@ import (
 )
 
 var ListAuthNMappingsCmd = &cobra.Command{
-	Use:   "list_auth_n_mappings",
+	Use:   "list-auth-n-mappings",
 	Short: "List all AuthN Mappings",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListAuthNMappingsCmd = &cobra.Command{
 		api := datadogV2.NewAuthNMappingsApi(client.NewAPIClient())
 		res, _, err := api.ListAuthNMappings(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_auth_n_mappings: %v", err)
+			log.Fatalf("failed to list-auth-n-mappings: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "authn_mappings")

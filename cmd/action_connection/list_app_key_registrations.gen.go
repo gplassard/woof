@@ -15,7 +15,7 @@ import (
 )
 
 var ListAppKeyRegistrationsCmd = &cobra.Command{
-	Use:   "list_app_key_registrations",
+	Use:   "list-app-key-registrations",
 	Short: "List App Key Registrations",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListAppKeyRegistrationsCmd = &cobra.Command{
 		api := datadogV2.NewActionConnectionApi(client.NewAPIClient())
 		res, _, err := api.ListAppKeyRegistrations(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_app_key_registrations: %v", err)
+			log.Fatalf("failed to list-app-key-registrations: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "app_key_registration")

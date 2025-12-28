@@ -15,7 +15,7 @@ import (
 )
 
 var CreateAuthNMappingCmd = &cobra.Command{
-	Use:   "create_auth_n_mapping",
+	Use:   "create-auth-n-mapping",
 	Short: "Create an AuthN Mapping",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateAuthNMappingCmd = &cobra.Command{
 		api := datadogV2.NewAuthNMappingsApi(client.NewAPIClient())
 		res, _, err := api.CreateAuthNMapping(client.NewContext(apiKey, appKey, site), datadogV2.AuthNMappingCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_auth_n_mapping: %v", err)
+			log.Fatalf("failed to create-auth-n-mapping: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "authn_mappings")

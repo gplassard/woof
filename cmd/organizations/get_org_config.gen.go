@@ -15,7 +15,7 @@ import (
 )
 
 var GetOrgConfigCmd = &cobra.Command{
-	Use:   "get_org_config [org_config_name]",
+	Use:   "get-org-config [org_config_name]",
 	Short: "Get a specific Org Config value",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetOrgConfigCmd = &cobra.Command{
 		api := datadogV2.NewOrganizationsApi(client.NewAPIClient())
 		res, _, err := api.GetOrgConfig(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_org_config: %v", err)
+			log.Fatalf("failed to get-org-config: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "org_configs")

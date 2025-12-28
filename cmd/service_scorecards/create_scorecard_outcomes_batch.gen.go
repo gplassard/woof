@@ -15,7 +15,7 @@ import (
 )
 
 var CreateScorecardOutcomesBatchCmd = &cobra.Command{
-	Use:   "create_scorecard_outcomes_batch",
+	Use:   "create-scorecard-outcomes-batch",
 	Short: "Create outcomes batch",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateScorecardOutcomesBatchCmd = &cobra.Command{
 		api := datadogV2.NewServiceScorecardsApi(client.NewAPIClient())
 		res, _, err := api.CreateScorecardOutcomesBatch(client.NewContext(apiKey, appKey, site), datadogV2.OutcomesBatchRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_scorecard_outcomes_batch: %v", err)
+			log.Fatalf("failed to create-scorecard-outcomes-batch: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "service_scorecards")

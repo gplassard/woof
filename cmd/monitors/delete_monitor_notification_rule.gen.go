@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteMonitorNotificationRuleCmd = &cobra.Command{
-	Use:   "delete_monitor_notification_rule [rule_id]",
+	Use:   "delete-monitor-notification-rule [rule_id]",
 	Short: "Delete a monitor notification rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteMonitorNotificationRuleCmd = &cobra.Command{
 		api := datadogV2.NewMonitorsApi(client.NewAPIClient())
 		_, err := api.DeleteMonitorNotificationRule(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_monitor_notification_rule: %v", err)
+			log.Fatalf("failed to delete-monitor-notification-rule: %v", err)
 		}
 
 		

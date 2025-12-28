@@ -15,7 +15,7 @@ import (
 )
 
 var ValidateQueryCmd = &cobra.Command{
-	Use:   "validate_query",
+	Use:   "validate-query",
 	Short: "Validate query",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ValidateQueryCmd = &cobra.Command{
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
 		res, _, err := api.ValidateQuery(client.NewContext(apiKey, appKey, site), datadogV2.RulesValidateQueryRequest{})
 		if err != nil {
-			log.Fatalf("failed to validate_query: %v", err)
+			log.Fatalf("failed to validate-query: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "validate_response")

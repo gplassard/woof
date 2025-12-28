@@ -15,7 +15,7 @@ import (
 )
 
 var CreateTagPipelinesRulesetCmd = &cobra.Command{
-	Use:   "create_tag_pipelines_ruleset",
+	Use:   "create-tag-pipelines-ruleset",
 	Short: "Create tag pipeline ruleset",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateTagPipelinesRulesetCmd = &cobra.Command{
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
 		res, _, err := api.CreateTagPipelinesRuleset(client.NewContext(apiKey, appKey, site), datadogV2.CreateRulesetRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_tag_pipelines_ruleset: %v", err)
+			log.Fatalf("failed to create-tag-pipelines-ruleset: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "ruleset")

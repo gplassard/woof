@@ -15,7 +15,7 @@ import (
 )
 
 var SearchCasesCmd = &cobra.Command{
-	Use:   "search_cases",
+	Use:   "search-cases",
 	Short: "Search cases",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var SearchCasesCmd = &cobra.Command{
 		api := datadogV2.NewCaseManagementApi(client.NewAPIClient())
 		res, _, err := api.SearchCases(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to search_cases: %v", err)
+			log.Fatalf("failed to search-cases: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "case")

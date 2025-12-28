@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteSpansMetricCmd = &cobra.Command{
-	Use:   "delete_spans_metric [metric_id]",
+	Use:   "delete-spans-metric [metric_id]",
 	Short: "Delete a span-based metric",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteSpansMetricCmd = &cobra.Command{
 		api := datadogV2.NewSpansMetricsApi(client.NewAPIClient())
 		_, err := api.DeleteSpansMetric(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_spans_metric: %v", err)
+			log.Fatalf("failed to delete-spans-metric: %v", err)
 		}
 
 		

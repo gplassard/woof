@@ -15,7 +15,7 @@ import (
 )
 
 var GetSpansMetricCmd = &cobra.Command{
-	Use:   "get_spans_metric [metric_id]",
+	Use:   "get-spans-metric [metric_id]",
 	Short: "Get a span-based metric",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetSpansMetricCmd = &cobra.Command{
 		api := datadogV2.NewSpansMetricsApi(client.NewAPIClient())
 		res, _, err := api.GetSpansMetric(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_spans_metric: %v", err)
+			log.Fatalf("failed to get-spans-metric: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "spans_metrics")

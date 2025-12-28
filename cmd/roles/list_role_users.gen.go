@@ -15,7 +15,7 @@ import (
 )
 
 var ListRoleUsersCmd = &cobra.Command{
-	Use:   "list_role_users [role_id]",
+	Use:   "list-role-users [role_id]",
 	Short: "Get all users of a role",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListRoleUsersCmd = &cobra.Command{
 		api := datadogV2.NewRolesApi(client.NewAPIClient())
 		res, _, err := api.ListRoleUsers(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to list_role_users: %v", err)
+			log.Fatalf("failed to list-role-users: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "users")

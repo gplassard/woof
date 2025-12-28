@@ -15,7 +15,7 @@ import (
 )
 
 var CreateCloudflareAccountCmd = &cobra.Command{
-	Use:   "create_cloudflare_account",
+	Use:   "create-cloudflare-account",
 	Short: "Add Cloudflare account",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateCloudflareAccountCmd = &cobra.Command{
 		api := datadogV2.NewCloudflareIntegrationApi(client.NewAPIClient())
 		res, _, err := api.CreateCloudflareAccount(client.NewContext(apiKey, appKey, site), datadogV2.CloudflareAccountCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_cloudflare_account: %v", err)
+			log.Fatalf("failed to create-cloudflare-account: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "cloudflare-accounts")

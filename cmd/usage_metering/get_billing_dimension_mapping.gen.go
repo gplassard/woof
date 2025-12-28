@@ -15,7 +15,7 @@ import (
 )
 
 var GetBillingDimensionMappingCmd = &cobra.Command{
-	Use:   "get_billing_dimension_mapping",
+	Use:   "get-billing-dimension-mapping",
 	Short: "Get billing dimension mapping for usage endpoints",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetBillingDimensionMappingCmd = &cobra.Command{
 		api := datadogV2.NewUsageMeteringApi(client.NewAPIClient())
 		res, _, err := api.GetBillingDimensionMapping(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to get_billing_dimension_mapping: %v", err)
+			log.Fatalf("failed to get-billing-dimension-mapping: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "usage_metering")

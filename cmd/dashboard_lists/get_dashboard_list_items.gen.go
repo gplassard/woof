@@ -15,7 +15,7 @@ import (
 )
 
 var GetDashboardListItemsCmd = &cobra.Command{
-	Use:   "get_dashboard_list_items [dashboard_list_id]",
+	Use:   "get-dashboard-list-items [dashboard_list_id]",
 	Short: "Get items of a Dashboard List",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetDashboardListItemsCmd = &cobra.Command{
 		api := datadogV2.NewDashboardListsApi(client.NewAPIClient())
 		res, _, err := api.GetDashboardListItems(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }())
 		if err != nil {
-			log.Fatalf("failed to get_dashboard_list_items: %v", err)
+			log.Fatalf("failed to get-dashboard-list-items: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "dashboard_lists")

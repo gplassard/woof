@@ -15,7 +15,7 @@ import (
 )
 
 var GetIncidentCmd = &cobra.Command{
-	Use:   "get_incident [incident_id]",
+	Use:   "get-incident [incident_id]",
 	Short: "Get the details of an incident",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetIncidentCmd = &cobra.Command{
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
 		res, _, err := api.GetIncident(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_incident: %v", err)
+			log.Fatalf("failed to get-incident: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "incidents")

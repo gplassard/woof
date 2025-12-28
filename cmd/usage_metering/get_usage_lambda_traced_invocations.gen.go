@@ -15,7 +15,7 @@ import (
 )
 
 var GetUsageLambdaTracedInvocationsCmd = &cobra.Command{
-	Use:   "get_usage_lambda_traced_invocations [start_hr]",
+	Use:   "get-usage-lambda-traced-invocations [start_hr]",
 	Short: "Get hourly usage for Lambda traced invocations",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetUsageLambdaTracedInvocationsCmd = &cobra.Command{
 		api := datadogV2.NewUsageMeteringApi(client.NewAPIClient())
 		res, _, err := api.GetUsageLambdaTracedInvocations(client.NewContext(apiKey, appKey, site), func() time.Time { t, _ := time.Parse(time.RFC3339, args[0]); return t }())
 		if err != nil {
-			log.Fatalf("failed to get_usage_lambda_traced_invocations: %v", err)
+			log.Fatalf("failed to get-usage-lambda-traced-invocations: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "usage_metering")

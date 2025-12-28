@@ -15,7 +15,7 @@ import (
 )
 
 var CreateAppCmd = &cobra.Command{
-	Use:   "create_app",
+	Use:   "create-app",
 	Short: "Create App",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateAppCmd = &cobra.Command{
 		api := datadogV2.NewAppBuilderApi(client.NewAPIClient())
 		res, _, err := api.CreateApp(client.NewContext(apiKey, appKey, site), datadogV2.CreateAppRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_app: %v", err)
+			log.Fatalf("failed to create-app: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "appDefinitions")

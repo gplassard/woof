@@ -15,7 +15,7 @@ import (
 )
 
 var CreateSecurityMonitoringRuleCmd = &cobra.Command{
-	Use:   "create_security_monitoring_rule",
+	Use:   "create-security-monitoring-rule",
 	Short: "Create a detection rule",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateSecurityMonitoringRuleCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.CreateSecurityMonitoringRule(client.NewContext(apiKey, appKey, site), datadogV2.SecurityMonitoringRuleCreatePayload{})
 		if err != nil {
-			log.Fatalf("failed to create_security_monitoring_rule: %v", err)
+			log.Fatalf("failed to create-security-monitoring-rule: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "security_monitoring")

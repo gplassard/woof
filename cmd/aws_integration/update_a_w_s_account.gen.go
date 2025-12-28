@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateAWSAccountCmd = &cobra.Command{
-	Use:   "update_a_w_s_account [aws_account_config_id]",
+	Use:   "update-a-w-s-account [aws_account_config_id]",
 	Short: "Update an AWS integration",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateAWSAccountCmd = &cobra.Command{
 		api := datadogV2.NewAWSIntegrationApi(client.NewAPIClient())
 		res, _, err := api.UpdateAWSAccount(client.NewContext(apiKey, appKey, site), args[0], datadogV2.AWSAccountUpdateRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_a_w_s_account: %v", err)
+			log.Fatalf("failed to update-a-w-s-account: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "account")

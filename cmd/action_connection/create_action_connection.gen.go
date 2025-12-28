@@ -15,7 +15,7 @@ import (
 )
 
 var CreateActionConnectionCmd = &cobra.Command{
-	Use:   "create_action_connection",
+	Use:   "create-action-connection",
 	Short: "Create a new Action Connection",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateActionConnectionCmd = &cobra.Command{
 		api := datadogV2.NewActionConnectionApi(client.NewAPIClient())
 		res, _, err := api.CreateActionConnection(client.NewContext(apiKey, appKey, site), datadogV2.CreateActionConnectionRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_action_connection: %v", err)
+			log.Fatalf("failed to create-action-connection: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "action_connection")

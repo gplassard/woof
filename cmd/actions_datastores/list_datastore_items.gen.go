@@ -15,7 +15,7 @@ import (
 )
 
 var ListDatastoreItemsCmd = &cobra.Command{
-	Use:   "list_datastore_items [datastore_id]",
+	Use:   "list-datastore-items [datastore_id]",
 	Short: "List datastore items",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListDatastoreItemsCmd = &cobra.Command{
 		api := datadogV2.NewActionsDatastoresApi(client.NewAPIClient())
 		res, _, err := api.ListDatastoreItems(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to list_datastore_items: %v", err)
+			log.Fatalf("failed to list-datastore-items: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "items")

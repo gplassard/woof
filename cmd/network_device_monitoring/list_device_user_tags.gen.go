@@ -15,7 +15,7 @@ import (
 )
 
 var ListDeviceUserTagsCmd = &cobra.Command{
-	Use:   "list_device_user_tags [device_id]",
+	Use:   "list-device-user-tags [device_id]",
 	Short: "Get the list of tags for a device",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListDeviceUserTagsCmd = &cobra.Command{
 		api := datadogV2.NewNetworkDeviceMonitoringApi(client.NewAPIClient())
 		res, _, err := api.ListDeviceUserTags(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to list_device_user_tags: %v", err)
+			log.Fatalf("failed to list-device-user-tags: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "network_device_monitoring")

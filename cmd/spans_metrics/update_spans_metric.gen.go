@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateSpansMetricCmd = &cobra.Command{
-	Use:   "update_spans_metric [metric_id]",
+	Use:   "update-spans-metric [metric_id]",
 	Short: "Update a span-based metric",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateSpansMetricCmd = &cobra.Command{
 		api := datadogV2.NewSpansMetricsApi(client.NewAPIClient())
 		res, _, err := api.UpdateSpansMetric(client.NewContext(apiKey, appKey, site), args[0], datadogV2.SpansMetricUpdateRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_spans_metric: %v", err)
+			log.Fatalf("failed to update-spans-metric: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "spans_metrics")

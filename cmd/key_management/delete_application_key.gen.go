@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteApplicationKeyCmd = &cobra.Command{
-	Use:   "delete_application_key [app_key_id]",
+	Use:   "delete-application-key [app_key_id]",
 	Short: "Delete an application key",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteApplicationKeyCmd = &cobra.Command{
 		api := datadogV2.NewKeyManagementApi(client.NewAPIClient())
 		_, err := api.DeleteApplicationKey(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_application_key: %v", err)
+			log.Fatalf("failed to delete-application-key: %v", err)
 		}
 
 		

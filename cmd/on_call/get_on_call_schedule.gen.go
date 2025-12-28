@@ -15,7 +15,7 @@ import (
 )
 
 var GetOnCallScheduleCmd = &cobra.Command{
-	Use:   "get_on_call_schedule [schedule_id]",
+	Use:   "get-on-call-schedule [schedule_id]",
 	Short: "Get On-Call schedule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetOnCallScheduleCmd = &cobra.Command{
 		api := datadogV2.NewOnCallApi(client.NewAPIClient())
 		res, _, err := api.GetOnCallSchedule(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_on_call_schedule: %v", err)
+			log.Fatalf("failed to get-on-call-schedule: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "schedules")

@@ -15,7 +15,7 @@ import (
 )
 
 var ListAPIsCmd = &cobra.Command{
-	Use:   "list_a_p_is",
+	Use:   "list-a-p-is",
 	Short: "List APIs",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListAPIsCmd = &cobra.Command{
 		api := datadogV2.NewAPIManagementApi(client.NewAPIClient())
 		res, _, err := api.ListAPIs(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_a_p_is: %v", err)
+			log.Fatalf("failed to list-a-p-is: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "api_management")

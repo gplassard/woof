@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateOpenAPICmd = &cobra.Command{
-	Use:   "update_open_a_p_i [id]",
+	Use:   "update-open-a-p-i [id]",
 	Short: "Update an API",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateOpenAPICmd = &cobra.Command{
 		api := datadogV2.NewAPIManagementApi(client.NewAPIClient())
 		res, _, err := api.UpdateOpenAPI(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]), *datadogV2.NewUpdateOpenAPIOptionalParameters())
 		if err != nil {
-			log.Fatalf("failed to update_open_a_p_i: %v", err)
+			log.Fatalf("failed to update-open-a-p-i: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "api_management")

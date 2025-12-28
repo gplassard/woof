@@ -15,7 +15,7 @@ import (
 )
 
 var GetUsageApplicationSecurityMonitoringCmd = &cobra.Command{
-	Use:   "get_usage_application_security_monitoring [start_hr]",
+	Use:   "get-usage-application-security-monitoring [start_hr]",
 	Short: "Get hourly usage for application security",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetUsageApplicationSecurityMonitoringCmd = &cobra.Command{
 		api := datadogV2.NewUsageMeteringApi(client.NewAPIClient())
 		res, _, err := api.GetUsageApplicationSecurityMonitoring(client.NewContext(apiKey, appKey, site), func() time.Time { t, _ := time.Parse(time.RFC3339, args[0]); return t }())
 		if err != nil {
-			log.Fatalf("failed to get_usage_application_security_monitoring: %v", err)
+			log.Fatalf("failed to get-usage-application-security-monitoring: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "usage_metering")

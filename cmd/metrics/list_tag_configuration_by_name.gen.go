@@ -15,7 +15,7 @@ import (
 )
 
 var ListTagConfigurationByNameCmd = &cobra.Command{
-	Use:   "list_tag_configuration_by_name [metric_name]",
+	Use:   "list-tag-configuration-by-name [metric_name]",
 	Short: "List tag configuration by name",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListTagConfigurationByNameCmd = &cobra.Command{
 		api := datadogV2.NewMetricsApi(client.NewAPIClient())
 		res, _, err := api.ListTagConfigurationByName(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to list_tag_configuration_by_name: %v", err)
+			log.Fatalf("failed to list-tag-configuration-by-name: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "manage_tags")

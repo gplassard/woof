@@ -15,7 +15,7 @@ import (
 )
 
 var CreateOrUpdateServiceDefinitionsCmd = &cobra.Command{
-	Use:   "create_or_update_service_definitions",
+	Use:   "create-or-update-service-definitions",
 	Short: "Create or update service definition",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateOrUpdateServiceDefinitionsCmd = &cobra.Command{
 		api := datadogV2.NewServiceDefinitionApi(client.NewAPIClient())
 		res, _, err := api.CreateOrUpdateServiceDefinitions(client.NewContext(apiKey, appKey, site), datadogV2.ServiceDefinitionsCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_or_update_service_definitions: %v", err)
+			log.Fatalf("failed to create-or-update-service-definitions: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "service_definition")

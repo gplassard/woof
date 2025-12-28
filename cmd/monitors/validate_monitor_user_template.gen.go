@@ -15,7 +15,7 @@ import (
 )
 
 var ValidateMonitorUserTemplateCmd = &cobra.Command{
-	Use:   "validate_monitor_user_template",
+	Use:   "validate-monitor-user-template",
 	Short: "Validate a monitor user template",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ValidateMonitorUserTemplateCmd = &cobra.Command{
 		api := datadogV2.NewMonitorsApi(client.NewAPIClient())
 		_, err := api.ValidateMonitorUserTemplate(client.NewContext(apiKey, appKey, site), datadogV2.MonitorUserTemplateCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to validate_monitor_user_template: %v", err)
+			log.Fatalf("failed to validate-monitor-user-template: %v", err)
 		}
 
 		

@@ -15,7 +15,7 @@ import (
 )
 
 var QueryEventFilteredUsersCmd = &cobra.Command{
-	Use:   "query_event_filtered_users",
+	Use:   "query-event-filtered-users",
 	Short: "Query event filtered users",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var QueryEventFilteredUsersCmd = &cobra.Command{
 		api := datadogV2.NewRumAudienceManagementApi(client.NewAPIClient())
 		res, _, err := api.QueryEventFilteredUsers(client.NewContext(apiKey, appKey, site), datadogV2.QueryEventFilteredUsersRequest{})
 		if err != nil {
-			log.Fatalf("failed to query_event_filtered_users: %v", err)
+			log.Fatalf("failed to query-event-filtered-users: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "query_response")

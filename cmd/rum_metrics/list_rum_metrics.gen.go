@@ -15,7 +15,7 @@ import (
 )
 
 var ListRumMetricsCmd = &cobra.Command{
-	Use:   "list_rum_metrics",
+	Use:   "list-rum-metrics",
 	Short: "Get all rum-based metrics",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListRumMetricsCmd = &cobra.Command{
 		api := datadogV2.NewRumMetricsApi(client.NewAPIClient())
 		res, _, err := api.ListRumMetrics(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_rum_metrics: %v", err)
+			log.Fatalf("failed to list-rum-metrics: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "rum_metrics")

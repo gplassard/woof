@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteTeamLinkCmd = &cobra.Command{
-	Use:   "delete_team_link [team_id] [link_id]",
+	Use:   "delete-team-link [team_id] [link_id]",
 	Short: "Remove a team link",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteTeamLinkCmd = &cobra.Command{
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
 		_, err := api.DeleteTeamLink(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		if err != nil {
-			log.Fatalf("failed to delete_team_link: %v", err)
+			log.Fatalf("failed to delete-team-link: %v", err)
 		}
 
 		

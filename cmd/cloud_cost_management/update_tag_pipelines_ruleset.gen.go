@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateTagPipelinesRulesetCmd = &cobra.Command{
-	Use:   "update_tag_pipelines_ruleset [ruleset_id]",
+	Use:   "update-tag-pipelines-ruleset [ruleset_id]",
 	Short: "Update tag pipeline ruleset",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateTagPipelinesRulesetCmd = &cobra.Command{
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
 		res, _, err := api.UpdateTagPipelinesRuleset(client.NewContext(apiKey, appKey, site), args[0], datadogV2.UpdateRulesetRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_tag_pipelines_ruleset: %v", err)
+			log.Fatalf("failed to update-tag-pipelines-ruleset: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "ruleset")

@@ -15,7 +15,7 @@ import (
 )
 
 var ConvertExistingSecurityMonitoringRuleCmd = &cobra.Command{
-	Use:   "convert_existing_security_monitoring_rule [rule_id]",
+	Use:   "convert-existing-security-monitoring-rule [rule_id]",
 	Short: "Convert an existing rule from JSON to Terraform",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ConvertExistingSecurityMonitoringRuleCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.ConvertExistingSecurityMonitoringRule(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to convert_existing_security_monitoring_rule: %v", err)
+			log.Fatalf("failed to convert-existing-security-monitoring-rule: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "security_monitoring")

@@ -15,7 +15,7 @@ import (
 )
 
 var CreateServiceAccountApplicationKeyCmd = &cobra.Command{
-	Use:   "create_service_account_application_key [service_account_id]",
+	Use:   "create-service-account-application-key [service_account_id]",
 	Short: "Create an application key for this service account",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateServiceAccountApplicationKeyCmd = &cobra.Command{
 		api := datadogV2.NewServiceAccountsApi(client.NewAPIClient())
 		res, _, err := api.CreateServiceAccountApplicationKey(client.NewContext(apiKey, appKey, site), args[0], datadogV2.ApplicationKeyCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_service_account_application_key: %v", err)
+			log.Fatalf("failed to create-service-account-application-key: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "application_keys")

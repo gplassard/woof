@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateActionConnectionCmd = &cobra.Command{
-	Use:   "update_action_connection [connection_id]",
+	Use:   "update-action-connection [connection_id]",
 	Short: "Update an existing Action Connection",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateActionConnectionCmd = &cobra.Command{
 		api := datadogV2.NewActionConnectionApi(client.NewAPIClient())
 		res, _, err := api.UpdateActionConnection(client.NewContext(apiKey, appKey, site), args[0], datadogV2.UpdateActionConnectionRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_action_connection: %v", err)
+			log.Fatalf("failed to update-action-connection: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "action_connection")

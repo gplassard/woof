@@ -15,7 +15,7 @@ import (
 )
 
 var BulkDeleteDatastoreItemsCmd = &cobra.Command{
-	Use:   "bulk_delete_datastore_items [datastore_id]",
+	Use:   "bulk-delete-datastore-items [datastore_id]",
 	Short: "Bulk delete datastore items",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var BulkDeleteDatastoreItemsCmd = &cobra.Command{
 		api := datadogV2.NewActionsDatastoresApi(client.NewAPIClient())
 		res, _, err := api.BulkDeleteDatastoreItems(client.NewContext(apiKey, appKey, site), args[0], datadogV2.BulkDeleteAppsDatastoreItemsRequest{})
 		if err != nil {
-			log.Fatalf("failed to bulk_delete_datastore_items: %v", err)
+			log.Fatalf("failed to bulk-delete-datastore-items: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "items")

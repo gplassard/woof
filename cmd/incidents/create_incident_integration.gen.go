@@ -15,7 +15,7 @@ import (
 )
 
 var CreateIncidentIntegrationCmd = &cobra.Command{
-	Use:   "create_incident_integration [incident_id]",
+	Use:   "create-incident-integration [incident_id]",
 	Short: "Create an incident integration metadata",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateIncidentIntegrationCmd = &cobra.Command{
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
 		res, _, err := api.CreateIncidentIntegration(client.NewContext(apiKey, appKey, site), args[0], datadogV2.IncidentIntegrationMetadataCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_incident_integration: %v", err)
+			log.Fatalf("failed to create-incident-integration: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "incident_integrations")

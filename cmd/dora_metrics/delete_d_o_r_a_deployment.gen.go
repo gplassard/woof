@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteDORADeploymentCmd = &cobra.Command{
-	Use:   "delete_d_o_r_a_deployment [deployment_id]",
+	Use:   "delete-d-o-r-a-deployment [deployment_id]",
 	Short: "Delete a deployment event",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteDORADeploymentCmd = &cobra.Command{
 		api := datadogV2.NewDORAMetricsApi(client.NewAPIClient())
 		_, err := api.DeleteDORADeployment(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_d_o_r_a_deployment: %v", err)
+			log.Fatalf("failed to delete-d-o-r-a-deployment: %v", err)
 		}
 
 		

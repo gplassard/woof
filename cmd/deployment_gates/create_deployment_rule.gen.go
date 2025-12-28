@@ -15,7 +15,7 @@ import (
 )
 
 var CreateDeploymentRuleCmd = &cobra.Command{
-	Use:   "create_deployment_rule [gate_id]",
+	Use:   "create-deployment-rule [gate_id]",
 	Short: "Create deployment rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateDeploymentRuleCmd = &cobra.Command{
 		api := datadogV2.NewDeploymentGatesApi(client.NewAPIClient())
 		res, _, err := api.CreateDeploymentRule(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CreateDeploymentRuleParams{})
 		if err != nil {
-			log.Fatalf("failed to create_deployment_rule: %v", err)
+			log.Fatalf("failed to create-deployment-rule: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "deployment_rule")

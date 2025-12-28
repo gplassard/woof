@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateDatastoreItemCmd = &cobra.Command{
-	Use:   "update_datastore_item [datastore_id]",
+	Use:   "update-datastore-item [datastore_id]",
 	Short: "Update datastore item",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateDatastoreItemCmd = &cobra.Command{
 		api := datadogV2.NewActionsDatastoresApi(client.NewAPIClient())
 		res, _, err := api.UpdateDatastoreItem(client.NewContext(apiKey, appKey, site), args[0], datadogV2.UpdateAppsDatastoreItemRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_datastore_item: %v", err)
+			log.Fatalf("failed to update-datastore-item: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "items")

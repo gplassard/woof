@@ -15,7 +15,7 @@ import (
 )
 
 var ListSecurityFiltersCmd = &cobra.Command{
-	Use:   "list_security_filters",
+	Use:   "list-security-filters",
 	Short: "Get all security filters",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListSecurityFiltersCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.ListSecurityFilters(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_security_filters: %v", err)
+			log.Fatalf("failed to list-security-filters: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "security_filters")

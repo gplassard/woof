@@ -15,7 +15,7 @@ import (
 )
 
 var CancelDowntimeCmd = &cobra.Command{
-	Use:   "cancel_downtime [downtime_id]",
+	Use:   "cancel-downtime [downtime_id]",
 	Short: "Cancel a downtime",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CancelDowntimeCmd = &cobra.Command{
 		api := datadogV2.NewDowntimesApi(client.NewAPIClient())
 		_, err := api.CancelDowntime(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to cancel_downtime: %v", err)
+			log.Fatalf("failed to cancel-downtime: %v", err)
 		}
 
 		

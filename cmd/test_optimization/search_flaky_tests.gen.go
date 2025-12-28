@@ -15,7 +15,7 @@ import (
 )
 
 var SearchFlakyTestsCmd = &cobra.Command{
-	Use:   "search_flaky_tests",
+	Use:   "search-flaky-tests",
 	Short: "Search flaky tests",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var SearchFlakyTestsCmd = &cobra.Command{
 		api := datadogV2.NewTestOptimizationApi(client.NewAPIClient())
 		res, _, err := api.SearchFlakyTests(client.NewContext(apiKey, appKey, site), *datadogV2.NewSearchFlakyTestsOptionalParameters())
 		if err != nil {
-			log.Fatalf("failed to search_flaky_tests: %v", err)
+			log.Fatalf("failed to search-flaky-tests: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "flaky_test")

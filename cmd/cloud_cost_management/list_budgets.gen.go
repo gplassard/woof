@@ -15,7 +15,7 @@ import (
 )
 
 var ListBudgetsCmd = &cobra.Command{
-	Use:   "list_budgets",
+	Use:   "list-budgets",
 	Short: "List budgets",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListBudgetsCmd = &cobra.Command{
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
 		res, _, err := api.ListBudgets(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_budgets: %v", err)
+			log.Fatalf("failed to list-budgets: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "cloud_cost_management")

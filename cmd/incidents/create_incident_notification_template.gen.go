@@ -15,7 +15,7 @@ import (
 )
 
 var CreateIncidentNotificationTemplateCmd = &cobra.Command{
-	Use:   "create_incident_notification_template",
+	Use:   "create-incident-notification-template",
 	Short: "Create incident notification template",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateIncidentNotificationTemplateCmd = &cobra.Command{
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
 		res, _, err := api.CreateIncidentNotificationTemplate(client.NewContext(apiKey, appKey, site), datadogV2.CreateIncidentNotificationTemplateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_incident_notification_template: %v", err)
+			log.Fatalf("failed to create-incident-notification-template: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "notification_templates")

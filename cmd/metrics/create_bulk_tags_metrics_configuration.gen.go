@@ -15,7 +15,7 @@ import (
 )
 
 var CreateBulkTagsMetricsConfigurationCmd = &cobra.Command{
-	Use:   "create_bulk_tags_metrics_configuration",
+	Use:   "create-bulk-tags-metrics-configuration",
 	Short: "Configure tags for multiple metrics",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateBulkTagsMetricsConfigurationCmd = &cobra.Command{
 		api := datadogV2.NewMetricsApi(client.NewAPIClient())
 		res, _, err := api.CreateBulkTagsMetricsConfiguration(client.NewContext(apiKey, appKey, site), datadogV2.MetricBulkTagConfigCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_bulk_tags_metrics_configuration: %v", err)
+			log.Fatalf("failed to create-bulk-tags-metrics-configuration: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "metric_bulk_configure_tags")

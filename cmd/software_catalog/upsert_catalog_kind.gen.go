@@ -15,7 +15,7 @@ import (
 )
 
 var UpsertCatalogKindCmd = &cobra.Command{
-	Use:   "upsert_catalog_kind",
+	Use:   "upsert-catalog-kind",
 	Short: "Create or update kinds",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpsertCatalogKindCmd = &cobra.Command{
 		api := datadogV2.NewSoftwareCatalogApi(client.NewAPIClient())
 		res, _, err := api.UpsertCatalogKind(client.NewContext(apiKey, appKey, site), datadogV2.UpsertCatalogKindRequest{})
 		if err != nil {
-			log.Fatalf("failed to upsert_catalog_kind: %v", err)
+			log.Fatalf("failed to upsert-catalog-kind: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "software_catalog")

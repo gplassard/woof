@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteUserNotificationChannelCmd = &cobra.Command{
-	Use:   "delete_user_notification_channel [user_id] [channel_id]",
+	Use:   "delete-user-notification-channel [user_id] [channel_id]",
 	Short: "Delete an On-Call notification channel for a user",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteUserNotificationChannelCmd = &cobra.Command{
 		api := datadogV2.NewOnCallApi(client.NewAPIClient())
 		_, err := api.DeleteUserNotificationChannel(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		if err != nil {
-			log.Fatalf("failed to delete_user_notification_channel: %v", err)
+			log.Fatalf("failed to delete-user-notification-channel: %v", err)
 		}
 
 		

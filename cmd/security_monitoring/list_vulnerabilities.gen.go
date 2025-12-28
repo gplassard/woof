@@ -15,7 +15,7 @@ import (
 )
 
 var ListVulnerabilitiesCmd = &cobra.Command{
-	Use:   "list_vulnerabilities",
+	Use:   "list-vulnerabilities",
 	Short: "List vulnerabilities",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListVulnerabilitiesCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.ListVulnerabilities(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_vulnerabilities: %v", err)
+			log.Fatalf("failed to list-vulnerabilities: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "vulnerabilities")

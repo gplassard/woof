@@ -15,7 +15,7 @@ import (
 )
 
 var RemoveTeamHierarchyLinkCmd = &cobra.Command{
-	Use:   "remove_team_hierarchy_link [link_id]",
+	Use:   "remove-team-hierarchy-link [link_id]",
 	Short: "Remove a team hierarchy link",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var RemoveTeamHierarchyLinkCmd = &cobra.Command{
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
 		_, err := api.RemoveTeamHierarchyLink(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to remove_team_hierarchy_link: %v", err)
+			log.Fatalf("failed to remove-team-hierarchy-link: %v", err)
 		}
 
 		

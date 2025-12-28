@@ -15,7 +15,7 @@ import (
 )
 
 var GetCSMCloudAccountsCoverageAnalysisCmd = &cobra.Command{
-	Use:   "get_c_s_m_cloud_accounts_coverage_analysis",
+	Use:   "get-c-s-m-cloud-accounts-coverage-analysis",
 	Short: "Get the CSM Cloud Accounts Coverage Analysis",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetCSMCloudAccountsCoverageAnalysisCmd = &cobra.Command{
 		api := datadogV2.NewCSMCoverageAnalysisApi(client.NewAPIClient())
 		res, _, err := api.GetCSMCloudAccountsCoverageAnalysis(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to get_c_s_m_cloud_accounts_coverage_analysis: %v", err)
+			log.Fatalf("failed to get-c-s-m-cloud-accounts-coverage-analysis: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "csm_coverage_analysis")

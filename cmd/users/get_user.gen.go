@@ -15,7 +15,7 @@ import (
 )
 
 var GetUserCmd = &cobra.Command{
-	Use:   "get_user [user_id]",
+	Use:   "get-user [user_id]",
 	Short: "Get user details",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetUserCmd = &cobra.Command{
 		api := datadogV2.NewUsersApi(client.NewAPIClient())
 		res, _, err := api.GetUser(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_user: %v", err)
+			log.Fatalf("failed to get-user: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "users")

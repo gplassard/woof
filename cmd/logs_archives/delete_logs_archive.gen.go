@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteLogsArchiveCmd = &cobra.Command{
-	Use:   "delete_logs_archive [archive_id]",
+	Use:   "delete-logs-archive [archive_id]",
 	Short: "Delete an archive",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteLogsArchiveCmd = &cobra.Command{
 		api := datadogV2.NewLogsArchivesApi(client.NewAPIClient())
 		_, err := api.DeleteLogsArchive(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_logs_archive: %v", err)
+			log.Fatalf("failed to delete-logs-archive: %v", err)
 		}
 
 		

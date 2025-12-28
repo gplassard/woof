@@ -15,7 +15,7 @@ import (
 )
 
 var ListStandardPatternsCmd = &cobra.Command{
-	Use:   "list_standard_patterns",
+	Use:   "list-standard-patterns",
 	Short: "List standard patterns",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListStandardPatternsCmd = &cobra.Command{
 		api := datadogV2.NewSensitiveDataScannerApi(client.NewAPIClient())
 		res, _, err := api.ListStandardPatterns(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_standard_patterns: %v", err)
+			log.Fatalf("failed to list-standard-patterns: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "sensitive_data_scanner")

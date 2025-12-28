@@ -15,7 +15,7 @@ import (
 )
 
 var AddMemberTeamCmd = &cobra.Command{
-	Use:   "add_member_team [super_team_id]",
+	Use:   "add-member-team [super_team_id]",
 	Short: "Add a member team",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var AddMemberTeamCmd = &cobra.Command{
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
 		_, err := api.AddMemberTeam(client.NewContext(apiKey, appKey, site), args[0], datadogV2.AddMemberTeamRequest{})
 		if err != nil {
-			log.Fatalf("failed to add_member_team: %v", err)
+			log.Fatalf("failed to add-member-team: %v", err)
 		}
 
 		

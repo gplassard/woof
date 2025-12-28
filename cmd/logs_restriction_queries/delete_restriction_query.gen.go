@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteRestrictionQueryCmd = &cobra.Command{
-	Use:   "delete_restriction_query [restriction_query_id]",
+	Use:   "delete-restriction-query [restriction_query_id]",
 	Short: "Delete a restriction query",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteRestrictionQueryCmd = &cobra.Command{
 		api := datadogV2.NewLogsRestrictionQueriesApi(client.NewAPIClient())
 		_, err := api.DeleteRestrictionQuery(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_restriction_query: %v", err)
+			log.Fatalf("failed to delete-restriction-query: %v", err)
 		}
 
 		

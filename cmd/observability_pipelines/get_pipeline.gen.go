@@ -15,7 +15,7 @@ import (
 )
 
 var GetPipelineCmd = &cobra.Command{
-	Use:   "get_pipeline [pipeline_id]",
+	Use:   "get-pipeline [pipeline_id]",
 	Short: "Get a specific pipeline",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetPipelineCmd = &cobra.Command{
 		api := datadogV2.NewObservabilityPipelinesApi(client.NewAPIClient())
 		res, _, err := api.GetPipeline(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_pipeline: %v", err)
+			log.Fatalf("failed to get-pipeline: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "observability_pipelines")

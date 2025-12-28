@@ -15,7 +15,7 @@ import (
 )
 
 var EscalateOnCallPageCmd = &cobra.Command{
-	Use:   "escalate_on_call_page [page_id]",
+	Use:   "escalate-on-call-page [page_id]",
 	Short: "Escalate On-Call Page",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var EscalateOnCallPageCmd = &cobra.Command{
 		api := datadogV2.NewOnCallPagingApi(client.NewAPIClient())
 		_, err := api.EscalateOnCallPage(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
 		if err != nil {
-			log.Fatalf("failed to escalate_on_call_page: %v", err)
+			log.Fatalf("failed to escalate-on-call-page: %v", err)
 		}
 
 		

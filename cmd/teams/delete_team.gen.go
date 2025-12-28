@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteTeamCmd = &cobra.Command{
-	Use:   "delete_team [team_id]",
+	Use:   "delete-team [team_id]",
 	Short: "Remove a team",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteTeamCmd = &cobra.Command{
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
 		_, err := api.DeleteTeam(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_team: %v", err)
+			log.Fatalf("failed to delete-team: %v", err)
 		}
 
 		

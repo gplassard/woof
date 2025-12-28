@@ -15,7 +15,7 @@ import (
 )
 
 var RemoveUserFromRoleCmd = &cobra.Command{
-	Use:   "remove_user_from_role [role_id]",
+	Use:   "remove-user-from-role [role_id]",
 	Short: "Remove a user from a role",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var RemoveUserFromRoleCmd = &cobra.Command{
 		api := datadogV2.NewRolesApi(client.NewAPIClient())
 		res, _, err := api.RemoveUserFromRole(client.NewContext(apiKey, appKey, site), args[0], datadogV2.RelationshipToUser{})
 		if err != nil {
-			log.Fatalf("failed to remove_user_from_role: %v", err)
+			log.Fatalf("failed to remove-user-from-role: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "users")

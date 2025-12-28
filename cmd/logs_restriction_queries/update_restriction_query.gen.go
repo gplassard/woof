@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateRestrictionQueryCmd = &cobra.Command{
-	Use:   "update_restriction_query [restriction_query_id]",
+	Use:   "update-restriction-query [restriction_query_id]",
 	Short: "Update a restriction query",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateRestrictionQueryCmd = &cobra.Command{
 		api := datadogV2.NewLogsRestrictionQueriesApi(client.NewAPIClient())
 		res, _, err := api.UpdateRestrictionQuery(client.NewContext(apiKey, appKey, site), args[0], datadogV2.RestrictionQueryUpdatePayload{})
 		if err != nil {
-			log.Fatalf("failed to update_restriction_query: %v", err)
+			log.Fatalf("failed to update-restriction-query: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "logs_restriction_queries")

@@ -15,7 +15,7 @@ import (
 )
 
 var GetApplicationKeyCmd = &cobra.Command{
-	Use:   "get_application_key [app_key_id]",
+	Use:   "get-application-key [app_key_id]",
 	Short: "Get an application key",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetApplicationKeyCmd = &cobra.Command{
 		api := datadogV2.NewKeyManagementApi(client.NewAPIClient())
 		res, _, err := api.GetApplicationKey(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_application_key: %v", err)
+			log.Fatalf("failed to get-application-key: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "application_keys")

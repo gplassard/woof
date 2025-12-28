@@ -15,7 +15,7 @@ import (
 )
 
 var GetSecurityMonitoringHistsignalsByJobIdCmd = &cobra.Command{
-	Use:   "get_security_monitoring_histsignals_by_job_id [job_id]",
+	Use:   "get-security-monitoring-histsignals-by-job-id [job_id]",
 	Short: "Get a job's hist signals",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetSecurityMonitoringHistsignalsByJobIdCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.GetSecurityMonitoringHistsignalsByJobId(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_security_monitoring_histsignals_by_job_id: %v", err)
+			log.Fatalf("failed to get-security-monitoring-histsignals-by-job-id: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "signal")

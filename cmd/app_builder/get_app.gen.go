@@ -15,7 +15,7 @@ import (
 )
 
 var GetAppCmd = &cobra.Command{
-	Use:   "get_app [app_id]",
+	Use:   "get-app [app_id]",
 	Short: "Get App",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetAppCmd = &cobra.Command{
 		api := datadogV2.NewAppBuilderApi(client.NewAPIClient())
 		res, _, err := api.GetApp(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
 		if err != nil {
-			log.Fatalf("failed to get_app: %v", err)
+			log.Fatalf("failed to get-app: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "appDefinitions")

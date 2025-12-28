@@ -15,7 +15,7 @@ import (
 )
 
 var CommentCaseCmd = &cobra.Command{
-	Use:   "comment_case [case_id]",
+	Use:   "comment-case [case_id]",
 	Short: "Comment case",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CommentCaseCmd = &cobra.Command{
 		api := datadogV2.NewCaseManagementApi(client.NewAPIClient())
 		res, _, err := api.CommentCase(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CaseCommentRequest{})
 		if err != nil {
-			log.Fatalf("failed to comment_case: %v", err)
+			log.Fatalf("failed to comment-case: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "timeline_cell")

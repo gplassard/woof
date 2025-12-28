@@ -15,7 +15,7 @@ import (
 )
 
 var QueryTimeseriesDataCmd = &cobra.Command{
-	Use:   "query_timeseries_data",
+	Use:   "query-timeseries-data",
 	Short: "Query timeseries data across multiple products",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var QueryTimeseriesDataCmd = &cobra.Command{
 		api := datadogV2.NewMetricsApi(client.NewAPIClient())
 		res, _, err := api.QueryTimeseriesData(client.NewContext(apiKey, appKey, site), datadogV2.TimeseriesFormulaQueryRequest{})
 		if err != nil {
-			log.Fatalf("failed to query_timeseries_data: %v", err)
+			log.Fatalf("failed to query-timeseries-data: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "timeseries_response")

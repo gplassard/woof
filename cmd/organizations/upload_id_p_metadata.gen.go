@@ -15,7 +15,7 @@ import (
 )
 
 var UploadIdPMetadataCmd = &cobra.Command{
-	Use:   "upload_id_p_metadata",
+	Use:   "upload-id-p-metadata",
 	Short: "Upload IdP metadata",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UploadIdPMetadataCmd = &cobra.Command{
 		api := datadogV2.NewOrganizationsApi(client.NewAPIClient())
 		_, err := api.UploadIdPMetadata(client.NewContext(apiKey, appKey, site), *datadogV2.NewUploadIdPMetadataOptionalParameters())
 		if err != nil {
-			log.Fatalf("failed to upload_id_p_metadata: %v", err)
+			log.Fatalf("failed to upload-id-p-metadata: %v", err)
 		}
 
 		

@@ -15,7 +15,7 @@ import (
 )
 
 var CreateRUMApplicationCmd = &cobra.Command{
-	Use:   "create_r_u_m_application",
+	Use:   "create-r-u-m-application",
 	Short: "Create a new RUM application",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateRUMApplicationCmd = &cobra.Command{
 		api := datadogV2.NewRUMApi(client.NewAPIClient())
 		res, _, err := api.CreateRUMApplication(client.NewContext(apiKey, appKey, site), datadogV2.RUMApplicationCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_r_u_m_application: %v", err)
+			log.Fatalf("failed to create-r-u-m-application: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "rum_application")

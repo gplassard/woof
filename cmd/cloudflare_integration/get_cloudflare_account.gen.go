@@ -15,7 +15,7 @@ import (
 )
 
 var GetCloudflareAccountCmd = &cobra.Command{
-	Use:   "get_cloudflare_account [account_id]",
+	Use:   "get-cloudflare-account [account_id]",
 	Short: "Get Cloudflare account",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetCloudflareAccountCmd = &cobra.Command{
 		api := datadogV2.NewCloudflareIntegrationApi(client.NewAPIClient())
 		res, _, err := api.GetCloudflareAccount(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_cloudflare_account: %v", err)
+			log.Fatalf("failed to get-cloudflare-account: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "cloudflare-accounts")

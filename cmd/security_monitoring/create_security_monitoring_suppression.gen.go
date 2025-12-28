@@ -15,7 +15,7 @@ import (
 )
 
 var CreateSecurityMonitoringSuppressionCmd = &cobra.Command{
-	Use:   "create_security_monitoring_suppression",
+	Use:   "create-security-monitoring-suppression",
 	Short: "Create a suppression rule",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateSecurityMonitoringSuppressionCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.CreateSecurityMonitoringSuppression(client.NewContext(apiKey, appKey, site), datadogV2.SecurityMonitoringSuppressionCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_security_monitoring_suppression: %v", err)
+			log.Fatalf("failed to create-security-monitoring-suppression: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "suppressions")

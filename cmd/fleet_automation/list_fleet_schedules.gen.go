@@ -15,7 +15,7 @@ import (
 )
 
 var ListFleetSchedulesCmd = &cobra.Command{
-	Use:   "list_fleet_schedules",
+	Use:   "list-fleet-schedules",
 	Short: "List all schedules",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListFleetSchedulesCmd = &cobra.Command{
 		api := datadogV2.NewFleetAutomationApi(client.NewAPIClient())
 		res, _, err := api.ListFleetSchedules(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_fleet_schedules: %v", err)
+			log.Fatalf("failed to list-fleet-schedules: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "schedule")

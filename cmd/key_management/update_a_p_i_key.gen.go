@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateAPIKeyCmd = &cobra.Command{
-	Use:   "update_a_p_i_key [api_key_id]",
+	Use:   "update-a-p-i-key [api_key_id]",
 	Short: "Edit an API key",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateAPIKeyCmd = &cobra.Command{
 		api := datadogV2.NewKeyManagementApi(client.NewAPIClient())
 		res, _, err := api.UpdateAPIKey(client.NewContext(apiKey, appKey, site), args[0], datadogV2.APIKeyUpdateRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_a_p_i_key: %v", err)
+			log.Fatalf("failed to update-a-p-i-key: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "api_keys")

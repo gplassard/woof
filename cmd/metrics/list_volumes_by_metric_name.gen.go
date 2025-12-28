@@ -15,7 +15,7 @@ import (
 )
 
 var ListVolumesByMetricNameCmd = &cobra.Command{
-	Use:   "list_volumes_by_metric_name [metric_name]",
+	Use:   "list-volumes-by-metric-name [metric_name]",
 	Short: "List distinct metric volumes by metric name",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListVolumesByMetricNameCmd = &cobra.Command{
 		api := datadogV2.NewMetricsApi(client.NewAPIClient())
 		res, _, err := api.ListVolumesByMetricName(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to list_volumes_by_metric_name: %v", err)
+			log.Fatalf("failed to list-volumes-by-metric-name: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "metrics")

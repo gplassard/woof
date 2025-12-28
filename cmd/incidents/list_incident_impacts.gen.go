@@ -15,7 +15,7 @@ import (
 )
 
 var ListIncidentImpactsCmd = &cobra.Command{
-	Use:   "list_incident_impacts [incident_id]",
+	Use:   "list-incident-impacts [incident_id]",
 	Short: "List an incident's impacts",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListIncidentImpactsCmd = &cobra.Command{
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
 		res, _, err := api.ListIncidentImpacts(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to list_incident_impacts: %v", err)
+			log.Fatalf("failed to list-incident-impacts: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "incident_impacts")

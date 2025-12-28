@@ -15,7 +15,7 @@ import (
 )
 
 var GetRestrictionPolicyCmd = &cobra.Command{
-	Use:   "get_restriction_policy [resource_id]",
+	Use:   "get-restriction-policy [resource_id]",
 	Short: "Get a restriction policy",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetRestrictionPolicyCmd = &cobra.Command{
 		api := datadogV2.NewRestrictionPoliciesApi(client.NewAPIClient())
 		res, _, err := api.GetRestrictionPolicy(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_restriction_policy: %v", err)
+			log.Fatalf("failed to get-restriction-policy: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "restriction_policy")

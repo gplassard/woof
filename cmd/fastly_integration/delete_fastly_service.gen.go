@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteFastlyServiceCmd = &cobra.Command{
-	Use:   "delete_fastly_service [account_id] [service_id]",
+	Use:   "delete-fastly-service [account_id] [service_id]",
 	Short: "Delete Fastly service",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteFastlyServiceCmd = &cobra.Command{
 		api := datadogV2.NewFastlyIntegrationApi(client.NewAPIClient())
 		_, err := api.DeleteFastlyService(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		if err != nil {
-			log.Fatalf("failed to delete_fastly_service: %v", err)
+			log.Fatalf("failed to delete-fastly-service: %v", err)
 		}
 
 		

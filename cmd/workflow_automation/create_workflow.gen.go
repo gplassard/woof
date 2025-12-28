@@ -15,7 +15,7 @@ import (
 )
 
 var CreateWorkflowCmd = &cobra.Command{
-	Use:   "create_workflow",
+	Use:   "create-workflow",
 	Short: "Create a Workflow",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateWorkflowCmd = &cobra.Command{
 		api := datadogV2.NewWorkflowAutomationApi(client.NewAPIClient())
 		res, _, err := api.CreateWorkflow(client.NewContext(apiKey, appKey, site), datadogV2.CreateWorkflowRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_workflow: %v", err)
+			log.Fatalf("failed to create-workflow: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "workflows")

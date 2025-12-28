@@ -15,7 +15,7 @@ import (
 )
 
 var GetUserMembershipsCmd = &cobra.Command{
-	Use:   "get_user_memberships [user_uuid]",
+	Use:   "get-user-memberships [user_uuid]",
 	Short: "Get user memberships",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetUserMembershipsCmd = &cobra.Command{
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
 		res, _, err := api.GetUserMemberships(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_user_memberships: %v", err)
+			log.Fatalf("failed to get-user-memberships: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "team_memberships")

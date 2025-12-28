@@ -15,7 +15,7 @@ import (
 )
 
 var CancelDataDeletionRequestCmd = &cobra.Command{
-	Use:   "cancel_data_deletion_request [id]",
+	Use:   "cancel-data-deletion-request [id]",
 	Short: "Cancels a data deletion request",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CancelDataDeletionRequestCmd = &cobra.Command{
 		api := datadogV2.NewDataDeletionApi(client.NewAPIClient())
 		res, _, err := api.CancelDataDeletionRequest(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to cancel_data_deletion_request: %v", err)
+			log.Fatalf("failed to cancel-data-deletion-request: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "data_deletion")

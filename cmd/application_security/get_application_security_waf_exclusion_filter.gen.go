@@ -15,7 +15,7 @@ import (
 )
 
 var GetApplicationSecurityWafExclusionFilterCmd = &cobra.Command{
-	Use:   "get_application_security_waf_exclusion_filter [exclusion_filter_id]",
+	Use:   "get-application-security-waf-exclusion-filter [exclusion_filter_id]",
 	Short: "Get a WAF exclusion filter",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetApplicationSecurityWafExclusionFilterCmd = &cobra.Command{
 		api := datadogV2.NewApplicationSecurityApi(client.NewAPIClient())
 		res, _, err := api.GetApplicationSecurityWafExclusionFilter(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_application_security_waf_exclusion_filter: %v", err)
+			log.Fatalf("failed to get-application-security-waf-exclusion-filter: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "exclusion_filter")

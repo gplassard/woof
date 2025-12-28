@@ -15,7 +15,7 @@ import (
 )
 
 var CreateOktaAccountCmd = &cobra.Command{
-	Use:   "create_okta_account",
+	Use:   "create-okta-account",
 	Short: "Add Okta account",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateOktaAccountCmd = &cobra.Command{
 		api := datadogV2.NewOktaIntegrationApi(client.NewAPIClient())
 		res, _, err := api.CreateOktaAccount(client.NewContext(apiKey, appKey, site), datadogV2.OktaAccountRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_okta_account: %v", err)
+			log.Fatalf("failed to create-okta-account: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "okta-accounts")

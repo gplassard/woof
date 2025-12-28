@@ -15,7 +15,7 @@ import (
 )
 
 var CreateSCAResolveVulnerableSymbolsCmd = &cobra.Command{
-	Use:   "create_s_c_a_resolve_vulnerable_symbols",
+	Use:   "create-s-c-a-resolve-vulnerable-symbols",
 	Short: "POST request to resolve vulnerable symbols",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateSCAResolveVulnerableSymbolsCmd = &cobra.Command{
 		api := datadogV2.NewStaticAnalysisApi(client.NewAPIClient())
 		res, _, err := api.CreateSCAResolveVulnerableSymbols(client.NewContext(apiKey, appKey, site), datadogV2.ResolveVulnerableSymbolsRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_s_c_a_resolve_vulnerable_symbols: %v", err)
+			log.Fatalf("failed to create-s-c-a-resolve-vulnerable-symbols: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "resolve-vulnerable-symbols-response")

@@ -15,7 +15,7 @@ import (
 )
 
 var CreateDashboardListItemsCmd = &cobra.Command{
-	Use:   "create_dashboard_list_items [dashboard_list_id]",
+	Use:   "create-dashboard-list-items [dashboard_list_id]",
 	Short: "Add Items to a Dashboard List",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateDashboardListItemsCmd = &cobra.Command{
 		api := datadogV2.NewDashboardListsApi(client.NewAPIClient())
 		res, _, err := api.CreateDashboardListItems(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }(), datadogV2.DashboardListAddItemsRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_dashboard_list_items: %v", err)
+			log.Fatalf("failed to create-dashboard-list-items: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "dashboard_lists")

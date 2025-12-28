@@ -15,7 +15,7 @@ import (
 )
 
 var GetDORAFailureCmd = &cobra.Command{
-	Use:   "get_d_o_r_a_failure [failure_id]",
+	Use:   "get-d-o-r-a-failure [failure_id]",
 	Short: "Get a failure event",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetDORAFailureCmd = &cobra.Command{
 		api := datadogV2.NewDORAMetricsApi(client.NewAPIClient())
 		res, _, err := api.GetDORAFailure(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_d_o_r_a_failure: %v", err)
+			log.Fatalf("failed to get-d-o-r-a-failure: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "dora_metrics")

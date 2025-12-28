@@ -15,7 +15,7 @@ import (
 )
 
 var ListOrgConnectionsCmd = &cobra.Command{
-	Use:   "list_org_connections",
+	Use:   "list-org-connections",
 	Short: "List Org Connections",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListOrgConnectionsCmd = &cobra.Command{
 		api := datadogV2.NewOrgConnectionsApi(client.NewAPIClient())
 		res, _, err := api.ListOrgConnections(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_org_connections: %v", err)
+			log.Fatalf("failed to list-org-connections: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "org_connection")

@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteRumMetricCmd = &cobra.Command{
-	Use:   "delete_rum_metric [metric_id]",
+	Use:   "delete-rum-metric [metric_id]",
 	Short: "Delete a rum-based metric",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteRumMetricCmd = &cobra.Command{
 		api := datadogV2.NewRumMetricsApi(client.NewAPIClient())
 		_, err := api.DeleteRumMetric(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_rum_metric: %v", err)
+			log.Fatalf("failed to delete-rum-metric: %v", err)
 		}
 
 		

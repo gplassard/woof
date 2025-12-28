@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteAWSAccountCmd = &cobra.Command{
-	Use:   "delete_a_w_s_account [aws_account_config_id]",
+	Use:   "delete-a-w-s-account [aws_account_config_id]",
 	Short: "Delete an AWS integration",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteAWSAccountCmd = &cobra.Command{
 		api := datadogV2.NewAWSIntegrationApi(client.NewAPIClient())
 		_, err := api.DeleteAWSAccount(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_a_w_s_account: %v", err)
+			log.Fatalf("failed to delete-a-w-s-account: %v", err)
 		}
 
 		

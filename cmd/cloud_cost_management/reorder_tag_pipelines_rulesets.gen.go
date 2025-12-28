@@ -15,7 +15,7 @@ import (
 )
 
 var ReorderTagPipelinesRulesetsCmd = &cobra.Command{
-	Use:   "reorder_tag_pipelines_rulesets",
+	Use:   "reorder-tag-pipelines-rulesets",
 	Short: "Reorder tag pipeline rulesets",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ReorderTagPipelinesRulesetsCmd = &cobra.Command{
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
 		_, err := api.ReorderTagPipelinesRulesets(client.NewContext(apiKey, appKey, site), datadogV2.ReorderRulesetResourceArray{})
 		if err != nil {
-			log.Fatalf("failed to reorder_tag_pipelines_rulesets: %v", err)
+			log.Fatalf("failed to reorder-tag-pipelines-rulesets: %v", err)
 		}
 
 		

@@ -15,7 +15,7 @@ import (
 )
 
 var ListDatastoresCmd = &cobra.Command{
-	Use:   "list_datastores",
+	Use:   "list-datastores",
 	Short: "List datastores",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListDatastoresCmd = &cobra.Command{
 		api := datadogV2.NewActionsDatastoresApi(client.NewAPIClient())
 		res, _, err := api.ListDatastores(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_datastores: %v", err)
+			log.Fatalf("failed to list-datastores: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "datastores")

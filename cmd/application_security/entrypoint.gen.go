@@ -3,7 +3,7 @@ package application_security
 import "github.com/spf13/cobra"
 
 var Cmd = &cobra.Command{
-	Use:   "application_security",
+	Use:   "application-security",
 	Short: "application_security endpoints",
 	Aliases: []string{
 		"appsec",

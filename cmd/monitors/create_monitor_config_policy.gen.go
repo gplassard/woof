@@ -15,7 +15,7 @@ import (
 )
 
 var CreateMonitorConfigPolicyCmd = &cobra.Command{
-	Use:   "create_monitor_config_policy",
+	Use:   "create-monitor-config-policy",
 	Short: "Create a monitor configuration policy",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateMonitorConfigPolicyCmd = &cobra.Command{
 		api := datadogV2.NewMonitorsApi(client.NewAPIClient())
 		res, _, err := api.CreateMonitorConfigPolicy(client.NewContext(apiKey, appKey, site), datadogV2.MonitorConfigPolicyCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_monitor_config_policy: %v", err)
+			log.Fatalf("failed to create-monitor-config-policy: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "monitor-config-policy")

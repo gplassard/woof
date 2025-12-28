@@ -15,7 +15,7 @@ import (
 )
 
 var GetCSMThreatsAgentRuleCmd = &cobra.Command{
-	Use:   "get_c_s_m_threats_agent_rule [agent_rule_id]",
+	Use:   "get-c-s-m-threats-agent-rule [agent_rule_id]",
 	Short: "Get a Workload Protection agent rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetCSMThreatsAgentRuleCmd = &cobra.Command{
 		api := datadogV2.NewCSMThreatsApi(client.NewAPIClient())
 		res, _, err := api.GetCSMThreatsAgentRule(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_c_s_m_threats_agent_rule: %v", err)
+			log.Fatalf("failed to get-c-s-m-threats-agent-rule: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "agent_rule")

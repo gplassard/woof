@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateOktaAccountCmd = &cobra.Command{
-	Use:   "update_okta_account [account_id]",
+	Use:   "update-okta-account [account_id]",
 	Short: "Update Okta account",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateOktaAccountCmd = &cobra.Command{
 		api := datadogV2.NewOktaIntegrationApi(client.NewAPIClient())
 		res, _, err := api.UpdateOktaAccount(client.NewContext(apiKey, appKey, site), args[0], datadogV2.OktaAccountUpdateRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_okta_account: %v", err)
+			log.Fatalf("failed to update-okta-account: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "okta-accounts")

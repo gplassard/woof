@@ -15,7 +15,7 @@ import (
 )
 
 var ListAWSLogsServicesCmd = &cobra.Command{
-	Use:   "list_a_w_s_logs_services",
+	Use:   "list-a-w-s-logs-services",
 	Short: "Get list of AWS log ready services",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListAWSLogsServicesCmd = &cobra.Command{
 		api := datadogV2.NewAWSLogsIntegrationApi(client.NewAPIClient())
 		res, _, err := api.ListAWSLogsServices(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_a_w_s_logs_services: %v", err)
+			log.Fatalf("failed to list-a-w-s-logs-services: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "logs_services")

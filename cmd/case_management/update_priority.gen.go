@@ -15,7 +15,7 @@ import (
 )
 
 var UpdatePriorityCmd = &cobra.Command{
-	Use:   "update_priority [case_id]",
+	Use:   "update-priority [case_id]",
 	Short: "Update case priority",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdatePriorityCmd = &cobra.Command{
 		api := datadogV2.NewCaseManagementApi(client.NewAPIClient())
 		res, _, err := api.UpdatePriority(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CaseUpdatePriorityRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_priority: %v", err)
+			log.Fatalf("failed to update-priority: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "case")

@@ -15,7 +15,7 @@ import (
 )
 
 var SearchCIAppPipelineEventsCmd = &cobra.Command{
-	Use:   "search_c_i_app_pipeline_events",
+	Use:   "search-c-i-app-pipeline-events",
 	Short: "Search pipelines events",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var SearchCIAppPipelineEventsCmd = &cobra.Command{
 		api := datadogV2.NewCIVisibilityPipelinesApi(client.NewAPIClient())
 		res, _, err := api.SearchCIAppPipelineEvents(client.NewContext(apiKey, appKey, site), *datadogV2.NewSearchCIAppPipelineEventsOptionalParameters())
 		if err != nil {
-			log.Fatalf("failed to search_c_i_app_pipeline_events: %v", err)
+			log.Fatalf("failed to search-c-i-app-pipeline-events: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "cipipeline")

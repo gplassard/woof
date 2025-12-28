@@ -15,7 +15,7 @@ import (
 )
 
 var GetLogsArchiveCmd = &cobra.Command{
-	Use:   "get_logs_archive [archive_id]",
+	Use:   "get-logs-archive [archive_id]",
 	Short: "Get an archive",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetLogsArchiveCmd = &cobra.Command{
 		api := datadogV2.NewLogsArchivesApi(client.NewAPIClient())
 		res, _, err := api.GetLogsArchive(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_logs_archive: %v", err)
+			log.Fatalf("failed to get-logs-archive: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "logs_archives")

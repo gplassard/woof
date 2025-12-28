@@ -15,7 +15,7 @@ import (
 )
 
 var GetRuleVersionHistoryCmd = &cobra.Command{
-	Use:   "get_rule_version_history [rule_id]",
+	Use:   "get-rule-version-history [rule_id]",
 	Short: "Get a rule's version history",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetRuleVersionHistoryCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.GetRuleVersionHistory(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_rule_version_history: %v", err)
+			log.Fatalf("failed to get-rule-version-history: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "GetRuleVersionHistoryResponse")

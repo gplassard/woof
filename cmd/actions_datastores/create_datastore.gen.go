@@ -15,7 +15,7 @@ import (
 )
 
 var CreateDatastoreCmd = &cobra.Command{
-	Use:   "create_datastore",
+	Use:   "create-datastore",
 	Short: "Create datastore",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateDatastoreCmd = &cobra.Command{
 		api := datadogV2.NewActionsDatastoresApi(client.NewAPIClient())
 		res, _, err := api.CreateDatastore(client.NewContext(apiKey, appKey, site), datadogV2.CreateAppsDatastoreRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_datastore: %v", err)
+			log.Fatalf("failed to create-datastore: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "datastores")

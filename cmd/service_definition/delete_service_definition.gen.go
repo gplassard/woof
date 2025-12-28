@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteServiceDefinitionCmd = &cobra.Command{
-	Use:   "delete_service_definition [service_name]",
+	Use:   "delete-service-definition [service_name]",
 	Short: "Delete a single service definition",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteServiceDefinitionCmd = &cobra.Command{
 		api := datadogV2.NewServiceDefinitionApi(client.NewAPIClient())
 		_, err := api.DeleteServiceDefinition(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_service_definition: %v", err)
+			log.Fatalf("failed to delete-service-definition: %v", err)
 		}
 
 		

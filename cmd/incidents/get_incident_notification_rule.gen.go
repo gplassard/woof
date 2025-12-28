@@ -15,7 +15,7 @@ import (
 )
 
 var GetIncidentNotificationRuleCmd = &cobra.Command{
-	Use:   "get_incident_notification_rule [id]",
+	Use:   "get-incident-notification-rule [id]",
 	Short: "Get an incident notification rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetIncidentNotificationRuleCmd = &cobra.Command{
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
 		res, _, err := api.GetIncidentNotificationRule(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
 		if err != nil {
-			log.Fatalf("failed to get_incident_notification_rule: %v", err)
+			log.Fatalf("failed to get-incident-notification-rule: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "incident_notification_rules")

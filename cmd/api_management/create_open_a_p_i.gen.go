@@ -15,7 +15,7 @@ import (
 )
 
 var CreateOpenAPICmd = &cobra.Command{
-	Use:   "create_open_a_p_i",
+	Use:   "create-open-a-p-i",
 	Short: "Create a new API",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateOpenAPICmd = &cobra.Command{
 		api := datadogV2.NewAPIManagementApi(client.NewAPIClient())
 		res, _, err := api.CreateOpenAPI(client.NewContext(apiKey, appKey, site), *datadogV2.NewCreateOpenAPIOptionalParameters())
 		if err != nil {
-			log.Fatalf("failed to create_open_a_p_i: %v", err)
+			log.Fatalf("failed to create-open-a-p-i: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "api_management")

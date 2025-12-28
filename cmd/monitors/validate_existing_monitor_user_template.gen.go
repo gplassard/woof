@@ -15,7 +15,7 @@ import (
 )
 
 var ValidateExistingMonitorUserTemplateCmd = &cobra.Command{
-	Use:   "validate_existing_monitor_user_template [template_id]",
+	Use:   "validate-existing-monitor-user-template [template_id]",
 	Short: "Validate an existing monitor user template",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ValidateExistingMonitorUserTemplateCmd = &cobra.Command{
 		api := datadogV2.NewMonitorsApi(client.NewAPIClient())
 		_, err := api.ValidateExistingMonitorUserTemplate(client.NewContext(apiKey, appKey, site), args[0], datadogV2.MonitorUserTemplateUpdateRequest{})
 		if err != nil {
-			log.Fatalf("failed to validate_existing_monitor_user_template: %v", err)
+			log.Fatalf("failed to validate-existing-monitor-user-template: %v", err)
 		}
 
 		

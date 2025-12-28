@@ -15,7 +15,7 @@ import (
 )
 
 var GetSPARecommendationsCmd = &cobra.Command{
-	Use:   "get_s_p_a_recommendations [shard] [service]",
+	Use:   "get-s-p-a-recommendations [shard] [service]",
 	Short: "Get SPA Recommendations",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetSPARecommendationsCmd = &cobra.Command{
 		api := datadogV2.NewSpaApi(client.NewAPIClient())
 		res, _, err := api.GetSPARecommendations(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		if err != nil {
-			log.Fatalf("failed to get_s_p_a_recommendations: %v", err)
+			log.Fatalf("failed to get-s-p-a-recommendations: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "recommendation")

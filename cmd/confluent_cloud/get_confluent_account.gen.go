@@ -15,7 +15,7 @@ import (
 )
 
 var GetConfluentAccountCmd = &cobra.Command{
-	Use:   "get_confluent_account [account_id]",
+	Use:   "get-confluent-account [account_id]",
 	Short: "Get Confluent account",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetConfluentAccountCmd = &cobra.Command{
 		api := datadogV2.NewConfluentCloudApi(client.NewAPIClient())
 		res, _, err := api.GetConfluentAccount(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_confluent_account: %v", err)
+			log.Fatalf("failed to get-confluent-account: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "confluent-cloud-accounts")

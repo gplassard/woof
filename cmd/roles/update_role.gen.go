@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateRoleCmd = &cobra.Command{
-	Use:   "update_role [role_id]",
+	Use:   "update-role [role_id]",
 	Short: "Update a role",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateRoleCmd = &cobra.Command{
 		api := datadogV2.NewRolesApi(client.NewAPIClient())
 		res, _, err := api.UpdateRole(client.NewContext(apiKey, appKey, site), args[0], datadogV2.RoleUpdateRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_role: %v", err)
+			log.Fatalf("failed to update-role: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "roles")

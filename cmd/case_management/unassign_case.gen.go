@@ -15,7 +15,7 @@ import (
 )
 
 var UnassignCaseCmd = &cobra.Command{
-	Use:   "unassign_case [case_id]",
+	Use:   "unassign-case [case_id]",
 	Short: "Unassign case",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UnassignCaseCmd = &cobra.Command{
 		api := datadogV2.NewCaseManagementApi(client.NewAPIClient())
 		res, _, err := api.UnassignCase(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CaseEmptyRequest{})
 		if err != nil {
-			log.Fatalf("failed to unassign_case: %v", err)
+			log.Fatalf("failed to unassign-case: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "case")

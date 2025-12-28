@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteRoleCmd = &cobra.Command{
-	Use:   "delete_role [role_id]",
+	Use:   "delete-role [role_id]",
 	Short: "Delete role",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteRoleCmd = &cobra.Command{
 		api := datadogV2.NewRolesApi(client.NewAPIClient())
 		_, err := api.DeleteRole(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_role: %v", err)
+			log.Fatalf("failed to delete-role: %v", err)
 		}
 
 		

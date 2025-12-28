@@ -15,7 +15,7 @@ import (
 )
 
 var ListFindingsCmd = &cobra.Command{
-	Use:   "list_findings",
+	Use:   "list-findings",
 	Short: "List findings",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListFindingsCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.ListFindings(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_findings: %v", err)
+			log.Fatalf("failed to list-findings: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "security_monitoring")

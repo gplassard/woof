@@ -15,7 +15,7 @@ import (
 )
 
 var ListCatalogRelationCmd = &cobra.Command{
-	Use:   "list_catalog_relation",
+	Use:   "list-catalog-relation",
 	Short: "Get a list of entity relations",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListCatalogRelationCmd = &cobra.Command{
 		api := datadogV2.NewSoftwareCatalogApi(client.NewAPIClient())
 		res, _, err := api.ListCatalogRelation(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_catalog_relation: %v", err)
+			log.Fatalf("failed to list-catalog-relation: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "software_catalog")

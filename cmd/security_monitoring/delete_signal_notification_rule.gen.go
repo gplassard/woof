@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteSignalNotificationRuleCmd = &cobra.Command{
-	Use:   "delete_signal_notification_rule [id]",
+	Use:   "delete-signal-notification-rule [id]",
 	Short: "Delete a signal-based notification rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteSignalNotificationRuleCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		_, err := api.DeleteSignalNotificationRule(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_signal_notification_rule: %v", err)
+			log.Fatalf("failed to delete-signal-notification-rule: %v", err)
 		}
 
 		

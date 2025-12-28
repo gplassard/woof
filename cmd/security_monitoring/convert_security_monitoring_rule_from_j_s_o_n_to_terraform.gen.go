@@ -15,7 +15,7 @@ import (
 )
 
 var ConvertSecurityMonitoringRuleFromJSONToTerraformCmd = &cobra.Command{
-	Use:   "convert_security_monitoring_rule_from_j_s_o_n_to_terraform",
+	Use:   "convert-security-monitoring-rule-from-j-s-o-n-to-terraform",
 	Short: "Convert a rule from JSON to Terraform",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ConvertSecurityMonitoringRuleFromJSONToTerraformCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.ConvertSecurityMonitoringRuleFromJSONToTerraform(client.NewContext(apiKey, appKey, site), datadogV2.SecurityMonitoringRuleConvertPayload{})
 		if err != nil {
-			log.Fatalf("failed to convert_security_monitoring_rule_from_j_s_o_n_to_terraform: %v", err)
+			log.Fatalf("failed to convert-security-monitoring-rule-from-j-s-o-n-to-terraform: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "security_monitoring")

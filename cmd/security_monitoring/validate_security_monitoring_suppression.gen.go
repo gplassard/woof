@@ -15,7 +15,7 @@ import (
 )
 
 var ValidateSecurityMonitoringSuppressionCmd = &cobra.Command{
-	Use:   "validate_security_monitoring_suppression",
+	Use:   "validate-security-monitoring-suppression",
 	Short: "Validate a suppression rule",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ValidateSecurityMonitoringSuppressionCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		_, err := api.ValidateSecurityMonitoringSuppression(client.NewContext(apiKey, appKey, site), datadogV2.SecurityMonitoringSuppressionCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to validate_security_monitoring_suppression: %v", err)
+			log.Fatalf("failed to validate-security-monitoring-suppression: %v", err)
 		}
 
 		

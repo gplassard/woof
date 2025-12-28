@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteActionConnectionCmd = &cobra.Command{
-	Use:   "delete_action_connection [connection_id]",
+	Use:   "delete-action-connection [connection_id]",
 	Short: "Delete an existing Action Connection",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteActionConnectionCmd = &cobra.Command{
 		api := datadogV2.NewActionConnectionApi(client.NewAPIClient())
 		_, err := api.DeleteActionConnection(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_action_connection: %v", err)
+			log.Fatalf("failed to delete-action-connection: %v", err)
 		}
 
 		

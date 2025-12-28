@@ -15,7 +15,7 @@ import (
 )
 
 var ListTablesCmd = &cobra.Command{
-	Use:   "list_tables",
+	Use:   "list-tables",
 	Short: "List tables",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListTablesCmd = &cobra.Command{
 		api := datadogV2.NewReferenceTablesApi(client.NewAPIClient())
 		res, _, err := api.ListTables(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_tables: %v", err)
+			log.Fatalf("failed to list-tables: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "reference_table")

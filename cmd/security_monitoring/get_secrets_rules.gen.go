@@ -15,7 +15,7 @@ import (
 )
 
 var GetSecretsRulesCmd = &cobra.Command{
-	Use:   "get_secrets_rules",
+	Use:   "get-secrets-rules",
 	Short: "Returns a list of Secrets rules",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetSecretsRulesCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.GetSecretsRules(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to get_secrets_rules: %v", err)
+			log.Fatalf("failed to get-secrets-rules: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "secret_rule")

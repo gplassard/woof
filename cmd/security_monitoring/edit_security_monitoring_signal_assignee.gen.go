@@ -15,7 +15,7 @@ import (
 )
 
 var EditSecurityMonitoringSignalAssigneeCmd = &cobra.Command{
-	Use:   "edit_security_monitoring_signal_assignee [signal_id]",
+	Use:   "edit-security-monitoring-signal-assignee [signal_id]",
 	Short: "Modify the triage assignee of a security signal",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var EditSecurityMonitoringSignalAssigneeCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.EditSecurityMonitoringSignalAssignee(client.NewContext(apiKey, appKey, site), args[0], datadogV2.SecurityMonitoringSignalAssigneeUpdateRequest{})
 		if err != nil {
-			log.Fatalf("failed to edit_security_monitoring_signal_assignee: %v", err)
+			log.Fatalf("failed to edit-security-monitoring-signal-assignee: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "signal_metadata")

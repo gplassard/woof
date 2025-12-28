@@ -15,7 +15,7 @@ import (
 )
 
 var ListIncidentServicesCmd = &cobra.Command{
-	Use:   "list_incident_services",
+	Use:   "list-incident-services",
 	Short: "Get a list of all incident services",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListIncidentServicesCmd = &cobra.Command{
 		api := datadogV2.NewIncidentServicesApi(client.NewAPIClient())
 		res, _, err := api.ListIncidentServices(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_incident_services: %v", err)
+			log.Fatalf("failed to list-incident-services: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "services")

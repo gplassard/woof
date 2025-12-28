@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteWorkflowCmd = &cobra.Command{
-	Use:   "delete_workflow [workflow_id]",
+	Use:   "delete-workflow [workflow_id]",
 	Short: "Delete an existing Workflow",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteWorkflowCmd = &cobra.Command{
 		api := datadogV2.NewWorkflowAutomationApi(client.NewAPIClient())
 		_, err := api.DeleteWorkflow(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_workflow: %v", err)
+			log.Fatalf("failed to delete-workflow: %v", err)
 		}
 
 		

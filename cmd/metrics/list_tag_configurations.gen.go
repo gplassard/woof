@@ -15,7 +15,7 @@ import (
 )
 
 var ListTagConfigurationsCmd = &cobra.Command{
-	Use:   "list_tag_configurations",
+	Use:   "list-tag-configurations",
 	Short: "Get a list of metrics",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListTagConfigurationsCmd = &cobra.Command{
 		api := datadogV2.NewMetricsApi(client.NewAPIClient())
 		res, _, err := api.ListTagConfigurations(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_tag_configurations: %v", err)
+			log.Fatalf("failed to list-tag-configurations: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "metrics")

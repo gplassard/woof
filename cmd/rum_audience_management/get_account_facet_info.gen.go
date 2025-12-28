@@ -15,7 +15,7 @@ import (
 )
 
 var GetAccountFacetInfoCmd = &cobra.Command{
-	Use:   "get_account_facet_info",
+	Use:   "get-account-facet-info",
 	Short: "Get account facet info",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetAccountFacetInfoCmd = &cobra.Command{
 		api := datadogV2.NewRumAudienceManagementApi(client.NewAPIClient())
 		res, _, err := api.GetAccountFacetInfo(client.NewContext(apiKey, appKey, site), datadogV2.FacetInfoRequest{})
 		if err != nil {
-			log.Fatalf("failed to get_account_facet_info: %v", err)
+			log.Fatalf("failed to get-account-facet-info: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "users_facet_info")

@@ -15,7 +15,7 @@ import (
 )
 
 var ListDORAFailuresCmd = &cobra.Command{
-	Use:   "list_d_o_r_a_failures",
+	Use:   "list-d-o-r-a-failures",
 	Short: "Get a list of failure events",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListDORAFailuresCmd = &cobra.Command{
 		api := datadogV2.NewDORAMetricsApi(client.NewAPIClient())
 		res, _, err := api.ListDORAFailures(client.NewContext(apiKey, appKey, site), datadogV2.DORAListFailuresRequest{})
 		if err != nil {
-			log.Fatalf("failed to list_d_o_r_a_failures: %v", err)
+			log.Fatalf("failed to list-d-o-r-a-failures: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "dora_metrics")

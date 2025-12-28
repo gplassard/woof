@@ -15,7 +15,7 @@ import (
 )
 
 var ReplaceRestrictionQueryCmd = &cobra.Command{
-	Use:   "replace_restriction_query [restriction_query_id]",
+	Use:   "replace-restriction-query [restriction_query_id]",
 	Short: "Replace a restriction query",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ReplaceRestrictionQueryCmd = &cobra.Command{
 		api := datadogV2.NewLogsRestrictionQueriesApi(client.NewAPIClient())
 		res, _, err := api.ReplaceRestrictionQuery(client.NewContext(apiKey, appKey, site), args[0], datadogV2.RestrictionQueryUpdatePayload{})
 		if err != nil {
-			log.Fatalf("failed to replace_restriction_query: %v", err)
+			log.Fatalf("failed to replace-restriction-query: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "logs_restriction_queries")

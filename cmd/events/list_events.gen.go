@@ -15,7 +15,7 @@ import (
 )
 
 var ListEventsCmd = &cobra.Command{
-	Use:   "list_events",
+	Use:   "list-events",
 	Short: "Get a list of events",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListEventsCmd = &cobra.Command{
 		api := datadogV2.NewEventsApi(client.NewAPIClient())
 		res, _, err := api.ListEvents(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_events: %v", err)
+			log.Fatalf("failed to list-events: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "event")

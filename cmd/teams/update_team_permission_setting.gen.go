@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateTeamPermissionSettingCmd = &cobra.Command{
-	Use:   "update_team_permission_setting [team_id] [action]",
+	Use:   "update-team-permission-setting [team_id] [action]",
 	Short: "Update permission setting for team",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateTeamPermissionSettingCmd = &cobra.Command{
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
 		res, _, err := api.UpdateTeamPermissionSetting(client.NewContext(apiKey, appKey, site), args[0], args[1], datadogV2.TeamPermissionSettingUpdateRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_team_permission_setting: %v", err)
+			log.Fatalf("failed to update-team-permission-setting: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "team_permission_settings")

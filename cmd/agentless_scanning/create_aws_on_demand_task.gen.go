@@ -15,7 +15,7 @@ import (
 )
 
 var CreateAwsOnDemandTaskCmd = &cobra.Command{
-	Use:   "create_aws_on_demand_task",
+	Use:   "create-aws-on-demand-task",
 	Short: "Create AWS on demand task",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateAwsOnDemandTaskCmd = &cobra.Command{
 		api := datadogV2.NewAgentlessScanningApi(client.NewAPIClient())
 		res, _, err := api.CreateAwsOnDemandTask(client.NewContext(apiKey, appKey, site), datadogV2.AwsOnDemandCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_aws_on_demand_task: %v", err)
+			log.Fatalf("failed to create-aws-on-demand-task: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "aws_resource")

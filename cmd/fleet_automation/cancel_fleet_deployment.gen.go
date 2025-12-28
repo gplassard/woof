@@ -15,7 +15,7 @@ import (
 )
 
 var CancelFleetDeploymentCmd = &cobra.Command{
-	Use:   "cancel_fleet_deployment [deployment_id]",
+	Use:   "cancel-fleet-deployment [deployment_id]",
 	Short: "Cancel a deployment",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CancelFleetDeploymentCmd = &cobra.Command{
 		api := datadogV2.NewFleetAutomationApi(client.NewAPIClient())
 		_, err := api.CancelFleetDeployment(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to cancel_fleet_deployment: %v", err)
+			log.Fatalf("failed to cancel-fleet-deployment: %v", err)
 		}
 
 		

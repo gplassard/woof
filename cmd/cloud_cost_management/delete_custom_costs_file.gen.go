@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteCustomCostsFileCmd = &cobra.Command{
-	Use:   "delete_custom_costs_file [file_id]",
+	Use:   "delete-custom-costs-file [file_id]",
 	Short: "Delete Custom Costs file",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteCustomCostsFileCmd = &cobra.Command{
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
 		_, err := api.DeleteCustomCostsFile(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_custom_costs_file: %v", err)
+			log.Fatalf("failed to delete-custom-costs-file: %v", err)
 		}
 
 		

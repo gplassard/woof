@@ -15,7 +15,7 @@ import (
 )
 
 var GetAggregatedDnsCmd = &cobra.Command{
-	Use:   "get_aggregated_dns",
+	Use:   "get-aggregated-dns",
 	Short: "Get all aggregated DNS traffic",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetAggregatedDnsCmd = &cobra.Command{
 		api := datadogV2.NewCloudNetworkMonitoringApi(client.NewAPIClient())
 		res, _, err := api.GetAggregatedDns(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to get_aggregated_dns: %v", err)
+			log.Fatalf("failed to get-aggregated-dns: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "aggregated_dns")

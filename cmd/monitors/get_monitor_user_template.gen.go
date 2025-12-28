@@ -15,7 +15,7 @@ import (
 )
 
 var GetMonitorUserTemplateCmd = &cobra.Command{
-	Use:   "get_monitor_user_template [template_id]",
+	Use:   "get-monitor-user-template [template_id]",
 	Short: "Get a monitor user template",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetMonitorUserTemplateCmd = &cobra.Command{
 		api := datadogV2.NewMonitorsApi(client.NewAPIClient())
 		res, _, err := api.GetMonitorUserTemplate(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_monitor_user_template: %v", err)
+			log.Fatalf("failed to get-monitor-user-template: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "monitor-user-template")

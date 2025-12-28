@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateRUMApplicationCmd = &cobra.Command{
-	Use:   "update_r_u_m_application [id]",
+	Use:   "update-r-u-m-application [id]",
 	Short: "Update a RUM application",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateRUMApplicationCmd = &cobra.Command{
 		api := datadogV2.NewRUMApi(client.NewAPIClient())
 		res, _, err := api.UpdateRUMApplication(client.NewContext(apiKey, appKey, site), args[0], datadogV2.RUMApplicationUpdateRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_r_u_m_application: %v", err)
+			log.Fatalf("failed to update-r-u-m-application: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "rum_application")

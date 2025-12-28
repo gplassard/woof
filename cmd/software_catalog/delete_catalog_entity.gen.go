@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteCatalogEntityCmd = &cobra.Command{
-	Use:   "delete_catalog_entity [entity_id]",
+	Use:   "delete-catalog-entity [entity_id]",
 	Short: "Delete a single entity",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteCatalogEntityCmd = &cobra.Command{
 		api := datadogV2.NewSoftwareCatalogApi(client.NewAPIClient())
 		_, err := api.DeleteCatalogEntity(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_catalog_entity: %v", err)
+			log.Fatalf("failed to delete-catalog-entity: %v", err)
 		}
 
 		

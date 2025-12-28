@@ -15,7 +15,7 @@ import (
 )
 
 var PatchSignalNotificationRuleCmd = &cobra.Command{
-	Use:   "patch_signal_notification_rule [id]",
+	Use:   "patch-signal-notification-rule [id]",
 	Short: "Patch a signal-based notification rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var PatchSignalNotificationRuleCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.PatchSignalNotificationRule(client.NewContext(apiKey, appKey, site), args[0], datadogV2.PatchNotificationRuleParameters{})
 		if err != nil {
-			log.Fatalf("failed to patch_signal_notification_rule: %v", err)
+			log.Fatalf("failed to patch-signal-notification-rule: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "notification_rules")

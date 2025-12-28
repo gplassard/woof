@@ -15,7 +15,7 @@ import (
 )
 
 var PatchDomainAllowlistCmd = &cobra.Command{
-	Use:   "patch_domain_allowlist",
+	Use:   "patch-domain-allowlist",
 	Short: "Sets Domain Allowlist",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var PatchDomainAllowlistCmd = &cobra.Command{
 		api := datadogV2.NewDomainAllowlistApi(client.NewAPIClient())
 		res, _, err := api.PatchDomainAllowlist(client.NewContext(apiKey, appKey, site), datadogV2.DomainAllowlistRequest{})
 		if err != nil {
-			log.Fatalf("failed to patch_domain_allowlist: %v", err)
+			log.Fatalf("failed to patch-domain-allowlist: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "domain_allowlist")

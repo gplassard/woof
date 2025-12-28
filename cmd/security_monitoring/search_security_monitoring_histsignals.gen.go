@@ -15,7 +15,7 @@ import (
 )
 
 var SearchSecurityMonitoringHistsignalsCmd = &cobra.Command{
-	Use:   "search_security_monitoring_histsignals",
+	Use:   "search-security-monitoring-histsignals",
 	Short: "Search hist signals",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var SearchSecurityMonitoringHistsignalsCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.SearchSecurityMonitoringHistsignals(client.NewContext(apiKey, appKey, site), *datadogV2.NewSearchSecurityMonitoringHistsignalsOptionalParameters())
 		if err != nil {
-			log.Fatalf("failed to search_security_monitoring_histsignals: %v", err)
+			log.Fatalf("failed to search-security-monitoring-histsignals: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "signal")

@@ -15,7 +15,7 @@ import (
 )
 
 var CreateAWSAccountCmd = &cobra.Command{
-	Use:   "create_a_w_s_account",
+	Use:   "create-a-w-s-account",
 	Short: "Create an AWS integration",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateAWSAccountCmd = &cobra.Command{
 		api := datadogV2.NewAWSIntegrationApi(client.NewAPIClient())
 		res, _, err := api.CreateAWSAccount(client.NewContext(apiKey, appKey, site), datadogV2.AWSAccountCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_a_w_s_account: %v", err)
+			log.Fatalf("failed to create-a-w-s-account: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "account")

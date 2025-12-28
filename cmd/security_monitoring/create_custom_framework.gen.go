@@ -15,7 +15,7 @@ import (
 )
 
 var CreateCustomFrameworkCmd = &cobra.Command{
-	Use:   "create_custom_framework",
+	Use:   "create-custom-framework",
 	Short: "Create a custom framework",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateCustomFrameworkCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.CreateCustomFramework(client.NewContext(apiKey, appKey, site), datadogV2.CreateCustomFrameworkRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_custom_framework: %v", err)
+			log.Fatalf("failed to create-custom-framework: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "custom_framework")

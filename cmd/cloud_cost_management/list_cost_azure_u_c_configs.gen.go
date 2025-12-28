@@ -15,7 +15,7 @@ import (
 )
 
 var ListCostAzureUCConfigsCmd = &cobra.Command{
-	Use:   "list_cost_azure_u_c_configs",
+	Use:   "list-cost-azure-u-c-configs",
 	Short: "List Cloud Cost Management Azure configs",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListCostAzureUCConfigsCmd = &cobra.Command{
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
 		res, _, err := api.ListCostAzureUCConfigs(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_cost_azure_u_c_configs: %v", err)
+			log.Fatalf("failed to list-cost-azure-u-c-configs: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "azure_uc_configs")

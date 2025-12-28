@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteCustomFrameworkCmd = &cobra.Command{
-	Use:   "delete_custom_framework [handle] [version]",
+	Use:   "delete-custom-framework [handle] [version]",
 	Short: "Delete a custom framework",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteCustomFrameworkCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.DeleteCustomFramework(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		if err != nil {
-			log.Fatalf("failed to delete_custom_framework: %v", err)
+			log.Fatalf("failed to delete-custom-framework: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "custom_framework")

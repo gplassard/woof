@@ -15,7 +15,7 @@ import (
 )
 
 var GetSecurityMonitoringRuleCmd = &cobra.Command{
-	Use:   "get_security_monitoring_rule [rule_id]",
+	Use:   "get-security-monitoring-rule [rule_id]",
 	Short: "Get a rule's details",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetSecurityMonitoringRuleCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.GetSecurityMonitoringRule(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_security_monitoring_rule: %v", err)
+			log.Fatalf("failed to get-security-monitoring-rule: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "security_monitoring")

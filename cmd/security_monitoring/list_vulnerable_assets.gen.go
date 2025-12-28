@@ -15,7 +15,7 @@ import (
 )
 
 var ListVulnerableAssetsCmd = &cobra.Command{
-	Use:   "list_vulnerable_assets",
+	Use:   "list-vulnerable-assets",
 	Short: "List vulnerable assets",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListVulnerableAssetsCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.ListVulnerableAssets(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_vulnerable_assets: %v", err)
+			log.Fatalf("failed to list-vulnerable-assets: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "assets")

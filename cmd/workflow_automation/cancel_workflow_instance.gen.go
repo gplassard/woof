@@ -15,7 +15,7 @@ import (
 )
 
 var CancelWorkflowInstanceCmd = &cobra.Command{
-	Use:   "cancel_workflow_instance [workflow_id] [instance_id]",
+	Use:   "cancel-workflow-instance [workflow_id] [instance_id]",
 	Short: "Cancel a workflow instance",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CancelWorkflowInstanceCmd = &cobra.Command{
 		api := datadogV2.NewWorkflowAutomationApi(client.NewAPIClient())
 		res, _, err := api.CancelWorkflowInstance(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		if err != nil {
-			log.Fatalf("failed to cancel_workflow_instance: %v", err)
+			log.Fatalf("failed to cancel-workflow-instance: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "workflow_automation")

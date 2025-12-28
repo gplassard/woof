@@ -15,7 +15,7 @@ import (
 )
 
 var CreateScanningGroupCmd = &cobra.Command{
-	Use:   "create_scanning_group",
+	Use:   "create-scanning-group",
 	Short: "Create Scanning Group",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateScanningGroupCmd = &cobra.Command{
 		api := datadogV2.NewSensitiveDataScannerApi(client.NewAPIClient())
 		res, _, err := api.CreateScanningGroup(client.NewContext(apiKey, appKey, site), datadogV2.SensitiveDataScannerGroupCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_scanning_group: %v", err)
+			log.Fatalf("failed to create-scanning-group: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "sensitive_data_scanner_group")

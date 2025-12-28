@@ -15,7 +15,7 @@ import (
 )
 
 var GetEventCmd = &cobra.Command{
-	Use:   "get_event [event_id]",
+	Use:   "get-event [event_id]",
 	Short: "Get an event",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetEventCmd = &cobra.Command{
 		api := datadogV2.NewEventsApi(client.NewAPIClient())
 		res, _, err := api.GetEvent(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_event: %v", err)
+			log.Fatalf("failed to get-event: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "events")

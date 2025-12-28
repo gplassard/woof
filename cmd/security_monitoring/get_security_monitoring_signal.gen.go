@@ -15,7 +15,7 @@ import (
 )
 
 var GetSecurityMonitoringSignalCmd = &cobra.Command{
-	Use:   "get_security_monitoring_signal [signal_id]",
+	Use:   "get-security-monitoring-signal [signal_id]",
 	Short: "Get a signal's details",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetSecurityMonitoringSignalCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.GetSecurityMonitoringSignal(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_security_monitoring_signal: %v", err)
+			log.Fatalf("failed to get-security-monitoring-signal: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "signal")

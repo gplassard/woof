@@ -15,7 +15,7 @@ import (
 )
 
 var ListRestrictionQueryRolesCmd = &cobra.Command{
-	Use:   "list_restriction_query_roles [restriction_query_id]",
+	Use:   "list-restriction-query-roles [restriction_query_id]",
 	Short: "List roles for a restriction query",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListRestrictionQueryRolesCmd = &cobra.Command{
 		api := datadogV2.NewLogsRestrictionQueriesApi(client.NewAPIClient())
 		res, _, err := api.ListRestrictionQueryRoles(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to list_restriction_query_roles: %v", err)
+			log.Fatalf("failed to list-restriction-query-roles: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "roles")

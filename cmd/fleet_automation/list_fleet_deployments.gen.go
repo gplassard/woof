@@ -15,7 +15,7 @@ import (
 )
 
 var ListFleetDeploymentsCmd = &cobra.Command{
-	Use:   "list_fleet_deployments",
+	Use:   "list-fleet-deployments",
 	Short: "List all deployments",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListFleetDeploymentsCmd = &cobra.Command{
 		api := datadogV2.NewFleetAutomationApi(client.NewAPIClient())
 		res, _, err := api.ListFleetDeployments(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_fleet_deployments: %v", err)
+			log.Fatalf("failed to list-fleet-deployments: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "deployment")

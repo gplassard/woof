@@ -15,7 +15,7 @@ import (
 )
 
 var GetRoleCmd = &cobra.Command{
-	Use:   "get_role [role_id]",
+	Use:   "get-role [role_id]",
 	Short: "Get a role",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetRoleCmd = &cobra.Command{
 		api := datadogV2.NewRolesApi(client.NewAPIClient())
 		res, _, err := api.GetRole(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_role: %v", err)
+			log.Fatalf("failed to get-role: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "roles")

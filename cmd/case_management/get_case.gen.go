@@ -15,7 +15,7 @@ import (
 )
 
 var GetCaseCmd = &cobra.Command{
-	Use:   "get_case [case_id]",
+	Use:   "get-case [case_id]",
 	Short: "Get the details of a case",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetCaseCmd = &cobra.Command{
 		api := datadogV2.NewCaseManagementApi(client.NewAPIClient())
 		res, _, err := api.GetCase(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_case: %v", err)
+			log.Fatalf("failed to get-case: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "case")

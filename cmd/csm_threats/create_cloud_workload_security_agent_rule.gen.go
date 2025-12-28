@@ -15,7 +15,7 @@ import (
 )
 
 var CreateCloudWorkloadSecurityAgentRuleCmd = &cobra.Command{
-	Use:   "create_cloud_workload_security_agent_rule",
+	Use:   "create-cloud-workload-security-agent-rule",
 	Short: "Create a Workload Protection agent rule (US1-FED)",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateCloudWorkloadSecurityAgentRuleCmd = &cobra.Command{
 		api := datadogV2.NewCSMThreatsApi(client.NewAPIClient())
 		res, _, err := api.CreateCloudWorkloadSecurityAgentRule(client.NewContext(apiKey, appKey, site), datadogV2.CloudWorkloadSecurityAgentRuleCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_cloud_workload_security_agent_rule: %v", err)
+			log.Fatalf("failed to create-cloud-workload-security-agent-rule: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "agent_rule")

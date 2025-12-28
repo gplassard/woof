@@ -15,7 +15,7 @@ import (
 )
 
 var ReorderScanningGroupsCmd = &cobra.Command{
-	Use:   "reorder_scanning_groups",
+	Use:   "reorder-scanning-groups",
 	Short: "Reorder Groups",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ReorderScanningGroupsCmd = &cobra.Command{
 		api := datadogV2.NewSensitiveDataScannerApi(client.NewAPIClient())
 		res, _, err := api.ReorderScanningGroups(client.NewContext(apiKey, appKey, site), datadogV2.SensitiveDataScannerConfigRequest{})
 		if err != nil {
-			log.Fatalf("failed to reorder_scanning_groups: %v", err)
+			log.Fatalf("failed to reorder-scanning-groups: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "sensitive_data_scanner")

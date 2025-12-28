@@ -15,7 +15,7 @@ import (
 )
 
 var GetSLOReportJobStatusCmd = &cobra.Command{
-	Use:   "get_s_l_o_report_job_status [report_id]",
+	Use:   "get-s-l-o-report-job-status [report_id]",
 	Short: "Get SLO report status",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetSLOReportJobStatusCmd = &cobra.Command{
 		api := datadogV2.NewServiceLevelObjectivesApi(client.NewAPIClient())
 		res, _, err := api.GetSLOReportJobStatus(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_s_l_o_report_job_status: %v", err)
+			log.Fatalf("failed to get-s-l-o-report-job-status: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "service_level_objectives")

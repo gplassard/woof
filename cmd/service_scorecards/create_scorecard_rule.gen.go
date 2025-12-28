@@ -15,7 +15,7 @@ import (
 )
 
 var CreateScorecardRuleCmd = &cobra.Command{
-	Use:   "create_scorecard_rule",
+	Use:   "create-scorecard-rule",
 	Short: "Create a new rule",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateScorecardRuleCmd = &cobra.Command{
 		api := datadogV2.NewServiceScorecardsApi(client.NewAPIClient())
 		res, _, err := api.CreateScorecardRule(client.NewContext(apiKey, appKey, site), datadogV2.CreateRuleRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_scorecard_rule: %v", err)
+			log.Fatalf("failed to create-scorecard-rule: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "rule")

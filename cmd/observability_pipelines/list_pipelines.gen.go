@@ -15,7 +15,7 @@ import (
 )
 
 var ListPipelinesCmd = &cobra.Command{
-	Use:   "list_pipelines",
+	Use:   "list-pipelines",
 	Short: "List pipelines",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListPipelinesCmd = &cobra.Command{
 		api := datadogV2.NewObservabilityPipelinesApi(client.NewAPIClient())
 		res, _, err := api.ListPipelines(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_pipelines: %v", err)
+			log.Fatalf("failed to list-pipelines: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "observability_pipelines")

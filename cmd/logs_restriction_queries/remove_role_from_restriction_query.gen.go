@@ -15,7 +15,7 @@ import (
 )
 
 var RemoveRoleFromRestrictionQueryCmd = &cobra.Command{
-	Use:   "remove_role_from_restriction_query [restriction_query_id]",
+	Use:   "remove-role-from-restriction-query [restriction_query_id]",
 	Short: "Revoke role from a restriction query",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var RemoveRoleFromRestrictionQueryCmd = &cobra.Command{
 		api := datadogV2.NewLogsRestrictionQueriesApi(client.NewAPIClient())
 		_, err := api.RemoveRoleFromRestrictionQuery(client.NewContext(apiKey, appKey, site), args[0], datadogV2.RelationshipToRole{})
 		if err != nil {
-			log.Fatalf("failed to remove_role_from_restriction_query: %v", err)
+			log.Fatalf("failed to remove-role-from-restriction-query: %v", err)
 		}
 
 		

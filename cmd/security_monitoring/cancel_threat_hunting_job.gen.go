@@ -15,7 +15,7 @@ import (
 )
 
 var CancelThreatHuntingJobCmd = &cobra.Command{
-	Use:   "cancel_threat_hunting_job [job_id]",
+	Use:   "cancel-threat-hunting-job [job_id]",
 	Short: "Cancel a threat hunting job",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CancelThreatHuntingJobCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		_, err := api.CancelThreatHuntingJob(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to cancel_threat_hunting_job: %v", err)
+			log.Fatalf("failed to cancel-threat-hunting-job: %v", err)
 		}
 
 		

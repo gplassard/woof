@@ -15,7 +15,7 @@ import (
 )
 
 var CreateReferenceTableCmd = &cobra.Command{
-	Use:   "create_reference_table",
+	Use:   "create-reference-table",
 	Short: "Create reference table",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateReferenceTableCmd = &cobra.Command{
 		api := datadogV2.NewReferenceTablesApi(client.NewAPIClient())
 		res, _, err := api.CreateReferenceTable(client.NewContext(apiKey, appKey, site), datadogV2.CreateTableRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_reference_table: %v", err)
+			log.Fatalf("failed to create-reference-table: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "reference_table")

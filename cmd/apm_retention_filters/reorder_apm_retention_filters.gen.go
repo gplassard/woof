@@ -15,7 +15,7 @@ import (
 )
 
 var ReorderApmRetentionFiltersCmd = &cobra.Command{
-	Use:   "reorder_apm_retention_filters",
+	Use:   "reorder-apm-retention-filters",
 	Short: "Re-order retention filters",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ReorderApmRetentionFiltersCmd = &cobra.Command{
 		api := datadogV2.NewAPMRetentionFiltersApi(client.NewAPIClient())
 		_, err := api.ReorderApmRetentionFilters(client.NewContext(apiKey, appKey, site), datadogV2.ReorderRetentionFiltersRequest{})
 		if err != nil {
-			log.Fatalf("failed to reorder_apm_retention_filters: %v", err)
+			log.Fatalf("failed to reorder-apm-retention-filters: %v", err)
 		}
 
 		

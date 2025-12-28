@@ -15,7 +15,7 @@ import (
 )
 
 var CreateOnCallPageCmd = &cobra.Command{
-	Use:   "create_on_call_page",
+	Use:   "create-on-call-page",
 	Short: "Create On-Call Page",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateOnCallPageCmd = &cobra.Command{
 		api := datadogV2.NewOnCallPagingApi(client.NewAPIClient())
 		res, _, err := api.CreateOnCallPage(client.NewContext(apiKey, appKey, site), datadogV2.CreatePageRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_on_call_page: %v", err)
+			log.Fatalf("failed to create-on-call-page: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "pages")

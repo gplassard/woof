@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteAWSEventBridgeSourceCmd = &cobra.Command{
-	Use:   "delete_a_w_s_event_bridge_source",
+	Use:   "delete-a-w-s-event-bridge-source",
 	Short: "Delete an Amazon EventBridge source",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteAWSEventBridgeSourceCmd = &cobra.Command{
 		api := datadogV2.NewAWSIntegrationApi(client.NewAPIClient())
 		res, _, err := api.DeleteAWSEventBridgeSource(client.NewContext(apiKey, appKey, site), datadogV2.AWSEventBridgeDeleteRequest{})
 		if err != nil {
-			log.Fatalf("failed to delete_a_w_s_event_bridge_source: %v", err)
+			log.Fatalf("failed to delete-a-w-s-event-bridge-source: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "event_bridge")

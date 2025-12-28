@@ -15,7 +15,7 @@ import (
 )
 
 var CreateDataDeletionRequestCmd = &cobra.Command{
-	Use:   "create_data_deletion_request [product]",
+	Use:   "create-data-deletion-request [product]",
 	Short: "Creates a data deletion request",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateDataDeletionRequestCmd = &cobra.Command{
 		api := datadogV2.NewDataDeletionApi(client.NewAPIClient())
 		res, _, err := api.CreateDataDeletionRequest(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CreateDataDeletionRequestBody{})
 		if err != nil {
-			log.Fatalf("failed to create_data_deletion_request: %v", err)
+			log.Fatalf("failed to create-data-deletion-request: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "data_deletion")

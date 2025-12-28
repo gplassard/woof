@@ -15,7 +15,7 @@ import (
 )
 
 var PublishAppCmd = &cobra.Command{
-	Use:   "publish_app [app_id]",
+	Use:   "publish-app [app_id]",
 	Short: "Publish App",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var PublishAppCmd = &cobra.Command{
 		api := datadogV2.NewAppBuilderApi(client.NewAPIClient())
 		res, _, err := api.PublishApp(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
 		if err != nil {
-			log.Fatalf("failed to publish_app: %v", err)
+			log.Fatalf("failed to publish-app: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "deployment")

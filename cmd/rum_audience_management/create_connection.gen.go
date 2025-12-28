@@ -15,7 +15,7 @@ import (
 )
 
 var CreateConnectionCmd = &cobra.Command{
-	Use:   "create_connection [entity]",
+	Use:   "create-connection [entity]",
 	Short: "Create connection",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateConnectionCmd = &cobra.Command{
 		api := datadogV2.NewRumAudienceManagementApi(client.NewAPIClient())
 		_, err := api.CreateConnection(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CreateConnectionRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_connection: %v", err)
+			log.Fatalf("failed to create-connection: %v", err)
 		}
 
 		

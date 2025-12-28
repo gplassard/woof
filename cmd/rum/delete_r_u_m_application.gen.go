@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteRUMApplicationCmd = &cobra.Command{
-	Use:   "delete_r_u_m_application [id]",
+	Use:   "delete-r-u-m-application [id]",
 	Short: "Delete a RUM application",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteRUMApplicationCmd = &cobra.Command{
 		api := datadogV2.NewRUMApi(client.NewAPIClient())
 		_, err := api.DeleteRUMApplication(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_r_u_m_application: %v", err)
+			log.Fatalf("failed to delete-r-u-m-application: %v", err)
 		}
 
 		

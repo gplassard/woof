@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateScanningGroupCmd = &cobra.Command{
-	Use:   "update_scanning_group [group_id]",
+	Use:   "update-scanning-group [group_id]",
 	Short: "Update Scanning Group",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateScanningGroupCmd = &cobra.Command{
 		api := datadogV2.NewSensitiveDataScannerApi(client.NewAPIClient())
 		res, _, err := api.UpdateScanningGroup(client.NewContext(apiKey, appKey, site), args[0], datadogV2.SensitiveDataScannerGroupUpdateRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_scanning_group: %v", err)
+			log.Fatalf("failed to update-scanning-group: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "sensitive_data_scanner")

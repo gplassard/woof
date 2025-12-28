@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateSecurityMonitoringRuleCmd = &cobra.Command{
-	Use:   "update_security_monitoring_rule [rule_id]",
+	Use:   "update-security-monitoring-rule [rule_id]",
 	Short: "Update an existing rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateSecurityMonitoringRuleCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.UpdateSecurityMonitoringRule(client.NewContext(apiKey, appKey, site), args[0], datadogV2.SecurityMonitoringRuleUpdatePayload{})
 		if err != nil {
-			log.Fatalf("failed to update_security_monitoring_rule: %v", err)
+			log.Fatalf("failed to update-security-monitoring-rule: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "security_monitoring")

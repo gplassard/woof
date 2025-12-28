@@ -15,7 +15,7 @@ import (
 )
 
 var GetProjectCmd = &cobra.Command{
-	Use:   "get_project [project_id]",
+	Use:   "get-project [project_id]",
 	Short: "Get the details of a project",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetProjectCmd = &cobra.Command{
 		api := datadogV2.NewCaseManagementApi(client.NewAPIClient())
 		res, _, err := api.GetProject(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_project: %v", err)
+			log.Fatalf("failed to get-project: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "project")

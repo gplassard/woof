@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteOnCallScheduleCmd = &cobra.Command{
-	Use:   "delete_on_call_schedule [schedule_id]",
+	Use:   "delete-on-call-schedule [schedule_id]",
 	Short: "Delete On-Call schedule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteOnCallScheduleCmd = &cobra.Command{
 		api := datadogV2.NewOnCallApi(client.NewAPIClient())
 		_, err := api.DeleteOnCallSchedule(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_on_call_schedule: %v", err)
+			log.Fatalf("failed to delete-on-call-schedule: %v", err)
 		}
 
 		

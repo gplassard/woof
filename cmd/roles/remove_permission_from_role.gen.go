@@ -15,7 +15,7 @@ import (
 )
 
 var RemovePermissionFromRoleCmd = &cobra.Command{
-	Use:   "remove_permission_from_role [role_id]",
+	Use:   "remove-permission-from-role [role_id]",
 	Short: "Revoke permission",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var RemovePermissionFromRoleCmd = &cobra.Command{
 		api := datadogV2.NewRolesApi(client.NewAPIClient())
 		res, _, err := api.RemovePermissionFromRole(client.NewContext(apiKey, appKey, site), args[0], datadogV2.RelationshipToPermission{})
 		if err != nil {
-			log.Fatalf("failed to remove_permission_from_role: %v", err)
+			log.Fatalf("failed to remove-permission-from-role: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "permissions")

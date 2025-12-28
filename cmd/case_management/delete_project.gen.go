@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteProjectCmd = &cobra.Command{
-	Use:   "delete_project [project_id]",
+	Use:   "delete-project [project_id]",
 	Short: "Remove a project",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteProjectCmd = &cobra.Command{
 		api := datadogV2.NewCaseManagementApi(client.NewAPIClient())
 		_, err := api.DeleteProject(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_project: %v", err)
+			log.Fatalf("failed to delete-project: %v", err)
 		}
 
 		

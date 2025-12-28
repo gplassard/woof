@@ -15,7 +15,7 @@ import (
 )
 
 var GetActiveBillingDimensionsCmd = &cobra.Command{
-	Use:   "get_active_billing_dimensions",
+	Use:   "get-active-billing-dimensions",
 	Short: "Get active billing dimensions for cost attribution",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetActiveBillingDimensionsCmd = &cobra.Command{
 		api := datadogV2.NewUsageMeteringApi(client.NewAPIClient())
 		res, _, err := api.GetActiveBillingDimensions(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to get_active_billing_dimensions: %v", err)
+			log.Fatalf("failed to get-active-billing-dimensions: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "usage_metering")

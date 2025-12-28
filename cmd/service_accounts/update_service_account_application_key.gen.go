@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateServiceAccountApplicationKeyCmd = &cobra.Command{
-	Use:   "update_service_account_application_key [service_account_id] [app_key_id]",
+	Use:   "update-service-account-application-key [service_account_id] [app_key_id]",
 	Short: "Edit an application key for this service account",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateServiceAccountApplicationKeyCmd = &cobra.Command{
 		api := datadogV2.NewServiceAccountsApi(client.NewAPIClient())
 		res, _, err := api.UpdateServiceAccountApplicationKey(client.NewContext(apiKey, appKey, site), args[0], args[1], datadogV2.ApplicationKeyUpdateRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_service_account_application_key: %v", err)
+			log.Fatalf("failed to update-service-account-application-key: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "application_keys")

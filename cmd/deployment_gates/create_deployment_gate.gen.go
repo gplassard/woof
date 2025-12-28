@@ -15,7 +15,7 @@ import (
 )
 
 var CreateDeploymentGateCmd = &cobra.Command{
-	Use:   "create_deployment_gate",
+	Use:   "create-deployment-gate",
 	Short: "Create deployment gate",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateDeploymentGateCmd = &cobra.Command{
 		api := datadogV2.NewDeploymentGatesApi(client.NewAPIClient())
 		res, _, err := api.CreateDeploymentGate(client.NewContext(apiKey, appKey, site), datadogV2.CreateDeploymentGateParams{})
 		if err != nil {
-			log.Fatalf("failed to create_deployment_gate: %v", err)
+			log.Fatalf("failed to create-deployment-gate: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "deployment_gate")

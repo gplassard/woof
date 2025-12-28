@@ -15,7 +15,7 @@ import (
 )
 
 var SearchCIAppTestEventsCmd = &cobra.Command{
-	Use:   "search_c_i_app_test_events",
+	Use:   "search-c-i-app-test-events",
 	Short: "Search tests events",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var SearchCIAppTestEventsCmd = &cobra.Command{
 		api := datadogV2.NewCIVisibilityTestsApi(client.NewAPIClient())
 		res, _, err := api.SearchCIAppTestEvents(client.NewContext(apiKey, appKey, site), *datadogV2.NewSearchCIAppTestEventsOptionalParameters())
 		if err != nil {
-			log.Fatalf("failed to search_c_i_app_test_events: %v", err)
+			log.Fatalf("failed to search-c-i-app-test-events: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "citest")

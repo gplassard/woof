@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateWorkflowCmd = &cobra.Command{
-	Use:   "update_workflow [workflow_id]",
+	Use:   "update-workflow [workflow_id]",
 	Short: "Update an existing Workflow",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateWorkflowCmd = &cobra.Command{
 		api := datadogV2.NewWorkflowAutomationApi(client.NewAPIClient())
 		res, _, err := api.UpdateWorkflow(client.NewContext(apiKey, appKey, site), args[0], datadogV2.UpdateWorkflowRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_workflow: %v", err)
+			log.Fatalf("failed to update-workflow: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "workflows")

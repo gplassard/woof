@@ -15,7 +15,7 @@ import (
 )
 
 var ListTeamConnectionsCmd = &cobra.Command{
-	Use:   "list_team_connections",
+	Use:   "list-team-connections",
 	Short: "List team connections",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListTeamConnectionsCmd = &cobra.Command{
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
 		res, _, err := api.ListTeamConnections(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_team_connections: %v", err)
+			log.Fatalf("failed to list-team-connections: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "team_connection")

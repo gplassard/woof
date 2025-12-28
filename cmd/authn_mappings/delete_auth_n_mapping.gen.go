@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteAuthNMappingCmd = &cobra.Command{
-	Use:   "delete_auth_n_mapping [authn_mapping_id]",
+	Use:   "delete-auth-n-mapping [authn_mapping_id]",
 	Short: "Delete an AuthN Mapping",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteAuthNMappingCmd = &cobra.Command{
 		api := datadogV2.NewAuthNMappingsApi(client.NewAPIClient())
 		_, err := api.DeleteAuthNMapping(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_auth_n_mapping: %v", err)
+			log.Fatalf("failed to delete-auth-n-mapping: %v", err)
 		}
 
 		

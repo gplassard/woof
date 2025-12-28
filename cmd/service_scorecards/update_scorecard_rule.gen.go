@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateScorecardRuleCmd = &cobra.Command{
-	Use:   "update_scorecard_rule [rule_id]",
+	Use:   "update-scorecard-rule [rule_id]",
 	Short: "Update an existing rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateScorecardRuleCmd = &cobra.Command{
 		api := datadogV2.NewServiceScorecardsApi(client.NewAPIClient())
 		res, _, err := api.UpdateScorecardRule(client.NewContext(apiKey, appKey, site), args[0], datadogV2.UpdateRuleRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_scorecard_rule: %v", err)
+			log.Fatalf("failed to update-scorecard-rule: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "rule")

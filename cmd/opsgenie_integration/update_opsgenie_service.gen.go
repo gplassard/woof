@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateOpsgenieServiceCmd = &cobra.Command{
-	Use:   "update_opsgenie_service [integration_service_id]",
+	Use:   "update-opsgenie-service [integration_service_id]",
 	Short: "Update a single service object",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateOpsgenieServiceCmd = &cobra.Command{
 		api := datadogV2.NewOpsgenieIntegrationApi(client.NewAPIClient())
 		res, _, err := api.UpdateOpsgenieService(client.NewContext(apiKey, appKey, site), args[0], datadogV2.OpsgenieServiceUpdateRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_opsgenie_service: %v", err)
+			log.Fatalf("failed to update-opsgenie-service: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "opsgenie-service")

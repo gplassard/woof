@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteSecurityFilterCmd = &cobra.Command{
-	Use:   "delete_security_filter [security_filter_id]",
+	Use:   "delete-security-filter [security_filter_id]",
 	Short: "Delete a security filter",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteSecurityFilterCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		_, err := api.DeleteSecurityFilter(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_security_filter: %v", err)
+			log.Fatalf("failed to delete-security-filter: %v", err)
 		}
 
 		

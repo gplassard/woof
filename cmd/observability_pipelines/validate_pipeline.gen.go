@@ -15,7 +15,7 @@ import (
 )
 
 var ValidatePipelineCmd = &cobra.Command{
-	Use:   "validate_pipeline",
+	Use:   "validate-pipeline",
 	Short: "Validate an observability pipeline",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ValidatePipelineCmd = &cobra.Command{
 		api := datadogV2.NewObservabilityPipelinesApi(client.NewAPIClient())
 		res, _, err := api.ValidatePipeline(client.NewContext(apiKey, appKey, site), datadogV2.ObservabilityPipelineSpec{})
 		if err != nil {
-			log.Fatalf("failed to validate_pipeline: %v", err)
+			log.Fatalf("failed to validate-pipeline: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "observability_pipelines")

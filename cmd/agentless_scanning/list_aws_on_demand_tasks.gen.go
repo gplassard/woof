@@ -15,7 +15,7 @@ import (
 )
 
 var ListAwsOnDemandTasksCmd = &cobra.Command{
-	Use:   "list_aws_on_demand_tasks",
+	Use:   "list-aws-on-demand-tasks",
 	Short: "List AWS on demand tasks",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListAwsOnDemandTasksCmd = &cobra.Command{
 		api := datadogV2.NewAgentlessScanningApi(client.NewAPIClient())
 		res, _, err := api.ListAwsOnDemandTasks(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_aws_on_demand_tasks: %v", err)
+			log.Fatalf("failed to list-aws-on-demand-tasks: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "aws_resource")

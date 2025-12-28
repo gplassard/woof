@@ -15,7 +15,7 @@ import (
 )
 
 var CreateTeamConnectionsCmd = &cobra.Command{
-	Use:   "create_team_connections",
+	Use:   "create-team-connections",
 	Short: "Create team connections",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateTeamConnectionsCmd = &cobra.Command{
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
 		res, _, err := api.CreateTeamConnections(client.NewContext(apiKey, appKey, site), datadogV2.TeamConnectionCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_team_connections: %v", err)
+			log.Fatalf("failed to create-team-connections: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "team_connection")

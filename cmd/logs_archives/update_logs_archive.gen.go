@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateLogsArchiveCmd = &cobra.Command{
-	Use:   "update_logs_archive [archive_id]",
+	Use:   "update-logs-archive [archive_id]",
 	Short: "Update an archive",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateLogsArchiveCmd = &cobra.Command{
 		api := datadogV2.NewLogsArchivesApi(client.NewAPIClient())
 		res, _, err := api.UpdateLogsArchive(client.NewContext(apiKey, appKey, site), args[0], datadogV2.LogsArchiveCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_logs_archive: %v", err)
+			log.Fatalf("failed to update-logs-archive: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "logs_archives")

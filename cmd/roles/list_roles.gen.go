@@ -15,7 +15,7 @@ import (
 )
 
 var ListRolesCmd = &cobra.Command{
-	Use:   "list_roles",
+	Use:   "list-roles",
 	Short: "List roles",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListRolesCmd = &cobra.Command{
 		api := datadogV2.NewRolesApi(client.NewAPIClient())
 		res, _, err := api.ListRoles(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_roles: %v", err)
+			log.Fatalf("failed to list-roles: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "roles")

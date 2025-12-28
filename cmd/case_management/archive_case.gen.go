@@ -15,7 +15,7 @@ import (
 )
 
 var ArchiveCaseCmd = &cobra.Command{
-	Use:   "archive_case [case_id]",
+	Use:   "archive-case [case_id]",
 	Short: "Archive case",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ArchiveCaseCmd = &cobra.Command{
 		api := datadogV2.NewCaseManagementApi(client.NewAPIClient())
 		res, _, err := api.ArchiveCase(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CaseEmptyRequest{})
 		if err != nil {
-			log.Fatalf("failed to archive_case: %v", err)
+			log.Fatalf("failed to archive-case: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "case")

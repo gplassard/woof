@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateTenantBasedHandleCmd = &cobra.Command{
-	Use:   "update_tenant_based_handle [handle_id]",
+	Use:   "update-tenant-based-handle [handle_id]",
 	Short: "Update tenant-based handle",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateTenantBasedHandleCmd = &cobra.Command{
 		api := datadogV2.NewMicrosoftTeamsIntegrationApi(client.NewAPIClient())
 		res, _, err := api.UpdateTenantBasedHandle(client.NewContext(apiKey, appKey, site), args[0], datadogV2.MicrosoftTeamsUpdateTenantBasedHandleRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_tenant_based_handle: %v", err)
+			log.Fatalf("failed to update-tenant-based-handle: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "tenant-based-handle")

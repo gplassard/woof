@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateSecurityFilterCmd = &cobra.Command{
-	Use:   "update_security_filter [security_filter_id]",
+	Use:   "update-security-filter [security_filter_id]",
 	Short: "Update a security filter",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateSecurityFilterCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.UpdateSecurityFilter(client.NewContext(apiKey, appKey, site), args[0], datadogV2.SecurityFilterUpdateRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_security_filter: %v", err)
+			log.Fatalf("failed to update-security-filter: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "security_filters")

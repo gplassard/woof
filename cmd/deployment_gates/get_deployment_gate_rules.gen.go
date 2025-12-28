@@ -15,7 +15,7 @@ import (
 )
 
 var GetDeploymentGateRulesCmd = &cobra.Command{
-	Use:   "get_deployment_gate_rules [gate_id]",
+	Use:   "get-deployment-gate-rules [gate_id]",
 	Short: "Get rules for a deployment gate",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetDeploymentGateRulesCmd = &cobra.Command{
 		api := datadogV2.NewDeploymentGatesApi(client.NewAPIClient())
 		res, _, err := api.GetDeploymentGateRules(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_deployment_gate_rules: %v", err)
+			log.Fatalf("failed to get-deployment-gate-rules: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "list_deployment_rules")

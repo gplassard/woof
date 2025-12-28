@@ -15,7 +15,7 @@ import (
 )
 
 var GetAzureScanOptionsCmd = &cobra.Command{
-	Use:   "get_azure_scan_options [subscription_id]",
+	Use:   "get-azure-scan-options [subscription_id]",
 	Short: "Get Azure scan options",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetAzureScanOptionsCmd = &cobra.Command{
 		api := datadogV2.NewAgentlessScanningApi(client.NewAPIClient())
 		res, _, err := api.GetAzureScanOptions(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_azure_scan_options: %v", err)
+			log.Fatalf("failed to get-azure-scan-options: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "azure_scan_options")

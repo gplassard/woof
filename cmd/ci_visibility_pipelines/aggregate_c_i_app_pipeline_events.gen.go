@@ -15,7 +15,7 @@ import (
 )
 
 var AggregateCIAppPipelineEventsCmd = &cobra.Command{
-	Use:   "aggregate_c_i_app_pipeline_events",
+	Use:   "aggregate-c-i-app-pipeline-events",
 	Short: "Aggregate pipelines events",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var AggregateCIAppPipelineEventsCmd = &cobra.Command{
 		api := datadogV2.NewCIVisibilityPipelinesApi(client.NewAPIClient())
 		res, _, err := api.AggregateCIAppPipelineEvents(client.NewContext(apiKey, appKey, site), datadogV2.CIAppPipelinesAggregateRequest{})
 		if err != nil {
-			log.Fatalf("failed to aggregate_c_i_app_pipeline_events: %v", err)
+			log.Fatalf("failed to aggregate-c-i-app-pipeline-events: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "ci_visibility_pipelines")

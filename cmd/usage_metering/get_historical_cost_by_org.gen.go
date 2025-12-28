@@ -15,7 +15,7 @@ import (
 )
 
 var GetHistoricalCostByOrgCmd = &cobra.Command{
-	Use:   "get_historical_cost_by_org [start_month]",
+	Use:   "get-historical-cost-by-org [start_month]",
 	Short: "Get historical cost across your account",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetHistoricalCostByOrgCmd = &cobra.Command{
 		api := datadogV2.NewUsageMeteringApi(client.NewAPIClient())
 		res, _, err := api.GetHistoricalCostByOrg(client.NewContext(apiKey, appKey, site), func() time.Time { t, _ := time.Parse(time.RFC3339, args[0]); return t }())
 		if err != nil {
-			log.Fatalf("failed to get_historical_cost_by_org: %v", err)
+			log.Fatalf("failed to get-historical-cost-by-org: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "usage_metering")

@@ -15,7 +15,7 @@ import (
 )
 
 var GetIPAllowlistCmd = &cobra.Command{
-	Use:   "get_i_p_allowlist",
+	Use:   "get-i-p-allowlist",
 	Short: "Get IP Allowlist",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetIPAllowlistCmd = &cobra.Command{
 		api := datadogV2.NewIPAllowlistApi(client.NewAPIClient())
 		res, _, err := api.GetIPAllowlist(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to get_i_p_allowlist: %v", err)
+			log.Fatalf("failed to get-i-p-allowlist: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "ip_allowlist")

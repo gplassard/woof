@@ -15,7 +15,7 @@ import (
 )
 
 var GetAWSAccountCmd = &cobra.Command{
-	Use:   "get_a_w_s_account [aws_account_config_id]",
+	Use:   "get-a-w-s-account [aws_account_config_id]",
 	Short: "Get an AWS integration by config ID",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetAWSAccountCmd = &cobra.Command{
 		api := datadogV2.NewAWSIntegrationApi(client.NewAPIClient())
 		res, _, err := api.GetAWSAccount(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_a_w_s_account: %v", err)
+			log.Fatalf("failed to get-a-w-s-account: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "account")

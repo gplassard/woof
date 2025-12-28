@@ -15,7 +15,7 @@ import (
 )
 
 var CreateCostGCPUsageCostConfigCmd = &cobra.Command{
-	Use:   "create_cost_g_c_p_usage_cost_config",
+	Use:   "create-cost-g-c-p-usage-cost-config",
 	Short: "Create Google Cloud Usage Cost config",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateCostGCPUsageCostConfigCmd = &cobra.Command{
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
 		res, _, err := api.CreateCostGCPUsageCostConfig(client.NewContext(apiKey, appKey, site), datadogV2.GCPUsageCostConfigPostRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_cost_g_c_p_usage_cost_config: %v", err)
+			log.Fatalf("failed to create-cost-g-c-p-usage-cost-config: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "gcp_uc_config")

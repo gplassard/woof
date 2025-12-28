@@ -15,7 +15,7 @@ import (
 )
 
 var DisableUserCmd = &cobra.Command{
-	Use:   "disable_user [user_id]",
+	Use:   "disable-user [user_id]",
 	Short: "Disable a user",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DisableUserCmd = &cobra.Command{
 		api := datadogV2.NewUsersApi(client.NewAPIClient())
 		_, err := api.DisableUser(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to disable_user: %v", err)
+			log.Fatalf("failed to disable-user: %v", err)
 		}
 
 		

@@ -15,7 +15,7 @@ import (
 )
 
 var ValidateSecurityMonitoringRuleCmd = &cobra.Command{
-	Use:   "validate_security_monitoring_rule",
+	Use:   "validate-security-monitoring-rule",
 	Short: "Validate a detection rule",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ValidateSecurityMonitoringRuleCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		_, err := api.ValidateSecurityMonitoringRule(client.NewContext(apiKey, appKey, site), datadogV2.SecurityMonitoringRuleValidatePayload{})
 		if err != nil {
-			log.Fatalf("failed to validate_security_monitoring_rule: %v", err)
+			log.Fatalf("failed to validate-security-monitoring-rule: %v", err)
 		}
 
 		

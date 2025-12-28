@@ -15,7 +15,7 @@ import (
 )
 
 var GetTeamOnCallUsersCmd = &cobra.Command{
-	Use:   "get_team_on_call_users [team_id]",
+	Use:   "get-team-on-call-users [team_id]",
 	Short: "Get team on-call users",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetTeamOnCallUsersCmd = &cobra.Command{
 		api := datadogV2.NewOnCallApi(client.NewAPIClient())
 		res, _, err := api.GetTeamOnCallUsers(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_team_on_call_users: %v", err)
+			log.Fatalf("failed to get-team-on-call-users: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "team_oncall_responders")

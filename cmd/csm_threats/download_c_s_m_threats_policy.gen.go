@@ -15,7 +15,7 @@ import (
 )
 
 var DownloadCSMThreatsPolicyCmd = &cobra.Command{
-	Use:   "download_c_s_m_threats_policy",
+	Use:   "download-c-s-m-threats-policy",
 	Short: "Download the Workload Protection policy",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DownloadCSMThreatsPolicyCmd = &cobra.Command{
 		api := datadogV2.NewCSMThreatsApi(client.NewAPIClient())
 		res, _, err := api.DownloadCSMThreatsPolicy(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to download_c_s_m_threats_policy: %v", err)
+			log.Fatalf("failed to download-c-s-m-threats-policy: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "csm_threats")

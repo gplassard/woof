@@ -15,7 +15,7 @@ import (
 )
 
 var AcknowledgeOnCallPageCmd = &cobra.Command{
-	Use:   "acknowledge_on_call_page [page_id]",
+	Use:   "acknowledge-on-call-page [page_id]",
 	Short: "Acknowledge On-Call Page",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var AcknowledgeOnCallPageCmd = &cobra.Command{
 		api := datadogV2.NewOnCallPagingApi(client.NewAPIClient())
 		_, err := api.AcknowledgeOnCallPage(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
 		if err != nil {
-			log.Fatalf("failed to acknowledge_on_call_page: %v", err)
+			log.Fatalf("failed to acknowledge-on-call-page: %v", err)
 		}
 
 		

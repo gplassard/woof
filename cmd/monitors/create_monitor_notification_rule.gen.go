@@ -15,7 +15,7 @@ import (
 )
 
 var CreateMonitorNotificationRuleCmd = &cobra.Command{
-	Use:   "create_monitor_notification_rule",
+	Use:   "create-monitor-notification-rule",
 	Short: "Create a monitor notification rule",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateMonitorNotificationRuleCmd = &cobra.Command{
 		api := datadogV2.NewMonitorsApi(client.NewAPIClient())
 		res, _, err := api.CreateMonitorNotificationRule(client.NewContext(apiKey, appKey, site), datadogV2.MonitorNotificationRuleCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_monitor_notification_rule: %v", err)
+			log.Fatalf("failed to create-monitor-notification-rule: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "monitor-notification-rule")

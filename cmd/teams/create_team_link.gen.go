@@ -15,7 +15,7 @@ import (
 )
 
 var CreateTeamLinkCmd = &cobra.Command{
-	Use:   "create_team_link [team_id]",
+	Use:   "create-team-link [team_id]",
 	Short: "Create a team link",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateTeamLinkCmd = &cobra.Command{
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
 		res, _, err := api.CreateTeamLink(client.NewContext(apiKey, appKey, site), args[0], datadogV2.TeamLinkCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_team_link: %v", err)
+			log.Fatalf("failed to create-team-link: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "team_links")

@@ -15,7 +15,7 @@ import (
 )
 
 var CreateSLOReportJobCmd = &cobra.Command{
-	Use:   "create_s_l_o_report_job",
+	Use:   "create-s-l-o-report-job",
 	Short: "Create a new SLO report",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateSLOReportJobCmd = &cobra.Command{
 		api := datadogV2.NewServiceLevelObjectivesApi(client.NewAPIClient())
 		res, _, err := api.CreateSLOReportJob(client.NewContext(apiKey, appKey, site), datadogV2.SloReportCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_s_l_o_report_job: %v", err)
+			log.Fatalf("failed to create-s-l-o-report-job: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "service_level_objectives")

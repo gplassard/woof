@@ -15,7 +15,7 @@ import (
 )
 
 var ListPowerpacksCmd = &cobra.Command{
-	Use:   "list_powerpacks",
+	Use:   "list-powerpacks",
 	Short: "Get all powerpacks",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListPowerpacksCmd = &cobra.Command{
 		api := datadogV2.NewPowerpackApi(client.NewAPIClient())
 		res, _, err := api.ListPowerpacks(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_powerpacks: %v", err)
+			log.Fatalf("failed to list-powerpacks: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "powerpack")

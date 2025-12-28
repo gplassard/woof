@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateCloudWorkloadSecurityAgentRuleCmd = &cobra.Command{
-	Use:   "update_cloud_workload_security_agent_rule [agent_rule_id]",
+	Use:   "update-cloud-workload-security-agent-rule [agent_rule_id]",
 	Short: "Update a Workload Protection agent rule (US1-FED)",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateCloudWorkloadSecurityAgentRuleCmd = &cobra.Command{
 		api := datadogV2.NewCSMThreatsApi(client.NewAPIClient())
 		res, _, err := api.UpdateCloudWorkloadSecurityAgentRule(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CloudWorkloadSecurityAgentRuleUpdateRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_cloud_workload_security_agent_rule: %v", err)
+			log.Fatalf("failed to update-cloud-workload-security-agent-rule: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "agent_rule")

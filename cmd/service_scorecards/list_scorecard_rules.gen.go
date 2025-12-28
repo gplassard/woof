@@ -15,7 +15,7 @@ import (
 )
 
 var ListScorecardRulesCmd = &cobra.Command{
-	Use:   "list_scorecard_rules",
+	Use:   "list-scorecard-rules",
 	Short: "List all rules",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListScorecardRulesCmd = &cobra.Command{
 		api := datadogV2.NewServiceScorecardsApi(client.NewAPIClient())
 		res, _, err := api.ListScorecardRules(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_scorecard_rules: %v", err)
+			log.Fatalf("failed to list-scorecard-rules: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "service_scorecards")

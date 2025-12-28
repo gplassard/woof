@@ -9,6 +9,17 @@ import (
 	"text/template"
 )
 
+func toKebabCase(s string) string {
+	var res strings.Builder
+	for i, r := range s {
+		if i > 0 && r >= 'A' && r <= 'Z' {
+			res.WriteRune('-')
+		}
+		res.WriteRune(r)
+	}
+	return strings.ToLower(res.String())
+}
+
 func toSnakeCase(s string) string {
 	var res strings.Builder
 	for i, r := range s {
@@ -30,7 +41,7 @@ func ensureEntrypoint(pkgDir, tag string, tmpl *template.Template, config *Confi
 		defer f.Close()
 		data := TemplateData{
 			PackageName: tag,
-			Use:         tag,
+			Use:         strings.ReplaceAll(tag, "_", "-"),
 			Short:       fmt.Sprintf("%s endpoints", tag),
 			Aliases:     config.TagAliases[tag],
 		}
@@ -78,7 +89,7 @@ func resolveSchema(spec *OpenAPI, schema map[string]interface{}) map[string]inte
 func prepareTemplateData(tag, rawTag, apiTagName, method, path string, op Operation, spec *OpenAPI, config *Config) TemplateData {
 	var args []string
 	var argTypes []string
-	use := toSnakeCase(op.OperationID)
+	use := toKebabCase(op.OperationID)
 
 	for _, param := range op.Parameters {
 		name := param.Name

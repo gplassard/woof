@@ -15,7 +15,7 @@ import (
 )
 
 var ListAppsCmd = &cobra.Command{
-	Use:   "list_apps",
+	Use:   "list-apps",
 	Short: "List Apps",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListAppsCmd = &cobra.Command{
 		api := datadogV2.NewAppBuilderApi(client.NewAPIClient())
 		res, _, err := api.ListApps(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_apps: %v", err)
+			log.Fatalf("failed to list-apps: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "appDefinitions")

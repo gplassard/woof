@@ -15,7 +15,7 @@ import (
 )
 
 var CreateCSMThreatsAgentPolicyCmd = &cobra.Command{
-	Use:   "create_c_s_m_threats_agent_policy",
+	Use:   "create-c-s-m-threats-agent-policy",
 	Short: "Create a Workload Protection policy",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateCSMThreatsAgentPolicyCmd = &cobra.Command{
 		api := datadogV2.NewCSMThreatsApi(client.NewAPIClient())
 		res, _, err := api.CreateCSMThreatsAgentPolicy(client.NewContext(apiKey, appKey, site), datadogV2.CloudWorkloadSecurityAgentPolicyCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_c_s_m_threats_agent_policy: %v", err)
+			log.Fatalf("failed to create-c-s-m-threats-agent-policy: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "policy")

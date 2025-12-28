@@ -15,7 +15,7 @@ import (
 )
 
 var SyncTeamsCmd = &cobra.Command{
-	Use:   "sync_teams",
+	Use:   "sync-teams",
 	Short: "Link Teams with GitHub Teams",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var SyncTeamsCmd = &cobra.Command{
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
 		_, err := api.SyncTeams(client.NewContext(apiKey, appKey, site), datadogV2.TeamSyncRequest{})
 		if err != nil {
-			log.Fatalf("failed to sync_teams: %v", err)
+			log.Fatalf("failed to sync-teams: %v", err)
 		}
 
 		

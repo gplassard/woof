@@ -15,7 +15,7 @@ import (
 )
 
 var CreateApmRetentionFilterCmd = &cobra.Command{
-	Use:   "create_apm_retention_filter",
+	Use:   "create-apm-retention-filter",
 	Short: "Create a retention filter",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateApmRetentionFilterCmd = &cobra.Command{
 		api := datadogV2.NewAPMRetentionFiltersApi(client.NewAPIClient())
 		res, _, err := api.CreateApmRetentionFilter(client.NewContext(apiKey, appKey, site), datadogV2.RetentionFilterCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_apm_retention_filter: %v", err)
+			log.Fatalf("failed to create-apm-retention-filter: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "apm_retention_filter")

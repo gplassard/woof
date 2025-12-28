@@ -15,7 +15,7 @@ import (
 )
 
 var ListSecurityMonitoringHistsignalsCmd = &cobra.Command{
-	Use:   "list_security_monitoring_histsignals",
+	Use:   "list-security-monitoring-histsignals",
 	Short: "List hist signals",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListSecurityMonitoringHistsignalsCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.ListSecurityMonitoringHistsignals(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_security_monitoring_histsignals: %v", err)
+			log.Fatalf("failed to list-security-monitoring-histsignals: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "signal")

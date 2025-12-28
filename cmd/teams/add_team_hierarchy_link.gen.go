@@ -15,7 +15,7 @@ import (
 )
 
 var AddTeamHierarchyLinkCmd = &cobra.Command{
-	Use:   "add_team_hierarchy_link",
+	Use:   "add-team-hierarchy-link",
 	Short: "Create a team hierarchy link",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var AddTeamHierarchyLinkCmd = &cobra.Command{
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
 		res, _, err := api.AddTeamHierarchyLink(client.NewContext(apiKey, appKey, site), datadogV2.TeamHierarchyLinkCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to add_team_hierarchy_link: %v", err)
+			log.Fatalf("failed to add-team-hierarchy-link: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "team_hierarchy_links")

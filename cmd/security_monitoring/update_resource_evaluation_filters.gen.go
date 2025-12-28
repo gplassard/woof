@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateResourceEvaluationFiltersCmd = &cobra.Command{
-	Use:   "update_resource_evaluation_filters",
+	Use:   "update-resource-evaluation-filters",
 	Short: "Update resource filters",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateResourceEvaluationFiltersCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.UpdateResourceEvaluationFilters(client.NewContext(apiKey, appKey, site), datadogV2.UpdateResourceEvaluationFiltersRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_resource_evaluation_filters: %v", err)
+			log.Fatalf("failed to update-resource-evaluation-filters: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "csm_resource_filter")

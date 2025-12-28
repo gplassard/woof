@@ -3,6 +3,6 @@ package cloudflare_integration
 import "github.com/spf13/cobra"
 
 var Cmd = &cobra.Command{
-	Use:   "cloudflare_integration",
+	Use:   "cloudflare-integration",
 	Short: "cloudflare_integration endpoints",
 }

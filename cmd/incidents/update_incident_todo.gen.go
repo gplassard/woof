@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateIncidentTodoCmd = &cobra.Command{
-	Use:   "update_incident_todo [incident_id] [todo_id]",
+	Use:   "update-incident-todo [incident_id] [todo_id]",
 	Short: "Update an incident todo",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateIncidentTodoCmd = &cobra.Command{
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
 		res, _, err := api.UpdateIncidentTodo(client.NewContext(apiKey, appKey, site), args[0], args[1], datadogV2.IncidentTodoPatchRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_incident_todo: %v", err)
+			log.Fatalf("failed to update-incident-todo: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "incident_todos")

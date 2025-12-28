@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateDeploymentGateCmd = &cobra.Command{
-	Use:   "update_deployment_gate [id]",
+	Use:   "update-deployment-gate [id]",
 	Short: "Update deployment gate",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateDeploymentGateCmd = &cobra.Command{
 		api := datadogV2.NewDeploymentGatesApi(client.NewAPIClient())
 		res, _, err := api.UpdateDeploymentGate(client.NewContext(apiKey, appKey, site), args[0], datadogV2.UpdateDeploymentGateParams{})
 		if err != nil {
-			log.Fatalf("failed to update_deployment_gate: %v", err)
+			log.Fatalf("failed to update-deployment-gate: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "deployment_gate")

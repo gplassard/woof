@@ -15,7 +15,7 @@ import (
 )
 
 var ListMemberTeamsCmd = &cobra.Command{
-	Use:   "list_member_teams [super_team_id]",
+	Use:   "list-member-teams [super_team_id]",
 	Short: "Get all member teams",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListMemberTeamsCmd = &cobra.Command{
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
 		res, _, err := api.ListMemberTeams(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to list_member_teams: %v", err)
+			log.Fatalf("failed to list-member-teams: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "team")

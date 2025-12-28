@@ -15,7 +15,7 @@ import (
 )
 
 var UpdateLogsCustomDestinationCmd = &cobra.Command{
-	Use:   "update_logs_custom_destination [custom_destination_id]",
+	Use:   "update-logs-custom-destination [custom_destination_id]",
 	Short: "Update a custom destination",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdateLogsCustomDestinationCmd = &cobra.Command{
 		api := datadogV2.NewLogsCustomDestinationsApi(client.NewAPIClient())
 		res, _, err := api.UpdateLogsCustomDestination(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CustomDestinationUpdateRequest{})
 		if err != nil {
-			log.Fatalf("failed to update_logs_custom_destination: %v", err)
+			log.Fatalf("failed to update-logs-custom-destination: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "custom_destination")

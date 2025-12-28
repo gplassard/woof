@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteTableCmd = &cobra.Command{
-	Use:   "delete_table [id]",
+	Use:   "delete-table [id]",
 	Short: "Delete table",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteTableCmd = &cobra.Command{
 		api := datadogV2.NewReferenceTablesApi(client.NewAPIClient())
 		_, err := api.DeleteTable(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_table: %v", err)
+			log.Fatalf("failed to delete-table: %v", err)
 		}
 
 		

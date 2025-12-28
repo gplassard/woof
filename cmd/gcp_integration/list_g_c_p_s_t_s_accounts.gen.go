@@ -15,7 +15,7 @@ import (
 )
 
 var ListGCPSTSAccountsCmd = &cobra.Command{
-	Use:   "list_g_c_p_s_t_s_accounts",
+	Use:   "list-g-c-p-s-t-s-accounts",
 	Short: "List all GCP STS-enabled service accounts",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ListGCPSTSAccountsCmd = &cobra.Command{
 		api := datadogV2.NewGCPIntegrationApi(client.NewAPIClient())
 		res, _, err := api.ListGCPSTSAccounts(client.NewContext(apiKey, appKey, site))
 		if err != nil {
-			log.Fatalf("failed to list_g_c_p_s_t_s_accounts: %v", err)
+			log.Fatalf("failed to list-g-c-p-s-t-s-accounts: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "gcp_service_account")

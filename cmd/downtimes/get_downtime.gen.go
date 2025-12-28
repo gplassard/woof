@@ -15,7 +15,7 @@ import (
 )
 
 var GetDowntimeCmd = &cobra.Command{
-	Use:   "get_downtime [downtime_id]",
+	Use:   "get-downtime [downtime_id]",
 	Short: "Get a downtime",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var GetDowntimeCmd = &cobra.Command{
 		api := datadogV2.NewDowntimesApi(client.NewAPIClient())
 		res, _, err := api.GetDowntime(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to get_downtime: %v", err)
+			log.Fatalf("failed to get-downtime: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "downtime")

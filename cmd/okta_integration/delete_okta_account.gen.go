@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteOktaAccountCmd = &cobra.Command{
-	Use:   "delete_okta_account [account_id]",
+	Use:   "delete-okta-account [account_id]",
 	Short: "Delete Okta account",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteOktaAccountCmd = &cobra.Command{
 		api := datadogV2.NewOktaIntegrationApi(client.NewAPIClient())
 		_, err := api.DeleteOktaAccount(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_okta_account: %v", err)
+			log.Fatalf("failed to delete-okta-account: %v", err)
 		}
 
 		

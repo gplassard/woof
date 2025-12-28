@@ -15,7 +15,7 @@ import (
 )
 
 var AggregateRUMEventsCmd = &cobra.Command{
-	Use:   "aggregate_r_u_m_events",
+	Use:   "aggregate-r-u-m-events",
 	Short: "Aggregate RUM events",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var AggregateRUMEventsCmd = &cobra.Command{
 		api := datadogV2.NewRUMApi(client.NewAPIClient())
 		res, _, err := api.AggregateRUMEvents(client.NewContext(apiKey, appKey, site), datadogV2.RUMAggregateRequest{})
 		if err != nil {
-			log.Fatalf("failed to aggregate_r_u_m_events: %v", err)
+			log.Fatalf("failed to aggregate-r-u-m-events: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "rum")

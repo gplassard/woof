@@ -15,7 +15,7 @@ import (
 )
 
 var SubmitMetricsCmd = &cobra.Command{
-	Use:   "submit_metrics",
+	Use:   "submit-metrics",
 	Short: "Submit metrics",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var SubmitMetricsCmd = &cobra.Command{
 		api := datadogV2.NewMetricsApi(client.NewAPIClient())
 		res, _, err := api.SubmitMetrics(client.NewContext(apiKey, appKey, site), datadogV2.MetricPayload{})
 		if err != nil {
-			log.Fatalf("failed to submit_metrics: %v", err)
+			log.Fatalf("failed to submit-metrics: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "metrics")

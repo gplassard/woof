@@ -15,7 +15,7 @@ import (
 )
 
 var CreateMonitorUserTemplateCmd = &cobra.Command{
-	Use:   "create_monitor_user_template",
+	Use:   "create-monitor-user-template",
 	Short: "Create a monitor user template",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateMonitorUserTemplateCmd = &cobra.Command{
 		api := datadogV2.NewMonitorsApi(client.NewAPIClient())
 		res, _, err := api.CreateMonitorUserTemplate(client.NewContext(apiKey, appKey, site), datadogV2.MonitorUserTemplateCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_monitor_user_template: %v", err)
+			log.Fatalf("failed to create-monitor-user-template: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "monitor-user-template")

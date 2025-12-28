@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteTenantBasedHandleCmd = &cobra.Command{
-	Use:   "delete_tenant_based_handle [handle_id]",
+	Use:   "delete-tenant-based-handle [handle_id]",
 	Short: "Delete tenant-based handle",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteTenantBasedHandleCmd = &cobra.Command{
 		api := datadogV2.NewMicrosoftTeamsIntegrationApi(client.NewAPIClient())
 		_, err := api.DeleteTenantBasedHandle(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_tenant_based_handle: %v", err)
+			log.Fatalf("failed to delete-tenant-based-handle: %v", err)
 		}
 
 		

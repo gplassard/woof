@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteRestrictionPolicyCmd = &cobra.Command{
-	Use:   "delete_restriction_policy [resource_id]",
+	Use:   "delete-restriction-policy [resource_id]",
 	Short: "Delete a restriction policy",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteRestrictionPolicyCmd = &cobra.Command{
 		api := datadogV2.NewRestrictionPoliciesApi(client.NewAPIClient())
 		_, err := api.DeleteRestrictionPolicy(client.NewContext(apiKey, appKey, site), args[0])
 		if err != nil {
-			log.Fatalf("failed to delete_restriction_policy: %v", err)
+			log.Fatalf("failed to delete-restriction-policy: %v", err)
 		}
 
 		

@@ -15,7 +15,7 @@ import (
 )
 
 var UpdatePowerpackCmd = &cobra.Command{
-	Use:   "update_powerpack [powerpack_id]",
+	Use:   "update-powerpack [powerpack_id]",
 	Short: "Update a powerpack",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpdatePowerpackCmd = &cobra.Command{
 		api := datadogV2.NewPowerpackApi(client.NewAPIClient())
 		res, _, err := api.UpdatePowerpack(client.NewContext(apiKey, appKey, site), args[0], datadogV2.Powerpack{})
 		if err != nil {
-			log.Fatalf("failed to update_powerpack: %v", err)
+			log.Fatalf("failed to update-powerpack: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "powerpack")

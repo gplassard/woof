@@ -15,7 +15,7 @@ import (
 )
 
 var UpsertCatalogEntityCmd = &cobra.Command{
-	Use:   "upsert_catalog_entity",
+	Use:   "upsert-catalog-entity",
 	Short: "Create or update entities",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var UpsertCatalogEntityCmd = &cobra.Command{
 		api := datadogV2.NewSoftwareCatalogApi(client.NewAPIClient())
 		res, _, err := api.UpsertCatalogEntity(client.NewContext(apiKey, appKey, site), datadogV2.UpsertCatalogEntityRequest{})
 		if err != nil {
-			log.Fatalf("failed to upsert_catalog_entity: %v", err)
+			log.Fatalf("failed to upsert-catalog-entity: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "software_catalog")

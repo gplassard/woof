@@ -15,7 +15,7 @@ import (
 )
 
 var CreateOpsgenieServiceCmd = &cobra.Command{
-	Use:   "create_opsgenie_service",
+	Use:   "create-opsgenie-service",
 	Short: "Create a new service object",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var CreateOpsgenieServiceCmd = &cobra.Command{
 		api := datadogV2.NewOpsgenieIntegrationApi(client.NewAPIClient())
 		res, _, err := api.CreateOpsgenieService(client.NewContext(apiKey, appKey, site), datadogV2.OpsgenieServiceCreateRequest{})
 		if err != nil {
-			log.Fatalf("failed to create_opsgenie_service: %v", err)
+			log.Fatalf("failed to create-opsgenie-service: %v", err)
 		}
 
 		cmdutil.PrintJSON(res, "opsgenie-service")

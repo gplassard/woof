@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteServiceAccountApplicationKeyCmd = &cobra.Command{
-	Use:   "delete_service_account_application_key [service_account_id] [app_key_id]",
+	Use:   "delete-service-account-application-key [service_account_id] [app_key_id]",
 	Short: "Delete an application key for this service account",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteServiceAccountApplicationKeyCmd = &cobra.Command{
 		api := datadogV2.NewServiceAccountsApi(client.NewAPIClient())
 		_, err := api.DeleteServiceAccountApplicationKey(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		if err != nil {
-			log.Fatalf("failed to delete_service_account_application_key: %v", err)
+			log.Fatalf("failed to delete-service-account-application-key: %v", err)
 		}
 
 		

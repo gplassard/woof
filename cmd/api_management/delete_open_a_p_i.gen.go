@@ -15,7 +15,7 @@ import (
 )
 
 var DeleteOpenAPICmd = &cobra.Command{
-	Use:   "delete_open_a_p_i [id]",
+	Use:   "delete-open-a-p-i [id]",
 	Short: "Delete an API",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var DeleteOpenAPICmd = &cobra.Command{
 		api := datadogV2.NewAPIManagementApi(client.NewAPIClient())
 		_, err := api.DeleteOpenAPI(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
 		if err != nil {
-			log.Fatalf("failed to delete_open_a_p_i: %v", err)
+			log.Fatalf("failed to delete-open-a-p-i: %v", err)
 		}
 
 		

@@ -15,7 +15,7 @@ import (
 )
 
 var ConvertJobResultToSignalCmd = &cobra.Command{
-	Use:   "convert_job_result_to_signal",
+	Use:   "convert-job-result-to-signal",
 	Short: "Convert a job result to a signal",
 	
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,7 +23,7 @@ var ConvertJobResultToSignalCmd = &cobra.Command{
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		_, err := api.ConvertJobResultToSignal(client.NewContext(apiKey, appKey, site), datadogV2.ConvertJobResultsToSignalsRequest{})
 		if err != nil {
-			log.Fatalf("failed to convert_job_result_to_signal: %v", err)
+			log.Fatalf("failed to convert-job-result-to-signal: %v", err)
 		}
 
 		
