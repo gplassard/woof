@@ -14,7 +14,7 @@ func TestToKebabCase(t *testing.T) {
 		input string
 		want  string
 	}{
-		{"ListAPIs", "list-api-s"},
+		{"ListAPIs", "list-apis"},
 		{"CreateCSMThreat", "create-csm-threat"},
 		{"GetSLO", "get-slo"},
 		{"GetSBOM", "get-sbom"},
@@ -50,7 +50,7 @@ func TestToSnakeCase(t *testing.T) {
 		input string
 		want  string
 	}{
-		{"ListAPIs", "list_api_s"},
+		{"ListAPIs", "list_apis"},
 		{"CreateCSMThreat", "create_csm_threat"},
 		{"GetSLO", "get_slo"},
 		{"GetSBOM", "get_sbom"},

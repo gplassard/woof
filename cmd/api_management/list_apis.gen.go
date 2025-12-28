@@ -14,7 +14,7 @@ import (
 )
 
 var ListAPIsCmd = &cobra.Command{
-	Use:   "list-api-s",
+	Use:   "list-apis",
 	
 	Short: "List APIs",
 	
@@ -22,7 +22,7 @@ var ListAPIsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewAPIManagementApi(client.NewAPIClient())
 		res, _, err := api.ListAPIs(client.NewContext(apiKey, appKey, site))
-		cmdutil.HandleError(err, "failed to list-api-s")
+		cmdutil.HandleError(err, "failed to list-apis")
 
 		cmdutil.PrintJSON(res, "api_management")
 	},
