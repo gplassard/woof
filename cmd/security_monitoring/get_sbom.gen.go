@@ -1,7 +1,6 @@
 package security_monitoring
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetSBOMCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.GetSBOM(client.NewContext(apiKey, appKey, site), datadogV2.AssetType(args[0]), args[1])
-		if err != nil {
-			log.Fatalf("failed to get-sbom: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-sbom")
 
 		cmdutil.PrintJSON(res, "sboms")
 	},

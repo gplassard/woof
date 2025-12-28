@@ -1,7 +1,6 @@
 package rum_retention_filters
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var OrderRetentionFiltersCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewRumRetentionFiltersApi(client.NewAPIClient())
 		res, _, err := api.OrderRetentionFilters(client.NewContext(apiKey, appKey, site), args[0], datadogV2.RumRetentionFiltersOrderRequest{})
-		if err != nil {
-			log.Fatalf("failed to order-retention-filters: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to order-retention-filters")
 
 		cmdutil.PrintJSON(res, "retention_filters")
 	},

@@ -1,7 +1,6 @@
 package cloud_cost_management
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateCustomAllocationRuleCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
 		res, _, err := api.CreateCustomAllocationRule(client.NewContext(apiKey, appKey, site), datadogV2.ArbitraryCostUpsertRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-custom-allocation-rule: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-custom-allocation-rule")
 
 		cmdutil.PrintJSON(res, "arbitrary_rule")
 	},

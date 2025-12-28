@@ -1,7 +1,6 @@
 package aws_integration
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateAWSEventBridgeSourceCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewAWSIntegrationApi(client.NewAPIClient())
 		res, _, err := api.CreateAWSEventBridgeSource(client.NewContext(apiKey, appKey, site), datadogV2.AWSEventBridgeCreateRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-aws-event-bridge-source: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-aws-event-bridge-source")
 
 		cmdutil.PrintJSON(res, "event_bridge")
 	},

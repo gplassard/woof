@@ -1,7 +1,6 @@
 package app_builder
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var PublishAppCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewAppBuilderApi(client.NewAPIClient())
 		res, _, err := api.PublishApp(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
-		if err != nil {
-			log.Fatalf("failed to publish-app: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to publish-app")
 
 		cmdutil.PrintJSON(res, "deployment")
 	},

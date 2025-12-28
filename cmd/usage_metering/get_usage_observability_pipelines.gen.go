@@ -1,7 +1,6 @@
 package usage_metering
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetUsageObservabilityPipelinesCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewUsageMeteringApi(client.NewAPIClient())
 		res, _, err := api.GetUsageObservabilityPipelines(client.NewContext(apiKey, appKey, site), func() time.Time { t, _ := time.Parse(time.RFC3339, args[0]); return t }())
-		if err != nil {
-			log.Fatalf("failed to get-usage-observability-pipelines: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-usage-observability-pipelines")
 
 		cmdutil.PrintJSON(res, "usage_metering")
 	},

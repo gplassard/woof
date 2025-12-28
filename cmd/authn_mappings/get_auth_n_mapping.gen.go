@@ -1,7 +1,6 @@
 package authn_mappings
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetAuthNMappingCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewAuthNMappingsApi(client.NewAPIClient())
 		res, _, err := api.GetAuthNMapping(client.NewContext(apiKey, appKey, site), args[0])
-		if err != nil {
-			log.Fatalf("failed to get-auth-n-mapping: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-auth-n-mapping")
 
 		cmdutil.PrintJSON(res, "authn_mappings")
 	},

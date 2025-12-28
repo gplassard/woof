@@ -1,7 +1,6 @@
 package rum_audience_management
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var QueryUsersCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewRumAudienceManagementApi(client.NewAPIClient())
 		res, _, err := api.QueryUsers(client.NewContext(apiKey, appKey, site), datadogV2.QueryUsersRequest{})
-		if err != nil {
-			log.Fatalf("failed to query-users: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to query-users")
 
 		cmdutil.PrintJSON(res, "query_response")
 	},

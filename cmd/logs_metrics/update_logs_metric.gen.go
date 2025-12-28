@@ -1,7 +1,6 @@
 package logs_metrics
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var UpdateLogsMetricCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewLogsMetricsApi(client.NewAPIClient())
 		res, _, err := api.UpdateLogsMetric(client.NewContext(apiKey, appKey, site), args[0], datadogV2.LogsMetricUpdateRequest{})
-		if err != nil {
-			log.Fatalf("failed to update-logs-metric: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to update-logs-metric")
 
 		cmdutil.PrintJSON(res, "logs_metrics")
 	},

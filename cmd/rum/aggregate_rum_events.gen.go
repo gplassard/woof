@@ -1,7 +1,6 @@
 package rum
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var AggregateRUMEventsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewRUMApi(client.NewAPIClient())
 		res, _, err := api.AggregateRUMEvents(client.NewContext(apiKey, appKey, site), datadogV2.RUMAggregateRequest{})
-		if err != nil {
-			log.Fatalf("failed to aggregate-rum-events: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to aggregate-rum-events")
 
 		cmdutil.PrintJSON(res, "rum")
 	},

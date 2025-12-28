@@ -1,7 +1,6 @@
 package observability_pipelines
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListPipelinesCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewObservabilityPipelinesApi(client.NewAPIClient())
 		res, _, err := api.ListPipelines(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to list-pipelines: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-pipelines")
 
 		cmdutil.PrintJSON(res, "observability_pipelines")
 	},

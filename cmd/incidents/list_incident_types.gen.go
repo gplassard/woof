@@ -1,7 +1,6 @@
 package incidents
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListIncidentTypesCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
 		res, _, err := api.ListIncidentTypes(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to list-incident-types: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-incident-types")
 
 		cmdutil.PrintJSON(res, "incident_types")
 	},

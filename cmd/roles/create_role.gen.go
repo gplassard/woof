@@ -1,7 +1,6 @@
 package roles
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateRoleCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewRolesApi(client.NewAPIClient())
 		res, _, err := api.CreateRole(client.NewContext(apiKey, appKey, site), datadogV2.RoleCreateRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-role: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-role")
 
 		cmdutil.PrintJSON(res, "roles")
 	},

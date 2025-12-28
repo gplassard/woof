@@ -1,7 +1,6 @@
 package deployment_gates
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateDeploymentRuleCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewDeploymentGatesApi(client.NewAPIClient())
 		res, _, err := api.CreateDeploymentRule(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CreateDeploymentRuleParams{})
-		if err != nil {
-			log.Fatalf("failed to create-deployment-rule: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-deployment-rule")
 
 		cmdutil.PrintJSON(res, "deployment_rule")
 	},

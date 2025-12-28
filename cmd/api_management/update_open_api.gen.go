@@ -1,7 +1,6 @@
 package api_management
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var UpdateOpenAPICmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewAPIManagementApi(client.NewAPIClient())
 		res, _, err := api.UpdateOpenAPI(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]), *datadogV2.NewUpdateOpenAPIOptionalParameters())
-		if err != nil {
-			log.Fatalf("failed to update-open-api: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to update-open-api")
 
 		cmdutil.PrintJSON(res, "api_management")
 	},

@@ -1,7 +1,6 @@
 package incidents
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateIncidentNotificationTemplateCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
 		res, _, err := api.CreateIncidentNotificationTemplate(client.NewContext(apiKey, appKey, site), datadogV2.CreateIncidentNotificationTemplateRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-incident-notification-template: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-incident-notification-template")
 
 		cmdutil.PrintJSON(res, "notification_templates")
 	},

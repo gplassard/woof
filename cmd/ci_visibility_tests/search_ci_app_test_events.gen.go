@@ -1,7 +1,6 @@
 package ci_visibility_tests
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var SearchCIAppTestEventsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCIVisibilityTestsApi(client.NewAPIClient())
 		res, _, err := api.SearchCIAppTestEvents(client.NewContext(apiKey, appKey, site), *datadogV2.NewSearchCIAppTestEventsOptionalParameters())
-		if err != nil {
-			log.Fatalf("failed to search-ci-app-test-events: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to search-ci-app-test-events")
 
 		cmdutil.PrintJSON(res, "citest")
 	},

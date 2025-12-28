@@ -1,7 +1,6 @@
 package error_tracking
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetIssueCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewErrorTrackingApi(client.NewAPIClient())
 		res, _, err := api.GetIssue(client.NewContext(apiKey, appKey, site), args[0])
-		if err != nil {
-			log.Fatalf("failed to get-issue: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-issue")
 
 		cmdutil.PrintJSON(res, "issue")
 	},

@@ -1,7 +1,6 @@
 package service_accounts
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListServiceAccountApplicationKeysCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewServiceAccountsApi(client.NewAPIClient())
 		res, _, err := api.ListServiceAccountApplicationKeys(client.NewContext(apiKey, appKey, site), args[0])
-		if err != nil {
-			log.Fatalf("failed to list-service-account-application-keys: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-service-account-application-keys")
 
 		cmdutil.PrintJSON(res, "application_keys")
 	},

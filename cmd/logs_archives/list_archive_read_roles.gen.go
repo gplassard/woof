@@ -1,7 +1,6 @@
 package logs_archives
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListArchiveReadRolesCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewLogsArchivesApi(client.NewAPIClient())
 		res, _, err := api.ListArchiveReadRoles(client.NewContext(apiKey, appKey, site), args[0])
-		if err != nil {
-			log.Fatalf("failed to list-archive-read-roles: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-archive-read-roles")
 
 		cmdutil.PrintJSON(res, "roles")
 	},

@@ -1,7 +1,6 @@
 package case_management
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetProjectsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCaseManagementApi(client.NewAPIClient())
 		res, _, err := api.GetProjects(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to get-projects: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-projects")
 
 		cmdutil.PrintJSON(res, "project")
 	},

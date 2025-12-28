@@ -1,7 +1,6 @@
 package data_deletion
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetDataDeletionRequestsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewDataDeletionApi(client.NewAPIClient())
 		res, _, err := api.GetDataDeletionRequests(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to get-data-deletion-requests: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-data-deletion-requests")
 
 		cmdutil.PrintJSON(res, "data_deletion")
 	},

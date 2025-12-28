@@ -1,7 +1,6 @@
 package case_management
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var SearchCasesCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCaseManagementApi(client.NewAPIClient())
 		res, _, err := api.SearchCases(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to search-cases: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to search-cases")
 
 		cmdutil.PrintJSON(res, "case")
 	},

@@ -1,7 +1,6 @@
 package fleet_automation
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateFleetDeploymentUpgradeCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewFleetAutomationApi(client.NewAPIClient())
 		res, _, err := api.CreateFleetDeploymentUpgrade(client.NewContext(apiKey, appKey, site), datadogV2.FleetDeploymentPackageUpgradeCreateRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-fleet-deployment-upgrade: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-fleet-deployment-upgrade")
 
 		cmdutil.PrintJSON(res, "deployment")
 	},

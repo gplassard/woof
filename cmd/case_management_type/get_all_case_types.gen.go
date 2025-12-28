@@ -1,7 +1,6 @@
 package case_management_type
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetAllCaseTypesCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCaseManagementTypeApi(client.NewAPIClient())
 		res, _, err := api.GetAllCaseTypes(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to get-all-case-types: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-all-case-types")
 
 		cmdutil.PrintJSON(res, "case_type")
 	},

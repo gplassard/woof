@@ -1,7 +1,6 @@
 package case_management_attribute
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetAllCustomAttributesCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCaseManagementAttributeApi(client.NewAPIClient())
 		res, _, err := api.GetAllCustomAttributes(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to get-all-custom-attributes: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-all-custom-attributes")
 
 		cmdutil.PrintJSON(res, "custom_attribute")
 	},

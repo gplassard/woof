@@ -1,10 +1,9 @@
 package security_monitoring
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
-	
+	"ouaf/pkg/cmdutil"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 	
@@ -23,9 +22,7 @@ var ConvertJobResultToSignalCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		_, err := api.ConvertJobResultToSignal(client.NewContext(apiKey, appKey, site), datadogV2.ConvertJobResultsToSignalsRequest{})
-		if err != nil {
-			log.Fatalf("failed to convert-job-result-to-signal: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to convert-job-result-to-signal")
 
 		
 	},

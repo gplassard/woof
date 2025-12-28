@@ -1,7 +1,6 @@
 package downtimes
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateDowntimeCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewDowntimesApi(client.NewAPIClient())
 		res, _, err := api.CreateDowntime(client.NewContext(apiKey, appKey, site), datadogV2.DowntimeCreateRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-downtime: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-downtime")
 
 		cmdutil.PrintJSON(res, "downtime")
 	},

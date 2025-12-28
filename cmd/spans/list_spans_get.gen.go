@@ -1,7 +1,6 @@
 package spans
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListSpansGetCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewSpansApi(client.NewAPIClient())
 		res, _, err := api.ListSpansGet(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to list-spans-get: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-spans-get")
 
 		cmdutil.PrintJSON(res, "spans")
 	},

@@ -1,7 +1,6 @@
 package dashboard_lists
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetDashboardListItemsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewDashboardListsApi(client.NewAPIClient())
 		res, _, err := api.GetDashboardListItems(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }())
-		if err != nil {
-			log.Fatalf("failed to get-dashboard-list-items: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-dashboard-list-items")
 
 		cmdutil.PrintJSON(res, "dashboard_lists")
 	},

@@ -1,7 +1,6 @@
 package ci_visibility_tests
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var AggregateCIAppTestEventsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCIVisibilityTestsApi(client.NewAPIClient())
 		res, _, err := api.AggregateCIAppTestEvents(client.NewContext(apiKey, appKey, site), datadogV2.CIAppTestsAggregateRequest{})
-		if err != nil {
-			log.Fatalf("failed to aggregate-ci-app-test-events: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to aggregate-ci-app-test-events")
 
 		cmdutil.PrintJSON(res, "ci_visibility_tests")
 	},

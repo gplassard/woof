@@ -1,7 +1,6 @@
 package error_tracking
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var UpdateIssueStateCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewErrorTrackingApi(client.NewAPIClient())
 		res, _, err := api.UpdateIssueState(client.NewContext(apiKey, appKey, site), args[0], datadogV2.IssueUpdateStateRequest{})
-		if err != nil {
-			log.Fatalf("failed to update-issue-state: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to update-issue-state")
 
 		cmdutil.PrintJSON(res, "issue")
 	},

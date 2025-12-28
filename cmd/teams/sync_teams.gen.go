@@ -1,10 +1,9 @@
 package teams
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
-	
+	"ouaf/pkg/cmdutil"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 	
@@ -23,9 +22,7 @@ var SyncTeamsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
 		_, err := api.SyncTeams(client.NewContext(apiKey, appKey, site), datadogV2.TeamSyncRequest{})
-		if err != nil {
-			log.Fatalf("failed to sync-teams: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to sync-teams")
 
 		
 	},

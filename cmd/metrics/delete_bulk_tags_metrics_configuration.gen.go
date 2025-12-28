@@ -1,7 +1,6 @@
 package metrics
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var DeleteBulkTagsMetricsConfigurationCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewMetricsApi(client.NewAPIClient())
 		res, _, err := api.DeleteBulkTagsMetricsConfiguration(client.NewContext(apiKey, appKey, site), datadogV2.MetricBulkTagConfigDeleteRequest{})
-		if err != nil {
-			log.Fatalf("failed to delete-bulk-tags-metrics-configuration: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to delete-bulk-tags-metrics-configuration")
 
 		cmdutil.PrintJSON(res, "metric_bulk_configure_tags")
 	},

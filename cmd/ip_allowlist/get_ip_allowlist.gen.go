@@ -1,7 +1,6 @@
 package ip_allowlist
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetIPAllowlistCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewIPAllowlistApi(client.NewAPIClient())
 		res, _, err := api.GetIPAllowlist(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to get-ip-allowlist: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-ip-allowlist")
 
 		cmdutil.PrintJSON(res, "ip_allowlist")
 	},

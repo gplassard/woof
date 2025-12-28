@@ -1,10 +1,9 @@
 package microsoft_teams_integration
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
-	
+	"ouaf/pkg/cmdutil"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 	
@@ -23,9 +22,7 @@ var DeleteTenantBasedHandleCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewMicrosoftTeamsIntegrationApi(client.NewAPIClient())
 		_, err := api.DeleteTenantBasedHandle(client.NewContext(apiKey, appKey, site), args[0])
-		if err != nil {
-			log.Fatalf("failed to delete-tenant-based-handle: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to delete-tenant-based-handle")
 
 		
 	},

@@ -1,7 +1,6 @@
 package security_monitoring
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var SearchSecurityMonitoringSignalsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.SearchSecurityMonitoringSignals(client.NewContext(apiKey, appKey, site), *datadogV2.NewSearchSecurityMonitoringSignalsOptionalParameters())
-		if err != nil {
-			log.Fatalf("failed to search-security-monitoring-signals: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to search-security-monitoring-signals")
 
 		cmdutil.PrintJSON(res, "signal")
 	},

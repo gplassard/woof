@@ -1,7 +1,6 @@
 package case_management_type
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateCaseTypeCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCaseManagementTypeApi(client.NewAPIClient())
 		res, _, err := api.CreateCaseType(client.NewContext(apiKey, appKey, site), datadogV2.CaseTypeCreateRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-case-type: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-case-type")
 
 		cmdutil.PrintJSON(res, "case_type")
 	},

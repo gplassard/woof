@@ -1,7 +1,6 @@
 package incidents
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var SearchIncidentsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
 		res, _, err := api.SearchIncidents(client.NewContext(apiKey, appKey, site), args[0])
-		if err != nil {
-			log.Fatalf("failed to search-incidents: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to search-incidents")
 
 		cmdutil.PrintJSON(res, "incidents_search_results")
 	},

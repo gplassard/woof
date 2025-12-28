@@ -1,7 +1,6 @@
 package okta_integration
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetOktaAccountCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewOktaIntegrationApi(client.NewAPIClient())
 		res, _, err := api.GetOktaAccount(client.NewContext(apiKey, appKey, site), args[0])
-		if err != nil {
-			log.Fatalf("failed to get-okta-account: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-okta-account")
 
 		cmdutil.PrintJSON(res, "okta-accounts")
 	},

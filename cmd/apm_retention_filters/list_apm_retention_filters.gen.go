@@ -1,7 +1,6 @@
 package apm_retention_filters
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListApmRetentionFiltersCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewAPMRetentionFiltersApi(client.NewAPIClient())
 		res, _, err := api.ListApmRetentionFilters(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to list-apm-retention-filters: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-apm-retention-filters")
 
 		cmdutil.PrintJSON(res, "apm_retention_filter")
 	},

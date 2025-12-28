@@ -1,7 +1,6 @@
 package cloud_cost_management
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var UpdateTagPipelinesRulesetCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
 		res, _, err := api.UpdateTagPipelinesRuleset(client.NewContext(apiKey, appKey, site), args[0], datadogV2.UpdateRulesetRequest{})
-		if err != nil {
-			log.Fatalf("failed to update-tag-pipelines-ruleset: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to update-tag-pipelines-ruleset")
 
 		cmdutil.PrintJSON(res, "ruleset")
 	},

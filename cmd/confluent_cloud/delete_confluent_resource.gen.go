@@ -1,10 +1,9 @@
 package confluent_cloud
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
-	
+	"ouaf/pkg/cmdutil"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 	
@@ -23,9 +22,7 @@ var DeleteConfluentResourceCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewConfluentCloudApi(client.NewAPIClient())
 		_, err := api.DeleteConfluentResource(client.NewContext(apiKey, appKey, site), args[0], args[1])
-		if err != nil {
-			log.Fatalf("failed to delete-confluent-resource: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to delete-confluent-resource")
 
 		
 	},

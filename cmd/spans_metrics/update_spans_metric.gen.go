@@ -1,7 +1,6 @@
 package spans_metrics
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var UpdateSpansMetricCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewSpansMetricsApi(client.NewAPIClient())
 		res, _, err := api.UpdateSpansMetric(client.NewContext(apiKey, appKey, site), args[0], datadogV2.SpansMetricUpdateRequest{})
-		if err != nil {
-			log.Fatalf("failed to update-spans-metric: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to update-spans-metric")
 
 		cmdutil.PrintJSON(res, "spans_metrics")
 	},

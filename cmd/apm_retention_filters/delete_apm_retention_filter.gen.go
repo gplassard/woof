@@ -1,10 +1,9 @@
 package apm_retention_filters
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
-	
+	"ouaf/pkg/cmdutil"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 	
@@ -23,9 +22,7 @@ var DeleteApmRetentionFilterCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewAPMRetentionFiltersApi(client.NewAPIClient())
 		_, err := api.DeleteApmRetentionFilter(client.NewContext(apiKey, appKey, site), args[0])
-		if err != nil {
-			log.Fatalf("failed to delete-apm-retention-filter: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to delete-apm-retention-filter")
 
 		
 	},

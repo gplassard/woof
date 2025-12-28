@@ -1,7 +1,6 @@
 package organizations
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetOrgConfigCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewOrganizationsApi(client.NewAPIClient())
 		res, _, err := api.GetOrgConfig(client.NewContext(apiKey, appKey, site), args[0])
-		if err != nil {
-			log.Fatalf("failed to get-org-config: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-org-config")
 
 		cmdutil.PrintJSON(res, "org_configs")
 	},

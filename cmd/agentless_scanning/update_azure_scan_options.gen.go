@@ -1,7 +1,6 @@
 package agentless_scanning
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var UpdateAzureScanOptionsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewAgentlessScanningApi(client.NewAPIClient())
 		res, _, err := api.UpdateAzureScanOptions(client.NewContext(apiKey, appKey, site), args[0], datadogV2.AzureScanOptionsInputUpdate{})
-		if err != nil {
-			log.Fatalf("failed to update-azure-scan-options: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to update-azure-scan-options")
 
 		cmdutil.PrintJSON(res, "azure_scan_options")
 	},

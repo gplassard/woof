@@ -1,7 +1,6 @@
 package cloudflare_integration
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListCloudflareAccountsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCloudflareIntegrationApi(client.NewAPIClient())
 		res, _, err := api.ListCloudflareAccounts(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to list-cloudflare-accounts: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-cloudflare-accounts")
 
 		cmdutil.PrintJSON(res, "cloudflare-accounts")
 	},

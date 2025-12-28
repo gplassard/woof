@@ -1,7 +1,6 @@
 package network_device_monitoring
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetDeviceCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewNetworkDeviceMonitoringApi(client.NewAPIClient())
 		res, _, err := api.GetDevice(client.NewContext(apiKey, appKey, site), args[0])
-		if err != nil {
-			log.Fatalf("failed to get-device: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-device")
 
 		cmdutil.PrintJSON(res, "network_device_monitoring")
 	},

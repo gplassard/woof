@@ -1,7 +1,6 @@
 package dora_metrics
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListDORAFailuresCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewDORAMetricsApi(client.NewAPIClient())
 		res, _, err := api.ListDORAFailures(client.NewContext(apiKey, appKey, site), datadogV2.DORAListFailuresRequest{})
-		if err != nil {
-			log.Fatalf("failed to list-dora-failures: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-dora-failures")
 
 		cmdutil.PrintJSON(res, "dora_metrics")
 	},

@@ -1,7 +1,6 @@
 package security_monitoring
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var RunThreatHuntingJobCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.RunThreatHuntingJob(client.NewContext(apiKey, appKey, site), datadogV2.RunThreatHuntingJobRequest{})
-		if err != nil {
-			log.Fatalf("failed to run-threat-hunting-job: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to run-threat-hunting-job")
 
 		cmdutil.PrintJSON(res, "historicalDetectionsJob")
 	},

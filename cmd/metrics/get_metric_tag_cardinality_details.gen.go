@@ -1,7 +1,6 @@
 package metrics
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetMetricTagCardinalityDetailsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewMetricsApi(client.NewAPIClient())
 		res, _, err := api.GetMetricTagCardinalityDetails(client.NewContext(apiKey, appKey, site), args[0])
-		if err != nil {
-			log.Fatalf("failed to get-metric-tag-cardinality-details: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-metric-tag-cardinality-details")
 
 		cmdutil.PrintJSON(res, "metrics")
 	},

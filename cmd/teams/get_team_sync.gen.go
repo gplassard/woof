@@ -1,7 +1,6 @@
 package teams
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetTeamSyncCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
 		res, _, err := api.GetTeamSync(client.NewContext(apiKey, appKey, site), datadogV2.TeamSyncAttributesSource(args[0]))
-		if err != nil {
-			log.Fatalf("failed to get-team-sync: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-team-sync")
 
 		cmdutil.PrintJSON(res, "team_sync_bulk")
 	},

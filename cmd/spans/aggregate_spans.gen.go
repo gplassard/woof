@@ -1,7 +1,6 @@
 package spans
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var AggregateSpansCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewSpansApi(client.NewAPIClient())
 		res, _, err := api.AggregateSpans(client.NewContext(apiKey, appKey, site), datadogV2.SpansAggregateRequest{})
-		if err != nil {
-			log.Fatalf("failed to aggregate-spans: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to aggregate-spans")
 
 		cmdutil.PrintJSON(res, "bucket")
 	},

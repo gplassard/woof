@@ -1,7 +1,6 @@
 package dashboard_lists
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var DeleteDashboardListItemsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewDashboardListsApi(client.NewAPIClient())
 		res, _, err := api.DeleteDashboardListItems(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }(), datadogV2.DashboardListDeleteItemsRequest{})
-		if err != nil {
-			log.Fatalf("failed to delete-dashboard-list-items: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to delete-dashboard-list-items")
 
 		cmdutil.PrintJSON(res, "dashboard_lists")
 	},

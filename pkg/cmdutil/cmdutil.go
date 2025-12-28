@@ -4,7 +4,19 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
+
+func HandleError(err error, format string) {
+	if err == nil {
+		return
+	}
+	if openapiErr, ok := err.(datadog.GenericOpenAPIError); ok {
+		log.Fatalf(format+": %v\n%s", err, string(openapiErr.Body()))
+	}
+	log.Fatalf(format+": %v", err)
+}
 
 func PrintJSON(res interface{}, filterType string) {
 	if filterType == "" {

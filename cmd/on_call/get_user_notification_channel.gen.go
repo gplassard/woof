@@ -1,7 +1,6 @@
 package on_call
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetUserNotificationChannelCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewOnCallApi(client.NewAPIClient())
 		res, _, err := api.GetUserNotificationChannel(client.NewContext(apiKey, appKey, site), args[0], args[1])
-		if err != nil {
-			log.Fatalf("failed to get-user-notification-channel: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-user-notification-channel")
 
 		cmdutil.PrintJSON(res, "notification_channels")
 	},

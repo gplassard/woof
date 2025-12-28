@@ -1,7 +1,6 @@
 package action_connection
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListAppKeyRegistrationsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewActionConnectionApi(client.NewAPIClient())
 		res, _, err := api.ListAppKeyRegistrations(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to list-app-key-registrations: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-app-key-registrations")
 
 		cmdutil.PrintJSON(res, "app_key_registration")
 	},

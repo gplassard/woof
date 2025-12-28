@@ -1,10 +1,9 @@
 package logs_archives
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
-	
+	"ouaf/pkg/cmdutil"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 	
@@ -23,9 +22,7 @@ var AddReadRoleToArchiveCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewLogsArchivesApi(client.NewAPIClient())
 		_, err := api.AddReadRoleToArchive(client.NewContext(apiKey, appKey, site), args[0], datadogV2.RelationshipToRole{})
-		if err != nil {
-			log.Fatalf("failed to add-read-role-to-archive: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to add-read-role-to-archive")
 
 		
 	},

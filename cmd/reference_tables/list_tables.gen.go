@@ -1,7 +1,6 @@
 package reference_tables
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListTablesCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewReferenceTablesApi(client.NewAPIClient())
 		res, _, err := api.ListTables(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to list-tables: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-tables")
 
 		cmdutil.PrintJSON(res, "reference_table")
 	},

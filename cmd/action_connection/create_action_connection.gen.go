@@ -1,7 +1,6 @@
 package action_connection
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateActionConnectionCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewActionConnectionApi(client.NewAPIClient())
 		res, _, err := api.CreateActionConnection(client.NewContext(apiKey, appKey, site), datadogV2.CreateActionConnectionRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-action-connection: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-action-connection")
 
 		cmdutil.PrintJSON(res, "action_connection")
 	},

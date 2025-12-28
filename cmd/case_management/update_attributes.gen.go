@@ -1,7 +1,6 @@
 package case_management
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var UpdateAttributesCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCaseManagementApi(client.NewAPIClient())
 		res, _, err := api.UpdateAttributes(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CaseUpdateAttributesRequest{})
-		if err != nil {
-			log.Fatalf("failed to update-attributes: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to update-attributes")
 
 		cmdutil.PrintJSON(res, "case")
 	},

@@ -1,7 +1,6 @@
 package fastly_integration
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var UpdateFastlyServiceCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewFastlyIntegrationApi(client.NewAPIClient())
 		res, _, err := api.UpdateFastlyService(client.NewContext(apiKey, appKey, site), args[0], args[1], datadogV2.FastlyServiceRequest{})
-		if err != nil {
-			log.Fatalf("failed to update-fastly-service: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to update-fastly-service")
 
 		cmdutil.PrintJSON(res, "fastly-services")
 	},

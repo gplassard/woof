@@ -1,7 +1,6 @@
 package teams
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListTeamConnectionsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
 		res, _, err := api.ListTeamConnections(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to list-team-connections: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-team-connections")
 
 		cmdutil.PrintJSON(res, "team_connection")
 	},

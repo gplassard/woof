@@ -1,7 +1,6 @@
 package csm_coverage_analysis
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetCSMHostsAndContainersCoverageAnalysisCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCSMCoverageAnalysisApi(client.NewAPIClient())
 		res, _, err := api.GetCSMHostsAndContainersCoverageAnalysis(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to get-csm-hosts-and-containers-coverage-analysis: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-csm-hosts-and-containers-coverage-analysis")
 
 		cmdutil.PrintJSON(res, "csm_coverage_analysis")
 	},

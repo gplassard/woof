@@ -1,7 +1,6 @@
 package case_management
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var UpdateCaseTitleCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCaseManagementApi(client.NewAPIClient())
 		res, _, err := api.UpdateCaseTitle(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CaseUpdateTitleRequest{})
-		if err != nil {
-			log.Fatalf("failed to update-case-title: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to update-case-title")
 
 		cmdutil.PrintJSON(res, "case")
 	},

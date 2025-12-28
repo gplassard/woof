@@ -1,10 +1,9 @@
 package observability_pipelines
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
-	
+	"ouaf/pkg/cmdutil"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 	
@@ -23,9 +22,7 @@ var DeletePipelineCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewObservabilityPipelinesApi(client.NewAPIClient())
 		_, err := api.DeletePipeline(client.NewContext(apiKey, appKey, site), args[0])
-		if err != nil {
-			log.Fatalf("failed to delete-pipeline: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to delete-pipeline")
 
 		
 	},

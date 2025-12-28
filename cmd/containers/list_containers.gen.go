@@ -1,7 +1,6 @@
 package containers
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListContainersCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewContainersApi(client.NewAPIClient())
 		res, _, err := api.ListContainers(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to list-containers: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-containers")
 
 		cmdutil.PrintJSON(res, "containers")
 	},

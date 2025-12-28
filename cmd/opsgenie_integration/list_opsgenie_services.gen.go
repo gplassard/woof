@@ -1,7 +1,6 @@
 package opsgenie_integration
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListOpsgenieServicesCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewOpsgenieIntegrationApi(client.NewAPIClient())
 		res, _, err := api.ListOpsgenieServices(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to list-opsgenie-services: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-opsgenie-services")
 
 		cmdutil.PrintJSON(res, "opsgenie-service")
 	},

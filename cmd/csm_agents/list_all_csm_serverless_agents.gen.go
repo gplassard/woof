@@ -1,7 +1,6 @@
 package csm_agents
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListAllCSMServerlessAgentsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCSMAgentsApi(client.NewAPIClient())
 		res, _, err := api.ListAllCSMServerlessAgents(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to list-all-csm-serverless-agents: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-all-csm-serverless-agents")
 
 		cmdutil.PrintJSON(res, "datadog_agent")
 	},

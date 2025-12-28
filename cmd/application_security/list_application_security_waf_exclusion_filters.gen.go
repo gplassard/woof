@@ -1,7 +1,6 @@
 package application_security
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListApplicationSecurityWafExclusionFiltersCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewApplicationSecurityApi(client.NewAPIClient())
 		res, _, err := api.ListApplicationSecurityWafExclusionFilters(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to list-application-security-waf-exclusion-filters: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-application-security-waf-exclusion-filters")
 
 		cmdutil.PrintJSON(res, "exclusion_filter")
 	},

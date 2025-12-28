@@ -1,7 +1,6 @@
 package security_monitoring
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateSecurityFilterCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.CreateSecurityFilter(client.NewContext(apiKey, appKey, site), datadogV2.SecurityFilterCreateRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-security-filter: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-security-filter")
 
 		cmdutil.PrintJSON(res, "security_filters")
 	},

@@ -1,10 +1,9 @@
 package authn_mappings
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
-	
+	"ouaf/pkg/cmdutil"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 	
@@ -23,9 +22,7 @@ var DeleteAuthNMappingCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewAuthNMappingsApi(client.NewAPIClient())
 		_, err := api.DeleteAuthNMapping(client.NewContext(apiKey, appKey, site), args[0])
-		if err != nil {
-			log.Fatalf("failed to delete-auth-n-mapping: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to delete-auth-n-mapping")
 
 		
 	},

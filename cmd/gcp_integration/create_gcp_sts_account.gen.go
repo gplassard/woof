@@ -1,7 +1,6 @@
 package gcp_integration
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateGCPSTSAccountCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewGCPIntegrationApi(client.NewAPIClient())
 		res, _, err := api.CreateGCPSTSAccount(client.NewContext(apiKey, appKey, site), datadogV2.GCPSTSServiceAccountCreateRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-gcp-sts-account: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-gcp-sts-account")
 
 		cmdutil.PrintJSON(res, "gcp_service_account")
 	},

@@ -1,7 +1,6 @@
 package incident_services
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var UpdateIncidentServiceCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewIncidentServicesApi(client.NewAPIClient())
 		res, _, err := api.UpdateIncidentService(client.NewContext(apiKey, appKey, site), args[0], datadogV2.IncidentServiceUpdateRequest{})
-		if err != nil {
-			log.Fatalf("failed to update-incident-service: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to update-incident-service")
 
 		cmdutil.PrintJSON(res, "services")
 	},

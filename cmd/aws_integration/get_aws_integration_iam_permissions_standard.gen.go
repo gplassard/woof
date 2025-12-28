@@ -1,7 +1,6 @@
 package aws_integration
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetAWSIntegrationIAMPermissionsStandardCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewAWSIntegrationApi(client.NewAPIClient())
 		res, _, err := api.GetAWSIntegrationIAMPermissionsStandard(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to get-aws-integration-iam-permissions-standard: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-aws-integration-iam-permissions-standard")
 
 		cmdutil.PrintJSON(res, "permissions")
 	},

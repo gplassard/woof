@@ -1,7 +1,6 @@
 package logs_restriction_queries
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ReplaceRestrictionQueryCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewLogsRestrictionQueriesApi(client.NewAPIClient())
 		res, _, err := api.ReplaceRestrictionQuery(client.NewContext(apiKey, appKey, site), args[0], datadogV2.RestrictionQueryUpdatePayload{})
-		if err != nil {
-			log.Fatalf("failed to replace-restriction-query: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to replace-restriction-query")
 
 		cmdutil.PrintJSON(res, "logs_restriction_queries")
 	},

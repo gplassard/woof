@@ -1,7 +1,6 @@
 package fastly_integration
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateFastlyAccountCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewFastlyIntegrationApi(client.NewAPIClient())
 		res, _, err := api.CreateFastlyAccount(client.NewContext(apiKey, appKey, site), datadogV2.FastlyAccountCreateRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-fastly-account: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-fastly-account")
 
 		cmdutil.PrintJSON(res, "fastly-accounts")
 	},

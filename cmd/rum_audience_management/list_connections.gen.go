@@ -1,7 +1,6 @@
 package rum_audience_management
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListConnectionsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewRumAudienceManagementApi(client.NewAPIClient())
 		res, _, err := api.ListConnections(client.NewContext(apiKey, appKey, site), args[0])
-		if err != nil {
-			log.Fatalf("failed to list-connections: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-connections")
 
 		cmdutil.PrintJSON(res, "list_connections_response")
 	},

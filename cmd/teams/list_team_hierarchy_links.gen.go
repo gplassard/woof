@@ -1,7 +1,6 @@
 package teams
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListTeamHierarchyLinksCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
 		res, _, err := api.ListTeamHierarchyLinks(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to list-team-hierarchy-links: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-team-hierarchy-links")
 
 		cmdutil.PrintJSON(res, "team_hierarchy_links")
 	},

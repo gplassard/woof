@@ -1,7 +1,6 @@
 package powerpack
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var UpdatePowerpackCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewPowerpackApi(client.NewAPIClient())
 		res, _, err := api.UpdatePowerpack(client.NewContext(apiKey, appKey, site), args[0], datadogV2.Powerpack{})
-		if err != nil {
-			log.Fatalf("failed to update-powerpack: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to update-powerpack")
 
 		cmdutil.PrintJSON(res, "powerpack")
 	},

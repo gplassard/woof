@@ -1,7 +1,6 @@
 package fleet_automation
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateFleetScheduleCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewFleetAutomationApi(client.NewAPIClient())
 		res, _, err := api.CreateFleetSchedule(client.NewContext(apiKey, appKey, site), datadogV2.FleetScheduleCreateRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-fleet-schedule: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-fleet-schedule")
 
 		cmdutil.PrintJSON(res, "schedule")
 	},

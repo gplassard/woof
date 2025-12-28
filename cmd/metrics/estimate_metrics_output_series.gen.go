@@ -1,7 +1,6 @@
 package metrics
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var EstimateMetricsOutputSeriesCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewMetricsApi(client.NewAPIClient())
 		res, _, err := api.EstimateMetricsOutputSeries(client.NewContext(apiKey, appKey, site), args[0])
-		if err != nil {
-			log.Fatalf("failed to estimate-metrics-output-series: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to estimate-metrics-output-series")
 
 		cmdutil.PrintJSON(res, "metric_cardinality_estimate")
 	},

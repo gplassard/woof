@@ -1,7 +1,6 @@
 package okta_integration
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var UpdateOktaAccountCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewOktaIntegrationApi(client.NewAPIClient())
 		res, _, err := api.UpdateOktaAccount(client.NewContext(apiKey, appKey, site), args[0], datadogV2.OktaAccountUpdateRequest{})
-		if err != nil {
-			log.Fatalf("failed to update-okta-account: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to update-okta-account")
 
 		cmdutil.PrintJSON(res, "okta-accounts")
 	},

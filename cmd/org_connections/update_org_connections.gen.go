@@ -1,7 +1,6 @@
 package org_connections
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var UpdateOrgConnectionsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewOrgConnectionsApi(client.NewAPIClient())
 		res, _, err := api.UpdateOrgConnections(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]), datadogV2.OrgConnectionUpdateRequest{})
-		if err != nil {
-			log.Fatalf("failed to update-org-connections: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to update-org-connections")
 
 		cmdutil.PrintJSON(res, "org_connection")
 	},

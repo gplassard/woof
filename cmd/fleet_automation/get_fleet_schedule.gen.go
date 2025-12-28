@@ -1,7 +1,6 @@
 package fleet_automation
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetFleetScheduleCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewFleetAutomationApi(client.NewAPIClient())
 		res, _, err := api.GetFleetSchedule(client.NewContext(apiKey, appKey, site), args[0])
-		if err != nil {
-			log.Fatalf("failed to get-fleet-schedule: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-fleet-schedule")
 
 		cmdutil.PrintJSON(res, "schedule")
 	},

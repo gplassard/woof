@@ -1,7 +1,6 @@
 package cloud_network_monitoring
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetAggregatedConnectionsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCloudNetworkMonitoringApi(client.NewAPIClient())
 		res, _, err := api.GetAggregatedConnections(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to get-aggregated-connections: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-aggregated-connections")
 
 		cmdutil.PrintJSON(res, "aggregated_connection")
 	},

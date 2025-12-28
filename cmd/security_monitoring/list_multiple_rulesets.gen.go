@@ -1,7 +1,6 @@
 package security_monitoring
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListMultipleRulesetsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.ListMultipleRulesets(client.NewContext(apiKey, appKey, site), datadogV2.GetMultipleRulesetsRequest{})
-		if err != nil {
-			log.Fatalf("failed to list-multiple-rulesets: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-multiple-rulesets")
 
 		cmdutil.PrintJSON(res, "get_multiple_rulesets_response")
 	},

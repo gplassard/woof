@@ -1,7 +1,6 @@
 package security_monitoring
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateCasesCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.CreateCases(client.NewContext(apiKey, appKey, site), datadogV2.CreateCaseRequestArray{})
-		if err != nil {
-			log.Fatalf("failed to create-cases: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-cases")
 
 		cmdutil.PrintJSON(res, "cases")
 	},

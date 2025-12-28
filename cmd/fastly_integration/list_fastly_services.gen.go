@@ -1,7 +1,6 @@
 package fastly_integration
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListFastlyServicesCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewFastlyIntegrationApi(client.NewAPIClient())
 		res, _, err := api.ListFastlyServices(client.NewContext(apiKey, appKey, site), args[0])
-		if err != nil {
-			log.Fatalf("failed to list-fastly-services: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-fastly-services")
 
 		cmdutil.PrintJSON(res, "fastly-services")
 	},

@@ -1,7 +1,6 @@
 package software_catalog
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListCatalogEntityCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewSoftwareCatalogApi(client.NewAPIClient())
 		res, _, err := api.ListCatalogEntity(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to list-catalog-entity: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-catalog-entity")
 
 		cmdutil.PrintJSON(res, "software_catalog")
 	},

@@ -1,7 +1,6 @@
 package logs_custom_destinations
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var UpdateLogsCustomDestinationCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewLogsCustomDestinationsApi(client.NewAPIClient())
 		res, _, err := api.UpdateLogsCustomDestination(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CustomDestinationUpdateRequest{})
-		if err != nil {
-			log.Fatalf("failed to update-logs-custom-destination: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to update-logs-custom-destination")
 
 		cmdutil.PrintJSON(res, "custom_destination")
 	},

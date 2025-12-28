@@ -1,7 +1,6 @@
 package usage_metering
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetBillingDimensionMappingCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewUsageMeteringApi(client.NewAPIClient())
 		res, _, err := api.GetBillingDimensionMapping(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to get-billing-dimension-mapping: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-billing-dimension-mapping")
 
 		cmdutil.PrintJSON(res, "usage_metering")
 	},

@@ -1,7 +1,6 @@
 package apm_retention_filters
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateApmRetentionFilterCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewAPMRetentionFiltersApi(client.NewAPIClient())
 		res, _, err := api.CreateApmRetentionFilter(client.NewContext(apiKey, appKey, site), datadogV2.RetentionFilterCreateRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-apm-retention-filter: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-apm-retention-filter")
 
 		cmdutil.PrintJSON(res, "apm_retention_filter")
 	},

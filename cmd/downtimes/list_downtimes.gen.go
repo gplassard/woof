@@ -1,7 +1,6 @@
 package downtimes
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListDowntimesCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewDowntimesApi(client.NewAPIClient())
 		res, _, err := api.ListDowntimes(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to list-downtimes: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-downtimes")
 
 		cmdutil.PrintJSON(res, "downtime")
 	},

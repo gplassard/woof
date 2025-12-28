@@ -1,7 +1,6 @@
 package roles
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CloneRoleCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewRolesApi(client.NewAPIClient())
 		res, _, err := api.CloneRole(client.NewContext(apiKey, appKey, site), args[0], datadogV2.RoleCloneRequest{})
-		if err != nil {
-			log.Fatalf("failed to clone-role: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to clone-role")
 
 		cmdutil.PrintJSON(res, "roles")
 	},

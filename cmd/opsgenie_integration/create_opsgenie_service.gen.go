@@ -1,7 +1,6 @@
 package opsgenie_integration
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateOpsgenieServiceCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewOpsgenieIntegrationApi(client.NewAPIClient())
 		res, _, err := api.CreateOpsgenieService(client.NewContext(apiKey, appKey, site), datadogV2.OpsgenieServiceCreateRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-opsgenie-service: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-opsgenie-service")
 
 		cmdutil.PrintJSON(res, "opsgenie-service")
 	},

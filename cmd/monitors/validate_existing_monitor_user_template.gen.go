@@ -1,10 +1,9 @@
 package monitors
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
-	
+	"ouaf/pkg/cmdutil"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 	
@@ -23,9 +22,7 @@ var ValidateExistingMonitorUserTemplateCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewMonitorsApi(client.NewAPIClient())
 		_, err := api.ValidateExistingMonitorUserTemplate(client.NewContext(apiKey, appKey, site), args[0], datadogV2.MonitorUserTemplateUpdateRequest{})
-		if err != nil {
-			log.Fatalf("failed to validate-existing-monitor-user-template: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to validate-existing-monitor-user-template")
 
 		
 	},

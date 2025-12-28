@@ -1,7 +1,6 @@
 package incidents
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var UpdateIncidentNotificationTemplateCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
 		res, _, err := api.UpdateIncidentNotificationTemplate(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]), datadogV2.PatchIncidentNotificationTemplateRequest{})
-		if err != nil {
-			log.Fatalf("failed to update-incident-notification-template: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to update-incident-notification-template")
 
 		cmdutil.PrintJSON(res, "notification_templates")
 	},

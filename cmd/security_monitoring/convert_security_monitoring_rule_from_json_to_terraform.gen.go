@@ -1,7 +1,6 @@
 package security_monitoring
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ConvertSecurityMonitoringRuleFromJSONToTerraformCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.ConvertSecurityMonitoringRuleFromJSONToTerraform(client.NewContext(apiKey, appKey, site), datadogV2.SecurityMonitoringRuleConvertPayload{})
-		if err != nil {
-			log.Fatalf("failed to convert-security-monitoring-rule-from-json-to-terraform: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to convert-security-monitoring-rule-from-json-to-terraform")
 
 		cmdutil.PrintJSON(res, "security_monitoring")
 	},

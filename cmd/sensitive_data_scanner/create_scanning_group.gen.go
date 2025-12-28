@@ -1,7 +1,6 @@
 package sensitive_data_scanner
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateScanningGroupCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewSensitiveDataScannerApi(client.NewAPIClient())
 		res, _, err := api.CreateScanningGroup(client.NewContext(apiKey, appKey, site), datadogV2.SensitiveDataScannerGroupCreateRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-scanning-group: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-scanning-group")
 
 		cmdutil.PrintJSON(res, "sensitive_data_scanner_group")
 	},

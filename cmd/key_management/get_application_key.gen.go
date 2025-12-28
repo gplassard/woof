@@ -1,7 +1,6 @@
 package key_management
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetApplicationKeyCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewKeyManagementApi(client.NewAPIClient())
 		res, _, err := api.GetApplicationKey(client.NewContext(apiKey, appKey, site), args[0])
-		if err != nil {
-			log.Fatalf("failed to get-application-key: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-application-key")
 
 		cmdutil.PrintJSON(res, "application_keys")
 	},

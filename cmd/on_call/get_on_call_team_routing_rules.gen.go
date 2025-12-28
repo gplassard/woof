@@ -1,7 +1,6 @@
 package on_call
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetOnCallTeamRoutingRulesCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewOnCallApi(client.NewAPIClient())
 		res, _, err := api.GetOnCallTeamRoutingRules(client.NewContext(apiKey, appKey, site), args[0])
-		if err != nil {
-			log.Fatalf("failed to get-on-call-team-routing-rules: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-on-call-team-routing-rules")
 
 		cmdutil.PrintJSON(res, "team_routing_rules")
 	},

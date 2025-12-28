@@ -1,7 +1,6 @@
 package csm_threats
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var DownloadCSMThreatsPolicyCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCSMThreatsApi(client.NewAPIClient())
 		res, _, err := api.DownloadCSMThreatsPolicy(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to download-csm-threats-policy: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to download-csm-threats-policy")
 
 		cmdutil.PrintJSON(res, "csm_threats")
 	},

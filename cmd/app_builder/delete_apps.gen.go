@@ -1,7 +1,6 @@
 package app_builder
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var DeleteAppsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewAppBuilderApi(client.NewAPIClient())
 		res, _, err := api.DeleteApps(client.NewContext(apiKey, appKey, site), datadogV2.DeleteAppsRequest{})
-		if err != nil {
-			log.Fatalf("failed to delete-apps: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to delete-apps")
 
 		cmdutil.PrintJSON(res, "appDefinitions")
 	},

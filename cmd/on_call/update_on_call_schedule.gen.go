@@ -1,7 +1,6 @@
 package on_call
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var UpdateOnCallScheduleCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewOnCallApi(client.NewAPIClient())
 		res, _, err := api.UpdateOnCallSchedule(client.NewContext(apiKey, appKey, site), args[0], datadogV2.ScheduleUpdateRequest{})
-		if err != nil {
-			log.Fatalf("failed to update-on-call-schedule: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to update-on-call-schedule")
 
 		cmdutil.PrintJSON(res, "schedules")
 	},

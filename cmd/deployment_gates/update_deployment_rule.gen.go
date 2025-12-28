@@ -1,7 +1,6 @@
 package deployment_gates
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var UpdateDeploymentRuleCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewDeploymentGatesApi(client.NewAPIClient())
 		res, _, err := api.UpdateDeploymentRule(client.NewContext(apiKey, appKey, site), args[0], args[1], datadogV2.UpdateDeploymentRuleParams{})
-		if err != nil {
-			log.Fatalf("failed to update-deployment-rule: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to update-deployment-rule")
 
 		cmdutil.PrintJSON(res, "deployment_rule")
 	},

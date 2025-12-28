@@ -1,7 +1,6 @@
 package reference_tables
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateReferenceTableUploadCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewReferenceTablesApi(client.NewAPIClient())
 		res, _, err := api.CreateReferenceTableUpload(client.NewContext(apiKey, appKey, site), datadogV2.CreateUploadRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-reference-table-upload: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-reference-table-upload")
 
 		cmdutil.PrintJSON(res, "upload")
 	},

@@ -1,7 +1,6 @@
 package test_optimization
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var SearchFlakyTestsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewTestOptimizationApi(client.NewAPIClient())
 		res, _, err := api.SearchFlakyTests(client.NewContext(apiKey, appKey, site), *datadogV2.NewSearchFlakyTestsOptionalParameters())
-		if err != nil {
-			log.Fatalf("failed to search-flaky-tests: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to search-flaky-tests")
 
 		cmdutil.PrintJSON(res, "flaky_test")
 	},

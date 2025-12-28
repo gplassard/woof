@@ -1,7 +1,6 @@
 package on_call
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateOnCallEscalationPolicyCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewOnCallApi(client.NewAPIClient())
 		res, _, err := api.CreateOnCallEscalationPolicy(client.NewContext(apiKey, appKey, site), datadogV2.EscalationPolicyCreateRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-on-call-escalation-policy: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-on-call-escalation-policy")
 
 		cmdutil.PrintJSON(res, "policies")
 	},

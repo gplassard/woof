@@ -1,7 +1,6 @@
 package metrics
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var SubmitMetricsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewMetricsApi(client.NewAPIClient())
 		res, _, err := api.SubmitMetrics(client.NewContext(apiKey, appKey, site), datadogV2.MetricPayload{})
-		if err != nil {
-			log.Fatalf("failed to submit-metrics: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to submit-metrics")
 
 		cmdutil.PrintJSON(res, "metrics")
 	},

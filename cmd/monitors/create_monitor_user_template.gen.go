@@ -1,7 +1,6 @@
 package monitors
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateMonitorUserTemplateCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewMonitorsApi(client.NewAPIClient())
 		res, _, err := api.CreateMonitorUserTemplate(client.NewContext(apiKey, appKey, site), datadogV2.MonitorUserTemplateCreateRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-monitor-user-template: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-monitor-user-template")
 
 		cmdutil.PrintJSON(res, "monitor-user-template")
 	},

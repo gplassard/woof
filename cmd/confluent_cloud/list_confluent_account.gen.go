@@ -1,7 +1,6 @@
 package confluent_cloud
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListConfluentAccountCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewConfluentCloudApi(client.NewAPIClient())
 		res, _, err := api.ListConfluentAccount(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to list-confluent-account: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-confluent-account")
 
 		cmdutil.PrintJSON(res, "confluent-cloud-accounts")
 	},

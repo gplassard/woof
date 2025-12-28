@@ -1,7 +1,6 @@
 package rum_audience_management
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var QueryAccountsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewRumAudienceManagementApi(client.NewAPIClient())
 		res, _, err := api.QueryAccounts(client.NewContext(apiKey, appKey, site), datadogV2.QueryAccountRequest{})
-		if err != nil {
-			log.Fatalf("failed to query-accounts: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to query-accounts")
 
 		cmdutil.PrintJSON(res, "query_response")
 	},

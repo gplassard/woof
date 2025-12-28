@@ -1,7 +1,6 @@
 package users
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListUsersCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewUsersApi(client.NewAPIClient())
 		res, _, err := api.ListUsers(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to list-users: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-users")
 
 		cmdutil.PrintJSON(res, "users")
 	},

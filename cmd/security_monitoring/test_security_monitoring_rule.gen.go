@@ -1,7 +1,6 @@
 package security_monitoring
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var TestSecurityMonitoringRuleCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.TestSecurityMonitoringRule(client.NewContext(apiKey, appKey, site), datadogV2.SecurityMonitoringRuleTestRequest{})
-		if err != nil {
-			log.Fatalf("failed to test-security-monitoring-rule: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to test-security-monitoring-rule")
 
 		cmdutil.PrintJSON(res, "security_monitoring")
 	},

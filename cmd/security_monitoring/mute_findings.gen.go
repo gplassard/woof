@@ -1,7 +1,6 @@
 package security_monitoring
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var MuteFindingsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.MuteFindings(client.NewContext(apiKey, appKey, site), datadogV2.BulkMuteFindingsRequest{})
-		if err != nil {
-			log.Fatalf("failed to mute-findings: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to mute-findings")
 
 		cmdutil.PrintJSON(res, "finding")
 	},

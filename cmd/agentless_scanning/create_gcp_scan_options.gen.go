@@ -1,7 +1,6 @@
 package agentless_scanning
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateGcpScanOptionsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewAgentlessScanningApi(client.NewAPIClient())
 		res, _, err := api.CreateGcpScanOptions(client.NewContext(apiKey, appKey, site), datadogV2.GcpScanOptions{})
-		if err != nil {
-			log.Fatalf("failed to create-gcp-scan-options: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-gcp-scan-options")
 
 		cmdutil.PrintJSON(res, "gcp_scan_options")
 	},

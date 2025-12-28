@@ -1,7 +1,6 @@
 package teams
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateTeamLinkCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
 		res, _, err := api.CreateTeamLink(client.NewContext(apiKey, appKey, site), args[0], datadogV2.TeamLinkCreateRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-team-link: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-team-link")
 
 		cmdutil.PrintJSON(res, "team_links")
 	},

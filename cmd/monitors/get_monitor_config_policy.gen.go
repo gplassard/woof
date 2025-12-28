@@ -1,7 +1,6 @@
 package monitors
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetMonitorConfigPolicyCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewMonitorsApi(client.NewAPIClient())
 		res, _, err := api.GetMonitorConfigPolicy(client.NewContext(apiKey, appKey, site), args[0])
-		if err != nil {
-			log.Fatalf("failed to get-monitor-config-policy: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-monitor-config-policy")
 
 		cmdutil.PrintJSON(res, "monitor-config-policy")
 	},

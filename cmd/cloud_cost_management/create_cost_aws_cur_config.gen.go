@@ -1,7 +1,6 @@
 package cloud_cost_management
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateCostAWSCURConfigCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
 		res, _, err := api.CreateCostAWSCURConfig(client.NewContext(apiKey, appKey, site), datadogV2.AwsCURConfigPostRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-cost-aws-cur-config: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-cost-aws-cur-config")
 
 		cmdutil.PrintJSON(res, "aws_cur_config")
 	},

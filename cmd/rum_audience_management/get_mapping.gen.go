@@ -1,7 +1,6 @@
 package rum_audience_management
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetMappingCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewRumAudienceManagementApi(client.NewAPIClient())
 		res, _, err := api.GetMapping(client.NewContext(apiKey, appKey, site), args[0])
-		if err != nil {
-			log.Fatalf("failed to get-mapping: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-mapping")
 
 		cmdutil.PrintJSON(res, "get_mappings_response")
 	},

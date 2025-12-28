@@ -1,10 +1,9 @@
 package organizations
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
-	
+	"ouaf/pkg/cmdutil"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 	
@@ -23,9 +22,7 @@ var UploadIdPMetadataCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewOrganizationsApi(client.NewAPIClient())
 		_, err := api.UploadIdPMetadata(client.NewContext(apiKey, appKey, site), *datadogV2.NewUploadIdPMetadataOptionalParameters())
-		if err != nil {
-			log.Fatalf("failed to upload-id-p-metadata: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to upload-id-p-metadata")
 
 		
 	},

@@ -1,7 +1,6 @@
 package cloud_cost_management
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var UpdateCostAWSCURConfigCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
 		res, _, err := api.UpdateCostAWSCURConfig(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }(), datadogV2.AwsCURConfigPatchRequest{})
-		if err != nil {
-			log.Fatalf("failed to update-cost-aws-cur-config: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to update-cost-aws-cur-config")
 
 		cmdutil.PrintJSON(res, "aws_cur_config")
 	},

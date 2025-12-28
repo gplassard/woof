@@ -1,10 +1,9 @@
 package security_monitoring
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
-	
+	"ouaf/pkg/cmdutil"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 	
@@ -23,9 +22,7 @@ var ValidateSecurityMonitoringSuppressionCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		_, err := api.ValidateSecurityMonitoringSuppression(client.NewContext(apiKey, appKey, site), datadogV2.SecurityMonitoringSuppressionCreateRequest{})
-		if err != nil {
-			log.Fatalf("failed to validate-security-monitoring-suppression: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to validate-security-monitoring-suppression")
 
 		
 	},

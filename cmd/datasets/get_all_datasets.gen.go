@@ -1,7 +1,6 @@
 package datasets
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetAllDatasetsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewDatasetsApi(client.NewAPIClient())
 		res, _, err := api.GetAllDatasets(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to get-all-datasets: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-all-datasets")
 
 		cmdutil.PrintJSON(res, "dataset")
 	},

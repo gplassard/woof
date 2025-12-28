@@ -1,7 +1,6 @@
 package security_monitoring
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetSuppressionVersionHistoryCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.GetSuppressionVersionHistory(client.NewContext(apiKey, appKey, site), args[0])
-		if err != nil {
-			log.Fatalf("failed to get-suppression-version-history: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-suppression-version-history")
 
 		cmdutil.PrintJSON(res, "suppression_version_history")
 	},

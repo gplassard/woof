@@ -1,7 +1,6 @@
 package audit
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListAuditLogsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewAuditApi(client.NewAPIClient())
 		res, _, err := api.ListAuditLogs(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to list-audit-logs: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-audit-logs")
 
 		cmdutil.PrintJSON(res, "audit")
 	},

@@ -1,7 +1,6 @@
 package cloud_cost_management
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListBudgetsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
 		res, _, err := api.ListBudgets(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to list-budgets: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-budgets")
 
 		cmdutil.PrintJSON(res, "cloud_cost_management")
 	},

@@ -1,7 +1,6 @@
 package incident_services
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateIncidentServiceCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewIncidentServicesApi(client.NewAPIClient())
 		res, _, err := api.CreateIncidentService(client.NewContext(apiKey, appKey, site), datadogV2.IncidentServiceCreateRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-incident-service: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-incident-service")
 
 		cmdutil.PrintJSON(res, "services")
 	},

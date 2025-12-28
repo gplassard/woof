@@ -1,7 +1,6 @@
 package actions_datastores
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var BulkWriteDatastoreItemsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewActionsDatastoresApi(client.NewAPIClient())
 		res, _, err := api.BulkWriteDatastoreItems(client.NewContext(apiKey, appKey, site), args[0], datadogV2.BulkPutAppsDatastoreItemsRequest{})
-		if err != nil {
-			log.Fatalf("failed to bulk-write-datastore-items: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to bulk-write-datastore-items")
 
 		cmdutil.PrintJSON(res, "items")
 	},

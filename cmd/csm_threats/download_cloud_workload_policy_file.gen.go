@@ -1,7 +1,6 @@
 package csm_threats
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var DownloadCloudWorkloadPolicyFileCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCSMThreatsApi(client.NewAPIClient())
 		res, _, err := api.DownloadCloudWorkloadPolicyFile(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to download-cloud-workload-policy-file: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to download-cloud-workload-policy-file")
 
 		cmdutil.PrintJSON(res, "csm_threats")
 	},

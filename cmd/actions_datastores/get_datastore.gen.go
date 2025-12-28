@@ -1,7 +1,6 @@
 package actions_datastores
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetDatastoreCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewActionsDatastoresApi(client.NewAPIClient())
 		res, _, err := api.GetDatastore(client.NewContext(apiKey, appKey, site), args[0])
-		if err != nil {
-			log.Fatalf("failed to get-datastore: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-datastore")
 
 		cmdutil.PrintJSON(res, "datastores")
 	},

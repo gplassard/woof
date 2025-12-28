@@ -1,7 +1,6 @@
 package gcp_integration
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetGCPSTSDelegateCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewGCPIntegrationApi(client.NewAPIClient())
 		res, _, err := api.GetGCPSTSDelegate(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to get-gcp-sts-delegate: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-gcp-sts-delegate")
 
 		cmdutil.PrintJSON(res, "gcp_sts_delegate")
 	},

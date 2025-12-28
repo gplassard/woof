@@ -1,7 +1,6 @@
 package logs_metrics
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetLogsMetricCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewLogsMetricsApi(client.NewAPIClient())
 		res, _, err := api.GetLogsMetric(client.NewContext(apiKey, appKey, site), args[0])
-		if err != nil {
-			log.Fatalf("failed to get-logs-metric: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-logs-metric")
 
 		cmdutil.PrintJSON(res, "logs_metrics")
 	},

@@ -1,7 +1,6 @@
 package events
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateEventCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewEventsApi(client.NewAPIClient())
 		res, _, err := api.CreateEvent(client.NewContext(apiKey, appKey, site), datadogV2.EventCreateRequestPayload{})
-		if err != nil {
-			log.Fatalf("failed to create-event: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-event")
 
 		cmdutil.PrintJSON(res, "events")
 	},

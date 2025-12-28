@@ -1,7 +1,6 @@
 package security_monitoring
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var AttachCaseCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.AttachCase(client.NewContext(apiKey, appKey, site), args[0], datadogV2.AttachCaseRequest{})
-		if err != nil {
-			log.Fatalf("failed to attach-case: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to attach-case")
 
 		cmdutil.PrintJSON(res, "cases")
 	},

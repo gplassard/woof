@@ -1,7 +1,6 @@
 package security_monitoring
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListSecurityMonitoringHistsignalsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.ListSecurityMonitoringHistsignals(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to list-security-monitoring-histsignals: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-security-monitoring-histsignals")
 
 		cmdutil.PrintJSON(res, "signal")
 	},

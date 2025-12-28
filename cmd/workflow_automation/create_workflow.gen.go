@@ -1,7 +1,6 @@
 package workflow_automation
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateWorkflowCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewWorkflowAutomationApi(client.NewAPIClient())
 		res, _, err := api.CreateWorkflow(client.NewContext(apiKey, appKey, site), datadogV2.CreateWorkflowRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-workflow: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-workflow")
 
 		cmdutil.PrintJSON(res, "workflows")
 	},

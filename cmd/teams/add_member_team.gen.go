@@ -1,10 +1,9 @@
 package teams
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
-	
+	"ouaf/pkg/cmdutil"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 	
@@ -23,9 +22,7 @@ var AddMemberTeamCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
 		_, err := api.AddMemberTeam(client.NewContext(apiKey, appKey, site), args[0], datadogV2.AddMemberTeamRequest{})
-		if err != nil {
-			log.Fatalf("failed to add-member-team: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to add-member-team")
 
 		
 	},

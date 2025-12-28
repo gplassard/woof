@@ -1,7 +1,6 @@
 package sensitive_data_scanner
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var DeleteScanningGroupCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewSensitiveDataScannerApi(client.NewAPIClient())
 		res, _, err := api.DeleteScanningGroup(client.NewContext(apiKey, appKey, site), args[0], datadogV2.SensitiveDataScannerGroupDeleteRequest{})
-		if err != nil {
-			log.Fatalf("failed to delete-scanning-group: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to delete-scanning-group")
 
 		cmdutil.PrintJSON(res, "sensitive_data_scanner")
 	},

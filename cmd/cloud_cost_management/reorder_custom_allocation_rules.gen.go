@@ -1,10 +1,9 @@
 package cloud_cost_management
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
-	
+	"ouaf/pkg/cmdutil"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 	
@@ -23,9 +22,7 @@ var ReorderCustomAllocationRulesCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
 		_, err := api.ReorderCustomAllocationRules(client.NewContext(apiKey, appKey, site), datadogV2.ReorderRuleResourceArray{})
-		if err != nil {
-			log.Fatalf("failed to reorder-custom-allocation-rules: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to reorder-custom-allocation-rules")
 
 		
 	},

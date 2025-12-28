@@ -1,7 +1,6 @@
 package processes
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListProcessesCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewProcessesApi(client.NewAPIClient())
 		res, _, err := api.ListProcesses(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to list-processes: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-processes")
 
 		cmdutil.PrintJSON(res, "process")
 	},

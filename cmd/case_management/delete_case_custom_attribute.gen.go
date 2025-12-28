@@ -1,7 +1,6 @@
 package case_management
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var DeleteCaseCustomAttributeCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCaseManagementApi(client.NewAPIClient())
 		res, _, err := api.DeleteCaseCustomAttribute(client.NewContext(apiKey, appKey, site), args[0], args[1])
-		if err != nil {
-			log.Fatalf("failed to delete-case-custom-attribute: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to delete-case-custom-attribute")
 
 		cmdutil.PrintJSON(res, "case")
 	},

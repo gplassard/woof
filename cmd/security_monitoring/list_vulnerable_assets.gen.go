@@ -1,7 +1,6 @@
 package security_monitoring
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListVulnerableAssetsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.ListVulnerableAssets(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to list-vulnerable-assets: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-vulnerable-assets")
 
 		cmdutil.PrintJSON(res, "assets")
 	},

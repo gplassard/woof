@@ -1,7 +1,6 @@
 package software_catalog
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListCatalogKindCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewSoftwareCatalogApi(client.NewAPIClient())
 		res, _, err := api.ListCatalogKind(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to list-catalog-kind: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-catalog-kind")
 
 		cmdutil.PrintJSON(res, "software_catalog")
 	},

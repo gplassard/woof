@@ -1,7 +1,6 @@
 package csm_threats
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateCloudWorkloadSecurityAgentRuleCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCSMThreatsApi(client.NewAPIClient())
 		res, _, err := api.CreateCloudWorkloadSecurityAgentRule(client.NewContext(apiKey, appKey, site), datadogV2.CloudWorkloadSecurityAgentRuleCreateRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-cloud-workload-security-agent-rule: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-cloud-workload-security-agent-rule")
 
 		cmdutil.PrintJSON(res, "agent_rule")
 	},

@@ -1,7 +1,6 @@
 package dora_metrics
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateDORADeploymentCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewDORAMetricsApi(client.NewAPIClient())
 		res, _, err := api.CreateDORADeployment(client.NewContext(apiKey, appKey, site), datadogV2.DORADeploymentRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-d-o-r-ad-eployment: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-d-o-r-ad-eployment")
 
 		cmdutil.PrintJSON(res, "dora_deployment")
 	},

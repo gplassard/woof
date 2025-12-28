@@ -1,7 +1,6 @@
 package sensitive_data_scanner
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateScanningRuleCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewSensitiveDataScannerApi(client.NewAPIClient())
 		res, _, err := api.CreateScanningRule(client.NewContext(apiKey, appKey, site), datadogV2.SensitiveDataScannerRuleCreateRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-scanning-rule: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-scanning-rule")
 
 		cmdutil.PrintJSON(res, "sensitive_data_scanner_rule")
 	},

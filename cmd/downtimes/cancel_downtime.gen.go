@@ -1,10 +1,9 @@
 package downtimes
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
-	
+	"ouaf/pkg/cmdutil"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 	
@@ -23,9 +22,7 @@ var CancelDowntimeCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewDowntimesApi(client.NewAPIClient())
 		_, err := api.CancelDowntime(client.NewContext(apiKey, appKey, site), args[0])
-		if err != nil {
-			log.Fatalf("failed to cancel-downtime: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to cancel-downtime")
 
 		
 	},

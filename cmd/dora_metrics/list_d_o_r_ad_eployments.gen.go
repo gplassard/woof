@@ -1,7 +1,6 @@
 package dora_metrics
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListDORADeploymentsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewDORAMetricsApi(client.NewAPIClient())
 		res, _, err := api.ListDORADeployments(client.NewContext(apiKey, appKey, site), datadogV2.DORAListDeploymentsRequest{})
-		if err != nil {
-			log.Fatalf("failed to list-d-o-r-ad-eployments: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-d-o-r-ad-eployments")
 
 		cmdutil.PrintJSON(res, "dora_metrics")
 	},

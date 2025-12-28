@@ -1,7 +1,6 @@
 package key_management
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListAPIKeysCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewKeyManagementApi(client.NewAPIClient())
 		res, _, err := api.ListAPIKeys(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to list-api-keys: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-api-keys")
 
 		cmdutil.PrintJSON(res, "api_keys")
 	},

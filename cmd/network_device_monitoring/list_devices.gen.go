@@ -1,7 +1,6 @@
 package network_device_monitoring
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListDevicesCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewNetworkDeviceMonitoringApi(client.NewAPIClient())
 		res, _, err := api.ListDevices(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to list-devices: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-devices")
 
 		cmdutil.PrintJSON(res, "network_device_monitoring")
 	},

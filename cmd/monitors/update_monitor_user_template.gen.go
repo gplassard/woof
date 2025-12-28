@@ -1,7 +1,6 @@
 package monitors
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var UpdateMonitorUserTemplateCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewMonitorsApi(client.NewAPIClient())
 		res, _, err := api.UpdateMonitorUserTemplate(client.NewContext(apiKey, appKey, site), args[0], datadogV2.MonitorUserTemplateUpdateRequest{})
-		if err != nil {
-			log.Fatalf("failed to update-monitor-user-template: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to update-monitor-user-template")
 
 		cmdutil.PrintJSON(res, "monitor-user-template")
 	},

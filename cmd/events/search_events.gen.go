@@ -1,7 +1,6 @@
 package events
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var SearchEventsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewEventsApi(client.NewAPIClient())
 		res, _, err := api.SearchEvents(client.NewContext(apiKey, appKey, site), *datadogV2.NewSearchEventsOptionalParameters())
-		if err != nil {
-			log.Fatalf("failed to search-events: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to search-events")
 
 		cmdutil.PrintJSON(res, "event")
 	},

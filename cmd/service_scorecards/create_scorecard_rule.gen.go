@@ -1,7 +1,6 @@
 package service_scorecards
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateScorecardRuleCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewServiceScorecardsApi(client.NewAPIClient())
 		res, _, err := api.CreateScorecardRule(client.NewContext(apiKey, appKey, site), datadogV2.CreateRuleRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-scorecard-rule: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-scorecard-rule")
 
 		cmdutil.PrintJSON(res, "rule")
 	},

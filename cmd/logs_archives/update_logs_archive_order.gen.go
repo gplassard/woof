@@ -1,7 +1,6 @@
 package logs_archives
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var UpdateLogsArchiveOrderCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewLogsArchivesApi(client.NewAPIClient())
 		res, _, err := api.UpdateLogsArchiveOrder(client.NewContext(apiKey, appKey, site), datadogV2.LogsArchiveOrder{})
-		if err != nil {
-			log.Fatalf("failed to update-logs-archive-order: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to update-logs-archive-order")
 
 		cmdutil.PrintJSON(res, "archive_order")
 	},

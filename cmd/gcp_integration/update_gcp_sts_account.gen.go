@@ -1,7 +1,6 @@
 package gcp_integration
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var UpdateGCPSTSAccountCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewGCPIntegrationApi(client.NewAPIClient())
 		res, _, err := api.UpdateGCPSTSAccount(client.NewContext(apiKey, appKey, site), args[0], datadogV2.GCPSTSServiceAccountUpdateRequest{})
-		if err != nil {
-			log.Fatalf("failed to update-gcp-sts-account: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to update-gcp-sts-account")
 
 		cmdutil.PrintJSON(res, "gcp_service_account")
 	},

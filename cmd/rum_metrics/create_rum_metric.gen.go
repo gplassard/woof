@@ -1,7 +1,6 @@
 package rum_metrics
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateRumMetricCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewRumMetricsApi(client.NewAPIClient())
 		res, _, err := api.CreateRumMetric(client.NewContext(apiKey, appKey, site), datadogV2.RumMetricCreateRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-rum-metric: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-rum-metric")
 
 		cmdutil.PrintJSON(res, "rum_metrics")
 	},

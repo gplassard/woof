@@ -1,10 +1,9 @@
 package reference_tables
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
-	
+	"ouaf/pkg/cmdutil"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 	
@@ -23,9 +22,7 @@ var UpsertRowsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewReferenceTablesApi(client.NewAPIClient())
 		_, err := api.UpsertRows(client.NewContext(apiKey, appKey, site), args[0], datadogV2.BatchUpsertRowsRequestArray{})
-		if err != nil {
-			log.Fatalf("failed to upsert-rows: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to upsert-rows")
 
 		
 	},

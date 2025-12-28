@@ -1,10 +1,9 @@
 package dora_metrics
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
-	
+	"ouaf/pkg/cmdutil"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 	
@@ -23,9 +22,7 @@ var DeleteDORADeploymentCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewDORAMetricsApi(client.NewAPIClient())
 		_, err := api.DeleteDORADeployment(client.NewContext(apiKey, appKey, site), args[0])
-		if err != nil {
-			log.Fatalf("failed to delete-d-o-r-ad-eployment: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to delete-d-o-r-ad-eployment")
 
 		
 	},

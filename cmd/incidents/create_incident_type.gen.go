@@ -1,7 +1,6 @@
 package incidents
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateIncidentTypeCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
 		res, _, err := api.CreateIncidentType(client.NewContext(apiKey, appKey, site), datadogV2.IncidentTypeCreateRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-incident-type: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-incident-type")
 
 		cmdutil.PrintJSON(res, "incident_types")
 	},

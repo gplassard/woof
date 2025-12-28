@@ -1,7 +1,6 @@
 package static_analysis
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateSCAResolveVulnerableSymbolsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewStaticAnalysisApi(client.NewAPIClient())
 		res, _, err := api.CreateSCAResolveVulnerableSymbols(client.NewContext(apiKey, appKey, site), datadogV2.ResolveVulnerableSymbolsRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-sca-resolve-vulnerable-symbols: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-sca-resolve-vulnerable-symbols")
 
 		cmdutil.PrintJSON(res, "resolve-vulnerable-symbols-response")
 	},

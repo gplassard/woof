@@ -1,7 +1,6 @@
 package agentless_scanning
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListAwsOnDemandTasksCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewAgentlessScanningApi(client.NewAPIClient())
 		res, _, err := api.ListAwsOnDemandTasks(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to list-aws-on-demand-tasks: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-aws-on-demand-tasks")
 
 		cmdutil.PrintJSON(res, "aws_resource")
 	},

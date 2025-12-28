@@ -1,7 +1,6 @@
 package logs
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var AggregateLogsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewLogsApi(client.NewAPIClient())
 		res, _, err := api.AggregateLogs(client.NewContext(apiKey, appKey, site), datadogV2.LogsAggregateRequest{})
-		if err != nil {
-			log.Fatalf("failed to aggregate-logs: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to aggregate-logs")
 
 		cmdutil.PrintJSON(res, "logs")
 	},

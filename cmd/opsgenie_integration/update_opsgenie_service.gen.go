@@ -1,7 +1,6 @@
 package opsgenie_integration
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var UpdateOpsgenieServiceCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewOpsgenieIntegrationApi(client.NewAPIClient())
 		res, _, err := api.UpdateOpsgenieService(client.NewContext(apiKey, appKey, site), args[0], datadogV2.OpsgenieServiceUpdateRequest{})
-		if err != nil {
-			log.Fatalf("failed to update-opsgenie-service: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to update-opsgenie-service")
 
 		cmdutil.PrintJSON(res, "opsgenie-service")
 	},

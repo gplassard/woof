@@ -1,10 +1,9 @@
 package monitors
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
-	
+	"ouaf/pkg/cmdutil"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 	
@@ -23,9 +22,7 @@ var ValidateMonitorUserTemplateCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewMonitorsApi(client.NewAPIClient())
 		_, err := api.ValidateMonitorUserTemplate(client.NewContext(apiKey, appKey, site), datadogV2.MonitorUserTemplateCreateRequest{})
-		if err != nil {
-			log.Fatalf("failed to validate-monitor-user-template: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to validate-monitor-user-template")
 
 		
 	},

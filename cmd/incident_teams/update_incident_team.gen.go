@@ -1,7 +1,6 @@
 package incident_teams
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var UpdateIncidentTeamCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewIncidentTeamsApi(client.NewAPIClient())
 		res, _, err := api.UpdateIncidentTeam(client.NewContext(apiKey, appKey, site), args[0], datadogV2.IncidentTeamUpdateRequest{})
-		if err != nil {
-			log.Fatalf("failed to update-incident-team: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to update-incident-team")
 
 		cmdutil.PrintJSON(res, "teams")
 	},

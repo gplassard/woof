@@ -1,7 +1,6 @@
 package cloudflare_integration
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var UpdateCloudflareAccountCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCloudflareIntegrationApi(client.NewAPIClient())
 		res, _, err := api.UpdateCloudflareAccount(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CloudflareAccountUpdateRequest{})
-		if err != nil {
-			log.Fatalf("failed to update-cloudflare-account: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to update-cloudflare-account")
 
 		cmdutil.PrintJSON(res, "cloudflare-accounts")
 	},

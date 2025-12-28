@@ -1,7 +1,6 @@
 package logs_archives
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListLogsArchivesCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewLogsArchivesApi(client.NewAPIClient())
 		res, _, err := api.ListLogsArchives(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to list-logs-archives: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-logs-archives")
 
 		cmdutil.PrintJSON(res, "logs_archives")
 	},

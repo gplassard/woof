@@ -1,10 +1,9 @@
 package service_accounts
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
-	
+	"ouaf/pkg/cmdutil"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 	
@@ -23,9 +22,7 @@ var DeleteServiceAccountApplicationKeyCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewServiceAccountsApi(client.NewAPIClient())
 		_, err := api.DeleteServiceAccountApplicationKey(client.NewContext(apiKey, appKey, site), args[0], args[1])
-		if err != nil {
-			log.Fatalf("failed to delete-service-account-application-key: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to delete-service-account-application-key")
 
 		
 	},

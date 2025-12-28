@@ -1,10 +1,9 @@
 package security_monitoring
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
-	
+	"ouaf/pkg/cmdutil"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 	
@@ -23,9 +22,7 @@ var DetachCaseCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		_, err := api.DetachCase(client.NewContext(apiKey, appKey, site), datadogV2.DetachCaseRequest{})
-		if err != nil {
-			log.Fatalf("failed to detach-case: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to detach-case")
 
 		
 	},

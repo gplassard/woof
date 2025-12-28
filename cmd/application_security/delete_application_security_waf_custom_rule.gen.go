@@ -1,10 +1,9 @@
 package application_security
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
-	
+	"ouaf/pkg/cmdutil"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 	
@@ -23,9 +22,7 @@ var DeleteApplicationSecurityWafCustomRuleCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewApplicationSecurityApi(client.NewAPIClient())
 		_, err := api.DeleteApplicationSecurityWafCustomRule(client.NewContext(apiKey, appKey, site), args[0])
-		if err != nil {
-			log.Fatalf("failed to delete-application-security-waf-custom-rule: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to delete-application-security-waf-custom-rule")
 
 		
 	},

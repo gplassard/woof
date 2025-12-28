@@ -1,7 +1,6 @@
 package rum
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetRUMApplicationCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewRUMApi(client.NewAPIClient())
 		res, _, err := api.GetRUMApplication(client.NewContext(apiKey, appKey, site), args[0])
-		if err != nil {
-			log.Fatalf("failed to get-rum-application: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-rum-application")
 
 		cmdutil.PrintJSON(res, "rum_application")
 	},

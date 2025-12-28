@@ -1,7 +1,6 @@
 package fleet_automation
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListFleetAgentsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewFleetAutomationApi(client.NewAPIClient())
 		res, _, err := api.ListFleetAgents(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to list-fleet-agents: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-fleet-agents")
 
 		cmdutil.PrintJSON(res, "fleet_automation")
 	},

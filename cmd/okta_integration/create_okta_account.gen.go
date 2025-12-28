@@ -1,7 +1,6 @@
 package okta_integration
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateOktaAccountCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewOktaIntegrationApi(client.NewAPIClient())
 		res, _, err := api.CreateOktaAccount(client.NewContext(apiKey, appKey, site), datadogV2.OktaAccountRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-okta-account: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-okta-account")
 
 		cmdutil.PrintJSON(res, "okta-accounts")
 	},

@@ -1,7 +1,6 @@
 package aws_logs_integration
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListAWSLogsServicesCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewAWSLogsIntegrationApi(client.NewAPIClient())
 		res, _, err := api.ListAWSLogsServices(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to list-aws-logs-services: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-aws-logs-services")
 
 		cmdutil.PrintJSON(res, "logs_services")
 	},

@@ -1,7 +1,6 @@
 package observability_pipelines
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreatePipelineCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewObservabilityPipelinesApi(client.NewAPIClient())
 		res, _, err := api.CreatePipeline(client.NewContext(apiKey, appKey, site), datadogV2.ObservabilityPipelineSpec{})
-		if err != nil {
-			log.Fatalf("failed to create-pipeline: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-pipeline")
 
 		cmdutil.PrintJSON(res, "observability_pipelines")
 	},

@@ -1,7 +1,6 @@
 package sensitive_data_scanner
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ReorderScanningGroupsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewSensitiveDataScannerApi(client.NewAPIClient())
 		res, _, err := api.ReorderScanningGroups(client.NewContext(apiKey, appKey, site), datadogV2.SensitiveDataScannerConfigRequest{})
-		if err != nil {
-			log.Fatalf("failed to reorder-scanning-groups: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to reorder-scanning-groups")
 
 		cmdutil.PrintJSON(res, "sensitive_data_scanner")
 	},

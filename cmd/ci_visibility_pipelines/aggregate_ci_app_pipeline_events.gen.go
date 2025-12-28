@@ -1,7 +1,6 @@
 package ci_visibility_pipelines
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var AggregateCIAppPipelineEventsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCIVisibilityPipelinesApi(client.NewAPIClient())
 		res, _, err := api.AggregateCIAppPipelineEvents(client.NewContext(apiKey, appKey, site), datadogV2.CIAppPipelinesAggregateRequest{})
-		if err != nil {
-			log.Fatalf("failed to aggregate-ci-app-pipeline-events: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to aggregate-ci-app-pipeline-events")
 
 		cmdutil.PrintJSON(res, "ci_visibility_pipelines")
 	},

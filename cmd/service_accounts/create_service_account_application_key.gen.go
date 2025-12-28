@@ -1,7 +1,6 @@
 package service_accounts
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateServiceAccountApplicationKeyCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewServiceAccountsApi(client.NewAPIClient())
 		res, _, err := api.CreateServiceAccountApplicationKey(client.NewContext(apiKey, appKey, site), args[0], datadogV2.ApplicationKeyCreateRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-service-account-application-key: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-service-account-application-key")
 
 		cmdutil.PrintJSON(res, "application_keys")
 	},

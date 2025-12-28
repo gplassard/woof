@@ -1,10 +1,9 @@
 package deployment_gates
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
-	
+	"ouaf/pkg/cmdutil"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 	
@@ -23,9 +22,7 @@ var DeleteDeploymentRuleCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewDeploymentGatesApi(client.NewAPIClient())
 		_, err := api.DeleteDeploymentRule(client.NewContext(apiKey, appKey, site), args[0], args[1])
-		if err != nil {
-			log.Fatalf("failed to delete-deployment-rule: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to delete-deployment-rule")
 
 		
 	},

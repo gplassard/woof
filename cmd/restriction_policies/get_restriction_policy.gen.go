@@ -1,7 +1,6 @@
 package restriction_policies
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetRestrictionPolicyCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewRestrictionPoliciesApi(client.NewAPIClient())
 		res, _, err := api.GetRestrictionPolicy(client.NewContext(apiKey, appKey, site), args[0])
-		if err != nil {
-			log.Fatalf("failed to get-restriction-policy: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-restriction-policy")
 
 		cmdutil.PrintJSON(res, "restriction_policy")
 	},

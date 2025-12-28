@@ -1,7 +1,6 @@
 package error_tracking
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var SearchIssuesCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewErrorTrackingApi(client.NewAPIClient())
 		res, _, err := api.SearchIssues(client.NewContext(apiKey, appKey, site), datadogV2.IssuesSearchRequest{})
-		if err != nil {
-			log.Fatalf("failed to search-issues: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to search-issues")
 
 		cmdutil.PrintJSON(res, "error_tracking_search_result")
 	},

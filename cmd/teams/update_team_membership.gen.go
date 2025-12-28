@@ -1,7 +1,6 @@
 package teams
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var UpdateTeamMembershipCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
 		res, _, err := api.UpdateTeamMembership(client.NewContext(apiKey, appKey, site), args[0], args[1], datadogV2.UserTeamUpdateRequest{})
-		if err != nil {
-			log.Fatalf("failed to update-team-membership: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to update-team-membership")
 
 		cmdutil.PrintJSON(res, "team_memberships")
 	},

@@ -1,7 +1,6 @@
 package confluent_cloud
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateConfluentResourceCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewConfluentCloudApi(client.NewAPIClient())
 		res, _, err := api.CreateConfluentResource(client.NewContext(apiKey, appKey, site), args[0], datadogV2.ConfluentResourceRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-confluent-resource: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-confluent-resource")
 
 		cmdutil.PrintJSON(res, "confluent-cloud-resources")
 	},

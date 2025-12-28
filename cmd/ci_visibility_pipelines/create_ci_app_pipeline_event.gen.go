@@ -1,7 +1,6 @@
 package ci_visibility_pipelines
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateCIAppPipelineEventCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCIVisibilityPipelinesApi(client.NewAPIClient())
 		res, _, err := api.CreateCIAppPipelineEvent(client.NewContext(apiKey, appKey, site), datadogV2.CIAppCreatePipelineEventRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-ci-app-pipeline-event: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-ci-app-pipeline-event")
 
 		cmdutil.PrintJSON(res, "ci_visibility_pipelines")
 	},

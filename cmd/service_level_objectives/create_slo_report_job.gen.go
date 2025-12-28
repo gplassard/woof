@@ -1,7 +1,6 @@
 package service_level_objectives
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateSLOReportJobCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewServiceLevelObjectivesApi(client.NewAPIClient())
 		res, _, err := api.CreateSLOReportJob(client.NewContext(apiKey, appKey, site), datadogV2.SloReportCreateRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-slo-report-job: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-slo-report-job")
 
 		cmdutil.PrintJSON(res, "service_level_objectives")
 	},

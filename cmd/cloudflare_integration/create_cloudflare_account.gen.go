@@ -1,7 +1,6 @@
 package cloudflare_integration
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateCloudflareAccountCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCloudflareIntegrationApi(client.NewAPIClient())
 		res, _, err := api.CreateCloudflareAccount(client.NewContext(apiKey, appKey, site), datadogV2.CloudflareAccountCreateRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-cloudflare-account: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-cloudflare-account")
 
 		cmdutil.PrintJSON(res, "cloudflare-accounts")
 	},

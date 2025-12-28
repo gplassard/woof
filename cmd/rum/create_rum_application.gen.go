@@ -1,7 +1,6 @@
 package rum
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateRUMApplicationCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewRUMApi(client.NewAPIClient())
 		res, _, err := api.CreateRUMApplication(client.NewContext(apiKey, appKey, site), datadogV2.RUMApplicationCreateRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-rum-application: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-rum-application")
 
 		cmdutil.PrintJSON(res, "rum_application")
 	},

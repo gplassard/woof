@@ -1,7 +1,6 @@
 package datasets
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var UpdateDatasetCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewDatasetsApi(client.NewAPIClient())
 		res, _, err := api.UpdateDataset(client.NewContext(apiKey, appKey, site), args[0], datadogV2.DatasetUpdateRequest{})
-		if err != nil {
-			log.Fatalf("failed to update-dataset: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to update-dataset")
 
 		cmdutil.PrintJSON(res, "dataset")
 	},

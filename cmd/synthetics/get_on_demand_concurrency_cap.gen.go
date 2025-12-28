@@ -1,7 +1,6 @@
 package synthetics
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetOnDemandConcurrencyCapCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewSyntheticsApi(client.NewAPIClient())
 		res, _, err := api.GetOnDemandConcurrencyCap(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to get-on-demand-concurrency-cap: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-on-demand-concurrency-cap")
 
 		cmdutil.PrintJSON(res, "on_demand_concurrency_cap")
 	},

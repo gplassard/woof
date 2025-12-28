@@ -1,7 +1,6 @@
 package case_management
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CommentCaseCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCaseManagementApi(client.NewAPIClient())
 		res, _, err := api.CommentCase(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CaseCommentRequest{})
-		if err != nil {
-			log.Fatalf("failed to comment-case: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to comment-case")
 
 		cmdutil.PrintJSON(res, "timeline_cell")
 	},

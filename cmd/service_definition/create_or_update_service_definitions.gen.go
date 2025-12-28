@@ -1,7 +1,6 @@
 package service_definition
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateOrUpdateServiceDefinitionsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewServiceDefinitionApi(client.NewAPIClient())
 		res, _, err := api.CreateOrUpdateServiceDefinitions(client.NewContext(apiKey, appKey, site), datadogV2.ServiceDefinitionsCreateRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-or-update-service-definitions: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-or-update-service-definitions")
 
 		cmdutil.PrintJSON(res, "service_definition")
 	},

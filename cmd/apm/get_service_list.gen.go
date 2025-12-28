@@ -1,7 +1,6 @@
 package apm
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetServiceListCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewAPMApi(client.NewAPIClient())
 		res, _, err := api.GetServiceList(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to get-service-list: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-service-list")
 
 		cmdutil.PrintJSON(res, "services_list")
 	},

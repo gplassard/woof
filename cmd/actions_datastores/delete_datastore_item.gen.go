@@ -1,7 +1,6 @@
 package actions_datastores
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var DeleteDatastoreItemCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewActionsDatastoresApi(client.NewAPIClient())
 		res, _, err := api.DeleteDatastoreItem(client.NewContext(apiKey, appKey, site), args[0], datadogV2.DeleteAppsDatastoreItemRequest{})
-		if err != nil {
-			log.Fatalf("failed to delete-datastore-item: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to delete-datastore-item")
 
 		cmdutil.PrintJSON(res, "items")
 	},

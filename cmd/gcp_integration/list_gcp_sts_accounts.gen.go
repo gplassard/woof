@@ -1,7 +1,6 @@
 package gcp_integration
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListGCPSTSAccountsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewGCPIntegrationApi(client.NewAPIClient())
 		res, _, err := api.ListGCPSTSAccounts(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to list-gcp-sts-accounts: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-gcp-sts-accounts")
 
 		cmdutil.PrintJSON(res, "gcp_service_account")
 	},

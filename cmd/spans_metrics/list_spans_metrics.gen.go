@@ -1,7 +1,6 @@
 package spans_metrics
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListSpansMetricsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewSpansMetricsApi(client.NewAPIClient())
 		res, _, err := api.ListSpansMetrics(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to list-spans-metrics: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-spans-metrics")
 
 		cmdutil.PrintJSON(res, "spans_metrics")
 	},

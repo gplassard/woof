@@ -1,10 +1,9 @@
 package logs_restriction_queries
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
-	
+	"ouaf/pkg/cmdutil"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 	
@@ -23,9 +22,7 @@ var AddRoleToRestrictionQueryCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewLogsRestrictionQueriesApi(client.NewAPIClient())
 		_, err := api.AddRoleToRestrictionQuery(client.NewContext(apiKey, appKey, site), args[0], datadogV2.RelationshipToRole{})
-		if err != nil {
-			log.Fatalf("failed to add-role-to-restriction-query: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to add-role-to-restriction-query")
 
 		
 	},

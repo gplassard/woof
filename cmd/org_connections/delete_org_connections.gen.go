@@ -1,10 +1,9 @@
 package org_connections
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
-	
+	"ouaf/pkg/cmdutil"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 	"github.com/google/uuid"
@@ -23,9 +22,7 @@ var DeleteOrgConnectionsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewOrgConnectionsApi(client.NewAPIClient())
 		_, err := api.DeleteOrgConnections(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
-		if err != nil {
-			log.Fatalf("failed to delete-org-connections: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to delete-org-connections")
 
 		
 	},

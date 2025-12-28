@@ -1,7 +1,6 @@
 package users
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListUserPermissionsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewUsersApi(client.NewAPIClient())
 		res, _, err := api.ListUserPermissions(client.NewContext(apiKey, appKey, site), args[0])
-		if err != nil {
-			log.Fatalf("failed to list-user-permissions: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-user-permissions")
 
 		cmdutil.PrintJSON(res, "permissions")
 	},

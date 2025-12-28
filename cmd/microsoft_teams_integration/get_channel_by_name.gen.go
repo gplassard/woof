@@ -1,7 +1,6 @@
 package microsoft_teams_integration
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetChannelByNameCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewMicrosoftTeamsIntegrationApi(client.NewAPIClient())
 		res, _, err := api.GetChannelByName(client.NewContext(apiKey, appKey, site), args[0], args[1], args[2])
-		if err != nil {
-			log.Fatalf("failed to get-channel-by-name: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-channel-by-name")
 
 		cmdutil.PrintJSON(res, "ms-teams-channel-info")
 	},

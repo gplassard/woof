@@ -1,7 +1,6 @@
 package incident_teams
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateIncidentTeamCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewIncidentTeamsApi(client.NewAPIClient())
 		res, _, err := api.CreateIncidentTeam(client.NewContext(apiKey, appKey, site), datadogV2.IncidentTeamCreateRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-incident-team: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-incident-team")
 
 		cmdutil.PrintJSON(res, "teams")
 	},

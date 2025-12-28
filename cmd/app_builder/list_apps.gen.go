@@ -1,7 +1,6 @@
 package app_builder
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListAppsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewAppBuilderApi(client.NewAPIClient())
 		res, _, err := api.ListApps(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to list-apps: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-apps")
 
 		cmdutil.PrintJSON(res, "appDefinitions")
 	},

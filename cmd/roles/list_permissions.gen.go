@@ -1,7 +1,6 @@
 package roles
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListPermissionsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewRolesApi(client.NewAPIClient())
 		res, _, err := api.ListPermissions(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to list-permissions: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-permissions")
 
 		cmdutil.PrintJSON(res, "permissions")
 	},

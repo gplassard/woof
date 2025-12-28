@@ -1,7 +1,6 @@
 package teams
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var AddTeamHierarchyLinkCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
 		res, _, err := api.AddTeamHierarchyLink(client.NewContext(apiKey, appKey, site), datadogV2.TeamHierarchyLinkCreateRequest{})
-		if err != nil {
-			log.Fatalf("failed to add-team-hierarchy-link: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to add-team-hierarchy-link")
 
 		cmdutil.PrintJSON(res, "team_hierarchy_links")
 	},

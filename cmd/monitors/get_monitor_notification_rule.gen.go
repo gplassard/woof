@@ -1,7 +1,6 @@
 package monitors
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetMonitorNotificationRuleCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewMonitorsApi(client.NewAPIClient())
 		res, _, err := api.GetMonitorNotificationRule(client.NewContext(apiKey, appKey, site), args[0])
-		if err != nil {
-			log.Fatalf("failed to get-monitor-notification-rule: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-monitor-notification-rule")
 
 		cmdutil.PrintJSON(res, "monitor-notification-rule")
 	},

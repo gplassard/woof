@@ -1,7 +1,6 @@
 package cloud_cost_management
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ValidateQueryCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
 		res, _, err := api.ValidateQuery(client.NewContext(apiKey, appKey, site), datadogV2.RulesValidateQueryRequest{})
-		if err != nil {
-			log.Fatalf("failed to validate-query: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to validate-query")
 
 		cmdutil.PrintJSON(res, "validate_response")
 	},

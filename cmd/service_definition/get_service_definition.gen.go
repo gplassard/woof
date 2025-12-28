@@ -1,7 +1,6 @@
 package service_definition
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetServiceDefinitionCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewServiceDefinitionApi(client.NewAPIClient())
 		res, _, err := api.GetServiceDefinition(client.NewContext(apiKey, appKey, site), args[0])
-		if err != nil {
-			log.Fatalf("failed to get-service-definition: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-service-definition")
 
 		cmdutil.PrintJSON(res, "service_definition")
 	},

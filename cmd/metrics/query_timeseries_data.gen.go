@@ -1,7 +1,6 @@
 package metrics
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var QueryTimeseriesDataCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewMetricsApi(client.NewAPIClient())
 		res, _, err := api.QueryTimeseriesData(client.NewContext(apiKey, appKey, site), datadogV2.TimeseriesFormulaQueryRequest{})
-		if err != nil {
-			log.Fatalf("failed to query-timeseries-data: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to query-timeseries-data")
 
 		cmdutil.PrintJSON(res, "timeseries_response")
 	},

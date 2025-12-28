@@ -1,10 +1,9 @@
 package error_tracking
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
-	
+	"ouaf/pkg/cmdutil"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 	
@@ -23,9 +22,7 @@ var DeleteIssueAssigneeCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewErrorTrackingApi(client.NewAPIClient())
 		_, err := api.DeleteIssueAssignee(client.NewContext(apiKey, appKey, site), args[0])
-		if err != nil {
-			log.Fatalf("failed to delete-issue-assignee: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to delete-issue-assignee")
 
 		
 	},

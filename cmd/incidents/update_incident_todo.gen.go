@@ -1,7 +1,6 @@
 package incidents
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var UpdateIncidentTodoCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
 		res, _, err := api.UpdateIncidentTodo(client.NewContext(apiKey, appKey, site), args[0], args[1], datadogV2.IncidentTodoPatchRequest{})
-		if err != nil {
-			log.Fatalf("failed to update-incident-todo: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to update-incident-todo")
 
 		cmdutil.PrintJSON(res, "incident_todos")
 	},

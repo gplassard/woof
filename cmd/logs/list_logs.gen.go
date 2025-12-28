@@ -1,7 +1,6 @@
 package logs
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListLogsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewLogsApi(client.NewAPIClient())
 		res, _, err := api.ListLogs(client.NewContext(apiKey, appKey, site), *datadogV2.NewListLogsOptionalParameters())
-		if err != nil {
-			log.Fatalf("failed to list-logs: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-logs")
 
 		cmdutil.PrintJSON(res, "log")
 	},

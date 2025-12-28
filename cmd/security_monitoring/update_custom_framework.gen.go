@@ -1,7 +1,6 @@
 package security_monitoring
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var UpdateCustomFrameworkCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.UpdateCustomFramework(client.NewContext(apiKey, appKey, site), args[0], args[1], datadogV2.UpdateCustomFrameworkRequest{})
-		if err != nil {
-			log.Fatalf("failed to update-custom-framework: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to update-custom-framework")
 
 		cmdutil.PrintJSON(res, "custom_framework")
 	},

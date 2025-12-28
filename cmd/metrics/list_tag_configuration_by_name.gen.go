@@ -1,7 +1,6 @@
 package metrics
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListTagConfigurationByNameCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewMetricsApi(client.NewAPIClient())
 		res, _, err := api.ListTagConfigurationByName(client.NewContext(apiKey, appKey, site), args[0])
-		if err != nil {
-			log.Fatalf("failed to list-tag-configuration-by-name: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-tag-configuration-by-name")
 
 		cmdutil.PrintJSON(res, "manage_tags")
 	},

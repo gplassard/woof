@@ -1,7 +1,6 @@
 package users
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetUserCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewUsersApi(client.NewAPIClient())
 		res, _, err := api.GetUser(client.NewContext(apiKey, appKey, site), args[0])
-		if err != nil {
-			log.Fatalf("failed to get-user: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-user")
 
 		cmdutil.PrintJSON(res, "users")
 	},

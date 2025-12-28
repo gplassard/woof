@@ -1,7 +1,6 @@
 package network_device_monitoring
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var UpdateDeviceUserTagsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewNetworkDeviceMonitoringApi(client.NewAPIClient())
 		res, _, err := api.UpdateDeviceUserTags(client.NewContext(apiKey, appKey, site), args[0], datadogV2.ListTagsResponse{})
-		if err != nil {
-			log.Fatalf("failed to update-device-user-tags: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to update-device-user-tags")
 
 		cmdutil.PrintJSON(res, "network_device_monitoring")
 	},

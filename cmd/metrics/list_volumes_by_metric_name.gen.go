@@ -1,7 +1,6 @@
 package metrics
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListVolumesByMetricNameCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewMetricsApi(client.NewAPIClient())
 		res, _, err := api.ListVolumesByMetricName(client.NewContext(apiKey, appKey, site), args[0])
-		if err != nil {
-			log.Fatalf("failed to list-volumes-by-metric-name: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-volumes-by-metric-name")
 
 		cmdutil.PrintJSON(res, "metrics")
 	},

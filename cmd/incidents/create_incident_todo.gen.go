@@ -1,7 +1,6 @@
 package incidents
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateIncidentTodoCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
 		res, _, err := api.CreateIncidentTodo(client.NewContext(apiKey, appKey, site), args[0], datadogV2.IncidentTodoCreateRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-incident-todo: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-incident-todo")
 
 		cmdutil.PrintJSON(res, "incident_todos")
 	},

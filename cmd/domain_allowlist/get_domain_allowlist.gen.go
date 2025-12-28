@@ -1,7 +1,6 @@
 package domain_allowlist
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetDomainAllowlistCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewDomainAllowlistApi(client.NewAPIClient())
 		res, _, err := api.GetDomainAllowlist(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to get-domain-allowlist: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-domain-allowlist")
 
 		cmdutil.PrintJSON(res, "domain_allowlist")
 	},

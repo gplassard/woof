@@ -1,7 +1,6 @@
 package events
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListEventsCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewEventsApi(client.NewAPIClient())
 		res, _, err := api.ListEvents(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to list-events: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-events")
 
 		cmdutil.PrintJSON(res, "event")
 	},

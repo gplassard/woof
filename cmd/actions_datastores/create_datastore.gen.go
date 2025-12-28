@@ -1,7 +1,6 @@
 package actions_datastores
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateDatastoreCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewActionsDatastoresApi(client.NewAPIClient())
 		res, _, err := api.CreateDatastore(client.NewContext(apiKey, appKey, site), datadogV2.CreateAppsDatastoreRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-datastore: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-datastore")
 
 		cmdutil.PrintJSON(res, "datastores")
 	},

@@ -1,7 +1,6 @@
 package csm_threats
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListCSMThreatsAgentRulesCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCSMThreatsApi(client.NewAPIClient())
 		res, _, err := api.ListCSMThreatsAgentRules(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to list-csm-threats-agent-rules: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-csm-threats-agent-rules")
 
 		cmdutil.PrintJSON(res, "agent_rule")
 	},

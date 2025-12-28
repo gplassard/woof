@@ -1,7 +1,6 @@
 package microsoft_teams_integration
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var UpdateWorkflowsWebhookHandleCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewMicrosoftTeamsIntegrationApi(client.NewAPIClient())
 		res, _, err := api.UpdateWorkflowsWebhookHandle(client.NewContext(apiKey, appKey, site), args[0], datadogV2.MicrosoftTeamsUpdateWorkflowsWebhookHandleRequest{})
-		if err != nil {
-			log.Fatalf("failed to update-workflows-webhook-handle: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to update-workflows-webhook-handle")
 
 		cmdutil.PrintJSON(res, "workflows-webhook-handle")
 	},

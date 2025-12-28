@@ -1,7 +1,6 @@
 package reference_tables
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetRowsByIDCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewReferenceTablesApi(client.NewAPIClient())
 		res, _, err := api.GetRowsByID(client.NewContext(apiKey, appKey, site), args[0], strings.Split(args[1], ","))
-		if err != nil {
-			log.Fatalf("failed to get-rows-by-id: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-rows-by-id")
 
 		cmdutil.PrintJSON(res, "row")
 	},

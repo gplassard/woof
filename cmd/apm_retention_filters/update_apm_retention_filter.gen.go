@@ -1,7 +1,6 @@
 package apm_retention_filters
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var UpdateApmRetentionFilterCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewAPMRetentionFiltersApi(client.NewAPIClient())
 		res, _, err := api.UpdateApmRetentionFilter(client.NewContext(apiKey, appKey, site), args[0], datadogV2.RetentionFilterUpdateRequest{})
-		if err != nil {
-			log.Fatalf("failed to update-apm-retention-filter: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to update-apm-retention-filter")
 
 		cmdutil.PrintJSON(res, "apm_retention_filter")
 	},

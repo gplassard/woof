@@ -1,7 +1,6 @@
 package container_images
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var ListContainerImagesCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewContainerImagesApi(client.NewAPIClient())
 		res, _, err := api.ListContainerImages(client.NewContext(apiKey, appKey, site))
-		if err != nil {
-			log.Fatalf("failed to list-container-images: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to list-container-images")
 
 		cmdutil.PrintJSON(res, "container_images")
 	},

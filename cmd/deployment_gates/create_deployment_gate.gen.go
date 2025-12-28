@@ -1,7 +1,6 @@
 package deployment_gates
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateDeploymentGateCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewDeploymentGatesApi(client.NewAPIClient())
 		res, _, err := api.CreateDeploymentGate(client.NewContext(apiKey, appKey, site), datadogV2.CreateDeploymentGateParams{})
-		if err != nil {
-			log.Fatalf("failed to create-deployment-gate: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-deployment-gate")
 
 		cmdutil.PrintJSON(res, "deployment_gate")
 	},

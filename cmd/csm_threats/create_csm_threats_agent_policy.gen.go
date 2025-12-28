@@ -1,7 +1,6 @@
 package csm_threats
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateCSMThreatsAgentPolicyCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCSMThreatsApi(client.NewAPIClient())
 		res, _, err := api.CreateCSMThreatsAgentPolicy(client.NewContext(apiKey, appKey, site), datadogV2.CloudWorkloadSecurityAgentPolicyCreateRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-csm-threats-agent-policy: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-csm-threats-agent-policy")
 
 		cmdutil.PrintJSON(res, "policy")
 	},

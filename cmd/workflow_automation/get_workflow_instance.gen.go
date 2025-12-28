@@ -1,7 +1,6 @@
 package workflow_automation
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var GetWorkflowInstanceCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewWorkflowAutomationApi(client.NewAPIClient())
 		res, _, err := api.GetWorkflowInstance(client.NewContext(apiKey, appKey, site), args[0], args[1])
-		if err != nil {
-			log.Fatalf("failed to get-workflow-instance: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to get-workflow-instance")
 
 		cmdutil.PrintJSON(res, "workflow_automation")
 	},

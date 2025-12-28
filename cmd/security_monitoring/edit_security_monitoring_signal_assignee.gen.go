@@ -1,7 +1,6 @@
 package security_monitoring
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var EditSecurityMonitoringSignalAssigneeCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.EditSecurityMonitoringSignalAssignee(client.NewContext(apiKey, appKey, site), args[0], datadogV2.SecurityMonitoringSignalAssigneeUpdateRequest{})
-		if err != nil {
-			log.Fatalf("failed to edit-security-monitoring-signal-assignee: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to edit-security-monitoring-signal-assignee")
 
 		cmdutil.PrintJSON(res, "signal_metadata")
 	},

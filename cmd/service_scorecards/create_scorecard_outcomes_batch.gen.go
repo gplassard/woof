@@ -1,7 +1,6 @@
 package service_scorecards
 
 import (
-	"log"
 	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
@@ -23,9 +22,7 @@ var CreateScorecardOutcomesBatchCmd = &cobra.Command{
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewServiceScorecardsApi(client.NewAPIClient())
 		res, _, err := api.CreateScorecardOutcomesBatch(client.NewContext(apiKey, appKey, site), datadogV2.OutcomesBatchRequest{})
-		if err != nil {
-			log.Fatalf("failed to create-scorecard-outcomes-batch: %v", err)
-		}
+		cmdutil.HandleError(err, "failed to create-scorecard-outcomes-batch")
 
 		cmdutil.PrintJSON(res, "service_scorecards")
 	},
