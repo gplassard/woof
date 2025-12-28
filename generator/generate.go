@@ -35,7 +35,7 @@ func RunGenerate() error {
 		return err
 	}
 
-	tags := make(map[string]bool)
+	bundles := make(map[string]bool)
 	skipOpsMap := make(map[string]bool)
 	for _, op := range config.SkipOperations {
 		skipOpsMap[op] = true
@@ -47,20 +47,20 @@ func RunGenerate() error {
 				continue
 			}
 
-			tag, rawTag := normalizeTag(op)
-			tags[tag] = true
-			apiTagName := normalizeApiTagName(rawTag)
+			bundle, rawBundle := normalizeBundle(op)
+			bundles[bundle] = true
+			apiBundleName := normalizeApiBundleName(rawBundle)
 
-			pkgDir := filepath.Join("cmd", tag)
+			pkgDir := filepath.Join("cmd", bundle)
 			if err := os.MkdirAll(pkgDir, 0755); err != nil {
 				return fmt.Errorf("failed to create directory %s: %w", pkgDir, err)
 			}
 
-			if err := ensureEntrypoint(pkgDir, tag, entrypointTmpl, config); err != nil {
+			if err := ensureEntrypoint(pkgDir, bundle, entrypointTmpl, config); err != nil {
 				return err
 			}
 
-			data := prepareTemplateData(tag, rawTag, apiTagName, method, path, op, spec, config)
+			data := prepareTemplateData(bundle, rawBundle, apiBundleName, method, path, op, spec, config)
 
 			if err := generateCommandFile(pkgDir, op.OperationID, data, tmpl, config); err != nil {
 				return err
@@ -68,5 +68,5 @@ func RunGenerate() error {
 		}
 	}
 
-	return updateRootGo(tags)
+	return updateRootGo(bundles)
 }

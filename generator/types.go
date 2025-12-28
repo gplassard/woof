@@ -3,7 +3,7 @@ package main
 type Config struct {
 	SkipOperations               []string            `yaml:"skip_operations"`
 	OptionalParametersOperations map[string]string   `yaml:"optional_parameters_operations"`
-	TagAliases                   map[string][]string `yaml:"tag_aliases"`
+	BundleAliases                map[string][]string `yaml:"bundle_aliases"`
 	Acronyms                     []string            `yaml:"acronyms"`
 }
 
@@ -57,8 +57,8 @@ type TemplateData struct {
 	Method           string
 	Path             string
 	OperationID      string
-	TagName          string
-	ApiTagName       string
+	BundleName       string
+	ApiBundleName    string
 	Args             []string
 	ArgTypes         []string
 	HasRequestBody   bool

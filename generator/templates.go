@@ -63,22 +63,22 @@ func toSnakeCase(s string, config *Config) string {
 	return s
 }
 
-func ensureEntrypoint(pkgDir, tag string, tmpl *template.Template, config *Config) error {
+func ensureEntrypoint(pkgDir, bundle string, tmpl *template.Template, config *Config) error {
 	entrypointPath := filepath.Join(pkgDir, "entrypoint.gen.go")
 	if _, err := os.Stat(entrypointPath); os.IsNotExist(err) {
 		f, err := os.Create(entrypointPath)
 		if err != nil {
-			return fmt.Errorf("failed to create entrypoint for %s: %w", tag, err)
+			return fmt.Errorf("failed to create entrypoint for %s: %w", bundle, err)
 		}
 		defer f.Close()
 		data := TemplateData{
-			PackageName: tag,
-			Use:         strings.ReplaceAll(tag, "_", "-"),
-			Short:       fmt.Sprintf("%s endpoints", tag),
-			Aliases:     config.TagAliases[tag],
+			PackageName: bundle,
+			Use:         strings.ReplaceAll(bundle, "_", "-"),
+			Short:       fmt.Sprintf("%s endpoints", bundle),
+			Aliases:     config.BundleAliases[bundle],
 		}
 		if err := tmpl.Execute(f, data); err != nil {
-			return fmt.Errorf("failed to execute entrypoint template for %s: %w", tag, err)
+			return fmt.Errorf("failed to execute entrypoint template for %s: %w", bundle, err)
 		}
 	}
 	return nil
@@ -118,7 +118,7 @@ func resolveSchema(spec *OpenAPI, schema map[string]interface{}) map[string]inte
 	return schema
 }
 
-func prepareTemplateData(tag, rawTag, apiTagName, method, path string, op Operation, spec *OpenAPI, config *Config) TemplateData {
+func prepareTemplateData(bundle, rawBundle, apiBundleName, method, path string, op Operation, spec *OpenAPI, config *Config) TemplateData {
 	var args []string
 	var argTypes []string
 	use := toKebabCase(op.OperationID, config)
@@ -248,22 +248,48 @@ func prepareTemplateData(tag, rawTag, apiTagName, method, path string, op Operat
 	}
 	// Fallback to package name if we can't find it, or use special logic
 	if resourceType == "" {
-		resourceType = tag
+		resourceType = bundle
 	}
 
+	aliases := computeAliases(bundle, op.OperationID, config)
+
+	return TemplateData{
+		PackageName:      bundle,
+		CommandName:      strings.ToUpper(op.OperationID[:1]) + op.OperationID[1:] + "Cmd",
+		Use:              use,
+		Short:            op.Summary,
+		Method:           strings.ToUpper(method),
+		Path:             path,
+		OperationID:      op.OperationID,
+		BundleName:       rawBundle,
+		ApiBundleName:    apiBundleName,
+		Args:             args,
+		ArgTypes:         argTypes,
+		HasRequestBody:   hasRequestBody,
+		RequestBodyType:  requestBodyType,
+		IsOptionalParams: isOptionalParams,
+		HasResponse:      hasResponse,
+		ResourceType:     resourceType,
+		Aliases:          aliases,
+	}
+}
+
+func computeAliases(bundle, operationID string, config *Config) []string {
 	var aliases []string
-	tagKebab := strings.ReplaceAll(tag, "_", "-")
-	opKebab := toKebabCase(op.OperationID, config)
+	bundleKebab := strings.ReplaceAll(bundle, "_", "-")
+	opKebab := toKebabCase(operationID, config)
 
-	tagSingular := strings.TrimSuffix(tagKebab, "s")
-	tagPlural := tagKebab
-	if !strings.HasSuffix(tagKebab, "s") {
-		tagPlural = tagKebab + "s"
+	bundleSingular := strings.TrimSuffix(bundleKebab, "s")
+	bundlePlural := bundleKebab
+	if !strings.HasSuffix(bundleKebab, "s") {
+		bundlePlural = bundleKebab + "s"
 	}
-	variants := []string{tagKebab, tagSingular, tagPlural}
-	if tagAliases, ok := config.TagAliases[tag]; ok {
-		for _, alias := range tagAliases {
-			variants = append(variants, strings.ReplaceAll(alias, "_", "-"))
+	variants := []string{bundleKebab, bundleSingular, bundlePlural}
+	if config != nil {
+		if bundleAliases, ok := config.BundleAliases[bundle]; ok {
+			for _, alias := range bundleAliases {
+				variants = append(variants, strings.ReplaceAll(alias, "_", "-"))
+			}
 		}
 	}
 
@@ -349,26 +375,7 @@ func prepareTemplateData(tag, rawTag, apiTagName, method, path string, op Operat
 		}
 		aliases = finalAliases
 	}
-
-	return TemplateData{
-		PackageName:      tag,
-		CommandName:      strings.ToUpper(op.OperationID[:1]) + op.OperationID[1:] + "Cmd",
-		Use:              use,
-		Short:            op.Summary,
-		Method:           strings.ToUpper(method),
-		Path:             path,
-		OperationID:      op.OperationID,
-		TagName:          rawTag,
-		ApiTagName:       apiTagName,
-		Args:             args,
-		ArgTypes:         argTypes,
-		HasRequestBody:   hasRequestBody,
-		RequestBodyType:  requestBodyType,
-		IsOptionalParams: isOptionalParams,
-		HasResponse:      hasResponse,
-		ResourceType:     resourceType,
-		Aliases:          aliases,
-	}
+	return aliases
 }
 
 func generateCommandFile(pkgDir, operationID string, data TemplateData, tmpl *template.Template, config *Config) error {
@@ -387,18 +394,18 @@ func generateCommandFile(pkgDir, operationID string, data TemplateData, tmpl *te
 	return nil
 }
 
-func updateRootGo(tags map[string]bool) error {
-	var sortedTags []string
-	for tag := range tags {
-		sortedTags = append(sortedTags, tag)
+func updateRootGo(bundles map[string]bool) error {
+	var sortedBundles []string
+	for bundle := range bundles {
+		sortedBundles = append(sortedBundles, bundle)
 	}
-	sort.Strings(sortedTags)
+	sort.Strings(sortedBundles)
 
 	var imports []string
 	var commands []string
-	for _, tag := range sortedTags {
-		imports = append(imports, fmt.Sprintf("ouaf/cmd/%s", tag))
-		commands = append(commands, fmt.Sprintf("%s.Cmd", tag))
+	for _, bundle := range sortedBundles {
+		imports = append(imports, fmt.Sprintf("ouaf/cmd/%s", bundle))
+		commands = append(commands, fmt.Sprintf("%s.Cmd", bundle))
 	}
 
 	tmpl, err := template.ParseFiles("generator/root.go.tmpl")

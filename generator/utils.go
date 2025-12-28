@@ -86,18 +86,18 @@ func parseTemplates(config *Config) (*template.Template, *template.Template, err
 	return tmpl, entrypointTmpl, nil
 }
 
-func normalizeTag(op Operation) (string, string) {
-	rawTag := "general"
+func normalizeBundle(op Operation) (string, string) {
+	rawBundle := "general"
 	if len(op.Tags) > 0 {
-		rawTag = op.Tags[0]
+		rawBundle = op.Tags[0]
 	}
-	tag := strings.ToLower(rawTag)
-	tag = strings.ReplaceAll(tag, " ", "_")
-	tag = strings.ReplaceAll(tag, "-", "_")
-	return tag, rawTag
+	bundle := strings.ToLower(rawBundle)
+	bundle = strings.ReplaceAll(bundle, " ", "_")
+	bundle = strings.ReplaceAll(bundle, "-", "_")
+	return bundle, rawBundle
 }
 
-func normalizeApiTagName(rawTag string) string {
-	name := strings.ReplaceAll(rawTag, " ", "")
+func normalizeApiBundleName(rawBundle string) string {
+	name := strings.ReplaceAll(rawBundle, " ", "")
 	return strings.ReplaceAll(name, "-", "")
 }

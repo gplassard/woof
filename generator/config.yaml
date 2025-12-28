@@ -24,7 +24,7 @@ optional_parameters_operations:
   SearchSecurityMonitoringHistsignals: SearchSecurityMonitoringHistsignalsOptionalParameters
   SearchSecurityMonitoringSignals: SearchSecurityMonitoringSignalsOptionalParameters
 
-tag_aliases:
+bundle_aliases:
   actions_datastores:
     - datastores
     - datastore
