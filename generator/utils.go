@@ -1,19 +1,22 @@
 package main
 
 import (
+	"embed"
 	"fmt"
 	"io"
 	"net/http"
 	"os"
-	"path/filepath"
 	"strings"
 	"text/template"
 
 	"gopkg.in/yaml.v3"
 )
 
-func loadConfig(path string) (*Config, error) {
-	content, err := os.ReadFile(path)
+//go:embed config.yaml command.go.tmpl entrypoint.go.tmpl root.go.tmpl
+var generatorFS embed.FS
+
+func loadConfig() (*Config, error) {
+	content, err := generatorFS.ReadFile("config.yaml")
 	if err != nil {
 		return nil, fmt.Errorf("failed to read config file: %w", err)
 	}
@@ -25,17 +28,7 @@ func loadConfig(path string) (*Config, error) {
 }
 
 func cleanupGeneratedFiles() error {
-	os.Remove("cmd/root.gen.go")
-	entries, err := os.ReadDir("cmd")
-	if err != nil {
-		return nil
-	}
-	for _, entry := range entries {
-		if entry.IsDir() {
-			pkgDir := filepath.Join("cmd", entry.Name())
-			os.RemoveAll(pkgDir)
-		}
-	}
+	os.RemoveAll("cmd")
 	return nil
 }
 
@@ -73,12 +66,20 @@ func parseTemplates(config *Config) (*template.Template, *template.Template, err
 		},
 	}
 
-	tmpl, err := template.New("command.go.tmpl").Funcs(funcMap).ParseFiles("generator/command.go.tmpl")
+	commandTmplContent, err := generatorFS.ReadFile("command.go.tmpl")
+	if err != nil {
+		return nil, nil, fmt.Errorf("failed to read command template: %w", err)
+	}
+	tmpl, err := template.New("command.go.tmpl").Funcs(funcMap).Parse(string(commandTmplContent))
 	if err != nil {
 		return nil, nil, fmt.Errorf("failed to parse command template: %w", err)
 	}
 
-	entrypointTmpl, err := template.New("entrypoint.go.tmpl").Funcs(funcMap).ParseFiles("generator/entrypoint.go.tmpl")
+	entrypointTmplContent, err := generatorFS.ReadFile("entrypoint.go.tmpl")
+	if err != nil {
+		return nil, nil, fmt.Errorf("failed to read entrypoint template: %w", err)
+	}
+	entrypointTmpl, err := template.New("entrypoint.go.tmpl").Funcs(funcMap).Parse(string(entrypointTmplContent))
 	if err != nil {
 		return nil, nil, fmt.Errorf("failed to parse entrypoint template: %w", err)
 	}

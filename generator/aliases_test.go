@@ -6,7 +6,7 @@ import (
 )
 
 func TestComputeAliases(t *testing.T) {
-	config, err := loadConfig("config.yaml")
+	config, err := loadConfig()
 	if err != nil {
 		t.Fatalf("failed to load config: %v", err)
 	}

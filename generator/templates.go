@@ -408,7 +408,11 @@ func updateRootGo(bundles map[string]bool) error {
 		commands = append(commands, fmt.Sprintf("%s.Cmd", bundle))
 	}
 
-	tmpl, err := template.ParseFiles("generator/root.go.tmpl")
+	rootTmplContent, err := generatorFS.ReadFile("root.go.tmpl")
+	if err != nil {
+		return fmt.Errorf("failed to read root template: %w", err)
+	}
+	tmpl, err := template.New("root.go.tmpl").Parse(string(rootTmplContent))
 	if err != nil {
 		return fmt.Errorf("failed to parse root template: %w", err)
 	}

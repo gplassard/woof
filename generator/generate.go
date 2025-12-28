@@ -16,7 +16,15 @@ func main() {
 }
 
 func RunGenerate() error {
-	config, err := loadConfig("generator/config.yaml")
+	// Ensure we are working from the project root if we are in the generator directory
+	if cwd, err := os.Getwd(); err == nil && filepath.Base(cwd) == "generator" {
+		if err := os.Chdir(".."); err != nil {
+			return fmt.Errorf("failed to change directory to project root: %w", err)
+		}
+		defer os.Chdir(cwd)
+	}
+
+	config, err := loadConfig()
 	if err != nil {
 		return err
 	}
