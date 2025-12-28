@@ -16,6 +16,7 @@ import (
 
 var AddUserToRoleCmd = &cobra.Command{
 	Use:   "add-user-to-role [role_id]",
+	Aliases: []string{ "add-user-to", },
 	Short: "Add a user to a role",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

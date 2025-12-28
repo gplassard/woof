@@ -16,6 +16,7 @@ import (
 
 var UnarchiveCaseCmd = &cobra.Command{
 	Use:   "unarchive-case [case_id]",
+	
 	Short: "Unarchive case",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

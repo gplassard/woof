@@ -16,6 +16,7 @@ import (
 
 var TestExistingSecurityMonitoringRuleCmd = &cobra.Command{
 	Use:   "test-existing-security-monitoring-rule [rule_id]",
+	Aliases: []string{ "test-existing-rule", },
 	Short: "Test an existing rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var GetAWSIntegrationIAMPermissionsResourceCollectionCmd = &cobra.Command{
 	Use:   "get-a-w-s-integration-i-a-m-permissions-resource-collection",
+	
 	Short: "Get resource collection IAM permissions",
 	
 	Run: func(cmd *cobra.Command, args []string) {

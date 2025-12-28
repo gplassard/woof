@@ -16,6 +16,7 @@ import (
 
 var ListVolumesByMetricNameCmd = &cobra.Command{
 	Use:   "list-volumes-by-metric-name [metric_name]",
+	Aliases: []string{ "list-volumes-by-name", },
 	Short: "List distinct metric volumes by metric name",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

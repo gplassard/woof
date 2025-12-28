@@ -16,6 +16,7 @@ import (
 
 var DeleteGCPSTSAccountCmd = &cobra.Command{
 	Use:   "delete-g-c-p-s-t-s-account [account_id]",
+	
 	Short: "Delete an STS enabled GCP Account",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

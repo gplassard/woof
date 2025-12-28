@@ -16,6 +16,7 @@ import (
 
 var ListTagConfigurationsCmd = &cobra.Command{
 	Use:   "list-tag-configurations",
+	
 	Short: "Get a list of metrics",
 	
 	Run: func(cmd *cobra.Command, args []string) {

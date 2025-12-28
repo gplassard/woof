@@ -16,6 +16,7 @@ import (
 
 var CreateIncidentIntegrationCmd = &cobra.Command{
 	Use:   "create-incident-integration [incident_id]",
+	Aliases: []string{ "create-integration", },
 	Short: "Create an incident integration metadata",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

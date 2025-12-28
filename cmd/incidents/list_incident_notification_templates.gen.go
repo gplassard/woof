@@ -16,6 +16,7 @@ import (
 
 var ListIncidentNotificationTemplatesCmd = &cobra.Command{
 	Use:   "list-incident-notification-templates",
+	Aliases: []string{ "list-notification-templates", },
 	Short: "List incident notification templates",
 	
 	Run: func(cmd *cobra.Command, args []string) {

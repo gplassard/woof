@@ -16,6 +16,7 @@ import (
 
 var EditSecurityMonitoringSignalStateCmd = &cobra.Command{
 	Use:   "edit-security-monitoring-signal-state [signal_id]",
+	Aliases: []string{ "edit-signal-state", },
 	Short: "Change the triage state of a security signal",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

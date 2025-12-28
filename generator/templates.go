@@ -219,6 +219,28 @@ func prepareTemplateData(tag, rawTag, apiTagName, method, path string, op Operat
 		resourceType = tag
 	}
 
+	var aliases []string
+	tagKebab := strings.ReplaceAll(tag, "_", "-")
+	opKebab := toKebabCase(op.OperationID)
+
+	tagSingular := strings.TrimSuffix(tagKebab, "s")
+	variants := []string{tagKebab, tagSingular}
+
+	for _, variant := range variants {
+		if variant == "" {
+			continue
+		}
+		if strings.Contains(opKebab, variant) {
+			alias := strings.ReplaceAll(opKebab, variant, "")
+			alias = strings.ReplaceAll(alias, "--", "-")
+			alias = strings.Trim(alias, "-")
+			if alias != "" {
+				aliases = append(aliases, alias)
+				break
+			}
+		}
+	}
+
 	return TemplateData{
 		PackageName:      tag,
 		CommandName:      strings.ToUpper(op.OperationID[:1]) + op.OperationID[1:] + "Cmd",
@@ -236,6 +258,7 @@ func prepareTemplateData(tag, rawTag, apiTagName, method, path string, op Operat
 		IsOptionalParams: isOptionalParams,
 		HasResponse:      hasResponse,
 		ResourceType:     resourceType,
+		Aliases:          aliases,
 	}
 }
 

@@ -16,6 +16,7 @@ import (
 
 var CreateDowntimeCmd = &cobra.Command{
 	Use:   "create-downtime",
+	Aliases: []string{ "create", },
 	Short: "Schedule a downtime",
 	
 	Run: func(cmd *cobra.Command, args []string) {

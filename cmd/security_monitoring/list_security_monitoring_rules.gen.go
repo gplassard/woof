@@ -16,6 +16,7 @@ import (
 
 var ListSecurityMonitoringRulesCmd = &cobra.Command{
 	Use:   "list-security-monitoring-rules",
+	Aliases: []string{ "list-rules", },
 	Short: "List rules",
 	
 	Run: func(cmd *cobra.Command, args []string) {

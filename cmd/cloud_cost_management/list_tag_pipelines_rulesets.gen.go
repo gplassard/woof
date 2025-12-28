@@ -16,6 +16,7 @@ import (
 
 var ListTagPipelinesRulesetsCmd = &cobra.Command{
 	Use:   "list-tag-pipelines-rulesets",
+	
 	Short: "List tag pipeline rulesets",
 	
 	Run: func(cmd *cobra.Command, args []string) {

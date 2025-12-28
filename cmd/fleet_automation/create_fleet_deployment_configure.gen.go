@@ -16,6 +16,7 @@ import (
 
 var CreateFleetDeploymentConfigureCmd = &cobra.Command{
 	Use:   "create-fleet-deployment-configure",
+	
 	Short: "Create a configuration deployment",
 	
 	Run: func(cmd *cobra.Command, args []string) {

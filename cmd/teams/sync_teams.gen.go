@@ -16,6 +16,7 @@ import (
 
 var SyncTeamsCmd = &cobra.Command{
 	Use:   "sync-teams",
+	Aliases: []string{ "sync", },
 	Short: "Link Teams with GitHub Teams",
 	
 	Run: func(cmd *cobra.Command, args []string) {

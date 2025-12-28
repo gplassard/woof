@@ -16,6 +16,7 @@ import (
 
 var DeletePipelineCmd = &cobra.Command{
 	Use:   "delete-pipeline [pipeline_id]",
+	
 	Short: "Delete a pipeline",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

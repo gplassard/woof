@@ -16,6 +16,7 @@ import (
 
 var DeleteIncidentTypeCmd = &cobra.Command{
 	Use:   "delete-incident-type [incident_type_id]",
+	Aliases: []string{ "delete-type", },
 	Short: "Delete an incident type",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

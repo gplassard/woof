@@ -16,6 +16,7 @@ import (
 
 var ListDevicesCmd = &cobra.Command{
 	Use:   "list-devices",
+	
 	Short: "Get the list of devices",
 	
 	Run: func(cmd *cobra.Command, args []string) {

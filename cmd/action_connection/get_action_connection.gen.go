@@ -16,6 +16,7 @@ import (
 
 var GetActionConnectionCmd = &cobra.Command{
 	Use:   "get-action-connection [connection_id]",
+	Aliases: []string{ "get", },
 	Short: "Get an existing Action Connection",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

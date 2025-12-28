@@ -16,6 +16,7 @@ import (
 
 var ReplaceRestrictionQueryCmd = &cobra.Command{
 	Use:   "replace-restriction-query [restriction_query_id]",
+	
 	Short: "Replace a restriction query",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

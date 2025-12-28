@@ -16,6 +16,7 @@ import (
 
 var GetCostAzureUCConfigCmd = &cobra.Command{
 	Use:   "get-cost-azure-u-c-config [cloud_account_id]",
+	
 	Short: "Get cost Azure UC config",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

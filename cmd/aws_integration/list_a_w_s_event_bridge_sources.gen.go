@@ -16,6 +16,7 @@ import (
 
 var ListAWSEventBridgeSourcesCmd = &cobra.Command{
 	Use:   "list-a-w-s-event-bridge-sources",
+	
 	Short: "Get all Amazon EventBridge sources",
 	
 	Run: func(cmd *cobra.Command, args []string) {

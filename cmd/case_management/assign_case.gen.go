@@ -16,6 +16,7 @@ import (
 
 var AssignCaseCmd = &cobra.Command{
 	Use:   "assign-case [case_id]",
+	
 	Short: "Assign case",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

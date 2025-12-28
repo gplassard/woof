@@ -16,6 +16,7 @@ import (
 
 var ListAwsOnDemandTasksCmd = &cobra.Command{
 	Use:   "list-aws-on-demand-tasks",
+	
 	Short: "List AWS on demand tasks",
 	
 	Run: func(cmd *cobra.Command, args []string) {

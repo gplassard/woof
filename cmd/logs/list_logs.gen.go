@@ -16,6 +16,7 @@ import (
 
 var ListLogsCmd = &cobra.Command{
 	Use:   "list-logs",
+	Aliases: []string{ "list", },
 	Short: "Search logs (POST)",
 	
 	Run: func(cmd *cobra.Command, args []string) {

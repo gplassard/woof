@@ -16,6 +16,7 @@ import (
 
 var GetTeamLinksCmd = &cobra.Command{
 	Use:   "get-team-links [team_id]",
+	Aliases: []string{ "get-links", },
 	Short: "Get links for a team",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

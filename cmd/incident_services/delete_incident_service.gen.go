@@ -16,6 +16,7 @@ import (
 
 var DeleteIncidentServiceCmd = &cobra.Command{
 	Use:   "delete-incident-service [service_id]",
+	Aliases: []string{ "delete", },
 	Short: "Delete an existing incident service",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

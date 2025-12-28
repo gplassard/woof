@@ -16,6 +16,7 @@ import (
 
 var DeleteBudgetCmd = &cobra.Command{
 	Use:   "delete-budget [budget_id]",
+	
 	Short: "Delete a budget",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

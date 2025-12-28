@@ -16,6 +16,7 @@ import (
 
 var DeleteIncidentTodoCmd = &cobra.Command{
 	Use:   "delete-incident-todo [incident_id] [todo_id]",
+	Aliases: []string{ "delete-todo", },
 	Short: "Delete an incident todo",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {

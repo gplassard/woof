@@ -16,6 +16,7 @@ import (
 
 var CreateReferenceTableUploadCmd = &cobra.Command{
 	Use:   "create-reference-table-upload",
+	Aliases: []string{ "create-upload", },
 	Short: "Create reference table upload",
 	
 	Run: func(cmd *cobra.Command, args []string) {

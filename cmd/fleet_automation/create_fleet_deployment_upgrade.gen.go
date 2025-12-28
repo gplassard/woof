@@ -16,6 +16,7 @@ import (
 
 var CreateFleetDeploymentUpgradeCmd = &cobra.Command{
 	Use:   "create-fleet-deployment-upgrade",
+	
 	Short: "Upgrade hosts",
 	
 	Run: func(cmd *cobra.Command, args []string) {

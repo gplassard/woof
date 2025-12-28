@@ -16,6 +16,7 @@ import (
 
 var GetTeamSyncCmd = &cobra.Command{
 	Use:   "get-team-sync [filter[source]]",
+	Aliases: []string{ "get-sync", },
 	Short: "Get team sync configurations",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

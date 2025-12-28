@@ -16,6 +16,7 @@ import (
 
 var DeleteOnCallEscalationPolicyCmd = &cobra.Command{
 	Use:   "delete-on-call-escalation-policy [policy_id]",
+	Aliases: []string{ "delete-escalation-policy", },
 	Short: "Delete On-Call escalation policy",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

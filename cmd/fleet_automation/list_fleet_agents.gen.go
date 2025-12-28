@@ -16,6 +16,7 @@ import (
 
 var ListFleetAgentsCmd = &cobra.Command{
 	Use:   "list-fleet-agents",
+	
 	Short: "List all Datadog Agents",
 	
 	Run: func(cmd *cobra.Command, args []string) {

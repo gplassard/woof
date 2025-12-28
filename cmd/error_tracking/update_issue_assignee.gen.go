@@ -16,6 +16,7 @@ import (
 
 var UpdateIssueAssigneeCmd = &cobra.Command{
 	Use:   "update-issue-assignee [issue_id]",
+	
 	Short: "Update the assignee of an issue",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

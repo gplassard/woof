@@ -16,6 +16,7 @@ import (
 
 var CreateConfluentAccountCmd = &cobra.Command{
 	Use:   "create-confluent-account",
+	
 	Short: "Add Confluent account",
 	
 	Run: func(cmd *cobra.Command, args []string) {

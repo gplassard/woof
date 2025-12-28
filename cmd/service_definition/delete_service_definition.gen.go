@@ -16,6 +16,7 @@ import (
 
 var DeleteServiceDefinitionCmd = &cobra.Command{
 	Use:   "delete-service-definition [service_name]",
+	Aliases: []string{ "delete", },
 	Short: "Delete a single service definition",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

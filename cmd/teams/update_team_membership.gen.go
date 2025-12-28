@@ -16,6 +16,7 @@ import (
 
 var UpdateTeamMembershipCmd = &cobra.Command{
 	Use:   "update-team-membership [team_id] [user_id]",
+	Aliases: []string{ "update-membership", },
 	Short: "Update a user's membership attributes on a team",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {

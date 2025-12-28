@@ -16,6 +16,7 @@ import (
 
 var CreateConfluentResourceCmd = &cobra.Command{
 	Use:   "create-confluent-resource [account_id]",
+	
 	Short: "Add resource to Confluent account",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

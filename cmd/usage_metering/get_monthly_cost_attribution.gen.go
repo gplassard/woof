@@ -16,6 +16,7 @@ import (
 
 var GetMonthlyCostAttributionCmd = &cobra.Command{
 	Use:   "get-monthly-cost-attribution [start_month] [fields]",
+	
 	Short: "Get Monthly Cost Attribution",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {

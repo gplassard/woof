@@ -16,6 +16,7 @@ import (
 
 var GetSuppressionsAffectingFutureRuleCmd = &cobra.Command{
 	Use:   "get-suppressions-affecting-future-rule",
+	
 	Short: "Get suppressions affecting future rule",
 	
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var CreateTeamConnectionsCmd = &cobra.Command{
 	Use:   "create-team-connections",
+	Aliases: []string{ "create-connections", },
 	Short: "Create team connections",
 	
 	Run: func(cmd *cobra.Command, args []string) {

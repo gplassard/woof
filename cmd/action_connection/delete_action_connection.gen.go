@@ -16,6 +16,7 @@ import (
 
 var DeleteActionConnectionCmd = &cobra.Command{
 	Use:   "delete-action-connection [connection_id]",
+	Aliases: []string{ "delete", },
 	Short: "Delete an existing Action Connection",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

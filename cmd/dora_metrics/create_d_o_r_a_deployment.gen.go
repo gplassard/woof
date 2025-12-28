@@ -16,6 +16,7 @@ import (
 
 var CreateDORADeploymentCmd = &cobra.Command{
 	Use:   "create-d-o-r-a-deployment",
+	
 	Short: "Send a deployment event",
 	
 	Run: func(cmd *cobra.Command, args []string) {

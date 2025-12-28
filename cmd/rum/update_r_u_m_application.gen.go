@@ -16,6 +16,7 @@ import (
 
 var UpdateRUMApplicationCmd = &cobra.Command{
 	Use:   "update-r-u-m-application [id]",
+	
 	Short: "Update a RUM application",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

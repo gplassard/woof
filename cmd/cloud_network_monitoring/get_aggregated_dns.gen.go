@@ -16,6 +16,7 @@ import (
 
 var GetAggregatedDnsCmd = &cobra.Command{
 	Use:   "get-aggregated-dns",
+	
 	Short: "Get all aggregated DNS traffic",
 	
 	Run: func(cmd *cobra.Command, args []string) {

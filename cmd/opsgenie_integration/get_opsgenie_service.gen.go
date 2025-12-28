@@ -16,6 +16,7 @@ import (
 
 var GetOpsgenieServiceCmd = &cobra.Command{
 	Use:   "get-opsgenie-service [integration_service_id]",
+	
 	Short: "Get a single service object",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

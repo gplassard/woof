@@ -16,6 +16,7 @@ import (
 
 var ListAWSAccountsCmd = &cobra.Command{
 	Use:   "list-a-w-s-accounts",
+	
 	Short: "List all AWS integrations",
 	
 	Run: func(cmd *cobra.Command, args []string) {

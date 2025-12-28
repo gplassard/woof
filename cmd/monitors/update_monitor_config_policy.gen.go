@@ -16,6 +16,7 @@ import (
 
 var UpdateMonitorConfigPolicyCmd = &cobra.Command{
 	Use:   "update-monitor-config-policy [policy_id]",
+	Aliases: []string{ "update-config-policy", },
 	Short: "Edit a monitor configuration policy",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var GetAllCustomAttributeConfigsByCaseTypeCmd = &cobra.Command{
 	Use:   "get-all-custom-attribute-configs-by-case-type [case_type_id]",
+	
 	Short: "Get all custom attributes config of case type",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

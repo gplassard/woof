@@ -16,6 +16,7 @@ import (
 
 var ListCustomCostsFilesCmd = &cobra.Command{
 	Use:   "list-custom-costs-files",
+	
 	Short: "List Custom Costs files",
 	
 	Run: func(cmd *cobra.Command, args []string) {

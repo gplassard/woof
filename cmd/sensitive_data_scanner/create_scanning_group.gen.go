@@ -16,6 +16,7 @@ import (
 
 var CreateScanningGroupCmd = &cobra.Command{
 	Use:   "create-scanning-group",
+	
 	Short: "Create Scanning Group",
 	
 	Run: func(cmd *cobra.Command, args []string) {

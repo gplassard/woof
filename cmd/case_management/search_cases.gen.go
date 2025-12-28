@@ -16,6 +16,7 @@ import (
 
 var SearchCasesCmd = &cobra.Command{
 	Use:   "search-cases",
+	
 	Short: "Search cases",
 	
 	Run: func(cmd *cobra.Command, args []string) {

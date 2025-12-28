@@ -16,6 +16,7 @@ import (
 
 var CreateCaseTypeCmd = &cobra.Command{
 	Use:   "create-case-type",
+	
 	Short: "Create a case type",
 	
 	Run: func(cmd *cobra.Command, args []string) {

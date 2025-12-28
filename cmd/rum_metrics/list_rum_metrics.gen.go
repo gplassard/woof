@@ -16,6 +16,7 @@ import (
 
 var ListRumMetricsCmd = &cobra.Command{
 	Use:   "list-rum-metrics",
+	Aliases: []string{ "list", },
 	Short: "Get all rum-based metrics",
 	
 	Run: func(cmd *cobra.Command, args []string) {

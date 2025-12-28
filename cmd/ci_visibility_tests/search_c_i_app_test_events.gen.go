@@ -16,6 +16,7 @@ import (
 
 var SearchCIAppTestEventsCmd = &cobra.Command{
 	Use:   "search-c-i-app-test-events",
+	
 	Short: "Search tests events",
 	
 	Run: func(cmd *cobra.Command, args []string) {

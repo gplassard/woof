@@ -16,6 +16,7 @@ import (
 
 var CreateAuthNMappingCmd = &cobra.Command{
 	Use:   "create-auth-n-mapping",
+	
 	Short: "Create an AuthN Mapping",
 	
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var GetOnCallTeamRoutingRulesCmd = &cobra.Command{
 	Use:   "get-on-call-team-routing-rules [team_id]",
+	Aliases: []string{ "get-team-routing-rules", },
 	Short: "Get On-Call team routing rules",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

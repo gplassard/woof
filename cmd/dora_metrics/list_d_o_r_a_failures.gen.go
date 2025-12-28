@@ -16,6 +16,7 @@ import (
 
 var ListDORAFailuresCmd = &cobra.Command{
 	Use:   "list-d-o-r-a-failures",
+	
 	Short: "Get a list of failure events",
 	
 	Run: func(cmd *cobra.Command, args []string) {

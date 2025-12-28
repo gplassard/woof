@@ -16,6 +16,7 @@ import (
 
 var ListProcessesCmd = &cobra.Command{
 	Use:   "list-processes",
+	Aliases: []string{ "list", },
 	Short: "Get all processes",
 	
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var CreateOpenAPICmd = &cobra.Command{
 	Use:   "create-open-a-p-i",
+	
 	Short: "Create a new API",
 	
 	Run: func(cmd *cobra.Command, args []string) {

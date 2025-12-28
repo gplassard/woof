@@ -16,6 +16,7 @@ import (
 
 var CancelFleetDeploymentCmd = &cobra.Command{
 	Use:   "cancel-fleet-deployment [deployment_id]",
+	
 	Short: "Cancel a deployment",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

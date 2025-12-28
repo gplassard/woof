@@ -16,6 +16,7 @@ import (
 
 var CreateSecurityMonitoringSuppressionCmd = &cobra.Command{
 	Use:   "create-security-monitoring-suppression",
+	Aliases: []string{ "create-suppression", },
 	Short: "Create a suppression rule",
 	
 	Run: func(cmd *cobra.Command, args []string) {

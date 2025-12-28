@@ -16,6 +16,7 @@ import (
 
 var GetCostAWSCURConfigCmd = &cobra.Command{
 	Use:   "get-cost-a-w-s-c-u-r-config [cloud_account_id]",
+	
 	Short: "Get cost AWS CUR config",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

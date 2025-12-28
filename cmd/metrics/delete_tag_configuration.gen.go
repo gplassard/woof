@@ -16,6 +16,7 @@ import (
 
 var DeleteTagConfigurationCmd = &cobra.Command{
 	Use:   "delete-tag-configuration [metric_name]",
+	
 	Short: "Delete a tag configuration",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

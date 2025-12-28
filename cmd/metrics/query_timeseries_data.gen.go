@@ -16,6 +16,7 @@ import (
 
 var QueryTimeseriesDataCmd = &cobra.Command{
 	Use:   "query-timeseries-data",
+	
 	Short: "Query timeseries data across multiple products",
 	
 	Run: func(cmd *cobra.Command, args []string) {

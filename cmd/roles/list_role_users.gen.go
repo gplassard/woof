@@ -16,6 +16,7 @@ import (
 
 var ListRoleUsersCmd = &cobra.Command{
 	Use:   "list-role-users [role_id]",
+	Aliases: []string{ "list-users", },
 	Short: "Get all users of a role",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

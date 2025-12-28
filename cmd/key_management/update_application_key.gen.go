@@ -16,6 +16,7 @@ import (
 
 var UpdateApplicationKeyCmd = &cobra.Command{
 	Use:   "update-application-key [app_key_id]",
+	
 	Short: "Edit an application key",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

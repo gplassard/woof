@@ -16,6 +16,7 @@ import (
 
 var UpdateTagConfigurationCmd = &cobra.Command{
 	Use:   "update-tag-configuration [metric_name]",
+	
 	Short: "Update a tag configuration",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

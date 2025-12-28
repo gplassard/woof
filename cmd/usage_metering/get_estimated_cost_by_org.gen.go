@@ -16,6 +16,7 @@ import (
 
 var GetEstimatedCostByOrgCmd = &cobra.Command{
 	Use:   "get-estimated-cost-by-org",
+	
 	Short: "Get estimated cost across your account",
 	
 	Run: func(cmd *cobra.Command, args []string) {

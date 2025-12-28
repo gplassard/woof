@@ -16,6 +16,7 @@ import (
 
 var UpdateRumMetricCmd = &cobra.Command{
 	Use:   "update-rum-metric [metric_id]",
+	Aliases: []string{ "update", },
 	Short: "Update a rum-based metric",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

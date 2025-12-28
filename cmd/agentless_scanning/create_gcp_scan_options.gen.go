@@ -16,6 +16,7 @@ import (
 
 var CreateGcpScanOptionsCmd = &cobra.Command{
 	Use:   "create-gcp-scan-options",
+	
 	Short: "Create GCP scan options",
 	
 	Run: func(cmd *cobra.Command, args []string) {

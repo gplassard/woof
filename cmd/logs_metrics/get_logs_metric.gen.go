@@ -16,6 +16,7 @@ import (
 
 var GetLogsMetricCmd = &cobra.Command{
 	Use:   "get-logs-metric [metric_id]",
+	Aliases: []string{ "get", },
 	Short: "Get a log-based metric",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

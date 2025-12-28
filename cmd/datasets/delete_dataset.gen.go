@@ -16,6 +16,7 @@ import (
 
 var DeleteDatasetCmd = &cobra.Command{
 	Use:   "delete-dataset [dataset_id]",
+	Aliases: []string{ "delete", },
 	Short: "Delete a dataset",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

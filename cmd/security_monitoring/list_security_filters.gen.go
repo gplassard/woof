@@ -16,6 +16,7 @@ import (
 
 var ListSecurityFiltersCmd = &cobra.Command{
 	Use:   "list-security-filters",
+	
 	Short: "Get all security filters",
 	
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var QueryScalarDataCmd = &cobra.Command{
 	Use:   "query-scalar-data",
+	
 	Short: "Query scalar data across multiple products",
 	
 	Run: func(cmd *cobra.Command, args []string) {

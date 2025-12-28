@@ -16,6 +16,7 @@ import (
 
 var PatchDomainAllowlistCmd = &cobra.Command{
 	Use:   "patch-domain-allowlist",
+	Aliases: []string{ "patch", },
 	Short: "Sets Domain Allowlist",
 	
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var DeleteApmRetentionFilterCmd = &cobra.Command{
 	Use:   "delete-apm-retention-filter [filter_id]",
+	Aliases: []string{ "delete", },
 	Short: "Delete a retention filter",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

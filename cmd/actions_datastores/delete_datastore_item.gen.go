@@ -16,6 +16,7 @@ import (
 
 var DeleteDatastoreItemCmd = &cobra.Command{
 	Use:   "delete-datastore-item [datastore_id]",
+	
 	Short: "Delete datastore item",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

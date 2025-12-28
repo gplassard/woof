@@ -16,6 +16,7 @@ import (
 
 var ListSpansMetricsCmd = &cobra.Command{
 	Use:   "list-spans-metrics",
+	Aliases: []string{ "list", },
 	Short: "Get all span-based metrics",
 	
 	Run: func(cmd *cobra.Command, args []string) {

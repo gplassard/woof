@@ -16,6 +16,7 @@ import (
 
 var CreateLogsArchiveCmd = &cobra.Command{
 	Use:   "create-logs-archive",
+	Aliases: []string{ "create", },
 	Short: "Create an archive",
 	
 	Run: func(cmd *cobra.Command, args []string) {

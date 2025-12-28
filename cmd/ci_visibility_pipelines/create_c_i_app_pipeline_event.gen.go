@@ -16,6 +16,7 @@ import (
 
 var CreateCIAppPipelineEventCmd = &cobra.Command{
 	Use:   "create-c-i-app-pipeline-event",
+	
 	Short: "Send pipeline event",
 	
 	Run: func(cmd *cobra.Command, args []string) {

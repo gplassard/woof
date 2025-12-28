@@ -16,6 +16,7 @@ import (
 
 var PatchSignalNotificationRuleCmd = &cobra.Command{
 	Use:   "patch-signal-notification-rule [id]",
+	
 	Short: "Patch a signal-based notification rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

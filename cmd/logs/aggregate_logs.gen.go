@@ -16,6 +16,7 @@ import (
 
 var AggregateLogsCmd = &cobra.Command{
 	Use:   "aggregate-logs",
+	Aliases: []string{ "aggregate", },
 	Short: "Aggregate events",
 	
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var AddReadRoleToArchiveCmd = &cobra.Command{
 	Use:   "add-read-role-to-archive [archive_id]",
+	
 	Short: "Grant role to an archive",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

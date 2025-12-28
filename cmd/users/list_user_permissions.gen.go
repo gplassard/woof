@@ -16,6 +16,7 @@ import (
 
 var ListUserPermissionsCmd = &cobra.Command{
 	Use:   "list-user-permissions [user_id]",
+	Aliases: []string{ "list-permissions", },
 	Short: "Get a user permissions",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var GetTagPipelinesRulesetCmd = &cobra.Command{
 	Use:   "get-tag-pipelines-ruleset [ruleset_id]",
+	
 	Short: "Get a tag pipeline ruleset",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

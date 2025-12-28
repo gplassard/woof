@@ -16,6 +16,7 @@ import (
 
 var GetOnCallEscalationPolicyCmd = &cobra.Command{
 	Use:   "get-on-call-escalation-policy [policy_id]",
+	Aliases: []string{ "get-escalation-policy", },
 	Short: "Get On-Call escalation policy",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var DeleteLogsMetricCmd = &cobra.Command{
 	Use:   "delete-logs-metric [metric_id]",
+	Aliases: []string{ "delete", },
 	Short: "Delete a log-based metric",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

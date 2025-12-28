@@ -16,6 +16,7 @@ import (
 
 var CreateSecurityMonitoringRuleCmd = &cobra.Command{
 	Use:   "create-security-monitoring-rule",
+	Aliases: []string{ "create-rule", },
 	Short: "Create a detection rule",
 	
 	Run: func(cmd *cobra.Command, args []string) {

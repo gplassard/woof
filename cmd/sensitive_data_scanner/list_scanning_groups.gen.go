@@ -16,6 +16,7 @@ import (
 
 var ListScanningGroupsCmd = &cobra.Command{
 	Use:   "list-scanning-groups",
+	
 	Short: "List Scanning Groups",
 	
 	Run: func(cmd *cobra.Command, args []string) {

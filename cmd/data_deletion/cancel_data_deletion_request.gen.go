@@ -16,6 +16,7 @@ import (
 
 var CancelDataDeletionRequestCmd = &cobra.Command{
 	Use:   "cancel-data-deletion-request [id]",
+	Aliases: []string{ "cancel-request", },
 	Short: "Cancels a data deletion request",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

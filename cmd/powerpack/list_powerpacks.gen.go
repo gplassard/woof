@@ -16,6 +16,7 @@ import (
 
 var ListPowerpacksCmd = &cobra.Command{
 	Use:   "list-powerpacks",
+	Aliases: []string{ "list-s", },
 	Short: "Get all powerpacks",
 	
 	Run: func(cmd *cobra.Command, args []string) {

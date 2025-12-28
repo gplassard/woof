@@ -16,6 +16,7 @@ import (
 
 var GetSBOMCmd = &cobra.Command{
 	Use:   "get-s-b-o-m [asset_type] [filter[asset_name]]",
+	
 	Short: "Get SBOM",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {

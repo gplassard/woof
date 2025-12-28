@@ -16,6 +16,7 @@ import (
 
 var CreateCloudWorkloadSecurityAgentRuleCmd = &cobra.Command{
 	Use:   "create-cloud-workload-security-agent-rule",
+	
 	Short: "Create a Workload Protection agent rule (US1-FED)",
 	
 	Run: func(cmd *cobra.Command, args []string) {

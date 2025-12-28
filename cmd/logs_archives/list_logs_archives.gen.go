@@ -16,6 +16,7 @@ import (
 
 var ListLogsArchivesCmd = &cobra.Command{
 	Use:   "list-logs-archives",
+	Aliases: []string{ "list", },
 	Short: "Get all archives",
 	
 	Run: func(cmd *cobra.Command, args []string) {

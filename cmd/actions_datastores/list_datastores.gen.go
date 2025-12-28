@@ -16,6 +16,7 @@ import (
 
 var ListDatastoresCmd = &cobra.Command{
 	Use:   "list-datastores",
+	
 	Short: "List datastores",
 	
 	Run: func(cmd *cobra.Command, args []string) {

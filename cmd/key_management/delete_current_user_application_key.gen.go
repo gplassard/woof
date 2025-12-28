@@ -16,6 +16,7 @@ import (
 
 var DeleteCurrentUserApplicationKeyCmd = &cobra.Command{
 	Use:   "delete-current-user-application-key [app_key_id]",
+	
 	Short: "Delete an application key owned by current user",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

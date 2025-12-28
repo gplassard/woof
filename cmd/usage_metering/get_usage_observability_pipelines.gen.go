@@ -16,6 +16,7 @@ import (
 
 var GetUsageObservabilityPipelinesCmd = &cobra.Command{
 	Use:   "get-usage-observability-pipelines [start_hr]",
+	
 	Short: "Get hourly usage for observability pipelines",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

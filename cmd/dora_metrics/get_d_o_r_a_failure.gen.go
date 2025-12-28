@@ -16,6 +16,7 @@ import (
 
 var GetDORAFailureCmd = &cobra.Command{
 	Use:   "get-d-o-r-a-failure [failure_id]",
+	
 	Short: "Get a failure event",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

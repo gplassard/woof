@@ -16,6 +16,7 @@ import (
 
 var GetHistoricalCostByOrgCmd = &cobra.Command{
 	Use:   "get-historical-cost-by-org [start_month]",
+	
 	Short: "Get historical cost across your account",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var UpdateSpansMetricCmd = &cobra.Command{
 	Use:   "update-spans-metric [metric_id]",
+	Aliases: []string{ "update", },
 	Short: "Update a span-based metric",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

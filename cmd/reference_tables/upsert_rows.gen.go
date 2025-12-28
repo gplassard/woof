@@ -16,6 +16,7 @@ import (
 
 var UpsertRowsCmd = &cobra.Command{
 	Use:   "upsert-rows [id]",
+	
 	Short: "Upsert rows",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

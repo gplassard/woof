@@ -16,6 +16,7 @@ import (
 
 var CreateSignalNotificationRuleCmd = &cobra.Command{
 	Use:   "create-signal-notification-rule",
+	
 	Short: "Create a new signal-based notification rule",
 	
 	Run: func(cmd *cobra.Command, args []string) {

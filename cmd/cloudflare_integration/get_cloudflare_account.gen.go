@@ -16,6 +16,7 @@ import (
 
 var GetCloudflareAccountCmd = &cobra.Command{
 	Use:   "get-cloudflare-account [account_id]",
+	
 	Short: "Get Cloudflare account",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

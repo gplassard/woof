@@ -16,6 +16,7 @@ import (
 
 var UpdateRestrictionPolicyCmd = &cobra.Command{
 	Use:   "update-restriction-policy [resource_id]",
+	
 	Short: "Update a restriction policy",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

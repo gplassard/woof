@@ -16,6 +16,7 @@ import (
 
 var GetUserCmd = &cobra.Command{
 	Use:   "get-user [user_id]",
+	Aliases: []string{ "get", },
 	Short: "Get user details",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

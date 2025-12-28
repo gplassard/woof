@@ -16,6 +16,7 @@ import (
 
 var GetLogsArchiveOrderCmd = &cobra.Command{
 	Use:   "get-logs-archive-order",
+	Aliases: []string{ "get-order", },
 	Short: "Get archive order",
 	
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var ListFleetDeploymentsCmd = &cobra.Command{
 	Use:   "list-fleet-deployments",
+	
 	Short: "List all deployments",
 	
 	Run: func(cmd *cobra.Command, args []string) {

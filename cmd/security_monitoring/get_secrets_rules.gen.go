@@ -16,6 +16,7 @@ import (
 
 var GetSecretsRulesCmd = &cobra.Command{
 	Use:   "get-secrets-rules",
+	
 	Short: "Returns a list of Secrets rules",
 	
 	Run: func(cmd *cobra.Command, args []string) {

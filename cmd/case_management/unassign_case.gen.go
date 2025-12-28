@@ -16,6 +16,7 @@ import (
 
 var UnassignCaseCmd = &cobra.Command{
 	Use:   "unassign-case [case_id]",
+	
 	Short: "Unassign case",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

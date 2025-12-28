@@ -16,6 +16,7 @@ import (
 
 var ListAllCSMAgentsCmd = &cobra.Command{
 	Use:   "list-all-c-s-m-agents",
+	
 	Short: "Get all CSM Agents",
 	
 	Run: func(cmd *cobra.Command, args []string) {

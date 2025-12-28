@@ -16,6 +16,7 @@ import (
 
 var GetAWSAccountCmd = &cobra.Command{
 	Use:   "get-a-w-s-account [aws_account_config_id]",
+	
 	Short: "Get an AWS integration by config ID",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

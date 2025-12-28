@@ -16,6 +16,7 @@ import (
 
 var GetTenantBasedHandleCmd = &cobra.Command{
 	Use:   "get-tenant-based-handle [handle_id]",
+	
 	Short: "Get tenant-based handle information",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

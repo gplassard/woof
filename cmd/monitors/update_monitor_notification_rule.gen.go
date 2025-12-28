@@ -16,6 +16,7 @@ import (
 
 var UpdateMonitorNotificationRuleCmd = &cobra.Command{
 	Use:   "update-monitor-notification-rule [rule_id]",
+	Aliases: []string{ "update-notification-rule", },
 	Short: "Update a monitor notification rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

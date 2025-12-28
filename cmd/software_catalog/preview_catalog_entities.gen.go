@@ -16,6 +16,7 @@ import (
 
 var PreviewCatalogEntitiesCmd = &cobra.Command{
 	Use:   "preview-catalog-entities",
+	
 	Short: "Preview catalog entities",
 	
 	Run: func(cmd *cobra.Command, args []string) {

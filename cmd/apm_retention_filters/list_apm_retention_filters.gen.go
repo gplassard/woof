@@ -16,6 +16,7 @@ import (
 
 var ListApmRetentionFiltersCmd = &cobra.Command{
 	Use:   "list-apm-retention-filters",
+	Aliases: []string{ "list", },
 	Short: "List all APM retention filters",
 	
 	Run: func(cmd *cobra.Command, args []string) {

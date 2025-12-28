@@ -16,6 +16,7 @@ import (
 
 var AttachCaseCmd = &cobra.Command{
 	Use:   "attach-case [case_id]",
+	
 	Short: "Attach security findings to a case",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

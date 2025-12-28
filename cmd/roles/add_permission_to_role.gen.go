@@ -16,6 +16,7 @@ import (
 
 var AddPermissionToRoleCmd = &cobra.Command{
 	Use:   "add-permission-to-role [role_id]",
+	Aliases: []string{ "add-permission-to", },
 	Short: "Grant permission to a role",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

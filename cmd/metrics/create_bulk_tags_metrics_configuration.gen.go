@@ -16,6 +16,7 @@ import (
 
 var CreateBulkTagsMetricsConfigurationCmd = &cobra.Command{
 	Use:   "create-bulk-tags-metrics-configuration",
+	Aliases: []string{ "create-bulk-tags-configuration", },
 	Short: "Configure tags for multiple metrics",
 	
 	Run: func(cmd *cobra.Command, args []string) {

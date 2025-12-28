@@ -16,6 +16,7 @@ import (
 
 var GetUsageLambdaTracedInvocationsCmd = &cobra.Command{
 	Use:   "get-usage-lambda-traced-invocations [start_hr]",
+	
 	Short: "Get hourly usage for Lambda traced invocations",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

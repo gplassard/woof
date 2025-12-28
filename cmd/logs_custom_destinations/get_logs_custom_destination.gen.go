@@ -16,6 +16,7 @@ import (
 
 var GetLogsCustomDestinationCmd = &cobra.Command{
 	Use:   "get-logs-custom-destination [custom_destination_id]",
+	Aliases: []string{ "get", },
 	Short: "Get a custom destination",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

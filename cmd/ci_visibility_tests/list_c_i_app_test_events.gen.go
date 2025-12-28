@@ -16,6 +16,7 @@ import (
 
 var ListCIAppTestEventsCmd = &cobra.Command{
 	Use:   "list-c-i-app-test-events",
+	
 	Short: "Get a list of tests events",
 	
 	Run: func(cmd *cobra.Command, args []string) {

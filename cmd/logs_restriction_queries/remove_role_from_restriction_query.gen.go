@@ -16,6 +16,7 @@ import (
 
 var RemoveRoleFromRestrictionQueryCmd = &cobra.Command{
 	Use:   "remove-role-from-restriction-query [restriction_query_id]",
+	
 	Short: "Revoke role from a restriction query",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

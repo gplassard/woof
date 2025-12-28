@@ -16,6 +16,7 @@ import (
 
 var CreateSecurityFilterCmd = &cobra.Command{
 	Use:   "create-security-filter",
+	
 	Short: "Create a security filter",
 	
 	Run: func(cmd *cobra.Command, args []string) {

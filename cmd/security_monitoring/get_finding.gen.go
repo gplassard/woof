@@ -16,6 +16,7 @@ import (
 
 var GetFindingCmd = &cobra.Command{
 	Use:   "get-finding [finding_id]",
+	
 	Short: "Get a finding",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

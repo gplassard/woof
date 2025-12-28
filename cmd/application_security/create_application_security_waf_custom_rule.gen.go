@@ -16,6 +16,7 @@ import (
 
 var CreateApplicationSecurityWafCustomRuleCmd = &cobra.Command{
 	Use:   "create-application-security-waf-custom-rule",
+	Aliases: []string{ "create-waf-custom-rule", },
 	Short: "Create a WAF custom rule",
 	
 	Run: func(cmd *cobra.Command, args []string) {

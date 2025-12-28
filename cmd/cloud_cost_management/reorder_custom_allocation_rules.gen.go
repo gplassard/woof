@@ -16,6 +16,7 @@ import (
 
 var ReorderCustomAllocationRulesCmd = &cobra.Command{
 	Use:   "reorder-custom-allocation-rules",
+	
 	Short: "Reorder custom allocation rules",
 	
 	Run: func(cmd *cobra.Command, args []string) {

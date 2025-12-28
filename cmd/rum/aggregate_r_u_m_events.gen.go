@@ -16,6 +16,7 @@ import (
 
 var AggregateRUMEventsCmd = &cobra.Command{
 	Use:   "aggregate-r-u-m-events",
+	
 	Short: "Aggregate RUM events",
 	
 	Run: func(cmd *cobra.Command, args []string) {

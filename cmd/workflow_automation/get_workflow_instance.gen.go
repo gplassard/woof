@@ -16,6 +16,7 @@ import (
 
 var GetWorkflowInstanceCmd = &cobra.Command{
 	Use:   "get-workflow-instance [workflow_id] [instance_id]",
+	
 	Short: "Get a workflow instance",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {

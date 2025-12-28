@@ -16,6 +16,7 @@ import (
 
 var CreateCostAzureUCConfigsCmd = &cobra.Command{
 	Use:   "create-cost-azure-u-c-configs",
+	
 	Short: "Create Cloud Cost Management Azure configs",
 	
 	Run: func(cmd *cobra.Command, args []string) {

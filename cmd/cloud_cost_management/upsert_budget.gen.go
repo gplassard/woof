@@ -16,6 +16,7 @@ import (
 
 var UpsertBudgetCmd = &cobra.Command{
 	Use:   "upsert-budget",
+	
 	Short: "Create or update a budget",
 	
 	Run: func(cmd *cobra.Command, args []string) {

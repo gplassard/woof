@@ -16,6 +16,7 @@ import (
 
 var DeleteTeamCmd = &cobra.Command{
 	Use:   "delete-team [team_id]",
+	Aliases: []string{ "delete", },
 	Short: "Remove a team",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

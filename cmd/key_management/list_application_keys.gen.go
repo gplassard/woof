@@ -16,6 +16,7 @@ import (
 
 var ListApplicationKeysCmd = &cobra.Command{
 	Use:   "list-application-keys",
+	
 	Short: "Get all application keys",
 	
 	Run: func(cmd *cobra.Command, args []string) {

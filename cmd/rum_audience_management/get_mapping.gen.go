@@ -16,6 +16,7 @@ import (
 
 var GetMappingCmd = &cobra.Command{
 	Use:   "get-mapping [entity]",
+	
 	Short: "Get mapping",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

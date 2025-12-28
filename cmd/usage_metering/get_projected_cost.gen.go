@@ -16,6 +16,7 @@ import (
 
 var GetProjectedCostCmd = &cobra.Command{
 	Use:   "get-projected-cost",
+	
 	Short: "Get projected cost across your account",
 	
 	Run: func(cmd *cobra.Command, args []string) {

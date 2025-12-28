@@ -16,6 +16,7 @@ import (
 
 var CreateOnCallScheduleCmd = &cobra.Command{
 	Use:   "create-on-call-schedule",
+	Aliases: []string{ "create-schedule", },
 	Short: "Create On-Call schedule",
 	
 	Run: func(cmd *cobra.Command, args []string) {

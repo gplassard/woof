@@ -16,6 +16,7 @@ import (
 
 var ListAWSNamespacesCmd = &cobra.Command{
 	Use:   "list-a-w-s-namespaces",
+	
 	Short: "List available namespaces",
 	
 	Run: func(cmd *cobra.Command, args []string) {

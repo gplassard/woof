@@ -16,6 +16,7 @@ import (
 
 var GetCurrentUserApplicationKeyCmd = &cobra.Command{
 	Use:   "get-current-user-application-key [app_key_id]",
+	
 	Short: "Get one application key owned by current user",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

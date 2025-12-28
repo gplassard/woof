@@ -16,6 +16,7 @@ import (
 
 var ListAWSLogsServicesCmd = &cobra.Command{
 	Use:   "list-a-w-s-logs-services",
+	
 	Short: "Get list of AWS log ready services",
 	
 	Run: func(cmd *cobra.Command, args []string) {

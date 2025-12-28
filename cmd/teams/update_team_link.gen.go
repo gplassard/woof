@@ -16,6 +16,7 @@ import (
 
 var UpdateTeamLinkCmd = &cobra.Command{
 	Use:   "update-team-link [team_id] [link_id]",
+	Aliases: []string{ "update-link", },
 	Short: "Update a team link",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {

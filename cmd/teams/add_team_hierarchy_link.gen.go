@@ -16,6 +16,7 @@ import (
 
 var AddTeamHierarchyLinkCmd = &cobra.Command{
 	Use:   "add-team-hierarchy-link",
+	Aliases: []string{ "add-hierarchy-link", },
 	Short: "Create a team hierarchy link",
 	
 	Run: func(cmd *cobra.Command, args []string) {

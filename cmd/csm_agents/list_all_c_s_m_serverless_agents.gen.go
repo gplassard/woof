@@ -16,6 +16,7 @@ import (
 
 var ListAllCSMServerlessAgentsCmd = &cobra.Command{
 	Use:   "list-all-c-s-m-serverless-agents",
+	
 	Short: "Get all CSM Serverless Agents",
 	
 	Run: func(cmd *cobra.Command, args []string) {

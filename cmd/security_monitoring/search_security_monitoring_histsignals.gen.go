@@ -16,6 +16,7 @@ import (
 
 var SearchSecurityMonitoringHistsignalsCmd = &cobra.Command{
 	Use:   "search-security-monitoring-histsignals",
+	Aliases: []string{ "search-histsignals", },
 	Short: "Search hist signals",
 	
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var GetTeamMembershipsCmd = &cobra.Command{
 	Use:   "get-team-memberships [team_id]",
+	Aliases: []string{ "get-memberships", },
 	Short: "Get team memberships",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

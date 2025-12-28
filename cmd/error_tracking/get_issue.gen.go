@@ -16,6 +16,7 @@ import (
 
 var GetIssueCmd = &cobra.Command{
 	Use:   "get-issue [issue_id]",
+	
 	Short: "Get the details of an error tracking issue",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

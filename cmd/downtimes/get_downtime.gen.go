@@ -16,6 +16,7 @@ import (
 
 var GetDowntimeCmd = &cobra.Command{
 	Use:   "get-downtime [downtime_id]",
+	Aliases: []string{ "get", },
 	Short: "Get a downtime",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

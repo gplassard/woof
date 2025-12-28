@@ -16,6 +16,7 @@ import (
 
 var GetCaseCmd = &cobra.Command{
 	Use:   "get-case [case_id]",
+	
 	Short: "Get the details of a case",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

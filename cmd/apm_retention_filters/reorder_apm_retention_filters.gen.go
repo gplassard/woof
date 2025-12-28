@@ -16,6 +16,7 @@ import (
 
 var ReorderApmRetentionFiltersCmd = &cobra.Command{
 	Use:   "reorder-apm-retention-filters",
+	Aliases: []string{ "reorder", },
 	Short: "Re-order retention filters",
 	
 	Run: func(cmd *cobra.Command, args []string) {

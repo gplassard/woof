@@ -16,6 +16,7 @@ import (
 
 var CreateRUMApplicationCmd = &cobra.Command{
 	Use:   "create-r-u-m-application",
+	
 	Short: "Create a new RUM application",
 	
 	Run: func(cmd *cobra.Command, args []string) {

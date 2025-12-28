@@ -16,6 +16,7 @@ import (
 
 var CreateTeamMembershipCmd = &cobra.Command{
 	Use:   "create-team-membership [team_id]",
+	Aliases: []string{ "create-membership", },
 	Short: "Add a user to a team",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

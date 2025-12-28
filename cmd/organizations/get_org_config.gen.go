@@ -16,6 +16,7 @@ import (
 
 var GetOrgConfigCmd = &cobra.Command{
 	Use:   "get-org-config [org_config_name]",
+	
 	Short: "Get a specific Org Config value",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

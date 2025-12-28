@@ -16,6 +16,7 @@ import (
 
 var UpdateIPAllowlistCmd = &cobra.Command{
 	Use:   "update-i-p-allowlist",
+	
 	Short: "Update IP Allowlist",
 	
 	Run: func(cmd *cobra.Command, args []string) {

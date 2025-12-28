@@ -16,6 +16,7 @@ import (
 
 var UpdateIncidentNotificationRuleCmd = &cobra.Command{
 	Use:   "update-incident-notification-rule [id]",
+	Aliases: []string{ "update-notification-rule", },
 	Short: "Update an incident notification rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var DeleteRUMApplicationCmd = &cobra.Command{
 	Use:   "delete-r-u-m-application [id]",
+	
 	Short: "Delete a RUM application",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

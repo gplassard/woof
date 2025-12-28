@@ -16,6 +16,7 @@ import (
 
 var DeleteDeploymentGateCmd = &cobra.Command{
 	Use:   "delete-deployment-gate [id]",
+	Aliases: []string{ "delete", },
 	Short: "Delete deployment gate",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

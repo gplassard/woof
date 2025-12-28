@@ -16,6 +16,7 @@ import (
 
 var ListUserRestrictionQueriesCmd = &cobra.Command{
 	Use:   "list-user-restriction-queries [user_id]",
+	
 	Short: "Get all restriction queries for a given user",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

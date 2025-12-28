@@ -16,6 +16,7 @@ import (
 
 var AddRoleToRestrictionQueryCmd = &cobra.Command{
 	Use:   "add-role-to-restriction-query [restriction_query_id]",
+	
 	Short: "Grant role to a restriction query",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

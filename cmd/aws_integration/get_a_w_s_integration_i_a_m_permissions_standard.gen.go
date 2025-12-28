@@ -16,6 +16,7 @@ import (
 
 var GetAWSIntegrationIAMPermissionsStandardCmd = &cobra.Command{
 	Use:   "get-a-w-s-integration-i-a-m-permissions-standard",
+	
 	Short: "Get AWS integration standard IAM permissions",
 	
 	Run: func(cmd *cobra.Command, args []string) {

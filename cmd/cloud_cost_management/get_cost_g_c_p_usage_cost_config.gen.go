@@ -16,6 +16,7 @@ import (
 
 var GetCostGCPUsageCostConfigCmd = &cobra.Command{
 	Use:   "get-cost-g-c-p-usage-cost-config [cloud_account_id]",
+	
 	Short: "Get Google Cloud Usage Cost config",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

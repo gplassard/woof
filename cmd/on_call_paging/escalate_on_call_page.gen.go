@@ -16,6 +16,7 @@ import (
 
 var EscalateOnCallPageCmd = &cobra.Command{
 	Use:   "escalate-on-call-page [page_id]",
+	
 	Short: "Escalate On-Call Page",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

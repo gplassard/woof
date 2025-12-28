@@ -16,6 +16,7 @@ import (
 
 var ValidateExistingMonitorUserTemplateCmd = &cobra.Command{
 	Use:   "validate-existing-monitor-user-template [template_id]",
+	Aliases: []string{ "validate-existing-user-template", },
 	Short: "Validate an existing monitor user template",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

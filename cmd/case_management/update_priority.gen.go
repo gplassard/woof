@@ -16,6 +16,7 @@ import (
 
 var UpdatePriorityCmd = &cobra.Command{
 	Use:   "update-priority [case_id]",
+	
 	Short: "Update case priority",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

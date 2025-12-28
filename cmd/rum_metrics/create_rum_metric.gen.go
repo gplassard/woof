@@ -16,6 +16,7 @@ import (
 
 var CreateRumMetricCmd = &cobra.Command{
 	Use:   "create-rum-metric",
+	Aliases: []string{ "create", },
 	Short: "Create a rum-based metric",
 	
 	Run: func(cmd *cobra.Command, args []string) {

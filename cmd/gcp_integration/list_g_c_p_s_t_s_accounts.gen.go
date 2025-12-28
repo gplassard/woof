@@ -16,6 +16,7 @@ import (
 
 var ListGCPSTSAccountsCmd = &cobra.Command{
 	Use:   "list-g-c-p-s-t-s-accounts",
+	
 	Short: "List all GCP STS-enabled service accounts",
 	
 	Run: func(cmd *cobra.Command, args []string) {

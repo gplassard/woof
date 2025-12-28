@@ -16,6 +16,7 @@ import (
 
 var CreateRetentionFilterCmd = &cobra.Command{
 	Use:   "create-retention-filter [app_id]",
+	
 	Short: "Create a RUM retention filter",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

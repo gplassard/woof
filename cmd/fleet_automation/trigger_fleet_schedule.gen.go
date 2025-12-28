@@ -16,6 +16,7 @@ import (
 
 var TriggerFleetScheduleCmd = &cobra.Command{
 	Use:   "trigger-fleet-schedule [id]",
+	
 	Short: "Trigger a schedule deployment",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

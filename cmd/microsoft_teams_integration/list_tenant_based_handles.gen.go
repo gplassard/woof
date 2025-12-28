@@ -16,6 +16,7 @@ import (
 
 var ListTenantBasedHandlesCmd = &cobra.Command{
 	Use:   "list-tenant-based-handles",
+	
 	Short: "Get all tenant-based handles",
 	
 	Run: func(cmd *cobra.Command, args []string) {

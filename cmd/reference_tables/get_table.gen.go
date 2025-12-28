@@ -16,6 +16,7 @@ import (
 
 var GetTableCmd = &cobra.Command{
 	Use:   "get-table [id]",
+	
 	Short: "Get table",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

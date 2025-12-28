@@ -16,6 +16,7 @@ import (
 
 var AcknowledgeOnCallPageCmd = &cobra.Command{
 	Use:   "acknowledge-on-call-page [page_id]",
+	
 	Short: "Acknowledge On-Call Page",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

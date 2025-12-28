@@ -16,6 +16,7 @@ import (
 
 var CreateOnCallPageCmd = &cobra.Command{
 	Use:   "create-on-call-page",
+	
 	Short: "Create On-Call Page",
 	
 	Run: func(cmd *cobra.Command, args []string) {

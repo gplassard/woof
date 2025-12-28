@@ -16,6 +16,7 @@ import (
 
 var GetSecurityMonitoringHistsignalsByJobIdCmd = &cobra.Command{
 	Use:   "get-security-monitoring-histsignals-by-job-id [job_id]",
+	Aliases: []string{ "get-histsignals-by-job-id", },
 	Short: "Get a job's hist signals",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

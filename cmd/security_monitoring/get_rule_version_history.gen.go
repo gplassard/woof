@@ -16,6 +16,7 @@ import (
 
 var GetRuleVersionHistoryCmd = &cobra.Command{
 	Use:   "get-rule-version-history [rule_id]",
+	
 	Short: "Get a rule's version history",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

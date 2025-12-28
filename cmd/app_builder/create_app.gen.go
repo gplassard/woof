@@ -16,6 +16,7 @@ import (
 
 var CreateAppCmd = &cobra.Command{
 	Use:   "create-app",
+	
 	Short: "Create App",
 	
 	Run: func(cmd *cobra.Command, args []string) {

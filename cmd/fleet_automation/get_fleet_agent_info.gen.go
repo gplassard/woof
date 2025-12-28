@@ -16,6 +16,7 @@ import (
 
 var GetFleetAgentInfoCmd = &cobra.Command{
 	Use:   "get-fleet-agent-info [agent_key]",
+	
 	Short: "Get detailed information about an agent",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

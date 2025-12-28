@@ -16,6 +16,7 @@ import (
 
 var CreateRestrictionQueryCmd = &cobra.Command{
 	Use:   "create-restriction-query",
+	
 	Short: "Create a restriction query",
 	
 	Run: func(cmd *cobra.Command, args []string) {

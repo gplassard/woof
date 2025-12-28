@@ -16,6 +16,7 @@ import (
 
 var UpdateApplicationSecurityWafCustomRuleCmd = &cobra.Command{
 	Use:   "update-application-security-waf-custom-rule [custom_rule_id]",
+	Aliases: []string{ "update-waf-custom-rule", },
 	Short: "Update a WAF Custom Rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

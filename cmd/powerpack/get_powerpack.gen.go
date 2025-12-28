@@ -16,6 +16,7 @@ import (
 
 var GetPowerpackCmd = &cobra.Command{
 	Use:   "get-powerpack [powerpack_id]",
+	Aliases: []string{ "get", },
 	Short: "Get a Powerpack",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

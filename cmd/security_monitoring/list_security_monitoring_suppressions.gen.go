@@ -16,6 +16,7 @@ import (
 
 var ListSecurityMonitoringSuppressionsCmd = &cobra.Command{
 	Use:   "list-security-monitoring-suppressions",
+	Aliases: []string{ "list-suppressions", },
 	Short: "Get all suppression rules",
 	
 	Run: func(cmd *cobra.Command, args []string) {

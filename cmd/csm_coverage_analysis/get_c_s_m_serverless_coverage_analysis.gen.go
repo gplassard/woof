@@ -16,6 +16,7 @@ import (
 
 var GetCSMServerlessCoverageAnalysisCmd = &cobra.Command{
 	Use:   "get-c-s-m-serverless-coverage-analysis",
+	
 	Short: "Get the CSM Serverless Coverage Analysis",
 	
 	Run: func(cmd *cobra.Command, args []string) {

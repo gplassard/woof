@@ -16,6 +16,7 @@ import (
 
 var ListMonitorDowntimesCmd = &cobra.Command{
 	Use:   "list-monitor-downtimes [monitor_id]",
+	Aliases: []string{ "list-monitor", },
 	Short: "Get active downtimes for a monitor",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

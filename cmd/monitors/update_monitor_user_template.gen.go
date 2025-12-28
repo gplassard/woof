@@ -16,6 +16,7 @@ import (
 
 var UpdateMonitorUserTemplateCmd = &cobra.Command{
 	Use:   "update-monitor-user-template [template_id]",
+	Aliases: []string{ "update-user-template", },
 	Short: "Update a monitor user template to a new version",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

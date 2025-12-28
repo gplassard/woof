@@ -16,6 +16,7 @@ import (
 
 var DeleteCaseCommentCmd = &cobra.Command{
 	Use:   "delete-case-comment [case_id] [cell_id]",
+	
 	Short: "Delete case comment",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {

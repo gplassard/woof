@@ -16,6 +16,7 @@ import (
 
 var GetApplicationSecurityWafCustomRuleCmd = &cobra.Command{
 	Use:   "get-application-security-waf-custom-rule [custom_rule_id]",
+	Aliases: []string{ "get-waf-custom-rule", },
 	Short: "Get a WAF custom rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

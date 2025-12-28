@@ -16,6 +16,7 @@ import (
 
 var UpdateResourceEvaluationFiltersCmd = &cobra.Command{
 	Use:   "update-resource-evaluation-filters",
+	
 	Short: "Update resource filters",
 	
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var ListScannedAssetsMetadataCmd = &cobra.Command{
 	Use:   "list-scanned-assets-metadata",
+	
 	Short: "List scanned assets metadata",
 	
 	Run: func(cmd *cobra.Command, args []string) {

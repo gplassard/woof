@@ -16,6 +16,7 @@ import (
 
 var CreateTagConfigurationCmd = &cobra.Command{
 	Use:   "create-tag-configuration [metric_name]",
+	
 	Short: "Create a tag configuration",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

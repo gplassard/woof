@@ -16,6 +16,7 @@ import (
 
 var DeleteCatalogEntityCmd = &cobra.Command{
 	Use:   "delete-catalog-entity [entity_id]",
+	
 	Short: "Delete a single entity",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

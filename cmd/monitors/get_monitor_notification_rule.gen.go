@@ -16,6 +16,7 @@ import (
 
 var GetMonitorNotificationRuleCmd = &cobra.Command{
 	Use:   "get-monitor-notification-rule [rule_id]",
+	Aliases: []string{ "get-notification-rule", },
 	Short: "Get a monitor notification rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

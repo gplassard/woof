@@ -16,6 +16,7 @@ import (
 
 var ListDeviceUserTagsCmd = &cobra.Command{
 	Use:   "list-device-user-tags [device_id]",
+	
 	Short: "Get the list of tags for a device",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

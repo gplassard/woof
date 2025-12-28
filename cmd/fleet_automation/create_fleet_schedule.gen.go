@@ -16,6 +16,7 @@ import (
 
 var CreateFleetScheduleCmd = &cobra.Command{
 	Use:   "create-fleet-schedule",
+	
 	Short: "Create a schedule",
 	
 	Run: func(cmd *cobra.Command, args []string) {

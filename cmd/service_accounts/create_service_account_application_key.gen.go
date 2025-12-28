@@ -16,6 +16,7 @@ import (
 
 var CreateServiceAccountApplicationKeyCmd = &cobra.Command{
 	Use:   "create-service-account-application-key [service_account_id]",
+	Aliases: []string{ "create-application-key", },
 	Short: "Create an application key for this service account",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

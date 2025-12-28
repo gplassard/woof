@@ -16,6 +16,7 @@ import (
 
 var CreateReferenceTableCmd = &cobra.Command{
 	Use:   "create-reference-table",
+	Aliases: []string{ "create", },
 	Short: "Create reference table",
 	
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var DeleteProjectCmd = &cobra.Command{
 	Use:   "delete-project [project_id]",
+	
 	Short: "Remove a project",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

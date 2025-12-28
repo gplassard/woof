@@ -16,6 +16,7 @@ import (
 
 var UpdateTeamPermissionSettingCmd = &cobra.Command{
 	Use:   "update-team-permission-setting [team_id] [action]",
+	Aliases: []string{ "update-permission-setting", },
 	Short: "Update permission setting for team",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {

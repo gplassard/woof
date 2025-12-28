@@ -16,6 +16,7 @@ import (
 
 var ListPipelinesCmd = &cobra.Command{
 	Use:   "list-pipelines",
+	
 	Short: "List pipelines",
 	
 	Run: func(cmd *cobra.Command, args []string) {

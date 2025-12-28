@@ -16,6 +16,7 @@ import (
 
 var CreateGCPSTSAccountCmd = &cobra.Command{
 	Use:   "create-g-c-p-s-t-s-account",
+	
 	Short: "Create a new entry for your service account",
 	
 	Run: func(cmd *cobra.Command, args []string) {

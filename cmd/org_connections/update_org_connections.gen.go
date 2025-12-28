@@ -16,6 +16,7 @@ import (
 
 var UpdateOrgConnectionsCmd = &cobra.Command{
 	Use:   "update-org-connections [connection_id]",
+	Aliases: []string{ "update", },
 	Short: "Update Org Connection",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

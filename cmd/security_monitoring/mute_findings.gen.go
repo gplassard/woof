@@ -16,6 +16,7 @@ import (
 
 var MuteFindingsCmd = &cobra.Command{
 	Use:   "mute-findings",
+	
 	Short: "Mute or unmute a batch of findings",
 	
 	Run: func(cmd *cobra.Command, args []string) {

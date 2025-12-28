@@ -16,6 +16,7 @@ import (
 
 var UpdateGCPSTSAccountCmd = &cobra.Command{
 	Use:   "update-g-c-p-s-t-s-account [account_id]",
+	
 	Short: "Update STS Service Account",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

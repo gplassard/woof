@@ -16,6 +16,7 @@ import (
 
 var CreateDORAFailureCmd = &cobra.Command{
 	Use:   "create-d-o-r-a-failure",
+	
 	Short: "Send a failure event",
 	
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var ArchiveCaseCmd = &cobra.Command{
 	Use:   "archive-case [case_id]",
+	
 	Short: "Archive case",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

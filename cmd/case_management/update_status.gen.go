@@ -16,6 +16,7 @@ import (
 
 var UpdateStatusCmd = &cobra.Command{
 	Use:   "update-status [case_id]",
+	
 	Short: "Update case status",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

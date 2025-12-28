@@ -16,6 +16,7 @@ import (
 
 var ListCostAWSCURConfigsCmd = &cobra.Command{
 	Use:   "list-cost-a-w-s-c-u-r-configs",
+	
 	Short: "List Cloud Cost Management AWS CUR configs",
 	
 	Run: func(cmd *cobra.Command, args []string) {

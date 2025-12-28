@@ -16,6 +16,7 @@ import (
 
 var DeleteAPIKeyCmd = &cobra.Command{
 	Use:   "delete-a-p-i-key [api_key_id]",
+	
 	Short: "Delete an API key",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

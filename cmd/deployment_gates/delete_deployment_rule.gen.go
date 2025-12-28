@@ -16,6 +16,7 @@ import (
 
 var DeleteDeploymentRuleCmd = &cobra.Command{
 	Use:   "delete-deployment-rule [gate_id] [id]",
+	
 	Short: "Delete deployment rule",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {

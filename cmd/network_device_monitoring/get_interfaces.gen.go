@@ -16,6 +16,7 @@ import (
 
 var GetInterfacesCmd = &cobra.Command{
 	Use:   "get-interfaces [device_id]",
+	
 	Short: "Get the list of interfaces of the device",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

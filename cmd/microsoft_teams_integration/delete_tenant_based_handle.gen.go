@@ -16,6 +16,7 @@ import (
 
 var DeleteTenantBasedHandleCmd = &cobra.Command{
 	Use:   "delete-tenant-based-handle [handle_id]",
+	
 	Short: "Delete tenant-based handle",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var GetCSMHostsAndContainersCoverageAnalysisCmd = &cobra.Command{
 	Use:   "get-c-s-m-hosts-and-containers-coverage-analysis",
+	
 	Short: "Get the CSM Hosts and Containers Coverage Analysis",
 	
 	Run: func(cmd *cobra.Command, args []string) {

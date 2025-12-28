@@ -16,6 +16,7 @@ import (
 
 var DeleteAppCmd = &cobra.Command{
 	Use:   "delete-app [app_id]",
+	
 	Short: "Delete App",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

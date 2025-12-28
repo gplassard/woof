@@ -16,6 +16,7 @@ import (
 
 var CloneRoleCmd = &cobra.Command{
 	Use:   "clone-role [role_id]",
+	Aliases: []string{ "clone", },
 	Short: "Create a new role by cloning an existing role",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

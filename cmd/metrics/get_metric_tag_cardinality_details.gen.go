@@ -16,6 +16,7 @@ import (
 
 var GetMetricTagCardinalityDetailsCmd = &cobra.Command{
 	Use:   "get-metric-tag-cardinality-details [metric_name]",
+	Aliases: []string{ "get-tag-cardinality-details", },
 	Short: "Get tag key cardinality details",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var ListAPIKeysCmd = &cobra.Command{
 	Use:   "list-a-p-i-keys",
+	
 	Short: "Get all API keys",
 	
 	Run: func(cmd *cobra.Command, args []string) {

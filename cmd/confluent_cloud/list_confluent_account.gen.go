@@ -16,6 +16,7 @@ import (
 
 var ListConfluentAccountCmd = &cobra.Command{
 	Use:   "list-confluent-account",
+	
 	Short: "List Confluent accounts",
 	
 	Run: func(cmd *cobra.Command, args []string) {

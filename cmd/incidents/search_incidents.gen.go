@@ -16,6 +16,7 @@ import (
 
 var SearchIncidentsCmd = &cobra.Command{
 	Use:   "search-incidents [query]",
+	Aliases: []string{ "search", },
 	Short: "Search for incidents",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

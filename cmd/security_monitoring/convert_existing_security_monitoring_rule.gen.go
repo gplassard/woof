@@ -16,6 +16,7 @@ import (
 
 var ConvertExistingSecurityMonitoringRuleCmd = &cobra.Command{
 	Use:   "convert-existing-security-monitoring-rule [rule_id]",
+	Aliases: []string{ "convert-existing-rule", },
 	Short: "Convert an existing rule from JSON to Terraform",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

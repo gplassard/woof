@@ -16,6 +16,7 @@ import (
 
 var DeleteTeamConnectionsCmd = &cobra.Command{
 	Use:   "delete-team-connections",
+	Aliases: []string{ "delete-connections", },
 	Short: "Delete team connections",
 	
 	Run: func(cmd *cobra.Command, args []string) {

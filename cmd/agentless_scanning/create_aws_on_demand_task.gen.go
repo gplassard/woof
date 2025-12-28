@@ -16,6 +16,7 @@ import (
 
 var CreateAwsOnDemandTaskCmd = &cobra.Command{
 	Use:   "create-aws-on-demand-task",
+	
 	Short: "Create AWS on demand task",
 	
 	Run: func(cmd *cobra.Command, args []string) {

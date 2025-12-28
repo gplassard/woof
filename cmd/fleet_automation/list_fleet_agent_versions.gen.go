@@ -16,6 +16,7 @@ import (
 
 var ListFleetAgentVersionsCmd = &cobra.Command{
 	Use:   "list-fleet-agent-versions",
+	
 	Short: "List all available Agent versions",
 	
 	Run: func(cmd *cobra.Command, args []string) {

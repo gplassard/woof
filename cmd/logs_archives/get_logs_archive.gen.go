@@ -16,6 +16,7 @@ import (
 
 var GetLogsArchiveCmd = &cobra.Command{
 	Use:   "get-logs-archive [archive_id]",
+	Aliases: []string{ "get", },
 	Short: "Get an archive",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

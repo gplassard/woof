@@ -16,6 +16,7 @@ import (
 
 var DeleteRumMetricCmd = &cobra.Command{
 	Use:   "delete-rum-metric [metric_id]",
+	Aliases: []string{ "delete", },
 	Short: "Delete a rum-based metric",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

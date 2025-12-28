@@ -16,6 +16,7 @@ import (
 
 var UpdateRestrictionQueryCmd = &cobra.Command{
 	Use:   "update-restriction-query [restriction_query_id]",
+	
 	Short: "Update a restriction query",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

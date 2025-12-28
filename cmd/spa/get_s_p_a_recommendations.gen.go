@@ -16,6 +16,7 @@ import (
 
 var GetSPARecommendationsCmd = &cobra.Command{
 	Use:   "get-s-p-a-recommendations [shard] [service]",
+	
 	Short: "Get SPA Recommendations",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {

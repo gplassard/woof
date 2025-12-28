@@ -16,6 +16,7 @@ import (
 
 var ListTagsByMetricNameCmd = &cobra.Command{
 	Use:   "list-tags-by-metric-name [metric_name]",
+	Aliases: []string{ "list-tags-by-name", },
 	Short: "List tags by metric name",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

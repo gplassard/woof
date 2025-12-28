@@ -16,6 +16,7 @@ import (
 
 var CreateDeploymentGateCmd = &cobra.Command{
 	Use:   "create-deployment-gate",
+	Aliases: []string{ "create", },
 	Short: "Create deployment gate",
 	
 	Run: func(cmd *cobra.Command, args []string) {

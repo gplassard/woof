@@ -16,6 +16,7 @@ import (
 
 var DeleteCaseCustomAttributeCmd = &cobra.Command{
 	Use:   "delete-case-custom-attribute [case_id] [custom_attribute_key]",
+	
 	Short: "Delete custom attribute from case",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {

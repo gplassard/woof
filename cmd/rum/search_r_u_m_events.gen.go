@@ -16,6 +16,7 @@ import (
 
 var SearchRUMEventsCmd = &cobra.Command{
 	Use:   "search-r-u-m-events",
+	
 	Short: "Search RUM events",
 	
 	Run: func(cmd *cobra.Command, args []string) {

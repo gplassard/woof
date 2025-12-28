@@ -16,6 +16,7 @@ import (
 
 var CreateConnectionCmd = &cobra.Command{
 	Use:   "create-connection [entity]",
+	
 	Short: "Create connection",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

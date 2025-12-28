@@ -16,6 +16,7 @@ import (
 
 var CreateEventCmd = &cobra.Command{
 	Use:   "create-event",
+	Aliases: []string{ "create", },
 	Short: "Post an event",
 	
 	Run: func(cmd *cobra.Command, args []string) {

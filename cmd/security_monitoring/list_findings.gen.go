@@ -16,6 +16,7 @@ import (
 
 var ListFindingsCmd = &cobra.Command{
 	Use:   "list-findings",
+	
 	Short: "List findings",
 	
 	Run: func(cmd *cobra.Command, args []string) {

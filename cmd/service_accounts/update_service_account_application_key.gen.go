@@ -16,6 +16,7 @@ import (
 
 var UpdateServiceAccountApplicationKeyCmd = &cobra.Command{
 	Use:   "update-service-account-application-key [service_account_id] [app_key_id]",
+	Aliases: []string{ "update-application-key", },
 	Short: "Edit an application key for this service account",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {

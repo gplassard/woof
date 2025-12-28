@@ -16,6 +16,7 @@ import (
 
 var DeleteDORADeploymentCmd = &cobra.Command{
 	Use:   "delete-d-o-r-a-deployment [deployment_id]",
+	
 	Short: "Delete a deployment event",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

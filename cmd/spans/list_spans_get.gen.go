@@ -16,6 +16,7 @@ import (
 
 var ListSpansGetCmd = &cobra.Command{
 	Use:   "list-spans-get",
+	Aliases: []string{ "list-get", },
 	Short: "Get a list of spans",
 	
 	Run: func(cmd *cobra.Command, args []string) {

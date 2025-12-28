@@ -16,6 +16,7 @@ import (
 
 var CreatePowerpackCmd = &cobra.Command{
 	Use:   "create-powerpack",
+	Aliases: []string{ "create", },
 	Short: "Create a new powerpack",
 	
 	Run: func(cmd *cobra.Command, args []string) {

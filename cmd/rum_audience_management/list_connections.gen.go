@@ -16,6 +16,7 @@ import (
 
 var ListConnectionsCmd = &cobra.Command{
 	Use:   "list-connections [entity]",
+	
 	Short: "List connections",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

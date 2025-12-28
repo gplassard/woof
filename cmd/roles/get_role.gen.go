@@ -16,6 +16,7 @@ import (
 
 var GetRoleCmd = &cobra.Command{
 	Use:   "get-role [role_id]",
+	Aliases: []string{ "get", },
 	Short: "Get a role",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

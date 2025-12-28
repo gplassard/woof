@@ -16,6 +16,7 @@ import (
 
 var DeleteCSMThreatsAgentPolicyCmd = &cobra.Command{
 	Use:   "delete-c-s-m-threats-agent-policy [policy_id]",
+	
 	Short: "Delete a Workload Protection policy",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

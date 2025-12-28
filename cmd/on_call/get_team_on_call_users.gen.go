@@ -16,6 +16,7 @@ import (
 
 var GetTeamOnCallUsersCmd = &cobra.Command{
 	Use:   "get-team-on-call-users [team_id]",
+	Aliases: []string{ "get-team-users", },
 	Short: "Get team on-call users",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

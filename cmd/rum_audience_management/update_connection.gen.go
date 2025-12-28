@@ -16,6 +16,7 @@ import (
 
 var UpdateConnectionCmd = &cobra.Command{
 	Use:   "update-connection [entity]",
+	
 	Short: "Update connection",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

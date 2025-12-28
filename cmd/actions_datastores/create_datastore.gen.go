@@ -16,6 +16,7 @@ import (
 
 var CreateDatastoreCmd = &cobra.Command{
 	Use:   "create-datastore",
+	
 	Short: "Create datastore",
 	
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var CreateMonitorConfigPolicyCmd = &cobra.Command{
 	Use:   "create-monitor-config-policy",
+	Aliases: []string{ "create-config-policy", },
 	Short: "Create a monitor configuration policy",
 	
 	Run: func(cmd *cobra.Command, args []string) {

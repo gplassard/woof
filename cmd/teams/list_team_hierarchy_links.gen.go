@@ -16,6 +16,7 @@ import (
 
 var ListTeamHierarchyLinksCmd = &cobra.Command{
 	Use:   "list-team-hierarchy-links",
+	Aliases: []string{ "list-hierarchy-links", },
 	Short: "Get team hierarchy links",
 	
 	Run: func(cmd *cobra.Command, args []string) {

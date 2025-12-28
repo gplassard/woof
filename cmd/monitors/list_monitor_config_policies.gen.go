@@ -16,6 +16,7 @@ import (
 
 var ListMonitorConfigPoliciesCmd = &cobra.Command{
 	Use:   "list-monitor-config-policies",
+	Aliases: []string{ "list-config-policies", },
 	Short: "Get all monitor configuration policies",
 	
 	Run: func(cmd *cobra.Command, args []string) {

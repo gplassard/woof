@@ -16,6 +16,7 @@ import (
 
 var ListRestrictionQueryRolesCmd = &cobra.Command{
 	Use:   "list-restriction-query-roles [restriction_query_id]",
+	
 	Short: "List roles for a restriction query",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

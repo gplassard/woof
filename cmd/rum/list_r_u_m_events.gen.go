@@ -16,6 +16,7 @@ import (
 
 var ListRUMEventsCmd = &cobra.Command{
 	Use:   "list-r-u-m-events",
+	
 	Short: "Get a list of RUM events",
 	
 	Run: func(cmd *cobra.Command, args []string) {

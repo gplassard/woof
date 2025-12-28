@@ -16,6 +16,7 @@ import (
 
 var GetUserMembershipsCmd = &cobra.Command{
 	Use:   "get-user-memberships [user_uuid]",
+	
 	Short: "Get user memberships",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

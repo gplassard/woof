@@ -16,6 +16,7 @@ import (
 
 var GetApplicationSecurityWafExclusionFilterCmd = &cobra.Command{
 	Use:   "get-application-security-waf-exclusion-filter [exclusion_filter_id]",
+	Aliases: []string{ "get-waf-exclusion-filter", },
 	Short: "Get a WAF exclusion filter",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

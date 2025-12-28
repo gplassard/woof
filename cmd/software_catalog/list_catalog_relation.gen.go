@@ -16,6 +16,7 @@ import (
 
 var ListCatalogRelationCmd = &cobra.Command{
 	Use:   "list-catalog-relation",
+	
 	Short: "Get a list of entity relations",
 	
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var UpsertCatalogKindCmd = &cobra.Command{
 	Use:   "upsert-catalog-kind",
+	
 	Short: "Create or update kinds",
 	
 	Run: func(cmd *cobra.Command, args []string) {

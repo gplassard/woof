@@ -16,6 +16,7 @@ import (
 
 var DetachCaseCmd = &cobra.Command{
 	Use:   "detach-case",
+	
 	Short: "Detach security findings from their case",
 	
 	Run: func(cmd *cobra.Command, args []string) {

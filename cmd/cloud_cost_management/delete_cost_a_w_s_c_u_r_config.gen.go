@@ -16,6 +16,7 @@ import (
 
 var DeleteCostAWSCURConfigCmd = &cobra.Command{
 	Use:   "delete-cost-a-w-s-c-u-r-config [cloud_account_id]",
+	
 	Short: "Delete Cloud Cost Management AWS CUR config",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

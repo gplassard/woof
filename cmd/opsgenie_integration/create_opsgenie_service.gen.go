@@ -16,6 +16,7 @@ import (
 
 var CreateOpsgenieServiceCmd = &cobra.Command{
 	Use:   "create-opsgenie-service",
+	
 	Short: "Create a new service object",
 	
 	Run: func(cmd *cobra.Command, args []string) {

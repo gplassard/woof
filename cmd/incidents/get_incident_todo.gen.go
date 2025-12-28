@@ -16,6 +16,7 @@ import (
 
 var GetIncidentTodoCmd = &cobra.Command{
 	Use:   "get-incident-todo [incident_id] [todo_id]",
+	Aliases: []string{ "get-todo", },
 	Short: "Get incident todo details",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {

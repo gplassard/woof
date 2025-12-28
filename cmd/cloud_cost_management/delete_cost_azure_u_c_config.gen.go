@@ -16,6 +16,7 @@ import (
 
 var DeleteCostAzureUCConfigCmd = &cobra.Command{
 	Use:   "delete-cost-azure-u-c-config [cloud_account_id]",
+	
 	Short: "Delete Cloud Cost Management Azure config",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

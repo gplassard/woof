@@ -16,6 +16,7 @@ import (
 
 var CreateJiraIssuesCmd = &cobra.Command{
 	Use:   "create-jira-issues",
+	
 	Short: "Create Jira issues for security findings",
 	
 	Run: func(cmd *cobra.Command, args []string) {

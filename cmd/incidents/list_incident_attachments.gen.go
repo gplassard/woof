@@ -16,6 +16,7 @@ import (
 
 var ListIncidentAttachmentsCmd = &cobra.Command{
 	Use:   "list-incident-attachments [incident_id]",
+	Aliases: []string{ "list-attachments", },
 	Short: "List incident attachments",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

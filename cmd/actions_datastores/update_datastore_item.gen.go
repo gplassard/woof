@@ -16,6 +16,7 @@ import (
 
 var UpdateDatastoreItemCmd = &cobra.Command{
 	Use:   "update-datastore-item [datastore_id]",
+	
 	Short: "Update datastore item",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

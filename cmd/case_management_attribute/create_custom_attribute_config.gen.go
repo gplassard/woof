@@ -16,6 +16,7 @@ import (
 
 var CreateCustomAttributeConfigCmd = &cobra.Command{
 	Use:   "create-custom-attribute-config [case_type_id]",
+	
 	Short: "Create custom attribute config for a case type",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

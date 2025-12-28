@@ -16,6 +16,7 @@ import (
 
 var GetRowsByIDCmd = &cobra.Command{
 	Use:   "get-rows-by-i-d [id] [row_id]",
+	
 	Short: "Get rows by id",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {

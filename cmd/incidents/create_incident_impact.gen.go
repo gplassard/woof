@@ -16,6 +16,7 @@ import (
 
 var CreateIncidentImpactCmd = &cobra.Command{
 	Use:   "create-incident-impact [incident_id]",
+	Aliases: []string{ "create-impact", },
 	Short: "Create an incident impact",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

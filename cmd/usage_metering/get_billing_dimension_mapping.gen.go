@@ -16,6 +16,7 @@ import (
 
 var GetBillingDimensionMappingCmd = &cobra.Command{
 	Use:   "get-billing-dimension-mapping",
+	
 	Short: "Get billing dimension mapping for usage endpoints",
 	
 	Run: func(cmd *cobra.Command, args []string) {

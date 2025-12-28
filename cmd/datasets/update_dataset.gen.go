@@ -16,6 +16,7 @@ import (
 
 var UpdateDatasetCmd = &cobra.Command{
 	Use:   "update-dataset [dataset_id]",
+	Aliases: []string{ "update", },
 	Short: "Edit a dataset",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

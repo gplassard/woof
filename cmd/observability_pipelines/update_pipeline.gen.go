@@ -16,6 +16,7 @@ import (
 
 var UpdatePipelineCmd = &cobra.Command{
 	Use:   "update-pipeline [pipeline_id]",
+	
 	Short: "Update a pipeline",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

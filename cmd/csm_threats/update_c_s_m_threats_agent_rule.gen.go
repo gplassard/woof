@@ -16,6 +16,7 @@ import (
 
 var UpdateCSMThreatsAgentRuleCmd = &cobra.Command{
 	Use:   "update-c-s-m-threats-agent-rule [agent_rule_id]",
+	
 	Short: "Update a Workload Protection agent rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var UpdateCostAzureUCConfigsCmd = &cobra.Command{
 	Use:   "update-cost-azure-u-c-configs [cloud_account_id]",
+	
 	Short: "Update Cloud Cost Management Azure config",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

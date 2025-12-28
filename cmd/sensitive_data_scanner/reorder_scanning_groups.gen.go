@@ -16,6 +16,7 @@ import (
 
 var ReorderScanningGroupsCmd = &cobra.Command{
 	Use:   "reorder-scanning-groups",
+	
 	Short: "Reorder Groups",
 	
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var DeleteFastlyAccountCmd = &cobra.Command{
 	Use:   "delete-fastly-account [account_id]",
+	
 	Short: "Delete Fastly account",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

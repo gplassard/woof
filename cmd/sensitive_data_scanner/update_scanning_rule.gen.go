@@ -16,6 +16,7 @@ import (
 
 var UpdateScanningRuleCmd = &cobra.Command{
 	Use:   "update-scanning-rule [rule_id]",
+	
 	Short: "Update Scanning Rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

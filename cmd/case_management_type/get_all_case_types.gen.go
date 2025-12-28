@@ -16,6 +16,7 @@ import (
 
 var GetAllCaseTypesCmd = &cobra.Command{
 	Use:   "get-all-case-types",
+	
 	Short: "Get all case types",
 	
 	Run: func(cmd *cobra.Command, args []string) {

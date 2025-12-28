@@ -16,6 +16,7 @@ import (
 
 var AddMemberTeamCmd = &cobra.Command{
 	Use:   "add-member-team [super_team_id]",
+	Aliases: []string{ "add-member", },
 	Short: "Add a member team",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

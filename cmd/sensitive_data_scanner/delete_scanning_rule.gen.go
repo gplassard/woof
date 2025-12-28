@@ -16,6 +16,7 @@ import (
 
 var DeleteScanningRuleCmd = &cobra.Command{
 	Use:   "delete-scanning-rule [rule_id]",
+	
 	Short: "Delete Scanning Rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

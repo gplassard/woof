@@ -16,6 +16,7 @@ import (
 
 var GetMonitorUserTemplateCmd = &cobra.Command{
 	Use:   "get-monitor-user-template [template_id]",
+	Aliases: []string{ "get-user-template", },
 	Short: "Get a monitor user template",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

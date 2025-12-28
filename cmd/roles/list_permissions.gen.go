@@ -16,6 +16,7 @@ import (
 
 var ListPermissionsCmd = &cobra.Command{
 	Use:   "list-permissions",
+	
 	Short: "List permissions",
 	
 	Run: func(cmd *cobra.Command, args []string) {

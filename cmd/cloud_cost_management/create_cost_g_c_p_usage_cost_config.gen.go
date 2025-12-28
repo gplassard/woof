@@ -16,6 +16,7 @@ import (
 
 var CreateCostGCPUsageCostConfigCmd = &cobra.Command{
 	Use:   "create-cost-g-c-p-usage-cost-config",
+	
 	Short: "Create Google Cloud Usage Cost config",
 	
 	Run: func(cmd *cobra.Command, args []string) {

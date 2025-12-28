@@ -16,6 +16,7 @@ import (
 
 var DeleteTableCmd = &cobra.Command{
 	Use:   "delete-table [id]",
+	
 	Short: "Delete table",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

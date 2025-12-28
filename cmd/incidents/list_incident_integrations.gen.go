@@ -16,6 +16,7 @@ import (
 
 var ListIncidentIntegrationsCmd = &cobra.Command{
 	Use:   "list-incident-integrations [incident_id]",
+	Aliases: []string{ "list-integrations", },
 	Short: "Get a list of an incident's integration metadata",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var ListApplicationSecurityWAFCustomRulesCmd = &cobra.Command{
 	Use:   "list-application-security-w-a-f-custom-rules",
+	Aliases: []string{ "list-w-a-f-custom-rules", },
 	Short: "List all WAF custom rules",
 	
 	Run: func(cmd *cobra.Command, args []string) {

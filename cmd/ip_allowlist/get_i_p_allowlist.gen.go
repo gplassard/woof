@@ -16,6 +16,7 @@ import (
 
 var GetIPAllowlistCmd = &cobra.Command{
 	Use:   "get-i-p-allowlist",
+	
 	Short: "Get IP Allowlist",
 	
 	Run: func(cmd *cobra.Command, args []string) {

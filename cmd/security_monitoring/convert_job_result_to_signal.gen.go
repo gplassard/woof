@@ -16,6 +16,7 @@ import (
 
 var ConvertJobResultToSignalCmd = &cobra.Command{
 	Use:   "convert-job-result-to-signal",
+	
 	Short: "Convert a job result to a signal",
 	
 	Run: func(cmd *cobra.Command, args []string) {

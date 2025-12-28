@@ -16,6 +16,7 @@ import (
 
 var AggregateCIAppPipelineEventsCmd = &cobra.Command{
 	Use:   "aggregate-c-i-app-pipeline-events",
+	
 	Short: "Aggregate pipelines events",
 	
 	Run: func(cmd *cobra.Command, args []string) {

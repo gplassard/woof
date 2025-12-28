@@ -16,6 +16,7 @@ import (
 
 var ListStandardPatternsCmd = &cobra.Command{
 	Use:   "list-standard-patterns",
+	
 	Short: "List standard patterns",
 	
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var DeleteAWSEventBridgeSourceCmd = &cobra.Command{
 	Use:   "delete-a-w-s-event-bridge-source",
+	
 	Short: "Delete an Amazon EventBridge source",
 	
 	Run: func(cmd *cobra.Command, args []string) {

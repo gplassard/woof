@@ -16,6 +16,7 @@ import (
 
 var UploadIdPMetadataCmd = &cobra.Command{
 	Use:   "upload-id-p-metadata",
+	
 	Short: "Upload IdP metadata",
 	
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var DownloadCSMThreatsPolicyCmd = &cobra.Command{
 	Use:   "download-c-s-m-threats-policy",
+	
 	Short: "Download the Workload Protection policy",
 	
 	Run: func(cmd *cobra.Command, args []string) {

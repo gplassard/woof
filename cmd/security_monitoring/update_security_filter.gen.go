@@ -16,6 +16,7 @@ import (
 
 var UpdateSecurityFilterCmd = &cobra.Command{
 	Use:   "update-security-filter [security_filter_id]",
+	
 	Short: "Update a security filter",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

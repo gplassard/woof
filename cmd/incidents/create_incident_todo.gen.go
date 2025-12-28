@@ -16,6 +16,7 @@ import (
 
 var CreateIncidentTodoCmd = &cobra.Command{
 	Use:   "create-incident-todo [incident_id]",
+	Aliases: []string{ "create-todo", },
 	Short: "Create an incident todo",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

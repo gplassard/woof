@@ -16,6 +16,7 @@ import (
 
 var CreateTagPipelinesRulesetCmd = &cobra.Command{
 	Use:   "create-tag-pipelines-ruleset",
+	
 	Short: "Create tag pipeline ruleset",
 	
 	Run: func(cmd *cobra.Command, args []string) {

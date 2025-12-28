@@ -16,6 +16,7 @@ import (
 
 var UpdateLogsArchiveOrderCmd = &cobra.Command{
 	Use:   "update-logs-archive-order",
+	Aliases: []string{ "update-order", },
 	Short: "Update archive order",
 	
 	Run: func(cmd *cobra.Command, args []string) {

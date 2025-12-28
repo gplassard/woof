@@ -16,6 +16,7 @@ import (
 
 var ListAppKeyRegistrationsCmd = &cobra.Command{
 	Use:   "list-app-key-registrations",
+	
 	Short: "List App Key Registrations",
 	
 	Run: func(cmd *cobra.Command, args []string) {

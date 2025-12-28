@@ -16,6 +16,7 @@ import (
 
 var ValidateQueryCmd = &cobra.Command{
 	Use:   "validate-query",
+	
 	Short: "Validate query",
 	
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var GetAggregatedConnectionsCmd = &cobra.Command{
 	Use:   "get-aggregated-connections",
+	
 	Short: "Get all aggregated connections",
 	
 	Run: func(cmd *cobra.Command, args []string) {

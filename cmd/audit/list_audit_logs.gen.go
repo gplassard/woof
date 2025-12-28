@@ -16,6 +16,7 @@ import (
 
 var ListAuditLogsCmd = &cobra.Command{
 	Use:   "list-audit-logs",
+	Aliases: []string{ "list-logs", },
 	Short: "Get a list of Audit Logs events",
 	
 	Run: func(cmd *cobra.Command, args []string) {

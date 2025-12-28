@@ -16,6 +16,7 @@ import (
 
 var UpdateOpsgenieServiceCmd = &cobra.Command{
 	Use:   "update-opsgenie-service [integration_service_id]",
+	
 	Short: "Update a single service object",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

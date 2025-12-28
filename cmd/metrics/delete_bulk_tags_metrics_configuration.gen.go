@@ -16,6 +16,7 @@ import (
 
 var DeleteBulkTagsMetricsConfigurationCmd = &cobra.Command{
 	Use:   "delete-bulk-tags-metrics-configuration",
+	Aliases: []string{ "delete-bulk-tags-configuration", },
 	Short: "Delete tags for multiple metrics",
 	
 	Run: func(cmd *cobra.Command, args []string) {

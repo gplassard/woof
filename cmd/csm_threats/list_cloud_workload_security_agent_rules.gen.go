@@ -16,6 +16,7 @@ import (
 
 var ListCloudWorkloadSecurityAgentRulesCmd = &cobra.Command{
 	Use:   "list-cloud-workload-security-agent-rules",
+	
 	Short: "Get all Workload Protection agent rules (US1-FED)",
 	
 	Run: func(cmd *cobra.Command, args []string) {

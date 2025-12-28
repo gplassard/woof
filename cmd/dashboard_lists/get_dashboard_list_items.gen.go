@@ -16,6 +16,7 @@ import (
 
 var GetDashboardListItemsCmd = &cobra.Command{
 	Use:   "get-dashboard-list-items [dashboard_list_id]",
+	Aliases: []string{ "get-items", },
 	Short: "Get items of a Dashboard List",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var GetAppCmd = &cobra.Command{
 	Use:   "get-app [app_id]",
+	
 	Short: "Get App",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

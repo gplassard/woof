@@ -16,6 +16,7 @@ import (
 
 var OrderRetentionFiltersCmd = &cobra.Command{
 	Use:   "order-retention-filters [app_id]",
+	
 	Short: "Order RUM retention filters",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

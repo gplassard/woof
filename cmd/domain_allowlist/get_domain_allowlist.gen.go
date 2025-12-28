@@ -16,6 +16,7 @@ import (
 
 var GetDomainAllowlistCmd = &cobra.Command{
 	Use:   "get-domain-allowlist",
+	Aliases: []string{ "get", },
 	Short: "Get Domain Allowlist",
 	
 	Run: func(cmd *cobra.Command, args []string) {

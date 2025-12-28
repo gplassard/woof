@@ -16,6 +16,7 @@ import (
 
 var GetApplicationKeyCmd = &cobra.Command{
 	Use:   "get-application-key [app_key_id]",
+	
 	Short: "Get an application key",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

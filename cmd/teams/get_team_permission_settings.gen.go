@@ -16,6 +16,7 @@ import (
 
 var GetTeamPermissionSettingsCmd = &cobra.Command{
 	Use:   "get-team-permission-settings [team_id]",
+	Aliases: []string{ "get-permission-settings", },
 	Short: "Get permission settings for a team",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

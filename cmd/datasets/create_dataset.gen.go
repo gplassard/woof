@@ -16,6 +16,7 @@ import (
 
 var CreateDatasetCmd = &cobra.Command{
 	Use:   "create-dataset",
+	Aliases: []string{ "create", },
 	Short: "Create a dataset",
 	
 	Run: func(cmd *cobra.Command, args []string) {

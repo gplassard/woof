@@ -16,6 +16,7 @@ import (
 
 var UpdatePowerpackCmd = &cobra.Command{
 	Use:   "update-powerpack [powerpack_id]",
+	Aliases: []string{ "update", },
 	Short: "Update a powerpack",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

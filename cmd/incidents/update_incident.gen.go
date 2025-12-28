@@ -16,6 +16,7 @@ import (
 
 var UpdateIncidentCmd = &cobra.Command{
 	Use:   "update-incident [incident_id]",
+	Aliases: []string{ "update", },
 	Short: "Update an existing incident",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

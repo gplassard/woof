@@ -16,6 +16,7 @@ import (
 
 var ListRoleTemplatesCmd = &cobra.Command{
 	Use:   "list-role-templates",
+	Aliases: []string{ "list-templates", },
 	Short: "List role templates",
 	
 	Run: func(cmd *cobra.Command, args []string) {

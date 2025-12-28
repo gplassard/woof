@@ -16,6 +16,7 @@ import (
 
 var DeleteSpansMetricCmd = &cobra.Command{
 	Use:   "delete-spans-metric [metric_id]",
+	Aliases: []string{ "delete", },
 	Short: "Delete a span-based metric",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

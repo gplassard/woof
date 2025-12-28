@@ -16,6 +16,7 @@ import (
 
 var DeleteLogsArchiveCmd = &cobra.Command{
 	Use:   "delete-logs-archive [archive_id]",
+	Aliases: []string{ "delete", },
 	Short: "Delete an archive",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

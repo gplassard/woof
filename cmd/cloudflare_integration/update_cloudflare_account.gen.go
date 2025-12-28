@@ -16,6 +16,7 @@ import (
 
 var UpdateCloudflareAccountCmd = &cobra.Command{
 	Use:   "update-cloudflare-account [account_id]",
+	
 	Short: "Update Cloudflare account",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

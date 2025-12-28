@@ -16,6 +16,7 @@ import (
 
 var GetBudgetCmd = &cobra.Command{
 	Use:   "get-budget [budget_id]",
+	
 	Short: "Get a budget",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

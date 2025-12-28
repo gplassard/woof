@@ -16,6 +16,7 @@ import (
 
 var DeleteAppsCmd = &cobra.Command{
 	Use:   "delete-apps",
+	
 	Short: "Delete Multiple Apps",
 	
 	Run: func(cmd *cobra.Command, args []string) {

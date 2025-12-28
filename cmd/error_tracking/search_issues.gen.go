@@ -16,6 +16,7 @@ import (
 
 var SearchIssuesCmd = &cobra.Command{
 	Use:   "search-issues",
+	
 	Short: "Search error tracking issues",
 	
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var UpdateIncidentTypeCmd = &cobra.Command{
 	Use:   "update-incident-type [incident_type_id]",
+	Aliases: []string{ "update-type", },
 	Short: "Update an incident type",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

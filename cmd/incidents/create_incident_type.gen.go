@@ -16,6 +16,7 @@ import (
 
 var CreateIncidentTypeCmd = &cobra.Command{
 	Use:   "create-incident-type",
+	Aliases: []string{ "create-type", },
 	Short: "Create an incident type",
 	
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var GetProjectsCmd = &cobra.Command{
 	Use:   "get-projects",
+	
 	Short: "Get all projects",
 	
 	Run: func(cmd *cobra.Command, args []string) {

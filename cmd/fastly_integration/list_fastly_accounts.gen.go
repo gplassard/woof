@@ -16,6 +16,7 @@ import (
 
 var ListFastlyAccountsCmd = &cobra.Command{
 	Use:   "list-fastly-accounts",
+	
 	Short: "List Fastly accounts",
 	
 	Run: func(cmd *cobra.Command, args []string) {

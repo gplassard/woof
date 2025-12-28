@@ -16,6 +16,7 @@ import (
 
 var CreateDeploymentRuleCmd = &cobra.Command{
 	Use:   "create-deployment-rule [gate_id]",
+	
 	Short: "Create deployment rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

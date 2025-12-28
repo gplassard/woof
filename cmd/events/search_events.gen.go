@@ -16,6 +16,7 @@ import (
 
 var SearchEventsCmd = &cobra.Command{
 	Use:   "search-events",
+	Aliases: []string{ "search", },
 	Short: "Search events",
 	
 	Run: func(cmd *cobra.Command, args []string) {

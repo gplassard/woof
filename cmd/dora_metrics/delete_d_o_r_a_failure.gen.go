@@ -16,6 +16,7 @@ import (
 
 var DeleteDORAFailureCmd = &cobra.Command{
 	Use:   "delete-d-o-r-a-failure [failure_id]",
+	
 	Short: "Delete a failure event",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

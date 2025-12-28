@@ -16,6 +16,7 @@ import (
 
 var ValidatePipelineCmd = &cobra.Command{
 	Use:   "validate-pipeline",
+	
 	Short: "Validate an observability pipeline",
 	
 	Run: func(cmd *cobra.Command, args []string) {

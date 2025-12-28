@@ -16,6 +16,7 @@ import (
 
 var CreateAzureScanOptionsCmd = &cobra.Command{
 	Use:   "create-azure-scan-options",
+	
 	Short: "Create Azure scan options",
 	
 	Run: func(cmd *cobra.Command, args []string) {

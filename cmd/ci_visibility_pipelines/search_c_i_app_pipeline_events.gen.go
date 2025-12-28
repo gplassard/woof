@@ -16,6 +16,7 @@ import (
 
 var SearchCIAppPipelineEventsCmd = &cobra.Command{
 	Use:   "search-c-i-app-pipeline-events",
+	
 	Short: "Search pipelines events",
 	
 	Run: func(cmd *cobra.Command, args []string) {

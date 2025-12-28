@@ -16,6 +16,7 @@ import (
 
 var DeleteDashboardListItemsCmd = &cobra.Command{
 	Use:   "delete-dashboard-list-items [dashboard_list_id]",
+	Aliases: []string{ "delete-items", },
 	Short: "Delete items from a dashboard list",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

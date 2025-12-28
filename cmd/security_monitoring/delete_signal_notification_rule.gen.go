@@ -16,6 +16,7 @@ import (
 
 var DeleteSignalNotificationRuleCmd = &cobra.Command{
 	Use:   "delete-signal-notification-rule [id]",
+	
 	Short: "Delete a signal-based notification rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

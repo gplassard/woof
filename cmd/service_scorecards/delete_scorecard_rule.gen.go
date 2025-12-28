@@ -16,6 +16,7 @@ import (
 
 var DeleteScorecardRuleCmd = &cobra.Command{
 	Use:   "delete-scorecard-rule [rule_id]",
+	
 	Short: "Delete a rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

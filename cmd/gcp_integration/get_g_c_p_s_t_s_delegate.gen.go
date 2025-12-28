@@ -16,6 +16,7 @@ import (
 
 var GetGCPSTSDelegateCmd = &cobra.Command{
 	Use:   "get-g-c-p-s-t-s-delegate",
+	
 	Short: "List delegate account",
 	
 	Run: func(cmd *cobra.Command, args []string) {

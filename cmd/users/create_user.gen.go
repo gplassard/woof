@@ -16,6 +16,7 @@ import (
 
 var CreateUserCmd = &cobra.Command{
 	Use:   "create-user",
+	Aliases: []string{ "create", },
 	Short: "Create a user",
 	
 	Run: func(cmd *cobra.Command, args []string) {

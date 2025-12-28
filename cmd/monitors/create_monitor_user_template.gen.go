@@ -16,6 +16,7 @@ import (
 
 var CreateMonitorUserTemplateCmd = &cobra.Command{
 	Use:   "create-monitor-user-template",
+	Aliases: []string{ "create-user-template", },
 	Short: "Create a monitor user template",
 	
 	Run: func(cmd *cobra.Command, args []string) {

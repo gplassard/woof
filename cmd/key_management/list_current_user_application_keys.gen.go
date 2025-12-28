@@ -16,6 +16,7 @@ import (
 
 var ListCurrentUserApplicationKeysCmd = &cobra.Command{
 	Use:   "list-current-user-application-keys",
+	
 	Short: "Get all application keys owned by current user",
 	
 	Run: func(cmd *cobra.Command, args []string) {

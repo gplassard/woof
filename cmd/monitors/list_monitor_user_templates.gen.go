@@ -16,6 +16,7 @@ import (
 
 var ListMonitorUserTemplatesCmd = &cobra.Command{
 	Use:   "list-monitor-user-templates",
+	Aliases: []string{ "list-user-templates", },
 	Short: "Get all monitor user templates",
 	
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var UnpublishAppCmd = &cobra.Command{
 	Use:   "unpublish-app [app_id]",
+	
 	Short: "Unpublish App",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var UpdateIncidentIntegrationCmd = &cobra.Command{
 	Use:   "update-incident-integration [incident_id] [integration_metadata_id]",
+	Aliases: []string{ "update-integration", },
 	Short: "Update an existing incident integration metadata",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {

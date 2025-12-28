@@ -16,6 +16,7 @@ import (
 
 var DeleteMonitorUserTemplateCmd = &cobra.Command{
 	Use:   "delete-monitor-user-template [template_id]",
+	Aliases: []string{ "delete-user-template", },
 	Short: "Delete a monitor user template",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

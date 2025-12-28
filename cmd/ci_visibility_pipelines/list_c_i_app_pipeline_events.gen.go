@@ -16,6 +16,7 @@ import (
 
 var ListCIAppPipelineEventsCmd = &cobra.Command{
 	Use:   "list-c-i-app-pipeline-events",
+	
 	Short: "Get a list of pipelines events",
 	
 	Run: func(cmd *cobra.Command, args []string) {

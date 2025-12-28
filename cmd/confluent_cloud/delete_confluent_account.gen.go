@@ -16,6 +16,7 @@ import (
 
 var DeleteConfluentAccountCmd = &cobra.Command{
 	Use:   "delete-confluent-account [account_id]",
+	
 	Short: "Delete Confluent account",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

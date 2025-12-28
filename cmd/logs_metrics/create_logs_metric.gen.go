@@ -16,6 +16,7 @@ import (
 
 var CreateLogsMetricCmd = &cobra.Command{
 	Use:   "create-logs-metric",
+	Aliases: []string{ "create", },
 	Short: "Create a log-based metric",
 	
 	Run: func(cmd *cobra.Command, args []string) {

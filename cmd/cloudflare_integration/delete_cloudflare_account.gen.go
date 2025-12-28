@@ -16,6 +16,7 @@ import (
 
 var DeleteCloudflareAccountCmd = &cobra.Command{
 	Use:   "delete-cloudflare-account [account_id]",
+	
 	Short: "Delete Cloudflare account",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

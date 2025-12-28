@@ -16,6 +16,7 @@ import (
 
 var GetScheduleOnCallUserCmd = &cobra.Command{
 	Use:   "get-schedule-on-call-user [schedule_id]",
+	Aliases: []string{ "get-schedule-user", },
 	Short: "Get scheduled on-call user",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

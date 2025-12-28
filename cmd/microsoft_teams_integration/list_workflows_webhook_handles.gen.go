@@ -16,6 +16,7 @@ import (
 
 var ListWorkflowsWebhookHandlesCmd = &cobra.Command{
 	Use:   "list-workflows-webhook-handles",
+	
 	Short: "Get all Workflows webhook handles",
 	
 	Run: func(cmd *cobra.Command, args []string) {

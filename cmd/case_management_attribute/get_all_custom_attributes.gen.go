@@ -16,6 +16,7 @@ import (
 
 var GetAllCustomAttributesCmd = &cobra.Command{
 	Use:   "get-all-custom-attributes",
+	
 	Short: "Get all custom attributes",
 	
 	Run: func(cmd *cobra.Command, args []string) {

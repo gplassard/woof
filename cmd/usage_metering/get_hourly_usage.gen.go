@@ -16,6 +16,7 @@ import (
 
 var GetHourlyUsageCmd = &cobra.Command{
 	Use:   "get-hourly-usage [filter[timestamp][start]] [filter[product_families]]",
+	
 	Short: "Get hourly usage by product family",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {

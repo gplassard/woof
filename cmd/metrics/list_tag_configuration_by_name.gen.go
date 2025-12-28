@@ -16,6 +16,7 @@ import (
 
 var ListTagConfigurationByNameCmd = &cobra.Command{
 	Use:   "list-tag-configuration-by-name [metric_name]",
+	
 	Short: "List tag configuration by name",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

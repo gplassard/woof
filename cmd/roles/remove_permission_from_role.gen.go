@@ -16,6 +16,7 @@ import (
 
 var RemovePermissionFromRoleCmd = &cobra.Command{
 	Use:   "remove-permission-from-role [role_id]",
+	Aliases: []string{ "remove-permission-from", },
 	Short: "Revoke permission",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var DeleteOnCallScheduleCmd = &cobra.Command{
 	Use:   "delete-on-call-schedule [schedule_id]",
+	Aliases: []string{ "delete-schedule", },
 	Short: "Delete On-Call schedule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

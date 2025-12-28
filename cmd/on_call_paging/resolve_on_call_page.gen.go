@@ -16,6 +16,7 @@ import (
 
 var ResolveOnCallPageCmd = &cobra.Command{
 	Use:   "resolve-on-call-page [page_id]",
+	
 	Short: "Resolve On-Call Page",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var AggregateSpansCmd = &cobra.Command{
 	Use:   "aggregate-spans",
+	Aliases: []string{ "aggregate", },
 	Short: "Aggregate spans",
 	
 	Run: func(cmd *cobra.Command, args []string) {

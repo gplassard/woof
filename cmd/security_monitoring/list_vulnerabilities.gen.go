@@ -16,6 +16,7 @@ import (
 
 var ListVulnerabilitiesCmd = &cobra.Command{
 	Use:   "list-vulnerabilities",
+	
 	Short: "List vulnerabilities",
 	
 	Run: func(cmd *cobra.Command, args []string) {

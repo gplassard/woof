@@ -16,6 +16,7 @@ import (
 
 var DeleteCustomAllocationRuleCmd = &cobra.Command{
 	Use:   "delete-custom-allocation-rule [rule_id]",
+	
 	Short: "Delete custom allocation rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

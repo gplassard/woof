@@ -16,6 +16,7 @@ import (
 
 var CreateAPIKeyCmd = &cobra.Command{
 	Use:   "create-a-p-i-key",
+	
 	Short: "Create an API key",
 	
 	Run: func(cmd *cobra.Command, args []string) {

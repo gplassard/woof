@@ -16,6 +16,7 @@ import (
 
 var UpdateScanningGroupCmd = &cobra.Command{
 	Use:   "update-scanning-group [group_id]",
+	
 	Short: "Update Scanning Group",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

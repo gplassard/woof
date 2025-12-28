@@ -16,6 +16,7 @@ import (
 
 var UpdateAzureScanOptionsCmd = &cobra.Command{
 	Use:   "update-azure-scan-options [subscription_id]",
+	
 	Short: "Update Azure scan options",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

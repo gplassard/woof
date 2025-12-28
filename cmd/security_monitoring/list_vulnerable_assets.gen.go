@@ -16,6 +16,7 @@ import (
 
 var ListVulnerableAssetsCmd = &cobra.Command{
 	Use:   "list-vulnerable-assets",
+	
 	Short: "List vulnerable assets",
 	
 	Run: func(cmd *cobra.Command, args []string) {

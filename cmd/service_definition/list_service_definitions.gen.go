@@ -16,6 +16,7 @@ import (
 
 var ListServiceDefinitionsCmd = &cobra.Command{
 	Use:   "list-service-definitions",
+	Aliases: []string{ "list-s", },
 	Short: "Get all service definitions",
 	
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var ListDowntimesCmd = &cobra.Command{
 	Use:   "list-downtimes",
+	Aliases: []string{ "list", },
 	Short: "Get all downtimes",
 	
 	Run: func(cmd *cobra.Command, args []string) {

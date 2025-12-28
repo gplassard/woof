@@ -16,6 +16,7 @@ import (
 
 var DeleteMonitorConfigPolicyCmd = &cobra.Command{
 	Use:   "delete-monitor-config-policy [policy_id]",
+	Aliases: []string{ "delete-config-policy", },
 	Short: "Delete a monitor configuration policy",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

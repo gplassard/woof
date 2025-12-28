@@ -16,6 +16,7 @@ import (
 
 var ListTeamConnectionsCmd = &cobra.Command{
 	Use:   "list-team-connections",
+	Aliases: []string{ "list-connections", },
 	Short: "List team connections",
 	
 	Run: func(cmd *cobra.Command, args []string) {

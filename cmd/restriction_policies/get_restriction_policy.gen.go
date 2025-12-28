@@ -16,6 +16,7 @@ import (
 
 var GetRestrictionPolicyCmd = &cobra.Command{
 	Use:   "get-restriction-policy [resource_id]",
+	
 	Short: "Get a restriction policy",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var UpdateApmRetentionFilterCmd = &cobra.Command{
 	Use:   "update-apm-retention-filter [filter_id]",
+	Aliases: []string{ "update", },
 	Short: "Update a retention filter",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

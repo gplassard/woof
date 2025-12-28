@@ -16,6 +16,7 @@ import (
 
 var CreateCurrentUserApplicationKeyCmd = &cobra.Command{
 	Use:   "create-current-user-application-key",
+	
 	Short: "Create an application key for current user",
 	
 	Run: func(cmd *cobra.Command, args []string) {

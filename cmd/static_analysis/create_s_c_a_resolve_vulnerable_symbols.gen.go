@@ -16,6 +16,7 @@ import (
 
 var CreateSCAResolveVulnerableSymbolsCmd = &cobra.Command{
 	Use:   "create-s-c-a-resolve-vulnerable-symbols",
+	
 	Short: "POST request to resolve vulnerable symbols",
 	
 	Run: func(cmd *cobra.Command, args []string) {

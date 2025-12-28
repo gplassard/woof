@@ -16,6 +16,7 @@ import (
 
 var ListCostAzureUCConfigsCmd = &cobra.Command{
 	Use:   "list-cost-azure-u-c-configs",
+	
 	Short: "List Cloud Cost Management Azure configs",
 	
 	Run: func(cmd *cobra.Command, args []string) {

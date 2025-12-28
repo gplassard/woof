@@ -16,6 +16,7 @@ import (
 
 var GetRUMApplicationCmd = &cobra.Command{
 	Use:   "get-r-u-m-application [id]",
+	
 	Short: "Get a RUM application",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

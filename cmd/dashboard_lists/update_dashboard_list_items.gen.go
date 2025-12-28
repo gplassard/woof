@@ -16,6 +16,7 @@ import (
 
 var UpdateDashboardListItemsCmd = &cobra.Command{
 	Use:   "update-dashboard-list-items [dashboard_list_id]",
+	Aliases: []string{ "update-items", },
 	Short: "Update items of a dashboard list",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

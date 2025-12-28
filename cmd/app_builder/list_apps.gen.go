@@ -16,6 +16,7 @@ import (
 
 var ListAppsCmd = &cobra.Command{
 	Use:   "list-apps",
+	
 	Short: "List Apps",
 	
 	Run: func(cmd *cobra.Command, args []string) {

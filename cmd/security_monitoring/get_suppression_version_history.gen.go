@@ -16,6 +16,7 @@ import (
 
 var GetSuppressionVersionHistoryCmd = &cobra.Command{
 	Use:   "get-suppression-version-history [suppression_id]",
+	
 	Short: "Get a suppression's version history",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

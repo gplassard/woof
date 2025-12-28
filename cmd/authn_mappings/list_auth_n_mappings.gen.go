@@ -16,6 +16,7 @@ import (
 
 var ListAuthNMappingsCmd = &cobra.Command{
 	Use:   "list-auth-n-mappings",
+	
 	Short: "List all AuthN Mappings",
 	
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var GetAwsOnDemandTaskCmd = &cobra.Command{
 	Use:   "get-aws-on-demand-task [task_id]",
+	
 	Short: "Get AWS on demand task",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

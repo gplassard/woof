@@ -16,6 +16,7 @@ import (
 
 var GetDeviceCmd = &cobra.Command{
 	Use:   "get-device [device_id]",
+	
 	Short: "Get the device details",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

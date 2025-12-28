@@ -16,6 +16,7 @@ import (
 
 var CreateIncidentNotificationTemplateCmd = &cobra.Command{
 	Use:   "create-incident-notification-template",
+	Aliases: []string{ "create-notification-template", },
 	Short: "Create incident notification template",
 	
 	Run: func(cmd *cobra.Command, args []string) {

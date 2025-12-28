@@ -16,6 +16,7 @@ import (
 
 var UpsertCatalogEntityCmd = &cobra.Command{
 	Use:   "upsert-catalog-entity",
+	
 	Short: "Create or update entities",
 	
 	Run: func(cmd *cobra.Command, args []string) {

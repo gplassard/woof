@@ -16,6 +16,7 @@ import (
 
 var CreateCustomAllocationRuleCmd = &cobra.Command{
 	Use:   "create-custom-allocation-rule",
+	
 	Short: "Create custom allocation rule",
 	
 	Run: func(cmd *cobra.Command, args []string) {

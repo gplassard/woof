@@ -16,6 +16,7 @@ import (
 
 var CreateFastlyAccountCmd = &cobra.Command{
 	Use:   "create-fastly-account",
+	
 	Short: "Add Fastly account",
 	
 	Run: func(cmd *cobra.Command, args []string) {

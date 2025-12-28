@@ -16,6 +16,7 @@ import (
 
 var UpdateAPIKeyCmd = &cobra.Command{
 	Use:   "update-a-p-i-key [api_key_id]",
+	
 	Short: "Edit an API key",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

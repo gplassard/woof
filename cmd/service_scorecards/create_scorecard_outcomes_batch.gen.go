@@ -16,6 +16,7 @@ import (
 
 var CreateScorecardOutcomesBatchCmd = &cobra.Command{
 	Use:   "create-scorecard-outcomes-batch",
+	
 	Short: "Create outcomes batch",
 	
 	Run: func(cmd *cobra.Command, args []string) {

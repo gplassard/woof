@@ -16,6 +16,7 @@ import (
 
 var GetSecurityMonitoringSignalCmd = &cobra.Command{
 	Use:   "get-security-monitoring-signal [signal_id]",
+	Aliases: []string{ "get-signal", },
 	Short: "Get a signal's details",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

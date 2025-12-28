@@ -16,6 +16,7 @@ import (
 
 var UpdateFleetScheduleCmd = &cobra.Command{
 	Use:   "update-fleet-schedule [id]",
+	
 	Short: "Update a schedule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

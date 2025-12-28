@@ -16,6 +16,7 @@ import (
 
 var ListRestrictionQueriesCmd = &cobra.Command{
 	Use:   "list-restriction-queries",
+	
 	Short: "List restriction queries",
 	
 	Run: func(cmd *cobra.Command, args []string) {

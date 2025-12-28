@@ -16,6 +16,7 @@ import (
 
 var UpdateTeamCmd = &cobra.Command{
 	Use:   "update-team [team_id]",
+	Aliases: []string{ "update", },
 	Short: "Update a team",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

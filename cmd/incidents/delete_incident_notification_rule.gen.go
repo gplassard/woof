@@ -16,6 +16,7 @@ import (
 
 var DeleteIncidentNotificationRuleCmd = &cobra.Command{
 	Use:   "delete-incident-notification-rule [id]",
+	Aliases: []string{ "delete-notification-rule", },
 	Short: "Delete an incident notification rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

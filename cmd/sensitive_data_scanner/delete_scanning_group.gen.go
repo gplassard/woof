@@ -16,6 +16,7 @@ import (
 
 var DeleteScanningGroupCmd = &cobra.Command{
 	Use:   "delete-scanning-group [group_id]",
+	
 	Short: "Delete Scanning Group",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

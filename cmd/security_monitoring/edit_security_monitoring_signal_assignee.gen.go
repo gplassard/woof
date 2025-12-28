@@ -16,6 +16,7 @@ import (
 
 var EditSecurityMonitoringSignalAssigneeCmd = &cobra.Command{
 	Use:   "edit-security-monitoring-signal-assignee [signal_id]",
+	Aliases: []string{ "edit-signal-assignee", },
 	Short: "Modify the triage assignee of a security signal",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

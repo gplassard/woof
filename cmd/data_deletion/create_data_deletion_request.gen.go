@@ -16,6 +16,7 @@ import (
 
 var CreateDataDeletionRequestCmd = &cobra.Command{
 	Use:   "create-data-deletion-request [product]",
+	Aliases: []string{ "create-request", },
 	Short: "Creates a data deletion request",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

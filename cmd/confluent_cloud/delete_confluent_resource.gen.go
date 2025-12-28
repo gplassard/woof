@@ -16,6 +16,7 @@ import (
 
 var DeleteConfluentResourceCmd = &cobra.Command{
 	Use:   "delete-confluent-resource [account_id] [resource_id]",
+	
 	Short: "Delete resource from Confluent account",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {

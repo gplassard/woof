@@ -16,6 +16,7 @@ import (
 
 var DeleteMonitorNotificationRuleCmd = &cobra.Command{
 	Use:   "delete-monitor-notification-rule [rule_id]",
+	Aliases: []string{ "delete-notification-rule", },
 	Short: "Delete a monitor notification rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

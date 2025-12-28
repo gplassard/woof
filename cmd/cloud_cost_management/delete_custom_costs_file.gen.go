@@ -16,6 +16,7 @@ import (
 
 var DeleteCustomCostsFileCmd = &cobra.Command{
 	Use:   "delete-custom-costs-file [file_id]",
+	
 	Short: "Delete Custom Costs file",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

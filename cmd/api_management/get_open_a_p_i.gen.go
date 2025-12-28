@@ -16,6 +16,7 @@ import (
 
 var GetOpenAPICmd = &cobra.Command{
 	Use:   "get-open-a-p-i [id]",
+	
 	Short: "Get an API",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

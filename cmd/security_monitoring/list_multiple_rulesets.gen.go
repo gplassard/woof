@@ -16,6 +16,7 @@ import (
 
 var ListMultipleRulesetsCmd = &cobra.Command{
 	Use:   "list-multiple-rulesets",
+	
 	Short: "Ruleset get multiple",
 	
 	Run: func(cmd *cobra.Command, args []string) {

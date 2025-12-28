@@ -16,6 +16,7 @@ import (
 
 var UpdateRoleCmd = &cobra.Command{
 	Use:   "update-role [role_id]",
+	Aliases: []string{ "update", },
 	Short: "Update a role",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

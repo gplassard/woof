@@ -16,6 +16,7 @@ import (
 
 var DeleteCustomAttributeConfigCmd = &cobra.Command{
 	Use:   "delete-custom-attribute-config [case_type_id] [custom_attribute_id]",
+	
 	Short: "Delete custom attributes config",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var UpdateScorecardOutcomesAsyncCmd = &cobra.Command{
 	Use:   "update-scorecard-outcomes-async",
+	
 	Short: "Update Scorecard outcomes asynchronously",
 	
 	Run: func(cmd *cobra.Command, args []string) {

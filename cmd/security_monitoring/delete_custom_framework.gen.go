@@ -16,6 +16,7 @@ import (
 
 var DeleteCustomFrameworkCmd = &cobra.Command{
 	Use:   "delete-custom-framework [handle] [version]",
+	
 	Short: "Delete a custom framework",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var QueryAccountsCmd = &cobra.Command{
 	Use:   "query-accounts",
+	
 	Short: "Query accounts",
 	
 	Run: func(cmd *cobra.Command, args []string) {

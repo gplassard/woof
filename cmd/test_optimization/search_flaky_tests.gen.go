@@ -16,6 +16,7 @@ import (
 
 var SearchFlakyTestsCmd = &cobra.Command{
 	Use:   "search-flaky-tests",
+	
 	Short: "Search flaky tests",
 	
 	Run: func(cmd *cobra.Command, args []string) {

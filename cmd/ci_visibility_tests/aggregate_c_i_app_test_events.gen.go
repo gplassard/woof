@@ -16,6 +16,7 @@ import (
 
 var AggregateCIAppTestEventsCmd = &cobra.Command{
 	Use:   "aggregate-c-i-app-test-events",
+	
 	Short: "Aggregate tests events",
 	
 	Run: func(cmd *cobra.Command, args []string) {

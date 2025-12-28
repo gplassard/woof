@@ -16,6 +16,7 @@ import (
 
 var DeleteUserNotificationChannelCmd = &cobra.Command{
 	Use:   "delete-user-notification-channel [user_id] [channel_id]",
+	
 	Short: "Delete an On-Call notification channel for a user",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {

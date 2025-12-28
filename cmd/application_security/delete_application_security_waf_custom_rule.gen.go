@@ -16,6 +16,7 @@ import (
 
 var DeleteApplicationSecurityWafCustomRuleCmd = &cobra.Command{
 	Use:   "delete-application-security-waf-custom-rule [custom_rule_id]",
+	Aliases: []string{ "delete-waf-custom-rule", },
 	Short: "Delete a WAF Custom Rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

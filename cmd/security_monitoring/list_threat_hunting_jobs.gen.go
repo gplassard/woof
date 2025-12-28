@@ -16,6 +16,7 @@ import (
 
 var ListThreatHuntingJobsCmd = &cobra.Command{
 	Use:   "list-threat-hunting-jobs",
+	
 	Short: "List threat hunting jobs",
 	
 	Run: func(cmd *cobra.Command, args []string) {

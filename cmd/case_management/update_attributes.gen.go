@@ -16,6 +16,7 @@ import (
 
 var UpdateAttributesCmd = &cobra.Command{
 	Use:   "update-attributes [case_id]",
+	
 	Short: "Update case attributes",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

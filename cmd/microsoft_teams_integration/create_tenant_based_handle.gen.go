@@ -16,6 +16,7 @@ import (
 
 var CreateTenantBasedHandleCmd = &cobra.Command{
 	Use:   "create-tenant-based-handle",
+	
 	Short: "Create tenant-based handle",
 	
 	Run: func(cmd *cobra.Command, args []string) {

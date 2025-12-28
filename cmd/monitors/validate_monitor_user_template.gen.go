@@ -16,6 +16,7 @@ import (
 
 var ValidateMonitorUserTemplateCmd = &cobra.Command{
 	Use:   "validate-monitor-user-template",
+	Aliases: []string{ "validate-user-template", },
 	Short: "Validate a monitor user template",
 	
 	Run: func(cmd *cobra.Command, args []string) {

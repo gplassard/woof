@@ -16,6 +16,7 @@ import (
 
 var UpdateOktaAccountCmd = &cobra.Command{
 	Use:   "update-okta-account [account_id]",
+	
 	Short: "Update Okta account",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

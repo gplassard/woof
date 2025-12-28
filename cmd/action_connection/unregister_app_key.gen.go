@@ -16,6 +16,7 @@ import (
 
 var UnregisterAppKeyCmd = &cobra.Command{
 	Use:   "unregister-app-key [app_key_id]",
+	
 	Short: "Unregister an App Key",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

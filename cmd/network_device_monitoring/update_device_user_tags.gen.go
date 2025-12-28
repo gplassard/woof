@@ -16,6 +16,7 @@ import (
 
 var UpdateDeviceUserTagsCmd = &cobra.Command{
 	Use:   "update-device-user-tags [device_id]",
+	
 	Short: "Update the tags for a device",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

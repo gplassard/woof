@@ -16,6 +16,7 @@ import (
 
 var ListMetricAssetsCmd = &cobra.Command{
 	Use:   "list-metric-assets [metric_name]",
+	Aliases: []string{ "list-assets", },
 	Short: "Related Assets to a Metric",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

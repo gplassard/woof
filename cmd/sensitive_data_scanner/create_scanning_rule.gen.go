@@ -16,6 +16,7 @@ import (
 
 var CreateScanningRuleCmd = &cobra.Command{
 	Use:   "create-scanning-rule",
+	
 	Short: "Create Scanning Rule",
 	
 	Run: func(cmd *cobra.Command, args []string) {

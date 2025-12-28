@@ -16,6 +16,7 @@ import (
 
 var GetRumMetricCmd = &cobra.Command{
 	Use:   "get-rum-metric [metric_id]",
+	Aliases: []string{ "get", },
 	Short: "Get a rum-based metric",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

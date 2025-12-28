@@ -16,6 +16,7 @@ import (
 
 var GetPipelineCmd = &cobra.Command{
 	Use:   "get-pipeline [pipeline_id]",
+	
 	Short: "Get a specific pipeline",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

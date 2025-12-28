@@ -16,6 +16,7 @@ import (
 
 var ListEventsCmd = &cobra.Command{
 	Use:   "list-events",
+	Aliases: []string{ "list", },
 	Short: "Get a list of events",
 	
 	Run: func(cmd *cobra.Command, args []string) {

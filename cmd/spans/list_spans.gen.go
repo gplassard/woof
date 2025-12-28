@@ -16,6 +16,7 @@ import (
 
 var ListSpansCmd = &cobra.Command{
 	Use:   "list-spans",
+	Aliases: []string{ "list", },
 	Short: "Search spans",
 	
 	Run: func(cmd *cobra.Command, args []string) {

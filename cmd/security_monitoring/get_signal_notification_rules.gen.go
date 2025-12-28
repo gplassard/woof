@@ -16,6 +16,7 @@ import (
 
 var GetSignalNotificationRulesCmd = &cobra.Command{
 	Use:   "get-signal-notification-rules",
+	
 	Short: "Get the list of signal-based notification rules",
 	
 	Run: func(cmd *cobra.Command, args []string) {

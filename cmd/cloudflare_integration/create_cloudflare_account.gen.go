@@ -16,6 +16,7 @@ import (
 
 var CreateCloudflareAccountCmd = &cobra.Command{
 	Use:   "create-cloudflare-account",
+	
 	Short: "Add Cloudflare account",
 	
 	Run: func(cmd *cobra.Command, args []string) {

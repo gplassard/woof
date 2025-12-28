@@ -16,6 +16,7 @@ import (
 
 var UpdateAwsScanOptionsCmd = &cobra.Command{
 	Use:   "update-aws-scan-options [account_id]",
+	
 	Short: "Update AWS scan options",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

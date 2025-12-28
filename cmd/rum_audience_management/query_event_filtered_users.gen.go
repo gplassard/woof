@@ -16,6 +16,7 @@ import (
 
 var QueryEventFilteredUsersCmd = &cobra.Command{
 	Use:   "query-event-filtered-users",
+	
 	Short: "Query event filtered users",
 	
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var ListOpsgenieServicesCmd = &cobra.Command{
 	Use:   "list-opsgenie-services",
+	
 	Short: "Get all service objects",
 	
 	Run: func(cmd *cobra.Command, args []string) {

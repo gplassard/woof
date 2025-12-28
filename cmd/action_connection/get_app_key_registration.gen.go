@@ -16,6 +16,7 @@ import (
 
 var GetAppKeyRegistrationCmd = &cobra.Command{
 	Use:   "get-app-key-registration [app_key_id]",
+	
 	Short: "Get an existing App Key Registration",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

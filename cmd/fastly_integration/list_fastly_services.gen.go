@@ -16,6 +16,7 @@ import (
 
 var ListFastlyServicesCmd = &cobra.Command{
 	Use:   "list-fastly-services [account_id]",
+	
 	Short: "List Fastly services",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

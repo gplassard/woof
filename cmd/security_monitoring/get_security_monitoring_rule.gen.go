@@ -16,6 +16,7 @@ import (
 
 var GetSecurityMonitoringRuleCmd = &cobra.Command{
 	Use:   "get-security-monitoring-rule [rule_id]",
+	Aliases: []string{ "get-rule", },
 	Short: "Get a rule's details",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

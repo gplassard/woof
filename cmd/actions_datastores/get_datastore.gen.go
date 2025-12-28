@@ -16,6 +16,7 @@ import (
 
 var GetDatastoreCmd = &cobra.Command{
 	Use:   "get-datastore [datastore_id]",
+	
 	Short: "Get datastore",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

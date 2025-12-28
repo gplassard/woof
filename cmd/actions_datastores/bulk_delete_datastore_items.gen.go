@@ -16,6 +16,7 @@ import (
 
 var BulkDeleteDatastoreItemsCmd = &cobra.Command{
 	Use:   "bulk-delete-datastore-items [datastore_id]",
+	
 	Short: "Bulk delete datastore items",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

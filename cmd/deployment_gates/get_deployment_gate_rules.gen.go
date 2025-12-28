@@ -16,6 +16,7 @@ import (
 
 var GetDeploymentGateRulesCmd = &cobra.Command{
 	Use:   "get-deployment-gate-rules [gate_id]",
+	Aliases: []string{ "get-rules", },
 	Short: "Get rules for a deployment gate",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var GetRoleRestrictionQueryCmd = &cobra.Command{
 	Use:   "get-role-restriction-query [role_id]",
+	
 	Short: "Get restriction query for a given role",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

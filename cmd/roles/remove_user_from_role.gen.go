@@ -16,6 +16,7 @@ import (
 
 var RemoveUserFromRoleCmd = &cobra.Command{
 	Use:   "remove-user-from-role [role_id]",
+	Aliases: []string{ "remove-user-from", },
 	Short: "Remove a user from a role",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

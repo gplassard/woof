@@ -16,6 +16,7 @@ import (
 
 var GetCSMCloudAccountsCoverageAnalysisCmd = &cobra.Command{
 	Use:   "get-c-s-m-cloud-accounts-coverage-analysis",
+	
 	Short: "Get the CSM Cloud Accounts Coverage Analysis",
 	
 	Run: func(cmd *cobra.Command, args []string) {

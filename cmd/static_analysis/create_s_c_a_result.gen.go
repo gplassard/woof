@@ -16,6 +16,7 @@ import (
 
 var CreateSCAResultCmd = &cobra.Command{
 	Use:   "create-s-c-a-result",
+	
 	Short: "Post dependencies for analysis",
 	
 	Run: func(cmd *cobra.Command, args []string) {

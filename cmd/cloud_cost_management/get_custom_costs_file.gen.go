@@ -16,6 +16,7 @@ import (
 
 var GetCustomCostsFileCmd = &cobra.Command{
 	Use:   "get-custom-costs-file [file_id]",
+	
 	Short: "Get Custom Costs file",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

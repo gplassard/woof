@@ -16,6 +16,7 @@ import (
 
 var ListCatalogKindCmd = &cobra.Command{
 	Use:   "list-catalog-kind",
+	
 	Short: "Get a list of entity kinds",
 	
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var UpdateAWSAccountCmd = &cobra.Command{
 	Use:   "update-a-w-s-account [aws_account_config_id]",
+	
 	Short: "Update an AWS integration",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

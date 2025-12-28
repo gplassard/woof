@@ -16,6 +16,7 @@ import (
 
 var ListOrgConfigsCmd = &cobra.Command{
 	Use:   "list-org-configs",
+	
 	Short: "List Org Configs",
 	
 	Run: func(cmd *cobra.Command, args []string) {

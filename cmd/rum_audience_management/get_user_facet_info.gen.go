@@ -16,6 +16,7 @@ import (
 
 var GetUserFacetInfoCmd = &cobra.Command{
 	Use:   "get-user-facet-info",
+	
 	Short: "Get user facet info",
 	
 	Run: func(cmd *cobra.Command, args []string) {

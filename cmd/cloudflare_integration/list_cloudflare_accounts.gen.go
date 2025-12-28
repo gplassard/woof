@@ -16,6 +16,7 @@ import (
 
 var ListCloudflareAccountsCmd = &cobra.Command{
 	Use:   "list-cloudflare-accounts",
+	
 	Short: "List Cloudflare accounts",
 	
 	Run: func(cmd *cobra.Command, args []string) {

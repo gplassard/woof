@@ -16,6 +16,7 @@ import (
 
 var ListFleetSchedulesCmd = &cobra.Command{
 	Use:   "list-fleet-schedules",
+	
 	Short: "List all schedules",
 	
 	Run: func(cmd *cobra.Command, args []string) {

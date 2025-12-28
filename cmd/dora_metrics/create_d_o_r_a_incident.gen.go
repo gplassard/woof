@@ -16,6 +16,7 @@ import (
 
 var CreateDORAIncidentCmd = &cobra.Command{
 	Use:   "create-d-o-r-a-incident",
+	
 	Short: "Send an incident event",
 	
 	Run: func(cmd *cobra.Command, args []string) {

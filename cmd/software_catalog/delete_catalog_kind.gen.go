@@ -16,6 +16,7 @@ import (
 
 var DeleteCatalogKindCmd = &cobra.Command{
 	Use:   "delete-catalog-kind [kind_id]",
+	
 	Short: "Delete a single kind",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var GetServiceListCmd = &cobra.Command{
 	Use:   "get-service-list",
+	
 	Short: "Get service list",
 	
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var DeleteCostGCPUsageCostConfigCmd = &cobra.Command{
 	Use:   "delete-cost-g-c-p-usage-cost-config [cloud_account_id]",
+	
 	Short: "Delete Google Cloud Usage Cost config",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var UpdateAppCmd = &cobra.Command{
 	Use:   "update-app [app_id]",
+	
 	Short: "Update App",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

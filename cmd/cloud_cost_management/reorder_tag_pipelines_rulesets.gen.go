@@ -16,6 +16,7 @@ import (
 
 var ReorderTagPipelinesRulesetsCmd = &cobra.Command{
 	Use:   "reorder-tag-pipelines-rulesets",
+	
 	Short: "Reorder tag pipeline rulesets",
 	
 	Run: func(cmd *cobra.Command, args []string) {

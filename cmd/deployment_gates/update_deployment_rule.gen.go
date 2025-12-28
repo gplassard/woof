@@ -16,6 +16,7 @@ import (
 
 var UpdateDeploymentRuleCmd = &cobra.Command{
 	Use:   "update-deployment-rule [gate_id] [id]",
+	
 	Short: "Update deployment rule",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {

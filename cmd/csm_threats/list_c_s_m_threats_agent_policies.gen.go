@@ -16,6 +16,7 @@ import (
 
 var ListCSMThreatsAgentPoliciesCmd = &cobra.Command{
 	Use:   "list-c-s-m-threats-agent-policies",
+	
 	Short: "Get all Workload Protection policies",
 	
 	Run: func(cmd *cobra.Command, args []string) {

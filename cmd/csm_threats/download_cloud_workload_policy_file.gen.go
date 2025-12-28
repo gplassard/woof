@@ -16,6 +16,7 @@ import (
 
 var DownloadCloudWorkloadPolicyFileCmd = &cobra.Command{
 	Use:   "download-cloud-workload-policy-file",
+	
 	Short: "Download the Workload Protection policy (US1-FED)",
 	
 	Run: func(cmd *cobra.Command, args []string) {

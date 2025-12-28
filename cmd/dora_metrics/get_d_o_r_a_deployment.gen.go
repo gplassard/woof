@@ -16,6 +16,7 @@ import (
 
 var GetDORADeploymentCmd = &cobra.Command{
 	Use:   "get-d-o-r-a-deployment [deployment_id]",
+	
 	Short: "Get a deployment event",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

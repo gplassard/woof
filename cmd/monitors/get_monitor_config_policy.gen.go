@@ -16,6 +16,7 @@ import (
 
 var GetMonitorConfigPolicyCmd = &cobra.Command{
 	Use:   "get-monitor-config-policy [policy_id]",
+	Aliases: []string{ "get-config-policy", },
 	Short: "Get a monitor configuration policy",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

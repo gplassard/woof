@@ -16,6 +16,7 @@ import (
 
 var ListContainerImagesCmd = &cobra.Command{
 	Use:   "list-container-images",
+	Aliases: []string{ "list", },
 	Short: "Get all Container Images",
 	
 	Run: func(cmd *cobra.Command, args []string) {

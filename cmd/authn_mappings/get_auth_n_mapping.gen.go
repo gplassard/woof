@@ -16,6 +16,7 @@ import (
 
 var GetAuthNMappingCmd = &cobra.Command{
 	Use:   "get-auth-n-mapping [authn_mapping_id]",
+	
 	Short: "Get an AuthN Mapping by UUID",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

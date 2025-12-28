@@ -16,6 +16,7 @@ import (
 
 var UpdateReferenceTableCmd = &cobra.Command{
 	Use:   "update-reference-table [id]",
+	Aliases: []string{ "update", },
 	Short: "Update reference table",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

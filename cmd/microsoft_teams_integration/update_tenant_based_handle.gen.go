@@ -16,6 +16,7 @@ import (
 
 var UpdateTenantBasedHandleCmd = &cobra.Command{
 	Use:   "update-tenant-based-handle [handle_id]",
+	
 	Short: "Update tenant-based handle",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

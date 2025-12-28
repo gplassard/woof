@@ -16,6 +16,7 @@ import (
 
 var CreateIncidentTeamCmd = &cobra.Command{
 	Use:   "create-incident-team",
+	Aliases: []string{ "create", },
 	Short: "Create a new incident team",
 	
 	Run: func(cmd *cobra.Command, args []string) {

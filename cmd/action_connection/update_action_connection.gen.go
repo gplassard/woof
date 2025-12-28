@@ -16,6 +16,7 @@ import (
 
 var UpdateActionConnectionCmd = &cobra.Command{
 	Use:   "update-action-connection [connection_id]",
+	Aliases: []string{ "update", },
 	Short: "Update an existing Action Connection",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

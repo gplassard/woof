@@ -16,6 +16,7 @@ import (
 
 var GetConfluentAccountCmd = &cobra.Command{
 	Use:   "get-confluent-account [account_id]",
+	
 	Short: "Get Confluent account",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

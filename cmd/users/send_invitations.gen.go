@@ -16,6 +16,7 @@ import (
 
 var SendInvitationsCmd = &cobra.Command{
 	Use:   "send-invitations",
+	
 	Short: "Send invitation emails",
 	
 	Run: func(cmd *cobra.Command, args []string) {

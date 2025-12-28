@@ -16,6 +16,7 @@ import (
 
 var DeleteFleetScheduleCmd = &cobra.Command{
 	Use:   "delete-fleet-schedule [id]",
+	
 	Short: "Delete a schedule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

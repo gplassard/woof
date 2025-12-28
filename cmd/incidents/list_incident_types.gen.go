@@ -16,6 +16,7 @@ import (
 
 var ListIncidentTypesCmd = &cobra.Command{
 	Use:   "list-incident-types",
+	Aliases: []string{ "list-types", },
 	Short: "Get a list of incident types",
 	
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var UpdateOrgConfigCmd = &cobra.Command{
 	Use:   "update-org-config [org_config_name]",
+	
 	Short: "Update a specific Org Config",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

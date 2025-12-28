@@ -16,6 +16,7 @@ import (
 
 var ListServiceAccountApplicationKeysCmd = &cobra.Command{
 	Use:   "list-service-account-application-keys [service_account_id]",
+	Aliases: []string{ "list-application-keys", },
 	Short: "List application keys for this service account",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

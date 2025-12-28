@@ -16,6 +16,7 @@ import (
 
 var UpdateGcpScanOptionsCmd = &cobra.Command{
 	Use:   "update-gcp-scan-options [project_id]",
+	
 	Short: "Update GCP scan options",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

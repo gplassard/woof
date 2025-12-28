@@ -16,6 +16,7 @@ import (
 
 var DeleteSecurityMonitoringSuppressionCmd = &cobra.Command{
 	Use:   "delete-security-monitoring-suppression [suppression_id]",
+	Aliases: []string{ "delete-suppression", },
 	Short: "Delete a suppression rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

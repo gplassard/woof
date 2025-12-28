@@ -16,6 +16,7 @@ import (
 
 var SetOnDemandConcurrencyCapCmd = &cobra.Command{
 	Use:   "set-on-demand-concurrency-cap",
+	
 	Short: "Save new value for on-demand concurrency cap",
 	
 	Run: func(cmd *cobra.Command, args []string) {

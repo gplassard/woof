@@ -16,6 +16,7 @@ import (
 
 var GetRestrictionQueryCmd = &cobra.Command{
 	Use:   "get-restriction-query [restriction_query_id]",
+	
 	Short: "Get a restriction query",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

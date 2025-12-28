@@ -16,6 +16,7 @@ import (
 
 var SubmitMetricsCmd = &cobra.Command{
 	Use:   "submit-metrics",
+	Aliases: []string{ "submit", },
 	Short: "Submit metrics",
 	
 	Run: func(cmd *cobra.Command, args []string) {

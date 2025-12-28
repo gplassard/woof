@@ -16,6 +16,7 @@ import (
 
 var CreateAwsScanOptionsCmd = &cobra.Command{
 	Use:   "create-aws-scan-options",
+	
 	Short: "Create AWS scan options",
 	
 	Run: func(cmd *cobra.Command, args []string) {

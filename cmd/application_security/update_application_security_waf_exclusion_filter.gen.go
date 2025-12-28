@@ -16,6 +16,7 @@ import (
 
 var UpdateApplicationSecurityWafExclusionFilterCmd = &cobra.Command{
 	Use:   "update-application-security-waf-exclusion-filter [exclusion_filter_id]",
+	Aliases: []string{ "update-waf-exclusion-filter", },
 	Short: "Update a WAF exclusion filter",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

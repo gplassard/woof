@@ -16,6 +16,7 @@ import (
 
 var ValidateSecurityMonitoringSuppressionCmd = &cobra.Command{
 	Use:   "validate-security-monitoring-suppression",
+	Aliases: []string{ "validate-suppression", },
 	Short: "Validate a suppression rule",
 	
 	Run: func(cmd *cobra.Command, args []string) {

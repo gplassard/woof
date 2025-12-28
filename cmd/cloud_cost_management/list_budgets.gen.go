@@ -16,6 +16,7 @@ import (
 
 var ListBudgetsCmd = &cobra.Command{
 	Use:   "list-budgets",
+	
 	Short: "List budgets",
 	
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var UpdateLogsArchiveCmd = &cobra.Command{
 	Use:   "update-logs-archive [archive_id]",
+	Aliases: []string{ "update", },
 	Short: "Update an archive",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

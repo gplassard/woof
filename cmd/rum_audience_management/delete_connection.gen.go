@@ -16,6 +16,7 @@ import (
 
 var DeleteConnectionCmd = &cobra.Command{
 	Use:   "delete-connection [id] [entity]",
+	
 	Short: "Delete connection",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {

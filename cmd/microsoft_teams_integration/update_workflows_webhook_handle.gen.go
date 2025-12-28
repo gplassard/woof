@@ -16,6 +16,7 @@ import (
 
 var UpdateWorkflowsWebhookHandleCmd = &cobra.Command{
 	Use:   "update-workflows-webhook-handle [handle_id]",
+	
 	Short: "Update Workflows webhook handle",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

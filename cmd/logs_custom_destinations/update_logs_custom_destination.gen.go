@@ -16,6 +16,7 @@ import (
 
 var UpdateLogsCustomDestinationCmd = &cobra.Command{
 	Use:   "update-logs-custom-destination [custom_destination_id]",
+	Aliases: []string{ "update", },
 	Short: "Update a custom destination",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var DeleteTeamLinkCmd = &cobra.Command{
 	Use:   "delete-team-link [team_id] [link_id]",
+	Aliases: []string{ "delete-link", },
 	Short: "Remove a team link",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {

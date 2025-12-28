@@ -16,6 +16,7 @@ import (
 
 var CreatePipelineCmd = &cobra.Command{
 	Use:   "create-pipeline",
+	
 	Short: "Create a new pipeline",
 	
 	Run: func(cmd *cobra.Command, args []string) {

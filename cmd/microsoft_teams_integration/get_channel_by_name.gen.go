@@ -16,6 +16,7 @@ import (
 
 var GetChannelByNameCmd = &cobra.Command{
 	Use:   "get-channel-by-name [tenant_name] [team_name] [channel_name]",
+	
 	Short: "Get channel information by name",
 	Args:  cobra.ExactArgs(3),
 	Run: func(cmd *cobra.Command, args []string) {

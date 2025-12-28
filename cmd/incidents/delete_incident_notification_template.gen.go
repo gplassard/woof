@@ -16,6 +16,7 @@ import (
 
 var DeleteIncidentNotificationTemplateCmd = &cobra.Command{
 	Use:   "delete-incident-notification-template [id]",
+	Aliases: []string{ "delete-notification-template", },
 	Short: "Delete a notification template",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

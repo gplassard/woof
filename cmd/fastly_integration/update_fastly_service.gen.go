@@ -16,6 +16,7 @@ import (
 
 var UpdateFastlyServiceCmd = &cobra.Command{
 	Use:   "update-fastly-service [account_id] [service_id]",
+	
 	Short: "Update Fastly service",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {

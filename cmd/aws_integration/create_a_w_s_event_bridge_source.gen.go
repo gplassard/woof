@@ -16,6 +16,7 @@ import (
 
 var CreateAWSEventBridgeSourceCmd = &cobra.Command{
 	Use:   "create-a-w-s-event-bridge-source",
+	
 	Short: "Create an Amazon EventBridge source",
 	
 	Run: func(cmd *cobra.Command, args []string) {

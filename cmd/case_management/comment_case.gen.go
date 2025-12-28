@@ -16,6 +16,7 @@ import (
 
 var CommentCaseCmd = &cobra.Command{
 	Use:   "comment-case [case_id]",
+	
 	Short: "Comment case",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

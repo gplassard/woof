@@ -16,6 +16,7 @@ import (
 
 var UpdateConfluentResourceCmd = &cobra.Command{
 	Use:   "update-confluent-resource [account_id] [resource_id]",
+	
 	Short: "Update resource in Confluent account",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {

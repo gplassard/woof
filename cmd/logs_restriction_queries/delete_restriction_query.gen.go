@@ -16,6 +16,7 @@ import (
 
 var DeleteRestrictionQueryCmd = &cobra.Command{
 	Use:   "delete-restriction-query [restriction_query_id]",
+	
 	Short: "Delete a restriction query",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

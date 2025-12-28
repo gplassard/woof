@@ -16,6 +16,7 @@ import (
 
 var ListAssetsSBOMsCmd = &cobra.Command{
 	Use:   "list-assets-s-b-o-ms",
+	
 	Short: "List assets SBOMs",
 	
 	Run: func(cmd *cobra.Command, args []string) {

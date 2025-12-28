@@ -16,6 +16,7 @@ import (
 
 var GetFleetDeploymentCmd = &cobra.Command{
 	Use:   "get-fleet-deployment [deployment_id]",
+	
 	Short: "Get a configuration deployment by ID",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

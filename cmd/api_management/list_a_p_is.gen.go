@@ -16,6 +16,7 @@ import (
 
 var ListAPIsCmd = &cobra.Command{
 	Use:   "list-a-p-is",
+	
 	Short: "List APIs",
 	
 	Run: func(cmd *cobra.Command, args []string) {

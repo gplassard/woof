@@ -16,6 +16,7 @@ import (
 
 var ListDORADeploymentsCmd = &cobra.Command{
 	Use:   "list-d-o-r-a-deployments",
+	
 	Short: "Get a list of deployment events",
 	
 	Run: func(cmd *cobra.Command, args []string) {

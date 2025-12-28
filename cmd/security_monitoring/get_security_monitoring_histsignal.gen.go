@@ -16,6 +16,7 @@ import (
 
 var GetSecurityMonitoringHistsignalCmd = &cobra.Command{
 	Use:   "get-security-monitoring-histsignal [histsignal_id]",
+	Aliases: []string{ "get-histsignal", },
 	Short: "Get a hist signal's details",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

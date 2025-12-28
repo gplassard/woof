@@ -16,6 +16,7 @@ import (
 
 var UpdateTagPipelinesRulesetCmd = &cobra.Command{
 	Use:   "update-tag-pipelines-ruleset [ruleset_id]",
+	
 	Short: "Update tag pipeline ruleset",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

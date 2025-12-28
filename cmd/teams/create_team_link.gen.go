@@ -16,6 +16,7 @@ import (
 
 var CreateTeamLinkCmd = &cobra.Command{
 	Use:   "create-team-link [team_id]",
+	Aliases: []string{ "create-link", },
 	Short: "Create a team link",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

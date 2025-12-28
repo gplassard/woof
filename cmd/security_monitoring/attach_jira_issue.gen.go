@@ -16,6 +16,7 @@ import (
 
 var AttachJiraIssueCmd = &cobra.Command{
 	Use:   "attach-jira-issue",
+	
 	Short: "Attach security findings to a Jira issue",
 	
 	Run: func(cmd *cobra.Command, args []string) {

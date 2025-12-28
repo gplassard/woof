@@ -16,6 +16,7 @@ import (
 
 var GetDataDeletionRequestsCmd = &cobra.Command{
 	Use:   "get-data-deletion-requests",
+	Aliases: []string{ "get-requests", },
 	Short: "Gets a list of data deletion requests",
 	
 	Run: func(cmd *cobra.Command, args []string) {

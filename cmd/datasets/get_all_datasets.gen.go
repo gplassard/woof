@@ -16,6 +16,7 @@ import (
 
 var GetAllDatasetsCmd = &cobra.Command{
 	Use:   "get-all-datasets",
+	Aliases: []string{ "get-all", },
 	Short: "Get all datasets",
 	
 	Run: func(cmd *cobra.Command, args []string) {

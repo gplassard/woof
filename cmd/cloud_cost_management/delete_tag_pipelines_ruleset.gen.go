@@ -16,6 +16,7 @@ import (
 
 var DeleteTagPipelinesRulesetCmd = &cobra.Command{
 	Use:   "delete-tag-pipelines-ruleset [ruleset_id]",
+	
 	Short: "Delete tag pipeline ruleset",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

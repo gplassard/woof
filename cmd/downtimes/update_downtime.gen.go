@@ -16,6 +16,7 @@ import (
 
 var UpdateDowntimeCmd = &cobra.Command{
 	Use:   "update-downtime [downtime_id]",
+	Aliases: []string{ "update", },
 	Short: "Update a downtime",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

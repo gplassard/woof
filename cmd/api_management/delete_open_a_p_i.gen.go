@@ -16,6 +16,7 @@ import (
 
 var DeleteOpenAPICmd = &cobra.Command{
 	Use:   "delete-open-a-p-i [id]",
+	
 	Short: "Delete an API",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

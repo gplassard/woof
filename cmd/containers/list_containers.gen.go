@@ -16,6 +16,7 @@ import (
 
 var ListContainersCmd = &cobra.Command{
 	Use:   "list-containers",
+	Aliases: []string{ "list", },
 	Short: "Get All Containers",
 	
 	Run: func(cmd *cobra.Command, args []string) {

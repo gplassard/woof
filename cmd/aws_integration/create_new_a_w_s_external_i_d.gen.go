@@ -16,6 +16,7 @@ import (
 
 var CreateNewAWSExternalIDCmd = &cobra.Command{
 	Use:   "create-new-a-w-s-external-i-d",
+	
 	Short: "Generate a new external ID",
 	
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var GetFleetScheduleCmd = &cobra.Command{
 	Use:   "get-fleet-schedule [id]",
+	
 	Short: "Get a schedule by ID",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

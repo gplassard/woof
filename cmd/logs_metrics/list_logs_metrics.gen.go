@@ -16,6 +16,7 @@ import (
 
 var ListLogsMetricsCmd = &cobra.Command{
 	Use:   "list-logs-metrics",
+	Aliases: []string{ "list", },
 	Short: "Get all log-based metrics",
 	
 	Run: func(cmd *cobra.Command, args []string) {

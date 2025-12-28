@@ -16,6 +16,7 @@ import (
 
 var DeleteRowsCmd = &cobra.Command{
 	Use:   "delete-rows [id]",
+	
 	Short: "Delete rows",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var GetCSMThreatsAgentRuleCmd = &cobra.Command{
 	Use:   "get-c-s-m-threats-agent-rule [agent_rule_id]",
+	
 	Short: "Get a Workload Protection agent rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

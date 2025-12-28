@@ -16,6 +16,7 @@ import (
 
 var GetServiceDefinitionCmd = &cobra.Command{
 	Use:   "get-service-definition [service_name]",
+	Aliases: []string{ "get", },
 	Short: "Get a single service definition",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

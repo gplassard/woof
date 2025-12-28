@@ -16,6 +16,7 @@ import (
 
 var CreateApmRetentionFilterCmd = &cobra.Command{
 	Use:   "create-apm-retention-filter",
+	Aliases: []string{ "create", },
 	Short: "Create a retention filter",
 	
 	Run: func(cmd *cobra.Command, args []string) {

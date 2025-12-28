@@ -16,6 +16,7 @@ import (
 
 var GetThreatHuntingJobCmd = &cobra.Command{
 	Use:   "get-threat-hunting-job [job_id]",
+	
 	Short: "Get a job's details",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

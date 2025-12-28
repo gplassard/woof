@@ -16,6 +16,7 @@ import (
 
 var UpdateOpenAPICmd = &cobra.Command{
 	Use:   "update-open-a-p-i [id]",
+	
 	Short: "Update an API",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

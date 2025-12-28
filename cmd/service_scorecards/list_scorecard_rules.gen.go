@@ -16,6 +16,7 @@ import (
 
 var ListScorecardRulesCmd = &cobra.Command{
 	Use:   "list-scorecard-rules",
+	
 	Short: "List all rules",
 	
 	Run: func(cmd *cobra.Command, args []string) {

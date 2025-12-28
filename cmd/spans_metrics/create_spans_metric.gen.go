@@ -16,6 +16,7 @@ import (
 
 var CreateSpansMetricCmd = &cobra.Command{
 	Use:   "create-spans-metric",
+	Aliases: []string{ "create", },
 	Short: "Create a span-based metric",
 	
 	Run: func(cmd *cobra.Command, args []string) {

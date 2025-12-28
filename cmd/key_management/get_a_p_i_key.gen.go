@@ -16,6 +16,7 @@ import (
 
 var GetAPIKeyCmd = &cobra.Command{
 	Use:   "get-a-p-i-key [api_key_id]",
+	
 	Short: "Get API key",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

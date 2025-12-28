@@ -16,6 +16,7 @@ import (
 
 var UpdateAuthNMappingCmd = &cobra.Command{
 	Use:   "update-auth-n-mapping [authn_mapping_id]",
+	
 	Short: "Edit an AuthN Mapping",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

@@ -16,6 +16,7 @@ import (
 
 var ListUserOrganizationsCmd = &cobra.Command{
 	Use:   "list-user-organizations [user_id]",
+	Aliases: []string{ "list-organizations", },
 	Short: "Get a user organization",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

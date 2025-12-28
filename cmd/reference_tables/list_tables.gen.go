@@ -16,6 +16,7 @@ import (
 
 var ListTablesCmd = &cobra.Command{
 	Use:   "list-tables",
+	
 	Short: "List tables",
 	
 	Run: func(cmd *cobra.Command, args []string) {
