@@ -15,7 +15,7 @@ import (
 
 var CreateSLOReportJobCmd = &cobra.Command{
 	Use:   "create-slo-report-job",
-	
+	Aliases: []string{ "create-report-job", },
 	Short: "Create a new SLO report",
 	
 	Run: func(cmd *cobra.Command, args []string) {

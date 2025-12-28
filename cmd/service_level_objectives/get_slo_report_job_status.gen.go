@@ -15,7 +15,7 @@ import (
 
 var GetSLOReportJobStatusCmd = &cobra.Command{
 	Use:   "get-slo-report-job-status [report_id]",
-	
+	Aliases: []string{ "get-report-job-status", },
 	Short: "Get SLO report status",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

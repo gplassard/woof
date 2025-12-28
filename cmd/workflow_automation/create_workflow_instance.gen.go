@@ -15,7 +15,7 @@ import (
 
 var CreateWorkflowInstanceCmd = &cobra.Command{
 	Use:   "create-workflow-instance [workflow_id]",
-	
+	Aliases: []string{ "create-instance", },
 	Short: "Execute a workflow",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

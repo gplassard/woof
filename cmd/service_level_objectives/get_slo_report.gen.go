@@ -15,7 +15,7 @@ import (
 
 var GetSLOReportCmd = &cobra.Command{
 	Use:   "get-slo-report [report_id]",
-	
+	Aliases: []string{ "get-report", },
 	Short: "Get SLO report",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

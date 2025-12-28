@@ -7,5 +7,6 @@ var Cmd = &cobra.Command{
 	Short: "service_scorecards endpoints",
 	Aliases: []string{
 		"scorecards",
+		"scorecard",
 	},
 }

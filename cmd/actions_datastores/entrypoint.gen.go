@@ -7,5 +7,6 @@ var Cmd = &cobra.Command{
 	Short: "actions_datastores endpoints",
 	Aliases: []string{
 		"datastores",
+		"datastore",
 	},
 }

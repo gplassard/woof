@@ -15,7 +15,7 @@ import (
 
 var ListScorecardRulesCmd = &cobra.Command{
 	Use:   "list-scorecard-rules",
-	
+	Aliases: []string{ "list-rules", },
 	Short: "List all rules",
 	
 	Run: func(cmd *cobra.Command, args []string) {

@@ -15,7 +15,7 @@ import (
 
 var DeleteWorkflowCmd = &cobra.Command{
 	Use:   "delete-workflow [workflow_id]",
-	
+	Aliases: []string{ "delete", },
 	Short: "Delete an existing Workflow",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

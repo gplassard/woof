@@ -15,7 +15,7 @@ import (
 
 var CreateOrUpdateServiceDefinitionsCmd = &cobra.Command{
 	Use:   "create-or-update-service-definitions",
-	Aliases: []string{ "create-or-update-s", },
+	Aliases: []string{ "create-or-update", },
 	Short: "Create or update service definition",
 	
 	Run: func(cmd *cobra.Command, args []string) {

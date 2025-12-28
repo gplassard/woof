@@ -27,6 +27,7 @@ optional_parameters_operations:
 tag_aliases:
   actions_datastores:
     - datastores
+    - datastore
   action_connection:
     - connection
   application_security:
@@ -43,6 +44,7 @@ tag_aliases:
     - slo
   service_scorecards:
     - scorecards
+    - scorecard
   workflow_automation:
     - workflow
     - wf

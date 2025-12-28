@@ -15,7 +15,7 @@ import (
 
 var UpdateWorkflowCmd = &cobra.Command{
 	Use:   "update-workflow [workflow_id]",
-	
+	Aliases: []string{ "update", },
 	Short: "Update an existing Workflow",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

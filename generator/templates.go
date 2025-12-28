@@ -256,21 +256,98 @@ func prepareTemplateData(tag, rawTag, apiTagName, method, path string, op Operat
 	opKebab := toKebabCase(op.OperationID, config)
 
 	tagSingular := strings.TrimSuffix(tagKebab, "s")
-	variants := []string{tagKebab, tagSingular}
+	tagPlural := tagKebab
+	if !strings.HasSuffix(tagKebab, "s") {
+		tagPlural = tagKebab + "s"
+	}
+	variants := []string{tagKebab, tagSingular, tagPlural}
+	if tagAliases, ok := config.TagAliases[tag]; ok {
+		for _, alias := range tagAliases {
+			variants = append(variants, strings.ReplaceAll(alias, "_", "-"))
+		}
+	}
 
 	for _, variant := range variants {
 		if variant == "" {
 			continue
 		}
-		if strings.Contains(opKebab, variant) {
-			alias := strings.ReplaceAll(opKebab, variant, "")
-			alias = strings.ReplaceAll(alias, "--", "-")
-			alias = strings.Trim(alias, "-")
-			if alias != "" {
-				aliases = append(aliases, alias)
-				break
+		// Only replace if it matches a whole segment to avoid "list-spans-get" -> "list-s-get"
+		parts := strings.Split(opKebab, "-")
+		variantParts := strings.Split(variant, "-")
+
+		var newParts []string
+		skip := 0
+		for i := 0; i < len(parts); i++ {
+			if skip > 0 {
+				skip--
+				continue
+			}
+
+			match := true
+			if i+len(variantParts) <= len(parts) {
+				for j := 0; j < len(variantParts); j++ {
+					if parts[i+j] != variantParts[j] {
+						match = false
+						break
+					}
+				}
+			} else {
+				match = false
+			}
+
+			if match {
+				skip = len(variantParts) - 1
+			} else {
+				newParts = append(newParts, parts[i])
 			}
 		}
+
+		alias := strings.Join(newParts, "-")
+		if alias != "" && alias != opKebab {
+			aliases = append(aliases, alias)
+		}
+	}
+
+	// Keep only the shortest alias
+	if len(aliases) > 1 {
+		sort.Slice(aliases, func(i, j int) bool {
+			return len(aliases[i]) < len(aliases[j])
+		})
+		uniqueAliases := []string{aliases[0]}
+		for i := 1; i < len(aliases); i++ {
+			isRedundant := false
+			for _, keep := range uniqueAliases {
+				if aliases[i] == keep {
+					isRedundant = true
+					break
+				}
+			}
+			if !isRedundant {
+				uniqueAliases = append(uniqueAliases, aliases[i])
+			}
+		}
+		aliases = uniqueAliases
+	}
+
+	// If we have multiple aliases, keep only the shortest ones (don't keep both 'create' and 'create-action')
+	if len(aliases) > 1 {
+		sort.Slice(aliases, func(i, j int) bool {
+			return len(aliases[i]) < len(aliases[j])
+		})
+		var finalAliases []string
+		for _, a := range aliases {
+			isSubset := false
+			for _, other := range finalAliases {
+				if strings.Contains(a, other) {
+					isSubset = true
+					break
+				}
+			}
+			if !isSubset {
+				finalAliases = append(finalAliases, a)
+			}
+		}
+		aliases = finalAliases
 	}
 
 	return TemplateData{

@@ -15,7 +15,7 @@ import (
 
 var UpdateScorecardRuleCmd = &cobra.Command{
 	Use:   "update-scorecard-rule [rule_id]",
-	
+	Aliases: []string{ "update-rule", },
 	Short: "Update an existing rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

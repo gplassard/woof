@@ -15,7 +15,7 @@ import (
 
 var CreateScorecardRuleCmd = &cobra.Command{
 	Use:   "create-scorecard-rule",
-	
+	Aliases: []string{ "create-rule", },
 	Short: "Create a new rule",
 	
 	Run: func(cmd *cobra.Command, args []string) {

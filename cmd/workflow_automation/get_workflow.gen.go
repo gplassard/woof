@@ -15,7 +15,7 @@ import (
 
 var GetWorkflowCmd = &cobra.Command{
 	Use:   "get-workflow [workflow_id]",
-	
+	Aliases: []string{ "get", },
 	Short: "Get an existing Workflow",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
