@@ -24,7 +24,7 @@ var AddTeamHierarchyLinkCmd = &cobra.Command{
 		res, _, err := api.AddTeamHierarchyLink(client.NewContext(apiKey, appKey, site), datadogV2.TeamHierarchyLinkCreateRequest{})
 		cmdutil.HandleError(err, "failed to add-team-hierarchy-link")
 
-		cmdutil.PrintJSON(res, "team_hierarchy_links")
+		cmd.Println(cmdutil.FormatJSON(res, "team_hierarchy_links"))
 	},
 }
 

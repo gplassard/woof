@@ -24,7 +24,7 @@ var CreateDatasetCmd = &cobra.Command{
 		res, _, err := api.CreateDataset(client.NewContext(apiKey, appKey, site), datadogV2.DatasetCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-dataset")
 
-		cmdutil.PrintJSON(res, "dataset")
+		cmd.Println(cmdutil.FormatJSON(res, "dataset"))
 	},
 }
 

@@ -24,7 +24,7 @@ var AddUserToRoleCmd = &cobra.Command{
 		res, _, err := api.AddUserToRole(client.NewContext(apiKey, appKey, site), args[0], datadogV2.RelationshipToUser{})
 		cmdutil.HandleError(err, "failed to add-user-to-role")
 
-		cmdutil.PrintJSON(res, "users")
+		cmd.Println(cmdutil.FormatJSON(res, "users"))
 	},
 }
 

@@ -24,7 +24,7 @@ var UpdateCloudflareAccountCmd = &cobra.Command{
 		res, _, err := api.UpdateCloudflareAccount(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CloudflareAccountUpdateRequest{})
 		cmdutil.HandleError(err, "failed to update-cloudflare-account")
 
-		cmdutil.PrintJSON(res, "cloudflare-accounts")
+		cmd.Println(cmdutil.FormatJSON(res, "cloudflare-accounts"))
 	},
 }
 

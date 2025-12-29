@@ -24,7 +24,7 @@ var SendInvitationsCmd = &cobra.Command{
 		res, _, err := api.SendInvitations(client.NewContext(apiKey, appKey, site), datadogV2.UserInvitationsRequest{})
 		cmdutil.HandleError(err, "failed to send-invitations")
 
-		cmdutil.PrintJSON(res, "user_invitations")
+		cmd.Println(cmdutil.FormatJSON(res, "user_invitations"))
 	},
 }
 

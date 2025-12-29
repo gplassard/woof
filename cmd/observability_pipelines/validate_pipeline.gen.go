@@ -24,7 +24,7 @@ var ValidatePipelineCmd = &cobra.Command{
 		res, _, err := api.ValidatePipeline(client.NewContext(apiKey, appKey, site), datadogV2.ObservabilityPipelineSpec{})
 		cmdutil.HandleError(err, "failed to validate-pipeline")
 
-		cmdutil.PrintJSON(res, "observability_pipelines")
+		cmd.Println(cmdutil.FormatJSON(res, "observability_pipelines"))
 	},
 }
 

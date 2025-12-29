@@ -24,7 +24,7 @@ var ListOrgConfigsCmd = &cobra.Command{
 		res, _, err := api.ListOrgConfigs(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-org-configs")
 
-		cmdutil.PrintJSON(res, "org_configs")
+		cmd.Println(cmdutil.FormatJSON(res, "org_configs"))
 	},
 }
 

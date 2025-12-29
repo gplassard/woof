@@ -24,7 +24,7 @@ var GetUserMembershipsCmd = &cobra.Command{
 		res, _, err := api.GetUserMemberships(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-user-memberships")
 
-		cmdutil.PrintJSON(res, "team_memberships")
+		cmd.Println(cmdutil.FormatJSON(res, "team_memberships"))
 	},
 }
 

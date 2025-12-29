@@ -24,7 +24,7 @@ var GetIncidentNotificationTemplateCmd = &cobra.Command{
 		res, _, err := api.GetIncidentNotificationTemplate(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
 		cmdutil.HandleError(err, "failed to get-incident-notification-template")
 
-		cmdutil.PrintJSON(res, "notification_templates")
+		cmd.Println(cmdutil.FormatJSON(res, "notification_templates"))
 	},
 }
 

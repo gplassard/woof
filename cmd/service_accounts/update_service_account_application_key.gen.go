@@ -24,7 +24,7 @@ var UpdateServiceAccountApplicationKeyCmd = &cobra.Command{
 		res, _, err := api.UpdateServiceAccountApplicationKey(client.NewContext(apiKey, appKey, site), args[0], args[1], datadogV2.ApplicationKeyUpdateRequest{})
 		cmdutil.HandleError(err, "failed to update-service-account-application-key")
 
-		cmdutil.PrintJSON(res, "application_keys")
+		cmd.Println(cmdutil.FormatJSON(res, "application_keys"))
 	},
 }
 

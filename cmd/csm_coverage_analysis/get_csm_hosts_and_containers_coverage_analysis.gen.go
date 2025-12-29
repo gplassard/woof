@@ -24,7 +24,7 @@ var GetCSMHostsAndContainersCoverageAnalysisCmd = &cobra.Command{
 		res, _, err := api.GetCSMHostsAndContainersCoverageAnalysis(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-csm-hosts-and-containers-coverage-analysis")
 
-		cmdutil.PrintJSON(res, "csm_coverage_analysis")
+		cmd.Println(cmdutil.FormatJSON(res, "csm_coverage_analysis"))
 	},
 }
 

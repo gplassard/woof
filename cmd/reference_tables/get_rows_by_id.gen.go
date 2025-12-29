@@ -24,7 +24,7 @@ var GetRowsByIDCmd = &cobra.Command{
 		res, _, err := api.GetRowsByID(client.NewContext(apiKey, appKey, site), args[0], strings.Split(args[1], ","))
 		cmdutil.HandleError(err, "failed to get-rows-by-id")
 
-		cmdutil.PrintJSON(res, "row")
+		cmd.Println(cmdutil.FormatJSON(res, "row"))
 	},
 }
 

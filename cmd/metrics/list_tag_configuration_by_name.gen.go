@@ -24,7 +24,7 @@ var ListTagConfigurationByNameCmd = &cobra.Command{
 		res, _, err := api.ListTagConfigurationByName(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-tag-configuration-by-name")
 
-		cmdutil.PrintJSON(res, "manage_tags")
+		cmd.Println(cmdutil.FormatJSON(res, "manage_tags"))
 	},
 }
 

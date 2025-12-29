@@ -24,7 +24,7 @@ var CreateSCAResolveVulnerableSymbolsCmd = &cobra.Command{
 		res, _, err := api.CreateSCAResolveVulnerableSymbols(client.NewContext(apiKey, appKey, site), datadogV2.ResolveVulnerableSymbolsRequest{})
 		cmdutil.HandleError(err, "failed to create-sca-resolve-vulnerable-symbols")
 
-		cmdutil.PrintJSON(res, "resolve-vulnerable-symbols-response")
+		cmd.Println(cmdutil.FormatJSON(res, "resolve-vulnerable-symbols-response"))
 	},
 }
 

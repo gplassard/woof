@@ -24,7 +24,7 @@ var GetRUMApplicationCmd = &cobra.Command{
 		res, _, err := api.GetRUMApplication(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-rum-application")
 
-		cmdutil.PrintJSON(res, "rum_application")
+		cmd.Println(cmdutil.FormatJSON(res, "rum_application"))
 	},
 }
 

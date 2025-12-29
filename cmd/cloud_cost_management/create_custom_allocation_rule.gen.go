@@ -24,7 +24,7 @@ var CreateCustomAllocationRuleCmd = &cobra.Command{
 		res, _, err := api.CreateCustomAllocationRule(client.NewContext(apiKey, appKey, site), datadogV2.ArbitraryCostUpsertRequest{})
 		cmdutil.HandleError(err, "failed to create-custom-allocation-rule")
 
-		cmdutil.PrintJSON(res, "arbitrary_rule")
+		cmd.Println(cmdutil.FormatJSON(res, "arbitrary_rule"))
 	},
 }
 

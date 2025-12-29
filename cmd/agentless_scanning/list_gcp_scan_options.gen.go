@@ -24,7 +24,7 @@ var ListGcpScanOptionsCmd = &cobra.Command{
 		res, _, err := api.ListGcpScanOptions(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-gcp-scan-options")
 
-		cmdutil.PrintJSON(res, "gcp_scan_options")
+		cmd.Println(cmdutil.FormatJSON(res, "gcp_scan_options"))
 	},
 }
 

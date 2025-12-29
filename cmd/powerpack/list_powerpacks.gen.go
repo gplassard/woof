@@ -24,7 +24,7 @@ var ListPowerpacksCmd = &cobra.Command{
 		res, _, err := api.ListPowerpacks(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-powerpacks")
 
-		cmdutil.PrintJSON(res, "powerpack")
+		cmd.Println(cmdutil.FormatJSON(res, "powerpack"))
 	},
 }
 

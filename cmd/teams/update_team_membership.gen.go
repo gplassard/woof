@@ -24,7 +24,7 @@ var UpdateTeamMembershipCmd = &cobra.Command{
 		res, _, err := api.UpdateTeamMembership(client.NewContext(apiKey, appKey, site), args[0], args[1], datadogV2.UserTeamUpdateRequest{})
 		cmdutil.HandleError(err, "failed to update-team-membership")
 
-		cmdutil.PrintJSON(res, "team_memberships")
+		cmd.Println(cmdutil.FormatJSON(res, "team_memberships"))
 	},
 }
 

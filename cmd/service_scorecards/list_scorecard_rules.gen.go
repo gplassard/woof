@@ -24,7 +24,7 @@ var ListScorecardRulesCmd = &cobra.Command{
 		res, _, err := api.ListScorecardRules(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-scorecard-rules")
 
-		cmdutil.PrintJSON(res, "service_scorecards")
+		cmd.Println(cmdutil.FormatJSON(res, "service_scorecards"))
 	},
 }
 

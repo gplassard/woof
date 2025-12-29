@@ -24,7 +24,7 @@ var AggregateCIAppPipelineEventsCmd = &cobra.Command{
 		res, _, err := api.AggregateCIAppPipelineEvents(client.NewContext(apiKey, appKey, site), datadogV2.CIAppPipelinesAggregateRequest{})
 		cmdutil.HandleError(err, "failed to aggregate-ci-app-pipeline-events")
 
-		cmdutil.PrintJSON(res, "ci_visibility_pipelines")
+		cmd.Println(cmdutil.FormatJSON(res, "ci_visibility_pipelines"))
 	},
 }
 

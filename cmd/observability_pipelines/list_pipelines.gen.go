@@ -24,7 +24,7 @@ var ListPipelinesCmd = &cobra.Command{
 		res, _, err := api.ListPipelines(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-pipelines")
 
-		cmdutil.PrintJSON(res, "observability_pipelines")
+		cmd.Println(cmdutil.FormatJSON(res, "observability_pipelines"))
 	},
 }
 

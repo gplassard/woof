@@ -24,7 +24,7 @@ var SearchRUMEventsCmd = &cobra.Command{
 		res, _, err := api.SearchRUMEvents(client.NewContext(apiKey, appKey, site), datadogV2.RUMSearchEventsRequest{})
 		cmdutil.HandleError(err, "failed to search-rum-events")
 
-		cmdutil.PrintJSON(res, "rum")
+		cmd.Println(cmdutil.FormatJSON(res, "rum"))
 	},
 }
 

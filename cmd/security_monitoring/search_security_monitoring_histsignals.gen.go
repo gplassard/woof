@@ -24,7 +24,7 @@ var SearchSecurityMonitoringHistsignalsCmd = &cobra.Command{
 		res, _, err := api.SearchSecurityMonitoringHistsignals(client.NewContext(apiKey, appKey, site), *datadogV2.NewSearchSecurityMonitoringHistsignalsOptionalParameters())
 		cmdutil.HandleError(err, "failed to search-security-monitoring-histsignals")
 
-		cmdutil.PrintJSON(res, "signal")
+		cmd.Println(cmdutil.FormatJSON(res, "signal"))
 	},
 }
 

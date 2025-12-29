@@ -24,7 +24,7 @@ var ListAWSNamespacesCmd = &cobra.Command{
 		res, _, err := api.ListAWSNamespaces(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-aws-namespaces")
 
-		cmdutil.PrintJSON(res, "namespaces")
+		cmd.Println(cmdutil.FormatJSON(res, "namespaces"))
 	},
 }
 

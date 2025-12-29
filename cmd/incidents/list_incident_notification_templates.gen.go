@@ -24,7 +24,7 @@ var ListIncidentNotificationTemplatesCmd = &cobra.Command{
 		res, _, err := api.ListIncidentNotificationTemplates(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-incident-notification-templates")
 
-		cmdutil.PrintJSON(res, "notification_templates")
+		cmd.Println(cmdutil.FormatJSON(res, "notification_templates"))
 	},
 }
 

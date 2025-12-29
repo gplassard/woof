@@ -24,7 +24,7 @@ var UpdateIncidentIntegrationCmd = &cobra.Command{
 		res, _, err := api.UpdateIncidentIntegration(client.NewContext(apiKey, appKey, site), args[0], args[1], datadogV2.IncidentIntegrationMetadataPatchRequest{})
 		cmdutil.HandleError(err, "failed to update-incident-integration")
 
-		cmdutil.PrintJSON(res, "incident_integrations")
+		cmd.Println(cmdutil.FormatJSON(res, "incident_integrations"))
 	},
 }
 

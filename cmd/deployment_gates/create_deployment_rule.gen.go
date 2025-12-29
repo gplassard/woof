@@ -24,7 +24,7 @@ var CreateDeploymentRuleCmd = &cobra.Command{
 		res, _, err := api.CreateDeploymentRule(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CreateDeploymentRuleParams{})
 		cmdutil.HandleError(err, "failed to create-deployment-rule")
 
-		cmdutil.PrintJSON(res, "deployment_rule")
+		cmd.Println(cmdutil.FormatJSON(res, "deployment_rule"))
 	},
 }
 

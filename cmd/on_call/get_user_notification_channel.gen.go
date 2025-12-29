@@ -24,7 +24,7 @@ var GetUserNotificationChannelCmd = &cobra.Command{
 		res, _, err := api.GetUserNotificationChannel(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		cmdutil.HandleError(err, "failed to get-user-notification-channel")
 
-		cmdutil.PrintJSON(res, "notification_channels")
+		cmd.Println(cmdutil.FormatJSON(res, "notification_channels"))
 	},
 }
 

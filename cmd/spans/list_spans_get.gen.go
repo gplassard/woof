@@ -24,7 +24,7 @@ var ListSpansGetCmd = &cobra.Command{
 		res, _, err := api.ListSpansGet(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-spans-get")
 
-		cmdutil.PrintJSON(res, "spans")
+		cmd.Println(cmdutil.FormatJSON(res, "spans"))
 	},
 }
 

@@ -24,7 +24,7 @@ var ListIncidentTeamsCmd = &cobra.Command{
 		res, _, err := api.ListIncidentTeams(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-incident-teams")
 
-		cmdutil.PrintJSON(res, "teams")
+		cmd.Println(cmdutil.FormatJSON(res, "teams"))
 	},
 }
 

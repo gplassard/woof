@@ -24,7 +24,7 @@ var AggregateCIAppTestEventsCmd = &cobra.Command{
 		res, _, err := api.AggregateCIAppTestEvents(client.NewContext(apiKey, appKey, site), datadogV2.CIAppTestsAggregateRequest{})
 		cmdutil.HandleError(err, "failed to aggregate-ci-app-test-events")
 
-		cmdutil.PrintJSON(res, "ci_visibility_tests")
+		cmd.Println(cmdutil.FormatJSON(res, "ci_visibility_tests"))
 	},
 }
 

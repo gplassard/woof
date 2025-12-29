@@ -24,7 +24,7 @@ var ListCSMThreatsAgentPoliciesCmd = &cobra.Command{
 		res, _, err := api.ListCSMThreatsAgentPolicies(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-csm-threats-agent-policies")
 
-		cmdutil.PrintJSON(res, "policy")
+		cmd.Println(cmdutil.FormatJSON(res, "policy"))
 	},
 }
 

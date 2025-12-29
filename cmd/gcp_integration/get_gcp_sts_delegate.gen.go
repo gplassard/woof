@@ -24,7 +24,7 @@ var GetGCPSTSDelegateCmd = &cobra.Command{
 		res, _, err := api.GetGCPSTSDelegate(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-gcp-sts-delegate")
 
-		cmdutil.PrintJSON(res, "gcp_sts_delegate")
+		cmd.Println(cmdutil.FormatJSON(res, "gcp_sts_delegate"))
 	},
 }
 

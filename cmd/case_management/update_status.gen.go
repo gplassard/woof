@@ -24,7 +24,7 @@ var UpdateStatusCmd = &cobra.Command{
 		res, _, err := api.UpdateStatus(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CaseUpdateStatusRequest{})
 		cmdutil.HandleError(err, "failed to update-status")
 
-		cmdutil.PrintJSON(res, "case")
+		cmd.Println(cmdutil.FormatJSON(res, "case"))
 	},
 }
 

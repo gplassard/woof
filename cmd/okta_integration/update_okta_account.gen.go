@@ -24,7 +24,7 @@ var UpdateOktaAccountCmd = &cobra.Command{
 		res, _, err := api.UpdateOktaAccount(client.NewContext(apiKey, appKey, site), args[0], datadogV2.OktaAccountUpdateRequest{})
 		cmdutil.HandleError(err, "failed to update-okta-account")
 
-		cmdutil.PrintJSON(res, "okta-accounts")
+		cmd.Println(cmdutil.FormatJSON(res, "okta-accounts"))
 	},
 }
 

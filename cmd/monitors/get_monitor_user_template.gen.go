@@ -24,7 +24,7 @@ var GetMonitorUserTemplateCmd = &cobra.Command{
 		res, _, err := api.GetMonitorUserTemplate(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-monitor-user-template")
 
-		cmdutil.PrintJSON(res, "monitor-user-template")
+		cmd.Println(cmdutil.FormatJSON(res, "monitor-user-template"))
 	},
 }
 

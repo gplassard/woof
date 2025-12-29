@@ -24,7 +24,7 @@ var CreateIncidentNotificationTemplateCmd = &cobra.Command{
 		res, _, err := api.CreateIncidentNotificationTemplate(client.NewContext(apiKey, appKey, site), datadogV2.CreateIncidentNotificationTemplateRequest{})
 		cmdutil.HandleError(err, "failed to create-incident-notification-template")
 
-		cmdutil.PrintJSON(res, "notification_templates")
+		cmd.Println(cmdutil.FormatJSON(res, "notification_templates"))
 	},
 }
 

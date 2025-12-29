@@ -24,7 +24,7 @@ var GetSecurityMonitoringSignalCmd = &cobra.Command{
 		res, _, err := api.GetSecurityMonitoringSignal(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-security-monitoring-signal")
 
-		cmdutil.PrintJSON(res, "signal")
+		cmd.Println(cmdutil.FormatJSON(res, "signal"))
 	},
 }
 

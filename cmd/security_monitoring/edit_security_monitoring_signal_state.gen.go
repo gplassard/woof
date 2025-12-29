@@ -24,7 +24,7 @@ var EditSecurityMonitoringSignalStateCmd = &cobra.Command{
 		res, _, err := api.EditSecurityMonitoringSignalState(client.NewContext(apiKey, appKey, site), args[0], datadogV2.SecurityMonitoringSignalStateUpdateRequest{})
 		cmdutil.HandleError(err, "failed to edit-security-monitoring-signal-state")
 
-		cmdutil.PrintJSON(res, "signal_metadata")
+		cmd.Println(cmdutil.FormatJSON(res, "signal_metadata"))
 	},
 }
 

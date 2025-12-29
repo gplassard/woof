@@ -24,7 +24,7 @@ var PreviewCatalogEntitiesCmd = &cobra.Command{
 		res, _, err := api.PreviewCatalogEntities(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to preview-catalog-entities")
 
-		cmdutil.PrintJSON(res, "entity")
+		cmd.Println(cmdutil.FormatJSON(res, "entity"))
 	},
 }
 

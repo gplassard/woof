@@ -24,7 +24,7 @@ var ListCostGCPUsageCostConfigsCmd = &cobra.Command{
 		res, _, err := api.ListCostGCPUsageCostConfigs(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-cost-gcp-usage-cost-configs")
 
-		cmdutil.PrintJSON(res, "gcp_uc_config")
+		cmd.Println(cmdutil.FormatJSON(res, "gcp_uc_config"))
 	},
 }
 

@@ -24,7 +24,7 @@ var DeleteScanningGroupCmd = &cobra.Command{
 		res, _, err := api.DeleteScanningGroup(client.NewContext(apiKey, appKey, site), args[0], datadogV2.SensitiveDataScannerGroupDeleteRequest{})
 		cmdutil.HandleError(err, "failed to delete-scanning-group")
 
-		cmdutil.PrintJSON(res, "sensitive_data_scanner")
+		cmd.Println(cmdutil.FormatJSON(res, "sensitive_data_scanner"))
 	},
 }
 

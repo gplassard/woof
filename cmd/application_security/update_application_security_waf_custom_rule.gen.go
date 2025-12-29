@@ -24,7 +24,7 @@ var UpdateApplicationSecurityWafCustomRuleCmd = &cobra.Command{
 		res, _, err := api.UpdateApplicationSecurityWafCustomRule(client.NewContext(apiKey, appKey, site), args[0], datadogV2.ApplicationSecurityWafCustomRuleUpdateRequest{})
 		cmdutil.HandleError(err, "failed to update-application-security-waf-custom-rule")
 
-		cmdutil.PrintJSON(res, "custom_rule")
+		cmd.Println(cmdutil.FormatJSON(res, "custom_rule"))
 	},
 }
 

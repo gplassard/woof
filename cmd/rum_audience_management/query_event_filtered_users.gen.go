@@ -24,7 +24,7 @@ var QueryEventFilteredUsersCmd = &cobra.Command{
 		res, _, err := api.QueryEventFilteredUsers(client.NewContext(apiKey, appKey, site), datadogV2.QueryEventFilteredUsersRequest{})
 		cmdutil.HandleError(err, "failed to query-event-filtered-users")
 
-		cmdutil.PrintJSON(res, "query_response")
+		cmd.Println(cmdutil.FormatJSON(res, "query_response"))
 	},
 }
 

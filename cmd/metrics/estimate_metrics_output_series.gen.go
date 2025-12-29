@@ -24,7 +24,7 @@ var EstimateMetricsOutputSeriesCmd = &cobra.Command{
 		res, _, err := api.EstimateMetricsOutputSeries(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to estimate-metrics-output-series")
 
-		cmdutil.PrintJSON(res, "metric_cardinality_estimate")
+		cmd.Println(cmdutil.FormatJSON(res, "metric_cardinality_estimate"))
 	},
 }
 

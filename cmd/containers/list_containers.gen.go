@@ -24,7 +24,7 @@ var ListContainersCmd = &cobra.Command{
 		res, _, err := api.ListContainers(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-containers")
 
-		cmdutil.PrintJSON(res, "containers")
+		cmd.Println(cmdutil.FormatJSON(res, "containers"))
 	},
 }
 

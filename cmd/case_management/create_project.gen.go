@@ -24,7 +24,7 @@ var CreateProjectCmd = &cobra.Command{
 		res, _, err := api.CreateProject(client.NewContext(apiKey, appKey, site), datadogV2.ProjectCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-project")
 
-		cmdutil.PrintJSON(res, "project")
+		cmd.Println(cmdutil.FormatJSON(res, "project"))
 	},
 }
 

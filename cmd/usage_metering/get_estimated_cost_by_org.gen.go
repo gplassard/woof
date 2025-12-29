@@ -24,7 +24,7 @@ var GetEstimatedCostByOrgCmd = &cobra.Command{
 		res, _, err := api.GetEstimatedCostByOrg(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-estimated-cost-by-org")
 
-		cmdutil.PrintJSON(res, "usage_metering")
+		cmd.Println(cmdutil.FormatJSON(res, "usage_metering"))
 	},
 }
 

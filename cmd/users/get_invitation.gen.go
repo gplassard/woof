@@ -24,7 +24,7 @@ var GetInvitationCmd = &cobra.Command{
 		res, _, err := api.GetInvitation(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-invitation")
 
-		cmdutil.PrintJSON(res, "user_invitations")
+		cmd.Println(cmdutil.FormatJSON(res, "user_invitations"))
 	},
 }
 

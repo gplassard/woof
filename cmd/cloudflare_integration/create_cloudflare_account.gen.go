@@ -24,7 +24,7 @@ var CreateCloudflareAccountCmd = &cobra.Command{
 		res, _, err := api.CreateCloudflareAccount(client.NewContext(apiKey, appKey, site), datadogV2.CloudflareAccountCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-cloudflare-account")
 
-		cmdutil.PrintJSON(res, "cloudflare-accounts")
+		cmd.Println(cmdutil.FormatJSON(res, "cloudflare-accounts"))
 	},
 }
 

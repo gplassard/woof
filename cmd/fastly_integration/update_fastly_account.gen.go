@@ -24,7 +24,7 @@ var UpdateFastlyAccountCmd = &cobra.Command{
 		res, _, err := api.UpdateFastlyAccount(client.NewContext(apiKey, appKey, site), args[0], datadogV2.FastlyAccountUpdateRequest{})
 		cmdutil.HandleError(err, "failed to update-fastly-account")
 
-		cmdutil.PrintJSON(res, "fastly-accounts")
+		cmd.Println(cmdutil.FormatJSON(res, "fastly-accounts"))
 	},
 }
 

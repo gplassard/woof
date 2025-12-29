@@ -24,7 +24,7 @@ var CreateOpenAPICmd = &cobra.Command{
 		res, _, err := api.CreateOpenAPI(client.NewContext(apiKey, appKey, site), *datadogV2.NewCreateOpenAPIOptionalParameters())
 		cmdutil.HandleError(err, "failed to create-open-api")
 
-		cmdutil.PrintJSON(res, "api_management")
+		cmd.Println(cmdutil.FormatJSON(res, "api_management"))
 	},
 }
 

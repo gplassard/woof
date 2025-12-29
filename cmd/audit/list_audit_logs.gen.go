@@ -24,7 +24,7 @@ var ListAuditLogsCmd = &cobra.Command{
 		res, _, err := api.ListAuditLogs(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-audit-logs")
 
-		cmdutil.PrintJSON(res, "audit")
+		cmd.Println(cmdutil.FormatJSON(res, "audit"))
 	},
 }
 

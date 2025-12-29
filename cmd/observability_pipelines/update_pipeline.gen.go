@@ -24,7 +24,7 @@ var UpdatePipelineCmd = &cobra.Command{
 		res, _, err := api.UpdatePipeline(client.NewContext(apiKey, appKey, site), args[0], datadogV2.ObservabilityPipeline{})
 		cmdutil.HandleError(err, "failed to update-pipeline")
 
-		cmdutil.PrintJSON(res, "observability_pipelines")
+		cmd.Println(cmdutil.FormatJSON(res, "observability_pipelines"))
 	},
 }
 

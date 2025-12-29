@@ -24,7 +24,7 @@ var UpdateIncidentNotificationRuleCmd = &cobra.Command{
 		res, _, err := api.UpdateIncidentNotificationRule(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]), datadogV2.PutIncidentNotificationRuleRequest{})
 		cmdutil.HandleError(err, "failed to update-incident-notification-rule")
 
-		cmdutil.PrintJSON(res, "incident_notification_rules")
+		cmd.Println(cmdutil.FormatJSON(res, "incident_notification_rules"))
 	},
 }
 

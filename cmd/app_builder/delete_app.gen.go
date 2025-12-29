@@ -24,7 +24,7 @@ var DeleteAppCmd = &cobra.Command{
 		res, _, err := api.DeleteApp(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
 		cmdutil.HandleError(err, "failed to delete-app")
 
-		cmdutil.PrintJSON(res, "appDefinitions")
+		cmd.Println(cmdutil.FormatJSON(res, "appDefinitions"))
 	},
 }
 

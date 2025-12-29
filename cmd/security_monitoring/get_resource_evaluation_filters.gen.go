@@ -24,7 +24,7 @@ var GetResourceEvaluationFiltersCmd = &cobra.Command{
 		res, _, err := api.GetResourceEvaluationFilters(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-resource-evaluation-filters")
 
-		cmdutil.PrintJSON(res, "csm_resource_filter")
+		cmd.Println(cmdutil.FormatJSON(res, "csm_resource_filter"))
 	},
 }
 

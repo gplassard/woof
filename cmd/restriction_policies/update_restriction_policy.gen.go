@@ -24,7 +24,7 @@ var UpdateRestrictionPolicyCmd = &cobra.Command{
 		res, _, err := api.UpdateRestrictionPolicy(client.NewContext(apiKey, appKey, site), args[0], datadogV2.RestrictionPolicyUpdateRequest{})
 		cmdutil.HandleError(err, "failed to update-restriction-policy")
 
-		cmdutil.PrintJSON(res, "restriction_policy")
+		cmd.Println(cmdutil.FormatJSON(res, "restriction_policy"))
 	},
 }
 

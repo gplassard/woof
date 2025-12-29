@@ -24,7 +24,7 @@ var CreateTagConfigurationCmd = &cobra.Command{
 		res, _, err := api.CreateTagConfiguration(client.NewContext(apiKey, appKey, site), args[0], datadogV2.MetricTagConfigurationCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-tag-configuration")
 
-		cmdutil.PrintJSON(res, "manage_tags")
+		cmd.Println(cmdutil.FormatJSON(res, "manage_tags"))
 	},
 }
 

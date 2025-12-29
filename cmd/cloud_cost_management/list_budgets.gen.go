@@ -24,7 +24,7 @@ var ListBudgetsCmd = &cobra.Command{
 		res, _, err := api.ListBudgets(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-budgets")
 
-		cmdutil.PrintJSON(res, "cloud_cost_management")
+		cmd.Println(cmdutil.FormatJSON(res, "cloud_cost_management"))
 	},
 }
 

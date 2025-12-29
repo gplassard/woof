@@ -24,7 +24,7 @@ var GetProjectsCmd = &cobra.Command{
 		res, _, err := api.GetProjects(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-projects")
 
-		cmdutil.PrintJSON(res, "project")
+		cmd.Println(cmdutil.FormatJSON(res, "project"))
 	},
 }
 

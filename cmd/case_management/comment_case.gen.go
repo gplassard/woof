@@ -24,7 +24,7 @@ var CommentCaseCmd = &cobra.Command{
 		res, _, err := api.CommentCase(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CaseCommentRequest{})
 		cmdutil.HandleError(err, "failed to comment-case")
 
-		cmdutil.PrintJSON(res, "timeline_cell")
+		cmd.Println(cmdutil.FormatJSON(res, "timeline_cell"))
 	},
 }
 

@@ -24,7 +24,7 @@ var GetCostAzureUCConfigCmd = &cobra.Command{
 		res, _, err := api.GetCostAzureUCConfig(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }())
 		cmdutil.HandleError(err, "failed to get-cost-azure-uc-config")
 
-		cmdutil.PrintJSON(res, "azure_uc_configs")
+		cmd.Println(cmdutil.FormatJSON(res, "azure_uc_configs"))
 	},
 }
 

@@ -24,7 +24,7 @@ var UpdateOpsgenieServiceCmd = &cobra.Command{
 		res, _, err := api.UpdateOpsgenieService(client.NewContext(apiKey, appKey, site), args[0], datadogV2.OpsgenieServiceUpdateRequest{})
 		cmdutil.HandleError(err, "failed to update-opsgenie-service")
 
-		cmdutil.PrintJSON(res, "opsgenie-service")
+		cmd.Println(cmdutil.FormatJSON(res, "opsgenie-service"))
 	},
 }
 

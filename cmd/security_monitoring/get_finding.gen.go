@@ -24,7 +24,7 @@ var GetFindingCmd = &cobra.Command{
 		res, _, err := api.GetFinding(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-finding")
 
-		cmdutil.PrintJSON(res, "detailed_finding")
+		cmd.Println(cmdutil.FormatJSON(res, "detailed_finding"))
 	},
 }
 

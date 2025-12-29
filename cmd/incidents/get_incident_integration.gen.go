@@ -24,7 +24,7 @@ var GetIncidentIntegrationCmd = &cobra.Command{
 		res, _, err := api.GetIncidentIntegration(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		cmdutil.HandleError(err, "failed to get-incident-integration")
 
-		cmdutil.PrintJSON(res, "incident_integrations")
+		cmd.Println(cmdutil.FormatJSON(res, "incident_integrations"))
 	},
 }
 

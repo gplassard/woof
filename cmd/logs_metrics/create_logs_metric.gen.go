@@ -24,7 +24,7 @@ var CreateLogsMetricCmd = &cobra.Command{
 		res, _, err := api.CreateLogsMetric(client.NewContext(apiKey, appKey, site), datadogV2.LogsMetricCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-logs-metric")
 
-		cmdutil.PrintJSON(res, "logs_metrics")
+		cmd.Println(cmdutil.FormatJSON(res, "logs_metrics"))
 	},
 }
 

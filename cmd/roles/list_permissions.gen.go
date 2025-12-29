@@ -24,7 +24,7 @@ var ListPermissionsCmd = &cobra.Command{
 		res, _, err := api.ListPermissions(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-permissions")
 
-		cmdutil.PrintJSON(res, "permissions")
+		cmd.Println(cmdutil.FormatJSON(res, "permissions"))
 	},
 }
 

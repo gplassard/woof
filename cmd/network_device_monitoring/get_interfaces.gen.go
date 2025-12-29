@@ -24,7 +24,7 @@ var GetInterfacesCmd = &cobra.Command{
 		res, _, err := api.GetInterfaces(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-interfaces")
 
-		cmdutil.PrintJSON(res, "network_device_monitoring")
+		cmd.Println(cmdutil.FormatJSON(res, "network_device_monitoring"))
 	},
 }
 

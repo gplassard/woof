@@ -24,7 +24,7 @@ var ListOpsgenieServicesCmd = &cobra.Command{
 		res, _, err := api.ListOpsgenieServices(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-opsgenie-services")
 
-		cmdutil.PrintJSON(res, "opsgenie-service")
+		cmd.Println(cmdutil.FormatJSON(res, "opsgenie-service"))
 	},
 }
 

@@ -24,7 +24,7 @@ var UpdateSecurityFilterCmd = &cobra.Command{
 		res, _, err := api.UpdateSecurityFilter(client.NewContext(apiKey, appKey, site), args[0], datadogV2.SecurityFilterUpdateRequest{})
 		cmdutil.HandleError(err, "failed to update-security-filter")
 
-		cmdutil.PrintJSON(res, "security_filters")
+		cmd.Println(cmdutil.FormatJSON(res, "security_filters"))
 	},
 }
 

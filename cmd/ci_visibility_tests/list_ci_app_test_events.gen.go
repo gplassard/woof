@@ -24,7 +24,7 @@ var ListCIAppTestEventsCmd = &cobra.Command{
 		res, _, err := api.ListCIAppTestEvents(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-ci-app-test-events")
 
-		cmdutil.PrintJSON(res, "citest")
+		cmd.Println(cmdutil.FormatJSON(res, "citest"))
 	},
 }
 

@@ -24,7 +24,7 @@ var CreateAwsOnDemandTaskCmd = &cobra.Command{
 		res, _, err := api.CreateAwsOnDemandTask(client.NewContext(apiKey, appKey, site), datadogV2.AwsOnDemandCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-aws-on-demand-task")
 
-		cmdutil.PrintJSON(res, "aws_resource")
+		cmd.Println(cmdutil.FormatJSON(res, "aws_resource"))
 	},
 }
 

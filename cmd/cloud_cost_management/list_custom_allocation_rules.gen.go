@@ -24,7 +24,7 @@ var ListCustomAllocationRulesCmd = &cobra.Command{
 		res, _, err := api.ListCustomAllocationRules(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-custom-allocation-rules")
 
-		cmdutil.PrintJSON(res, "arbitrary_rule")
+		cmd.Println(cmdutil.FormatJSON(res, "arbitrary_rule"))
 	},
 }
 

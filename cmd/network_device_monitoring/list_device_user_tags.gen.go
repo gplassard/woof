@@ -24,7 +24,7 @@ var ListDeviceUserTagsCmd = &cobra.Command{
 		res, _, err := api.ListDeviceUserTags(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-device-user-tags")
 
-		cmdutil.PrintJSON(res, "network_device_monitoring")
+		cmd.Println(cmdutil.FormatJSON(res, "network_device_monitoring"))
 	},
 }
 

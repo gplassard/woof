@@ -24,7 +24,7 @@ var GetCustomCostsFileCmd = &cobra.Command{
 		res, _, err := api.GetCustomCostsFile(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-custom-costs-file")
 
-		cmdutil.PrintJSON(res, "cloud_cost_management")
+		cmd.Println(cmdutil.FormatJSON(res, "cloud_cost_management"))
 	},
 }
 

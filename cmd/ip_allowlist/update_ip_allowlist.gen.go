@@ -24,7 +24,7 @@ var UpdateIPAllowlistCmd = &cobra.Command{
 		res, _, err := api.UpdateIPAllowlist(client.NewContext(apiKey, appKey, site), datadogV2.IPAllowlistUpdateRequest{})
 		cmdutil.HandleError(err, "failed to update-ip-allowlist")
 
-		cmdutil.PrintJSON(res, "ip_allowlist")
+		cmd.Println(cmdutil.FormatJSON(res, "ip_allowlist"))
 	},
 }
 

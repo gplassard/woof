@@ -24,7 +24,7 @@ var CreateCaseCmd = &cobra.Command{
 		res, _, err := api.CreateCase(client.NewContext(apiKey, appKey, site), datadogV2.CaseCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-case")
 
-		cmdutil.PrintJSON(res, "case")
+		cmd.Println(cmdutil.FormatJSON(res, "case"))
 	},
 }
 

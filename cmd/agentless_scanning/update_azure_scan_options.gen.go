@@ -24,7 +24,7 @@ var UpdateAzureScanOptionsCmd = &cobra.Command{
 		res, _, err := api.UpdateAzureScanOptions(client.NewContext(apiKey, appKey, site), args[0], datadogV2.AzureScanOptionsInputUpdate{})
 		cmdutil.HandleError(err, "failed to update-azure-scan-options")
 
-		cmdutil.PrintJSON(res, "azure_scan_options")
+		cmd.Println(cmdutil.FormatJSON(res, "azure_scan_options"))
 	},
 }
 

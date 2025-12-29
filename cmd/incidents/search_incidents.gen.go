@@ -24,7 +24,7 @@ var SearchIncidentsCmd = &cobra.Command{
 		res, _, err := api.SearchIncidents(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to search-incidents")
 
-		cmdutil.PrintJSON(res, "incidents_search_results")
+		cmd.Println(cmdutil.FormatJSON(res, "incidents_search_results"))
 	},
 }
 

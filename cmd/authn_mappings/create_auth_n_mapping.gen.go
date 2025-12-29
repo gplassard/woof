@@ -24,7 +24,7 @@ var CreateAuthNMappingCmd = &cobra.Command{
 		res, _, err := api.CreateAuthNMapping(client.NewContext(apiKey, appKey, site), datadogV2.AuthNMappingCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-auth-n-mapping")
 
-		cmdutil.PrintJSON(res, "authn_mappings")
+		cmd.Println(cmdutil.FormatJSON(res, "authn_mappings"))
 	},
 }
 

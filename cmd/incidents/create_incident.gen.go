@@ -24,7 +24,7 @@ var CreateIncidentCmd = &cobra.Command{
 		res, _, err := api.CreateIncident(client.NewContext(apiKey, appKey, site), datadogV2.IncidentCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-incident")
 
-		cmdutil.PrintJSON(res, "incidents")
+		cmd.Println(cmdutil.FormatJSON(res, "incidents"))
 	},
 }
 

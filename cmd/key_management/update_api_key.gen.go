@@ -24,7 +24,7 @@ var UpdateAPIKeyCmd = &cobra.Command{
 		res, _, err := api.UpdateAPIKey(client.NewContext(apiKey, appKey, site), args[0], datadogV2.APIKeyUpdateRequest{})
 		cmdutil.HandleError(err, "failed to update-api-key")
 
-		cmdutil.PrintJSON(res, "api_keys")
+		cmd.Println(cmdutil.FormatJSON(res, "api_keys"))
 	},
 }
 

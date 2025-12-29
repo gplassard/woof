@@ -24,7 +24,7 @@ var UpdateSecurityMonitoringSuppressionCmd = &cobra.Command{
 		res, _, err := api.UpdateSecurityMonitoringSuppression(client.NewContext(apiKey, appKey, site), args[0], datadogV2.SecurityMonitoringSuppressionUpdateRequest{})
 		cmdutil.HandleError(err, "failed to update-security-monitoring-suppression")
 
-		cmdutil.PrintJSON(res, "suppressions")
+		cmd.Println(cmdutil.FormatJSON(res, "suppressions"))
 	},
 }
 

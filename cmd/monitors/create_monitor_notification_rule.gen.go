@@ -24,7 +24,7 @@ var CreateMonitorNotificationRuleCmd = &cobra.Command{
 		res, _, err := api.CreateMonitorNotificationRule(client.NewContext(apiKey, appKey, site), datadogV2.MonitorNotificationRuleCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-monitor-notification-rule")
 
-		cmdutil.PrintJSON(res, "monitor-notification-rule")
+		cmd.Println(cmdutil.FormatJSON(res, "monitor-notification-rule"))
 	},
 }
 

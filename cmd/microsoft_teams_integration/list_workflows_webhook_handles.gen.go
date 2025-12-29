@@ -24,7 +24,7 @@ var ListWorkflowsWebhookHandlesCmd = &cobra.Command{
 		res, _, err := api.ListWorkflowsWebhookHandles(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-workflows-webhook-handles")
 
-		cmdutil.PrintJSON(res, "workflows-webhook-handle")
+		cmd.Println(cmdutil.FormatJSON(res, "workflows-webhook-handle"))
 	},
 }
 

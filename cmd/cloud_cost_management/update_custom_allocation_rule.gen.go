@@ -24,7 +24,7 @@ var UpdateCustomAllocationRuleCmd = &cobra.Command{
 		res, _, err := api.UpdateCustomAllocationRule(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }(), datadogV2.ArbitraryCostUpsertRequest{})
 		cmdutil.HandleError(err, "failed to update-custom-allocation-rule")
 
-		cmdutil.PrintJSON(res, "arbitrary_rule")
+		cmd.Println(cmdutil.FormatJSON(res, "arbitrary_rule"))
 	},
 }
 

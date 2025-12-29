@@ -24,7 +24,7 @@ var ListMultipleRulesetsCmd = &cobra.Command{
 		res, _, err := api.ListMultipleRulesets(client.NewContext(apiKey, appKey, site), datadogV2.GetMultipleRulesetsRequest{})
 		cmdutil.HandleError(err, "failed to list-multiple-rulesets")
 
-		cmdutil.PrintJSON(res, "get_multiple_rulesets_response")
+		cmd.Println(cmdutil.FormatJSON(res, "get_multiple_rulesets_response"))
 	},
 }
 

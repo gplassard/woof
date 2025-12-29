@@ -24,7 +24,7 @@ var CreateDowntimeCmd = &cobra.Command{
 		res, _, err := api.CreateDowntime(client.NewContext(apiKey, appKey, site), datadogV2.DowntimeCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-downtime")
 
-		cmdutil.PrintJSON(res, "downtime")
+		cmd.Println(cmdutil.FormatJSON(res, "downtime"))
 	},
 }
 

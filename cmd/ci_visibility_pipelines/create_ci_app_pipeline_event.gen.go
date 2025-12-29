@@ -24,7 +24,7 @@ var CreateCIAppPipelineEventCmd = &cobra.Command{
 		res, _, err := api.CreateCIAppPipelineEvent(client.NewContext(apiKey, appKey, site), datadogV2.CIAppCreatePipelineEventRequest{})
 		cmdutil.HandleError(err, "failed to create-ci-app-pipeline-event")
 
-		cmdutil.PrintJSON(res, "ci_visibility_pipelines")
+		cmd.Println(cmdutil.FormatJSON(res, "ci_visibility_pipelines"))
 	},
 }
 

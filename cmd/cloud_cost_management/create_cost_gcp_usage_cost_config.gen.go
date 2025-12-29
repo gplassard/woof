@@ -24,7 +24,7 @@ var CreateCostGCPUsageCostConfigCmd = &cobra.Command{
 		res, _, err := api.CreateCostGCPUsageCostConfig(client.NewContext(apiKey, appKey, site), datadogV2.GCPUsageCostConfigPostRequest{})
 		cmdutil.HandleError(err, "failed to create-cost-gcp-usage-cost-config")
 
-		cmdutil.PrintJSON(res, "gcp_uc_config")
+		cmd.Println(cmdutil.FormatJSON(res, "gcp_uc_config"))
 	},
 }
 

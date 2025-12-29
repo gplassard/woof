@@ -24,7 +24,7 @@ var CreateTenantBasedHandleCmd = &cobra.Command{
 		res, _, err := api.CreateTenantBasedHandle(client.NewContext(apiKey, appKey, site), datadogV2.MicrosoftTeamsCreateTenantBasedHandleRequest{})
 		cmdutil.HandleError(err, "failed to create-tenant-based-handle")
 
-		cmdutil.PrintJSON(res, "tenant-based-handle")
+		cmd.Println(cmdutil.FormatJSON(res, "tenant-based-handle"))
 	},
 }
 

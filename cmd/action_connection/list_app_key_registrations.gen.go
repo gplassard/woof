@@ -24,7 +24,7 @@ var ListAppKeyRegistrationsCmd = &cobra.Command{
 		res, _, err := api.ListAppKeyRegistrations(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-app-key-registrations")
 
-		cmdutil.PrintJSON(res, "app_key_registration")
+		cmd.Println(cmdutil.FormatJSON(res, "app_key_registration"))
 	},
 }
 

@@ -24,7 +24,7 @@ var ConvertExistingSecurityMonitoringRuleCmd = &cobra.Command{
 		res, _, err := api.ConvertExistingSecurityMonitoringRule(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to convert-existing-security-monitoring-rule")
 
-		cmdutil.PrintJSON(res, "security_monitoring")
+		cmd.Println(cmdutil.FormatJSON(res, "security_monitoring"))
 	},
 }
 

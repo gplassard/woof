@@ -24,7 +24,7 @@ var GetTagPipelinesRulesetCmd = &cobra.Command{
 		res, _, err := api.GetTagPipelinesRuleset(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-tag-pipelines-ruleset")
 
-		cmdutil.PrintJSON(res, "ruleset")
+		cmd.Println(cmdutil.FormatJSON(res, "ruleset"))
 	},
 }
 

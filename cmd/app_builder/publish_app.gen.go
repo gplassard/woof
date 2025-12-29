@@ -24,7 +24,7 @@ var PublishAppCmd = &cobra.Command{
 		res, _, err := api.PublishApp(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
 		cmdutil.HandleError(err, "failed to publish-app")
 
-		cmdutil.PrintJSON(res, "deployment")
+		cmd.Println(cmdutil.FormatJSON(res, "deployment"))
 	},
 }
 

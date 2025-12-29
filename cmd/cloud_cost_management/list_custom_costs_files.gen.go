@@ -24,7 +24,7 @@ var ListCustomCostsFilesCmd = &cobra.Command{
 		res, _, err := api.ListCustomCostsFiles(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-custom-costs-files")
 
-		cmdutil.PrintJSON(res, "cloud_cost_management")
+		cmd.Println(cmdutil.FormatJSON(res, "cloud_cost_management"))
 	},
 }
 

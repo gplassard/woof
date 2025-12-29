@@ -24,7 +24,7 @@ var GetApmRetentionFilterCmd = &cobra.Command{
 		res, _, err := api.GetApmRetentionFilter(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-apm-retention-filter")
 
-		cmdutil.PrintJSON(res, "apm_retention_filter")
+		cmd.Println(cmdutil.FormatJSON(res, "apm_retention_filter"))
 	},
 }
 

@@ -24,7 +24,7 @@ var CreateRoleCmd = &cobra.Command{
 		res, _, err := api.CreateRole(client.NewContext(apiKey, appKey, site), datadogV2.RoleCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-role")
 
-		cmdutil.PrintJSON(res, "roles")
+		cmd.Println(cmdutil.FormatJSON(res, "roles"))
 	},
 }
 

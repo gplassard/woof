@@ -24,7 +24,7 @@ var ListLogsGetCmd = &cobra.Command{
 		res, _, err := api.ListLogsGet(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-logs-get")
 
-		cmdutil.PrintJSON(res, "log")
+		cmd.Println(cmdutil.FormatJSON(res, "log"))
 	},
 }
 

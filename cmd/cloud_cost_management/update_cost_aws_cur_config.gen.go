@@ -24,7 +24,7 @@ var UpdateCostAWSCURConfigCmd = &cobra.Command{
 		res, _, err := api.UpdateCostAWSCURConfig(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }(), datadogV2.AwsCURConfigPatchRequest{})
 		cmdutil.HandleError(err, "failed to update-cost-aws-cur-config")
 
-		cmdutil.PrintJSON(res, "aws_cur_config")
+		cmd.Println(cmdutil.FormatJSON(res, "aws_cur_config"))
 	},
 }
 

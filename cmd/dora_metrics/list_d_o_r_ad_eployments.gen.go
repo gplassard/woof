@@ -24,7 +24,7 @@ var ListDORADeploymentsCmd = &cobra.Command{
 		res, _, err := api.ListDORADeployments(client.NewContext(apiKey, appKey, site), datadogV2.DORAListDeploymentsRequest{})
 		cmdutil.HandleError(err, "failed to list-d-o-r-ad-eployments")
 
-		cmdutil.PrintJSON(res, "dora_metrics")
+		cmd.Println(cmdutil.FormatJSON(res, "dora_metrics"))
 	},
 }
 

@@ -24,7 +24,7 @@ var ListSecurityMonitoringHistsignalsCmd = &cobra.Command{
 		res, _, err := api.ListSecurityMonitoringHistsignals(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-security-monitoring-histsignals")
 
-		cmdutil.PrintJSON(res, "signal")
+		cmd.Println(cmdutil.FormatJSON(res, "signal"))
 	},
 }
 

@@ -24,7 +24,7 @@ var UpdateConfluentAccountCmd = &cobra.Command{
 		res, _, err := api.UpdateConfluentAccount(client.NewContext(apiKey, appKey, site), args[0], datadogV2.ConfluentAccountUpdateRequest{})
 		cmdutil.HandleError(err, "failed to update-confluent-account")
 
-		cmdutil.PrintJSON(res, "confluent-cloud-accounts")
+		cmd.Println(cmdutil.FormatJSON(res, "confluent-cloud-accounts"))
 	},
 }
 

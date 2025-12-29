@@ -24,7 +24,7 @@ var GetMappingCmd = &cobra.Command{
 		res, _, err := api.GetMapping(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-mapping")
 
-		cmdutil.PrintJSON(res, "get_mappings_response")
+		cmd.Println(cmdutil.FormatJSON(res, "get_mappings_response"))
 	},
 }
 

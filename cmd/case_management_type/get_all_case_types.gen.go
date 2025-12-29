@@ -24,7 +24,7 @@ var GetAllCaseTypesCmd = &cobra.Command{
 		res, _, err := api.GetAllCaseTypes(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-all-case-types")
 
-		cmdutil.PrintJSON(res, "case_type")
+		cmd.Println(cmdutil.FormatJSON(res, "case_type"))
 	},
 }
 

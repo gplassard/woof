@@ -1,0 +1,28 @@
+{
+  "data": [
+    {
+      "attributes": {
+        "email": "user1@example.com",
+        "name": "User One"
+      },
+      "id": "user-1",
+      "type": "users"
+    },
+    {
+      "attributes": {
+        "name": "Admin Role"
+      },
+      "id": "role-1",
+      "type": "roles"
+    }
+  ],
+  "included": [
+    {
+      "attributes": {
+        "name": "Org One"
+      },
+      "id": "org-1",
+      "type": "organizations"
+    }
+  ]
+}

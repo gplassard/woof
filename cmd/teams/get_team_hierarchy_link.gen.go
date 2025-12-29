@@ -24,7 +24,7 @@ var GetTeamHierarchyLinkCmd = &cobra.Command{
 		res, _, err := api.GetTeamHierarchyLink(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-team-hierarchy-link")
 
-		cmdutil.PrintJSON(res, "team_hierarchy_links")
+		cmd.Println(cmdutil.FormatJSON(res, "team_hierarchy_links"))
 	},
 }
 

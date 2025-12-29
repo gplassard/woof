@@ -24,7 +24,7 @@ var GetDORADeploymentCmd = &cobra.Command{
 		res, _, err := api.GetDORADeployment(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-d-o-r-ad-eployment")
 
-		cmdutil.PrintJSON(res, "dora_metrics")
+		cmd.Println(cmdutil.FormatJSON(res, "dora_metrics"))
 	},
 }
 

@@ -24,7 +24,7 @@ var CreateFleetScheduleCmd = &cobra.Command{
 		res, _, err := api.CreateFleetSchedule(client.NewContext(apiKey, appKey, site), datadogV2.FleetScheduleCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-fleet-schedule")
 
-		cmdutil.PrintJSON(res, "schedule")
+		cmd.Println(cmdutil.FormatJSON(res, "schedule"))
 	},
 }
 

@@ -24,7 +24,7 @@ var CreateAWSEventBridgeSourceCmd = &cobra.Command{
 		res, _, err := api.CreateAWSEventBridgeSource(client.NewContext(apiKey, appKey, site), datadogV2.AWSEventBridgeCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-aws-event-bridge-source")
 
-		cmdutil.PrintJSON(res, "event_bridge")
+		cmd.Println(cmdutil.FormatJSON(res, "event_bridge"))
 	},
 }
 

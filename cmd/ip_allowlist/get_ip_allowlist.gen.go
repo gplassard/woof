@@ -24,7 +24,7 @@ var GetIPAllowlistCmd = &cobra.Command{
 		res, _, err := api.GetIPAllowlist(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-ip-allowlist")
 
-		cmdutil.PrintJSON(res, "ip_allowlist")
+		cmd.Println(cmdutil.FormatJSON(res, "ip_allowlist"))
 	},
 }
 

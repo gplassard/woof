@@ -24,7 +24,7 @@ var CreateDORAIncidentCmd = &cobra.Command{
 		res, _, err := api.CreateDORAIncident(client.NewContext(apiKey, appKey, site), datadogV2.DORAFailureRequest{})
 		cmdutil.HandleError(err, "failed to create-d-o-r-ai-ncident")
 
-		cmdutil.PrintJSON(res, "dora_failure")
+		cmd.Println(cmdutil.FormatJSON(res, "dora_failure"))
 	},
 }
 

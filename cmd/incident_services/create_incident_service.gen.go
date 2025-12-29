@@ -24,7 +24,7 @@ var CreateIncidentServiceCmd = &cobra.Command{
 		res, _, err := api.CreateIncidentService(client.NewContext(apiKey, appKey, site), datadogV2.IncidentServiceCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-incident-service")
 
-		cmdutil.PrintJSON(res, "services")
+		cmd.Println(cmdutil.FormatJSON(res, "services"))
 	},
 }
 

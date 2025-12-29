@@ -24,7 +24,7 @@ var GetAuthNMappingCmd = &cobra.Command{
 		res, _, err := api.GetAuthNMapping(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-auth-n-mapping")
 
-		cmdutil.PrintJSON(res, "authn_mappings")
+		cmd.Println(cmdutil.FormatJSON(res, "authn_mappings"))
 	},
 }
 

@@ -24,7 +24,7 @@ var GetApplicationSecurityWafCustomRuleCmd = &cobra.Command{
 		res, _, err := api.GetApplicationSecurityWafCustomRule(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-application-security-waf-custom-rule")
 
-		cmdutil.PrintJSON(res, "custom_rule")
+		cmd.Println(cmdutil.FormatJSON(res, "custom_rule"))
 	},
 }
 

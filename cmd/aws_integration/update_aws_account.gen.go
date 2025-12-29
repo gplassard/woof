@@ -24,7 +24,7 @@ var UpdateAWSAccountCmd = &cobra.Command{
 		res, _, err := api.UpdateAWSAccount(client.NewContext(apiKey, appKey, site), args[0], datadogV2.AWSAccountUpdateRequest{})
 		cmdutil.HandleError(err, "failed to update-aws-account")
 
-		cmdutil.PrintJSON(res, "account")
+		cmd.Println(cmdutil.FormatJSON(res, "account"))
 	},
 }
 

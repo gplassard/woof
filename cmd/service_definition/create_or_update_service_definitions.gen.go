@@ -24,7 +24,7 @@ var CreateOrUpdateServiceDefinitionsCmd = &cobra.Command{
 		res, _, err := api.CreateOrUpdateServiceDefinitions(client.NewContext(apiKey, appKey, site), datadogV2.ServiceDefinitionsCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-or-update-service-definitions")
 
-		cmdutil.PrintJSON(res, "service_definition")
+		cmd.Println(cmdutil.FormatJSON(res, "service_definition"))
 	},
 }
 

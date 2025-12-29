@@ -24,7 +24,7 @@ var GetDatastoreCmd = &cobra.Command{
 		res, _, err := api.GetDatastore(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-datastore")
 
-		cmdutil.PrintJSON(res, "datastores")
+		cmd.Println(cmdutil.FormatJSON(res, "datastores"))
 	},
 }
 

@@ -24,7 +24,7 @@ var RegisterAppKeyCmd = &cobra.Command{
 		res, _, err := api.RegisterAppKey(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to register-app-key")
 
-		cmdutil.PrintJSON(res, "app_key_registration")
+		cmd.Println(cmdutil.FormatJSON(res, "app_key_registration"))
 	},
 }
 

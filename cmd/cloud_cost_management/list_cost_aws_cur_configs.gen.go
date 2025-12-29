@@ -24,7 +24,7 @@ var ListCostAWSCURConfigsCmd = &cobra.Command{
 		res, _, err := api.ListCostAWSCURConfigs(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-cost-aws-cur-configs")
 
-		cmdutil.PrintJSON(res, "aws_cur_config")
+		cmd.Println(cmdutil.FormatJSON(res, "aws_cur_config"))
 	},
 }
 

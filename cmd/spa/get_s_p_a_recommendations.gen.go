@@ -24,7 +24,7 @@ var GetSPARecommendationsCmd = &cobra.Command{
 		res, _, err := api.GetSPARecommendations(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		cmdutil.HandleError(err, "failed to get-s-p-a-recommendations")
 
-		cmdutil.PrintJSON(res, "recommendation")
+		cmd.Println(cmdutil.FormatJSON(res, "recommendation"))
 	},
 }
 

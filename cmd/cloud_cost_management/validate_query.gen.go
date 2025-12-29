@@ -24,7 +24,7 @@ var ValidateQueryCmd = &cobra.Command{
 		res, _, err := api.ValidateQuery(client.NewContext(apiKey, appKey, site), datadogV2.RulesValidateQueryRequest{})
 		cmdutil.HandleError(err, "failed to validate-query")
 
-		cmdutil.PrintJSON(res, "validate_response")
+		cmd.Println(cmdutil.FormatJSON(res, "validate_response"))
 	},
 }
 

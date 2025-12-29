@@ -24,7 +24,7 @@ var ListIncidentAttachmentsCmd = &cobra.Command{
 		res, _, err := api.ListIncidentAttachments(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-incident-attachments")
 
-		cmdutil.PrintJSON(res, "incident_attachments")
+		cmd.Println(cmdutil.FormatJSON(res, "incident_attachments"))
 	},
 }
 

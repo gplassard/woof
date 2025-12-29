@@ -24,7 +24,7 @@ var CreateIncidentIntegrationCmd = &cobra.Command{
 		res, _, err := api.CreateIncidentIntegration(client.NewContext(apiKey, appKey, site), args[0], datadogV2.IncidentIntegrationMetadataCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-incident-integration")
 
-		cmdutil.PrintJSON(res, "incident_integrations")
+		cmd.Println(cmdutil.FormatJSON(res, "incident_integrations"))
 	},
 }
 

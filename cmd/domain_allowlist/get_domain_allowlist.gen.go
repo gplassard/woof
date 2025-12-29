@@ -24,7 +24,7 @@ var GetDomainAllowlistCmd = &cobra.Command{
 		res, _, err := api.GetDomainAllowlist(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-domain-allowlist")
 
-		cmdutil.PrintJSON(res, "domain_allowlist")
+		cmd.Println(cmdutil.FormatJSON(res, "domain_allowlist"))
 	},
 }
 

@@ -24,7 +24,7 @@ var ListFindingsCmd = &cobra.Command{
 		res, _, err := api.ListFindings(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-findings")
 
-		cmdutil.PrintJSON(res, "security_monitoring")
+		cmd.Println(cmdutil.FormatJSON(res, "security_monitoring"))
 	},
 }
 

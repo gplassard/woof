@@ -24,7 +24,7 @@ var GetAwsScanOptionsCmd = &cobra.Command{
 		res, _, err := api.GetAwsScanOptions(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-aws-scan-options")
 
-		cmdutil.PrintJSON(res, "aws_scan_options")
+		cmd.Println(cmdutil.FormatJSON(res, "aws_scan_options"))
 	},
 }
 

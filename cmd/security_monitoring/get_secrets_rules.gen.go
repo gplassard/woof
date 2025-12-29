@@ -24,7 +24,7 @@ var GetSecretsRulesCmd = &cobra.Command{
 		res, _, err := api.GetSecretsRules(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-secrets-rules")
 
-		cmdutil.PrintJSON(res, "secret_rule")
+		cmd.Println(cmdutil.FormatJSON(res, "secret_rule"))
 	},
 }
 

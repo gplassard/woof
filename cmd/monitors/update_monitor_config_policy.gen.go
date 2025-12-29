@@ -24,7 +24,7 @@ var UpdateMonitorConfigPolicyCmd = &cobra.Command{
 		res, _, err := api.UpdateMonitorConfigPolicy(client.NewContext(apiKey, appKey, site), args[0], datadogV2.MonitorConfigPolicyEditRequest{})
 		cmdutil.HandleError(err, "failed to update-monitor-config-policy")
 
-		cmdutil.PrintJSON(res, "monitor-config-policy")
+		cmd.Println(cmdutil.FormatJSON(res, "monitor-config-policy"))
 	},
 }
 

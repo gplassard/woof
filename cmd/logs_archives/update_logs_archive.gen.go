@@ -24,7 +24,7 @@ var UpdateLogsArchiveCmd = &cobra.Command{
 		res, _, err := api.UpdateLogsArchive(client.NewContext(apiKey, appKey, site), args[0], datadogV2.LogsArchiveCreateRequest{})
 		cmdutil.HandleError(err, "failed to update-logs-archive")
 
-		cmdutil.PrintJSON(res, "logs_archives")
+		cmd.Println(cmdutil.FormatJSON(res, "logs_archives"))
 	},
 }
 

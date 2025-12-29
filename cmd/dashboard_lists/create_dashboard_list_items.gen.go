@@ -24,7 +24,7 @@ var CreateDashboardListItemsCmd = &cobra.Command{
 		res, _, err := api.CreateDashboardListItems(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }(), datadogV2.DashboardListAddItemsRequest{})
 		cmdutil.HandleError(err, "failed to create-dashboard-list-items")
 
-		cmdutil.PrintJSON(res, "dashboard_lists")
+		cmd.Println(cmdutil.FormatJSON(res, "dashboard_lists"))
 	},
 }
 

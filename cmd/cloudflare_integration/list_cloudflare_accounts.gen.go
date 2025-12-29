@@ -24,7 +24,7 @@ var ListCloudflareAccountsCmd = &cobra.Command{
 		res, _, err := api.ListCloudflareAccounts(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-cloudflare-accounts")
 
-		cmdutil.PrintJSON(res, "cloudflare-accounts")
+		cmd.Println(cmdutil.FormatJSON(res, "cloudflare-accounts"))
 	},
 }
 

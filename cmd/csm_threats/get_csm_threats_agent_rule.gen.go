@@ -24,7 +24,7 @@ var GetCSMThreatsAgentRuleCmd = &cobra.Command{
 		res, _, err := api.GetCSMThreatsAgentRule(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-csm-threats-agent-rule")
 
-		cmdutil.PrintJSON(res, "agent_rule")
+		cmd.Println(cmdutil.FormatJSON(res, "agent_rule"))
 	},
 }
 

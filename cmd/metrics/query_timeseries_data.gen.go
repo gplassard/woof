@@ -24,7 +24,7 @@ var QueryTimeseriesDataCmd = &cobra.Command{
 		res, _, err := api.QueryTimeseriesData(client.NewContext(apiKey, appKey, site), datadogV2.TimeseriesFormulaQueryRequest{})
 		cmdutil.HandleError(err, "failed to query-timeseries-data")
 
-		cmdutil.PrintJSON(res, "timeseries_response")
+		cmd.Println(cmdutil.FormatJSON(res, "timeseries_response"))
 	},
 }
 

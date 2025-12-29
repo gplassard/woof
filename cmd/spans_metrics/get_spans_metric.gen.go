@@ -24,7 +24,7 @@ var GetSpansMetricCmd = &cobra.Command{
 		res, _, err := api.GetSpansMetric(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-spans-metric")
 
-		cmdutil.PrintJSON(res, "spans_metrics")
+		cmd.Println(cmdutil.FormatJSON(res, "spans_metrics"))
 	},
 }
 

@@ -24,7 +24,7 @@ var GetOrgConfigCmd = &cobra.Command{
 		res, _, err := api.GetOrgConfig(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-org-config")
 
-		cmdutil.PrintJSON(res, "org_configs")
+		cmd.Println(cmdutil.FormatJSON(res, "org_configs"))
 	},
 }
 

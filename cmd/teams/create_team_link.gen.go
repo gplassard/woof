@@ -24,7 +24,7 @@ var CreateTeamLinkCmd = &cobra.Command{
 		res, _, err := api.CreateTeamLink(client.NewContext(apiKey, appKey, site), args[0], datadogV2.TeamLinkCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-team-link")
 
-		cmdutil.PrintJSON(res, "team_links")
+		cmd.Println(cmdutil.FormatJSON(res, "team_links"))
 	},
 }
 

@@ -24,7 +24,7 @@ var GetAzureScanOptionsCmd = &cobra.Command{
 		res, _, err := api.GetAzureScanOptions(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-azure-scan-options")
 
-		cmdutil.PrintJSON(res, "azure_scan_options")
+		cmd.Println(cmdutil.FormatJSON(res, "azure_scan_options"))
 	},
 }
 

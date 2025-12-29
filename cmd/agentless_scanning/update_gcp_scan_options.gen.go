@@ -24,7 +24,7 @@ var UpdateGcpScanOptionsCmd = &cobra.Command{
 		res, _, err := api.UpdateGcpScanOptions(client.NewContext(apiKey, appKey, site), args[0], datadogV2.GcpScanOptionsInputUpdate{})
 		cmdutil.HandleError(err, "failed to update-gcp-scan-options")
 
-		cmdutil.PrintJSON(res, "gcp_scan_options")
+		cmd.Println(cmdutil.FormatJSON(res, "gcp_scan_options"))
 	},
 }
 

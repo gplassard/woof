@@ -24,7 +24,7 @@ var CreateBulkTagsMetricsConfigurationCmd = &cobra.Command{
 		res, _, err := api.CreateBulkTagsMetricsConfiguration(client.NewContext(apiKey, appKey, site), datadogV2.MetricBulkTagConfigCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-bulk-tags-metrics-configuration")
 
-		cmdutil.PrintJSON(res, "metric_bulk_configure_tags")
+		cmd.Println(cmdutil.FormatJSON(res, "metric_bulk_configure_tags"))
 	},
 }
 

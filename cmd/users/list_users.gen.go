@@ -24,7 +24,7 @@ var ListUsersCmd = &cobra.Command{
 		res, _, err := api.ListUsers(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-users")
 
-		cmdutil.PrintJSON(res, "users")
+		cmd.Println(cmdutil.FormatJSON(res, "users"))
 	},
 }
 

@@ -24,7 +24,7 @@ var GetOpenAPICmd = &cobra.Command{
 		res, _, err := api.GetOpenAPI(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
 		cmdutil.HandleError(err, "failed to get-open-api")
 
-		cmdutil.PrintJSON(res, "api_management")
+		cmd.Println(cmdutil.FormatJSON(res, "api_management"))
 	},
 }
 

@@ -24,7 +24,7 @@ var ListDevicesCmd = &cobra.Command{
 		res, _, err := api.ListDevices(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-devices")
 
-		cmdutil.PrintJSON(res, "network_device_monitoring")
+		cmd.Println(cmdutil.FormatJSON(res, "network_device_monitoring"))
 	},
 }
 

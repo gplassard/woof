@@ -24,7 +24,7 @@ var UpdateWorkflowsWebhookHandleCmd = &cobra.Command{
 		res, _, err := api.UpdateWorkflowsWebhookHandle(client.NewContext(apiKey, appKey, site), args[0], datadogV2.MicrosoftTeamsUpdateWorkflowsWebhookHandleRequest{})
 		cmdutil.HandleError(err, "failed to update-workflows-webhook-handle")
 
-		cmdutil.PrintJSON(res, "workflows-webhook-handle")
+		cmd.Println(cmdutil.FormatJSON(res, "workflows-webhook-handle"))
 	},
 }
 

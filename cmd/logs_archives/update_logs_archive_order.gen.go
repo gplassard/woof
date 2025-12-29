@@ -24,7 +24,7 @@ var UpdateLogsArchiveOrderCmd = &cobra.Command{
 		res, _, err := api.UpdateLogsArchiveOrder(client.NewContext(apiKey, appKey, site), datadogV2.LogsArchiveOrder{})
 		cmdutil.HandleError(err, "failed to update-logs-archive-order")
 
-		cmdutil.PrintJSON(res, "archive_order")
+		cmd.Println(cmdutil.FormatJSON(res, "archive_order"))
 	},
 }
 

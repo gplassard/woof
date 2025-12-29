@@ -24,7 +24,7 @@ var ListRestrictionQueryRolesCmd = &cobra.Command{
 		res, _, err := api.ListRestrictionQueryRoles(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-restriction-query-roles")
 
-		cmdutil.PrintJSON(res, "roles")
+		cmd.Println(cmdutil.FormatJSON(res, "roles"))
 	},
 }
 

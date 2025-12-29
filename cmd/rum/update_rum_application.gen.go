@@ -24,7 +24,7 @@ var UpdateRUMApplicationCmd = &cobra.Command{
 		res, _, err := api.UpdateRUMApplication(client.NewContext(apiKey, appKey, site), args[0], datadogV2.RUMApplicationUpdateRequest{})
 		cmdutil.HandleError(err, "failed to update-rum-application")
 
-		cmdutil.PrintJSON(res, "rum_application")
+		cmd.Println(cmdutil.FormatJSON(res, "rum_application"))
 	},
 }
 

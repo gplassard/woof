@@ -24,7 +24,7 @@ var UpsertCatalogKindCmd = &cobra.Command{
 		res, _, err := api.UpsertCatalogKind(client.NewContext(apiKey, appKey, site), datadogV2.UpsertCatalogKindRequest{})
 		cmdutil.HandleError(err, "failed to upsert-catalog-kind")
 
-		cmdutil.PrintJSON(res, "software_catalog")
+		cmd.Println(cmdutil.FormatJSON(res, "software_catalog"))
 	},
 }
 

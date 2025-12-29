@@ -24,7 +24,7 @@ var ListUserOrganizationsCmd = &cobra.Command{
 		res, _, err := api.ListUserOrganizations(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-user-organizations")
 
-		cmdutil.PrintJSON(res, "users")
+		cmd.Println(cmdutil.FormatJSON(res, "users"))
 	},
 }
 

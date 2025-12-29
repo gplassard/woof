@@ -24,7 +24,7 @@ var ListSpansMetricsCmd = &cobra.Command{
 		res, _, err := api.ListSpansMetrics(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-spans-metrics")
 
-		cmdutil.PrintJSON(res, "spans_metrics")
+		cmd.Println(cmdutil.FormatJSON(res, "spans_metrics"))
 	},
 }
 

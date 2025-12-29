@@ -24,7 +24,7 @@ var UpdateTagPipelinesRulesetCmd = &cobra.Command{
 		res, _, err := api.UpdateTagPipelinesRuleset(client.NewContext(apiKey, appKey, site), args[0], datadogV2.UpdateRulesetRequest{})
 		cmdutil.HandleError(err, "failed to update-tag-pipelines-ruleset")
 
-		cmdutil.PrintJSON(res, "ruleset")
+		cmd.Println(cmdutil.FormatJSON(res, "ruleset"))
 	},
 }
 

@@ -24,7 +24,7 @@ var GetCurrentUserApplicationKeyCmd = &cobra.Command{
 		res, _, err := api.GetCurrentUserApplicationKey(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-current-user-application-key")
 
-		cmdutil.PrintJSON(res, "application_keys")
+		cmd.Println(cmdutil.FormatJSON(res, "application_keys"))
 	},
 }
 

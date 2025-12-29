@@ -24,7 +24,7 @@ var GetDeploymentGateRulesCmd = &cobra.Command{
 		res, _, err := api.GetDeploymentGateRules(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-deployment-gate-rules")
 
-		cmdutil.PrintJSON(res, "list_deployment_rules")
+		cmd.Println(cmdutil.FormatJSON(res, "list_deployment_rules"))
 	},
 }
 

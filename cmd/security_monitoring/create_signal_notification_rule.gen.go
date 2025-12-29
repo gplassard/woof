@@ -24,7 +24,7 @@ var CreateSignalNotificationRuleCmd = &cobra.Command{
 		res, _, err := api.CreateSignalNotificationRule(client.NewContext(apiKey, appKey, site), datadogV2.CreateNotificationRuleParameters{})
 		cmdutil.HandleError(err, "failed to create-signal-notification-rule")
 
-		cmdutil.PrintJSON(res, "notification_rules")
+		cmd.Println(cmdutil.FormatJSON(res, "notification_rules"))
 	},
 }
 

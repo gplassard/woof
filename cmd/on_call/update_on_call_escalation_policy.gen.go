@@ -24,7 +24,7 @@ var UpdateOnCallEscalationPolicyCmd = &cobra.Command{
 		res, _, err := api.UpdateOnCallEscalationPolicy(client.NewContext(apiKey, appKey, site), args[0], datadogV2.EscalationPolicyUpdateRequest{})
 		cmdutil.HandleError(err, "failed to update-on-call-escalation-policy")
 
-		cmdutil.PrintJSON(res, "policies")
+		cmd.Println(cmdutil.FormatJSON(res, "policies"))
 	},
 }
 

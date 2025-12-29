@@ -24,7 +24,7 @@ var CreateReferenceTableUploadCmd = &cobra.Command{
 		res, _, err := api.CreateReferenceTableUpload(client.NewContext(apiKey, appKey, site), datadogV2.CreateUploadRequest{})
 		cmdutil.HandleError(err, "failed to create-reference-table-upload")
 
-		cmdutil.PrintJSON(res, "upload")
+		cmd.Println(cmdutil.FormatJSON(res, "upload"))
 	},
 }
 

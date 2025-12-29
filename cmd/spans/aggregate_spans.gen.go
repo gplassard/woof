@@ -24,7 +24,7 @@ var AggregateSpansCmd = &cobra.Command{
 		res, _, err := api.AggregateSpans(client.NewContext(apiKey, appKey, site), datadogV2.SpansAggregateRequest{})
 		cmdutil.HandleError(err, "failed to aggregate-spans")
 
-		cmdutil.PrintJSON(res, "bucket")
+		cmd.Println(cmdutil.FormatJSON(res, "bucket"))
 	},
 }
 

@@ -24,7 +24,7 @@ var ListLogsCustomDestinationsCmd = &cobra.Command{
 		res, _, err := api.ListLogsCustomDestinations(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-logs-custom-destinations")
 
-		cmdutil.PrintJSON(res, "custom_destination")
+		cmd.Println(cmdutil.FormatJSON(res, "custom_destination"))
 	},
 }
 

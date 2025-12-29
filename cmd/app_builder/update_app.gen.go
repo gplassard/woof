@@ -24,7 +24,7 @@ var UpdateAppCmd = &cobra.Command{
 		res, _, err := api.UpdateApp(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]), datadogV2.UpdateAppRequest{})
 		cmdutil.HandleError(err, "failed to update-app")
 
-		cmdutil.PrintJSON(res, "appDefinitions")
+		cmd.Println(cmdutil.FormatJSON(res, "appDefinitions"))
 	},
 }
 

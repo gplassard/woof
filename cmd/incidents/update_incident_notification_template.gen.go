@@ -24,7 +24,7 @@ var UpdateIncidentNotificationTemplateCmd = &cobra.Command{
 		res, _, err := api.UpdateIncidentNotificationTemplate(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]), datadogV2.PatchIncidentNotificationTemplateRequest{})
 		cmdutil.HandleError(err, "failed to update-incident-notification-template")
 
-		cmdutil.PrintJSON(res, "notification_templates")
+		cmd.Println(cmdutil.FormatJSON(res, "notification_templates"))
 	},
 }
 

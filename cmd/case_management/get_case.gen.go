@@ -24,7 +24,7 @@ var GetCaseCmd = &cobra.Command{
 		res, _, err := api.GetCase(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-case")
 
-		cmdutil.PrintJSON(res, "case")
+		cmd.Println(cmdutil.FormatJSON(res, "case"))
 	},
 }
 

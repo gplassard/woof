@@ -24,7 +24,7 @@ var CreateIncidentImpactCmd = &cobra.Command{
 		res, _, err := api.CreateIncidentImpact(client.NewContext(apiKey, appKey, site), args[0], datadogV2.IncidentImpactCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-incident-impact")
 
-		cmdutil.PrintJSON(res, "incident_impacts")
+		cmd.Println(cmdutil.FormatJSON(res, "incident_impacts"))
 	},
 }
 

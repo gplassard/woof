@@ -24,7 +24,7 @@ var GetFleetAgentInfoCmd = &cobra.Command{
 		res, _, err := api.GetFleetAgentInfo(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-fleet-agent-info")
 
-		cmdutil.PrintJSON(res, "datadog_agent_key")
+		cmd.Println(cmdutil.FormatJSON(res, "datadog_agent_key"))
 	},
 }
 

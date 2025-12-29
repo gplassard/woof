@@ -24,7 +24,7 @@ var UpsertBudgetCmd = &cobra.Command{
 		res, _, err := api.UpsertBudget(client.NewContext(apiKey, appKey, site), datadogV2.BudgetWithEntries{})
 		cmdutil.HandleError(err, "failed to upsert-budget")
 
-		cmdutil.PrintJSON(res, "cloud_cost_management")
+		cmd.Println(cmdutil.FormatJSON(res, "cloud_cost_management"))
 	},
 }
 

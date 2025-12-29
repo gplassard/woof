@@ -24,7 +24,7 @@ var GetSuppressionVersionHistoryCmd = &cobra.Command{
 		res, _, err := api.GetSuppressionVersionHistory(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-suppression-version-history")
 
-		cmdutil.PrintJSON(res, "suppression_version_history")
+		cmd.Println(cmdutil.FormatJSON(res, "suppression_version_history"))
 	},
 }
 

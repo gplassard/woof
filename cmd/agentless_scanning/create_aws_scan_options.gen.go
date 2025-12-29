@@ -24,7 +24,7 @@ var CreateAwsScanOptionsCmd = &cobra.Command{
 		res, _, err := api.CreateAwsScanOptions(client.NewContext(apiKey, appKey, site), datadogV2.AwsScanOptionsCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-aws-scan-options")
 
-		cmdutil.PrintJSON(res, "aws_scan_options")
+		cmd.Println(cmdutil.FormatJSON(res, "aws_scan_options"))
 	},
 }
 

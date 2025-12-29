@@ -24,7 +24,7 @@ var CreateConfluentAccountCmd = &cobra.Command{
 		res, _, err := api.CreateConfluentAccount(client.NewContext(apiKey, appKey, site), datadogV2.ConfluentAccountCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-confluent-account")
 
-		cmdutil.PrintJSON(res, "confluent-cloud-accounts")
+		cmd.Println(cmdutil.FormatJSON(res, "confluent-cloud-accounts"))
 	},
 }
 

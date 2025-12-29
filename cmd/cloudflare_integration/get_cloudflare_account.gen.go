@@ -24,7 +24,7 @@ var GetCloudflareAccountCmd = &cobra.Command{
 		res, _, err := api.GetCloudflareAccount(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-cloudflare-account")
 
-		cmdutil.PrintJSON(res, "cloudflare-accounts")
+		cmd.Println(cmdutil.FormatJSON(res, "cloudflare-accounts"))
 	},
 }
 

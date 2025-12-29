@@ -24,7 +24,7 @@ var GetMonitorNotificationRuleCmd = &cobra.Command{
 		res, _, err := api.GetMonitorNotificationRule(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-monitor-notification-rule")
 
-		cmdutil.PrintJSON(res, "monitor-notification-rule")
+		cmd.Println(cmdutil.FormatJSON(res, "monitor-notification-rule"))
 	},
 }
 

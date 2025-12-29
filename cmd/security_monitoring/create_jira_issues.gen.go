@@ -24,7 +24,7 @@ var CreateJiraIssuesCmd = &cobra.Command{
 		res, _, err := api.CreateJiraIssues(client.NewContext(apiKey, appKey, site), datadogV2.CreateJiraIssueRequestArray{})
 		cmdutil.HandleError(err, "failed to create-jira-issues")
 
-		cmdutil.PrintJSON(res, "cases")
+		cmd.Println(cmdutil.FormatJSON(res, "cases"))
 	},
 }
 

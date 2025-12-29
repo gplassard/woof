@@ -24,7 +24,7 @@ var GetDowntimeCmd = &cobra.Command{
 		res, _, err := api.GetDowntime(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-downtime")
 
-		cmdutil.PrintJSON(res, "downtime")
+		cmd.Println(cmdutil.FormatJSON(res, "downtime"))
 	},
 }
 

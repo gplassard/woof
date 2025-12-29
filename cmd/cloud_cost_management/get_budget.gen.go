@@ -24,7 +24,7 @@ var GetBudgetCmd = &cobra.Command{
 		res, _, err := api.GetBudget(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-budget")
 
-		cmdutil.PrintJSON(res, "cloud_cost_management")
+		cmd.Println(cmdutil.FormatJSON(res, "cloud_cost_management"))
 	},
 }
 

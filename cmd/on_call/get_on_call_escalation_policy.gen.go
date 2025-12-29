@@ -24,7 +24,7 @@ var GetOnCallEscalationPolicyCmd = &cobra.Command{
 		res, _, err := api.GetOnCallEscalationPolicy(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-on-call-escalation-policy")
 
-		cmdutil.PrintJSON(res, "policies")
+		cmd.Println(cmdutil.FormatJSON(res, "policies"))
 	},
 }
 

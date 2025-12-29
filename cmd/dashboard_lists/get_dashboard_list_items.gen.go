@@ -24,7 +24,7 @@ var GetDashboardListItemsCmd = &cobra.Command{
 		res, _, err := api.GetDashboardListItems(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }())
 		cmdutil.HandleError(err, "failed to get-dashboard-list-items")
 
-		cmdutil.PrintJSON(res, "dashboard_lists")
+		cmd.Println(cmdutil.FormatJSON(res, "dashboard_lists"))
 	},
 }
 

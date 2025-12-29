@@ -24,7 +24,7 @@ var GetCSMServerlessCoverageAnalysisCmd = &cobra.Command{
 		res, _, err := api.GetCSMServerlessCoverageAnalysis(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-csm-serverless-coverage-analysis")
 
-		cmdutil.PrintJSON(res, "csm_coverage_analysis")
+		cmd.Println(cmdutil.FormatJSON(res, "csm_coverage_analysis"))
 	},
 }
 

@@ -24,7 +24,7 @@ var CreateEventCmd = &cobra.Command{
 		res, _, err := api.CreateEvent(client.NewContext(apiKey, appKey, site), datadogV2.EventCreateRequestPayload{})
 		cmdutil.HandleError(err, "failed to create-event")
 
-		cmdutil.PrintJSON(res, "events")
+		cmd.Println(cmdutil.FormatJSON(res, "events"))
 	},
 }
 

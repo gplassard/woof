@@ -24,7 +24,7 @@ var BulkWriteDatastoreItemsCmd = &cobra.Command{
 		res, _, err := api.BulkWriteDatastoreItems(client.NewContext(apiKey, appKey, site), args[0], datadogV2.BulkPutAppsDatastoreItemsRequest{})
 		cmdutil.HandleError(err, "failed to bulk-write-datastore-items")
 
-		cmdutil.PrintJSON(res, "items")
+		cmd.Println(cmdutil.FormatJSON(res, "items"))
 	},
 }
 

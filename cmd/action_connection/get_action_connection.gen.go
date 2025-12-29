@@ -24,7 +24,7 @@ var GetActionConnectionCmd = &cobra.Command{
 		res, _, err := api.GetActionConnection(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-action-connection")
 
-		cmdutil.PrintJSON(res, "action_connection")
+		cmd.Println(cmdutil.FormatJSON(res, "action_connection"))
 	},
 }
 

@@ -24,7 +24,7 @@ var CreateFastlyAccountCmd = &cobra.Command{
 		res, _, err := api.CreateFastlyAccount(client.NewContext(apiKey, appKey, site), datadogV2.FastlyAccountCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-fastly-account")
 
-		cmdutil.PrintJSON(res, "fastly-accounts")
+		cmd.Println(cmdutil.FormatJSON(res, "fastly-accounts"))
 	},
 }
 

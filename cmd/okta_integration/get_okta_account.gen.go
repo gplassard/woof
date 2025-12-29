@@ -24,7 +24,7 @@ var GetOktaAccountCmd = &cobra.Command{
 		res, _, err := api.GetOktaAccount(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-okta-account")
 
-		cmdutil.PrintJSON(res, "okta-accounts")
+		cmd.Println(cmdutil.FormatJSON(res, "okta-accounts"))
 	},
 }
 

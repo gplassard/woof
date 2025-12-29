@@ -24,7 +24,7 @@ var UnpublishAppCmd = &cobra.Command{
 		res, _, err := api.UnpublishApp(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
 		cmdutil.HandleError(err, "failed to unpublish-app")
 
-		cmdutil.PrintJSON(res, "deployment")
+		cmd.Println(cmdutil.FormatJSON(res, "deployment"))
 	},
 }
 

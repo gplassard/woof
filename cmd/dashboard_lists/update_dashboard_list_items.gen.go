@@ -24,7 +24,7 @@ var UpdateDashboardListItemsCmd = &cobra.Command{
 		res, _, err := api.UpdateDashboardListItems(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }(), datadogV2.DashboardListUpdateItemsRequest{})
 		cmdutil.HandleError(err, "failed to update-dashboard-list-items")
 
-		cmdutil.PrintJSON(res, "dashboard_lists")
+		cmd.Println(cmdutil.FormatJSON(res, "dashboard_lists"))
 	},
 }
 

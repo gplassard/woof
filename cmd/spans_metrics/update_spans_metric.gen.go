@@ -24,7 +24,7 @@ var UpdateSpansMetricCmd = &cobra.Command{
 		res, _, err := api.UpdateSpansMetric(client.NewContext(apiKey, appKey, site), args[0], datadogV2.SpansMetricUpdateRequest{})
 		cmdutil.HandleError(err, "failed to update-spans-metric")
 
-		cmdutil.PrintJSON(res, "spans_metrics")
+		cmd.Println(cmdutil.FormatJSON(res, "spans_metrics"))
 	},
 }
 

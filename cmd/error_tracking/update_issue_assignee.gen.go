@@ -24,7 +24,7 @@ var UpdateIssueAssigneeCmd = &cobra.Command{
 		res, _, err := api.UpdateIssueAssignee(client.NewContext(apiKey, appKey, site), args[0], datadogV2.IssueUpdateAssigneeRequest{})
 		cmdutil.HandleError(err, "failed to update-issue-assignee")
 
-		cmdutil.PrintJSON(res, "issue")
+		cmd.Println(cmdutil.FormatJSON(res, "issue"))
 	},
 }
 

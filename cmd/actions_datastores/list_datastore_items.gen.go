@@ -24,7 +24,7 @@ var ListDatastoreItemsCmd = &cobra.Command{
 		res, _, err := api.ListDatastoreItems(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-datastore-items")
 
-		cmdutil.PrintJSON(res, "items")
+		cmd.Println(cmdutil.FormatJSON(res, "items"))
 	},
 }
 

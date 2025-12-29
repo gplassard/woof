@@ -24,7 +24,7 @@ var GetLogsArchiveCmd = &cobra.Command{
 		res, _, err := api.GetLogsArchive(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-logs-archive")
 
-		cmdutil.PrintJSON(res, "logs_archives")
+		cmd.Println(cmdutil.FormatJSON(res, "logs_archives"))
 	},
 }
 

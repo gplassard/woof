@@ -24,7 +24,7 @@ var ListCatalogRelationCmd = &cobra.Command{
 		res, _, err := api.ListCatalogRelation(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-catalog-relation")
 
-		cmdutil.PrintJSON(res, "software_catalog")
+		cmd.Println(cmdutil.FormatJSON(res, "software_catalog"))
 	},
 }
 

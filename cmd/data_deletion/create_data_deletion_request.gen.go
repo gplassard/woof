@@ -24,7 +24,7 @@ var CreateDataDeletionRequestCmd = &cobra.Command{
 		res, _, err := api.CreateDataDeletionRequest(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CreateDataDeletionRequestBody{})
 		cmdutil.HandleError(err, "failed to create-data-deletion-request")
 
-		cmdutil.PrintJSON(res, "data_deletion")
+		cmd.Println(cmdutil.FormatJSON(res, "data_deletion"))
 	},
 }
 

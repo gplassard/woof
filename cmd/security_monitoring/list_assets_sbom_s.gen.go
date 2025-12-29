@@ -24,7 +24,7 @@ var ListAssetsSBOMsCmd = &cobra.Command{
 		res, _, err := api.ListAssetsSBOMs(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-assets-sbom-s")
 
-		cmdutil.PrintJSON(res, "sboms")
+		cmd.Println(cmdutil.FormatJSON(res, "sboms"))
 	},
 }
 

@@ -24,7 +24,7 @@ var ListLogsCmd = &cobra.Command{
 		res, _, err := api.ListLogs(client.NewContext(apiKey, appKey, site), *datadogV2.NewListLogsOptionalParameters())
 		cmdutil.HandleError(err, "failed to list-logs")
 
-		cmdutil.PrintJSON(res, "log")
+		cmd.Println(cmdutil.FormatJSON(res, "log"))
 	},
 }
 

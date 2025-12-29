@@ -24,7 +24,7 @@ var ListTablesCmd = &cobra.Command{
 		res, _, err := api.ListTables(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-tables")
 
-		cmdutil.PrintJSON(res, "reference_table")
+		cmd.Println(cmdutil.FormatJSON(res, "reference_table"))
 	},
 }
 

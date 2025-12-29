@@ -24,7 +24,7 @@ var UnassignCaseCmd = &cobra.Command{
 		res, _, err := api.UnassignCase(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CaseEmptyRequest{})
 		cmdutil.HandleError(err, "failed to unassign-case")
 
-		cmdutil.PrintJSON(res, "case")
+		cmd.Println(cmdutil.FormatJSON(res, "case"))
 	},
 }
 

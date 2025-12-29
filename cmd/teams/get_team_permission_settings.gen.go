@@ -24,7 +24,7 @@ var GetTeamPermissionSettingsCmd = &cobra.Command{
 		res, _, err := api.GetTeamPermissionSettings(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-team-permission-settings")
 
-		cmdutil.PrintJSON(res, "team_permission_settings")
+		cmd.Println(cmdutil.FormatJSON(res, "team_permission_settings"))
 	},
 }
 

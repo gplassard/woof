@@ -24,7 +24,7 @@ var ListServiceAccountApplicationKeysCmd = &cobra.Command{
 		res, _, err := api.ListServiceAccountApplicationKeys(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-service-account-application-keys")
 
-		cmdutil.PrintJSON(res, "application_keys")
+		cmd.Println(cmdutil.FormatJSON(res, "application_keys"))
 	},
 }
 

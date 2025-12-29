@@ -24,7 +24,7 @@ var ListAllCSMServerlessAgentsCmd = &cobra.Command{
 		res, _, err := api.ListAllCSMServerlessAgents(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-all-csm-serverless-agents")
 
-		cmdutil.PrintJSON(res, "datadog_agent")
+		cmd.Println(cmdutil.FormatJSON(res, "datadog_agent"))
 	},
 }
 

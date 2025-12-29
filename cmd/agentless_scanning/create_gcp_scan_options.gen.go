@@ -24,7 +24,7 @@ var CreateGcpScanOptionsCmd = &cobra.Command{
 		res, _, err := api.CreateGcpScanOptions(client.NewContext(apiKey, appKey, site), datadogV2.GcpScanOptions{})
 		cmdutil.HandleError(err, "failed to create-gcp-scan-options")
 
-		cmdutil.PrintJSON(res, "gcp_scan_options")
+		cmd.Println(cmdutil.FormatJSON(res, "gcp_scan_options"))
 	},
 }
 

@@ -24,7 +24,7 @@ var GetIncidentNotificationRuleCmd = &cobra.Command{
 		res, _, err := api.GetIncidentNotificationRule(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
 		cmdutil.HandleError(err, "failed to get-incident-notification-rule")
 
-		cmdutil.PrintJSON(res, "incident_notification_rules")
+		cmd.Println(cmdutil.FormatJSON(res, "incident_notification_rules"))
 	},
 }
 

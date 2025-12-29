@@ -24,7 +24,7 @@ var CreateCostAWSCURConfigCmd = &cobra.Command{
 		res, _, err := api.CreateCostAWSCURConfig(client.NewContext(apiKey, appKey, site), datadogV2.AwsCURConfigPostRequest{})
 		cmdutil.HandleError(err, "failed to create-cost-aws-cur-config")
 
-		cmdutil.PrintJSON(res, "aws_cur_config")
+		cmd.Println(cmdutil.FormatJSON(res, "aws_cur_config"))
 	},
 }
 

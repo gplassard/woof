@@ -24,7 +24,7 @@ var GetAggregatedDnsCmd = &cobra.Command{
 		res, _, err := api.GetAggregatedDns(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-aggregated-dns")
 
-		cmdutil.PrintJSON(res, "aggregated_dns")
+		cmd.Println(cmdutil.FormatJSON(res, "aggregated_dns"))
 	},
 }
 

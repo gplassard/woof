@@ -24,7 +24,7 @@ var GetMetricTagCardinalityDetailsCmd = &cobra.Command{
 		res, _, err := api.GetMetricTagCardinalityDetails(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-metric-tag-cardinality-details")
 
-		cmdutil.PrintJSON(res, "metrics")
+		cmd.Println(cmdutil.FormatJSON(res, "metrics"))
 	},
 }
 

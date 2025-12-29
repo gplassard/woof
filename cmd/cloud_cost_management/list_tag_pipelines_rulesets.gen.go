@@ -24,7 +24,7 @@ var ListTagPipelinesRulesetsCmd = &cobra.Command{
 		res, _, err := api.ListTagPipelinesRulesets(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-tag-pipelines-rulesets")
 
-		cmdutil.PrintJSON(res, "ruleset")
+		cmd.Println(cmdutil.FormatJSON(res, "ruleset"))
 	},
 }
 

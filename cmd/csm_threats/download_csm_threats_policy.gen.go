@@ -24,7 +24,7 @@ var DownloadCSMThreatsPolicyCmd = &cobra.Command{
 		res, _, err := api.DownloadCSMThreatsPolicy(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to download-csm-threats-policy")
 
-		cmdutil.PrintJSON(res, "csm_threats")
+		cmd.Println(cmdutil.FormatJSON(res, "csm_threats"))
 	},
 }
 

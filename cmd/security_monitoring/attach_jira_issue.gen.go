@@ -24,7 +24,7 @@ var AttachJiraIssueCmd = &cobra.Command{
 		res, _, err := api.AttachJiraIssue(client.NewContext(apiKey, appKey, site), datadogV2.AttachJiraIssueRequest{})
 		cmdutil.HandleError(err, "failed to attach-jira-issue")
 
-		cmdutil.PrintJSON(res, "cases")
+		cmd.Println(cmdutil.FormatJSON(res, "cases"))
 	},
 }
 

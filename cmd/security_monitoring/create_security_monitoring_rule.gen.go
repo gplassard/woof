@@ -24,7 +24,7 @@ var CreateSecurityMonitoringRuleCmd = &cobra.Command{
 		res, _, err := api.CreateSecurityMonitoringRule(client.NewContext(apiKey, appKey, site), datadogV2.SecurityMonitoringRuleCreatePayload{})
 		cmdutil.HandleError(err, "failed to create-security-monitoring-rule")
 
-		cmdutil.PrintJSON(res, "security_monitoring")
+		cmd.Println(cmdutil.FormatJSON(res, "security_monitoring"))
 	},
 }
 

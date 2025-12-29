@@ -24,7 +24,7 @@ var QueryUsersCmd = &cobra.Command{
 		res, _, err := api.QueryUsers(client.NewContext(apiKey, appKey, site), datadogV2.QueryUsersRequest{})
 		cmdutil.HandleError(err, "failed to query-users")
 
-		cmdutil.PrintJSON(res, "query_response")
+		cmd.Println(cmdutil.FormatJSON(res, "query_response"))
 	},
 }
 

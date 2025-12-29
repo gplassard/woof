@@ -24,7 +24,7 @@ var CreateCostAzureUCConfigsCmd = &cobra.Command{
 		res, _, err := api.CreateCostAzureUCConfigs(client.NewContext(apiKey, appKey, site), datadogV2.AzureUCConfigPostRequest{})
 		cmdutil.HandleError(err, "failed to create-cost-azure-uc-configs")
 
-		cmdutil.PrintJSON(res, "azure_uc_configs")
+		cmd.Println(cmdutil.FormatJSON(res, "azure_uc_configs"))
 	},
 }
 

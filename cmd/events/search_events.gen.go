@@ -24,7 +24,7 @@ var SearchEventsCmd = &cobra.Command{
 		res, _, err := api.SearchEvents(client.NewContext(apiKey, appKey, site), *datadogV2.NewSearchEventsOptionalParameters())
 		cmdutil.HandleError(err, "failed to search-events")
 
-		cmdutil.PrintJSON(res, "event")
+		cmd.Println(cmdutil.FormatJSON(res, "event"))
 	},
 }
 

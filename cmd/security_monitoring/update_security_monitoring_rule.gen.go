@@ -24,7 +24,7 @@ var UpdateSecurityMonitoringRuleCmd = &cobra.Command{
 		res, _, err := api.UpdateSecurityMonitoringRule(client.NewContext(apiKey, appKey, site), args[0], datadogV2.SecurityMonitoringRuleUpdatePayload{})
 		cmdutil.HandleError(err, "failed to update-security-monitoring-rule")
 
-		cmdutil.PrintJSON(res, "security_monitoring")
+		cmd.Println(cmdutil.FormatJSON(res, "security_monitoring"))
 	},
 }
 

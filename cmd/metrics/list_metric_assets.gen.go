@@ -24,7 +24,7 @@ var ListMetricAssetsCmd = &cobra.Command{
 		res, _, err := api.ListMetricAssets(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-metric-assets")
 
-		cmdutil.PrintJSON(res, "metrics")
+		cmd.Println(cmdutil.FormatJSON(res, "metrics"))
 	},
 }
 

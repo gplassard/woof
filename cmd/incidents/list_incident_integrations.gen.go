@@ -24,7 +24,7 @@ var ListIncidentIntegrationsCmd = &cobra.Command{
 		res, _, err := api.ListIncidentIntegrations(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-incident-integrations")
 
-		cmdutil.PrintJSON(res, "incident_integrations")
+		cmd.Println(cmdutil.FormatJSON(res, "incident_integrations"))
 	},
 }
 

@@ -24,7 +24,7 @@ var CreateTeamMembershipCmd = &cobra.Command{
 		res, _, err := api.CreateTeamMembership(client.NewContext(apiKey, appKey, site), args[0], datadogV2.UserTeamRequest{})
 		cmdutil.HandleError(err, "failed to create-team-membership")
 
-		cmdutil.PrintJSON(res, "team_memberships")
+		cmd.Println(cmdutil.FormatJSON(res, "team_memberships"))
 	},
 }
 

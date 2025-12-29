@@ -24,7 +24,7 @@ var CloneRoleCmd = &cobra.Command{
 		res, _, err := api.CloneRole(client.NewContext(apiKey, appKey, site), args[0], datadogV2.RoleCloneRequest{})
 		cmdutil.HandleError(err, "failed to clone-role")
 
-		cmdutil.PrintJSON(res, "roles")
+		cmd.Println(cmdutil.FormatJSON(res, "roles"))
 	},
 }
 

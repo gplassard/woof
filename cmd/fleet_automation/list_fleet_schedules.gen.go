@@ -24,7 +24,7 @@ var ListFleetSchedulesCmd = &cobra.Command{
 		res, _, err := api.ListFleetSchedules(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-fleet-schedules")
 
-		cmdutil.PrintJSON(res, "schedule")
+		cmd.Println(cmdutil.FormatJSON(res, "schedule"))
 	},
 }
 

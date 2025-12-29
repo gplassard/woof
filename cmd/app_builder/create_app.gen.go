@@ -24,7 +24,7 @@ var CreateAppCmd = &cobra.Command{
 		res, _, err := api.CreateApp(client.NewContext(apiKey, appKey, site), datadogV2.CreateAppRequest{})
 		cmdutil.HandleError(err, "failed to create-app")
 
-		cmdutil.PrintJSON(res, "appDefinitions")
+		cmd.Println(cmdutil.FormatJSON(res, "appDefinitions"))
 	},
 }
 

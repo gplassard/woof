@@ -24,7 +24,7 @@ var CreateCustomFrameworkCmd = &cobra.Command{
 		res, _, err := api.CreateCustomFramework(client.NewContext(apiKey, appKey, site), datadogV2.CreateCustomFrameworkRequest{})
 		cmdutil.HandleError(err, "failed to create-custom-framework")
 
-		cmdutil.PrintJSON(res, "custom_framework")
+		cmd.Println(cmdutil.FormatJSON(res, "custom_framework"))
 	},
 }
 

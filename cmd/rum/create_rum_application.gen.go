@@ -24,7 +24,7 @@ var CreateRUMApplicationCmd = &cobra.Command{
 		res, _, err := api.CreateRUMApplication(client.NewContext(apiKey, appKey, site), datadogV2.RUMApplicationCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-rum-application")
 
-		cmdutil.PrintJSON(res, "rum_application")
+		cmd.Println(cmdutil.FormatJSON(res, "rum_application"))
 	},
 }
 

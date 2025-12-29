@@ -24,7 +24,7 @@ var UpdateDeploymentGateCmd = &cobra.Command{
 		res, _, err := api.UpdateDeploymentGate(client.NewContext(apiKey, appKey, site), args[0], datadogV2.UpdateDeploymentGateParams{})
 		cmdutil.HandleError(err, "failed to update-deployment-gate")
 
-		cmdutil.PrintJSON(res, "deployment_gate")
+		cmd.Println(cmdutil.FormatJSON(res, "deployment_gate"))
 	},
 }
 

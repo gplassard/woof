@@ -24,7 +24,7 @@ var ListIncidentNotificationRulesCmd = &cobra.Command{
 		res, _, err := api.ListIncidentNotificationRules(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-incident-notification-rules")
 
-		cmdutil.PrintJSON(res, "incident_notification_rules")
+		cmd.Println(cmdutil.FormatJSON(res, "incident_notification_rules"))
 	},
 }
 

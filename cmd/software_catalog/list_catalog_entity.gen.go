@@ -24,7 +24,7 @@ var ListCatalogEntityCmd = &cobra.Command{
 		res, _, err := api.ListCatalogEntity(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-catalog-entity")
 
-		cmdutil.PrintJSON(res, "software_catalog")
+		cmd.Println(cmdutil.FormatJSON(res, "software_catalog"))
 	},
 }
 

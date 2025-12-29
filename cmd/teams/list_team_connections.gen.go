@@ -24,7 +24,7 @@ var ListTeamConnectionsCmd = &cobra.Command{
 		res, _, err := api.ListTeamConnections(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-team-connections")
 
-		cmdutil.PrintJSON(res, "team_connection")
+		cmd.Println(cmdutil.FormatJSON(res, "team_connection"))
 	},
 }
 

@@ -24,7 +24,7 @@ var UpdateActionConnectionCmd = &cobra.Command{
 		res, _, err := api.UpdateActionConnection(client.NewContext(apiKey, appKey, site), args[0], datadogV2.UpdateActionConnectionRequest{})
 		cmdutil.HandleError(err, "failed to update-action-connection")
 
-		cmdutil.PrintJSON(res, "action_connection")
+		cmd.Println(cmdutil.FormatJSON(res, "action_connection"))
 	},
 }
 

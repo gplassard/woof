@@ -24,7 +24,7 @@ var ListScorecardOutcomesCmd = &cobra.Command{
 		res, _, err := api.ListScorecardOutcomes(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-scorecard-outcomes")
 
-		cmdutil.PrintJSON(res, "service_scorecards")
+		cmd.Println(cmdutil.FormatJSON(res, "service_scorecards"))
 	},
 }
 

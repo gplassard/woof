@@ -24,7 +24,7 @@ var GetUserFacetInfoCmd = &cobra.Command{
 		res, _, err := api.GetUserFacetInfo(client.NewContext(apiKey, appKey, site), datadogV2.FacetInfoRequest{})
 		cmdutil.HandleError(err, "failed to get-user-facet-info")
 
-		cmdutil.PrintJSON(res, "users_facet_info")
+		cmd.Println(cmdutil.FormatJSON(res, "users_facet_info"))
 	},
 }
 

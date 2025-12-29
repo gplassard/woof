@@ -24,7 +24,7 @@ var UpdateCustomFrameworkCmd = &cobra.Command{
 		res, _, err := api.UpdateCustomFramework(client.NewContext(apiKey, appKey, site), args[0], args[1], datadogV2.UpdateCustomFrameworkRequest{})
 		cmdutil.HandleError(err, "failed to update-custom-framework")
 
-		cmdutil.PrintJSON(res, "custom_framework")
+		cmd.Println(cmdutil.FormatJSON(res, "custom_framework"))
 	},
 }
 

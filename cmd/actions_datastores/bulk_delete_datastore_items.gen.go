@@ -24,7 +24,7 @@ var BulkDeleteDatastoreItemsCmd = &cobra.Command{
 		res, _, err := api.BulkDeleteDatastoreItems(client.NewContext(apiKey, appKey, site), args[0], datadogV2.BulkDeleteAppsDatastoreItemsRequest{})
 		cmdutil.HandleError(err, "failed to bulk-delete-datastore-items")
 
-		cmdutil.PrintJSON(res, "items")
+		cmd.Println(cmdutil.FormatJSON(res, "items"))
 	},
 }
 

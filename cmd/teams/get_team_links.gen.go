@@ -24,7 +24,7 @@ var GetTeamLinksCmd = &cobra.Command{
 		res, _, err := api.GetTeamLinks(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-team-links")
 
-		cmdutil.PrintJSON(res, "team_links")
+		cmd.Println(cmdutil.FormatJSON(res, "team_links"))
 	},
 }
 

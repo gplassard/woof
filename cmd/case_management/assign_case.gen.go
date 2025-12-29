@@ -24,7 +24,7 @@ var AssignCaseCmd = &cobra.Command{
 		res, _, err := api.AssignCase(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CaseAssignRequest{})
 		cmdutil.HandleError(err, "failed to assign-case")
 
-		cmdutil.PrintJSON(res, "case")
+		cmd.Println(cmdutil.FormatJSON(res, "case"))
 	},
 }
 

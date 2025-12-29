@@ -24,7 +24,7 @@ var GetDeploymentRuleCmd = &cobra.Command{
 		res, _, err := api.GetDeploymentRule(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		cmdutil.HandleError(err, "failed to get-deployment-rule")
 
-		cmdutil.PrintJSON(res, "deployment_rule")
+		cmd.Println(cmdutil.FormatJSON(res, "deployment_rule"))
 	},
 }
 

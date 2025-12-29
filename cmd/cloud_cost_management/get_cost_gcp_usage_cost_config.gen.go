@@ -24,7 +24,7 @@ var GetCostGCPUsageCostConfigCmd = &cobra.Command{
 		res, _, err := api.GetCostGCPUsageCostConfig(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }())
 		cmdutil.HandleError(err, "failed to get-cost-gcp-usage-cost-config")
 
-		cmdutil.PrintJSON(res, "gcp_uc_config")
+		cmd.Println(cmdutil.FormatJSON(res, "gcp_uc_config"))
 	},
 }
 

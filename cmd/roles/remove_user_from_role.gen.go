@@ -24,7 +24,7 @@ var RemoveUserFromRoleCmd = &cobra.Command{
 		res, _, err := api.RemoveUserFromRole(client.NewContext(apiKey, appKey, site), args[0], datadogV2.RelationshipToUser{})
 		cmdutil.HandleError(err, "failed to remove-user-from-role")
 
-		cmdutil.PrintJSON(res, "users")
+		cmd.Println(cmdutil.FormatJSON(res, "users"))
 	},
 }
 

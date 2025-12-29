@@ -24,7 +24,7 @@ var GetServiceDefinitionCmd = &cobra.Command{
 		res, _, err := api.GetServiceDefinition(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-service-definition")
 
-		cmdutil.PrintJSON(res, "service_definition")
+		cmd.Println(cmdutil.FormatJSON(res, "service_definition"))
 	},
 }
 

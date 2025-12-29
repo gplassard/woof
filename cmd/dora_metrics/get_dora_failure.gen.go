@@ -24,7 +24,7 @@ var GetDORAFailureCmd = &cobra.Command{
 		res, _, err := api.GetDORAFailure(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-dora-failure")
 
-		cmdutil.PrintJSON(res, "dora_metrics")
+		cmd.Println(cmdutil.FormatJSON(res, "dora_metrics"))
 	},
 }
 

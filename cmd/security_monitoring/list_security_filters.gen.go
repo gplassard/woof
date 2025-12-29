@@ -24,7 +24,7 @@ var ListSecurityFiltersCmd = &cobra.Command{
 		res, _, err := api.ListSecurityFilters(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-security-filters")
 
-		cmdutil.PrintJSON(res, "security_filters")
+		cmd.Println(cmdutil.FormatJSON(res, "security_filters"))
 	},
 }
 

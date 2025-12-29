@@ -24,7 +24,7 @@ var ListRoleTemplatesCmd = &cobra.Command{
 		res, _, err := api.ListRoleTemplates(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-role-templates")
 
-		cmdutil.PrintJSON(res, "roles")
+		cmd.Println(cmdutil.FormatJSON(res, "roles"))
 	},
 }
 

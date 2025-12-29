@@ -24,7 +24,7 @@ var ListOrgConnectionsCmd = &cobra.Command{
 		res, _, err := api.ListOrgConnections(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-org-connections")
 
-		cmdutil.PrintJSON(res, "org_connection")
+		cmd.Println(cmdutil.FormatJSON(res, "org_connection"))
 	},
 }
 

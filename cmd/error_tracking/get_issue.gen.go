@@ -24,7 +24,7 @@ var GetIssueCmd = &cobra.Command{
 		res, _, err := api.GetIssue(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-issue")
 
-		cmdutil.PrintJSON(res, "issue")
+		cmd.Println(cmdutil.FormatJSON(res, "issue"))
 	},
 }
 

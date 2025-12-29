@@ -24,7 +24,7 @@ var CreateMonitorConfigPolicyCmd = &cobra.Command{
 		res, _, err := api.CreateMonitorConfigPolicy(client.NewContext(apiKey, appKey, site), datadogV2.MonitorConfigPolicyCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-monitor-config-policy")
 
-		cmdutil.PrintJSON(res, "monitor-config-policy")
+		cmd.Println(cmdutil.FormatJSON(res, "monitor-config-policy"))
 	},
 }
 

@@ -24,7 +24,7 @@ var CreateRumMetricCmd = &cobra.Command{
 		res, _, err := api.CreateRumMetric(client.NewContext(apiKey, appKey, site), datadogV2.RumMetricCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-rum-metric")
 
-		cmdutil.PrintJSON(res, "rum_metrics")
+		cmd.Println(cmdutil.FormatJSON(res, "rum_metrics"))
 	},
 }
 

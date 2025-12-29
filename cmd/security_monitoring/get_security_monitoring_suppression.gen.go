@@ -24,7 +24,7 @@ var GetSecurityMonitoringSuppressionCmd = &cobra.Command{
 		res, _, err := api.GetSecurityMonitoringSuppression(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-security-monitoring-suppression")
 
-		cmdutil.PrintJSON(res, "suppressions")
+		cmd.Println(cmdutil.FormatJSON(res, "suppressions"))
 	},
 }
 

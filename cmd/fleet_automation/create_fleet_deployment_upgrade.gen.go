@@ -24,7 +24,7 @@ var CreateFleetDeploymentUpgradeCmd = &cobra.Command{
 		res, _, err := api.CreateFleetDeploymentUpgrade(client.NewContext(apiKey, appKey, site), datadogV2.FleetDeploymentPackageUpgradeCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-fleet-deployment-upgrade")
 
-		cmdutil.PrintJSON(res, "deployment")
+		cmd.Println(cmdutil.FormatJSON(res, "deployment"))
 	},
 }
 

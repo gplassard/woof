@@ -24,7 +24,7 @@ var CreateApplicationSecurityWafCustomRuleCmd = &cobra.Command{
 		res, _, err := api.CreateApplicationSecurityWafCustomRule(client.NewContext(apiKey, appKey, site), datadogV2.ApplicationSecurityWafCustomRuleCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-application-security-waf-custom-rule")
 
-		cmdutil.PrintJSON(res, "custom_rule")
+		cmd.Println(cmdutil.FormatJSON(res, "custom_rule"))
 	},
 }
 

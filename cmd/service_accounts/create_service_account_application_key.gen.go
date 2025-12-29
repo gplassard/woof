@@ -24,7 +24,7 @@ var CreateServiceAccountApplicationKeyCmd = &cobra.Command{
 		res, _, err := api.CreateServiceAccountApplicationKey(client.NewContext(apiKey, appKey, site), args[0], datadogV2.ApplicationKeyCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-service-account-application-key")
 
-		cmdutil.PrintJSON(res, "application_keys")
+		cmd.Println(cmdutil.FormatJSON(res, "application_keys"))
 	},
 }
 

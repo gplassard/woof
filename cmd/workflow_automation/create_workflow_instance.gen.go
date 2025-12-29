@@ -24,7 +24,7 @@ var CreateWorkflowInstanceCmd = &cobra.Command{
 		res, _, err := api.CreateWorkflowInstance(client.NewContext(apiKey, appKey, site), args[0], datadogV2.WorkflowInstanceCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-workflow-instance")
 
-		cmdutil.PrintJSON(res, "workflow_automation")
+		cmd.Println(cmdutil.FormatJSON(res, "workflow_automation"))
 	},
 }
 

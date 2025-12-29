@@ -24,7 +24,7 @@ var UpdateTagConfigurationCmd = &cobra.Command{
 		res, _, err := api.UpdateTagConfiguration(client.NewContext(apiKey, appKey, site), args[0], datadogV2.MetricTagConfigurationUpdateRequest{})
 		cmdutil.HandleError(err, "failed to update-tag-configuration")
 
-		cmdutil.PrintJSON(res, "manage_tags")
+		cmd.Println(cmdutil.FormatJSON(res, "manage_tags"))
 	},
 }
 

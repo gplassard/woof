@@ -24,7 +24,7 @@ var CancelDataDeletionRequestCmd = &cobra.Command{
 		res, _, err := api.CancelDataDeletionRequest(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to cancel-data-deletion-request")
 
-		cmdutil.PrintJSON(res, "data_deletion")
+		cmd.Println(cmdutil.FormatJSON(res, "data_deletion"))
 	},
 }
 

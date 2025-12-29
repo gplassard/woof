@@ -24,7 +24,7 @@ var UpdateApplicationSecurityWafExclusionFilterCmd = &cobra.Command{
 		res, _, err := api.UpdateApplicationSecurityWafExclusionFilter(client.NewContext(apiKey, appKey, site), args[0], datadogV2.ApplicationSecurityWafExclusionFilterUpdateRequest{})
 		cmdutil.HandleError(err, "failed to update-application-security-waf-exclusion-filter")
 
-		cmdutil.PrintJSON(res, "exclusion_filter")
+		cmd.Println(cmdutil.FormatJSON(res, "exclusion_filter"))
 	},
 }
 

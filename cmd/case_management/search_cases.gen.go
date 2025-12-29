@@ -24,7 +24,7 @@ var SearchCasesCmd = &cobra.Command{
 		res, _, err := api.SearchCases(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to search-cases")
 
-		cmdutil.PrintJSON(res, "case")
+		cmd.Println(cmdutil.FormatJSON(res, "case"))
 	},
 }
 

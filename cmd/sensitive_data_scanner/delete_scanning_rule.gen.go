@@ -24,7 +24,7 @@ var DeleteScanningRuleCmd = &cobra.Command{
 		res, _, err := api.DeleteScanningRule(client.NewContext(apiKey, appKey, site), args[0], datadogV2.SensitiveDataScannerRuleDeleteRequest{})
 		cmdutil.HandleError(err, "failed to delete-scanning-rule")
 
-		cmdutil.PrintJSON(res, "sensitive_data_scanner")
+		cmd.Println(cmdutil.FormatJSON(res, "sensitive_data_scanner"))
 	},
 }
 

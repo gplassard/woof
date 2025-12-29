@@ -24,7 +24,7 @@ var CreateLogsArchiveCmd = &cobra.Command{
 		res, _, err := api.CreateLogsArchive(client.NewContext(apiKey, appKey, site), datadogV2.LogsArchiveCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-logs-archive")
 
-		cmdutil.PrintJSON(res, "logs_archives")
+		cmd.Println(cmdutil.FormatJSON(res, "logs_archives"))
 	},
 }
 

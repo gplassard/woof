@@ -24,7 +24,7 @@ var GetOnCallTeamRoutingRulesCmd = &cobra.Command{
 		res, _, err := api.GetOnCallTeamRoutingRules(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-on-call-team-routing-rules")
 
-		cmdutil.PrintJSON(res, "team_routing_rules")
+		cmd.Println(cmdutil.FormatJSON(res, "team_routing_rules"))
 	},
 }
 

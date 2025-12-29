@@ -24,7 +24,7 @@ var DeleteAppsCmd = &cobra.Command{
 		res, _, err := api.DeleteApps(client.NewContext(apiKey, appKey, site), datadogV2.DeleteAppsRequest{})
 		cmdutil.HandleError(err, "failed to delete-apps")
 
-		cmdutil.PrintJSON(res, "appDefinitions")
+		cmd.Println(cmdutil.FormatJSON(res, "appDefinitions"))
 	},
 }
 

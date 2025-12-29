@@ -24,7 +24,7 @@ var DeleteCustomFrameworkCmd = &cobra.Command{
 		res, _, err := api.DeleteCustomFramework(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		cmdutil.HandleError(err, "failed to delete-custom-framework")
 
-		cmdutil.PrintJSON(res, "custom_framework")
+		cmd.Println(cmdutil.FormatJSON(res, "custom_framework"))
 	},
 }
 

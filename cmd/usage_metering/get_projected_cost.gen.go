@@ -24,7 +24,7 @@ var GetProjectedCostCmd = &cobra.Command{
 		res, _, err := api.GetProjectedCost(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-projected-cost")
 
-		cmdutil.PrintJSON(res, "usage_metering")
+		cmd.Println(cmdutil.FormatJSON(res, "usage_metering"))
 	},
 }
 

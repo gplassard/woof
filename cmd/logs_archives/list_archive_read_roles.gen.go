@@ -24,7 +24,7 @@ var ListArchiveReadRolesCmd = &cobra.Command{
 		res, _, err := api.ListArchiveReadRoles(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-archive-read-roles")
 
-		cmdutil.PrintJSON(res, "roles")
+		cmd.Println(cmdutil.FormatJSON(res, "roles"))
 	},
 }
 

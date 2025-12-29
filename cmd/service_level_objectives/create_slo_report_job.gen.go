@@ -24,7 +24,7 @@ var CreateSLOReportJobCmd = &cobra.Command{
 		res, _, err := api.CreateSLOReportJob(client.NewContext(apiKey, appKey, site), datadogV2.SloReportCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-slo-report-job")
 
-		cmdutil.PrintJSON(res, "service_level_objectives")
+		cmd.Println(cmdutil.FormatJSON(res, "service_level_objectives"))
 	},
 }
 

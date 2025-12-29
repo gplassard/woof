@@ -24,7 +24,7 @@ var ListAwsOnDemandTasksCmd = &cobra.Command{
 		res, _, err := api.ListAwsOnDemandTasks(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-aws-on-demand-tasks")
 
-		cmdutil.PrintJSON(res, "aws_resource")
+		cmd.Println(cmdutil.FormatJSON(res, "aws_resource"))
 	},
 }
 

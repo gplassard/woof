@@ -24,7 +24,7 @@ var TestExistingSecurityMonitoringRuleCmd = &cobra.Command{
 		res, _, err := api.TestExistingSecurityMonitoringRule(client.NewContext(apiKey, appKey, site), args[0], datadogV2.SecurityMonitoringRuleTestRequest{})
 		cmdutil.HandleError(err, "failed to test-existing-security-monitoring-rule")
 
-		cmdutil.PrintJSON(res, "security_monitoring")
+		cmd.Println(cmdutil.FormatJSON(res, "security_monitoring"))
 	},
 }
 

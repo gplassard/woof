@@ -24,7 +24,7 @@ var ListDORAFailuresCmd = &cobra.Command{
 		res, _, err := api.ListDORAFailures(client.NewContext(apiKey, appKey, site), datadogV2.DORAListFailuresRequest{})
 		cmdutil.HandleError(err, "failed to list-dora-failures")
 
-		cmdutil.PrintJSON(res, "dora_metrics")
+		cmd.Println(cmdutil.FormatJSON(res, "dora_metrics"))
 	},
 }
 

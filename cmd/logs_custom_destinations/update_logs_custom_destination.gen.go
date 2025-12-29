@@ -24,7 +24,7 @@ var UpdateLogsCustomDestinationCmd = &cobra.Command{
 		res, _, err := api.UpdateLogsCustomDestination(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CustomDestinationUpdateRequest{})
 		cmdutil.HandleError(err, "failed to update-logs-custom-destination")
 
-		cmdutil.PrintJSON(res, "custom_destination")
+		cmd.Println(cmdutil.FormatJSON(res, "custom_destination"))
 	},
 }
 

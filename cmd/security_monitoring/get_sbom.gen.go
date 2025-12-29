@@ -24,7 +24,7 @@ var GetSBOMCmd = &cobra.Command{
 		res, _, err := api.GetSBOM(client.NewContext(apiKey, appKey, site), datadogV2.AssetType(args[0]), args[1])
 		cmdutil.HandleError(err, "failed to get-sbom")
 
-		cmdutil.PrintJSON(res, "sboms")
+		cmd.Println(cmdutil.FormatJSON(res, "sboms"))
 	},
 }
 

@@ -24,7 +24,7 @@ var ListAWSEventBridgeSourcesCmd = &cobra.Command{
 		res, _, err := api.ListAWSEventBridgeSources(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-aws-event-bridge-sources")
 
-		cmdutil.PrintJSON(res, "event_bridge")
+		cmd.Println(cmdutil.FormatJSON(res, "event_bridge"))
 	},
 }
 

@@ -24,7 +24,7 @@ var GetBillingDimensionMappingCmd = &cobra.Command{
 		res, _, err := api.GetBillingDimensionMapping(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-billing-dimension-mapping")
 
-		cmdutil.PrintJSON(res, "usage_metering")
+		cmd.Println(cmdutil.FormatJSON(res, "usage_metering"))
 	},
 }
 

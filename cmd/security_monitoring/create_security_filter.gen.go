@@ -24,7 +24,7 @@ var CreateSecurityFilterCmd = &cobra.Command{
 		res, _, err := api.CreateSecurityFilter(client.NewContext(apiKey, appKey, site), datadogV2.SecurityFilterCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-security-filter")
 
-		cmdutil.PrintJSON(res, "security_filters")
+		cmd.Println(cmdutil.FormatJSON(res, "security_filters"))
 	},
 }
 

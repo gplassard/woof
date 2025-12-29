@@ -24,7 +24,7 @@ var QueryScalarDataCmd = &cobra.Command{
 		res, _, err := api.QueryScalarData(client.NewContext(apiKey, appKey, site), datadogV2.ScalarFormulaQueryRequest{})
 		cmdutil.HandleError(err, "failed to query-scalar-data")
 
-		cmdutil.PrintJSON(res, "scalar_response")
+		cmd.Println(cmdutil.FormatJSON(res, "scalar_response"))
 	},
 }
 

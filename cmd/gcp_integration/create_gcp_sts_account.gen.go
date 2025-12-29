@@ -24,7 +24,7 @@ var CreateGCPSTSAccountCmd = &cobra.Command{
 		res, _, err := api.CreateGCPSTSAccount(client.NewContext(apiKey, appKey, site), datadogV2.GCPSTSServiceAccountCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-gcp-sts-account")
 
-		cmdutil.PrintJSON(res, "gcp_service_account")
+		cmd.Println(cmdutil.FormatJSON(res, "gcp_service_account"))
 	},
 }
 

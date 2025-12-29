@@ -24,7 +24,7 @@ var MuteFindingsCmd = &cobra.Command{
 		res, _, err := api.MuteFindings(client.NewContext(apiKey, appKey, site), datadogV2.BulkMuteFindingsRequest{})
 		cmdutil.HandleError(err, "failed to mute-findings")
 
-		cmdutil.PrintJSON(res, "finding")
+		cmd.Println(cmdutil.FormatJSON(res, "finding"))
 	},
 }
 

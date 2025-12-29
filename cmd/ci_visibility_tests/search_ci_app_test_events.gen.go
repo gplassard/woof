@@ -24,7 +24,7 @@ var SearchCIAppTestEventsCmd = &cobra.Command{
 		res, _, err := api.SearchCIAppTestEvents(client.NewContext(apiKey, appKey, site), *datadogV2.NewSearchCIAppTestEventsOptionalParameters())
 		cmdutil.HandleError(err, "failed to search-ci-app-test-events")
 
-		cmdutil.PrintJSON(res, "citest")
+		cmd.Println(cmdutil.FormatJSON(res, "citest"))
 	},
 }
 

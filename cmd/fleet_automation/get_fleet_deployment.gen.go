@@ -24,7 +24,7 @@ var GetFleetDeploymentCmd = &cobra.Command{
 		res, _, err := api.GetFleetDeployment(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-fleet-deployment")
 
-		cmdutil.PrintJSON(res, "deployment")
+		cmd.Println(cmdutil.FormatJSON(res, "deployment"))
 	},
 }
 

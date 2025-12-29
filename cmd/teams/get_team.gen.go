@@ -24,7 +24,7 @@ var GetTeamCmd = &cobra.Command{
 		res, _, err := api.GetTeam(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-team")
 
-		cmdutil.PrintJSON(res, "team")
+		cmd.Println(cmdutil.FormatJSON(res, "team"))
 	},
 }
 

@@ -24,7 +24,7 @@ var CreateOrgConnectionsCmd = &cobra.Command{
 		res, _, err := api.CreateOrgConnections(client.NewContext(apiKey, appKey, site), datadogV2.OrgConnectionCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-org-connections")
 
-		cmdutil.PrintJSON(res, "org_connection")
+		cmd.Println(cmdutil.FormatJSON(res, "org_connection"))
 	},
 }
 

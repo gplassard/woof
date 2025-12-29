@@ -24,7 +24,7 @@ var DeleteDatastoreItemCmd = &cobra.Command{
 		res, _, err := api.DeleteDatastoreItem(client.NewContext(apiKey, appKey, site), args[0], datadogV2.DeleteAppsDatastoreItemRequest{})
 		cmdutil.HandleError(err, "failed to delete-datastore-item")
 
-		cmdutil.PrintJSON(res, "items")
+		cmd.Println(cmdutil.FormatJSON(res, "items"))
 	},
 }
 

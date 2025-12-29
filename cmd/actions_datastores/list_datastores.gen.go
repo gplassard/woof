@@ -24,7 +24,7 @@ var ListDatastoresCmd = &cobra.Command{
 		res, _, err := api.ListDatastores(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-datastores")
 
-		cmdutil.PrintJSON(res, "datastores")
+		cmd.Println(cmdutil.FormatJSON(res, "datastores"))
 	},
 }
 

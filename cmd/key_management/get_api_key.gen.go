@@ -24,7 +24,7 @@ var GetAPIKeyCmd = &cobra.Command{
 		res, _, err := api.GetAPIKey(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-api-key")
 
-		cmdutil.PrintJSON(res, "api_keys")
+		cmd.Println(cmdutil.FormatJSON(res, "api_keys"))
 	},
 }
 

@@ -24,7 +24,7 @@ var CreateWorkflowsWebhookHandleCmd = &cobra.Command{
 		res, _, err := api.CreateWorkflowsWebhookHandle(client.NewContext(apiKey, appKey, site), datadogV2.MicrosoftTeamsCreateWorkflowsWebhookHandleRequest{})
 		cmdutil.HandleError(err, "failed to create-workflows-webhook-handle")
 
-		cmdutil.PrintJSON(res, "workflows-webhook-handle")
+		cmd.Println(cmdutil.FormatJSON(res, "workflows-webhook-handle"))
 	},
 }
 

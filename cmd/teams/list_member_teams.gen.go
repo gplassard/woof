@@ -24,7 +24,7 @@ var ListMemberTeamsCmd = &cobra.Command{
 		res, _, err := api.ListMemberTeams(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-member-teams")
 
-		cmdutil.PrintJSON(res, "team")
+		cmd.Println(cmdutil.FormatJSON(res, "team"))
 	},
 }
 

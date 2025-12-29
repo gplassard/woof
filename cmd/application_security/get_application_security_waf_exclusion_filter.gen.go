@@ -24,7 +24,7 @@ var GetApplicationSecurityWafExclusionFilterCmd = &cobra.Command{
 		res, _, err := api.GetApplicationSecurityWafExclusionFilter(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-application-security-waf-exclusion-filter")
 
-		cmdutil.PrintJSON(res, "exclusion_filter")
+		cmd.Println(cmdutil.FormatJSON(res, "exclusion_filter"))
 	},
 }
 

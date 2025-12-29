@@ -24,7 +24,7 @@ var CreateOpsgenieServiceCmd = &cobra.Command{
 		res, _, err := api.CreateOpsgenieService(client.NewContext(apiKey, appKey, site), datadogV2.OpsgenieServiceCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-opsgenie-service")
 
-		cmdutil.PrintJSON(res, "opsgenie-service")
+		cmd.Println(cmdutil.FormatJSON(res, "opsgenie-service"))
 	},
 }
 

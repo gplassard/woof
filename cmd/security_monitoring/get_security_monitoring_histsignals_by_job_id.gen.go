@@ -24,7 +24,7 @@ var GetSecurityMonitoringHistsignalsByJobIdCmd = &cobra.Command{
 		res, _, err := api.GetSecurityMonitoringHistsignalsByJobId(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-security-monitoring-histsignals-by-job-id")
 
-		cmdutil.PrintJSON(res, "signal")
+		cmd.Println(cmdutil.FormatJSON(res, "signal"))
 	},
 }
 

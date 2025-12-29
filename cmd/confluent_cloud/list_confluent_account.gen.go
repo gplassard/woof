@@ -24,7 +24,7 @@ var ListConfluentAccountCmd = &cobra.Command{
 		res, _, err := api.ListConfluentAccount(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-confluent-account")
 
-		cmdutil.PrintJSON(res, "confluent-cloud-accounts")
+		cmd.Println(cmdutil.FormatJSON(res, "confluent-cloud-accounts"))
 	},
 }
 

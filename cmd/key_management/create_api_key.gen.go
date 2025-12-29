@@ -24,7 +24,7 @@ var CreateAPIKeyCmd = &cobra.Command{
 		res, _, err := api.CreateAPIKey(client.NewContext(apiKey, appKey, site), datadogV2.APIKeyCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-api-key")
 
-		cmdutil.PrintJSON(res, "api_keys")
+		cmd.Println(cmdutil.FormatJSON(res, "api_keys"))
 	},
 }
 

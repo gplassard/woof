@@ -24,7 +24,7 @@ var UpdateTenantBasedHandleCmd = &cobra.Command{
 		res, _, err := api.UpdateTenantBasedHandle(client.NewContext(apiKey, appKey, site), args[0], datadogV2.MicrosoftTeamsUpdateTenantBasedHandleRequest{})
 		cmdutil.HandleError(err, "failed to update-tenant-based-handle")
 
-		cmdutil.PrintJSON(res, "tenant-based-handle")
+		cmd.Println(cmdutil.FormatJSON(res, "tenant-based-handle"))
 	},
 }
 

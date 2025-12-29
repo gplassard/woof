@@ -24,7 +24,7 @@ var GetSLOReportCmd = &cobra.Command{
 		res, _, err := api.GetSLOReport(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-slo-report")
 
-		cmdutil.PrintJSON(res, "service_level_objectives")
+		cmd.Println(cmdutil.FormatJSON(res, "service_level_objectives"))
 	},
 }
 

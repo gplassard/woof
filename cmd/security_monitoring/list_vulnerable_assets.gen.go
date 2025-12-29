@@ -24,7 +24,7 @@ var ListVulnerableAssetsCmd = &cobra.Command{
 		res, _, err := api.ListVulnerableAssets(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-vulnerable-assets")
 
-		cmdutil.PrintJSON(res, "assets")
+		cmd.Println(cmdutil.FormatJSON(res, "assets"))
 	},
 }
 

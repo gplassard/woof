@@ -24,7 +24,7 @@ var CreateFleetDeploymentConfigureCmd = &cobra.Command{
 		res, _, err := api.CreateFleetDeploymentConfigure(client.NewContext(apiKey, appKey, site), datadogV2.FleetDeploymentConfigureCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-fleet-deployment-configure")
 
-		cmdutil.PrintJSON(res, "deployment")
+		cmd.Println(cmdutil.FormatJSON(res, "deployment"))
 	},
 }
 

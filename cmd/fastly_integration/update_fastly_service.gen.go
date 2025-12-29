@@ -24,7 +24,7 @@ var UpdateFastlyServiceCmd = &cobra.Command{
 		res, _, err := api.UpdateFastlyService(client.NewContext(apiKey, appKey, site), args[0], args[1], datadogV2.FastlyServiceRequest{})
 		cmdutil.HandleError(err, "failed to update-fastly-service")
 
-		cmdutil.PrintJSON(res, "fastly-services")
+		cmd.Println(cmdutil.FormatJSON(res, "fastly-services"))
 	},
 }
 

@@ -24,7 +24,7 @@ var CreateCurrentUserApplicationKeyCmd = &cobra.Command{
 		res, _, err := api.CreateCurrentUserApplicationKey(client.NewContext(apiKey, appKey, site), datadogV2.ApplicationKeyCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-current-user-application-key")
 
-		cmdutil.PrintJSON(res, "application_keys")
+		cmd.Println(cmdutil.FormatJSON(res, "application_keys"))
 	},
 }
 

@@ -24,7 +24,7 @@ var ListRetentionFiltersCmd = &cobra.Command{
 		res, _, err := api.ListRetentionFilters(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-retention-filters")
 
-		cmdutil.PrintJSON(res, "retention_filters")
+		cmd.Println(cmdutil.FormatJSON(res, "retention_filters"))
 	},
 }
 

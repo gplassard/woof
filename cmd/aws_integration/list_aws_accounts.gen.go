@@ -24,7 +24,7 @@ var ListAWSAccountsCmd = &cobra.Command{
 		res, _, err := api.ListAWSAccounts(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-aws-accounts")
 
-		cmdutil.PrintJSON(res, "account")
+		cmd.Println(cmdutil.FormatJSON(res, "account"))
 	},
 }
 

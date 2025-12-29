@@ -24,7 +24,7 @@ var UpdateFleetScheduleCmd = &cobra.Command{
 		res, _, err := api.UpdateFleetSchedule(client.NewContext(apiKey, appKey, site), args[0], datadogV2.FleetSchedulePatchRequest{})
 		cmdutil.HandleError(err, "failed to update-fleet-schedule")
 
-		cmdutil.PrintJSON(res, "schedule")
+		cmd.Println(cmdutil.FormatJSON(res, "schedule"))
 	},
 }
 

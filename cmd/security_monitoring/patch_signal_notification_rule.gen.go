@@ -24,7 +24,7 @@ var PatchSignalNotificationRuleCmd = &cobra.Command{
 		res, _, err := api.PatchSignalNotificationRule(client.NewContext(apiKey, appKey, site), args[0], datadogV2.PatchNotificationRuleParameters{})
 		cmdutil.HandleError(err, "failed to patch-signal-notification-rule")
 
-		cmdutil.PrintJSON(res, "notification_rules")
+		cmd.Println(cmdutil.FormatJSON(res, "notification_rules"))
 	},
 }
 

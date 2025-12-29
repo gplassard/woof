@@ -24,7 +24,7 @@ var ListTagConfigurationsCmd = &cobra.Command{
 		res, _, err := api.ListTagConfigurations(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-tag-configurations")
 
-		cmdutil.PrintJSON(res, "metrics")
+		cmd.Println(cmdutil.FormatJSON(res, "metrics"))
 	},
 }
 

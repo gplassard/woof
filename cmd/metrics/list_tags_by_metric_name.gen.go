@@ -24,7 +24,7 @@ var ListTagsByMetricNameCmd = &cobra.Command{
 		res, _, err := api.ListTagsByMetricName(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-tags-by-metric-name")
 
-		cmdutil.PrintJSON(res, "metrics")
+		cmd.Println(cmdutil.FormatJSON(res, "metrics"))
 	},
 }
 

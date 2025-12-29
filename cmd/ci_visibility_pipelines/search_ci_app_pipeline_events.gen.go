@@ -24,7 +24,7 @@ var SearchCIAppPipelineEventsCmd = &cobra.Command{
 		res, _, err := api.SearchCIAppPipelineEvents(client.NewContext(apiKey, appKey, site), *datadogV2.NewSearchCIAppPipelineEventsOptionalParameters())
 		cmdutil.HandleError(err, "failed to search-ci-app-pipeline-events")
 
-		cmdutil.PrintJSON(res, "cipipeline")
+		cmd.Println(cmdutil.FormatJSON(res, "cipipeline"))
 	},
 }
 

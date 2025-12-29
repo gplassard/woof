@@ -24,7 +24,7 @@ var ConvertSecurityMonitoringRuleFromJSONToTerraformCmd = &cobra.Command{
 		res, _, err := api.ConvertSecurityMonitoringRuleFromJSONToTerraform(client.NewContext(apiKey, appKey, site), datadogV2.SecurityMonitoringRuleConvertPayload{})
 		cmdutil.HandleError(err, "failed to convert-security-monitoring-rule-from-json-to-terraform")
 
-		cmdutil.PrintJSON(res, "security_monitoring")
+		cmd.Println(cmdutil.FormatJSON(res, "security_monitoring"))
 	},
 }
 

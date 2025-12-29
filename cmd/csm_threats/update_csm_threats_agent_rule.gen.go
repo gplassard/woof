@@ -24,7 +24,7 @@ var UpdateCSMThreatsAgentRuleCmd = &cobra.Command{
 		res, _, err := api.UpdateCSMThreatsAgentRule(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CloudWorkloadSecurityAgentRuleUpdateRequest{})
 		cmdutil.HandleError(err, "failed to update-csm-threats-agent-rule")
 
-		cmdutil.PrintJSON(res, "agent_rule")
+		cmd.Println(cmdutil.FormatJSON(res, "agent_rule"))
 	},
 }
 

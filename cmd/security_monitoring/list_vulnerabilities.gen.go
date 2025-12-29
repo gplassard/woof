@@ -24,7 +24,7 @@ var ListVulnerabilitiesCmd = &cobra.Command{
 		res, _, err := api.ListVulnerabilities(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-vulnerabilities")
 
-		cmdutil.PrintJSON(res, "vulnerabilities")
+		cmd.Println(cmdutil.FormatJSON(res, "vulnerabilities"))
 	},
 }
 

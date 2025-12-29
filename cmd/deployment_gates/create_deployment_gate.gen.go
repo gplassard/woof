@@ -24,7 +24,7 @@ var CreateDeploymentGateCmd = &cobra.Command{
 		res, _, err := api.CreateDeploymentGate(client.NewContext(apiKey, appKey, site), datadogV2.CreateDeploymentGateParams{})
 		cmdutil.HandleError(err, "failed to create-deployment-gate")
 
-		cmdutil.PrintJSON(res, "deployment_gate")
+		cmd.Println(cmdutil.FormatJSON(res, "deployment_gate"))
 	},
 }
 

@@ -24,7 +24,7 @@ var UpdateScanningGroupCmd = &cobra.Command{
 		res, _, err := api.UpdateScanningGroup(client.NewContext(apiKey, appKey, site), args[0], datadogV2.SensitiveDataScannerGroupUpdateRequest{})
 		cmdutil.HandleError(err, "failed to update-scanning-group")
 
-		cmdutil.PrintJSON(res, "sensitive_data_scanner")
+		cmd.Println(cmdutil.FormatJSON(res, "sensitive_data_scanner"))
 	},
 }
 

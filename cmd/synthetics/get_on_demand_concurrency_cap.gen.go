@@ -24,7 +24,7 @@ var GetOnDemandConcurrencyCapCmd = &cobra.Command{
 		res, _, err := api.GetOnDemandConcurrencyCap(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-on-demand-concurrency-cap")
 
-		cmdutil.PrintJSON(res, "on_demand_concurrency_cap")
+		cmd.Println(cmdutil.FormatJSON(res, "on_demand_concurrency_cap"))
 	},
 }
 

@@ -24,7 +24,7 @@ var CreateActionConnectionCmd = &cobra.Command{
 		res, _, err := api.CreateActionConnection(client.NewContext(apiKey, appKey, site), datadogV2.CreateActionConnectionRequest{})
 		cmdutil.HandleError(err, "failed to create-action-connection")
 
-		cmdutil.PrintJSON(res, "action_connection")
+		cmd.Println(cmdutil.FormatJSON(res, "action_connection"))
 	},
 }
 

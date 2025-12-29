@@ -24,7 +24,7 @@ var CreateTagPipelinesRulesetCmd = &cobra.Command{
 		res, _, err := api.CreateTagPipelinesRuleset(client.NewContext(apiKey, appKey, site), datadogV2.CreateRulesetRequest{})
 		cmdutil.HandleError(err, "failed to create-tag-pipelines-ruleset")
 
-		cmdutil.PrintJSON(res, "ruleset")
+		cmd.Println(cmdutil.FormatJSON(res, "ruleset"))
 	},
 }
 

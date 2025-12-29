@@ -24,7 +24,7 @@ var UpdateIncidentTodoCmd = &cobra.Command{
 		res, _, err := api.UpdateIncidentTodo(client.NewContext(apiKey, appKey, site), args[0], args[1], datadogV2.IncidentTodoPatchRequest{})
 		cmdutil.HandleError(err, "failed to update-incident-todo")
 
-		cmdutil.PrintJSON(res, "incident_todos")
+		cmd.Println(cmdutil.FormatJSON(res, "incident_todos"))
 	},
 }
 

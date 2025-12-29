@@ -24,7 +24,7 @@ var CreateReferenceTableCmd = &cobra.Command{
 		res, _, err := api.CreateReferenceTable(client.NewContext(apiKey, appKey, site), datadogV2.CreateTableRequest{})
 		cmdutil.HandleError(err, "failed to create-reference-table")
 
-		cmdutil.PrintJSON(res, "reference_table")
+		cmd.Println(cmdutil.FormatJSON(res, "reference_table"))
 	},
 }
 

@@ -24,7 +24,7 @@ var GetServiceListCmd = &cobra.Command{
 		res, _, err := api.GetServiceList(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-service-list")
 
-		cmdutil.PrintJSON(res, "services_list")
+		cmd.Println(cmdutil.FormatJSON(res, "services_list"))
 	},
 }
 

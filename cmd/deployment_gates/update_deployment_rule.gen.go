@@ -24,7 +24,7 @@ var UpdateDeploymentRuleCmd = &cobra.Command{
 		res, _, err := api.UpdateDeploymentRule(client.NewContext(apiKey, appKey, site), args[0], args[1], datadogV2.UpdateDeploymentRuleParams{})
 		cmdutil.HandleError(err, "failed to update-deployment-rule")
 
-		cmdutil.PrintJSON(res, "deployment_rule")
+		cmd.Println(cmdutil.FormatJSON(res, "deployment_rule"))
 	},
 }
 

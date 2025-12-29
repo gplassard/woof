@@ -24,7 +24,7 @@ var GetDeviceCmd = &cobra.Command{
 		res, _, err := api.GetDevice(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-device")
 
-		cmdutil.PrintJSON(res, "network_device_monitoring")
+		cmd.Println(cmdutil.FormatJSON(res, "network_device_monitoring"))
 	},
 }
 

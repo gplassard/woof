@@ -24,7 +24,7 @@ var TriggerFleetScheduleCmd = &cobra.Command{
 		res, _, err := api.TriggerFleetSchedule(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to trigger-fleet-schedule")
 
-		cmdutil.PrintJSON(res, "deployment")
+		cmd.Println(cmdutil.FormatJSON(res, "deployment"))
 	},
 }
 

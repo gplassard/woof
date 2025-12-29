@@ -24,7 +24,7 @@ var ListCostAzureUCConfigsCmd = &cobra.Command{
 		res, _, err := api.ListCostAzureUCConfigs(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-cost-azure-uc-configs")
 
-		cmdutil.PrintJSON(res, "azure_uc_configs")
+		cmd.Println(cmdutil.FormatJSON(res, "azure_uc_configs"))
 	},
 }
 

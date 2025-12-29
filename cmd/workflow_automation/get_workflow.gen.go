@@ -24,7 +24,7 @@ var GetWorkflowCmd = &cobra.Command{
 		res, _, err := api.GetWorkflow(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-workflow")
 
-		cmdutil.PrintJSON(res, "workflows")
+		cmd.Println(cmdutil.FormatJSON(res, "workflows"))
 	},
 }
 

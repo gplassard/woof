@@ -24,7 +24,7 @@ var GetRumMetricCmd = &cobra.Command{
 		res, _, err := api.GetRumMetric(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-rum-metric")
 
-		cmdutil.PrintJSON(res, "rum_metrics")
+		cmd.Println(cmdutil.FormatJSON(res, "rum_metrics"))
 	},
 }
 

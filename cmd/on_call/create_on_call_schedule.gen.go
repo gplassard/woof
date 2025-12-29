@@ -24,7 +24,7 @@ var CreateOnCallScheduleCmd = &cobra.Command{
 		res, _, err := api.CreateOnCallSchedule(client.NewContext(apiKey, appKey, site), datadogV2.ScheduleCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-on-call-schedule")
 
-		cmdutil.PrintJSON(res, "schedules")
+		cmd.Println(cmdutil.FormatJSON(res, "schedules"))
 	},
 }
 

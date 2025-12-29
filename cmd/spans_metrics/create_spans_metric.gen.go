@@ -24,7 +24,7 @@ var CreateSpansMetricCmd = &cobra.Command{
 		res, _, err := api.CreateSpansMetric(client.NewContext(apiKey, appKey, site), datadogV2.SpansMetricCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-spans-metric")
 
-		cmdutil.PrintJSON(res, "spans_metrics")
+		cmd.Println(cmdutil.FormatJSON(res, "spans_metrics"))
 	},
 }
 

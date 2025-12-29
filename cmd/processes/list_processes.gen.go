@@ -24,7 +24,7 @@ var ListProcessesCmd = &cobra.Command{
 		res, _, err := api.ListProcesses(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-processes")
 
-		cmdutil.PrintJSON(res, "process")
+		cmd.Println(cmdutil.FormatJSON(res, "process"))
 	},
 }
 

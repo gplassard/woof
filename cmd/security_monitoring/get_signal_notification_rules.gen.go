@@ -24,7 +24,7 @@ var GetSignalNotificationRulesCmd = &cobra.Command{
 		res, _, err := api.GetSignalNotificationRules(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-signal-notification-rules")
 
-		cmdutil.PrintJSON(res, "security_monitoring")
+		cmd.Println(cmdutil.FormatJSON(res, "security_monitoring"))
 	},
 }
 

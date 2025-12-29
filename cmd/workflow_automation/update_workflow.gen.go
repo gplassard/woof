@@ -24,7 +24,7 @@ var UpdateWorkflowCmd = &cobra.Command{
 		res, _, err := api.UpdateWorkflow(client.NewContext(apiKey, appKey, site), args[0], datadogV2.UpdateWorkflowRequest{})
 		cmdutil.HandleError(err, "failed to update-workflow")
 
-		cmdutil.PrintJSON(res, "workflows")
+		cmd.Println(cmdutil.FormatJSON(res, "workflows"))
 	},
 }
 

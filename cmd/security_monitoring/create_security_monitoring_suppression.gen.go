@@ -24,7 +24,7 @@ var CreateSecurityMonitoringSuppressionCmd = &cobra.Command{
 		res, _, err := api.CreateSecurityMonitoringSuppression(client.NewContext(apiKey, appKey, site), datadogV2.SecurityMonitoringSuppressionCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-security-monitoring-suppression")
 
-		cmdutil.PrintJSON(res, "suppressions")
+		cmd.Println(cmdutil.FormatJSON(res, "suppressions"))
 	},
 }
 

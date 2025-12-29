@@ -24,7 +24,7 @@ var UpdateTeamPermissionSettingCmd = &cobra.Command{
 		res, _, err := api.UpdateTeamPermissionSetting(client.NewContext(apiKey, appKey, site), args[0], args[1], datadogV2.TeamPermissionSettingUpdateRequest{})
 		cmdutil.HandleError(err, "failed to update-team-permission-setting")
 
-		cmdutil.PrintJSON(res, "team_permission_settings")
+		cmd.Println(cmdutil.FormatJSON(res, "team_permission_settings"))
 	},
 }
 

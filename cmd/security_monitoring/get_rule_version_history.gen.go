@@ -24,7 +24,7 @@ var GetRuleVersionHistoryCmd = &cobra.Command{
 		res, _, err := api.GetRuleVersionHistory(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-rule-version-history")
 
-		cmdutil.PrintJSON(res, "GetRuleVersionHistoryResponse")
+		cmd.Println(cmdutil.FormatJSON(res, "GetRuleVersionHistoryResponse"))
 	},
 }
 

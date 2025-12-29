@@ -24,7 +24,7 @@ var AggregateRUMEventsCmd = &cobra.Command{
 		res, _, err := api.AggregateRUMEvents(client.NewContext(apiKey, appKey, site), datadogV2.RUMAggregateRequest{})
 		cmdutil.HandleError(err, "failed to aggregate-rum-events")
 
-		cmdutil.PrintJSON(res, "rum")
+		cmd.Println(cmdutil.FormatJSON(res, "rum"))
 	},
 }
 

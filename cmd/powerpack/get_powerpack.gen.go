@@ -24,7 +24,7 @@ var GetPowerpackCmd = &cobra.Command{
 		res, _, err := api.GetPowerpack(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-powerpack")
 
-		cmdutil.PrintJSON(res, "powerpack")
+		cmd.Println(cmdutil.FormatJSON(res, "powerpack"))
 	},
 }
 

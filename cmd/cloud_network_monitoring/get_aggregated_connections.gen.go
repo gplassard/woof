@@ -24,7 +24,7 @@ var GetAggregatedConnectionsCmd = &cobra.Command{
 		res, _, err := api.GetAggregatedConnections(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-aggregated-connections")
 
-		cmdutil.PrintJSON(res, "aggregated_connection")
+		cmd.Println(cmdutil.FormatJSON(res, "aggregated_connection"))
 	},
 }
 

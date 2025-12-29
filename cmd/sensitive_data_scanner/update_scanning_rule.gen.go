@@ -24,7 +24,7 @@ var UpdateScanningRuleCmd = &cobra.Command{
 		res, _, err := api.UpdateScanningRule(client.NewContext(apiKey, appKey, site), args[0], datadogV2.SensitiveDataScannerRuleUpdateRequest{})
 		cmdutil.HandleError(err, "failed to update-scanning-rule")
 
-		cmdutil.PrintJSON(res, "sensitive_data_scanner")
+		cmd.Println(cmdutil.FormatJSON(res, "sensitive_data_scanner"))
 	},
 }
 

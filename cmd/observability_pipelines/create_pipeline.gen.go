@@ -24,7 +24,7 @@ var CreatePipelineCmd = &cobra.Command{
 		res, _, err := api.CreatePipeline(client.NewContext(apiKey, appKey, site), datadogV2.ObservabilityPipelineSpec{})
 		cmdutil.HandleError(err, "failed to create-pipeline")
 
-		cmdutil.PrintJSON(res, "observability_pipelines")
+		cmd.Println(cmdutil.FormatJSON(res, "observability_pipelines"))
 	},
 }
 

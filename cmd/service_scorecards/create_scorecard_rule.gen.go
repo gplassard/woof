@@ -24,7 +24,7 @@ var CreateScorecardRuleCmd = &cobra.Command{
 		res, _, err := api.CreateScorecardRule(client.NewContext(apiKey, appKey, site), datadogV2.CreateRuleRequest{})
 		cmdutil.HandleError(err, "failed to create-scorecard-rule")
 
-		cmdutil.PrintJSON(res, "rule")
+		cmd.Println(cmdutil.FormatJSON(res, "rule"))
 	},
 }
 

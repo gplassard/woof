@@ -24,7 +24,7 @@ var UnarchiveCaseCmd = &cobra.Command{
 		res, _, err := api.UnarchiveCase(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CaseEmptyRequest{})
 		cmdutil.HandleError(err, "failed to unarchive-case")
 
-		cmdutil.PrintJSON(res, "case")
+		cmd.Println(cmdutil.FormatJSON(res, "case"))
 	},
 }
 

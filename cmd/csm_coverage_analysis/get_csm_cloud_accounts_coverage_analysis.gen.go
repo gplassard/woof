@@ -24,7 +24,7 @@ var GetCSMCloudAccountsCoverageAnalysisCmd = &cobra.Command{
 		res, _, err := api.GetCSMCloudAccountsCoverageAnalysis(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-csm-cloud-accounts-coverage-analysis")
 
-		cmdutil.PrintJSON(res, "csm_coverage_analysis")
+		cmd.Println(cmdutil.FormatJSON(res, "csm_coverage_analysis"))
 	},
 }
 

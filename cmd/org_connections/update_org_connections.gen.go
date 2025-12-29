@@ -24,7 +24,7 @@ var UpdateOrgConnectionsCmd = &cobra.Command{
 		res, _, err := api.UpdateOrgConnections(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]), datadogV2.OrgConnectionUpdateRequest{})
 		cmdutil.HandleError(err, "failed to update-org-connections")
 
-		cmdutil.PrintJSON(res, "org_connection")
+		cmd.Println(cmdutil.FormatJSON(res, "org_connection"))
 	},
 }
 

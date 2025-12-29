@@ -24,7 +24,7 @@ var GetRestrictionPolicyCmd = &cobra.Command{
 		res, _, err := api.GetRestrictionPolicy(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-restriction-policy")
 
-		cmdutil.PrintJSON(res, "restriction_policy")
+		cmd.Println(cmdutil.FormatJSON(res, "restriction_policy"))
 	},
 }
 

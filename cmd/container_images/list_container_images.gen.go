@@ -24,7 +24,7 @@ var ListContainerImagesCmd = &cobra.Command{
 		res, _, err := api.ListContainerImages(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-container-images")
 
-		cmdutil.PrintJSON(res, "container_images")
+		cmd.Println(cmdutil.FormatJSON(res, "container_images"))
 	},
 }
 

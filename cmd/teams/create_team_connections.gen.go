@@ -24,7 +24,7 @@ var CreateTeamConnectionsCmd = &cobra.Command{
 		res, _, err := api.CreateTeamConnections(client.NewContext(apiKey, appKey, site), datadogV2.TeamConnectionCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-team-connections")
 
-		cmdutil.PrintJSON(res, "team_connection")
+		cmd.Println(cmdutil.FormatJSON(res, "team_connection"))
 	},
 }
 

@@ -24,7 +24,7 @@ var ListCloudWorkloadSecurityAgentRulesCmd = &cobra.Command{
 		res, _, err := api.ListCloudWorkloadSecurityAgentRules(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-cloud-workload-security-agent-rules")
 
-		cmdutil.PrintJSON(res, "agent_rule")
+		cmd.Println(cmdutil.FormatJSON(res, "agent_rule"))
 	},
 }
 

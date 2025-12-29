@@ -24,7 +24,7 @@ var GetAllCustomAttributesCmd = &cobra.Command{
 		res, _, err := api.GetAllCustomAttributes(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-all-custom-attributes")
 
-		cmdutil.PrintJSON(res, "custom_attribute")
+		cmd.Println(cmdutil.FormatJSON(res, "custom_attribute"))
 	},
 }
 

@@ -24,7 +24,7 @@ var SearchIssuesCmd = &cobra.Command{
 		res, _, err := api.SearchIssues(client.NewContext(apiKey, appKey, site), datadogV2.IssuesSearchRequest{})
 		cmdutil.HandleError(err, "failed to search-issues")
 
-		cmdutil.PrintJSON(res, "error_tracking_search_result")
+		cmd.Println(cmdutil.FormatJSON(res, "error_tracking_search_result"))
 	},
 }
 

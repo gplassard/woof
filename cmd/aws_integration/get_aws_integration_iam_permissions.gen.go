@@ -24,7 +24,7 @@ var GetAWSIntegrationIAMPermissionsCmd = &cobra.Command{
 		res, _, err := api.GetAWSIntegrationIAMPermissions(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-aws-integration-iam-permissions")
 
-		cmdutil.PrintJSON(res, "permissions")
+		cmd.Println(cmdutil.FormatJSON(res, "permissions"))
 	},
 }
 

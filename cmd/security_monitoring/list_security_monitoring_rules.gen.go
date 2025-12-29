@@ -24,7 +24,7 @@ var ListSecurityMonitoringRulesCmd = &cobra.Command{
 		res, _, err := api.ListSecurityMonitoringRules(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-security-monitoring-rules")
 
-		cmdutil.PrintJSON(res, "security_monitoring")
+		cmd.Println(cmdutil.FormatJSON(res, "security_monitoring"))
 	},
 }
 

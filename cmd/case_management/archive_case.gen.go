@@ -24,7 +24,7 @@ var ArchiveCaseCmd = &cobra.Command{
 		res, _, err := api.ArchiveCase(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CaseEmptyRequest{})
 		cmdutil.HandleError(err, "failed to archive-case")
 
-		cmdutil.PrintJSON(res, "case")
+		cmd.Println(cmdutil.FormatJSON(res, "case"))
 	},
 }
 

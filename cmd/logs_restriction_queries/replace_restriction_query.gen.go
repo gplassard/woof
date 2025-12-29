@@ -24,7 +24,7 @@ var ReplaceRestrictionQueryCmd = &cobra.Command{
 		res, _, err := api.ReplaceRestrictionQuery(client.NewContext(apiKey, appKey, site), args[0], datadogV2.RestrictionQueryUpdatePayload{})
 		cmdutil.HandleError(err, "failed to replace-restriction-query")
 
-		cmdutil.PrintJSON(res, "logs_restriction_queries")
+		cmd.Println(cmdutil.FormatJSON(res, "logs_restriction_queries"))
 	},
 }
 

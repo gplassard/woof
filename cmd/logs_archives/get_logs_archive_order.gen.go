@@ -24,7 +24,7 @@ var GetLogsArchiveOrderCmd = &cobra.Command{
 		res, _, err := api.GetLogsArchiveOrder(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-logs-archive-order")
 
-		cmdutil.PrintJSON(res, "archive_order")
+		cmd.Println(cmdutil.FormatJSON(res, "archive_order"))
 	},
 }
 

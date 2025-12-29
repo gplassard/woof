@@ -24,7 +24,7 @@ var GetFastlyServiceCmd = &cobra.Command{
 		res, _, err := api.GetFastlyService(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		cmdutil.HandleError(err, "failed to get-fastly-service")
 
-		cmdutil.PrintJSON(res, "fastly-services")
+		cmd.Println(cmdutil.FormatJSON(res, "fastly-services"))
 	},
 }
 

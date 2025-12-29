@@ -24,7 +24,7 @@ var GetOpsgenieServiceCmd = &cobra.Command{
 		res, _, err := api.GetOpsgenieService(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-opsgenie-service")
 
-		cmdutil.PrintJSON(res, "opsgenie-service")
+		cmd.Println(cmdutil.FormatJSON(res, "opsgenie-service"))
 	},
 }
 

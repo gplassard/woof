@@ -24,7 +24,7 @@ var UpdateCurrentUserApplicationKeyCmd = &cobra.Command{
 		res, _, err := api.UpdateCurrentUserApplicationKey(client.NewContext(apiKey, appKey, site), args[0], datadogV2.ApplicationKeyUpdateRequest{})
 		cmdutil.HandleError(err, "failed to update-current-user-application-key")
 
-		cmdutil.PrintJSON(res, "application_keys")
+		cmd.Println(cmdutil.FormatJSON(res, "application_keys"))
 	},
 }
 

@@ -24,7 +24,7 @@ var ListStandardPatternsCmd = &cobra.Command{
 		res, _, err := api.ListStandardPatterns(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-standard-patterns")
 
-		cmdutil.PrintJSON(res, "sensitive_data_scanner")
+		cmd.Println(cmdutil.FormatJSON(res, "sensitive_data_scanner"))
 	},
 }
 

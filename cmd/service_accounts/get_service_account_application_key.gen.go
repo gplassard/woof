@@ -24,7 +24,7 @@ var GetServiceAccountApplicationKeyCmd = &cobra.Command{
 		res, _, err := api.GetServiceAccountApplicationKey(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		cmdutil.HandleError(err, "failed to get-service-account-application-key")
 
-		cmdutil.PrintJSON(res, "application_keys")
+		cmd.Println(cmdutil.FormatJSON(res, "application_keys"))
 	},
 }
 

@@ -24,7 +24,7 @@ var CreateScanningRuleCmd = &cobra.Command{
 		res, _, err := api.CreateScanningRule(client.NewContext(apiKey, appKey, site), datadogV2.SensitiveDataScannerRuleCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-scanning-rule")
 
-		cmdutil.PrintJSON(res, "sensitive_data_scanner_rule")
+		cmd.Println(cmdutil.FormatJSON(res, "sensitive_data_scanner_rule"))
 	},
 }
 

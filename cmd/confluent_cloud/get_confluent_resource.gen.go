@@ -24,7 +24,7 @@ var GetConfluentResourceCmd = &cobra.Command{
 		res, _, err := api.GetConfluentResource(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		cmdutil.HandleError(err, "failed to get-confluent-resource")
 
-		cmdutil.PrintJSON(res, "confluent-cloud-resources")
+		cmd.Println(cmdutil.FormatJSON(res, "confluent-cloud-resources"))
 	},
 }
 

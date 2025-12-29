@@ -24,7 +24,7 @@ var CreateCustomAttributeConfigCmd = &cobra.Command{
 		res, _, err := api.CreateCustomAttributeConfig(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CustomAttributeConfigCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-custom-attribute-config")
 
-		cmdutil.PrintJSON(res, "custom_attribute")
+		cmd.Println(cmdutil.FormatJSON(res, "custom_attribute"))
 	},
 }
 

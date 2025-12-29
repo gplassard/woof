@@ -24,7 +24,7 @@ var UpdatePowerpackCmd = &cobra.Command{
 		res, _, err := api.UpdatePowerpack(client.NewContext(apiKey, appKey, site), args[0], datadogV2.Powerpack{})
 		cmdutil.HandleError(err, "failed to update-powerpack")
 
-		cmdutil.PrintJSON(res, "powerpack")
+		cmd.Println(cmdutil.FormatJSON(res, "powerpack"))
 	},
 }
 

@@ -24,7 +24,7 @@ var UpdateAttributesCmd = &cobra.Command{
 		res, _, err := api.UpdateAttributes(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CaseUpdateAttributesRequest{})
 		cmdutil.HandleError(err, "failed to update-attributes")
 
-		cmdutil.PrintJSON(res, "case")
+		cmd.Println(cmdutil.FormatJSON(res, "case"))
 	},
 }
 

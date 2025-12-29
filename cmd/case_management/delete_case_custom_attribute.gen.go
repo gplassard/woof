@@ -24,7 +24,7 @@ var DeleteCaseCustomAttributeCmd = &cobra.Command{
 		res, _, err := api.DeleteCaseCustomAttribute(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		cmdutil.HandleError(err, "failed to delete-case-custom-attribute")
 
-		cmdutil.PrintJSON(res, "case")
+		cmd.Println(cmdutil.FormatJSON(res, "case"))
 	},
 }
 

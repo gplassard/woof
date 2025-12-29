@@ -24,7 +24,7 @@ var AddPermissionToRoleCmd = &cobra.Command{
 		res, _, err := api.AddPermissionToRole(client.NewContext(apiKey, appKey, site), args[0], datadogV2.RelationshipToPermission{})
 		cmdutil.HandleError(err, "failed to add-permission-to-role")
 
-		cmdutil.PrintJSON(res, "permissions")
+		cmd.Println(cmdutil.FormatJSON(res, "permissions"))
 	},
 }
 

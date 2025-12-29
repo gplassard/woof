@@ -24,7 +24,7 @@ var ListServiceDefinitionsCmd = &cobra.Command{
 		res, _, err := api.ListServiceDefinitions(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-service-definitions")
 
-		cmdutil.PrintJSON(res, "service_definition")
+		cmd.Println(cmdutil.FormatJSON(res, "service_definition"))
 	},
 }
 

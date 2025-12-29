@@ -24,7 +24,7 @@ var OrderRetentionFiltersCmd = &cobra.Command{
 		res, _, err := api.OrderRetentionFilters(client.NewContext(apiKey, appKey, site), args[0], datadogV2.RumRetentionFiltersOrderRequest{})
 		cmdutil.HandleError(err, "failed to order-retention-filters")
 
-		cmdutil.PrintJSON(res, "retention_filters")
+		cmd.Println(cmdutil.FormatJSON(res, "retention_filters"))
 	},
 }
 

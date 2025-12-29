@@ -24,7 +24,7 @@ var CreateApplicationSecurityWafExclusionFilterCmd = &cobra.Command{
 		res, _, err := api.CreateApplicationSecurityWafExclusionFilter(client.NewContext(apiKey, appKey, site), datadogV2.ApplicationSecurityWafExclusionFilterCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-application-security-waf-exclusion-filter")
 
-		cmdutil.PrintJSON(res, "exclusion_filter")
+		cmd.Println(cmdutil.FormatJSON(res, "exclusion_filter"))
 	},
 }
 

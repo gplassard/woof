@@ -24,7 +24,7 @@ var UpdateIncidentServiceCmd = &cobra.Command{
 		res, _, err := api.UpdateIncidentService(client.NewContext(apiKey, appKey, site), args[0], datadogV2.IncidentServiceUpdateRequest{})
 		cmdutil.HandleError(err, "failed to update-incident-service")
 
-		cmdutil.PrintJSON(res, "services")
+		cmd.Println(cmdutil.FormatJSON(res, "services"))
 	},
 }
 

@@ -24,7 +24,7 @@ var CreateConfluentResourceCmd = &cobra.Command{
 		res, _, err := api.CreateConfluentResource(client.NewContext(apiKey, appKey, site), args[0], datadogV2.ConfluentResourceRequest{})
 		cmdutil.HandleError(err, "failed to create-confluent-resource")
 
-		cmdutil.PrintJSON(res, "confluent-cloud-resources")
+		cmd.Println(cmdutil.FormatJSON(res, "confluent-cloud-resources"))
 	},
 }
 

@@ -24,7 +24,7 @@ var SetOnCallTeamRoutingRulesCmd = &cobra.Command{
 		res, _, err := api.SetOnCallTeamRoutingRules(client.NewContext(apiKey, appKey, site), args[0], datadogV2.TeamRoutingRulesRequest{})
 		cmdutil.HandleError(err, "failed to set-on-call-team-routing-rules")
 
-		cmdutil.PrintJSON(res, "team_routing_rules")
+		cmd.Println(cmdutil.FormatJSON(res, "team_routing_rules"))
 	},
 }
 

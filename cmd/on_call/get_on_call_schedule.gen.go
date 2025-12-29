@@ -24,7 +24,7 @@ var GetOnCallScheduleCmd = &cobra.Command{
 		res, _, err := api.GetOnCallSchedule(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-on-call-schedule")
 
-		cmdutil.PrintJSON(res, "schedules")
+		cmd.Println(cmdutil.FormatJSON(res, "schedules"))
 	},
 }
 

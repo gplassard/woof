@@ -24,7 +24,7 @@ var CreateAzureScanOptionsCmd = &cobra.Command{
 		res, _, err := api.CreateAzureScanOptions(client.NewContext(apiKey, appKey, site), datadogV2.AzureScanOptions{})
 		cmdutil.HandleError(err, "failed to create-azure-scan-options")
 
-		cmdutil.PrintJSON(res, "azure_scan_options")
+		cmd.Println(cmdutil.FormatJSON(res, "azure_scan_options"))
 	},
 }
 

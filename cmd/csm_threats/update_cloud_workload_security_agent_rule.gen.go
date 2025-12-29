@@ -24,7 +24,7 @@ var UpdateCloudWorkloadSecurityAgentRuleCmd = &cobra.Command{
 		res, _, err := api.UpdateCloudWorkloadSecurityAgentRule(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CloudWorkloadSecurityAgentRuleUpdateRequest{})
 		cmdutil.HandleError(err, "failed to update-cloud-workload-security-agent-rule")
 
-		cmdutil.PrintJSON(res, "agent_rule")
+		cmd.Println(cmdutil.FormatJSON(res, "agent_rule"))
 	},
 }
 

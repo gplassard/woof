@@ -24,7 +24,7 @@ var AggregateLogsCmd = &cobra.Command{
 		res, _, err := api.AggregateLogs(client.NewContext(apiKey, appKey, site), datadogV2.LogsAggregateRequest{})
 		cmdutil.HandleError(err, "failed to aggregate-logs")
 
-		cmdutil.PrintJSON(res, "logs")
+		cmd.Println(cmdutil.FormatJSON(res, "logs"))
 	},
 }
 

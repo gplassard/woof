@@ -24,7 +24,7 @@ var ListRestrictionQueriesCmd = &cobra.Command{
 		res, _, err := api.ListRestrictionQueries(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-restriction-queries")
 
-		cmdutil.PrintJSON(res, "logs_restriction_queries")
+		cmd.Println(cmdutil.FormatJSON(res, "logs_restriction_queries"))
 	},
 }
 

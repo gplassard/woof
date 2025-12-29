@@ -24,7 +24,7 @@ var UpdateDowntimeCmd = &cobra.Command{
 		res, _, err := api.UpdateDowntime(client.NewContext(apiKey, appKey, site), args[0], datadogV2.DowntimeUpdateRequest{})
 		cmdutil.HandleError(err, "failed to update-downtime")
 
-		cmdutil.PrintJSON(res, "downtime")
+		cmd.Println(cmdutil.FormatJSON(res, "downtime"))
 	},
 }
 

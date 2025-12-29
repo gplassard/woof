@@ -24,7 +24,7 @@ var ListScanningGroupsCmd = &cobra.Command{
 		res, _, err := api.ListScanningGroups(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-scanning-groups")
 
-		cmdutil.PrintJSON(res, "sensitive_data_scanner_configuration")
+		cmd.Println(cmdutil.FormatJSON(res, "sensitive_data_scanner_configuration"))
 	},
 }
 

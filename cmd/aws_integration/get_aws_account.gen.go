@@ -24,7 +24,7 @@ var GetAWSAccountCmd = &cobra.Command{
 		res, _, err := api.GetAWSAccount(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-aws-account")
 
-		cmdutil.PrintJSON(res, "account")
+		cmd.Println(cmdutil.FormatJSON(res, "account"))
 	},
 }
 

@@ -24,7 +24,7 @@ var GetAllCustomAttributeConfigsByCaseTypeCmd = &cobra.Command{
 		res, _, err := api.GetAllCustomAttributeConfigsByCaseType(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-all-custom-attribute-configs-by-case-type")
 
-		cmdutil.PrintJSON(res, "custom_attribute")
+		cmd.Println(cmdutil.FormatJSON(res, "custom_attribute"))
 	},
 }
 

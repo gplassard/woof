@@ -24,7 +24,7 @@ var ListDowntimesCmd = &cobra.Command{
 		res, _, err := api.ListDowntimes(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-downtimes")
 
-		cmdutil.PrintJSON(res, "downtime")
+		cmd.Println(cmdutil.FormatJSON(res, "downtime"))
 	},
 }
 

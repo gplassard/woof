@@ -24,7 +24,7 @@ var CreateMonitorUserTemplateCmd = &cobra.Command{
 		res, _, err := api.CreateMonitorUserTemplate(client.NewContext(apiKey, appKey, site), datadogV2.MonitorUserTemplateCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-monitor-user-template")
 
-		cmdutil.PrintJSON(res, "monitor-user-template")
+		cmd.Println(cmdutil.FormatJSON(res, "monitor-user-template"))
 	},
 }
 

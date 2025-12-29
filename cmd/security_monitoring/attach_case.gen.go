@@ -24,7 +24,7 @@ var AttachCaseCmd = &cobra.Command{
 		res, _, err := api.AttachCase(client.NewContext(apiKey, appKey, site), args[0], datadogV2.AttachCaseRequest{})
 		cmdutil.HandleError(err, "failed to attach-case")
 
-		cmdutil.PrintJSON(res, "cases")
+		cmd.Println(cmdutil.FormatJSON(res, "cases"))
 	},
 }
 

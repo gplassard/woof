@@ -24,7 +24,7 @@ var ListAuthNMappingsCmd = &cobra.Command{
 		res, _, err := api.ListAuthNMappings(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-auth-n-mappings")
 
-		cmdutil.PrintJSON(res, "authn_mappings")
+		cmd.Println(cmdutil.FormatJSON(res, "authn_mappings"))
 	},
 }
 

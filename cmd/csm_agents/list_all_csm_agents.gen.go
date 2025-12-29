@@ -24,7 +24,7 @@ var ListAllCSMAgentsCmd = &cobra.Command{
 		res, _, err := api.ListAllCSMAgents(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-all-csm-agents")
 
-		cmdutil.PrintJSON(res, "datadog_agent")
+		cmd.Println(cmdutil.FormatJSON(res, "datadog_agent"))
 	},
 }
 

@@ -24,7 +24,7 @@ var CreateUserCmd = &cobra.Command{
 		res, _, err := api.CreateUser(client.NewContext(apiKey, appKey, site), datadogV2.UserCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-user")
 
-		cmdutil.PrintJSON(res, "users")
+		cmd.Println(cmdutil.FormatJSON(res, "users"))
 	},
 }
 

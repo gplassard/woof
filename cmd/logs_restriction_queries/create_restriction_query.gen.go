@@ -24,7 +24,7 @@ var CreateRestrictionQueryCmd = &cobra.Command{
 		res, _, err := api.CreateRestrictionQuery(client.NewContext(apiKey, appKey, site), datadogV2.RestrictionQueryCreatePayload{})
 		cmdutil.HandleError(err, "failed to create-restriction-query")
 
-		cmdutil.PrintJSON(res, "logs_restriction_queries")
+		cmd.Println(cmdutil.FormatJSON(res, "logs_restriction_queries"))
 	},
 }
 

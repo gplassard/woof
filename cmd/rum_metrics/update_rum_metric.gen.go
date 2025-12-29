@@ -24,7 +24,7 @@ var UpdateRumMetricCmd = &cobra.Command{
 		res, _, err := api.UpdateRumMetric(client.NewContext(apiKey, appKey, site), args[0], datadogV2.RumMetricUpdateRequest{})
 		cmdutil.HandleError(err, "failed to update-rum-metric")
 
-		cmdutil.PrintJSON(res, "rum_metrics")
+		cmd.Println(cmdutil.FormatJSON(res, "rum_metrics"))
 	},
 }
 

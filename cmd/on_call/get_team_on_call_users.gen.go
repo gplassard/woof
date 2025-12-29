@@ -24,7 +24,7 @@ var GetTeamOnCallUsersCmd = &cobra.Command{
 		res, _, err := api.GetTeamOnCallUsers(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-team-on-call-users")
 
-		cmdutil.PrintJSON(res, "team_oncall_responders")
+		cmd.Println(cmdutil.FormatJSON(res, "team_oncall_responders"))
 	},
 }
 

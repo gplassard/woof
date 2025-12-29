@@ -24,7 +24,7 @@ var GetSecurityMonitoringRuleCmd = &cobra.Command{
 		res, _, err := api.GetSecurityMonitoringRule(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-security-monitoring-rule")
 
-		cmdutil.PrintJSON(res, "security_monitoring")
+		cmd.Println(cmdutil.FormatJSON(res, "security_monitoring"))
 	},
 }
 

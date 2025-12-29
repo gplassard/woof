@@ -24,7 +24,7 @@ var UpsertCatalogEntityCmd = &cobra.Command{
 		res, _, err := api.UpsertCatalogEntity(client.NewContext(apiKey, appKey, site), datadogV2.UpsertCatalogEntityRequest{})
 		cmdutil.HandleError(err, "failed to upsert-catalog-entity")
 
-		cmdutil.PrintJSON(res, "software_catalog")
+		cmd.Println(cmdutil.FormatJSON(res, "software_catalog"))
 	},
 }
 

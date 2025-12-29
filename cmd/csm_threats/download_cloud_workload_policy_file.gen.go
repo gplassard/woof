@@ -24,7 +24,7 @@ var DownloadCloudWorkloadPolicyFileCmd = &cobra.Command{
 		res, _, err := api.DownloadCloudWorkloadPolicyFile(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to download-cloud-workload-policy-file")
 
-		cmdutil.PrintJSON(res, "csm_threats")
+		cmd.Println(cmdutil.FormatJSON(res, "csm_threats"))
 	},
 }
 

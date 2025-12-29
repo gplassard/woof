@@ -24,7 +24,7 @@ var UpdateScorecardRuleCmd = &cobra.Command{
 		res, _, err := api.UpdateScorecardRule(client.NewContext(apiKey, appKey, site), args[0], datadogV2.UpdateRuleRequest{})
 		cmdutil.HandleError(err, "failed to update-scorecard-rule")
 
-		cmdutil.PrintJSON(res, "rule")
+		cmd.Println(cmdutil.FormatJSON(res, "rule"))
 	},
 }
 

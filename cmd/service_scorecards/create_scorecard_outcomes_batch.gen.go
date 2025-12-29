@@ -24,7 +24,7 @@ var CreateScorecardOutcomesBatchCmd = &cobra.Command{
 		res, _, err := api.CreateScorecardOutcomesBatch(client.NewContext(apiKey, appKey, site), datadogV2.OutcomesBatchRequest{})
 		cmdutil.HandleError(err, "failed to create-scorecard-outcomes-batch")
 
-		cmdutil.PrintJSON(res, "service_scorecards")
+		cmd.Println(cmdutil.FormatJSON(res, "service_scorecards"))
 	},
 }
 

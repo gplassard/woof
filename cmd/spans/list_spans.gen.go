@@ -24,7 +24,7 @@ var ListSpansCmd = &cobra.Command{
 		res, _, err := api.ListSpans(client.NewContext(apiKey, appKey, site), datadogV2.SpansListRequest{})
 		cmdutil.HandleError(err, "failed to list-spans")
 
-		cmdutil.PrintJSON(res, "spans")
+		cmd.Println(cmdutil.FormatJSON(res, "spans"))
 	},
 }
 

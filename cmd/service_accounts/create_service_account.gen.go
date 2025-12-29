@@ -24,7 +24,7 @@ var CreateServiceAccountCmd = &cobra.Command{
 		res, _, err := api.CreateServiceAccount(client.NewContext(apiKey, appKey, site), datadogV2.ServiceAccountCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-service-account")
 
-		cmdutil.PrintJSON(res, "users")
+		cmd.Println(cmdutil.FormatJSON(res, "users"))
 	},
 }
 

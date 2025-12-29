@@ -24,7 +24,7 @@ var PatchDomainAllowlistCmd = &cobra.Command{
 		res, _, err := api.PatchDomainAllowlist(client.NewContext(apiKey, appKey, site), datadogV2.DomainAllowlistRequest{})
 		cmdutil.HandleError(err, "failed to patch-domain-allowlist")
 
-		cmdutil.PrintJSON(res, "domain_allowlist")
+		cmd.Println(cmdutil.FormatJSON(res, "domain_allowlist"))
 	},
 }
 

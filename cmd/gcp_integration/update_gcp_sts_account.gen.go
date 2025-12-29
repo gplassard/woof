@@ -24,7 +24,7 @@ var UpdateGCPSTSAccountCmd = &cobra.Command{
 		res, _, err := api.UpdateGCPSTSAccount(client.NewContext(apiKey, appKey, site), args[0], datadogV2.GCPSTSServiceAccountUpdateRequest{})
 		cmdutil.HandleError(err, "failed to update-gcp-sts-account")
 
-		cmdutil.PrintJSON(res, "gcp_service_account")
+		cmd.Println(cmdutil.FormatJSON(res, "gcp_service_account"))
 	},
 }
 

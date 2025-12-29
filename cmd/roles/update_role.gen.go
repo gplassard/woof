@@ -24,7 +24,7 @@ var UpdateRoleCmd = &cobra.Command{
 		res, _, err := api.UpdateRole(client.NewContext(apiKey, appKey, site), args[0], datadogV2.RoleUpdateRequest{})
 		cmdutil.HandleError(err, "failed to update-role")
 
-		cmdutil.PrintJSON(res, "roles")
+		cmd.Println(cmdutil.FormatJSON(res, "roles"))
 	},
 }
 

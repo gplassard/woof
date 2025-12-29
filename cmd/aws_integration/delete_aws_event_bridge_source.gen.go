@@ -24,7 +24,7 @@ var DeleteAWSEventBridgeSourceCmd = &cobra.Command{
 		res, _, err := api.DeleteAWSEventBridgeSource(client.NewContext(apiKey, appKey, site), datadogV2.AWSEventBridgeDeleteRequest{})
 		cmdutil.HandleError(err, "failed to delete-aws-event-bridge-source")
 
-		cmdutil.PrintJSON(res, "event_bridge")
+		cmd.Println(cmdutil.FormatJSON(res, "event_bridge"))
 	},
 }
 

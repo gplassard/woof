@@ -24,7 +24,7 @@ var GetFastlyAccountCmd = &cobra.Command{
 		res, _, err := api.GetFastlyAccount(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-fastly-account")
 
-		cmdutil.PrintJSON(res, "fastly-accounts")
+		cmd.Println(cmdutil.FormatJSON(res, "fastly-accounts"))
 	},
 }
 

@@ -24,7 +24,7 @@ var CreateIncidentTeamCmd = &cobra.Command{
 		res, _, err := api.CreateIncidentTeam(client.NewContext(apiKey, appKey, site), datadogV2.IncidentTeamCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-incident-team")
 
-		cmdutil.PrintJSON(res, "teams")
+		cmd.Println(cmdutil.FormatJSON(res, "teams"))
 	},
 }
 

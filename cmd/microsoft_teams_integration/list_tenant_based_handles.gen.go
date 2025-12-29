@@ -24,7 +24,7 @@ var ListTenantBasedHandlesCmd = &cobra.Command{
 		res, _, err := api.ListTenantBasedHandles(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-tenant-based-handles")
 
-		cmdutil.PrintJSON(res, "ms-teams-tenant-based-handle-info")
+		cmd.Println(cmdutil.FormatJSON(res, "ms-teams-tenant-based-handle-info"))
 	},
 }
 

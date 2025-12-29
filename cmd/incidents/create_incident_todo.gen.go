@@ -24,7 +24,7 @@ var CreateIncidentTodoCmd = &cobra.Command{
 		res, _, err := api.CreateIncidentTodo(client.NewContext(apiKey, appKey, site), args[0], datadogV2.IncidentTodoCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-incident-todo")
 
-		cmdutil.PrintJSON(res, "incident_todos")
+		cmd.Println(cmdutil.FormatJSON(res, "incident_todos"))
 	},
 }
 

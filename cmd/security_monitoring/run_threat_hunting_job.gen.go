@@ -24,7 +24,7 @@ var RunThreatHuntingJobCmd = &cobra.Command{
 		res, _, err := api.RunThreatHuntingJob(client.NewContext(apiKey, appKey, site), datadogV2.RunThreatHuntingJobRequest{})
 		cmdutil.HandleError(err, "failed to run-threat-hunting-job")
 
-		cmdutil.PrintJSON(res, "historicalDetectionsJob")
+		cmd.Println(cmdutil.FormatJSON(res, "historicalDetectionsJob"))
 	},
 }
 

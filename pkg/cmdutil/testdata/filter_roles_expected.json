@@ -1,0 +1,11 @@
+{
+  "data": [
+    {
+      "type": "roles",
+      "id": "role-1",
+      "attributes": {
+        "name": "Admin Role"
+      }
+    }
+  ]
+}

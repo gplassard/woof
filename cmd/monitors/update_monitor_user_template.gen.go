@@ -24,7 +24,7 @@ var UpdateMonitorUserTemplateCmd = &cobra.Command{
 		res, _, err := api.UpdateMonitorUserTemplate(client.NewContext(apiKey, appKey, site), args[0], datadogV2.MonitorUserTemplateUpdateRequest{})
 		cmdutil.HandleError(err, "failed to update-monitor-user-template")
 
-		cmdutil.PrintJSON(res, "monitor-user-template")
+		cmd.Println(cmdutil.FormatJSON(res, "monitor-user-template"))
 	},
 }
 

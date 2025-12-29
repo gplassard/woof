@@ -24,7 +24,7 @@ var CreateOktaAccountCmd = &cobra.Command{
 		res, _, err := api.CreateOktaAccount(client.NewContext(apiKey, appKey, site), datadogV2.OktaAccountRequest{})
 		cmdutil.HandleError(err, "failed to create-okta-account")
 
-		cmdutil.PrintJSON(res, "okta-accounts")
+		cmd.Println(cmdutil.FormatJSON(res, "okta-accounts"))
 	},
 }
 

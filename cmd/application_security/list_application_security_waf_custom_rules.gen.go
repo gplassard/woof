@@ -24,7 +24,7 @@ var ListApplicationSecurityWAFCustomRulesCmd = &cobra.Command{
 		res, _, err := api.ListApplicationSecurityWAFCustomRules(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-application-security-waf-custom-rules")
 
-		cmdutil.PrintJSON(res, "custom_rule")
+		cmd.Println(cmdutil.FormatJSON(res, "custom_rule"))
 	},
 }
 

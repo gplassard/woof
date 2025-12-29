@@ -24,7 +24,7 @@ var ListThreatHuntingJobsCmd = &cobra.Command{
 		res, _, err := api.ListThreatHuntingJobs(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-threat-hunting-jobs")
 
-		cmdutil.PrintJSON(res, "historicalDetectionsJob")
+		cmd.Println(cmdutil.FormatJSON(res, "historicalDetectionsJob"))
 	},
 }
 

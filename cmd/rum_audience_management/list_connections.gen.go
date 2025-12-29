@@ -24,7 +24,7 @@ var ListConnectionsCmd = &cobra.Command{
 		res, _, err := api.ListConnections(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-connections")
 
-		cmdutil.PrintJSON(res, "list_connections_response")
+		cmd.Println(cmdutil.FormatJSON(res, "list_connections_response"))
 	},
 }
 

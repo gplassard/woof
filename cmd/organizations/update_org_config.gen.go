@@ -24,7 +24,7 @@ var UpdateOrgConfigCmd = &cobra.Command{
 		res, _, err := api.UpdateOrgConfig(client.NewContext(apiKey, appKey, site), args[0], datadogV2.OrgConfigWriteRequest{})
 		cmdutil.HandleError(err, "failed to update-org-config")
 
-		cmdutil.PrintJSON(res, "org_configs")
+		cmd.Println(cmdutil.FormatJSON(res, "org_configs"))
 	},
 }
 

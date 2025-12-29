@@ -24,7 +24,7 @@ var CreateAWSAccountCmd = &cobra.Command{
 		res, _, err := api.CreateAWSAccount(client.NewContext(apiKey, appKey, site), datadogV2.AWSAccountCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-aws-account")
 
-		cmdutil.PrintJSON(res, "account")
+		cmd.Println(cmdutil.FormatJSON(res, "account"))
 	},
 }
 

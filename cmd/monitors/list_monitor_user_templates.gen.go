@@ -24,7 +24,7 @@ var ListMonitorUserTemplatesCmd = &cobra.Command{
 		res, _, err := api.ListMonitorUserTemplates(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-monitor-user-templates")
 
-		cmdutil.PrintJSON(res, "monitor-user-template")
+		cmd.Println(cmdutil.FormatJSON(res, "monitor-user-template"))
 	},
 }
 

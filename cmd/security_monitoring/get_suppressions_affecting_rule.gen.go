@@ -24,7 +24,7 @@ var GetSuppressionsAffectingRuleCmd = &cobra.Command{
 		res, _, err := api.GetSuppressionsAffectingRule(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-suppressions-affecting-rule")
 
-		cmdutil.PrintJSON(res, "suppressions")
+		cmd.Println(cmdutil.FormatJSON(res, "suppressions"))
 	},
 }
 

@@ -24,7 +24,7 @@ var UpdateLogsMetricCmd = &cobra.Command{
 		res, _, err := api.UpdateLogsMetric(client.NewContext(apiKey, appKey, site), args[0], datadogV2.LogsMetricUpdateRequest{})
 		cmdutil.HandleError(err, "failed to update-logs-metric")
 
-		cmdutil.PrintJSON(res, "logs_metrics")
+		cmd.Println(cmdutil.FormatJSON(res, "logs_metrics"))
 	},
 }
 

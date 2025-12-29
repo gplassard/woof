@@ -24,7 +24,7 @@ var ListFleetDeploymentsCmd = &cobra.Command{
 		res, _, err := api.ListFleetDeployments(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-fleet-deployments")
 
-		cmdutil.PrintJSON(res, "deployment")
+		cmd.Println(cmdutil.FormatJSON(res, "deployment"))
 	},
 }
 

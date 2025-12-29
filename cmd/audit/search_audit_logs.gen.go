@@ -24,7 +24,7 @@ var SearchAuditLogsCmd = &cobra.Command{
 		res, _, err := api.SearchAuditLogs(client.NewContext(apiKey, appKey, site), *datadogV2.NewSearchAuditLogsOptionalParameters())
 		cmdutil.HandleError(err, "failed to search-audit-logs")
 
-		cmdutil.PrintJSON(res, "audit")
+		cmd.Println(cmdutil.FormatJSON(res, "audit"))
 	},
 }
 

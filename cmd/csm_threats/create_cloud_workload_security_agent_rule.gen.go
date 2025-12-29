@@ -24,7 +24,7 @@ var CreateCloudWorkloadSecurityAgentRuleCmd = &cobra.Command{
 		res, _, err := api.CreateCloudWorkloadSecurityAgentRule(client.NewContext(apiKey, appKey, site), datadogV2.CloudWorkloadSecurityAgentRuleCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-cloud-workload-security-agent-rule")
 
-		cmdutil.PrintJSON(res, "agent_rule")
+		cmd.Println(cmdutil.FormatJSON(res, "agent_rule"))
 	},
 }
 

@@ -24,7 +24,7 @@ var ListRUMEventsCmd = &cobra.Command{
 		res, _, err := api.ListRUMEvents(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-rum-events")
 
-		cmdutil.PrintJSON(res, "rum")
+		cmd.Println(cmdutil.FormatJSON(res, "rum"))
 	},
 }
 

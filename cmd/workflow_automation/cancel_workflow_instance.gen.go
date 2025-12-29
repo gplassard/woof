@@ -24,7 +24,7 @@ var CancelWorkflowInstanceCmd = &cobra.Command{
 		res, _, err := api.CancelWorkflowInstance(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		cmdutil.HandleError(err, "failed to cancel-workflow-instance")
 
-		cmdutil.PrintJSON(res, "workflow_automation")
+		cmd.Println(cmdutil.FormatJSON(res, "workflow_automation"))
 	},
 }
 

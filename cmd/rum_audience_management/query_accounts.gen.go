@@ -24,7 +24,7 @@ var QueryAccountsCmd = &cobra.Command{
 		res, _, err := api.QueryAccounts(client.NewContext(apiKey, appKey, site), datadogV2.QueryAccountRequest{})
 		cmdutil.HandleError(err, "failed to query-accounts")
 
-		cmdutil.PrintJSON(res, "query_response")
+		cmd.Println(cmdutil.FormatJSON(res, "query_response"))
 	},
 }
 

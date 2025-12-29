@@ -24,7 +24,7 @@ var CreateOnCallPageCmd = &cobra.Command{
 		res, _, err := api.CreateOnCallPage(client.NewContext(apiKey, appKey, site), datadogV2.CreatePageRequest{})
 		cmdutil.HandleError(err, "failed to create-on-call-page")
 
-		cmdutil.PrintJSON(res, "pages")
+		cmd.Println(cmdutil.FormatJSON(res, "pages"))
 	},
 }
 

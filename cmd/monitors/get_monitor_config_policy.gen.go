@@ -24,7 +24,7 @@ var GetMonitorConfigPolicyCmd = &cobra.Command{
 		res, _, err := api.GetMonitorConfigPolicy(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-monitor-config-policy")
 
-		cmdutil.PrintJSON(res, "monitor-config-policy")
+		cmd.Println(cmdutil.FormatJSON(res, "monitor-config-policy"))
 	},
 }
 

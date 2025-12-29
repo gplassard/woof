@@ -24,7 +24,7 @@ var UpdateResourceEvaluationFiltersCmd = &cobra.Command{
 		res, _, err := api.UpdateResourceEvaluationFilters(client.NewContext(apiKey, appKey, site), datadogV2.UpdateResourceEvaluationFiltersRequest{})
 		cmdutil.HandleError(err, "failed to update-resource-evaluation-filters")
 
-		cmdutil.PrintJSON(res, "csm_resource_filter")
+		cmd.Println(cmdutil.FormatJSON(res, "csm_resource_filter"))
 	},
 }
 

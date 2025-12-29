@@ -24,7 +24,7 @@ var CreateApmRetentionFilterCmd = &cobra.Command{
 		res, _, err := api.CreateApmRetentionFilter(client.NewContext(apiKey, appKey, site), datadogV2.RetentionFilterCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-apm-retention-filter")
 
-		cmdutil.PrintJSON(res, "apm_retention_filter")
+		cmd.Println(cmdutil.FormatJSON(res, "apm_retention_filter"))
 	},
 }
 

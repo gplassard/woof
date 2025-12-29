@@ -24,7 +24,7 @@ var CreateUserNotificationChannelCmd = &cobra.Command{
 		res, _, err := api.CreateUserNotificationChannel(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CreateUserNotificationChannelRequest{})
 		cmdutil.HandleError(err, "failed to create-user-notification-channel")
 
-		cmdutil.PrintJSON(res, "notification_channels")
+		cmd.Println(cmdutil.FormatJSON(res, "notification_channels"))
 	},
 }
 

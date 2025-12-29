@@ -24,7 +24,7 @@ var GetSuppressionsAffectingFutureRuleCmd = &cobra.Command{
 		res, _, err := api.GetSuppressionsAffectingFutureRule(client.NewContext(apiKey, appKey, site), datadogV2.SecurityMonitoringRuleCreatePayload{})
 		cmdutil.HandleError(err, "failed to get-suppressions-affecting-future-rule")
 
-		cmdutil.PrintJSON(res, "suppressions")
+		cmd.Println(cmdutil.FormatJSON(res, "suppressions"))
 	},
 }
 

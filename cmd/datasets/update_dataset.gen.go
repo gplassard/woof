@@ -24,7 +24,7 @@ var UpdateDatasetCmd = &cobra.Command{
 		res, _, err := api.UpdateDataset(client.NewContext(apiKey, appKey, site), args[0], datadogV2.DatasetUpdateRequest{})
 		cmdutil.HandleError(err, "failed to update-dataset")
 
-		cmdutil.PrintJSON(res, "dataset")
+		cmd.Println(cmdutil.FormatJSON(res, "dataset"))
 	},
 }
 

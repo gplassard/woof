@@ -24,7 +24,7 @@ var CreateDatastoreCmd = &cobra.Command{
 		res, _, err := api.CreateDatastore(client.NewContext(apiKey, appKey, site), datadogV2.CreateAppsDatastoreRequest{})
 		cmdutil.HandleError(err, "failed to create-datastore")
 
-		cmdutil.PrintJSON(res, "datastores")
+		cmd.Println(cmdutil.FormatJSON(res, "datastores"))
 	},
 }
 

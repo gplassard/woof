@@ -24,7 +24,7 @@ var CreateCSMThreatsAgentRuleCmd = &cobra.Command{
 		res, _, err := api.CreateCSMThreatsAgentRule(client.NewContext(apiKey, appKey, site), datadogV2.CloudWorkloadSecurityAgentRuleCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-csm-threats-agent-rule")
 
-		cmdutil.PrintJSON(res, "agent_rule")
+		cmd.Println(cmdutil.FormatJSON(res, "agent_rule"))
 	},
 }
 

@@ -24,7 +24,7 @@ var ListAWSLogsServicesCmd = &cobra.Command{
 		res, _, err := api.ListAWSLogsServices(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-aws-logs-services")
 
-		cmdutil.PrintJSON(res, "logs_services")
+		cmd.Println(cmdutil.FormatJSON(res, "logs_services"))
 	},
 }
 

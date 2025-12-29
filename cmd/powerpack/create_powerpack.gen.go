@@ -24,7 +24,7 @@ var CreatePowerpackCmd = &cobra.Command{
 		res, _, err := api.CreatePowerpack(client.NewContext(apiKey, appKey, site), datadogV2.Powerpack{})
 		cmdutil.HandleError(err, "failed to create-powerpack")
 
-		cmdutil.PrintJSON(res, "powerpack")
+		cmd.Println(cmdutil.FormatJSON(res, "powerpack"))
 	},
 }
 

@@ -24,7 +24,7 @@ var ListActiveMetricConfigurationsCmd = &cobra.Command{
 		res, _, err := api.ListActiveMetricConfigurations(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-active-metric-configurations")
 
-		cmdutil.PrintJSON(res, "actively_queried_configurations")
+		cmd.Println(cmdutil.FormatJSON(res, "actively_queried_configurations"))
 	},
 }
 

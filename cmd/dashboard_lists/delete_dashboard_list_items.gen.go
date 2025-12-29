@@ -24,7 +24,7 @@ var DeleteDashboardListItemsCmd = &cobra.Command{
 		res, _, err := api.DeleteDashboardListItems(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }(), datadogV2.DashboardListDeleteItemsRequest{})
 		cmdutil.HandleError(err, "failed to delete-dashboard-list-items")
 
-		cmdutil.PrintJSON(res, "dashboard_lists")
+		cmd.Println(cmdutil.FormatJSON(res, "dashboard_lists"))
 	},
 }
 

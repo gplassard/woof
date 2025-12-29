@@ -24,7 +24,7 @@ var ListLogsMetricsCmd = &cobra.Command{
 		res, _, err := api.ListLogsMetrics(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-logs-metrics")
 
-		cmdutil.PrintJSON(res, "logs_metrics")
+		cmd.Println(cmdutil.FormatJSON(res, "logs_metrics"))
 	},
 }
 

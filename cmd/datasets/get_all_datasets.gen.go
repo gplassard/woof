@@ -24,7 +24,7 @@ var GetAllDatasetsCmd = &cobra.Command{
 		res, _, err := api.GetAllDatasets(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-all-datasets")
 
-		cmdutil.PrintJSON(res, "dataset")
+		cmd.Println(cmdutil.FormatJSON(res, "dataset"))
 	},
 }
 

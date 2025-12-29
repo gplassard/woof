@@ -24,7 +24,7 @@ var ListEventsCmd = &cobra.Command{
 		res, _, err := api.ListEvents(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-events")
 
-		cmdutil.PrintJSON(res, "event")
+		cmd.Println(cmdutil.FormatJSON(res, "event"))
 	},
 }
 

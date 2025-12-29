@@ -24,7 +24,7 @@ var GetRoleCmd = &cobra.Command{
 		res, _, err := api.GetRole(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-role")
 
-		cmdutil.PrintJSON(res, "roles")
+		cmd.Println(cmdutil.FormatJSON(res, "roles"))
 	},
 }
 

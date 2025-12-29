@@ -24,7 +24,7 @@ var SubmitMetricsCmd = &cobra.Command{
 		res, _, err := api.SubmitMetrics(client.NewContext(apiKey, appKey, site), datadogV2.MetricPayload{})
 		cmdutil.HandleError(err, "failed to submit-metrics")
 
-		cmdutil.PrintJSON(res, "metrics")
+		cmd.Println(cmdutil.FormatJSON(res, "metrics"))
 	},
 }
 

@@ -24,7 +24,7 @@ var ListCIAppPipelineEventsCmd = &cobra.Command{
 		res, _, err := api.ListCIAppPipelineEvents(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-ci-app-pipeline-events")
 
-		cmdutil.PrintJSON(res, "cipipeline")
+		cmd.Println(cmdutil.FormatJSON(res, "cipipeline"))
 	},
 }
 

@@ -24,7 +24,7 @@ var CreateLogsCustomDestinationCmd = &cobra.Command{
 		res, _, err := api.CreateLogsCustomDestination(client.NewContext(apiKey, appKey, site), datadogV2.CustomDestinationCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-logs-custom-destination")
 
-		cmdutil.PrintJSON(res, "custom_destination")
+		cmd.Println(cmdutil.FormatJSON(res, "custom_destination"))
 	},
 }
 

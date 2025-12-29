@@ -24,7 +24,7 @@ var ListSecurityMonitoringSuppressionsCmd = &cobra.Command{
 		res, _, err := api.ListSecurityMonitoringSuppressions(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-security-monitoring-suppressions")
 
-		cmdutil.PrintJSON(res, "suppressions")
+		cmd.Println(cmdutil.FormatJSON(res, "suppressions"))
 	},
 }
 

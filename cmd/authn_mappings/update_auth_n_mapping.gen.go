@@ -24,7 +24,7 @@ var UpdateAuthNMappingCmd = &cobra.Command{
 		res, _, err := api.UpdateAuthNMapping(client.NewContext(apiKey, appKey, site), args[0], datadogV2.AuthNMappingUpdateRequest{})
 		cmdutil.HandleError(err, "failed to update-auth-n-mapping")
 
-		cmdutil.PrintJSON(res, "authn_mappings")
+		cmd.Println(cmdutil.FormatJSON(res, "authn_mappings"))
 	},
 }
 

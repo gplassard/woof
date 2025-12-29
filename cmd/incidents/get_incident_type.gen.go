@@ -24,7 +24,7 @@ var GetIncidentTypeCmd = &cobra.Command{
 		res, _, err := api.GetIncidentType(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-incident-type")
 
-		cmdutil.PrintJSON(res, "incident_types")
+		cmd.Println(cmdutil.FormatJSON(res, "incident_types"))
 	},
 }
 

@@ -24,7 +24,7 @@ var UpdateTeamLinkCmd = &cobra.Command{
 		res, _, err := api.UpdateTeamLink(client.NewContext(apiKey, appKey, site), args[0], args[1], datadogV2.TeamLinkCreateRequest{})
 		cmdutil.HandleError(err, "failed to update-team-link")
 
-		cmdutil.PrintJSON(res, "team_links")
+		cmd.Println(cmdutil.FormatJSON(res, "team_links"))
 	},
 }
 

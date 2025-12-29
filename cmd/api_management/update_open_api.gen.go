@@ -24,7 +24,7 @@ var UpdateOpenAPICmd = &cobra.Command{
 		res, _, err := api.UpdateOpenAPI(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]), *datadogV2.NewUpdateOpenAPIOptionalParameters())
 		cmdutil.HandleError(err, "failed to update-open-api")
 
-		cmdutil.PrintJSON(res, "api_management")
+		cmd.Println(cmdutil.FormatJSON(res, "api_management"))
 	},
 }
 

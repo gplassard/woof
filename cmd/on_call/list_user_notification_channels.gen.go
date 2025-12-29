@@ -24,7 +24,7 @@ var ListUserNotificationChannelsCmd = &cobra.Command{
 		res, _, err := api.ListUserNotificationChannels(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-user-notification-channels")
 
-		cmdutil.PrintJSON(res, "notification_channels")
+		cmd.Println(cmdutil.FormatJSON(res, "notification_channels"))
 	},
 }
 

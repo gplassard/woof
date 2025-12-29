@@ -24,7 +24,7 @@ var CreateScanningGroupCmd = &cobra.Command{
 		res, _, err := api.CreateScanningGroup(client.NewContext(apiKey, appKey, site), datadogV2.SensitiveDataScannerGroupCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-scanning-group")
 
-		cmdutil.PrintJSON(res, "sensitive_data_scanner_group")
+		cmd.Println(cmdutil.FormatJSON(res, "sensitive_data_scanner_group"))
 	},
 }
 

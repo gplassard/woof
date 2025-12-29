@@ -24,7 +24,7 @@ var GetEventCmd = &cobra.Command{
 		res, _, err := api.GetEvent(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-event")
 
-		cmdutil.PrintJSON(res, "events")
+		cmd.Println(cmdutil.FormatJSON(res, "events"))
 	},
 }
 

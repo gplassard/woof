@@ -24,7 +24,7 @@ var ListScannedAssetsMetadataCmd = &cobra.Command{
 		res, _, err := api.ListScannedAssetsMetadata(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-scanned-assets-metadata")
 
-		cmdutil.PrintJSON(res, "security_monitoring")
+		cmd.Println(cmdutil.FormatJSON(res, "security_monitoring"))
 	},
 }
 

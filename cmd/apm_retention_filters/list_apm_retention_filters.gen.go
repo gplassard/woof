@@ -24,7 +24,7 @@ var ListApmRetentionFiltersCmd = &cobra.Command{
 		res, _, err := api.ListApmRetentionFilters(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-apm-retention-filters")
 
-		cmdutil.PrintJSON(res, "apm_retention_filter")
+		cmd.Println(cmdutil.FormatJSON(res, "apm_retention_filter"))
 	},
 }
 

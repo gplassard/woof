@@ -24,7 +24,7 @@ var UpdateCostAzureUCConfigsCmd = &cobra.Command{
 		res, _, err := api.UpdateCostAzureUCConfigs(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }(), datadogV2.AzureUCConfigPatchRequest{})
 		cmdutil.HandleError(err, "failed to update-cost-azure-uc-configs")
 
-		cmdutil.PrintJSON(res, "azure_uc_configs")
+		cmd.Println(cmdutil.FormatJSON(res, "azure_uc_configs"))
 	},
 }
 

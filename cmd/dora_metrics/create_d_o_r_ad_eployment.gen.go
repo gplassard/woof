@@ -24,7 +24,7 @@ var CreateDORADeploymentCmd = &cobra.Command{
 		res, _, err := api.CreateDORADeployment(client.NewContext(apiKey, appKey, site), datadogV2.DORADeploymentRequest{})
 		cmdutil.HandleError(err, "failed to create-d-o-r-ad-eployment")
 
-		cmdutil.PrintJSON(res, "dora_deployment")
+		cmd.Println(cmdutil.FormatJSON(res, "dora_deployment"))
 	},
 }
 

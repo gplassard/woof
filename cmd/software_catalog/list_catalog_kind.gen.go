@@ -24,7 +24,7 @@ var ListCatalogKindCmd = &cobra.Command{
 		res, _, err := api.ListCatalogKind(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-catalog-kind")
 
-		cmdutil.PrintJSON(res, "software_catalog")
+		cmd.Println(cmdutil.FormatJSON(res, "software_catalog"))
 	},
 }
 

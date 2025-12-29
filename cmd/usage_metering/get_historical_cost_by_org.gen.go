@@ -24,7 +24,7 @@ var GetHistoricalCostByOrgCmd = &cobra.Command{
 		res, _, err := api.GetHistoricalCostByOrg(client.NewContext(apiKey, appKey, site), func() time.Time { t, _ := time.Parse(time.RFC3339, args[0]); return t }())
 		cmdutil.HandleError(err, "failed to get-historical-cost-by-org")
 
-		cmdutil.PrintJSON(res, "usage_metering")
+		cmd.Println(cmdutil.FormatJSON(res, "usage_metering"))
 	},
 }
 

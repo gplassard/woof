@@ -24,7 +24,7 @@ var CreateOnCallEscalationPolicyCmd = &cobra.Command{
 		res, _, err := api.CreateOnCallEscalationPolicy(client.NewContext(apiKey, appKey, site), datadogV2.EscalationPolicyCreateRequest{})
 		cmdutil.HandleError(err, "failed to create-on-call-escalation-policy")
 
-		cmdutil.PrintJSON(res, "policies")
+		cmd.Println(cmdutil.FormatJSON(res, "policies"))
 	},
 }
 

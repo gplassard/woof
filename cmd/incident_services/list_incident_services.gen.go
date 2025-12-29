@@ -24,7 +24,7 @@ var ListIncidentServicesCmd = &cobra.Command{
 		res, _, err := api.ListIncidentServices(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-incident-services")
 
-		cmdutil.PrintJSON(res, "services")
+		cmd.Println(cmdutil.FormatJSON(res, "services"))
 	},
 }
 

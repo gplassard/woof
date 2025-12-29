@@ -24,7 +24,7 @@ var ListOktaAccountsCmd = &cobra.Command{
 		res, _, err := api.ListOktaAccounts(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-okta-accounts")
 
-		cmdutil.PrintJSON(res, "okta-accounts")
+		cmd.Println(cmdutil.FormatJSON(res, "okta-accounts"))
 	},
 }
 

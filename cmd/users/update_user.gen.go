@@ -24,7 +24,7 @@ var UpdateUserCmd = &cobra.Command{
 		res, _, err := api.UpdateUser(client.NewContext(apiKey, appKey, site), args[0], datadogV2.UserUpdateRequest{})
 		cmdutil.HandleError(err, "failed to update-user")
 
-		cmdutil.PrintJSON(res, "users")
+		cmd.Println(cmdutil.FormatJSON(res, "users"))
 	},
 }
 

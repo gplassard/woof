@@ -24,7 +24,7 @@ var GetDeploymentGateCmd = &cobra.Command{
 		res, _, err := api.GetDeploymentGate(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-deployment-gate")
 
-		cmdutil.PrintJSON(res, "deployment_gate")
+		cmd.Println(cmdutil.FormatJSON(res, "deployment_gate"))
 	},
 }
 

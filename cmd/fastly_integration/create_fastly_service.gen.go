@@ -24,7 +24,7 @@ var CreateFastlyServiceCmd = &cobra.Command{
 		res, _, err := api.CreateFastlyService(client.NewContext(apiKey, appKey, site), args[0], datadogV2.FastlyServiceRequest{})
 		cmdutil.HandleError(err, "failed to create-fastly-service")
 
-		cmdutil.PrintJSON(res, "fastly-services")
+		cmd.Println(cmdutil.FormatJSON(res, "fastly-services"))
 	},
 }
 

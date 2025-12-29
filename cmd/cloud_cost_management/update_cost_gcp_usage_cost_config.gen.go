@@ -24,7 +24,7 @@ var UpdateCostGCPUsageCostConfigCmd = &cobra.Command{
 		res, _, err := api.UpdateCostGCPUsageCostConfig(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }(), datadogV2.GCPUsageCostConfigPatchRequest{})
 		cmdutil.HandleError(err, "failed to update-cost-gcp-usage-cost-config")
 
-		cmdutil.PrintJSON(res, "gcp_uc_config")
+		cmd.Println(cmdutil.FormatJSON(res, "gcp_uc_config"))
 	},
 }
 

@@ -24,7 +24,7 @@ var ReorderScanningGroupsCmd = &cobra.Command{
 		res, _, err := api.ReorderScanningGroups(client.NewContext(apiKey, appKey, site), datadogV2.SensitiveDataScannerConfigRequest{})
 		cmdutil.HandleError(err, "failed to reorder-scanning-groups")
 
-		cmdutil.PrintJSON(res, "sensitive_data_scanner")
+		cmd.Println(cmdutil.FormatJSON(res, "sensitive_data_scanner"))
 	},
 }
 

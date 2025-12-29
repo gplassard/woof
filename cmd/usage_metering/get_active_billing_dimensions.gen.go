@@ -24,7 +24,7 @@ var GetActiveBillingDimensionsCmd = &cobra.Command{
 		res, _, err := api.GetActiveBillingDimensions(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-active-billing-dimensions")
 
-		cmdutil.PrintJSON(res, "usage_metering")
+		cmd.Println(cmdutil.FormatJSON(res, "usage_metering"))
 	},
 }
 

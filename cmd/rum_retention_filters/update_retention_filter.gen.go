@@ -24,7 +24,7 @@ var UpdateRetentionFilterCmd = &cobra.Command{
 		res, _, err := api.UpdateRetentionFilter(client.NewContext(apiKey, appKey, site), args[0], args[1], datadogV2.RumRetentionFilterUpdateRequest{})
 		cmdutil.HandleError(err, "failed to update-retention-filter")
 
-		cmdutil.PrintJSON(res, "retention_filters")
+		cmd.Println(cmdutil.FormatJSON(res, "retention_filters"))
 	},
 }
 

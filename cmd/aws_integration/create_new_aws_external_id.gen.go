@@ -24,7 +24,7 @@ var CreateNewAWSExternalIDCmd = &cobra.Command{
 		res, _, err := api.CreateNewAWSExternalID(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to create-new-aws-external-id")
 
-		cmdutil.PrintJSON(res, "external_id")
+		cmd.Println(cmdutil.FormatJSON(res, "external_id"))
 	},
 }
 

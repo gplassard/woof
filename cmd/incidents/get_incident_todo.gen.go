@@ -24,7 +24,7 @@ var GetIncidentTodoCmd = &cobra.Command{
 		res, _, err := api.GetIncidentTodo(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		cmdutil.HandleError(err, "failed to get-incident-todo")
 
-		cmdutil.PrintJSON(res, "incident_todos")
+		cmd.Println(cmdutil.FormatJSON(res, "incident_todos"))
 	},
 }
 

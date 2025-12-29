@@ -24,7 +24,7 @@ var UpdateDeviceUserTagsCmd = &cobra.Command{
 		res, _, err := api.UpdateDeviceUserTags(client.NewContext(apiKey, appKey, site), args[0], datadogV2.ListTagsResponse{})
 		cmdutil.HandleError(err, "failed to update-device-user-tags")
 
-		cmdutil.PrintJSON(res, "network_device_monitoring")
+		cmd.Println(cmdutil.FormatJSON(res, "network_device_monitoring"))
 	},
 }
 

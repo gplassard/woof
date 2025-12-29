@@ -24,7 +24,7 @@ var SetOnDemandConcurrencyCapCmd = &cobra.Command{
 		res, _, err := api.SetOnDemandConcurrencyCap(client.NewContext(apiKey, appKey, site), datadogV2.OnDemandConcurrencyCapAttributes{})
 		cmdutil.HandleError(err, "failed to set-on-demand-concurrency-cap")
 
-		cmdutil.PrintJSON(res, "on_demand_concurrency_cap")
+		cmd.Println(cmdutil.FormatJSON(res, "on_demand_concurrency_cap"))
 	},
 }
 

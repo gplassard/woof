@@ -24,7 +24,7 @@ var UpdateDatastoreCmd = &cobra.Command{
 		res, _, err := api.UpdateDatastore(client.NewContext(apiKey, appKey, site), args[0], datadogV2.UpdateAppsDatastoreRequest{})
 		cmdutil.HandleError(err, "failed to update-datastore")
 
-		cmdutil.PrintJSON(res, "datastores")
+		cmd.Println(cmdutil.FormatJSON(res, "datastores"))
 	},
 }
 

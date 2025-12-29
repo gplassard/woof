@@ -24,7 +24,7 @@ var DeleteBulkTagsMetricsConfigurationCmd = &cobra.Command{
 		res, _, err := api.DeleteBulkTagsMetricsConfiguration(client.NewContext(apiKey, appKey, site), datadogV2.MetricBulkTagConfigDeleteRequest{})
 		cmdutil.HandleError(err, "failed to delete-bulk-tags-metrics-configuration")
 
-		cmdutil.PrintJSON(res, "metric_bulk_configure_tags")
+		cmd.Println(cmdutil.FormatJSON(res, "metric_bulk_configure_tags"))
 	},
 }
 

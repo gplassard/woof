@@ -24,7 +24,7 @@ var ListAPIsCmd = &cobra.Command{
 		res, _, err := api.ListAPIs(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-apis")
 
-		cmdutil.PrintJSON(res, "api_management")
+		cmd.Println(cmdutil.FormatJSON(res, "api_management"))
 	},
 }
 

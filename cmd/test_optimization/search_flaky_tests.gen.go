@@ -24,7 +24,7 @@ var SearchFlakyTestsCmd = &cobra.Command{
 		res, _, err := api.SearchFlakyTests(client.NewContext(apiKey, appKey, site), *datadogV2.NewSearchFlakyTestsOptionalParameters())
 		cmdutil.HandleError(err, "failed to search-flaky-tests")
 
-		cmdutil.PrintJSON(res, "flaky_test")
+		cmd.Println(cmdutil.FormatJSON(res, "flaky_test"))
 	},
 }
 

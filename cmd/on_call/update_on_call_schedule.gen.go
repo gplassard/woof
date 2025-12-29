@@ -24,7 +24,7 @@ var UpdateOnCallScheduleCmd = &cobra.Command{
 		res, _, err := api.UpdateOnCallSchedule(client.NewContext(apiKey, appKey, site), args[0], datadogV2.ScheduleUpdateRequest{})
 		cmdutil.HandleError(err, "failed to update-on-call-schedule")
 
-		cmdutil.PrintJSON(res, "schedules")
+		cmd.Println(cmdutil.FormatJSON(res, "schedules"))
 	},
 }
 

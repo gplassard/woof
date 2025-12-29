@@ -24,7 +24,7 @@ var GetAppCmd = &cobra.Command{
 		res, _, err := api.GetApp(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
 		cmdutil.HandleError(err, "failed to get-app")
 
-		cmdutil.PrintJSON(res, "appDefinitions")
+		cmd.Println(cmdutil.FormatJSON(res, "appDefinitions"))
 	},
 }
 

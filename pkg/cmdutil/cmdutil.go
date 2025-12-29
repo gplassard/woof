@@ -2,7 +2,6 @@ package cmdutil
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
@@ -18,14 +17,13 @@ func HandleError(err error, format string) {
 	log.Fatalf(format+": %v", err)
 }
 
-func PrintJSON(res interface{}, filterType string) {
+func FormatJSON(res interface{}, filterType string) string {
 	if filterType == "" {
 		s, err := json.MarshalIndent(res, "", "  ")
 		if err != nil {
 			log.Fatalf("failed to marshal: %v", err)
 		}
-		fmt.Println(string(s))
-		return
+		return string(s)
 	}
 
 	b, err := json.Marshal(res)
@@ -67,5 +65,5 @@ func PrintJSON(res interface{}, filterType string) {
 	if err != nil {
 		log.Fatalf("failed to marshal: %v", err)
 	}
-	fmt.Println(string(s))
+	return string(s)
 }

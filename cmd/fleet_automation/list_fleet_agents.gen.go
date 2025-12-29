@@ -24,7 +24,7 @@ var ListFleetAgentsCmd = &cobra.Command{
 		res, _, err := api.ListFleetAgents(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-fleet-agents")
 
-		cmdutil.PrintJSON(res, "fleet_automation")
+		cmd.Println(cmdutil.FormatJSON(res, "fleet_automation"))
 	},
 }
 

@@ -24,7 +24,7 @@ var RemovePermissionFromRoleCmd = &cobra.Command{
 		res, _, err := api.RemovePermissionFromRole(client.NewContext(apiKey, appKey, site), args[0], datadogV2.RelationshipToPermission{})
 		cmdutil.HandleError(err, "failed to remove-permission-from-role")
 
-		cmdutil.PrintJSON(res, "permissions")
+		cmd.Println(cmdutil.FormatJSON(res, "permissions"))
 	},
 }
 

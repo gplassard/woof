@@ -24,7 +24,7 @@ var UpdateCaseTitleCmd = &cobra.Command{
 		res, _, err := api.UpdateCaseTitle(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CaseUpdateTitleRequest{})
 		cmdutil.HandleError(err, "failed to update-case-title")
 
-		cmdutil.PrintJSON(res, "case")
+		cmd.Println(cmdutil.FormatJSON(res, "case"))
 	},
 }
 

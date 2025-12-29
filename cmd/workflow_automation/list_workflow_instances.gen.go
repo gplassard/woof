@@ -24,7 +24,7 @@ var ListWorkflowInstancesCmd = &cobra.Command{
 		res, _, err := api.ListWorkflowInstances(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-workflow-instances")
 
-		cmdutil.PrintJSON(res, "workflow_automation")
+		cmd.Println(cmdutil.FormatJSON(res, "workflow_automation"))
 	},
 }
 

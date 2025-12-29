@@ -24,7 +24,7 @@ var ListIncidentImpactsCmd = &cobra.Command{
 		res, _, err := api.ListIncidentImpacts(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-incident-impacts")
 
-		cmdutil.PrintJSON(res, "incident_impacts")
+		cmd.Println(cmdutil.FormatJSON(res, "incident_impacts"))
 	},
 }
 

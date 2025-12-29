@@ -24,7 +24,7 @@ var ListGCPSTSAccountsCmd = &cobra.Command{
 		res, _, err := api.ListGCPSTSAccounts(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-gcp-sts-accounts")
 
-		cmdutil.PrintJSON(res, "gcp_service_account")
+		cmd.Println(cmdutil.FormatJSON(res, "gcp_service_account"))
 	},
 }
 
