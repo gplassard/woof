@@ -1,23 +1,21 @@
 package dashboard_lists
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
 	"strconv"
 )
 
 var CreateDashboardListItemsCmd = &cobra.Command{
-	Use:   "create-dashboard-list-items [dashboard_list_id]",
-	Aliases: []string{ "create-items", },
-	Short: "Add Items to a Dashboard List",
-	Args:  cobra.ExactArgs(1),
+	Use:     "create-dashboard-list-items [dashboard_list_id]",
+	Aliases: []string{"create-items"},
+	Short:   "Add Items to a Dashboard List",
+	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewDashboardListsApi(client.NewAPIClient())

@@ -1,21 +1,18 @@
 package case_management
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var UpdateCaseTitleCmd = &cobra.Command{
-	Use:   "update-case-title [case_id]",
-	
+	Use: "update-case-title [case_id]",
+
 	Short: "Update case title",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

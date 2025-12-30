@@ -1,21 +1,18 @@
 package fleet_automation
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var GetFleetAgentInfoCmd = &cobra.Command{
-	Use:   "get-fleet-agent-info [agent_key]",
-	
+	Use: "get-fleet-agent-info [agent_key]",
+
 	Short: "Get detailed information about an agent",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

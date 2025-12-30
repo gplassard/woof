@@ -1,21 +1,18 @@
 package cloudflare_integration
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var GetCloudflareAccountCmd = &cobra.Command{
-	Use:   "get-cloudflare-account [account_id]",
-	
+	Use: "get-cloudflare-account [account_id]",
+
 	Short: "Get Cloudflare account",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

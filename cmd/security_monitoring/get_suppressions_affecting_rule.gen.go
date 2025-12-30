@@ -1,21 +1,18 @@
 package security_monitoring
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var GetSuppressionsAffectingRuleCmd = &cobra.Command{
-	Use:   "get-suppressions-affecting-rule [rule_id]",
-	
+	Use: "get-suppressions-affecting-rule [rule_id]",
+
 	Short: "Get suppressions affecting a specific rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

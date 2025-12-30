@@ -1,21 +1,18 @@
 package case_management_type
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var DeleteCaseTypeCmd = &cobra.Command{
-	Use:   "delete-case-type [case_type_id]",
-	
+	Use: "delete-case-type [case_type_id]",
+
 	Short: "Delete a case type",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -24,7 +21,6 @@ var DeleteCaseTypeCmd = &cobra.Command{
 		_, err := api.DeleteCaseType(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to delete-case-type")
 
-		
 	},
 }
 

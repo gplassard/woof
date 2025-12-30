@@ -1,23 +1,20 @@
 package metrics
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var GetMetricTagCardinalityDetailsCmd = &cobra.Command{
-	Use:   "get-metric-tag-cardinality-details [metric_name]",
-	Aliases: []string{ "get-tag-cardinality-details", },
-	Short: "Get tag key cardinality details",
-	Args:  cobra.ExactArgs(1),
+	Use:     "get-metric-tag-cardinality-details [metric_name]",
+	Aliases: []string{"get-tag-cardinality-details"},
+	Short:   "Get tag key cardinality details",
+	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewMetricsApi(client.NewAPIClient())

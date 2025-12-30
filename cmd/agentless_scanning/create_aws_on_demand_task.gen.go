@@ -1,23 +1,20 @@
 package agentless_scanning
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var CreateAwsOnDemandTaskCmd = &cobra.Command{
-	Use:   "create-aws-on-demand-task",
-	
+	Use: "create-aws-on-demand-task",
+
 	Short: "Create AWS on demand task",
-	
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewAgentlessScanningApi(client.NewAPIClient())

@@ -1,23 +1,20 @@
 package key_management
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var CreateAPIKeyCmd = &cobra.Command{
-	Use:   "create-api-key",
-	
+	Use: "create-api-key",
+
 	Short: "Create an API key",
-	
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewKeyManagementApi(client.NewAPIClient())

@@ -1,21 +1,19 @@
 package reference_tables
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	"strings"
+
 	"github.com/spf13/cobra"
-	
+	"strings"
 )
 
 var GetRowsByIDCmd = &cobra.Command{
-	Use:   "get-rows-by-id [id] [row_id]",
-	
+	Use: "get-rows-by-id [id] [row_id]",
+
 	Short: "Get rows by id",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {

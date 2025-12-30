@@ -1,21 +1,18 @@
 package case_management
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var DeleteCaseCustomAttributeCmd = &cobra.Command{
-	Use:   "delete-case-custom-attribute [case_id] [custom_attribute_key]",
-	
+	Use: "delete-case-custom-attribute [case_id] [custom_attribute_key]",
+
 	Short: "Delete custom attribute from case",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {

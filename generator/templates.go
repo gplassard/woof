@@ -1,7 +1,9 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
+	"go/format"
 	"os"
 	"path/filepath"
 	"sort"
@@ -66,19 +68,25 @@ func toSnakeCase(s string, config *Config) string {
 func ensureEntrypoint(pkgDir, bundle string, tmpl *template.Template, config *Config) error {
 	entrypointPath := filepath.Join(pkgDir, "entrypoint.gen.go")
 	if _, err := os.Stat(entrypointPath); os.IsNotExist(err) {
-		f, err := os.Create(entrypointPath)
-		if err != nil {
-			return fmt.Errorf("failed to create entrypoint for %s: %w", bundle, err)
-		}
-		defer f.Close()
 		data := TemplateData{
 			PackageName: bundle,
 			Use:         strings.ReplaceAll(bundle, "_", "-"),
 			Short:       fmt.Sprintf("%s endpoints", bundle),
 			Aliases:     config.BundleAliases[bundle],
 		}
-		if err := tmpl.Execute(f, data); err != nil {
+
+		var buf bytes.Buffer
+		if err := tmpl.Execute(&buf, data); err != nil {
 			return fmt.Errorf("failed to execute entrypoint template for %s: %w", bundle, err)
+		}
+
+		formatted, err := format.Source(buf.Bytes())
+		if err != nil {
+			return fmt.Errorf("failed to format entrypoint for %s: %w", bundle, err)
+		}
+
+		if err := os.WriteFile(entrypointPath, formatted, 0644); err != nil {
+			return fmt.Errorf("failed to write entrypoint for %s: %w", bundle, err)
 		}
 	}
 	return nil
@@ -381,15 +389,21 @@ func computeAliases(bundle, operationID string, config *Config) []string {
 func generateCommandFile(pkgDir, operationID string, data TemplateData, tmpl *template.Template, config *Config) error {
 	fileName := fmt.Sprintf("%s.gen.go", toSnakeCase(operationID, config))
 	filePath := filepath.Join(pkgDir, fileName)
-	f, err := os.Create(filePath)
-	if err != nil {
-		return fmt.Errorf("failed to create file %s: %w", filePath, err)
-	}
-	defer f.Close()
 
-	if err := tmpl.Execute(f, data); err != nil {
+	var buf bytes.Buffer
+	if err := tmpl.Execute(&buf, data); err != nil {
 		return fmt.Errorf("failed to execute template for %s: %w", filePath, err)
 	}
+
+	formatted, err := format.Source(buf.Bytes())
+	if err != nil {
+		return fmt.Errorf("failed to format %s: %w", filePath, err)
+	}
+
+	if err := os.WriteFile(filePath, formatted, 0644); err != nil {
+		return fmt.Errorf("failed to write %s: %w", filePath, err)
+	}
+
 	fmt.Printf("Generated %s\n", filePath)
 	return nil
 }
@@ -417,16 +431,20 @@ func updateRootGo(bundles map[string]bool) error {
 		return fmt.Errorf("failed to parse root template: %w", err)
 	}
 
-	f, err := os.Create("cmd/root.gen.go")
-	if err != nil {
-		return fmt.Errorf("failed to create cmd/root.gen.go: %w", err)
-	}
-	defer f.Close()
-
 	data := RootTemplateData{
 		Imports:  imports,
 		Commands: commands,
 	}
 
-	return tmpl.Execute(f, data)
+	var buf bytes.Buffer
+	if err := tmpl.Execute(&buf, data); err != nil {
+		return fmt.Errorf("failed to execute root template: %w", err)
+	}
+
+	formatted, err := format.Source(buf.Bytes())
+	if err != nil {
+		return fmt.Errorf("failed to format cmd/root.gen.go: %w", err)
+	}
+
+	return os.WriteFile("cmd/root.gen.go", formatted, 0644)
 }

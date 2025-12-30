@@ -1,21 +1,20 @@
 package usage_metering
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
+
 	"time"
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var GetHistoricalCostByOrgCmd = &cobra.Command{
-	Use:   "get-historical-cost-by-org [start_month]",
-	
+	Use: "get-historical-cost-by-org [start_month]",
+
 	Short: "Get historical cost across your account",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

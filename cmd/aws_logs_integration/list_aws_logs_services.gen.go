@@ -1,23 +1,20 @@
 package aws_logs_integration
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var ListAWSLogsServicesCmd = &cobra.Command{
-	Use:   "list-aws-logs-services",
-	
+	Use: "list-aws-logs-services",
+
 	Short: "Get list of AWS log ready services",
-	
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewAWSLogsIntegrationApi(client.NewAPIClient())

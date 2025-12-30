@@ -1,21 +1,18 @@
 package security_monitoring
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var GetSignalNotificationRuleCmd = &cobra.Command{
-	Use:   "get-signal-notification-rule [id]",
-	
+	Use: "get-signal-notification-rule [id]",
+
 	Short: "Get details of a signal-based notification rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

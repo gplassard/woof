@@ -1,23 +1,20 @@
 package monitors
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var GetMonitorConfigPolicyCmd = &cobra.Command{
-	Use:   "get-monitor-config-policy [policy_id]",
-	Aliases: []string{ "get-config-policy", },
-	Short: "Get a monitor configuration policy",
-	Args:  cobra.ExactArgs(1),
+	Use:     "get-monitor-config-policy [policy_id]",
+	Aliases: []string{"get-config-policy"},
+	Short:   "Get a monitor configuration policy",
+	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewMonitorsApi(client.NewAPIClient())

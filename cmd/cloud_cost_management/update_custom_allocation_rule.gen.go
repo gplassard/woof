@@ -1,21 +1,19 @@
 package cloud_cost_management
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
 	"strconv"
 )
 
 var UpdateCustomAllocationRuleCmd = &cobra.Command{
-	Use:   "update-custom-allocation-rule [rule_id]",
-	
+	Use: "update-custom-allocation-rule [rule_id]",
+
 	Short: "Update custom allocation rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

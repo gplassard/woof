@@ -1,21 +1,18 @@
 package opsgenie_integration
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var UpdateOpsgenieServiceCmd = &cobra.Command{
-	Use:   "update-opsgenie-service [integration_service_id]",
-	
+	Use: "update-opsgenie-service [integration_service_id]",
+
 	Short: "Update a single service object",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

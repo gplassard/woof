@@ -1,23 +1,20 @@
 package gcp_integration
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var CreateGCPSTSAccountCmd = &cobra.Command{
-	Use:   "create-gcp-sts-account",
-	
+	Use: "create-gcp-sts-account",
+
 	Short: "Create a new entry for your service account",
-	
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewGCPIntegrationApi(client.NewAPIClient())

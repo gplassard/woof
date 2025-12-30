@@ -1,23 +1,20 @@
 package metrics
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var ListTagsByMetricNameCmd = &cobra.Command{
-	Use:   "list-tags-by-metric-name [metric_name]",
-	Aliases: []string{ "list-tags-by-name", },
-	Short: "List tags by metric name",
-	Args:  cobra.ExactArgs(1),
+	Use:     "list-tags-by-metric-name [metric_name]",
+	Aliases: []string{"list-tags-by-name"},
+	Short:   "List tags by metric name",
+	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewMetricsApi(client.NewAPIClient())

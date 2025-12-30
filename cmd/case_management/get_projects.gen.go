@@ -1,23 +1,20 @@
 package case_management
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var GetProjectsCmd = &cobra.Command{
-	Use:   "get-projects",
-	
+	Use: "get-projects",
+
 	Short: "Get all projects",
-	
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCaseManagementApi(client.NewAPIClient())

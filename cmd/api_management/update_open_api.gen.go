@@ -1,21 +1,19 @@
 package api_management
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 	"github.com/google/uuid"
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var UpdateOpenAPICmd = &cobra.Command{
-	Use:   "update-open-api [id]",
-	
+	Use: "update-open-api [id]",
+
 	Short: "Update an API",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

@@ -1,21 +1,19 @@
 package cloud_cost_management
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
 	"strconv"
 )
 
 var DeleteCostAzureUCConfigCmd = &cobra.Command{
-	Use:   "delete-cost-azure-uc-config [cloud_account_id]",
-	
+	Use: "delete-cost-azure-uc-config [cloud_account_id]",
+
 	Short: "Delete Cloud Cost Management Azure config",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -24,7 +22,6 @@ var DeleteCostAzureUCConfigCmd = &cobra.Command{
 		_, err := api.DeleteCostAzureUCConfig(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }())
 		cmdutil.HandleError(err, "failed to delete-cost-azure-uc-config")
 
-		
 	},
 }
 

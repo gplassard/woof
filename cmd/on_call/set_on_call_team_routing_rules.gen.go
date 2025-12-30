@@ -1,23 +1,20 @@
 package on_call
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var SetOnCallTeamRoutingRulesCmd = &cobra.Command{
-	Use:   "set-on-call-team-routing-rules [team_id]",
-	Aliases: []string{ "set-team-routing-rules", },
-	Short: "Set On-Call team routing rules",
-	Args:  cobra.ExactArgs(1),
+	Use:     "set-on-call-team-routing-rules [team_id]",
+	Aliases: []string{"set-team-routing-rules"},
+	Short:   "Set On-Call team routing rules",
+	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewOnCallApi(client.NewAPIClient())

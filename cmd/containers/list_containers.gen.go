@@ -1,23 +1,20 @@
 package containers
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var ListContainersCmd = &cobra.Command{
-	Use:   "list-containers",
-	Aliases: []string{ "list", },
-	Short: "Get All Containers",
-	
+	Use:     "list-containers",
+	Aliases: []string{"list"},
+	Short:   "Get All Containers",
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewContainersApi(client.NewAPIClient())

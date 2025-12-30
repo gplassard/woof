@@ -1,23 +1,20 @@
 package monitors
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var CreateMonitorUserTemplateCmd = &cobra.Command{
-	Use:   "create-monitor-user-template",
-	Aliases: []string{ "create-user-template", },
-	Short: "Create a monitor user template",
-	
+	Use:     "create-monitor-user-template",
+	Aliases: []string{"create-user-template"},
+	Short:   "Create a monitor user template",
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewMonitorsApi(client.NewAPIClient())

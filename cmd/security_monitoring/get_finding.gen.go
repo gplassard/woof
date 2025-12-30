@@ -1,21 +1,18 @@
 package security_monitoring
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var GetFindingCmd = &cobra.Command{
-	Use:   "get-finding [finding_id]",
-	
+	Use: "get-finding [finding_id]",
+
 	Short: "Get a finding",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

@@ -1,21 +1,18 @@
 package cloud_cost_management
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var DeleteCustomCostsFileCmd = &cobra.Command{
-	Use:   "delete-custom-costs-file [file_id]",
-	
+	Use: "delete-custom-costs-file [file_id]",
+
 	Short: "Delete Custom Costs file",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -24,7 +21,6 @@ var DeleteCustomCostsFileCmd = &cobra.Command{
 		_, err := api.DeleteCustomCostsFile(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to delete-custom-costs-file")
 
-		
 	},
 }
 

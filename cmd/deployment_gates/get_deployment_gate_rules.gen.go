@@ -1,23 +1,20 @@
 package deployment_gates
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var GetDeploymentGateRulesCmd = &cobra.Command{
-	Use:   "get-deployment-gate-rules [gate_id]",
-	Aliases: []string{ "get-rules", },
-	Short: "Get rules for a deployment gate",
-	Args:  cobra.ExactArgs(1),
+	Use:     "get-deployment-gate-rules [gate_id]",
+	Aliases: []string{"get-rules"},
+	Short:   "Get rules for a deployment gate",
+	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewDeploymentGatesApi(client.NewAPIClient())

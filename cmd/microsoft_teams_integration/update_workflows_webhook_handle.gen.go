@@ -1,21 +1,18 @@
 package microsoft_teams_integration
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var UpdateWorkflowsWebhookHandleCmd = &cobra.Command{
-	Use:   "update-workflows-webhook-handle [handle_id]",
-	
+	Use: "update-workflows-webhook-handle [handle_id]",
+
 	Short: "Update Workflows webhook handle",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

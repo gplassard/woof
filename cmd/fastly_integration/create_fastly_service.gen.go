@@ -1,21 +1,18 @@
 package fastly_integration
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var CreateFastlyServiceCmd = &cobra.Command{
-	Use:   "create-fastly-service [account_id]",
-	
+	Use: "create-fastly-service [account_id]",
+
 	Short: "Add Fastly service",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

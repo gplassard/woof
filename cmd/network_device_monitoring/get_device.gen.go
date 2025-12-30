@@ -1,21 +1,18 @@
 package network_device_monitoring
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var GetDeviceCmd = &cobra.Command{
-	Use:   "get-device [device_id]",
-	
+	Use: "get-device [device_id]",
+
 	Short: "Get the device details",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

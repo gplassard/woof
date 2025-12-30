@@ -1,21 +1,18 @@
 package agentless_scanning
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var UpdateGcpScanOptionsCmd = &cobra.Command{
-	Use:   "update-gcp-scan-options [project_id]",
-	
+	Use: "update-gcp-scan-options [project_id]",
+
 	Short: "Update GCP scan options",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

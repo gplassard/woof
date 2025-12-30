@@ -1,21 +1,18 @@
 package case_management_attribute
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var DeleteCustomAttributeConfigCmd = &cobra.Command{
-	Use:   "delete-custom-attribute-config [case_type_id] [custom_attribute_id]",
-	
+	Use: "delete-custom-attribute-config [case_type_id] [custom_attribute_id]",
+
 	Short: "Delete custom attributes config",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -24,7 +21,6 @@ var DeleteCustomAttributeConfigCmd = &cobra.Command{
 		_, err := api.DeleteCustomAttributeConfig(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		cmdutil.HandleError(err, "failed to delete-custom-attribute-config")
 
-		
 	},
 }
 

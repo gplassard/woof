@@ -1,21 +1,18 @@
 package users
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var GetInvitationCmd = &cobra.Command{
-	Use:   "get-invitation [user_invitation_uuid]",
-	
+	Use: "get-invitation [user_invitation_uuid]",
+
 	Short: "Get a user invitation",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

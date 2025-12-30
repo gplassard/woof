@@ -1,23 +1,20 @@
 package rum
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var CreateRUMApplicationCmd = &cobra.Command{
-	Use:   "create-rum-application",
-	Aliases: []string{ "create-application", },
-	Short: "Create a new RUM application",
-	
+	Use:     "create-rum-application",
+	Aliases: []string{"create-application"},
+	Short:   "Create a new RUM application",
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewRUMApi(client.NewAPIClient())

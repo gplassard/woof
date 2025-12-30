@@ -1,21 +1,18 @@
 package security_monitoring
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var GetSBOMCmd = &cobra.Command{
-	Use:   "get-sbom [asset_type] [filter[asset_name]]",
-	
+	Use: "get-sbom [asset_type] [filter[asset_name]]",
+
 	Short: "Get SBOM",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {

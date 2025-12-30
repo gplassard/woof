@@ -1,23 +1,20 @@
 package usage_metering
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var GetEstimatedCostByOrgCmd = &cobra.Command{
-	Use:   "get-estimated-cost-by-org",
-	
+	Use: "get-estimated-cost-by-org",
+
 	Short: "Get estimated cost across your account",
-	
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewUsageMeteringApi(client.NewAPIClient())

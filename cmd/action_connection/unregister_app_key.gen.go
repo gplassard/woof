@@ -1,21 +1,18 @@
 package action_connection
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var UnregisterAppKeyCmd = &cobra.Command{
-	Use:   "unregister-app-key [app_key_id]",
-	
+	Use: "unregister-app-key [app_key_id]",
+
 	Short: "Unregister an App Key",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -24,7 +21,6 @@ var UnregisterAppKeyCmd = &cobra.Command{
 		_, err := api.UnregisterAppKey(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to unregister-app-key")
 
-		
 	},
 }
 

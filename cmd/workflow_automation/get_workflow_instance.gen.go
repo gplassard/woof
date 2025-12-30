@@ -1,23 +1,20 @@
 package workflow_automation
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var GetWorkflowInstanceCmd = &cobra.Command{
-	Use:   "get-workflow-instance [workflow_id] [instance_id]",
-	Aliases: []string{ "get-instance", },
-	Short: "Get a workflow instance",
-	Args:  cobra.ExactArgs(2),
+	Use:     "get-workflow-instance [workflow_id] [instance_id]",
+	Aliases: []string{"get-instance"},
+	Short:   "Get a workflow instance",
+	Args:    cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewWorkflowAutomationApi(client.NewAPIClient())

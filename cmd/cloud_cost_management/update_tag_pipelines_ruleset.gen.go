@@ -1,21 +1,18 @@
 package cloud_cost_management
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var UpdateTagPipelinesRulesetCmd = &cobra.Command{
-	Use:   "update-tag-pipelines-ruleset [ruleset_id]",
-	
+	Use: "update-tag-pipelines-ruleset [ruleset_id]",
+
 	Short: "Update tag pipeline ruleset",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

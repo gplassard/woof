@@ -1,23 +1,20 @@
 package action_connection
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var CreateActionConnectionCmd = &cobra.Command{
-	Use:   "create-action-connection",
-	Aliases: []string{ "create", },
-	Short: "Create a new Action Connection",
-	
+	Use:     "create-action-connection",
+	Aliases: []string{"create"},
+	Short:   "Create a new Action Connection",
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewActionConnectionApi(client.NewAPIClient())

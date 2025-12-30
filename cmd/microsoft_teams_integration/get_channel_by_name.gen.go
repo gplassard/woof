@@ -1,21 +1,18 @@
 package microsoft_teams_integration
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var GetChannelByNameCmd = &cobra.Command{
-	Use:   "get-channel-by-name [tenant_name] [team_name] [channel_name]",
-	
+	Use: "get-channel-by-name [tenant_name] [team_name] [channel_name]",
+
 	Short: "Get channel information by name",
 	Args:  cobra.ExactArgs(3),
 	Run: func(cmd *cobra.Command, args []string) {

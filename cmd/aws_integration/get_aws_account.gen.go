@@ -1,21 +1,18 @@
 package aws_integration
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var GetAWSAccountCmd = &cobra.Command{
-	Use:   "get-aws-account [aws_account_config_id]",
-	
+	Use: "get-aws-account [aws_account_config_id]",
+
 	Short: "Get an AWS integration by config ID",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

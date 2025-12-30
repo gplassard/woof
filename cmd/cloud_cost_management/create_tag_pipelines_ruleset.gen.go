@@ -1,23 +1,20 @@
 package cloud_cost_management
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var CreateTagPipelinesRulesetCmd = &cobra.Command{
-	Use:   "create-tag-pipelines-ruleset",
-	
+	Use: "create-tag-pipelines-ruleset",
+
 	Short: "Create tag pipeline ruleset",
-	
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())

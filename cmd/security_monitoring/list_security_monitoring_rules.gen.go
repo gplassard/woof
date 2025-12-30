@@ -1,23 +1,20 @@
 package security_monitoring
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var ListSecurityMonitoringRulesCmd = &cobra.Command{
-	Use:   "list-security-monitoring-rules",
-	Aliases: []string{ "list-rules", },
-	Short: "List rules",
-	
+	Use:     "list-security-monitoring-rules",
+	Aliases: []string{"list-rules"},
+	Short:   "List rules",
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())

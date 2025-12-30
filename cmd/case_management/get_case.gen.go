@@ -1,21 +1,18 @@
 package case_management
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var GetCaseCmd = &cobra.Command{
-	Use:   "get-case [case_id]",
-	
+	Use: "get-case [case_id]",
+
 	Short: "Get the details of a case",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

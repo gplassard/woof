@@ -1,23 +1,20 @@
 package roles
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var AddPermissionToRoleCmd = &cobra.Command{
-	Use:   "add-permission-to-role [role_id]",
-	Aliases: []string{ "add-permission-to", },
-	Short: "Grant permission to a role",
-	Args:  cobra.ExactArgs(1),
+	Use:     "add-permission-to-role [role_id]",
+	Aliases: []string{"add-permission-to"},
+	Short:   "Grant permission to a role",
+	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewRolesApi(client.NewAPIClient())

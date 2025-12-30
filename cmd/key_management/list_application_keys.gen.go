@@ -1,23 +1,20 @@
 package key_management
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var ListApplicationKeysCmd = &cobra.Command{
-	Use:   "list-application-keys",
-	
+	Use: "list-application-keys",
+
 	Short: "Get all application keys",
-	
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewKeyManagementApi(client.NewAPIClient())

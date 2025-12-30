@@ -1,21 +1,18 @@
 package fleet_automation
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var DeleteFleetScheduleCmd = &cobra.Command{
-	Use:   "delete-fleet-schedule [id]",
-	
+	Use: "delete-fleet-schedule [id]",
+
 	Short: "Delete a schedule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -24,7 +21,6 @@ var DeleteFleetScheduleCmd = &cobra.Command{
 		_, err := api.DeleteFleetSchedule(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to delete-fleet-schedule")
 
-		
 	},
 }
 

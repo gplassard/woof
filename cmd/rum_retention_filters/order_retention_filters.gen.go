@@ -1,21 +1,18 @@
 package rum_retention_filters
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var OrderRetentionFiltersCmd = &cobra.Command{
-	Use:   "order-retention-filters [app_id]",
-	
+	Use: "order-retention-filters [app_id]",
+
 	Short: "Order RUM retention filters",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

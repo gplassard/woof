@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"os"
-	"ouaf/pkg/config"
 	"ouaf/cmd/action_connection"
 	"ouaf/cmd/actions_datastores"
 	"ouaf/cmd/agentless_scanning"
@@ -88,6 +87,7 @@ import (
 	"ouaf/cmd/usage_metering"
 	"ouaf/cmd/users"
 	"ouaf/cmd/workflow_automation"
+	"ouaf/pkg/config"
 
 	"github.com/spf13/cobra"
 )

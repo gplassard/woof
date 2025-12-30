@@ -1,23 +1,20 @@
 package api_management
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var CreateOpenAPICmd = &cobra.Command{
-	Use:   "create-open-api",
-	
+	Use: "create-open-api",
+
 	Short: "Create a new API",
-	
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewAPIManagementApi(client.NewAPIClient())

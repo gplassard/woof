@@ -1,21 +1,20 @@
 package usage_metering
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
+
 	"time"
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var GetHourlyUsageCmd = &cobra.Command{
-	Use:   "get-hourly-usage [filter[timestamp][start]] [filter[product_families]]",
-	
+	Use: "get-hourly-usage [filter[timestamp][start]] [filter[product_families]]",
+
 	Short: "Get hourly usage by product family",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {

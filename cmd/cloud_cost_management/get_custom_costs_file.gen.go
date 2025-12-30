@@ -1,21 +1,18 @@
 package cloud_cost_management
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var GetCustomCostsFileCmd = &cobra.Command{
-	Use:   "get-custom-costs-file [file_id]",
-	
+	Use: "get-custom-costs-file [file_id]",
+
 	Short: "Get Custom Costs file",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

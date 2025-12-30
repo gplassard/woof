@@ -1,23 +1,20 @@
 package aws_integration
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var CreateAWSAccountCmd = &cobra.Command{
-	Use:   "create-aws-account",
-	
+	Use: "create-aws-account",
+
 	Short: "Create an AWS integration",
-	
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewAWSIntegrationApi(client.NewAPIClient())

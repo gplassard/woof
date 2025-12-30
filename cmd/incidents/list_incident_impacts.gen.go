@@ -1,23 +1,20 @@
 package incidents
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var ListIncidentImpactsCmd = &cobra.Command{
-	Use:   "list-incident-impacts [incident_id]",
-	Aliases: []string{ "list-impacts", },
-	Short: "List an incident's impacts",
-	Args:  cobra.ExactArgs(1),
+	Use:     "list-incident-impacts [incident_id]",
+	Aliases: []string{"list-impacts"},
+	Short:   "List an incident's impacts",
+	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())

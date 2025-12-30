@@ -1,21 +1,18 @@
 package security_monitoring
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var DeleteSignalNotificationRuleCmd = &cobra.Command{
-	Use:   "delete-signal-notification-rule [id]",
-	
+	Use: "delete-signal-notification-rule [id]",
+
 	Short: "Delete a signal-based notification rule",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -24,7 +21,6 @@ var DeleteSignalNotificationRuleCmd = &cobra.Command{
 		_, err := api.DeleteSignalNotificationRule(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to delete-signal-notification-rule")
 
-		
 	},
 }
 

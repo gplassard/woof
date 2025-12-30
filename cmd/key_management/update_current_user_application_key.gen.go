@@ -1,21 +1,18 @@
 package key_management
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var UpdateCurrentUserApplicationKeyCmd = &cobra.Command{
-	Use:   "update-current-user-application-key [app_key_id]",
-	
+	Use: "update-current-user-application-key [app_key_id]",
+
 	Short: "Edit an application key owned by current user",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

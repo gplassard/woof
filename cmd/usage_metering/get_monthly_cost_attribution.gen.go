@@ -1,21 +1,20 @@
 package usage_metering
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
+
 	"time"
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var GetMonthlyCostAttributionCmd = &cobra.Command{
-	Use:   "get-monthly-cost-attribution [start_month] [fields]",
-	
+	Use: "get-monthly-cost-attribution [start_month] [fields]",
+
 	Short: "Get Monthly Cost Attribution",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {

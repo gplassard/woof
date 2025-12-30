@@ -1,21 +1,18 @@
 package logs_restriction_queries
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var GetRoleRestrictionQueryCmd = &cobra.Command{
-	Use:   "get-role-restriction-query [role_id]",
-	
+	Use: "get-role-restriction-query [role_id]",
+
 	Short: "Get restriction query for a given role",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

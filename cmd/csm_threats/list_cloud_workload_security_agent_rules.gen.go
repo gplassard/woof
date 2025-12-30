@@ -1,23 +1,20 @@
 package csm_threats
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var ListCloudWorkloadSecurityAgentRulesCmd = &cobra.Command{
-	Use:   "list-cloud-workload-security-agent-rules",
-	
+	Use: "list-cloud-workload-security-agent-rules",
+
 	Short: "Get all Workload Protection agent rules (US1-FED)",
-	
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		api := datadogV2.NewCSMThreatsApi(client.NewAPIClient())

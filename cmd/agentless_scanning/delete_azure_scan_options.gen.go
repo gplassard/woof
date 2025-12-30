@@ -1,21 +1,18 @@
 package agentless_scanning
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var DeleteAzureScanOptionsCmd = &cobra.Command{
-	Use:   "delete-azure-scan-options [subscription_id]",
-	
+	Use: "delete-azure-scan-options [subscription_id]",
+
 	Short: "Delete Azure scan options",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -24,7 +21,6 @@ var DeleteAzureScanOptionsCmd = &cobra.Command{
 		_, err := api.DeleteAzureScanOptions(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to delete-azure-scan-options")
 
-		
 	},
 }
 

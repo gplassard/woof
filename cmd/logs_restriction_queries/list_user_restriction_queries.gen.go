@@ -1,21 +1,18 @@
 package logs_restriction_queries
 
 import (
-	"ouaf/pkg/config"
 	"ouaf/pkg/client"
 	"ouaf/pkg/cmdutil"
+	"ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	
-	
-	
+
 	"github.com/spf13/cobra"
-	
 )
 
 var ListUserRestrictionQueriesCmd = &cobra.Command{
-	Use:   "list-user-restriction-queries [user_id]",
-	
+	Use: "list-user-restriction-queries [user_id]",
+
 	Short: "Get all restriction queries for a given user",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
