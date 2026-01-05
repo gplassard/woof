@@ -51,3 +51,11 @@ release:
     ---
 
     Released by [GoReleaser](https://github.com/goreleaser/goreleaser).
+
+brews:
+  - repository:
+      owner: gplassard
+      name: homebrew-packages
+    directory: Formula
+    homepage: "https://github.com/gplassard/woof"
+    description: "Datadog CLI tool built with Go"
