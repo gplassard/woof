@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/cloudflare-integration/#del
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteCloudflareAccountCmd)
 }

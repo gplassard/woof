@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/case-management-attribute/#
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteCustomAttributeConfigCmd)
 }

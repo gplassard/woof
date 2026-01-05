@@ -8,25 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var AddReadRoleToArchiveCmd = &cobra.Command{
-	Use: "add-read-role-to-archive [archive_id] [payload]",
+	Use: "add-read-role-to-archive [archive_id]",
 
 	Short: "Grant role to an archive",
 	Long: `Grant role to an archive
 Documentation: https://docs.datadoghq.com/api/latest/logs-archives/#add-read-role-to-archive`,
-	Args: cobra.ExactArgs(2),
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 
 		var err error
 
 		var body datadogV2.RelationshipToRole
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewLogsArchivesApi(client.NewAPIClient())
 		_, err = api.AddReadRoleToArchive(client.NewContext(apiKey, appKey, site), args[0], body)
@@ -36,5 +34,9 @@ Documentation: https://docs.datadoghq.com/api/latest/logs-archives/#add-read-rol
 }
 
 func init() {
+
+	AddReadRoleToArchiveCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	AddReadRoleToArchiveCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(AddReadRoleToArchiveCmd)
 }

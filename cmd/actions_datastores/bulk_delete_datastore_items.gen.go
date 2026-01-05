@@ -8,25 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var BulkDeleteDatastoreItemsCmd = &cobra.Command{
-	Use:     "bulk-delete-datastore-items [datastore_id] [payload]",
+	Use:     "bulk-delete-datastore-items [datastore_id]",
 	Aliases: []string{"bulk-delete-items"},
 	Short:   "Bulk delete datastore items",
 	Long: `Bulk delete datastore items
 Documentation: https://docs.datadoghq.com/api/latest/actions-datastores/#bulk-delete-datastore-items`,
-	Args: cobra.ExactArgs(2),
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.DeleteAppsDatastoreItemResponseArray
 		var err error
 
 		var body datadogV2.BulkDeleteAppsDatastoreItemsRequest
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewActionsDatastoresApi(client.NewAPIClient())
 		res, _, err = api.BulkDeleteDatastoreItems(client.NewContext(apiKey, appKey, site), args[0], body)
@@ -37,5 +35,9 @@ Documentation: https://docs.datadoghq.com/api/latest/actions-datastores/#bulk-de
 }
 
 func init() {
+
+	BulkDeleteDatastoreItemsCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	BulkDeleteDatastoreItemsCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(BulkDeleteDatastoreItemsCmd)
 }

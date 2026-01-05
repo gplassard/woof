@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/domain-allowlist/#get-domai
 }
 
 func init() {
+
 	Cmd.AddCommand(GetDomainAllowlistCmd)
 }

@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/users/#list-user-permission
 }
 
 func init() {
+
 	Cmd.AddCommand(ListUserPermissionsCmd)
 }

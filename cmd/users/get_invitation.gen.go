@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/users/#get-invitation`,
 }
 
 func init() {
+
 	Cmd.AddCommand(GetInvitationCmd)
 }

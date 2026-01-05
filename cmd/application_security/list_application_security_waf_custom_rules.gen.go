@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/application-security/#list-
 }
 
 func init() {
+
 	Cmd.AddCommand(ListApplicationSecurityWAFCustomRulesCmd)
 }

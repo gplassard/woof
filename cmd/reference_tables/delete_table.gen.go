@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/reference-tables/#delete-ta
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteTableCmd)
 }

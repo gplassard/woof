@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/rum/#get-rum-application`,
 }
 
 func init() {
+
 	Cmd.AddCommand(GetRUMApplicationCmd)
 }

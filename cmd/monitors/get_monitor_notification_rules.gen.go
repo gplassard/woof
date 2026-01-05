@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/monitors/#get-monitor-notif
 }
 
 func init() {
+
 	Cmd.AddCommand(GetMonitorNotificationRulesCmd)
 }

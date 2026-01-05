@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/roles/#list-role-users`,
 }
 
 func init() {
+
 	Cmd.AddCommand(ListRoleUsersCmd)
 }

@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/gcp-integration/#delete-gcp
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteGCPSTSAccountCmd)
 }

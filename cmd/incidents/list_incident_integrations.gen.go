@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#list-incident-in
 }
 
 func init() {
+
 	Cmd.AddCommand(ListIncidentIntegrationsCmd)
 }

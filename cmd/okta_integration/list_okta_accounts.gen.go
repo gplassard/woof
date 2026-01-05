@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/okta-integration/#list-okta
 }
 
 func init() {
+
 	Cmd.AddCommand(ListOktaAccountsCmd)
 }

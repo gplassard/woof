@@ -8,25 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var CreateIncidentNotificationTemplateCmd = &cobra.Command{
-	Use:     "create-incident-notification-template [payload]",
+	Use:     "create-incident-notification-template",
 	Aliases: []string{"create-notification-template"},
 	Short:   "Create incident notification template",
 	Long: `Create incident notification template
 Documentation: https://docs.datadoghq.com/api/latest/incidents/#create-incident-notification-template`,
-	Args: cobra.ExactArgs(1),
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.IncidentNotificationTemplate
 		var err error
 
 		var body datadogV2.CreateIncidentNotificationTemplateRequest
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
 		res, _, err = api.CreateIncidentNotificationTemplate(client.NewContext(apiKey, appKey, site), body)
@@ -37,5 +35,9 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#create-incident-
 }
 
 func init() {
+
+	CreateIncidentNotificationTemplateCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	CreateIncidentNotificationTemplateCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(CreateIncidentNotificationTemplateCmd)
 }

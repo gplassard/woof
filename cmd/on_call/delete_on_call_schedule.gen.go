@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#delete-on-call-sch
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteOnCallScheduleCmd)
 }

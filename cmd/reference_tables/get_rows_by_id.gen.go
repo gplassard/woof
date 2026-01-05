@@ -24,7 +24,7 @@ Documentation: https://docs.datadoghq.com/api/latest/reference-tables/#get-rows-
 		var err error
 
 		api := datadogV2.NewReferenceTablesApi(client.NewAPIClient())
-		res, _, err = api.GetRowsByID(client.NewContext(apiKey, appKey, site), args[0], strings.Split(args[1], ","))
+		res, _, err = api.GetRowsByID(client.NewContext(apiKey, appKey, site), args[0], strings.Split(args[1], ", "))
 		cmdutil.HandleError(err, "failed to get-rows-by-id")
 
 		cmd.Println(cmdutil.FormatJSON(res, "row"))
@@ -32,5 +32,6 @@ Documentation: https://docs.datadoghq.com/api/latest/reference-tables/#get-rows-
 }
 
 func init() {
+
 	Cmd.AddCommand(GetRowsByIDCmd)
 }

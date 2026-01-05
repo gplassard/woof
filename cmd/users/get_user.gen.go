@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/users/#get-user`,
 }
 
 func init() {
+
 	Cmd.AddCommand(GetUserCmd)
 }

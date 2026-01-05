@@ -8,25 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var DeleteScanningGroupCmd = &cobra.Command{
-	Use: "delete-scanning-group [group_id] [payload]",
+	Use: "delete-scanning-group [group_id]",
 
 	Short: "Delete Scanning Group",
 	Long: `Delete Scanning Group
 Documentation: https://docs.datadoghq.com/api/latest/sensitive-data-scanner/#delete-scanning-group`,
-	Args: cobra.ExactArgs(2),
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.SensitiveDataScannerGroupDeleteResponse
 		var err error
 
 		var body datadogV2.SensitiveDataScannerGroupDeleteRequest
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewSensitiveDataScannerApi(client.NewAPIClient())
 		res, _, err = api.DeleteScanningGroup(client.NewContext(apiKey, appKey, site), args[0], body)
@@ -37,5 +35,9 @@ Documentation: https://docs.datadoghq.com/api/latest/sensitive-data-scanner/#del
 }
 
 func init() {
+
+	DeleteScanningGroupCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	DeleteScanningGroupCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(DeleteScanningGroupCmd)
 }

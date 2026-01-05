@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/cloudflare-integration/#lis
 }
 
 func init() {
+
 	Cmd.AddCommand(ListCloudflareAccountsCmd)
 }

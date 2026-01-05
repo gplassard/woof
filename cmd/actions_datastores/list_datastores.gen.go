@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/actions-datastores/#list-da
 }
 
 func init() {
+
 	Cmd.AddCommand(ListDatastoresCmd)
 }

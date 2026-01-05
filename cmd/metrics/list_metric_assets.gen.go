@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/metrics/#list-metric-assets
 }
 
 func init() {
+
 	Cmd.AddCommand(ListMetricAssetsCmd)
 }

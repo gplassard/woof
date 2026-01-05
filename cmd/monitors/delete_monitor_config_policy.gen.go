@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/monitors/#delete-monitor-co
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteMonitorConfigPolicyCmd)
 }

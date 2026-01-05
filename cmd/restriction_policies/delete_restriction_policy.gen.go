@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/restriction-policies/#delet
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteRestrictionPolicyCmd)
 }

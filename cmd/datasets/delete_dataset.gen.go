@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/datasets/#delete-dataset`,
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteDatasetCmd)
 }

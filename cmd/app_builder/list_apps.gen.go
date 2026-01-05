@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/app-builder/#list-apps`,
 }
 
 func init() {
+
 	Cmd.AddCommand(ListAppsCmd)
 }

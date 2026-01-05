@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/powerpack/#delete-powerpack
 }
 
 func init() {
+
 	Cmd.AddCommand(DeletePowerpackCmd)
 }

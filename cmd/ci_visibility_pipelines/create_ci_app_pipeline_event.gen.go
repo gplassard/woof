@@ -8,25 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var CreateCIAppPipelineEventCmd = &cobra.Command{
-	Use: "create-ci-app-pipeline-event [payload]",
+	Use: "create-ci-app-pipeline-event",
 
 	Short: "Send pipeline event",
 	Long: `Send pipeline event
 Documentation: https://docs.datadoghq.com/api/latest/ci-visibility-pipelines/#create-ci-app-pipeline-event`,
-	Args: cobra.ExactArgs(1),
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res interface{}
 		var err error
 
 		var body datadogV2.CIAppCreatePipelineEventRequest
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewCIVisibilityPipelinesApi(client.NewAPIClient())
 		res, _, err = api.CreateCIAppPipelineEvent(client.NewContext(apiKey, appKey, site), body)
@@ -37,5 +35,9 @@ Documentation: https://docs.datadoghq.com/api/latest/ci-visibility-pipelines/#cr
 }
 
 func init() {
+
+	CreateCIAppPipelineEventCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	CreateCIAppPipelineEventCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(CreateCIAppPipelineEventCmd)
 }

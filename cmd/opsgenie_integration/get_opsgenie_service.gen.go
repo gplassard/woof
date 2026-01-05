@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/opsgenie-integration/#get-o
 }
 
 func init() {
+
 	Cmd.AddCommand(GetOpsgenieServiceCmd)
 }

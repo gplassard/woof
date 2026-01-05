@@ -2,10 +2,38 @@ package cmdutil
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 
+	"os"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/spf13/cobra"
 )
+
+func UnmarshalPayload(cmd *cobra.Command, body interface{}) error {
+	var payload []byte
+	var err error
+	payloadFile, _ := cmd.Flags().GetString("payload-file")
+	payloadRaw, _ := cmd.Flags().GetString("payload")
+
+	if payloadFile != "" {
+		payload, err = os.ReadFile(payloadFile)
+	} else if payloadRaw != "" {
+		payload = []byte(payloadRaw)
+	} else {
+		return fmt.Errorf("either --payload or --payload-file is required")
+	}
+
+	if err != nil {
+		return fmt.Errorf("failed to read payload: %w", err)
+	}
+	err = json.Unmarshal(payload, body)
+	if err != nil {
+		return fmt.Errorf("failed to unmarshal request body: %w", err)
+	}
+	return nil
+}
 
 func HandleError(err error, format string) {
 	if err == nil {

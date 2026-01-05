@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/software-catalog/#delete-ca
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteCatalogEntityCmd)
 }

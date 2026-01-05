@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/key-management/#delete-curr
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteCurrentUserApplicationKeyCmd)
 }

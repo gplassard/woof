@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/dora-metrics/#get-d-o-r-ad-
 }
 
 func init() {
+
 	Cmd.AddCommand(GetDORADeploymentCmd)
 }

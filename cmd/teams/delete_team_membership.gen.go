@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/teams/#delete-team-membersh
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteTeamMembershipCmd)
 }

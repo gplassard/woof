@@ -8,25 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var CreateBulkTagsMetricsConfigurationCmd = &cobra.Command{
-	Use:     "create-bulk-tags-metrics-configuration [payload]",
+	Use:     "create-bulk-tags-metrics-configuration",
 	Aliases: []string{"create-bulk-tags-configuration"},
 	Short:   "Configure tags for multiple metrics",
 	Long: `Configure tags for multiple metrics
 Documentation: https://docs.datadoghq.com/api/latest/metrics/#create-bulk-tags-metrics-configuration`,
-	Args: cobra.ExactArgs(1),
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.MetricBulkTagConfigResponse
 		var err error
 
 		var body datadogV2.MetricBulkTagConfigCreateRequest
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewMetricsApi(client.NewAPIClient())
 		res, _, err = api.CreateBulkTagsMetricsConfiguration(client.NewContext(apiKey, appKey, site), body)
@@ -37,5 +35,9 @@ Documentation: https://docs.datadoghq.com/api/latest/metrics/#create-bulk-tags-m
 }
 
 func init() {
+
+	CreateBulkTagsMetricsConfigurationCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	CreateBulkTagsMetricsConfigurationCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(CreateBulkTagsMetricsConfigurationCmd)
 }

@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/rum-metrics/#list-rum-metri
 }
 
 func init() {
+
 	Cmd.AddCommand(ListRumMetricsCmd)
 }

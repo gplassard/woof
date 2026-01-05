@@ -32,5 +32,6 @@ Documentation: https://docs.datadoghq.com/api/latest/app-builder/#unpublish-app`
 }
 
 func init() {
+
 	Cmd.AddCommand(UnpublishAppCmd)
 }

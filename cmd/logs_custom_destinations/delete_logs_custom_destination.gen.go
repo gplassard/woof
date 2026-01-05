@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/logs-custom-destinations/#d
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteLogsCustomDestinationCmd)
 }

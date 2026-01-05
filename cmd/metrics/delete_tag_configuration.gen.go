@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/metrics/#delete-tag-configu
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteTagConfigurationCmd)
 }

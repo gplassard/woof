@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/action-connection/#get-acti
 }
 
 func init() {
+
 	Cmd.AddCommand(GetActionConnectionCmd)
 }

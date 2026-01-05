@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#get-aws-in
 }
 
 func init() {
+
 	Cmd.AddCommand(GetAWSIntegrationIAMPermissionsStandardCmd)
 }

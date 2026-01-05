@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/authn-mappings/#get-auth-n-
 }
 
 func init() {
+
 	Cmd.AddCommand(GetAuthNMappingCmd)
 }

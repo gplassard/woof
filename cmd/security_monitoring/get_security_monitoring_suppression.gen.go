@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-se
 }
 
 func init() {
+
 	Cmd.AddCommand(GetSecurityMonitoringSuppressionCmd)
 }

@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/incident-services/#get-inci
 }
 
 func init() {
+
 	Cmd.AddCommand(GetIncidentServiceCmd)
 }

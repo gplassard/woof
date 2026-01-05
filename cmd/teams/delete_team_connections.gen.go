@@ -8,25 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var DeleteTeamConnectionsCmd = &cobra.Command{
-	Use:     "delete-team-connections [payload]",
+	Use:     "delete-team-connections",
 	Aliases: []string{"delete-connections"},
 	Short:   "Delete team connections",
 	Long: `Delete team connections
 Documentation: https://docs.datadoghq.com/api/latest/teams/#delete-team-connections`,
-	Args: cobra.ExactArgs(1),
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 
 		var err error
 
 		var body datadogV2.TeamConnectionDeleteRequest
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
 		_, err = api.DeleteTeamConnections(client.NewContext(apiKey, appKey, site), body)
@@ -36,5 +34,9 @@ Documentation: https://docs.datadoghq.com/api/latest/teams/#delete-team-connecti
 }
 
 func init() {
+
+	DeleteTeamConnectionsCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	DeleteTeamConnectionsCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(DeleteTeamConnectionsCmd)
 }

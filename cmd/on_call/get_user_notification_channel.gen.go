@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#get-user-notificat
 }
 
 func init() {
+
 	Cmd.AddCommand(GetUserNotificationChannelCmd)
 }

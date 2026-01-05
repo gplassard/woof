@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/csm-threats/#list-csm-threa
 }
 
 func init() {
+
 	Cmd.AddCommand(ListCSMThreatsAgentPoliciesCmd)
 }

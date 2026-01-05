@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/opsgenie-integration/#delet
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteOpsgenieServiceCmd)
 }

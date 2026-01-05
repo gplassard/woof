@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/case-management-type/#delet
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteCaseTypeCmd)
 }

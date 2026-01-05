@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/spa/#get-s-p-a-recommendati
 }
 
 func init() {
+
 	Cmd.AddCommand(GetSPARecommendationsCmd)
 }

@@ -32,5 +32,6 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#get-incident-not
 }
 
 func init() {
+
 	Cmd.AddCommand(GetIncidentNotificationTemplateCmd)
 }

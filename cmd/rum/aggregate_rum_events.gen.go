@@ -8,25 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var AggregateRUMEventsCmd = &cobra.Command{
-	Use:     "aggregate-rum-events [payload]",
+	Use:     "aggregate-rum-events",
 	Aliases: []string{"aggregate-events"},
 	Short:   "Aggregate RUM events",
 	Long: `Aggregate RUM events
 Documentation: https://docs.datadoghq.com/api/latest/rum/#aggregate-rum-events`,
-	Args: cobra.ExactArgs(1),
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.RUMAnalyticsAggregateResponse
 		var err error
 
 		var body datadogV2.RUMAggregateRequest
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewRUMApi(client.NewAPIClient())
 		res, _, err = api.AggregateRUMEvents(client.NewContext(apiKey, appKey, site), body)
@@ -37,5 +35,9 @@ Documentation: https://docs.datadoghq.com/api/latest/rum/#aggregate-rum-events`,
 }
 
 func init() {
+
+	AggregateRUMEventsCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	AggregateRUMEventsCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(AggregateRUMEventsCmd)
 }

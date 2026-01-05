@@ -32,5 +32,6 @@ Documentation: https://docs.datadoghq.com/api/latest/app-builder/#delete-app`,
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteAppCmd)
 }

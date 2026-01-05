@@ -6,6 +6,7 @@ import (
 	"testing"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/spf13/cobra"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -62,6 +63,79 @@ func TestPrintJSON(t *testing.T) {
 			actualBytes := []byte(output)
 
 			assert.Equal(t, string(expectedBytes), string(actualBytes), "FormatJSON() mismatch")
+		})
+	}
+}
+
+func TestUnmarshalPayload(t *testing.T) {
+	type TestBody struct {
+		Name string `json:"name"`
+	}
+
+	tests := []struct {
+		name         string
+		setupFlags   func() *cobra.Command
+		setupFile    func() (string, func())
+		expectedBody TestBody
+		expectError  bool
+	}{
+		{
+			name: "JSON input from --payload",
+			setupFlags: func() *cobra.Command {
+				cmd := &cobra.Command{}
+				cmd.Flags().String("payload", `{"name": "arg-json"}`, "")
+				cmd.Flags().String("payload-file", "", "")
+				return cmd
+			},
+			expectedBody: TestBody{Name: "arg-json"},
+		},
+		{
+			name: "Input from --payload-file flag",
+			setupFlags: func() *cobra.Command {
+				cmd := &cobra.Command{}
+				cmd.Flags().String("payload", "", "")
+				cmd.Flags().String("payload-file", "test_UnmarshalPayload.json", "")
+				return cmd
+			},
+			setupFile: func() (string, func()) {
+				err := os.WriteFile("test_UnmarshalPayload.json", []byte(`{"name": "file-json"}`), 0644)
+				if err != nil {
+					t.Fatal(err)
+				}
+				return "test_UnmarshalPayload.json", func() {
+					os.Remove("test_UnmarshalPayload.json")
+				}
+			},
+			expectedBody: TestBody{Name: "file-json"},
+		},
+		{
+			name: "Missing payload error",
+			setupFlags: func() *cobra.Command {
+				cmd := &cobra.Command{}
+				cmd.Flags().String("payload", "", "")
+				cmd.Flags().String("payload-file", "", "")
+				return cmd
+			},
+			expectError: true,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			cmd := tt.setupFlags()
+			if tt.setupFile != nil {
+				_, cleanup := tt.setupFile()
+				defer cleanup()
+			}
+
+			var body TestBody
+			err := UnmarshalPayload(cmd, &body)
+			if tt.expectError {
+				assert.Error(t, err)
+			} else {
+				assert.NoError(t, err)
+				assert.Equal(t, tt.expectedBody, body)
+			}
 		})
 	}
 }

@@ -8,25 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var ValidateSecurityMonitoringRuleCmd = &cobra.Command{
-	Use:     "validate-security-monitoring-rule [payload]",
+	Use:     "validate-security-monitoring-rule",
 	Aliases: []string{"validate-rule"},
 	Short:   "Validate a detection rule",
 	Long: `Validate a detection rule
 Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#validate-security-monitoring-rule`,
-	Args: cobra.ExactArgs(1),
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 
 		var err error
 
 		var body datadogV2.SecurityMonitoringRuleValidatePayload
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		_, err = api.ValidateSecurityMonitoringRule(client.NewContext(apiKey, appKey, site), body)
@@ -36,5 +34,9 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#valida
 }
 
 func init() {
+
+	ValidateSecurityMonitoringRuleCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	ValidateSecurityMonitoringRuleCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(ValidateSecurityMonitoringRuleCmd)
 }

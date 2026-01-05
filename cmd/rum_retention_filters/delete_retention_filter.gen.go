@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/rum-retention-filters/#dele
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteRetentionFilterCmd)
 }

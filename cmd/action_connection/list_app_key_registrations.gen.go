@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/action-connection/#list-app
 }
 
 func init() {
+
 	Cmd.AddCommand(ListAppKeyRegistrationsCmd)
 }

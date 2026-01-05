@@ -8,25 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var CreateGcpScanOptionsCmd = &cobra.Command{
-	Use: "create-gcp-scan-options [payload]",
+	Use: "create-gcp-scan-options",
 
 	Short: "Create GCP scan options",
 	Long: `Create GCP scan options
 Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#create-gcp-scan-options`,
-	Args: cobra.ExactArgs(1),
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.GcpScanOptions
 		var err error
 
 		var body datadogV2.GcpScanOptions
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewAgentlessScanningApi(client.NewAPIClient())
 		res, _, err = api.CreateGcpScanOptions(client.NewContext(apiKey, appKey, site), body)
@@ -37,5 +35,9 @@ Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#create-
 }
 
 func init() {
+
+	CreateGcpScanOptionsCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	CreateGcpScanOptionsCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(CreateGcpScanOptionsCmd)
 }

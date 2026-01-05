@@ -8,25 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var UpdateCaseCustomAttributeCmd = &cobra.Command{
-	Use: "update-case-custom-attribute [case_id] [custom_attribute_key] [payload]",
+	Use: "update-case-custom-attribute [case_id] [custom_attribute_key]",
 
 	Short: "Update case custom attribute",
 	Long: `Update case custom attribute
 Documentation: https://docs.datadoghq.com/api/latest/case-management/#update-case-custom-attribute`,
-	Args: cobra.ExactArgs(3),
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.CaseResponse
 		var err error
 
 		var body datadogV2.CaseUpdateCustomAttributeRequest
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewCaseManagementApi(client.NewAPIClient())
 		res, _, err = api.UpdateCaseCustomAttribute(client.NewContext(apiKey, appKey, site), args[0], args[1], body)
@@ -37,5 +35,9 @@ Documentation: https://docs.datadoghq.com/api/latest/case-management/#update-cas
 }
 
 func init() {
+
+	UpdateCaseCustomAttributeCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	UpdateCaseCustomAttributeCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(UpdateCaseCustomAttributeCmd)
 }

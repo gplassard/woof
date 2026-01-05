@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/rum/#delete-rum-application
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteRUMApplicationCmd)
 }

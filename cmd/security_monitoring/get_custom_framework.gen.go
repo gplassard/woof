@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-cu
 }
 
 func init() {
+
 	Cmd.AddCommand(GetCustomFrameworkCmd)
 }

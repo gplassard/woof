@@ -8,25 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var CreateReferenceTableUploadCmd = &cobra.Command{
-	Use:     "create-reference-table-upload [payload]",
+	Use:     "create-reference-table-upload",
 	Aliases: []string{"create-upload"},
 	Short:   "Create reference table upload",
 	Long: `Create reference table upload
 Documentation: https://docs.datadoghq.com/api/latest/reference-tables/#create-reference-table-upload`,
-	Args: cobra.ExactArgs(1),
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.CreateUploadResponse
 		var err error
 
 		var body datadogV2.CreateUploadRequest
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewReferenceTablesApi(client.NewAPIClient())
 		res, _, err = api.CreateReferenceTableUpload(client.NewContext(apiKey, appKey, site), body)
@@ -37,5 +35,9 @@ Documentation: https://docs.datadoghq.com/api/latest/reference-tables/#create-re
 }
 
 func init() {
+
+	CreateReferenceTableUploadCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	CreateReferenceTableUploadCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(CreateReferenceTableUploadCmd)
 }

@@ -9,25 +9,23 @@ import (
 	"github.com/google/uuid"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var UpdateIncidentNotificationRuleCmd = &cobra.Command{
-	Use:     "update-incident-notification-rule [id] [payload]",
+	Use:     "update-incident-notification-rule [id]",
 	Aliases: []string{"update-notification-rule"},
 	Short:   "Update an incident notification rule",
 	Long: `Update an incident notification rule
 Documentation: https://docs.datadoghq.com/api/latest/incidents/#update-incident-notification-rule`,
-	Args: cobra.ExactArgs(2),
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.IncidentNotificationRule
 		var err error
 
 		var body datadogV2.PutIncidentNotificationRuleRequest
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
 		res, _, err = api.UpdateIncidentNotificationRule(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]), body)
@@ -38,5 +36,9 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#update-incident-
 }
 
 func init() {
+
+	UpdateIncidentNotificationRuleCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	UpdateIncidentNotificationRuleCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(UpdateIncidentNotificationRuleCmd)
 }

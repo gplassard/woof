@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/metrics/#get-metric-tag-car
 }
 
 func init() {
+
 	Cmd.AddCommand(GetMetricTagCardinalityDetailsCmd)
 }

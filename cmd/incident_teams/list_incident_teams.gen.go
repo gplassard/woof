@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/incident-teams/#list-incide
 }
 
 func init() {
+
 	Cmd.AddCommand(ListIncidentTeamsCmd)
 }

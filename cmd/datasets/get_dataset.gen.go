@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/datasets/#get-dataset`,
 }
 
 func init() {
+
 	Cmd.AddCommand(GetDatasetCmd)
 }

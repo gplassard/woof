@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/metrics/#list-active-metric
 }
 
 func init() {
+
 	Cmd.AddCommand(ListActiveMetricConfigurationsCmd)
 }

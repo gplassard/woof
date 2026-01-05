@@ -8,25 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var UpdateRetentionFilterCmd = &cobra.Command{
-	Use: "update-retention-filter [app_id] [rf_id] [payload]",
+	Use: "update-retention-filter [app_id] [rf_id]",
 
 	Short: "Update a RUM retention filter",
 	Long: `Update a RUM retention filter
 Documentation: https://docs.datadoghq.com/api/latest/rum-retention-filters/#update-retention-filter`,
-	Args: cobra.ExactArgs(3),
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.RumRetentionFilterResponse
 		var err error
 
 		var body datadogV2.RumRetentionFilterUpdateRequest
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewRumRetentionFiltersApi(client.NewAPIClient())
 		res, _, err = api.UpdateRetentionFilter(client.NewContext(apiKey, appKey, site), args[0], args[1], body)
@@ -37,5 +35,9 @@ Documentation: https://docs.datadoghq.com/api/latest/rum-retention-filters/#upda
 }
 
 func init() {
+
+	UpdateRetentionFilterCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	UpdateRetentionFilterCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(UpdateRetentionFilterCmd)
 }

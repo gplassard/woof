@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#list-gc
 }
 
 func init() {
+
 	Cmd.AddCommand(ListGcpScanOptionsCmd)
 }

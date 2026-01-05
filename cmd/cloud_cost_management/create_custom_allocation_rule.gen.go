@@ -8,25 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var CreateCustomAllocationRuleCmd = &cobra.Command{
-	Use: "create-custom-allocation-rule [payload]",
+	Use: "create-custom-allocation-rule",
 
 	Short: "Create custom allocation rule",
 	Long: `Create custom allocation rule
 Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#create-custom-allocation-rule`,
-	Args: cobra.ExactArgs(1),
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.ArbitraryRuleResponse
 		var err error
 
 		var body datadogV2.ArbitraryCostUpsertRequest
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
 		res, _, err = api.CreateCustomAllocationRule(client.NewContext(apiKey, appKey, site), body)
@@ -37,5 +35,9 @@ Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#crea
 }
 
 func init() {
+
+	CreateCustomAllocationRuleCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	CreateCustomAllocationRuleCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(CreateCustomAllocationRuleCmd)
 }

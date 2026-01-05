@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#get-
 }
 
 func init() {
+
 	Cmd.AddCommand(GetBudgetCmd)
 }

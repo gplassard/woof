@@ -8,25 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var CreateAwsOnDemandTaskCmd = &cobra.Command{
-	Use: "create-aws-on-demand-task [payload]",
+	Use: "create-aws-on-demand-task",
 
 	Short: "Create AWS on demand task",
 	Long: `Create AWS on demand task
 Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#create-aws-on-demand-task`,
-	Args: cobra.ExactArgs(1),
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.AwsOnDemandResponse
 		var err error
 
 		var body datadogV2.AwsOnDemandCreateRequest
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewAgentlessScanningApi(client.NewAPIClient())
 		res, _, err = api.CreateAwsOnDemandTask(client.NewContext(apiKey, appKey, site), body)
@@ -37,5 +35,9 @@ Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#create-
 }
 
 func init() {
+
+	CreateAwsOnDemandTaskCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	CreateAwsOnDemandTaskCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(CreateAwsOnDemandTaskCmd)
 }

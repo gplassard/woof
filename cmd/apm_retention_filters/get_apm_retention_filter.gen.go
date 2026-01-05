@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/apm-retention-filters/#get-
 }
 
 func init() {
+
 	Cmd.AddCommand(GetApmRetentionFilterCmd)
 }

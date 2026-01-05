@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/ci-visibility-pipelines/#li
 }
 
 func init() {
+
 	Cmd.AddCommand(ListCIAppPipelineEventsCmd)
 }

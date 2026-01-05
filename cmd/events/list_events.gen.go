@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/events/#list-events`,
 }
 
 func init() {
+
 	Cmd.AddCommand(ListEventsCmd)
 }

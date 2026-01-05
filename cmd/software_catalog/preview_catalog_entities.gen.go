@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/software-catalog/#preview-c
 }
 
 func init() {
+
 	Cmd.AddCommand(PreviewCatalogEntitiesCmd)
 }

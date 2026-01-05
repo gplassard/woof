@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/fleet-automation/#trigger-f
 }
 
 func init() {
+
 	Cmd.AddCommand(TriggerFleetScheduleCmd)
 }

@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#delete-user-notifi
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteUserNotificationChannelCmd)
 }

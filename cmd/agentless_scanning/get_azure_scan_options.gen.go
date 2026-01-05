@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#get-azu
 }
 
 func init() {
+
 	Cmd.AddCommand(GetAzureScanOptionsCmd)
 }

@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/spans-metrics/#delete-spans
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteSpansMetricCmd)
 }

@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#list-user-notifica
 }
 
 func init() {
+
 	Cmd.AddCommand(ListUserNotificationChannelsCmd)
 }

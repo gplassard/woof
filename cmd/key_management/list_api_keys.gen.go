@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/key-management/#list-api-ke
 }
 
 func init() {
+
 	Cmd.AddCommand(ListAPIKeysCmd)
 }

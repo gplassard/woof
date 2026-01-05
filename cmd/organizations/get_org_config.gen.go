@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/organizations/#get-org-conf
 }
 
 func init() {
+
 	Cmd.AddCommand(GetOrgConfigCmd)
 }

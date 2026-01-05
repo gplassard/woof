@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/deployment-gates/#get-deplo
 }
 
 func init() {
+
 	Cmd.AddCommand(GetDeploymentGateRulesCmd)
 }

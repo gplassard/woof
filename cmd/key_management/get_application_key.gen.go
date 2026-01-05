@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/key-management/#get-applica
 }
 
 func init() {
+
 	Cmd.AddCommand(GetApplicationKeyCmd)
 }

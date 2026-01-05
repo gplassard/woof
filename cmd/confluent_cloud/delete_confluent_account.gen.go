@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/confluent-cloud/#delete-con
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteConfluentAccountCmd)
 }

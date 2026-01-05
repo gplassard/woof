@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/logs-archives/#get-logs-arc
 }
 
 func init() {
+
 	Cmd.AddCommand(GetLogsArchiveCmd)
 }

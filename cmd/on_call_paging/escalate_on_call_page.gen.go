@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call-paging/#escalate-on
 }
 
 func init() {
+
 	Cmd.AddCommand(EscalateOnCallPageCmd)
 }

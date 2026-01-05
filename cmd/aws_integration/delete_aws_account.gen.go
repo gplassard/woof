@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#delete-aws
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteAWSAccountCmd)
 }

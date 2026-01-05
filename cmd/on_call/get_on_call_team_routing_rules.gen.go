@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#get-on-call-team-r
 }
 
 func init() {
+
 	Cmd.AddCommand(GetOnCallTeamRoutingRulesCmd)
 }

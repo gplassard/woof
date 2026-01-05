@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/actions-datastores/#delete-
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteDatastoreCmd)
 }

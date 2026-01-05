@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/error-tracking/#delete-issu
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteIssueAssigneeCmd)
 }

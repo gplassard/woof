@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-sb
 }
 
 func init() {
+
 	Cmd.AddCommand(GetSBOMCmd)
 }

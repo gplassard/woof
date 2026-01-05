@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#list-aw
 }
 
 func init() {
+
 	Cmd.AddCommand(ListAwsScanOptionsCmd)
 }

@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/gcp-integration/#get-gcp-st
 }
 
 func init() {
+
 	Cmd.AddCommand(GetGCPSTSDelegateCmd)
 }

@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/teams/#get-team-link`,
 }
 
 func init() {
+
 	Cmd.AddCommand(GetTeamLinkCmd)
 }

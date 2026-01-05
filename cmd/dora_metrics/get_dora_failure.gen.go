@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/dora-metrics/#get-dora-fail
 }
 
 func init() {
+
 	Cmd.AddCommand(GetDORAFailureCmd)
 }

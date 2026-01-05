@@ -8,25 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var CreateGCPSTSAccountCmd = &cobra.Command{
-	Use: "create-gcp-sts-account [payload]",
+	Use: "create-gcp-sts-account",
 
 	Short: "Create a new entry for your service account",
 	Long: `Create a new entry for your service account
 Documentation: https://docs.datadoghq.com/api/latest/gcp-integration/#create-gcp-sts-account`,
-	Args: cobra.ExactArgs(1),
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.GCPSTSServiceAccountResponse
 		var err error
 
 		var body datadogV2.GCPSTSServiceAccountCreateRequest
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewGCPIntegrationApi(client.NewAPIClient())
 		res, _, err = api.CreateGCPSTSAccount(client.NewContext(apiKey, appKey, site), body)
@@ -37,5 +35,9 @@ Documentation: https://docs.datadoghq.com/api/latest/gcp-integration/#create-gcp
 }
 
 func init() {
+
+	CreateGCPSTSAccountCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	CreateGCPSTSAccountCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(CreateGCPSTSAccountCmd)
 }

@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/service-scorecards/#list-sc
 }
 
 func init() {
+
 	Cmd.AddCommand(ListScorecardRulesCmd)
 }

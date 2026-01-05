@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#list-t
 }
 
 func init() {
+
 	Cmd.AddCommand(ListThreatHuntingJobsCmd)
 }

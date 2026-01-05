@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/software-catalog/#list-cata
 }
 
 func init() {
+
 	Cmd.AddCommand(ListCatalogRelationCmd)
 }

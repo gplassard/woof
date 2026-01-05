@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/teams/#get-user-memberships
 }
 
 func init() {
+
 	Cmd.AddCommand(GetUserMembershipsCmd)
 }

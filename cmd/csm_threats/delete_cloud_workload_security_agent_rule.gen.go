@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/csm-threats/#delete-cloud-w
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteCloudWorkloadSecurityAgentRuleCmd)
 }

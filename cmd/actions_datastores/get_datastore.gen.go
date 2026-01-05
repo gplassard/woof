@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/actions-datastores/#get-dat
 }
 
 func init() {
+
 	Cmd.AddCommand(GetDatastoreCmd)
 }

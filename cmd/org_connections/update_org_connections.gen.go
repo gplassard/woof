@@ -9,25 +9,23 @@ import (
 	"github.com/google/uuid"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var UpdateOrgConnectionsCmd = &cobra.Command{
-	Use:     "update-org-connections [connection_id] [payload]",
+	Use:     "update-org-connections [connection_id]",
 	Aliases: []string{"update"},
 	Short:   "Update Org Connection",
 	Long: `Update Org Connection
 Documentation: https://docs.datadoghq.com/api/latest/org-connections/#update-org-connections`,
-	Args: cobra.ExactArgs(2),
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.OrgConnectionResponse
 		var err error
 
 		var body datadogV2.OrgConnectionUpdateRequest
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewOrgConnectionsApi(client.NewAPIClient())
 		res, _, err = api.UpdateOrgConnections(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]), body)
@@ -38,5 +36,9 @@ Documentation: https://docs.datadoghq.com/api/latest/org-connections/#update-org
 }
 
 func init() {
+
+	UpdateOrgConnectionsCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	UpdateOrgConnectionsCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(UpdateOrgConnectionsCmd)
 }

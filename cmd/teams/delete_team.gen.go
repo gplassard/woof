@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/teams/#delete-team`,
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteTeamCmd)
 }

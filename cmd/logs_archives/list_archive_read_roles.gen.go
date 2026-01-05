@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/logs-archives/#list-archive
 }
 
 func init() {
+
 	Cmd.AddCommand(ListArchiveReadRolesCmd)
 }

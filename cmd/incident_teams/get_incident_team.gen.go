@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/incident-teams/#get-inciden
 }
 
 func init() {
+
 	Cmd.AddCommand(GetIncidentTeamCmd)
 }

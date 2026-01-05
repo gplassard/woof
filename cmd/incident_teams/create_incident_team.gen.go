@@ -8,25 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var CreateIncidentTeamCmd = &cobra.Command{
-	Use:     "create-incident-team [payload]",
+	Use:     "create-incident-team",
 	Aliases: []string{"create"},
 	Short:   "Create a new incident team",
 	Long: `Create a new incident team
 Documentation: https://docs.datadoghq.com/api/latest/incident-teams/#create-incident-team`,
-	Args: cobra.ExactArgs(1),
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.IncidentTeamResponse
 		var err error
 
 		var body datadogV2.IncidentTeamCreateRequest
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewIncidentTeamsApi(client.NewAPIClient())
 		res, _, err = api.CreateIncidentTeam(client.NewContext(apiKey, appKey, site), body)
@@ -37,5 +35,9 @@ Documentation: https://docs.datadoghq.com/api/latest/incident-teams/#create-inci
 }
 
 func init() {
+
+	CreateIncidentTeamCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	CreateIncidentTeamCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(CreateIncidentTeamCmd)
 }

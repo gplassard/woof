@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-re
 }
 
 func init() {
+
 	Cmd.AddCommand(GetResourceEvaluationFiltersCmd)
 }

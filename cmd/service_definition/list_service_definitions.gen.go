@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/service-definition/#list-se
 }
 
 func init() {
+
 	Cmd.AddCommand(ListServiceDefinitionsCmd)
 }

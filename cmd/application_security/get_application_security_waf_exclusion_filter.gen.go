@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/application-security/#get-a
 }
 
 func init() {
+
 	Cmd.AddCommand(GetApplicationSecurityWafExclusionFilterCmd)
 }

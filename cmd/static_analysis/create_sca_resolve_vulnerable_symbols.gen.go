@@ -8,25 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var CreateSCAResolveVulnerableSymbolsCmd = &cobra.Command{
-	Use: "create-sca-resolve-vulnerable-symbols [payload]",
+	Use: "create-sca-resolve-vulnerable-symbols",
 
 	Short: "POST request to resolve vulnerable symbols",
 	Long: `POST request to resolve vulnerable symbols
 Documentation: https://docs.datadoghq.com/api/latest/static-analysis/#create-sca-resolve-vulnerable-symbols`,
-	Args: cobra.ExactArgs(1),
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.ResolveVulnerableSymbolsResponse
 		var err error
 
 		var body datadogV2.ResolveVulnerableSymbolsRequest
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewStaticAnalysisApi(client.NewAPIClient())
 		res, _, err = api.CreateSCAResolveVulnerableSymbols(client.NewContext(apiKey, appKey, site), body)
@@ -37,5 +35,9 @@ Documentation: https://docs.datadoghq.com/api/latest/static-analysis/#create-sca
 }
 
 func init() {
+
+	CreateSCAResolveVulnerableSymbolsCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	CreateSCAResolveVulnerableSymbolsCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(CreateSCAResolveVulnerableSymbolsCmd)
 }

@@ -8,25 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var UpdateWorkflowCmd = &cobra.Command{
-	Use:     "update-workflow [workflow_id] [payload]",
+	Use:     "update-workflow [workflow_id]",
 	Aliases: []string{"update"},
 	Short:   "Update an existing Workflow",
 	Long: `Update an existing Workflow
 Documentation: https://docs.datadoghq.com/api/latest/workflow-automation/#update-workflow`,
-	Args: cobra.ExactArgs(2),
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.UpdateWorkflowResponse
 		var err error
 
 		var body datadogV2.UpdateWorkflowRequest
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewWorkflowAutomationApi(client.NewAPIClient())
 		res, _, err = api.UpdateWorkflow(client.NewContext(apiKey, appKey, site), args[0], body)
@@ -37,5 +35,9 @@ Documentation: https://docs.datadoghq.com/api/latest/workflow-automation/#update
 }
 
 func init() {
+
+	UpdateWorkflowCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	UpdateWorkflowCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(UpdateWorkflowCmd)
 }

@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/csm-threats/#get-cloud-work
 }
 
 func init() {
+
 	Cmd.AddCommand(GetCloudWorkloadSecurityAgentRuleCmd)
 }

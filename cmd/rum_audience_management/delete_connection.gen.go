@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/rum-audience-management/#de
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteConnectionCmd)
 }

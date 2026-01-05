@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/csm-coverage-analysis/#get-
 }
 
 func init() {
+
 	Cmd.AddCommand(GetCSMCloudAccountsCoverageAnalysisCmd)
 }

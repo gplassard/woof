@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/processes/#list-processes`,
 }
 
 func init() {
+
 	Cmd.AddCommand(ListProcessesCmd)
 }

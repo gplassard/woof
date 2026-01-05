@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/teams/#list-member-teams`,
 }
 
 func init() {
+
 	Cmd.AddCommand(ListMemberTeamsCmd)
 }

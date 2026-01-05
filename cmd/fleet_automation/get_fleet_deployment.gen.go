@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/fleet-automation/#get-fleet
 }
 
 func init() {
+
 	Cmd.AddCommand(GetFleetDeploymentCmd)
 }

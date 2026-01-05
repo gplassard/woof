@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/fastly-integration/#get-fas
 }
 
 func init() {
+
 	Cmd.AddCommand(GetFastlyServiceCmd)
 }
