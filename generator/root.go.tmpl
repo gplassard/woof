@@ -2,16 +2,16 @@ package cmd
 
 import (
 	"os"
-	"github.com/gplassard/ouaf/pkg/config"
+	"github.com/gplassard/woof/pkg/config"
 {{range .Imports}}	"{{.}}"
 {{end}}
 	"github.com/spf13/cobra"
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "ouaf",
-	Short: "ouaf is a Datadog CLI",
-	Long:  `ouaf is a Datadog CLI built with Cobra.`,
+	Use:   "woof",
+	Short: "woof is a Datadog CLI",
+	Long:  `woof is a Datadog CLI built with Cobra.`,
 }
 
 func Execute() {

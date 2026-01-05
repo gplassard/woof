@@ -12,7 +12,7 @@ The project is written in Go and uses a standard build process.
   ```
 
 #### Configuration
-`ouaf` requires Datadog credentials. These can be provided via environment variables or command-line flags:
+`woof` requires Datadog credentials. These can be provided via environment variables or command-line flags:
 - `DD_API_KEY`: Your Datadog API key (or `--api-key` flag).
 - `DD_APP_KEY`: Your Datadog Application key (or `--app-key` flag).
 - `DD_SITE`: The Datadog site to use, defaults to `datadoghq.eu` (or `--site` flag).

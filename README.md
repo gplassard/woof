@@ -1,6 +1,6 @@
-# ouaf
+# woof
 
-`ouaf` is a Datadog CLI tool built with Go. It provides a command-line interface to interact with Datadog API endpoints. The project includes a code generator that automatically creates CLI commands based on the Datadog OpenAPI specification.
+`woof` is a Datadog CLI tool built with Go. It provides a command-line interface to interact with Datadog API endpoints. The project includes a code generator that automatically creates CLI commands based on the Datadog OpenAPI specification.
 
 ## Requirements
 
@@ -12,7 +12,7 @@
 1. **Clone the repository**:
    ```bash
    git clone <repository-url>
-   cd ouaf
+   cd woof
    ```
 
 2. **Install dependencies**:
@@ -27,7 +27,7 @@
 
 ## Configuration
 
-`ouaf` requires Datadog credentials to interact with the API. You can provide these via environment variables or command-line flags.
+`woof` requires Datadog credentials to interact with the API. You can provide these via environment variables or command-line flags.
 
 ### Environment Variables
 
@@ -45,20 +45,20 @@ The following flags are available for all commands:
 
 ## Usage
 
-Once built, you can run `ouaf` followed by a command and subcommand.
+Once built, you can run `woof` followed by a command and subcommand.
 
 ```bash
-./ouaf [command] [subcommand] [flags]
+./woof [command] [subcommand] [flags]
 ```
 
 Example:
 ```bash
-./ouaf roles list-roles
+./woof roles list-roles
 ```
 
 To see all available commands, run:
 ```bash
-./ouaf --help
+./woof --help
 ```
 
 ## Code Generator
@@ -90,7 +90,7 @@ The generator uses templates found in `generator/*.tmpl` and configuration from 
   - `client/`: Datadog API client initialization.
   - `cmdutil/`: Utilities for command execution and output formatting.
   - `output/`: Placeholder for output formatting logic.
-- `ouaf`: The compiled binary (after building).
+- `woof`: The compiled binary (after building).
 
 ## Tests
 

@@ -1,9 +1,9 @@
 package case_management
 
 import (
-	"github.com/gplassard/ouaf/pkg/client"
-	"github.com/gplassard/ouaf/pkg/cmdutil"
-	"github.com/gplassard/ouaf/pkg/config"
+	"github.com/gplassard/woof/pkg/client"
+	"github.com/gplassard/woof/pkg/cmdutil"
+	"github.com/gplassard/woof/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 

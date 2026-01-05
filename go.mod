@@ -1,4 +1,4 @@
-module github.com/gplassard/ouaf
+module github.com/gplassard/woof
 
 go 1.25.5
 
