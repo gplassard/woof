@@ -39,11 +39,25 @@ archives:
         formats: [zip]
 
 changelog:
+  use: github
   sort: asc
   filters:
     exclude:
-      - "^docs:"
-      - "^test:"
+      - "^docs"
+      - "^test"
+      - "^chore"
+      - "^ci"
+      - "^build"
+  groups:
+    - title: Features
+      regexp: "^.*feat[(\\w)]*:+.*$"
+      order: 0
+    - title: 'Bug fixes'
+      regexp: "^.*fix[(\\w)]*:+.*$"
+      order: 1
+    - title: Others
+      order: 999
+  abbrev: -1
 
 release:
   footer: >-
