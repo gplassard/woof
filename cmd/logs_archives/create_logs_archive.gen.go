@@ -8,17 +8,24 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
+
+	"encoding/json"
 )
 
 var CreateLogsArchiveCmd = &cobra.Command{
-	Use:     "create-logs-archive",
+	Use:     "create-logs-archive [payload]",
 	Aliases: []string{"create"},
 	Short:   "Create an archive",
-
+	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
+		var body datadogV2.LogsArchiveCreateRequest
+		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		cmdutil.HandleError(err, "failed to unmarshal request body")
+
 		api := datadogV2.NewLogsArchivesApi(client.NewAPIClient())
-		res, _, err := api.CreateLogsArchive(client.NewContext(apiKey, appKey, site), datadogV2.LogsArchiveCreateRequest{})
+		res, _, err := api.CreateLogsArchive(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-logs-archive")
 
 		cmd.Println(cmdutil.FormatJSON(res, "logs_archives"))

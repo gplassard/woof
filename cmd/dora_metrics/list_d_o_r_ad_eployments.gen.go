@@ -8,17 +8,24 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
+
+	"encoding/json"
 )
 
 var ListDORADeploymentsCmd = &cobra.Command{
-	Use: "list-d-o-r-ad-eployments",
+	Use: "list-d-o-r-ad-eployments [payload]",
 
 	Short: "Get a list of deployment events",
-
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
+		var body datadogV2.DORAListDeploymentsRequest
+		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		cmdutil.HandleError(err, "failed to unmarshal request body")
+
 		api := datadogV2.NewDORAMetricsApi(client.NewAPIClient())
-		res, _, err := api.ListDORADeployments(client.NewContext(apiKey, appKey, site), datadogV2.DORAListDeploymentsRequest{})
+		res, _, err := api.ListDORADeployments(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to list-d-o-r-ad-eployments")
 
 		cmd.Println(cmdutil.FormatJSON(res, "dora_metrics"))

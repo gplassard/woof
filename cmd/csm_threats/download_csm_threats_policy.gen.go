@@ -17,6 +17,7 @@ var DownloadCSMThreatsPolicyCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
 		api := datadogV2.NewCSMThreatsApi(client.NewAPIClient())
 		res, _, err := api.DownloadCSMThreatsPolicy(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to download-csm-threats-policy")

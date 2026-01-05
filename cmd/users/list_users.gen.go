@@ -17,6 +17,7 @@ var ListUsersCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
 		api := datadogV2.NewUsersApi(client.NewAPIClient())
 		res, _, err := api.ListUsers(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-users")

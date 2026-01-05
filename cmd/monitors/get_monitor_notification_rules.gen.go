@@ -17,6 +17,7 @@ var GetMonitorNotificationRulesCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
 		api := datadogV2.NewMonitorsApi(client.NewAPIClient())
 		res, _, err := api.GetMonitorNotificationRules(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-monitor-notification-rules")

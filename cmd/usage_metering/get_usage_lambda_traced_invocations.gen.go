@@ -19,6 +19,7 @@ var GetUsageLambdaTracedInvocationsCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
 		api := datadogV2.NewUsageMeteringApi(client.NewAPIClient())
 		res, _, err := api.GetUsageLambdaTracedInvocations(client.NewContext(apiKey, appKey, site), func() time.Time { t, _ := time.Parse(time.RFC3339, args[0]); return t }())
 		cmdutil.HandleError(err, "failed to get-usage-lambda-traced-invocations")

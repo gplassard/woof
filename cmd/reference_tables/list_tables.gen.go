@@ -17,6 +17,7 @@ var ListTablesCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
 		api := datadogV2.NewReferenceTablesApi(client.NewAPIClient())
 		res, _, err := api.ListTables(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-tables")

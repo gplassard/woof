@@ -8,17 +8,24 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
+
+	"encoding/json"
 )
 
 var UpsertBudgetCmd = &cobra.Command{
-	Use: "upsert-budget",
+	Use: "upsert-budget [payload]",
 
 	Short: "Create or update a budget",
-
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
+		var body datadogV2.BudgetWithEntries
+		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		cmdutil.HandleError(err, "failed to unmarshal request body")
+
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
-		res, _, err := api.UpsertBudget(client.NewContext(apiKey, appKey, site), datadogV2.BudgetWithEntries{})
+		res, _, err := api.UpsertBudget(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to upsert-budget")
 
 		cmd.Println(cmdutil.FormatJSON(res, "cloud_cost_management"))

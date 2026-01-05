@@ -17,6 +17,7 @@ var GetProjectsCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
 		api := datadogV2.NewCaseManagementApi(client.NewAPIClient())
 		res, _, err := api.GetProjects(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-projects")

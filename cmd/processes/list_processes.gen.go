@@ -17,6 +17,7 @@ var ListProcessesCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
 		api := datadogV2.NewProcessesApi(client.NewAPIClient())
 		res, _, err := api.ListProcesses(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-processes")

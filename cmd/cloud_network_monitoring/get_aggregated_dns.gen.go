@@ -17,6 +17,7 @@ var GetAggregatedDnsCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
 		api := datadogV2.NewCloudNetworkMonitoringApi(client.NewAPIClient())
 		res, _, err := api.GetAggregatedDns(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-aggregated-dns")

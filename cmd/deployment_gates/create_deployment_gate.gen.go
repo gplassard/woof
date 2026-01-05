@@ -8,17 +8,24 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
+
+	"encoding/json"
 )
 
 var CreateDeploymentGateCmd = &cobra.Command{
-	Use:     "create-deployment-gate",
+	Use:     "create-deployment-gate [payload]",
 	Aliases: []string{"create"},
 	Short:   "Create deployment gate",
-
+	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
+		var body datadogV2.CreateDeploymentGateParams
+		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		cmdutil.HandleError(err, "failed to unmarshal request body")
+
 		api := datadogV2.NewDeploymentGatesApi(client.NewAPIClient())
-		res, _, err := api.CreateDeploymentGate(client.NewContext(apiKey, appKey, site), datadogV2.CreateDeploymentGateParams{})
+		res, _, err := api.CreateDeploymentGate(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-deployment-gate")
 
 		cmd.Println(cmdutil.FormatJSON(res, "deployment_gate"))

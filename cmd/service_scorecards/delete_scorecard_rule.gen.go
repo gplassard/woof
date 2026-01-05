@@ -17,6 +17,7 @@ var DeleteScorecardRuleCmd = &cobra.Command{
 	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
 		api := datadogV2.NewServiceScorecardsApi(client.NewAPIClient())
 		_, err := api.DeleteScorecardRule(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to delete-scorecard-rule")

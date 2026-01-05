@@ -17,6 +17,7 @@ var GetResourceEvaluationFiltersCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.GetResourceEvaluationFilters(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-resource-evaluation-filters")

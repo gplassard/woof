@@ -18,6 +18,7 @@ var GetIncidentNotificationTemplateCmd = &cobra.Command{
 	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
 		res, _, err := api.GetIncidentNotificationTemplate(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
 		cmdutil.HandleError(err, "failed to get-incident-notification-template")

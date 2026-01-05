@@ -17,6 +17,7 @@ var GetIPAllowlistCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
 		api := datadogV2.NewIPAllowlistApi(client.NewAPIClient())
 		res, _, err := api.GetIPAllowlist(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-ip-allowlist")

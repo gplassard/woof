@@ -17,6 +17,7 @@ var ListStandardPatternsCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
 		api := datadogV2.NewSensitiveDataScannerApi(client.NewAPIClient())
 		res, _, err := api.ListStandardPatterns(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-standard-patterns")

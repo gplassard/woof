@@ -17,6 +17,7 @@ var CancelDowntimeCmd = &cobra.Command{
 	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
 		api := datadogV2.NewDowntimesApi(client.NewAPIClient())
 		_, err := api.CancelDowntime(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to cancel-downtime")

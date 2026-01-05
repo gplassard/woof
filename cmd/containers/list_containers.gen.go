@@ -17,6 +17,7 @@ var ListContainersCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
 		api := datadogV2.NewContainersApi(client.NewAPIClient())
 		res, _, err := api.ListContainers(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-containers")

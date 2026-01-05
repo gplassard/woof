@@ -8,17 +8,24 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
+
+	"encoding/json"
 )
 
 var CreateMonitorNotificationRuleCmd = &cobra.Command{
-	Use:     "create-monitor-notification-rule",
+	Use:     "create-monitor-notification-rule [payload]",
 	Aliases: []string{"create-notification-rule"},
 	Short:   "Create a monitor notification rule",
-
+	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
+		var body datadogV2.MonitorNotificationRuleCreateRequest
+		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		cmdutil.HandleError(err, "failed to unmarshal request body")
+
 		api := datadogV2.NewMonitorsApi(client.NewAPIClient())
-		res, _, err := api.CreateMonitorNotificationRule(client.NewContext(apiKey, appKey, site), datadogV2.MonitorNotificationRuleCreateRequest{})
+		res, _, err := api.CreateMonitorNotificationRule(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-monitor-notification-rule")
 
 		cmd.Println(cmdutil.FormatJSON(res, "monitor-notification-rule"))

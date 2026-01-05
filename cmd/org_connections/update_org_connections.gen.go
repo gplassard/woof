@@ -9,17 +9,24 @@ import (
 	"github.com/google/uuid"
 
 	"github.com/spf13/cobra"
+
+	"encoding/json"
 )
 
 var UpdateOrgConnectionsCmd = &cobra.Command{
-	Use:     "update-org-connections [connection_id]",
+	Use:     "update-org-connections [connection_id] [payload]",
 	Aliases: []string{"update"},
 	Short:   "Update Org Connection",
-	Args:    cobra.ExactArgs(1),
+	Args:    cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
+		var body datadogV2.OrgConnectionUpdateRequest
+		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		cmdutil.HandleError(err, "failed to unmarshal request body")
+
 		api := datadogV2.NewOrgConnectionsApi(client.NewAPIClient())
-		res, _, err := api.UpdateOrgConnections(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]), datadogV2.OrgConnectionUpdateRequest{})
+		res, _, err := api.UpdateOrgConnections(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]), body)
 		cmdutil.HandleError(err, "failed to update-org-connections")
 
 		cmd.Println(cmdutil.FormatJSON(res, "org_connection"))

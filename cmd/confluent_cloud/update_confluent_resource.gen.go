@@ -8,17 +8,24 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
+
+	"encoding/json"
 )
 
 var UpdateConfluentResourceCmd = &cobra.Command{
-	Use: "update-confluent-resource [account_id] [resource_id]",
+	Use: "update-confluent-resource [account_id] [resource_id] [payload]",
 
 	Short: "Update resource in Confluent account",
-	Args:  cobra.ExactArgs(2),
+	Args:  cobra.ExactArgs(3),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
+		var body datadogV2.ConfluentResourceRequest
+		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		cmdutil.HandleError(err, "failed to unmarshal request body")
+
 		api := datadogV2.NewConfluentCloudApi(client.NewAPIClient())
-		res, _, err := api.UpdateConfluentResource(client.NewContext(apiKey, appKey, site), args[0], args[1], datadogV2.ConfluentResourceRequest{})
+		res, _, err := api.UpdateConfluentResource(client.NewContext(apiKey, appKey, site), args[0], args[1], body)
 		cmdutil.HandleError(err, "failed to update-confluent-resource")
 
 		cmd.Println(cmdutil.FormatJSON(res, "confluent-cloud-resources"))

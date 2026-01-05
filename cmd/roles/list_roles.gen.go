@@ -17,6 +17,7 @@ var ListRolesCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
 		api := datadogV2.NewRolesApi(client.NewAPIClient())
 		res, _, err := api.ListRoles(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-roles")

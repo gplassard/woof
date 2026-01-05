@@ -17,6 +17,7 @@ var DeleteRetentionFilterCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
 		api := datadogV2.NewRumRetentionFiltersApi(client.NewAPIClient())
 		_, err := api.DeleteRetentionFilter(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		cmdutil.HandleError(err, "failed to delete-retention-filter")

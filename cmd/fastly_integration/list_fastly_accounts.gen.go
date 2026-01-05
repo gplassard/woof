@@ -17,6 +17,7 @@ var ListFastlyAccountsCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
 		api := datadogV2.NewFastlyIntegrationApi(client.NewAPIClient())
 		res, _, err := api.ListFastlyAccounts(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-fastly-accounts")

@@ -17,6 +17,7 @@ var ListFleetSchedulesCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
 		api := datadogV2.NewFleetAutomationApi(client.NewAPIClient())
 		res, _, err := api.ListFleetSchedules(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-fleet-schedules")

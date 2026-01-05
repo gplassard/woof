@@ -17,6 +17,7 @@ var ListMonitorConfigPoliciesCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
 		api := datadogV2.NewMonitorsApi(client.NewAPIClient())
 		res, _, err := api.ListMonitorConfigPolicies(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-monitor-config-policies")

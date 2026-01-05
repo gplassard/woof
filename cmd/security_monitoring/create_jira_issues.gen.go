@@ -8,17 +8,24 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
+
+	"encoding/json"
 )
 
 var CreateJiraIssuesCmd = &cobra.Command{
-	Use: "create-jira-issues",
+	Use: "create-jira-issues [payload]",
 
 	Short: "Create Jira issues for security findings",
-
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
+		var body datadogV2.CreateJiraIssueRequestArray
+		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		cmdutil.HandleError(err, "failed to unmarshal request body")
+
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
-		res, _, err := api.CreateJiraIssues(client.NewContext(apiKey, appKey, site), datadogV2.CreateJiraIssueRequestArray{})
+		res, _, err := api.CreateJiraIssues(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-jira-issues")
 
 		cmd.Println(cmdutil.FormatJSON(res, "cases"))

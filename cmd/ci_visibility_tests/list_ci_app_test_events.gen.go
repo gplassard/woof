@@ -17,6 +17,7 @@ var ListCIAppTestEventsCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
 		api := datadogV2.NewCIVisibilityTestsApi(client.NewAPIClient())
 		res, _, err := api.ListCIAppTestEvents(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-ci-app-test-events")

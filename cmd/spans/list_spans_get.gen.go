@@ -17,6 +17,7 @@ var ListSpansGetCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
 		api := datadogV2.NewSpansApi(client.NewAPIClient())
 		res, _, err := api.ListSpansGet(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-spans-get")

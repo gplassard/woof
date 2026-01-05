@@ -8,17 +8,24 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
+
+	"encoding/json"
 )
 
 var CreateDORADeploymentCmd = &cobra.Command{
-	Use: "create-d-o-r-ad-eployment",
+	Use: "create-d-o-r-ad-eployment [payload]",
 
 	Short: "Send a deployment event",
-
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
+		var body datadogV2.DORADeploymentRequest
+		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		cmdutil.HandleError(err, "failed to unmarshal request body")
+
 		api := datadogV2.NewDORAMetricsApi(client.NewAPIClient())
-		res, _, err := api.CreateDORADeployment(client.NewContext(apiKey, appKey, site), datadogV2.DORADeploymentRequest{})
+		res, _, err := api.CreateDORADeployment(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-d-o-r-ad-eployment")
 
 		cmd.Println(cmdutil.FormatJSON(res, "dora_deployment"))

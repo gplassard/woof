@@ -224,6 +224,10 @@ func prepareTemplateData(bundle, rawBundle, apiBundleName, method, path string, 
 	requestBodyType := ""
 	isOptionalParams := false
 	if hasRequestBody {
+		use += " [payload]"
+		args = append(args, "payload")
+		argTypes = append(argTypes, "string")
+
 		for _, content := range op.RequestBody.Content {
 			if content.Schema.Ref != "" {
 				requestBodyType = filepath.Base(content.Schema.Ref)

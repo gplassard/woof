@@ -8,17 +8,24 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
+
+	"encoding/json"
 )
 
 var BulkWriteDatastoreItemsCmd = &cobra.Command{
-	Use:     "bulk-write-datastore-items [datastore_id]",
+	Use:     "bulk-write-datastore-items [datastore_id] [payload]",
 	Aliases: []string{"bulk-write-items"},
 	Short:   "Bulk write datastore items",
-	Args:    cobra.ExactArgs(1),
+	Args:    cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
+		var body datadogV2.BulkPutAppsDatastoreItemsRequest
+		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		cmdutil.HandleError(err, "failed to unmarshal request body")
+
 		api := datadogV2.NewActionsDatastoresApi(client.NewAPIClient())
-		res, _, err := api.BulkWriteDatastoreItems(client.NewContext(apiKey, appKey, site), args[0], datadogV2.BulkPutAppsDatastoreItemsRequest{})
+		res, _, err := api.BulkWriteDatastoreItems(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to bulk-write-datastore-items")
 
 		cmd.Println(cmdutil.FormatJSON(res, "items"))

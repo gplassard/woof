@@ -17,6 +17,7 @@ var ListLogsMetricsCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
 		api := datadogV2.NewLogsMetricsApi(client.NewAPIClient())
 		res, _, err := api.ListLogsMetrics(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-logs-metrics")

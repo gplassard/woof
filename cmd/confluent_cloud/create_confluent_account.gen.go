@@ -8,17 +8,24 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
+
+	"encoding/json"
 )
 
 var CreateConfluentAccountCmd = &cobra.Command{
-	Use: "create-confluent-account",
+	Use: "create-confluent-account [payload]",
 
 	Short: "Add Confluent account",
-
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
+		var body datadogV2.ConfluentAccountCreateRequest
+		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		cmdutil.HandleError(err, "failed to unmarshal request body")
+
 		api := datadogV2.NewConfluentCloudApi(client.NewAPIClient())
-		res, _, err := api.CreateConfluentAccount(client.NewContext(apiKey, appKey, site), datadogV2.ConfluentAccountCreateRequest{})
+		res, _, err := api.CreateConfluentAccount(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-confluent-account")
 
 		cmd.Println(cmdutil.FormatJSON(res, "confluent-cloud-accounts"))

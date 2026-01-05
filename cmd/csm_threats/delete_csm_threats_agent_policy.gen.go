@@ -17,6 +17,7 @@ var DeleteCSMThreatsAgentPolicyCmd = &cobra.Command{
 	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
 		api := datadogV2.NewCSMThreatsApi(client.NewAPIClient())
 		_, err := api.DeleteCSMThreatsAgentPolicy(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to delete-csm-threats-agent-policy")

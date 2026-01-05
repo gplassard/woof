@@ -17,6 +17,7 @@ var ListAWSLogsServicesCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
 		api := datadogV2.NewAWSLogsIntegrationApi(client.NewAPIClient())
 		res, _, err := api.ListAWSLogsServices(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-aws-logs-services")

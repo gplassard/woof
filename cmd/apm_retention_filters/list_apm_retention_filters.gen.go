@@ -17,6 +17,7 @@ var ListApmRetentionFiltersCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
 		api := datadogV2.NewAPMRetentionFiltersApi(client.NewAPIClient())
 		res, _, err := api.ListApmRetentionFilters(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-apm-retention-filters")

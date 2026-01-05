@@ -8,17 +8,24 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
+
+	"encoding/json"
 )
 
 var CreateSignalNotificationRuleCmd = &cobra.Command{
-	Use: "create-signal-notification-rule",
+	Use: "create-signal-notification-rule [payload]",
 
 	Short: "Create a new signal-based notification rule",
-
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
+		var body datadogV2.CreateNotificationRuleParameters
+		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		cmdutil.HandleError(err, "failed to unmarshal request body")
+
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
-		res, _, err := api.CreateSignalNotificationRule(client.NewContext(apiKey, appKey, site), datadogV2.CreateNotificationRuleParameters{})
+		res, _, err := api.CreateSignalNotificationRule(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-signal-notification-rule")
 
 		cmd.Println(cmdutil.FormatJSON(res, "notification_rules"))

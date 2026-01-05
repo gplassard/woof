@@ -17,6 +17,7 @@ var GetAWSIntegrationIAMPermissionsResourceCollectionCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
 		api := datadogV2.NewAWSIntegrationApi(client.NewAPIClient())
 		res, _, err := api.GetAWSIntegrationIAMPermissionsResourceCollection(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-aws-integration-iam-permissions-resource-collection")

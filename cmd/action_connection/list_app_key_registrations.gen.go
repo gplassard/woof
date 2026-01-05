@@ -17,6 +17,7 @@ var ListAppKeyRegistrationsCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
 		api := datadogV2.NewActionConnectionApi(client.NewAPIClient())
 		res, _, err := api.ListAppKeyRegistrations(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-app-key-registrations")

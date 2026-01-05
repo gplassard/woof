@@ -17,6 +17,7 @@ var ListAssetsSBOMsCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err := api.ListAssetsSBOMs(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-assets-sbom-s")

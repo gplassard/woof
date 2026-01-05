@@ -17,6 +17,7 @@ var UnregisterAppKeyCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
 		api := datadogV2.NewActionConnectionApi(client.NewAPIClient())
 		_, err := api.UnregisterAppKey(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to unregister-app-key")

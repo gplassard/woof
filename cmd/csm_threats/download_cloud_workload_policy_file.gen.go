@@ -17,6 +17,7 @@ var DownloadCloudWorkloadPolicyFileCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
 		api := datadogV2.NewCSMThreatsApi(client.NewAPIClient())
 		res, _, err := api.DownloadCloudWorkloadPolicyFile(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to download-cloud-workload-policy-file")

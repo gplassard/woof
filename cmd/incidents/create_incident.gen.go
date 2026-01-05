@@ -8,17 +8,24 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
+
+	"encoding/json"
 )
 
 var CreateIncidentCmd = &cobra.Command{
-	Use:     "create-incident",
+	Use:     "create-incident [payload]",
 	Aliases: []string{"create"},
 	Short:   "Create an incident",
-
+	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
+		var body datadogV2.IncidentCreateRequest
+		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		cmdutil.HandleError(err, "failed to unmarshal request body")
+
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
-		res, _, err := api.CreateIncident(client.NewContext(apiKey, appKey, site), datadogV2.IncidentCreateRequest{})
+		res, _, err := api.CreateIncident(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-incident")
 
 		cmd.Println(cmdutil.FormatJSON(res, "incidents"))

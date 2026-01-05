@@ -8,17 +8,24 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
+
+	"encoding/json"
 )
 
 var SetOnDemandConcurrencyCapCmd = &cobra.Command{
-	Use: "set-on-demand-concurrency-cap",
+	Use: "set-on-demand-concurrency-cap [payload]",
 
 	Short: "Save new value for on-demand concurrency cap",
-
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
+		var body datadogV2.OnDemandConcurrencyCapAttributes
+		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		cmdutil.HandleError(err, "failed to unmarshal request body")
+
 		api := datadogV2.NewSyntheticsApi(client.NewAPIClient())
-		res, _, err := api.SetOnDemandConcurrencyCap(client.NewContext(apiKey, appKey, site), datadogV2.OnDemandConcurrencyCapAttributes{})
+		res, _, err := api.SetOnDemandConcurrencyCap(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to set-on-demand-concurrency-cap")
 
 		cmd.Println(cmdutil.FormatJSON(res, "on_demand_concurrency_cap"))

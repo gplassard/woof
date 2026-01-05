@@ -17,6 +17,7 @@ var GetServiceListCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
 		api := datadogV2.NewAPMApi(client.NewAPIClient())
 		res, _, err := api.GetServiceList(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-service-list")

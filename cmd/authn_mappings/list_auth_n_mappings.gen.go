@@ -17,6 +17,7 @@ var ListAuthNMappingsCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
 		api := datadogV2.NewAuthNMappingsApi(client.NewAPIClient())
 		res, _, err := api.ListAuthNMappings(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-auth-n-mappings")

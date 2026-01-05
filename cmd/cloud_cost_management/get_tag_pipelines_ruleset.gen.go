@@ -17,6 +17,7 @@ var GetTagPipelinesRulesetCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
 		res, _, err := api.GetTagPipelinesRuleset(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-tag-pipelines-ruleset")

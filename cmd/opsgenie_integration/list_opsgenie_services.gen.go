@@ -17,6 +17,7 @@ var ListOpsgenieServicesCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
 		api := datadogV2.NewOpsgenieIntegrationApi(client.NewAPIClient())
 		res, _, err := api.ListOpsgenieServices(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-opsgenie-services")

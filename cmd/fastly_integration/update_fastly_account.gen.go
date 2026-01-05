@@ -8,17 +8,24 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
+
+	"encoding/json"
 )
 
 var UpdateFastlyAccountCmd = &cobra.Command{
-	Use: "update-fastly-account [account_id]",
+	Use: "update-fastly-account [account_id] [payload]",
 
 	Short: "Update Fastly account",
-	Args:  cobra.ExactArgs(1),
+	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
+		var body datadogV2.FastlyAccountUpdateRequest
+		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		cmdutil.HandleError(err, "failed to unmarshal request body")
+
 		api := datadogV2.NewFastlyIntegrationApi(client.NewAPIClient())
-		res, _, err := api.UpdateFastlyAccount(client.NewContext(apiKey, appKey, site), args[0], datadogV2.FastlyAccountUpdateRequest{})
+		res, _, err := api.UpdateFastlyAccount(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-fastly-account")
 
 		cmd.Println(cmdutil.FormatJSON(res, "fastly-accounts"))

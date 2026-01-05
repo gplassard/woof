@@ -17,6 +17,7 @@ var ListWorkflowsWebhookHandlesCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
 		api := datadogV2.NewMicrosoftTeamsIntegrationApi(client.NewAPIClient())
 		res, _, err := api.ListWorkflowsWebhookHandles(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-workflows-webhook-handles")

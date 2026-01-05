@@ -17,6 +17,7 @@ var DeleteTenantBasedHandleCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
 		api := datadogV2.NewMicrosoftTeamsIntegrationApi(client.NewAPIClient())
 		_, err := api.DeleteTenantBasedHandle(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to delete-tenant-based-handle")

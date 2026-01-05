@@ -8,17 +8,24 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
+
+	"encoding/json"
 )
 
 var UpdatePipelineCmd = &cobra.Command{
-	Use: "update-pipeline [pipeline_id]",
+	Use: "update-pipeline [pipeline_id] [payload]",
 
 	Short: "Update a pipeline",
-	Args:  cobra.ExactArgs(1),
+	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
+		var body datadogV2.ObservabilityPipeline
+		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		cmdutil.HandleError(err, "failed to unmarshal request body")
+
 		api := datadogV2.NewObservabilityPipelinesApi(client.NewAPIClient())
-		res, _, err := api.UpdatePipeline(client.NewContext(apiKey, appKey, site), args[0], datadogV2.ObservabilityPipeline{})
+		res, _, err := api.UpdatePipeline(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-pipeline")
 
 		cmd.Println(cmdutil.FormatJSON(res, "observability_pipelines"))

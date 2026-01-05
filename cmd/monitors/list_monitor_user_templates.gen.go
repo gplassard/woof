@@ -17,6 +17,7 @@ var ListMonitorUserTemplatesCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
 		api := datadogV2.NewMonitorsApi(client.NewAPIClient())
 		res, _, err := api.ListMonitorUserTemplates(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-monitor-user-templates")
