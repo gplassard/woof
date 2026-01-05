@@ -1,4 +1,4 @@
-module ouaf
+module github.com/gplassard/ouaf
 
 go 1.25.5
 

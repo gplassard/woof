@@ -10,6 +10,11 @@ skip_operations:
   - MakeGCPSTSDelegate
   - SubmitLog
   - UploadCustomCostsFile
+  - CreateTeamNotificationRule
+  - DeleteTeamNotificationRule
+  - GetTeamNotificationRule
+  - GetTeamNotificationRules
+  - UpdateTeamNotificationRule
 
 optional_parameters_operations:
   SearchCIAppTestEvents: SearchCIAppTestEventsOptionalParameters

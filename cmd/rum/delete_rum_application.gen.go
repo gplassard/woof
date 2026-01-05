@@ -1,9 +1,9 @@
 package rum
 
 import (
-	"ouaf/pkg/client"
-	"ouaf/pkg/cmdutil"
-	"ouaf/pkg/config"
+	"github.com/gplassard/ouaf/pkg/client"
+	"github.com/gplassard/ouaf/pkg/cmdutil"
+	"github.com/gplassard/ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 

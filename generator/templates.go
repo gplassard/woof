@@ -418,7 +418,7 @@ func updateRootGo(bundles map[string]bool) error {
 	var imports []string
 	var commands []string
 	for _, bundle := range sortedBundles {
-		imports = append(imports, fmt.Sprintf("ouaf/cmd/%s", bundle))
+		imports = append(imports, fmt.Sprintf("github.com/gplassard/ouaf/cmd/%s", bundle))
 		commands = append(commands, fmt.Sprintf("%s.Cmd", bundle))
 	}
 

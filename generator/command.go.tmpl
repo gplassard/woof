@@ -1,9 +1,9 @@
 package {{.PackageName}}
 
 import (
-	"ouaf/pkg/config"
-	"ouaf/pkg/client"
-	"ouaf/pkg/cmdutil"
+	"github.com/gplassard/ouaf/pkg/config"
+	"github.com/gplassard/ouaf/pkg/client"
+	"github.com/gplassard/ouaf/pkg/cmdutil"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 	{{range .ArgTypes}}{{if eq . "uuid.UUID"}}"github.com/google/uuid"{{break}}{{end}}{{end}}

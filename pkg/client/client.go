@@ -2,7 +2,8 @@ package client
 
 import (
 	"context"
-	"ouaf/pkg/config"
+
+	"github.com/gplassard/ouaf/pkg/config"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
