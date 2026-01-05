@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/service-accounts/#get-servi
 }
 
 func init() {
+
 	Cmd.AddCommand(GetServiceAccountApplicationKeyCmd)
 }

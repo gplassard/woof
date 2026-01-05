@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call-paging/#acknowledge
 }
 
 func init() {
+
 	Cmd.AddCommand(AcknowledgeOnCallPageCmd)
 }

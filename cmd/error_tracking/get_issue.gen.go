@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/error-tracking/#get-issue`,
 }
 
 func init() {
+
 	Cmd.AddCommand(GetIssueCmd)
 }

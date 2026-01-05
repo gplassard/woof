@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/roles/#list-permissions`,
 }
 
 func init() {
+
 	Cmd.AddCommand(ListPermissionsCmd)
 }

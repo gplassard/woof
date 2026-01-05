@@ -8,25 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var UpdateOnCallScheduleCmd = &cobra.Command{
-	Use:     "update-on-call-schedule [schedule_id] [payload]",
+	Use:     "update-on-call-schedule [schedule_id]",
 	Aliases: []string{"update-schedule"},
 	Short:   "Update On-Call schedule",
 	Long: `Update On-Call schedule
 Documentation: https://docs.datadoghq.com/api/latest/on-call/#update-on-call-schedule`,
-	Args: cobra.ExactArgs(2),
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.Schedule
 		var err error
 
 		var body datadogV2.ScheduleUpdateRequest
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewOnCallApi(client.NewAPIClient())
 		res, _, err = api.UpdateOnCallSchedule(client.NewContext(apiKey, appKey, site), args[0], body)
@@ -37,5 +35,9 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#update-on-call-sch
 }
 
 func init() {
+
+	UpdateOnCallScheduleCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	UpdateOnCallScheduleCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(UpdateOnCallScheduleCmd)
 }

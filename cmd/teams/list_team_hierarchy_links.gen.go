@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/teams/#list-team-hierarchy-
 }
 
 func init() {
+
 	Cmd.AddCommand(ListTeamHierarchyLinksCmd)
 }

@@ -8,25 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var ReorderApmRetentionFiltersCmd = &cobra.Command{
-	Use:     "reorder-apm-retention-filters [payload]",
+	Use:     "reorder-apm-retention-filters",
 	Aliases: []string{"reorder"},
 	Short:   "Re-order retention filters",
 	Long: `Re-order retention filters
 Documentation: https://docs.datadoghq.com/api/latest/apm-retention-filters/#reorder-apm-retention-filters`,
-	Args: cobra.ExactArgs(1),
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 
 		var err error
 
 		var body datadogV2.ReorderRetentionFiltersRequest
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewAPMRetentionFiltersApi(client.NewAPIClient())
 		_, err = api.ReorderApmRetentionFilters(client.NewContext(apiKey, appKey, site), body)
@@ -36,5 +34,9 @@ Documentation: https://docs.datadoghq.com/api/latest/apm-retention-filters/#reor
 }
 
 func init() {
+
+	ReorderApmRetentionFiltersCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	ReorderApmRetentionFiltersCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(ReorderApmRetentionFiltersCmd)
 }

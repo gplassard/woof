@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/logs-metrics/#delete-logs-m
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteLogsMetricCmd)
 }

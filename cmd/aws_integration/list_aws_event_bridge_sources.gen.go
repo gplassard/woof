@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#list-aws-e
 }
 
 func init() {
+
 	Cmd.AddCommand(ListAWSEventBridgeSourcesCmd)
 }

@@ -8,25 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var CreateLogsMetricCmd = &cobra.Command{
-	Use:     "create-logs-metric [payload]",
+	Use:     "create-logs-metric",
 	Aliases: []string{"create"},
 	Short:   "Create a log-based metric",
 	Long: `Create a log-based metric
 Documentation: https://docs.datadoghq.com/api/latest/logs-metrics/#create-logs-metric`,
-	Args: cobra.ExactArgs(1),
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.LogsMetricResponse
 		var err error
 
 		var body datadogV2.LogsMetricCreateRequest
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewLogsMetricsApi(client.NewAPIClient())
 		res, _, err = api.CreateLogsMetric(client.NewContext(apiKey, appKey, site), body)
@@ -37,5 +35,9 @@ Documentation: https://docs.datadoghq.com/api/latest/logs-metrics/#create-logs-m
 }
 
 func init() {
+
+	CreateLogsMetricCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	CreateLogsMetricCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(CreateLogsMetricCmd)
 }

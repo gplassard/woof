@@ -8,25 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var CreateSCAResultCmd = &cobra.Command{
-	Use: "create-sca-result [payload]",
+	Use: "create-sca-result",
 
 	Short: "Post dependencies for analysis",
 	Long: `Post dependencies for analysis
 Documentation: https://docs.datadoghq.com/api/latest/static-analysis/#create-sca-result`,
-	Args: cobra.ExactArgs(1),
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 
 		var err error
 
 		var body datadogV2.ScaRequest
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewStaticAnalysisApi(client.NewAPIClient())
 		_, err = api.CreateSCAResult(client.NewContext(apiKey, appKey, site), body)
@@ -36,5 +34,9 @@ Documentation: https://docs.datadoghq.com/api/latest/static-analysis/#create-sca
 }
 
 func init() {
+
+	CreateSCAResultCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	CreateSCAResultCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(CreateSCAResultCmd)
 }

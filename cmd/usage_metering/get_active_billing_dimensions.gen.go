@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/usage-metering/#get-active-
 }
 
 func init() {
+
 	Cmd.AddCommand(GetActiveBillingDimensionsCmd)
 }

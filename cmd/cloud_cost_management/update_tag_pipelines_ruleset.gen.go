@@ -8,25 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var UpdateTagPipelinesRulesetCmd = &cobra.Command{
-	Use: "update-tag-pipelines-ruleset [ruleset_id] [payload]",
+	Use: "update-tag-pipelines-ruleset [ruleset_id]",
 
 	Short: "Update tag pipeline ruleset",
 	Long: `Update tag pipeline ruleset
 Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#update-tag-pipelines-ruleset`,
-	Args: cobra.ExactArgs(2),
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.RulesetResp
 		var err error
 
 		var body datadogV2.UpdateRulesetRequest
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
 		res, _, err = api.UpdateTagPipelinesRuleset(client.NewContext(apiKey, appKey, site), args[0], body)
@@ -37,5 +35,9 @@ Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#upda
 }
 
 func init() {
+
+	UpdateTagPipelinesRulesetCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	UpdateTagPipelinesRulesetCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(UpdateTagPipelinesRulesetCmd)
 }

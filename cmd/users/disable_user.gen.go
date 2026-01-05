@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/users/#disable-user`,
 }
 
 func init() {
+
 	Cmd.AddCommand(DisableUserCmd)
 }

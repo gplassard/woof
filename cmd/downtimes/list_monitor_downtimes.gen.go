@@ -32,5 +32,6 @@ Documentation: https://docs.datadoghq.com/api/latest/downtimes/#list-monitor-dow
 }
 
 func init() {
+
 	Cmd.AddCommand(ListMonitorDowntimesCmd)
 }

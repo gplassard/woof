@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/incident-teams/#delete-inci
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteIncidentTeamCmd)
 }

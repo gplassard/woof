@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#delete-on-call-esc
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteOnCallEscalationPolicyCmd)
 }

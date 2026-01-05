@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/csm-threats/#download-cloud
 }
 
 func init() {
+
 	Cmd.AddCommand(DownloadCloudWorkloadPolicyFileCmd)
 }

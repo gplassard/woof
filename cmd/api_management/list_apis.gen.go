@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/api-management/#list-apis`,
 }
 
 func init() {
+
 	Cmd.AddCommand(ListAPIsCmd)
 }

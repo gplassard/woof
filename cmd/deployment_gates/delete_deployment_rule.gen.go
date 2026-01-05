@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/deployment-gates/#delete-de
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteDeploymentRuleCmd)
 }

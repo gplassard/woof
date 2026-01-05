@@ -8,25 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var CreateCostGCPUsageCostConfigCmd = &cobra.Command{
-	Use: "create-cost-gcp-usage-cost-config [payload]",
+	Use: "create-cost-gcp-usage-cost-config",
 
 	Short: "Create Google Cloud Usage Cost config",
 	Long: `Create Google Cloud Usage Cost config
 Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#create-cost-gcp-usage-cost-config`,
-	Args: cobra.ExactArgs(1),
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.GCPUsageCostConfigResponse
 		var err error
 
 		var body datadogV2.GCPUsageCostConfigPostRequest
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
 		res, _, err = api.CreateCostGCPUsageCostConfig(client.NewContext(apiKey, appKey, site), body)
@@ -37,5 +35,9 @@ Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#crea
 }
 
 func init() {
+
+	CreateCostGCPUsageCostConfigCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	CreateCostGCPUsageCostConfigCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(CreateCostGCPUsageCostConfigCmd)
 }

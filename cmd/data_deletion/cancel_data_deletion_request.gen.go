@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/data-deletion/#cancel-data-
 }
 
 func init() {
+
 	Cmd.AddCommand(CancelDataDeletionRequestCmd)
 }

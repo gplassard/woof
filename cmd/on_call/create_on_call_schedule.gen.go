@@ -8,25 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var CreateOnCallScheduleCmd = &cobra.Command{
-	Use:     "create-on-call-schedule [payload]",
+	Use:     "create-on-call-schedule",
 	Aliases: []string{"create-schedule"},
 	Short:   "Create On-Call schedule",
 	Long: `Create On-Call schedule
 Documentation: https://docs.datadoghq.com/api/latest/on-call/#create-on-call-schedule`,
-	Args: cobra.ExactArgs(1),
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.Schedule
 		var err error
 
 		var body datadogV2.ScheduleCreateRequest
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewOnCallApi(client.NewAPIClient())
 		res, _, err = api.CreateOnCallSchedule(client.NewContext(apiKey, appKey, site), body)
@@ -37,5 +35,9 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#create-on-call-sch
 }
 
 func init() {
+
+	CreateOnCallScheduleCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	CreateOnCallScheduleCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(CreateOnCallScheduleCmd)
 }

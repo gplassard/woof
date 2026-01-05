@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/network-device-monitoring/#
 }
 
 func init() {
+
 	Cmd.AddCommand(GetDeviceCmd)
 }

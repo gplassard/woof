@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/opsgenie-integration/#list-
 }
 
 func init() {
+
 	Cmd.AddCommand(ListOpsgenieServicesCmd)
 }

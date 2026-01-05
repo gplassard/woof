@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/monitors/#delete-monitor-no
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteMonitorNotificationRuleCmd)
 }

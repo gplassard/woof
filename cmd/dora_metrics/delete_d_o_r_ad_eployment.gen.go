@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/dora-metrics/#delete-d-o-r-
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteDORADeploymentCmd)
 }

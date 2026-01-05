@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/action-connection/#register
 }
 
 func init() {
+
 	Cmd.AddCommand(RegisterAppKeyCmd)
 }

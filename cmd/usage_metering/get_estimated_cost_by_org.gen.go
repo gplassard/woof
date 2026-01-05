@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/usage-metering/#get-estimat
 }
 
 func init() {
+
 	Cmd.AddCommand(GetEstimatedCostByOrgCmd)
 }

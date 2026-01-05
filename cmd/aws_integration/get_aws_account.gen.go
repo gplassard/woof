@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#get-aws-ac
 }
 
 func init() {
+
 	Cmd.AddCommand(GetAWSAccountCmd)
 }

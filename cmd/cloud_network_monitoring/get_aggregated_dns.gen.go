@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/cloud-network-monitoring/#g
 }
 
 func init() {
+
 	Cmd.AddCommand(GetAggregatedDnsCmd)
 }

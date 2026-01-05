@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/logs-metrics/#get-logs-metr
 }
 
 func init() {
+
 	Cmd.AddCommand(GetLogsMetricCmd)
 }

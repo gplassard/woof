@@ -8,25 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var UpdateDatastoreItemCmd = &cobra.Command{
-	Use:     "update-datastore-item [datastore_id] [payload]",
+	Use:     "update-datastore-item [datastore_id]",
 	Aliases: []string{"update-item"},
 	Short:   "Update datastore item",
 	Long: `Update datastore item
 Documentation: https://docs.datadoghq.com/api/latest/actions-datastores/#update-datastore-item`,
-	Args: cobra.ExactArgs(2),
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.ItemApiPayload
 		var err error
 
 		var body datadogV2.UpdateAppsDatastoreItemRequest
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewActionsDatastoresApi(client.NewAPIClient())
 		res, _, err = api.UpdateDatastoreItem(client.NewContext(apiKey, appKey, site), args[0], body)
@@ -37,5 +35,9 @@ Documentation: https://docs.datadoghq.com/api/latest/actions-datastores/#update-
 }
 
 func init() {
+
+	UpdateDatastoreItemCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	UpdateDatastoreItemCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(UpdateDatastoreItemCmd)
 }

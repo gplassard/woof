@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/rum-retention-filters/#list
 }
 
 func init() {
+
 	Cmd.AddCommand(ListRetentionFiltersCmd)
 }

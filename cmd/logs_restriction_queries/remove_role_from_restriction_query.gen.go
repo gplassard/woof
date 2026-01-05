@@ -8,25 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var RemoveRoleFromRestrictionQueryCmd = &cobra.Command{
-	Use: "remove-role-from-restriction-query [restriction_query_id] [payload]",
+	Use: "remove-role-from-restriction-query [restriction_query_id]",
 
 	Short: "Revoke role from a restriction query",
 	Long: `Revoke role from a restriction query
 Documentation: https://docs.datadoghq.com/api/latest/logs-restriction-queries/#remove-role-from-restriction-query`,
-	Args: cobra.ExactArgs(2),
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 
 		var err error
 
 		var body datadogV2.RelationshipToRole
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewLogsRestrictionQueriesApi(client.NewAPIClient())
 		_, err = api.RemoveRoleFromRestrictionQuery(client.NewContext(apiKey, appKey, site), args[0], body)
@@ -36,5 +34,9 @@ Documentation: https://docs.datadoghq.com/api/latest/logs-restriction-queries/#r
 }
 
 func init() {
+
+	RemoveRoleFromRestrictionQueryCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	RemoveRoleFromRestrictionQueryCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(RemoveRoleFromRestrictionQueryCmd)
 }

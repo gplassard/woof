@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/org-connections/#delete-org
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteOrgConnectionsCmd)
 }

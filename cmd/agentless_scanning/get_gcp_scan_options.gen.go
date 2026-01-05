@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#get-gcp
 }
 
 func init() {
+
 	Cmd.AddCommand(GetGcpScanOptionsCmd)
 }

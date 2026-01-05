@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#delete
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteThreatHuntingJobCmd)
 }

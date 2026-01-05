@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/csm-agents/#list-all-csm-ag
 }
 
 func init() {
+
 	Cmd.AddCommand(ListAllCSMAgentsCmd)
 }

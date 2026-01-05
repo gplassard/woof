@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/workflow-automation/#cancel
 }
 
 func init() {
+
 	Cmd.AddCommand(CancelWorkflowInstanceCmd)
 }

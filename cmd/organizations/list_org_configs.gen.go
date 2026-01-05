@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/organizations/#list-org-con
 }
 
 func init() {
+
 	Cmd.AddCommand(ListOrgConfigsCmd)
 }

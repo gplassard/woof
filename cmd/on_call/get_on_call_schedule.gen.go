@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#get-on-call-schedu
 }
 
 func init() {
+
 	Cmd.AddCommand(GetOnCallScheduleCmd)
 }

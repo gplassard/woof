@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/okta-integration/#delete-ok
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteOktaAccountCmd)
 }

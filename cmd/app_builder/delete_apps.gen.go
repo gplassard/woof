@@ -8,25 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var DeleteAppsCmd = &cobra.Command{
-	Use: "delete-apps [payload]",
+	Use: "delete-apps",
 
 	Short: "Delete Multiple Apps",
 	Long: `Delete Multiple Apps
 Documentation: https://docs.datadoghq.com/api/latest/app-builder/#delete-apps`,
-	Args: cobra.ExactArgs(1),
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.DeleteAppsResponse
 		var err error
 
 		var body datadogV2.DeleteAppsRequest
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewAppBuilderApi(client.NewAPIClient())
 		res, _, err = api.DeleteApps(client.NewContext(apiKey, appKey, site), body)
@@ -37,5 +35,9 @@ Documentation: https://docs.datadoghq.com/api/latest/app-builder/#delete-apps`,
 }
 
 func init() {
+
+	DeleteAppsCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	DeleteAppsCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(DeleteAppsCmd)
 }

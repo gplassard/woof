@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/incident-services/#delete-i
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteIncidentServiceCmd)
 }

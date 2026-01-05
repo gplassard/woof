@@ -8,25 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var CreateAwsScanOptionsCmd = &cobra.Command{
-	Use: "create-aws-scan-options [payload]",
+	Use: "create-aws-scan-options",
 
 	Short: "Create AWS scan options",
 	Long: `Create AWS scan options
 Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#create-aws-scan-options`,
-	Args: cobra.ExactArgs(1),
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.AwsScanOptionsResponse
 		var err error
 
 		var body datadogV2.AwsScanOptionsCreateRequest
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewAgentlessScanningApi(client.NewAPIClient())
 		res, _, err = api.CreateAwsScanOptions(client.NewContext(apiKey, appKey, site), body)
@@ -37,5 +35,9 @@ Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#create-
 }
 
 func init() {
+
+	CreateAwsScanOptionsCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	CreateAwsScanOptionsCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(CreateAwsScanOptionsCmd)
 }

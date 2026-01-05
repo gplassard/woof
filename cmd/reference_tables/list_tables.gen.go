@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/reference-tables/#list-tabl
 }
 
 func init() {
+
 	Cmd.AddCommand(ListTablesCmd)
 }

@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/confluent-cloud/#list-confl
 }
 
 func init() {
+
 	Cmd.AddCommand(ListConfluentAccountCmd)
 }

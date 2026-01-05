@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/metrics/#estimate-metrics-o
 }
 
 func init() {
+
 	Cmd.AddCommand(EstimateMetricsOutputSeriesCmd)
 }

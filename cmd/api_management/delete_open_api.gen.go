@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/api-management/#delete-open
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteOpenAPICmd)
 }

@@ -32,5 +32,6 @@ Documentation: https://docs.datadoghq.com/api/latest/app-builder/#get-app`,
 }
 
 func init() {
+
 	Cmd.AddCommand(GetAppCmd)
 }

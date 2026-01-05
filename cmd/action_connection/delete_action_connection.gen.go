@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/action-connection/#delete-a
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteActionConnectionCmd)
 }

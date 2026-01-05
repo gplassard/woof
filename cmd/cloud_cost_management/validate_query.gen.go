@@ -8,25 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var ValidateQueryCmd = &cobra.Command{
-	Use: "validate-query [payload]",
+	Use: "validate-query",
 
 	Short: "Validate query",
 	Long: `Validate query
 Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#validate-query`,
-	Args: cobra.ExactArgs(1),
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.RulesValidateQueryResponse
 		var err error
 
 		var body datadogV2.RulesValidateQueryRequest
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
 		res, _, err = api.ValidateQuery(client.NewContext(apiKey, appKey, site), body)
@@ -37,5 +35,9 @@ Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#vali
 }
 
 func init() {
+
+	ValidateQueryCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	ValidateQueryCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(ValidateQueryCmd)
 }

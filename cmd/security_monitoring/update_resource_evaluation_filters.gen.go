@@ -8,25 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var UpdateResourceEvaluationFiltersCmd = &cobra.Command{
-	Use: "update-resource-evaluation-filters [payload]",
+	Use: "update-resource-evaluation-filters",
 
 	Short: "Update resource filters",
 	Long: `Update resource filters
 Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#update-resource-evaluation-filters`,
-	Args: cobra.ExactArgs(1),
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.UpdateResourceEvaluationFiltersResponse
 		var err error
 
 		var body datadogV2.UpdateResourceEvaluationFiltersRequest
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		res, _, err = api.UpdateResourceEvaluationFilters(client.NewContext(apiKey, appKey, site), body)
@@ -37,5 +35,9 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#update
 }
 
 func init() {
+
+	UpdateResourceEvaluationFiltersCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	UpdateResourceEvaluationFiltersCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(UpdateResourceEvaluationFiltersCmd)
 }

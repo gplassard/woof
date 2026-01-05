@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/ip-allowlist/#get-ip-allowl
 }
 
 func init() {
+
 	Cmd.AddCommand(GetIPAllowlistCmd)
 }

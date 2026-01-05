@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/spans/#list-spans-get`,
 }
 
 func init() {
+
 	Cmd.AddCommand(ListSpansGetCmd)
 }

@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/authn-mappings/#list-auth-n
 }
 
 func init() {
+
 	Cmd.AddCommand(ListAuthNMappingsCmd)
 }

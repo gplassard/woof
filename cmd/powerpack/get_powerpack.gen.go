@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/powerpack/#get-powerpack`,
 }
 
 func init() {
+
 	Cmd.AddCommand(GetPowerpackCmd)
 }

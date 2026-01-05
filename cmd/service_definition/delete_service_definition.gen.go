@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/service-definition/#delete-
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteServiceDefinitionCmd)
 }

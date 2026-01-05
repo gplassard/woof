@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/restriction-policies/#get-r
 }
 
 func init() {
+
 	Cmd.AddCommand(GetRestrictionPolicyCmd)
 }

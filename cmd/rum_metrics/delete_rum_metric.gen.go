@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/rum-metrics/#delete-rum-met
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteRumMetricCmd)
 }

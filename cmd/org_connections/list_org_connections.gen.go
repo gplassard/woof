@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/org-connections/#list-org-c
 }
 
 func init() {
+
 	Cmd.AddCommand(ListOrgConnectionsCmd)
 }

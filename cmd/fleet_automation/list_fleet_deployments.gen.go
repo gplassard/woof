@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/fleet-automation/#list-flee
 }
 
 func init() {
+
 	Cmd.AddCommand(ListFleetDeploymentsCmd)
 }

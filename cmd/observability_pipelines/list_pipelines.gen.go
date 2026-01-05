@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/observability-pipelines/#li
 }
 
 func init() {
+
 	Cmd.AddCommand(ListPipelinesCmd)
 }

@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/sensitive-data-scanner/#lis
 }
 
 func init() {
+
 	Cmd.AddCommand(ListStandardPatternsCmd)
 }

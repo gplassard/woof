@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/audit/#list-audit-logs`,
 }
 
 func init() {
+
 	Cmd.AddCommand(ListAuditLogsCmd)
 }

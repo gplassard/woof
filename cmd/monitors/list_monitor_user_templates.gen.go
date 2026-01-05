@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/monitors/#list-monitor-user
 }
 
 func init() {
+
 	Cmd.AddCommand(ListMonitorUserTemplatesCmd)
 }

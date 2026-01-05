@@ -8,25 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var ConvertJobResultToSignalCmd = &cobra.Command{
-	Use: "convert-job-result-to-signal [payload]",
+	Use: "convert-job-result-to-signal",
 
 	Short: "Convert a job result to a signal",
 	Long: `Convert a job result to a signal
 Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#convert-job-result-to-signal`,
-	Args: cobra.ExactArgs(1),
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 
 		var err error
 
 		var body datadogV2.ConvertJobResultsToSignalsRequest
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		_, err = api.ConvertJobResultToSignal(client.NewContext(apiKey, appKey, site), body)
@@ -36,5 +34,9 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#conver
 }
 
 func init() {
+
+	ConvertJobResultToSignalCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	ConvertJobResultToSignalCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(ConvertJobResultToSignalCmd)
 }

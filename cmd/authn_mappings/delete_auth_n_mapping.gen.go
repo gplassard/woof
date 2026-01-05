@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/authn-mappings/#delete-auth
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteAuthNMappingCmd)
 }

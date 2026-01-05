@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/synthetics/#get-on-demand-c
 }
 
 func init() {
+
 	Cmd.AddCommand(GetOnDemandConcurrencyCapCmd)
 }

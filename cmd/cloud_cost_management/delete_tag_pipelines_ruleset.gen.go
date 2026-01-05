@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#dele
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteTagPipelinesRulesetCmd)
 }

@@ -8,25 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var CreateUserNotificationChannelCmd = &cobra.Command{
-	Use: "create-user-notification-channel [user_id] [payload]",
+	Use: "create-user-notification-channel [user_id]",
 
 	Short: "Create an On-Call notification channel for a user",
 	Long: `Create an On-Call notification channel for a user
 Documentation: https://docs.datadoghq.com/api/latest/on-call/#create-user-notification-channel`,
-	Args: cobra.ExactArgs(2),
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.NotificationChannel
 		var err error
 
 		var body datadogV2.CreateUserNotificationChannelRequest
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewOnCallApi(client.NewAPIClient())
 		res, _, err = api.CreateUserNotificationChannel(client.NewContext(apiKey, appKey, site), args[0], body)
@@ -37,5 +35,9 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#create-user-notifi
 }
 
 func init() {
+
+	CreateUserNotificationChannelCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	CreateUserNotificationChannelCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(CreateUserNotificationChannelCmd)
 }

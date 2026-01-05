@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/downtimes/#get-downtime`,
 }
 
 func init() {
+
 	Cmd.AddCommand(GetDowntimeCmd)
 }

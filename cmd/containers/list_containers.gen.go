@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/containers/#list-containers
 }
 
 func init() {
+
 	Cmd.AddCommand(ListContainersCmd)
 }

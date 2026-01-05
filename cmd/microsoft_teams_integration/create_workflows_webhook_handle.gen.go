@@ -8,25 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var CreateWorkflowsWebhookHandleCmd = &cobra.Command{
-	Use: "create-workflows-webhook-handle [payload]",
+	Use: "create-workflows-webhook-handle",
 
 	Short: "Create Workflows webhook handle",
 	Long: `Create Workflows webhook handle
 Documentation: https://docs.datadoghq.com/api/latest/microsoft-teams-integration/#create-workflows-webhook-handle`,
-	Args: cobra.ExactArgs(1),
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.MicrosoftTeamsWorkflowsWebhookHandleResponse
 		var err error
 
 		var body datadogV2.MicrosoftTeamsCreateWorkflowsWebhookHandleRequest
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewMicrosoftTeamsIntegrationApi(client.NewAPIClient())
 		res, _, err = api.CreateWorkflowsWebhookHandle(client.NewContext(apiKey, appKey, site), body)
@@ -37,5 +35,9 @@ Documentation: https://docs.datadoghq.com/api/latest/microsoft-teams-integration
 }
 
 func init() {
+
+	CreateWorkflowsWebhookHandleCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	CreateWorkflowsWebhookHandleCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(CreateWorkflowsWebhookHandleCmd)
 }

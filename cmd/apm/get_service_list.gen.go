@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/apm/#get-service-list`,
 }
 
 func init() {
+
 	Cmd.AddCommand(GetServiceListCmd)
 }

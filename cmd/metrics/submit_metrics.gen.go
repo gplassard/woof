@@ -8,25 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var SubmitMetricsCmd = &cobra.Command{
-	Use:     "submit-metrics [payload]",
+	Use:     "submit-metrics",
 	Aliases: []string{"submit"},
 	Short:   "Submit metrics",
 	Long: `Submit metrics
 Documentation: https://docs.datadoghq.com/api/latest/metrics/#submit-metrics`,
-	Args: cobra.ExactArgs(1),
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.IntakePayloadAccepted
 		var err error
 
 		var body datadogV2.MetricPayload
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewMetricsApi(client.NewAPIClient())
 		res, _, err = api.SubmitMetrics(client.NewContext(apiKey, appKey, site), body)
@@ -37,5 +35,9 @@ Documentation: https://docs.datadoghq.com/api/latest/metrics/#submit-metrics`,
 }
 
 func init() {
+
+	SubmitMetricsCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	SubmitMetricsCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(SubmitMetricsCmd)
 }

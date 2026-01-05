@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/csm-threats/#delete-csm-thr
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteCSMThreatsAgentRuleCmd)
 }

@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/roles/#delete-role`,
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteRoleCmd)
 }

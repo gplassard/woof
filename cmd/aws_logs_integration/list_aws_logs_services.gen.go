@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/aws-logs-integration/#list-
 }
 
 func init() {
+
 	Cmd.AddCommand(ListAWSLogsServicesCmd)
 }

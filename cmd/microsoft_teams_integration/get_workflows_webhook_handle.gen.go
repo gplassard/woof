@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/microsoft-teams-integration
 }
 
 func init() {
+
 	Cmd.AddCommand(GetWorkflowsWebhookHandleCmd)
 }

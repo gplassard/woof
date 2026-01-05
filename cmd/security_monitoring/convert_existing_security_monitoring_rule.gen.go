@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#conver
 }
 
 func init() {
+
 	Cmd.AddCommand(ConvertExistingSecurityMonitoringRuleCmd)
 }

@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/service-scorecards/#delete-
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteScorecardRuleCmd)
 }

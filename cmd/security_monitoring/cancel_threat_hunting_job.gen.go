@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#cancel
 }
 
 func init() {
+
 	Cmd.AddCommand(CancelThreatHuntingJobCmd)
 }

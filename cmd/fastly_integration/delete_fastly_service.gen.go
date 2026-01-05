@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/fastly-integration/#delete-
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteFastlyServiceCmd)
 }

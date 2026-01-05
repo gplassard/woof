@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#delete-
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteAzureScanOptionsCmd)
 }

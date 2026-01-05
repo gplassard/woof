@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/service-definition/#get-ser
 }
 
 func init() {
+
 	Cmd.AddCommand(GetServiceDefinitionCmd)
 }

@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/logs-restriction-queries/#g
 }
 
 func init() {
+
 	Cmd.AddCommand(GetRoleRestrictionQueryCmd)
 }

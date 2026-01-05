@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/workflow-automation/#delete
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteWorkflowCmd)
 }

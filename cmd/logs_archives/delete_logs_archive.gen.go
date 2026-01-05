@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/logs-archives/#delete-logs-
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteLogsArchiveCmd)
 }

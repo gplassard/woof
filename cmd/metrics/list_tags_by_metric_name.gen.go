@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/metrics/#list-tags-by-metri
 }
 
 func init() {
+
 	Cmd.AddCommand(ListTagsByMetricNameCmd)
 }

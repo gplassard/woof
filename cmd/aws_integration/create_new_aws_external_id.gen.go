@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#create-new
 }
 
 func init() {
+
 	Cmd.AddCommand(CreateNewAWSExternalIDCmd)
 }

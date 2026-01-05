@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#delete-incident-
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteIncidentNotificationTemplateCmd)
 }

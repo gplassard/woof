@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/downtimes/#cancel-downtime`
 }
 
 func init() {
+
 	Cmd.AddCommand(CancelDowntimeCmd)
 }

@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/confluent-cloud/#get-conflu
 }
 
 func init() {
+
 	Cmd.AddCommand(GetConfluentAccountCmd)
 }

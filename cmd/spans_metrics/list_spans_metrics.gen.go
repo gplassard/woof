@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/spans-metrics/#list-spans-m
 }
 
 func init() {
+
 	Cmd.AddCommand(ListSpansMetricsCmd)
 }

@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/fastly-integration/#list-fa
 }
 
 func init() {
+
 	Cmd.AddCommand(ListFastlyServicesCmd)
 }

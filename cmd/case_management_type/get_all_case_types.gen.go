@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/case-management-type/#get-a
 }
 
 func init() {
+
 	Cmd.AddCommand(GetAllCaseTypesCmd)
 }

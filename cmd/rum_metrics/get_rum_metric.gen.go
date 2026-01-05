@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/rum-metrics/#get-rum-metric
 }
 
 func init() {
+
 	Cmd.AddCommand(GetRumMetricCmd)
 }

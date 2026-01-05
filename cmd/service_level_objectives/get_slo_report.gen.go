@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/service-level-objectives/#g
 }
 
 func init() {
+
 	Cmd.AddCommand(GetSLOReportCmd)
 }

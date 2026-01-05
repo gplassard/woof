@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/teams/#remove-team-hierarch
 }
 
 func init() {
+
 	Cmd.AddCommand(RemoveTeamHierarchyLinkCmd)
 }

@@ -8,25 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var PatchDomainAllowlistCmd = &cobra.Command{
-	Use:     "patch-domain-allowlist [payload]",
+	Use:     "patch-domain-allowlist",
 	Aliases: []string{"patch"},
 	Short:   "Sets Domain Allowlist",
 	Long: `Sets Domain Allowlist
 Documentation: https://docs.datadoghq.com/api/latest/domain-allowlist/#patch-domain-allowlist`,
-	Args: cobra.ExactArgs(1),
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.DomainAllowlistResponse
 		var err error
 
 		var body datadogV2.DomainAllowlistRequest
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewDomainAllowlistApi(client.NewAPIClient())
 		res, _, err = api.PatchDomainAllowlist(client.NewContext(apiKey, appKey, site), body)
@@ -37,5 +35,9 @@ Documentation: https://docs.datadoghq.com/api/latest/domain-allowlist/#patch-dom
 }
 
 func init() {
+
+	PatchDomainAllowlistCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	PatchDomainAllowlistCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(PatchDomainAllowlistCmd)
 }

@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/metrics/#list-tag-configura
 }
 
 func init() {
+
 	Cmd.AddCommand(ListTagConfigurationsCmd)
 }

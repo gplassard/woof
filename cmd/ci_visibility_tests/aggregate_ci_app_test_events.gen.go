@@ -8,25 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var AggregateCIAppTestEventsCmd = &cobra.Command{
-	Use: "aggregate-ci-app-test-events [payload]",
+	Use: "aggregate-ci-app-test-events",
 
 	Short: "Aggregate tests events",
 	Long: `Aggregate tests events
 Documentation: https://docs.datadoghq.com/api/latest/ci-visibility-tests/#aggregate-ci-app-test-events`,
-	Args: cobra.ExactArgs(1),
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.CIAppTestsAnalyticsAggregateResponse
 		var err error
 
 		var body datadogV2.CIAppTestsAggregateRequest
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewCIVisibilityTestsApi(client.NewAPIClient())
 		res, _, err = api.AggregateCIAppTestEvents(client.NewContext(apiKey, appKey, site), body)
@@ -37,5 +35,9 @@ Documentation: https://docs.datadoghq.com/api/latest/ci-visibility-tests/#aggreg
 }
 
 func init() {
+
+	AggregateCIAppTestEventsCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	AggregateCIAppTestEventsCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(AggregateCIAppTestEventsCmd)
 }

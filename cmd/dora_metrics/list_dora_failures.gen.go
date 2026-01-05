@@ -8,25 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var ListDORAFailuresCmd = &cobra.Command{
-	Use: "list-dora-failures [payload]",
+	Use: "list-dora-failures",
 
 	Short: "Get a list of failure events",
 	Long: `Get a list of failure events
 Documentation: https://docs.datadoghq.com/api/latest/dora-metrics/#list-dora-failures`,
-	Args: cobra.ExactArgs(1),
+
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.DORAListResponse
 		var err error
 
 		var body datadogV2.DORAListFailuresRequest
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewDORAMetricsApi(client.NewAPIClient())
 		res, _, err = api.ListDORAFailures(client.NewContext(apiKey, appKey, site), body)
@@ -37,5 +35,9 @@ Documentation: https://docs.datadoghq.com/api/latest/dora-metrics/#list-dora-fai
 }
 
 func init() {
+
+	ListDORAFailuresCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	ListDORAFailuresCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(ListDORAFailuresCmd)
 }

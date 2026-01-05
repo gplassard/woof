@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/reference-tables/#get-table
 }
 
 func init() {
+
 	Cmd.AddCommand(GetTableCmd)
 }

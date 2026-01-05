@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/application-security/#delet
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteApplicationSecurityWafExclusionFilterCmd)
 }

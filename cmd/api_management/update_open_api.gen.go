@@ -9,25 +9,23 @@ import (
 	"github.com/google/uuid"
 
 	"github.com/spf13/cobra"
-
-	"encoding/json"
 )
 
 var UpdateOpenAPICmd = &cobra.Command{
-	Use: "update-open-api [id] [payload]",
+	Use: "update-open-api [id]",
 
 	Short: "Update an API",
 	Long: `Update an API
 Documentation: https://docs.datadoghq.com/api/latest/api-management/#update-open-api`,
-	Args: cobra.ExactArgs(2),
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.UpdateOpenAPIResponse
 		var err error
 
 		var body datadogV2.UpdateOpenAPIOptionalParameters
-		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
-		cmdutil.HandleError(err, "failed to unmarshal request body")
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewAPIManagementApi(client.NewAPIClient())
 		res, _, err = api.UpdateOpenAPI(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]), body)
@@ -38,5 +36,9 @@ Documentation: https://docs.datadoghq.com/api/latest/api-management/#update-open
 }
 
 func init() {
+
+	UpdateOpenAPICmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	UpdateOpenAPICmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
 	Cmd.AddCommand(UpdateOpenAPICmd)
 }

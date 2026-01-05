@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/case-management/#get-case`,
 }
 
 func init() {
+
 	Cmd.AddCommand(GetCaseCmd)
 }

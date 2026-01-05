@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/observability-pipelines/#de
 }
 
 func init() {
+
 	Cmd.AddCommand(DeletePipelineCmd)
 }

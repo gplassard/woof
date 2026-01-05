@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/service-accounts/#delete-se
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteServiceAccountApplicationKeyCmd)
 }

@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/case-management/#get-projec
 }
 
 func init() {
+
 	Cmd.AddCommand(GetProjectsCmd)
 }

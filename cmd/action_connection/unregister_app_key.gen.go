@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/action-connection/#unregist
 }
 
 func init() {
+
 	Cmd.AddCommand(UnregisterAppKeyCmd)
 }

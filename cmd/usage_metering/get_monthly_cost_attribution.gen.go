@@ -33,5 +33,6 @@ Documentation: https://docs.datadoghq.com/api/latest/usage-metering/#get-monthly
 }
 
 func init() {
+
 	Cmd.AddCommand(GetMonthlyCostAttributionCmd)
 }

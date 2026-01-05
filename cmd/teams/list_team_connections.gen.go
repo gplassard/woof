@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/teams/#list-team-connection
 }
 
 func init() {
+
 	Cmd.AddCommand(ListTeamConnectionsCmd)
 }

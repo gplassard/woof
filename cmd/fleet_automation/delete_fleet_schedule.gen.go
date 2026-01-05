@@ -30,5 +30,6 @@ Documentation: https://docs.datadoghq.com/api/latest/fleet-automation/#delete-fl
 }
 
 func init() {
+
 	Cmd.AddCommand(DeleteFleetScheduleCmd)
 }

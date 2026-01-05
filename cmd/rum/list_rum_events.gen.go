@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/rum/#list-rum-events`,
 }
 
 func init() {
+
 	Cmd.AddCommand(ListRUMEventsCmd)
 }

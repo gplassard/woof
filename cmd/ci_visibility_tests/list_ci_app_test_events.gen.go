@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/ci-visibility-tests/#list-c
 }
 
 func init() {
+
 	Cmd.AddCommand(ListCIAppTestEventsCmd)
 }

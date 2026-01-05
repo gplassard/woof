@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/container-images/#list-cont
 }
 
 func init() {
+
 	Cmd.AddCommand(ListContainerImagesCmd)
 }

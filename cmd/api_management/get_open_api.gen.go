@@ -32,5 +32,6 @@ Documentation: https://docs.datadoghq.com/api/latest/api-management/#get-open-ap
 }
 
 func init() {
+
 	Cmd.AddCommand(GetOpenAPICmd)
 }

@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/key-management/#get-api-key
 }
 
 func init() {
+
 	Cmd.AddCommand(GetAPIKeyCmd)
 }

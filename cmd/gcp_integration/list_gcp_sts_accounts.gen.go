@@ -31,5 +31,6 @@ Documentation: https://docs.datadoghq.com/api/latest/gcp-integration/#list-gcp-s
 }
 
 func init() {
+
 	Cmd.AddCommand(ListGCPSTSAccountsCmd)
 }
