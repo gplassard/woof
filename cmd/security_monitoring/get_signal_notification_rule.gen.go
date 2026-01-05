@@ -17,9 +17,11 @@ var GetSignalNotificationRuleCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.NotificationRuleResponse
+		var err error
 
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
-		res, _, err := api.GetSignalNotificationRule(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.GetSignalNotificationRule(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-signal-notification-rule")
 
 		cmd.Println(cmdutil.FormatJSON(res, "notification_rules"))

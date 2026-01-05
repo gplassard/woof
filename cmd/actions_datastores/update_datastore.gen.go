@@ -19,13 +19,15 @@ var UpdateDatastoreCmd = &cobra.Command{
 	Args:    cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.Datastore
+		var err error
 
 		var body datadogV2.UpdateAppsDatastoreRequest
-		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
 		cmdutil.HandleError(err, "failed to unmarshal request body")
 
 		api := datadogV2.NewActionsDatastoresApi(client.NewAPIClient())
-		res, _, err := api.UpdateDatastore(client.NewContext(apiKey, appKey, site), args[0], body)
+		res, _, err = api.UpdateDatastore(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-datastore")
 
 		cmd.Println(cmdutil.FormatJSON(res, "datastores"))

@@ -17,9 +17,11 @@ var ListEventsCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.EventsListResponse
+		var err error
 
 		api := datadogV2.NewEventsApi(client.NewAPIClient())
-		res, _, err := api.ListEvents(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListEvents(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-events")
 
 		cmd.Println(cmdutil.FormatJSON(res, "event"))

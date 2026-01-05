@@ -17,9 +17,11 @@ var ListTagConfigurationsCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.MetricsAndMetricTagConfigurationsResponse
+		var err error
 
 		api := datadogV2.NewMetricsApi(client.NewAPIClient())
-		res, _, err := api.ListTagConfigurations(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListTagConfigurations(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-tag-configurations")
 
 		cmd.Println(cmdutil.FormatJSON(res, "metrics"))

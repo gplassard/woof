@@ -17,9 +17,11 @@ var ListPermissionsCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.PermissionsResponse
+		var err error
 
 		api := datadogV2.NewRolesApi(client.NewAPIClient())
-		res, _, err := api.ListPermissions(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListPermissions(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-permissions")
 
 		cmd.Println(cmdutil.FormatJSON(res, "permissions"))

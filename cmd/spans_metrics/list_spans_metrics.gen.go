@@ -17,9 +17,11 @@ var ListSpansMetricsCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.SpansMetricsResponse
+		var err error
 
 		api := datadogV2.NewSpansMetricsApi(client.NewAPIClient())
-		res, _, err := api.ListSpansMetrics(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListSpansMetrics(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-spans-metrics")
 
 		cmd.Println(cmdutil.FormatJSON(res, "spans_metrics"))

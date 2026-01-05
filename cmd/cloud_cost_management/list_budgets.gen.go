@@ -17,9 +17,11 @@ var ListBudgetsCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.BudgetArray
+		var err error
 
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
-		res, _, err := api.ListBudgets(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListBudgets(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-budgets")
 
 		cmd.Println(cmdutil.FormatJSON(res, "cloud_cost_management"))

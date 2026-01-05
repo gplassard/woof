@@ -17,9 +17,11 @@ var CreateNewAWSExternalIDCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.AWSNewExternalIDResponse
+		var err error
 
 		api := datadogV2.NewAWSIntegrationApi(client.NewAPIClient())
-		res, _, err := api.CreateNewAWSExternalID(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.CreateNewAWSExternalID(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to create-new-aws-external-id")
 
 		cmd.Println(cmdutil.FormatJSON(res, "external_id"))

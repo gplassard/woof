@@ -17,9 +17,11 @@ var ListScorecardRulesCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.ListRulesResponse
+		var err error
 
 		api := datadogV2.NewServiceScorecardsApi(client.NewAPIClient())
-		res, _, err := api.ListScorecardRules(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListScorecardRules(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-scorecard-rules")
 
 		cmd.Println(cmdutil.FormatJSON(res, "service_scorecards"))

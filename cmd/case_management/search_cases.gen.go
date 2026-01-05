@@ -17,9 +17,11 @@ var SearchCasesCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.CasesResponse
+		var err error
 
 		api := datadogV2.NewCaseManagementApi(client.NewAPIClient())
-		res, _, err := api.SearchCases(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.SearchCases(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to search-cases")
 
 		cmd.Println(cmdutil.FormatJSON(res, "case"))

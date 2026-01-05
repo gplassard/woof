@@ -20,12 +20,14 @@ var ConvertJobResultToSignalCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 
+		var err error
+
 		var body datadogV2.ConvertJobResultsToSignalsRequest
-		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
 		cmdutil.HandleError(err, "failed to unmarshal request body")
 
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
-		_, err := api.ConvertJobResultToSignal(client.NewContext(apiKey, appKey, site), body)
+		_, err = api.ConvertJobResultToSignal(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to convert-job-result-to-signal")
 
 	},

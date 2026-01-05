@@ -17,9 +17,11 @@ var GetAllCustomAttributesCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.CustomAttributeConfigsResponse
+		var err error
 
 		api := datadogV2.NewCaseManagementAttributeApi(client.NewAPIClient())
-		res, _, err := api.GetAllCustomAttributes(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.GetAllCustomAttributes(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-all-custom-attributes")
 
 		cmd.Println(cmdutil.FormatJSON(res, "custom_attribute"))

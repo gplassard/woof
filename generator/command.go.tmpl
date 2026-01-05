@@ -21,13 +21,15 @@ var {{.CommandName}} = &cobra.Command{
 	{{if .Args}}Args:  cobra.ExactArgs({{len .Args}}),{{end}}
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		{{if .HasResponse}}var res {{if eq .ResponseTypeGo "interface{}"}}{{.ResponseTypeGo}}{{else}}datadogV2.{{.ResponseTypeGo}}{{end}}{{end}}
+		var err error
 		{{if .HasRequestBody}}
 		var body datadogV2.{{.RequestBodyType}}
-		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
 		cmdutil.HandleError(err, "failed to unmarshal request body")
 		{{end}}
 		api := datadogV2.New{{.ApiBundleName}}Api(client.NewAPIClient())
-		{{if .HasResponse}}res, _, err := {{else}}_, err := {{end}}api.{{.OperationID}}(client.NewContext(apiKey, appKey, site){{range $i, $type := .ArgTypes}}{{if lt $i (sub (len $.Args) (ternary $.HasRequestBody 1 0))}}{{if eq $type "uuid.UUID"}}, uuid.MustParse(args[{{$i}}]){{else if eq $type "int64"}}, func() int64 { i, _ := strconv.ParseInt(args[{{$i}}], 10, 64); return i }(){{else if eq $type "float64"}}, func() float64 { f, _ := strconv.ParseFloat(args[{{$i}}], 64); return f }(){{else if eq $type "time.Time"}}, func() time.Time { t, _ := time.Parse(time.RFC3339, args[{{$i}}]); return t }(){{else if eq $type "datadogV2.AssetType"}}, datadogV2.AssetType(args[{{$i}}]){{else if eq $type "datadogV2.TeamSyncAttributesSource"}}, datadogV2.TeamSyncAttributesSource(args[{{$i}}]){{else if eq $type "[]string"}}, strings.Split(args[{{$i}}], ","){{else}}, args[{{$i}}]{{end}}{{end}}{{end}}{{if .HasRequestBody}}, body{{end}})
+		{{if .HasResponse}}res, _, err = {{else}}_, err = {{end}}api.{{.OperationID}}(client.NewContext(apiKey, appKey, site){{range $i, $type := .ArgTypes}}{{if lt $i (sub (len $.Args) (ternary $.HasRequestBody 1 0))}}{{if eq $type "uuid.UUID"}}, uuid.MustParse(args[{{$i}}]){{else if eq $type "int64"}}, func() int64 { i, _ := strconv.ParseInt(args[{{$i}}], 10, 64); return i }(){{else if eq $type "float64"}}, func() float64 { f, _ := strconv.ParseFloat(args[{{$i}}], 64); return f }(){{else if eq $type "time.Time"}}, func() time.Time { t, _ := time.Parse(time.RFC3339, args[{{$i}}]); return t }(){{else if eq $type "datadogV2.AssetType"}}, datadogV2.AssetType(args[{{$i}}]){{else if eq $type "datadogV2.TeamSyncAttributesSource"}}, datadogV2.TeamSyncAttributesSource(args[{{$i}}]){{else if eq $type "[]string"}}, strings.Split(args[{{$i}}], ","){{else}}, args[{{$i}}]{{end}}{{end}}{{end}}{{if .HasRequestBody}}, body{{end}})
 		cmdutil.HandleError(err, "failed to {{.OperationID | toKebabCase}}")
 
 		{{if .HasResponse}}cmd.Println(cmdutil.FormatJSON(res, "{{.ResourceType}}")){{end}}

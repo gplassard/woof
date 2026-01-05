@@ -17,12 +17,14 @@ var GetProjectedCostCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.ProjectedCostResponse
+		var err error
 
 		api := datadogV2.NewUsageMeteringApi(client.NewAPIClient())
-		res, _, err := api.GetProjectedCost(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.GetProjectedCost(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-projected-cost")
 
-		cmd.Println(cmdutil.FormatJSON(res, "usage_metering"))
+		cmd.Println(cmdutil.FormatJSON(res, "projected_cost"))
 	},
 }
 

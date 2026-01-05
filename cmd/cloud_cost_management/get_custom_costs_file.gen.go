@@ -17,9 +17,11 @@ var GetCustomCostsFileCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.CustomCostsFileGetResponse
+		var err error
 
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
-		res, _, err := api.GetCustomCostsFile(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.GetCustomCostsFile(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-custom-costs-file")
 
 		cmd.Println(cmdutil.FormatJSON(res, "cloud_cost_management"))

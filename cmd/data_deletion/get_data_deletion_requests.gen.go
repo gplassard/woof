@@ -17,9 +17,11 @@ var GetDataDeletionRequestsCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.GetDataDeletionsResponseBody
+		var err error
 
 		api := datadogV2.NewDataDeletionApi(client.NewAPIClient())
-		res, _, err := api.GetDataDeletionRequests(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.GetDataDeletionRequests(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-data-deletion-requests")
 
 		cmd.Println(cmdutil.FormatJSON(res, "data_deletion"))

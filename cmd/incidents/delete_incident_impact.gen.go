@@ -18,8 +18,10 @@ var DeleteIncidentImpactCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 
+		var err error
+
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
-		_, err := api.DeleteIncidentImpact(client.NewContext(apiKey, appKey, site), args[0], args[1])
+		_, err = api.DeleteIncidentImpact(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		cmdutil.HandleError(err, "failed to delete-incident-impact")
 
 	},

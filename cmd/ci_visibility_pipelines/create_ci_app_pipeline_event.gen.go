@@ -19,13 +19,15 @@ var CreateCIAppPipelineEventCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res interface{}
+		var err error
 
 		var body datadogV2.CIAppCreatePipelineEventRequest
-		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
 		cmdutil.HandleError(err, "failed to unmarshal request body")
 
 		api := datadogV2.NewCIVisibilityPipelinesApi(client.NewAPIClient())
-		res, _, err := api.CreateCIAppPipelineEvent(client.NewContext(apiKey, appKey, site), body)
+		res, _, err = api.CreateCIAppPipelineEvent(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-ci-app-pipeline-event")
 
 		cmd.Println(cmdutil.FormatJSON(res, "ci_visibility_pipelines"))

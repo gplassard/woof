@@ -17,9 +17,11 @@ var ListRestrictionQueriesCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.RestrictionQueryListResponse
+		var err error
 
 		api := datadogV2.NewLogsRestrictionQueriesApi(client.NewAPIClient())
-		res, _, err := api.ListRestrictionQueries(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListRestrictionQueries(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-restriction-queries")
 
 		cmd.Println(cmdutil.FormatJSON(res, "logs_restriction_queries"))

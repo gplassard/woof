@@ -17,9 +17,11 @@ var ListSecurityMonitoringRulesCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.SecurityMonitoringListRulesResponse
+		var err error
 
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
-		res, _, err := api.ListSecurityMonitoringRules(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListSecurityMonitoringRules(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-security-monitoring-rules")
 
 		cmd.Println(cmdutil.FormatJSON(res, "security_monitoring"))

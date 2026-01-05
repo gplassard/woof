@@ -19,13 +19,15 @@ var UpdateCustomAllocationRuleCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.ArbitraryRuleResponse
+		var err error
 
 		var body datadogV2.ArbitraryCostUpsertRequest
-		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
 		cmdutil.HandleError(err, "failed to unmarshal request body")
 
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
-		res, _, err := api.UpdateCustomAllocationRule(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }(), body)
+		res, _, err = api.UpdateCustomAllocationRule(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }(), body)
 		cmdutil.HandleError(err, "failed to update-custom-allocation-rule")
 
 		cmd.Println(cmdutil.FormatJSON(res, "arbitrary_rule"))

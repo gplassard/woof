@@ -17,9 +17,11 @@ var ListScorecardOutcomesCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.OutcomesResponse
+		var err error
 
 		api := datadogV2.NewServiceScorecardsApi(client.NewAPIClient())
-		res, _, err := api.ListScorecardOutcomes(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListScorecardOutcomes(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-scorecard-outcomes")
 
 		cmd.Println(cmdutil.FormatJSON(res, "service_scorecards"))

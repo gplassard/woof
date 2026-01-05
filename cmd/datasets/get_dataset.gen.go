@@ -17,9 +17,11 @@ var GetDatasetCmd = &cobra.Command{
 	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.DatasetResponseSingle
+		var err error
 
 		api := datadogV2.NewDatasetsApi(client.NewAPIClient())
-		res, _, err := api.GetDataset(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.GetDataset(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-dataset")
 
 		cmd.Println(cmdutil.FormatJSON(res, "dataset"))

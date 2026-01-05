@@ -19,13 +19,15 @@ var CreateUserNotificationChannelCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.NotificationChannel
+		var err error
 
 		var body datadogV2.CreateUserNotificationChannelRequest
-		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
 		cmdutil.HandleError(err, "failed to unmarshal request body")
 
 		api := datadogV2.NewOnCallApi(client.NewAPIClient())
-		res, _, err := api.CreateUserNotificationChannel(client.NewContext(apiKey, appKey, site), args[0], body)
+		res, _, err = api.CreateUserNotificationChannel(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to create-user-notification-channel")
 
 		cmd.Println(cmdutil.FormatJSON(res, "notification_channels"))

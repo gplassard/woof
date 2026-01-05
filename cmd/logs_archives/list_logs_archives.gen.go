@@ -17,9 +17,11 @@ var ListLogsArchivesCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.LogsArchives
+		var err error
 
 		api := datadogV2.NewLogsArchivesApi(client.NewAPIClient())
-		res, _, err := api.ListLogsArchives(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListLogsArchives(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-logs-archives")
 
 		cmd.Println(cmdutil.FormatJSON(res, "logs_archives"))

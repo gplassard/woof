@@ -19,13 +19,15 @@ var UpdateWorkflowsWebhookHandleCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.MicrosoftTeamsWorkflowsWebhookHandleResponse
+		var err error
 
 		var body datadogV2.MicrosoftTeamsUpdateWorkflowsWebhookHandleRequest
-		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
 		cmdutil.HandleError(err, "failed to unmarshal request body")
 
 		api := datadogV2.NewMicrosoftTeamsIntegrationApi(client.NewAPIClient())
-		res, _, err := api.UpdateWorkflowsWebhookHandle(client.NewContext(apiKey, appKey, site), args[0], body)
+		res, _, err = api.UpdateWorkflowsWebhookHandle(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-workflows-webhook-handle")
 
 		cmd.Println(cmdutil.FormatJSON(res, "workflows-webhook-handle"))

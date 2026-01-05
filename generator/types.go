@@ -66,6 +66,7 @@ type TemplateData struct {
 	IsOptionalParams bool
 	HasResponse      bool
 	ResourceType     string
+	ResponseTypeGo   string
 	Aliases          []string
 }
 

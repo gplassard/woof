@@ -17,9 +17,11 @@ var GetFastlyServiceCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.FastlyServiceResponse
+		var err error
 
 		api := datadogV2.NewFastlyIntegrationApi(client.NewAPIClient())
-		res, _, err := api.GetFastlyService(client.NewContext(apiKey, appKey, site), args[0], args[1])
+		res, _, err = api.GetFastlyService(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		cmdutil.HandleError(err, "failed to get-fastly-service")
 
 		cmd.Println(cmdutil.FormatJSON(res, "fastly-services"))

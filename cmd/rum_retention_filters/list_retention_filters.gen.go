@@ -17,9 +17,11 @@ var ListRetentionFiltersCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.RumRetentionFiltersResponse
+		var err error
 
 		api := datadogV2.NewRumRetentionFiltersApi(client.NewAPIClient())
-		res, _, err := api.ListRetentionFilters(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.ListRetentionFilters(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-retention-filters")
 
 		cmd.Println(cmdutil.FormatJSON(res, "retention_filters"))

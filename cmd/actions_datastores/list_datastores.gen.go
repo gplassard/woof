@@ -17,9 +17,11 @@ var ListDatastoresCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.DatastoreArray
+		var err error
 
 		api := datadogV2.NewActionsDatastoresApi(client.NewAPIClient())
-		res, _, err := api.ListDatastores(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListDatastores(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-datastores")
 
 		cmd.Println(cmdutil.FormatJSON(res, "datastores"))

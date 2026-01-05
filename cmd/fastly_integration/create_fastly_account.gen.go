@@ -19,13 +19,15 @@ var CreateFastlyAccountCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.FastlyAccountResponse
+		var err error
 
 		var body datadogV2.FastlyAccountCreateRequest
-		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
 		cmdutil.HandleError(err, "failed to unmarshal request body")
 
 		api := datadogV2.NewFastlyIntegrationApi(client.NewAPIClient())
-		res, _, err := api.CreateFastlyAccount(client.NewContext(apiKey, appKey, site), body)
+		res, _, err = api.CreateFastlyAccount(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-fastly-account")
 
 		cmd.Println(cmdutil.FormatJSON(res, "fastly-accounts"))

@@ -19,13 +19,15 @@ var CreateOrUpdateServiceDefinitionsCmd = &cobra.Command{
 	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.ServiceDefinitionCreateResponse
+		var err error
 
 		var body datadogV2.ServiceDefinitionsCreateRequest
-		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
 		cmdutil.HandleError(err, "failed to unmarshal request body")
 
 		api := datadogV2.NewServiceDefinitionApi(client.NewAPIClient())
-		res, _, err := api.CreateOrUpdateServiceDefinitions(client.NewContext(apiKey, appKey, site), body)
+		res, _, err = api.CreateOrUpdateServiceDefinitions(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-or-update-service-definitions")
 
 		cmd.Println(cmdutil.FormatJSON(res, "service_definition"))

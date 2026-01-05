@@ -19,13 +19,15 @@ var UpdateRumMetricCmd = &cobra.Command{
 	Args:    cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.RumMetricResponse
+		var err error
 
 		var body datadogV2.RumMetricUpdateRequest
-		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
 		cmdutil.HandleError(err, "failed to unmarshal request body")
 
 		api := datadogV2.NewRumMetricsApi(client.NewAPIClient())
-		res, _, err := api.UpdateRumMetric(client.NewContext(apiKey, appKey, site), args[0], body)
+		res, _, err = api.UpdateRumMetric(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-rum-metric")
 
 		cmd.Println(cmdutil.FormatJSON(res, "rum_metrics"))

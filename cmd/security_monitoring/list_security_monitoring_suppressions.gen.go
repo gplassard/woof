@@ -17,9 +17,11 @@ var ListSecurityMonitoringSuppressionsCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.SecurityMonitoringSuppressionsResponse
+		var err error
 
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
-		res, _, err := api.ListSecurityMonitoringSuppressions(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListSecurityMonitoringSuppressions(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-security-monitoring-suppressions")
 
 		cmd.Println(cmdutil.FormatJSON(res, "suppressions"))

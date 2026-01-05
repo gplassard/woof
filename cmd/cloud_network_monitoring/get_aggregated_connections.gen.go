@@ -17,9 +17,11 @@ var GetAggregatedConnectionsCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.SingleAggregatedConnectionResponseArray
+		var err error
 
 		api := datadogV2.NewCloudNetworkMonitoringApi(client.NewAPIClient())
-		res, _, err := api.GetAggregatedConnections(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.GetAggregatedConnections(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-aggregated-connections")
 
 		cmd.Println(cmdutil.FormatJSON(res, "aggregated_connection"))

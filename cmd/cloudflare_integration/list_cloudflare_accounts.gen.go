@@ -17,9 +17,11 @@ var ListCloudflareAccountsCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.CloudflareAccountsResponse
+		var err error
 
 		api := datadogV2.NewCloudflareIntegrationApi(client.NewAPIClient())
-		res, _, err := api.ListCloudflareAccounts(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListCloudflareAccounts(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-cloudflare-accounts")
 
 		cmd.Println(cmdutil.FormatJSON(res, "cloudflare-accounts"))

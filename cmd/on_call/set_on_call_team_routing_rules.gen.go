@@ -19,13 +19,15 @@ var SetOnCallTeamRoutingRulesCmd = &cobra.Command{
 	Args:    cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.TeamRoutingRules
+		var err error
 
 		var body datadogV2.TeamRoutingRulesRequest
-		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
 		cmdutil.HandleError(err, "failed to unmarshal request body")
 
 		api := datadogV2.NewOnCallApi(client.NewAPIClient())
-		res, _, err := api.SetOnCallTeamRoutingRules(client.NewContext(apiKey, appKey, site), args[0], body)
+		res, _, err = api.SetOnCallTeamRoutingRules(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to set-on-call-team-routing-rules")
 
 		cmd.Println(cmdutil.FormatJSON(res, "team_routing_rules"))

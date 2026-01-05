@@ -17,9 +17,11 @@ var ListCatalogRelationCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.ListRelationCatalogResponse
+		var err error
 
 		api := datadogV2.NewSoftwareCatalogApi(client.NewAPIClient())
-		res, _, err := api.ListCatalogRelation(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListCatalogRelation(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-catalog-relation")
 
 		cmd.Println(cmdutil.FormatJSON(res, "software_catalog"))

@@ -19,13 +19,15 @@ var CreateRestrictionQueryCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.RestrictionQueryWithoutRelationshipsResponse
+		var err error
 
 		var body datadogV2.RestrictionQueryCreatePayload
-		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
 		cmdutil.HandleError(err, "failed to unmarshal request body")
 
 		api := datadogV2.NewLogsRestrictionQueriesApi(client.NewAPIClient())
-		res, _, err := api.CreateRestrictionQuery(client.NewContext(apiKey, appKey, site), body)
+		res, _, err = api.CreateRestrictionQuery(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-restriction-query")
 
 		cmd.Println(cmdutil.FormatJSON(res, "logs_restriction_queries"))

@@ -19,13 +19,15 @@ var UpdateSecurityMonitoringRuleCmd = &cobra.Command{
 	Args:    cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.SecurityMonitoringRuleResponse
+		var err error
 
 		var body datadogV2.SecurityMonitoringRuleUpdatePayload
-		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
 		cmdutil.HandleError(err, "failed to unmarshal request body")
 
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
-		res, _, err := api.UpdateSecurityMonitoringRule(client.NewContext(apiKey, appKey, site), args[0], body)
+		res, _, err = api.UpdateSecurityMonitoringRule(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-security-monitoring-rule")
 
 		cmd.Println(cmdutil.FormatJSON(res, "security_monitoring"))

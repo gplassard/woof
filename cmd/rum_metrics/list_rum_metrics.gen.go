@@ -17,9 +17,11 @@ var ListRumMetricsCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.RumMetricsResponse
+		var err error
 
 		api := datadogV2.NewRumMetricsApi(client.NewAPIClient())
-		res, _, err := api.ListRumMetrics(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListRumMetrics(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-rum-metrics")
 
 		cmd.Println(cmdutil.FormatJSON(res, "rum_metrics"))

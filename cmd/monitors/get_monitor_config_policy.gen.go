@@ -17,9 +17,11 @@ var GetMonitorConfigPolicyCmd = &cobra.Command{
 	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.MonitorConfigPolicyResponse
+		var err error
 
 		api := datadogV2.NewMonitorsApi(client.NewAPIClient())
-		res, _, err := api.GetMonitorConfigPolicy(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.GetMonitorConfigPolicy(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-monitor-config-policy")
 
 		cmd.Println(cmdutil.FormatJSON(res, "monitor-config-policy"))

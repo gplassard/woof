@@ -18,8 +18,10 @@ var DeleteCatalogEntityCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 
+		var err error
+
 		api := datadogV2.NewSoftwareCatalogApi(client.NewAPIClient())
-		_, err := api.DeleteCatalogEntity(client.NewContext(apiKey, appKey, site), args[0])
+		_, err = api.DeleteCatalogEntity(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to delete-catalog-entity")
 
 	},

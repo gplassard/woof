@@ -19,13 +19,15 @@ var CreateScanningGroupCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.SensitiveDataScannerCreateGroupResponse
+		var err error
 
 		var body datadogV2.SensitiveDataScannerGroupCreateRequest
-		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
 		cmdutil.HandleError(err, "failed to unmarshal request body")
 
 		api := datadogV2.NewSensitiveDataScannerApi(client.NewAPIClient())
-		res, _, err := api.CreateScanningGroup(client.NewContext(apiKey, appKey, site), body)
+		res, _, err = api.CreateScanningGroup(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-scanning-group")
 
 		cmd.Println(cmdutil.FormatJSON(res, "sensitive_data_scanner_group"))

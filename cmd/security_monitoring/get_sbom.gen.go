@@ -17,9 +17,11 @@ var GetSBOMCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.GetSBOMResponse
+		var err error
 
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
-		res, _, err := api.GetSBOM(client.NewContext(apiKey, appKey, site), datadogV2.AssetType(args[0]), args[1])
+		res, _, err = api.GetSBOM(client.NewContext(apiKey, appKey, site), datadogV2.AssetType(args[0]), args[1])
 		cmdutil.HandleError(err, "failed to get-sbom")
 
 		cmd.Println(cmdutil.FormatJSON(res, "sboms"))

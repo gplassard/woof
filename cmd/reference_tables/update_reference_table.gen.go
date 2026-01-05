@@ -20,12 +20,14 @@ var UpdateReferenceTableCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 
+		var err error
+
 		var body datadogV2.PatchTableRequest
-		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
 		cmdutil.HandleError(err, "failed to unmarshal request body")
 
 		api := datadogV2.NewReferenceTablesApi(client.NewAPIClient())
-		_, err := api.UpdateReferenceTable(client.NewContext(apiKey, appKey, site), args[0], body)
+		_, err = api.UpdateReferenceTable(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-reference-table")
 
 	},

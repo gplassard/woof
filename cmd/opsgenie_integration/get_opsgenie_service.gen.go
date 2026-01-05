@@ -17,9 +17,11 @@ var GetOpsgenieServiceCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.OpsgenieServiceResponse
+		var err error
 
 		api := datadogV2.NewOpsgenieIntegrationApi(client.NewAPIClient())
-		res, _, err := api.GetOpsgenieService(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.GetOpsgenieService(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-opsgenie-service")
 
 		cmd.Println(cmdutil.FormatJSON(res, "opsgenie-service"))

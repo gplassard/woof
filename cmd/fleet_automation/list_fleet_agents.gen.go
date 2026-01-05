@@ -17,9 +17,11 @@ var ListFleetAgentsCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.FleetAgentsResponse
+		var err error
 
 		api := datadogV2.NewFleetAutomationApi(client.NewAPIClient())
-		res, _, err := api.ListFleetAgents(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListFleetAgents(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-fleet-agents")
 
 		cmd.Println(cmdutil.FormatJSON(res, "fleet_automation"))

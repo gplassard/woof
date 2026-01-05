@@ -17,9 +17,11 @@ var GetDomainAllowlistCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.DomainAllowlistResponse
+		var err error
 
 		api := datadogV2.NewDomainAllowlistApi(client.NewAPIClient())
-		res, _, err := api.GetDomainAllowlist(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.GetDomainAllowlist(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-domain-allowlist")
 
 		cmd.Println(cmdutil.FormatJSON(res, "domain_allowlist"))

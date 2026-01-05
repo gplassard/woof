@@ -17,9 +17,11 @@ var ListCatalogKindCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.ListKindCatalogResponse
+		var err error
 
 		api := datadogV2.NewSoftwareCatalogApi(client.NewAPIClient())
-		res, _, err := api.ListCatalogKind(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListCatalogKind(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-catalog-kind")
 
 		cmd.Println(cmdutil.FormatJSON(res, "software_catalog"))

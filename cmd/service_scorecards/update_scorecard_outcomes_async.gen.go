@@ -20,12 +20,14 @@ var UpdateScorecardOutcomesAsyncCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 
+		var err error
+
 		var body datadogV2.UpdateOutcomesAsyncRequest
-		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
 		cmdutil.HandleError(err, "failed to unmarshal request body")
 
 		api := datadogV2.NewServiceScorecardsApi(client.NewAPIClient())
-		_, err := api.UpdateScorecardOutcomesAsync(client.NewContext(apiKey, appKey, site), body)
+		_, err = api.UpdateScorecardOutcomesAsync(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to update-scorecard-outcomes-async")
 
 	},

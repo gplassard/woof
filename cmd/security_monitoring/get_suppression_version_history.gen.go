@@ -17,9 +17,11 @@ var GetSuppressionVersionHistoryCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.GetSuppressionVersionHistoryResponse
+		var err error
 
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
-		res, _, err := api.GetSuppressionVersionHistory(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.GetSuppressionVersionHistory(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-suppression-version-history")
 
 		cmd.Println(cmdutil.FormatJSON(res, "suppression_version_history"))

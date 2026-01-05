@@ -17,9 +17,11 @@ var ListCustomAllocationRulesCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.ArbitraryRuleResponseArray
+		var err error
 
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
-		res, _, err := api.ListCustomAllocationRules(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListCustomAllocationRules(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-custom-allocation-rules")
 
 		cmd.Println(cmdutil.FormatJSON(res, "arbitrary_rule"))

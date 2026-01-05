@@ -17,9 +17,11 @@ var ListDevicesCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.ListDevicesResponse
+		var err error
 
 		api := datadogV2.NewNetworkDeviceMonitoringApi(client.NewAPIClient())
-		res, _, err := api.ListDevices(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListDevices(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-devices")
 
 		cmd.Println(cmdutil.FormatJSON(res, "network_device_monitoring"))

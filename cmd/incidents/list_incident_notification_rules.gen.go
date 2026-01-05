@@ -17,9 +17,11 @@ var ListIncidentNotificationRulesCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.IncidentNotificationRuleArray
+		var err error
 
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
-		res, _, err := api.ListIncidentNotificationRules(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListIncidentNotificationRules(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-incident-notification-rules")
 
 		cmd.Println(cmdutil.FormatJSON(res, "incident_notification_rules"))

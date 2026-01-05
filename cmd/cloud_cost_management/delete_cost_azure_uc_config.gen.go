@@ -19,8 +19,10 @@ var DeleteCostAzureUCConfigCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 
+		var err error
+
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
-		_, err := api.DeleteCostAzureUCConfig(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }())
+		_, err = api.DeleteCostAzureUCConfig(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }())
 		cmdutil.HandleError(err, "failed to delete-cost-azure-uc-config")
 
 	},

@@ -19,13 +19,15 @@ var UpdateApplicationSecurityWafExclusionFilterCmd = &cobra.Command{
 	Args:    cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.ApplicationSecurityWafExclusionFilterResponse
+		var err error
 
 		var body datadogV2.ApplicationSecurityWafExclusionFilterUpdateRequest
-		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
 		cmdutil.HandleError(err, "failed to unmarshal request body")
 
 		api := datadogV2.NewApplicationSecurityApi(client.NewAPIClient())
-		res, _, err := api.UpdateApplicationSecurityWafExclusionFilter(client.NewContext(apiKey, appKey, site), args[0], body)
+		res, _, err = api.UpdateApplicationSecurityWafExclusionFilter(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-application-security-waf-exclusion-filter")
 
 		cmd.Println(cmdutil.FormatJSON(res, "exclusion_filter"))

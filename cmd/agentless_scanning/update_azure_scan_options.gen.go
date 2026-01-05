@@ -19,13 +19,15 @@ var UpdateAzureScanOptionsCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.AzureScanOptions
+		var err error
 
 		var body datadogV2.AzureScanOptionsInputUpdate
-		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
 		cmdutil.HandleError(err, "failed to unmarshal request body")
 
 		api := datadogV2.NewAgentlessScanningApi(client.NewAPIClient())
-		res, _, err := api.UpdateAzureScanOptions(client.NewContext(apiKey, appKey, site), args[0], body)
+		res, _, err = api.UpdateAzureScanOptions(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-azure-scan-options")
 
 		cmd.Println(cmdutil.FormatJSON(res, "azure_scan_options"))

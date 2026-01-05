@@ -17,9 +17,11 @@ var GetAuthNMappingCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.AuthNMappingResponse
+		var err error
 
 		api := datadogV2.NewAuthNMappingsApi(client.NewAPIClient())
-		res, _, err := api.GetAuthNMapping(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.GetAuthNMapping(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-auth-n-mapping")
 
 		cmd.Println(cmdutil.FormatJSON(res, "authn_mappings"))

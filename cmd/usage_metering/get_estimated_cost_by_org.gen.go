@@ -17,12 +17,14 @@ var GetEstimatedCostByOrgCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.CostByOrgResponse
+		var err error
 
 		api := datadogV2.NewUsageMeteringApi(client.NewAPIClient())
-		res, _, err := api.GetEstimatedCostByOrg(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.GetEstimatedCostByOrg(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-estimated-cost-by-org")
 
-		cmd.Println(cmdutil.FormatJSON(res, "usage_metering"))
+		cmd.Println(cmdutil.FormatJSON(res, "cost_by_org"))
 	},
 }
 

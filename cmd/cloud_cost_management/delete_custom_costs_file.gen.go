@@ -18,8 +18,10 @@ var DeleteCustomCostsFileCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 
+		var err error
+
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
-		_, err := api.DeleteCustomCostsFile(client.NewContext(apiKey, appKey, site), args[0])
+		_, err = api.DeleteCustomCostsFile(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to delete-custom-costs-file")
 
 	},

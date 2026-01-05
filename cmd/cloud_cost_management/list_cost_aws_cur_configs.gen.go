@@ -17,9 +17,11 @@ var ListCostAWSCURConfigsCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.AwsCURConfigsResponse
+		var err error
 
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
-		res, _, err := api.ListCostAWSCURConfigs(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListCostAWSCURConfigs(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-cost-aws-cur-configs")
 
 		cmd.Println(cmdutil.FormatJSON(res, "aws_cur_config"))

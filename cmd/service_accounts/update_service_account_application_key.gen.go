@@ -19,13 +19,15 @@ var UpdateServiceAccountApplicationKeyCmd = &cobra.Command{
 	Args:    cobra.ExactArgs(3),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.PartialApplicationKeyResponse
+		var err error
 
 		var body datadogV2.ApplicationKeyUpdateRequest
-		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
 		cmdutil.HandleError(err, "failed to unmarshal request body")
 
 		api := datadogV2.NewServiceAccountsApi(client.NewAPIClient())
-		res, _, err := api.UpdateServiceAccountApplicationKey(client.NewContext(apiKey, appKey, site), args[0], args[1], body)
+		res, _, err = api.UpdateServiceAccountApplicationKey(client.NewContext(apiKey, appKey, site), args[0], args[1], body)
 		cmdutil.HandleError(err, "failed to update-service-account-application-key")
 
 		cmd.Println(cmdutil.FormatJSON(res, "application_keys"))

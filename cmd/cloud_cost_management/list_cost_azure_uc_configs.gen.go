@@ -17,9 +17,11 @@ var ListCostAzureUCConfigsCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.AzureUCConfigsResponse
+		var err error
 
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
-		res, _, err := api.ListCostAzureUCConfigs(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListCostAzureUCConfigs(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-cost-azure-uc-configs")
 
 		cmd.Println(cmdutil.FormatJSON(res, "azure_uc_configs"))

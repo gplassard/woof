@@ -19,13 +19,15 @@ var SearchCIAppTestEventsCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.CIAppTestEventsResponse
+		var err error
 
 		var body datadogV2.SearchCIAppTestEventsOptionalParameters
-		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
 		cmdutil.HandleError(err, "failed to unmarshal request body")
 
 		api := datadogV2.NewCIVisibilityTestsApi(client.NewAPIClient())
-		res, _, err := api.SearchCIAppTestEvents(client.NewContext(apiKey, appKey, site), body)
+		res, _, err = api.SearchCIAppTestEvents(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to search-ci-app-test-events")
 
 		cmd.Println(cmdutil.FormatJSON(res, "citest"))

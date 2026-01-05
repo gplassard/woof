@@ -20,12 +20,14 @@ var ReorderTagPipelinesRulesetsCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 
+		var err error
+
 		var body datadogV2.ReorderRulesetResourceArray
-		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
 		cmdutil.HandleError(err, "failed to unmarshal request body")
 
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
-		_, err := api.ReorderTagPipelinesRulesets(client.NewContext(apiKey, appKey, site), body)
+		_, err = api.ReorderTagPipelinesRulesets(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to reorder-tag-pipelines-rulesets")
 
 	},

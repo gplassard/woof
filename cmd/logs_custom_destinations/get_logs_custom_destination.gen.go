@@ -17,9 +17,11 @@ var GetLogsCustomDestinationCmd = &cobra.Command{
 	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.CustomDestinationResponse
+		var err error
 
 		api := datadogV2.NewLogsCustomDestinationsApi(client.NewAPIClient())
-		res, _, err := api.GetLogsCustomDestination(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.GetLogsCustomDestination(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-logs-custom-destination")
 
 		cmd.Println(cmdutil.FormatJSON(res, "custom_destination"))

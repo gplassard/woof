@@ -17,9 +17,11 @@ var ListAPIKeysCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.APIKeysResponse
+		var err error
 
 		api := datadogV2.NewKeyManagementApi(client.NewAPIClient())
-		res, _, err := api.ListAPIKeys(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListAPIKeys(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-api-keys")
 
 		cmd.Println(cmdutil.FormatJSON(res, "api_keys"))

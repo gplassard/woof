@@ -17,9 +17,11 @@ var ListGCPSTSAccountsCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.GCPSTSServiceAccountsResponse
+		var err error
 
 		api := datadogV2.NewGCPIntegrationApi(client.NewAPIClient())
-		res, _, err := api.ListGCPSTSAccounts(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListGCPSTSAccounts(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-gcp-sts-accounts")
 
 		cmd.Println(cmdutil.FormatJSON(res, "gcp_service_account"))

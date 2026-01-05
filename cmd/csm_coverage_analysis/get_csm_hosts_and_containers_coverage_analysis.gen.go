@@ -17,9 +17,11 @@ var GetCSMHostsAndContainersCoverageAnalysisCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.CsmHostsAndContainersCoverageAnalysisResponse
+		var err error
 
 		api := datadogV2.NewCSMCoverageAnalysisApi(client.NewAPIClient())
-		res, _, err := api.GetCSMHostsAndContainersCoverageAnalysis(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.GetCSMHostsAndContainersCoverageAnalysis(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-csm-hosts-and-containers-coverage-analysis")
 
 		cmd.Println(cmdutil.FormatJSON(res, "csm_coverage_analysis"))

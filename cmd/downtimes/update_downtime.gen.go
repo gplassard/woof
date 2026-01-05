@@ -19,13 +19,15 @@ var UpdateDowntimeCmd = &cobra.Command{
 	Args:    cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.DowntimeResponse
+		var err error
 
 		var body datadogV2.DowntimeUpdateRequest
-		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
 		cmdutil.HandleError(err, "failed to unmarshal request body")
 
 		api := datadogV2.NewDowntimesApi(client.NewAPIClient())
-		res, _, err := api.UpdateDowntime(client.NewContext(apiKey, appKey, site), args[0], body)
+		res, _, err = api.UpdateDowntime(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-downtime")
 
 		cmd.Println(cmdutil.FormatJSON(res, "downtime"))

@@ -19,13 +19,15 @@ var UpdateConfluentResourceCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(3),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.ConfluentResourceResponse
+		var err error
 
 		var body datadogV2.ConfluentResourceRequest
-		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
 		cmdutil.HandleError(err, "failed to unmarshal request body")
 
 		api := datadogV2.NewConfluentCloudApi(client.NewAPIClient())
-		res, _, err := api.UpdateConfluentResource(client.NewContext(apiKey, appKey, site), args[0], args[1], body)
+		res, _, err = api.UpdateConfluentResource(client.NewContext(apiKey, appKey, site), args[0], args[1], body)
 		cmdutil.HandleError(err, "failed to update-confluent-resource")
 
 		cmd.Println(cmdutil.FormatJSON(res, "confluent-cloud-resources"))

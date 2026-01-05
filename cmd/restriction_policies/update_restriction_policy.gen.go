@@ -19,13 +19,15 @@ var UpdateRestrictionPolicyCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.RestrictionPolicyResponse
+		var err error
 
 		var body datadogV2.RestrictionPolicyUpdateRequest
-		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
 		cmdutil.HandleError(err, "failed to unmarshal request body")
 
 		api := datadogV2.NewRestrictionPoliciesApi(client.NewAPIClient())
-		res, _, err := api.UpdateRestrictionPolicy(client.NewContext(apiKey, appKey, site), args[0], body)
+		res, _, err = api.UpdateRestrictionPolicy(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-restriction-policy")
 
 		cmd.Println(cmdutil.FormatJSON(res, "restriction_policy"))

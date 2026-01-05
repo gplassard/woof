@@ -17,9 +17,11 @@ var GetGCPSTSDelegateCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.GCPSTSDelegateAccountResponse
+		var err error
 
 		api := datadogV2.NewGCPIntegrationApi(client.NewAPIClient())
-		res, _, err := api.GetGCPSTSDelegate(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.GetGCPSTSDelegate(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-gcp-sts-delegate")
 
 		cmd.Println(cmdutil.FormatJSON(res, "gcp_sts_delegate"))

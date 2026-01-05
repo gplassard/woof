@@ -17,9 +17,11 @@ var ListOktaAccountsCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.OktaAccountsResponse
+		var err error
 
 		api := datadogV2.NewOktaIntegrationApi(client.NewAPIClient())
-		res, _, err := api.ListOktaAccounts(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListOktaAccounts(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-okta-accounts")
 
 		cmd.Println(cmdutil.FormatJSON(res, "okta-accounts"))

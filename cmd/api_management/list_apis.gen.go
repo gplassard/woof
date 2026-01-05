@@ -17,9 +17,11 @@ var ListAPIsCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.ListAPIsResponse
+		var err error
 
 		api := datadogV2.NewAPIManagementApi(client.NewAPIClient())
-		res, _, err := api.ListAPIs(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListAPIs(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-apis")
 
 		cmd.Println(cmdutil.FormatJSON(res, "api_management"))

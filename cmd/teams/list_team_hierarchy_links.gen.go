@@ -17,9 +17,11 @@ var ListTeamHierarchyLinksCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.TeamHierarchyLinksResponse
+		var err error
 
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
-		res, _, err := api.ListTeamHierarchyLinks(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListTeamHierarchyLinks(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-team-hierarchy-links")
 
 		cmd.Println(cmdutil.FormatJSON(res, "team_hierarchy_links"))

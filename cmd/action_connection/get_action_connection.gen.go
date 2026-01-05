@@ -17,9 +17,11 @@ var GetActionConnectionCmd = &cobra.Command{
 	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.GetActionConnectionResponse
+		var err error
 
 		api := datadogV2.NewActionConnectionApi(client.NewAPIClient())
-		res, _, err := api.GetActionConnection(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.GetActionConnection(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-action-connection")
 
 		cmd.Println(cmdutil.FormatJSON(res, "action_connection"))

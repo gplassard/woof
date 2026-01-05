@@ -17,9 +17,11 @@ var ListConfluentAccountCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.ConfluentAccountsResponse
+		var err error
 
 		api := datadogV2.NewConfluentCloudApi(client.NewAPIClient())
-		res, _, err := api.ListConfluentAccount(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListConfluentAccount(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-confluent-account")
 
 		cmd.Println(cmdutil.FormatJSON(res, "confluent-cloud-accounts"))

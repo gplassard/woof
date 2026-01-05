@@ -17,9 +17,11 @@ var ListTagConfigurationByNameCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.MetricTagConfigurationResponse
+		var err error
 
 		api := datadogV2.NewMetricsApi(client.NewAPIClient())
-		res, _, err := api.ListTagConfigurationByName(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.ListTagConfigurationByName(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-tag-configuration-by-name")
 
 		cmd.Println(cmdutil.FormatJSON(res, "manage_tags"))

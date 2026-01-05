@@ -19,13 +19,15 @@ var SendInvitationsCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.UserInvitationsResponse
+		var err error
 
 		var body datadogV2.UserInvitationsRequest
-		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
 		cmdutil.HandleError(err, "failed to unmarshal request body")
 
 		api := datadogV2.NewUsersApi(client.NewAPIClient())
-		res, _, err := api.SendInvitations(client.NewContext(apiKey, appKey, site), body)
+		res, _, err = api.SendInvitations(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to send-invitations")
 
 		cmd.Println(cmdutil.FormatJSON(res, "user_invitations"))

@@ -17,9 +17,11 @@ var ListFindingsCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.ListFindingsResponse
+		var err error
 
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
-		res, _, err := api.ListFindings(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListFindings(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-findings")
 
 		cmd.Println(cmdutil.FormatJSON(res, "security_monitoring"))

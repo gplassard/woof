@@ -18,8 +18,10 @@ var DeleteSecurityMonitoringSuppressionCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 
+		var err error
+
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
-		_, err := api.DeleteSecurityMonitoringSuppression(client.NewContext(apiKey, appKey, site), args[0])
+		_, err = api.DeleteSecurityMonitoringSuppression(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to delete-security-monitoring-suppression")
 
 	},

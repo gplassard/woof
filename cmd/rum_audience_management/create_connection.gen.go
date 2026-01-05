@@ -20,12 +20,14 @@ var CreateConnectionCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 
+		var err error
+
 		var body datadogV2.CreateConnectionRequest
-		err := json.Unmarshal([]byte(args[len(args)-1]), &body)
+		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
 		cmdutil.HandleError(err, "failed to unmarshal request body")
 
 		api := datadogV2.NewRumAudienceManagementApi(client.NewAPIClient())
-		_, err := api.CreateConnection(client.NewContext(apiKey, appKey, site), args[0], body)
+		_, err = api.CreateConnection(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to create-connection")
 
 	},
