@@ -1,2 +1,4 @@
 .idea
 ouaf
+# Added by goreleaser init:
+dist/
