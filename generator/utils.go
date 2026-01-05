@@ -12,8 +12,12 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-//go:embed config.yaml command.go.tmpl entrypoint.go.tmpl root.go.tmpl
+//go:embed config.yaml command.go.tmpl entrypoint.go.tmpl root.go.tmpl version.json
 var generatorFS embed.FS
+
+type Version struct {
+	Sha string `json:"sha"`
+}
 
 func loadConfig() (*Config, error) {
 	content, err := generatorFS.ReadFile("config.yaml")
@@ -33,7 +37,16 @@ func cleanupGeneratedFiles() error {
 }
 
 func downloadOpenAPI() (*OpenAPI, error) {
-	url := "https://raw.githubusercontent.com/DataDog/datadog-api-client-go/master/.generator/schemas/v2/openapi.yaml"
+	versionContent, err := generatorFS.ReadFile("version.json")
+	if err != nil {
+		return nil, fmt.Errorf("failed to read version file: %w", err)
+	}
+	var version Version
+	if err := yaml.Unmarshal(versionContent, &version); err != nil {
+		return nil, fmt.Errorf("failed to unmarshal version: %w", err)
+	}
+
+	url := fmt.Sprintf("https://raw.githubusercontent.com/DataDog/datadog-api-client-go/%s/.generator/schemas/v2/openapi.yaml", version.Sha)
 	resp, err := http.Get(url)
 	if err != nil {
 		return nil, fmt.Errorf("failed to download openapi spec: %w", err)
