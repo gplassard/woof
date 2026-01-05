@@ -8,17 +8,26 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
+
+	"encoding/json"
 )
 
 var CreateDeploymentRuleCmd = &cobra.Command{
-	Use: "create-deployment-rule [gate_id]",
+	Use: "create-deployment-rule [gate_id] [payload]",
 
 	Short: "Create deployment rule",
-	Args:  cobra.ExactArgs(1),
+	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.DeploymentRuleResponse
+		var err error
+
+		var body datadogV2.CreateDeploymentRuleParams
+		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
+		cmdutil.HandleError(err, "failed to unmarshal request body")
+
 		api := datadogV2.NewDeploymentGatesApi(client.NewAPIClient())
-		res, _, err := api.CreateDeploymentRule(client.NewContext(apiKey, appKey, site), args[0], datadogV2.CreateDeploymentRuleParams{})
+		res, _, err = api.CreateDeploymentRule(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to create-deployment-rule")
 
 		cmd.Println(cmdutil.FormatJSON(res, "deployment_rule"))

@@ -8,17 +8,26 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
+
+	"encoding/json"
 )
 
 var UpdateRUMApplicationCmd = &cobra.Command{
-	Use:     "update-rum-application [id]",
+	Use:     "update-rum-application [id] [payload]",
 	Aliases: []string{"update-application"},
 	Short:   "Update a RUM application",
-	Args:    cobra.ExactArgs(1),
+	Args:    cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.RUMApplicationResponse
+		var err error
+
+		var body datadogV2.RUMApplicationUpdateRequest
+		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
+		cmdutil.HandleError(err, "failed to unmarshal request body")
+
 		api := datadogV2.NewRUMApi(client.NewAPIClient())
-		res, _, err := api.UpdateRUMApplication(client.NewContext(apiKey, appKey, site), args[0], datadogV2.RUMApplicationUpdateRequest{})
+		res, _, err = api.UpdateRUMApplication(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-rum-application")
 
 		cmd.Println(cmdutil.FormatJSON(res, "rum_application"))

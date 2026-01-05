@@ -8,17 +8,26 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
+
+	"encoding/json"
 )
 
 var CreateIncidentNotificationTemplateCmd = &cobra.Command{
-	Use:     "create-incident-notification-template",
+	Use:     "create-incident-notification-template [payload]",
 	Aliases: []string{"create-notification-template"},
 	Short:   "Create incident notification template",
-
+	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.IncidentNotificationTemplate
+		var err error
+
+		var body datadogV2.CreateIncidentNotificationTemplateRequest
+		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
+		cmdutil.HandleError(err, "failed to unmarshal request body")
+
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
-		res, _, err := api.CreateIncidentNotificationTemplate(client.NewContext(apiKey, appKey, site), datadogV2.CreateIncidentNotificationTemplateRequest{})
+		res, _, err = api.CreateIncidentNotificationTemplate(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-incident-notification-template")
 
 		cmd.Println(cmdutil.FormatJSON(res, "notification_templates"))

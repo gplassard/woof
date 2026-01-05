@@ -18,8 +18,11 @@ var GetDashboardListItemsCmd = &cobra.Command{
 	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.DashboardListItems
+		var err error
+
 		api := datadogV2.NewDashboardListsApi(client.NewAPIClient())
-		res, _, err := api.GetDashboardListItems(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }())
+		res, _, err = api.GetDashboardListItems(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }())
 		cmdutil.HandleError(err, "failed to get-dashboard-list-items")
 
 		cmd.Println(cmdutil.FormatJSON(res, "dashboard_lists"))

@@ -17,8 +17,11 @@ var ListVulnerableAssetsCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.ListVulnerableAssetsResponse
+		var err error
+
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
-		res, _, err := api.ListVulnerableAssets(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListVulnerableAssets(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-vulnerable-assets")
 
 		cmd.Println(cmdutil.FormatJSON(res, "assets"))

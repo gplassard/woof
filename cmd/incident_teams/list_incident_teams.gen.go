@@ -17,8 +17,11 @@ var ListIncidentTeamsCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.IncidentTeamsResponse
+		var err error
+
 		api := datadogV2.NewIncidentTeamsApi(client.NewAPIClient())
-		res, _, err := api.ListIncidentTeams(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListIncidentTeams(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-incident-teams")
 
 		cmd.Println(cmdutil.FormatJSON(res, "teams"))

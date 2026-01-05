@@ -17,8 +17,11 @@ var ListPipelinesCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.ListPipelinesResponse
+		var err error
+
 		api := datadogV2.NewObservabilityPipelinesApi(client.NewAPIClient())
-		res, _, err := api.ListPipelines(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListPipelines(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-pipelines")
 
 		cmd.Println(cmdutil.FormatJSON(res, "observability_pipelines"))

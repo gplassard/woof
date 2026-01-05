@@ -17,8 +17,11 @@ var GetOnCallEscalationPolicyCmd = &cobra.Command{
 	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.EscalationPolicy
+		var err error
+
 		api := datadogV2.NewOnCallApi(client.NewAPIClient())
-		res, _, err := api.GetOnCallEscalationPolicy(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.GetOnCallEscalationPolicy(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-on-call-escalation-policy")
 
 		cmd.Println(cmdutil.FormatJSON(res, "policies"))

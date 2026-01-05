@@ -18,8 +18,11 @@ var ResolveOnCallPageCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
+		var err error
+
 		api := datadogV2.NewOnCallPagingApi(client.NewAPIClient())
-		_, err := api.ResolveOnCallPage(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
+		_, err = api.ResolveOnCallPage(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
 		cmdutil.HandleError(err, "failed to resolve-on-call-page")
 
 	},

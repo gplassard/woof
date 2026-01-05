@@ -17,8 +17,11 @@ var ListCSMThreatsAgentPoliciesCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.CloudWorkloadSecurityAgentPoliciesListResponse
+		var err error
+
 		api := datadogV2.NewCSMThreatsApi(client.NewAPIClient())
-		res, _, err := api.ListCSMThreatsAgentPolicies(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListCSMThreatsAgentPolicies(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-csm-threats-agent-policies")
 
 		cmd.Println(cmdutil.FormatJSON(res, "policy"))

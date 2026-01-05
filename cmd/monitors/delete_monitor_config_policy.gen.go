@@ -17,8 +17,11 @@ var DeleteMonitorConfigPolicyCmd = &cobra.Command{
 	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
+		var err error
+
 		api := datadogV2.NewMonitorsApi(client.NewAPIClient())
-		_, err := api.DeleteMonitorConfigPolicy(client.NewContext(apiKey, appKey, site), args[0])
+		_, err = api.DeleteMonitorConfigPolicy(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to delete-monitor-config-policy")
 
 	},

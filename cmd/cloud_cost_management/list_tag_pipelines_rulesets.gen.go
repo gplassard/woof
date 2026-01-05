@@ -17,8 +17,11 @@ var ListTagPipelinesRulesetsCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.RulesetRespArray
+		var err error
+
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
-		res, _, err := api.ListTagPipelinesRulesets(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListTagPipelinesRulesets(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-tag-pipelines-rulesets")
 
 		cmd.Println(cmdutil.FormatJSON(res, "ruleset"))

@@ -17,8 +17,11 @@ var DeleteTeamLinkCmd = &cobra.Command{
 	Args:    cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
+		var err error
+
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
-		_, err := api.DeleteTeamLink(client.NewContext(apiKey, appKey, site), args[0], args[1])
+		_, err = api.DeleteTeamLink(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		cmdutil.HandleError(err, "failed to delete-team-link")
 
 	},

@@ -17,8 +17,11 @@ var ListFleetDeploymentsCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.FleetDeploymentsResponse
+		var err error
+
 		api := datadogV2.NewFleetAutomationApi(client.NewAPIClient())
-		res, _, err := api.ListFleetDeployments(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListFleetDeployments(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-fleet-deployments")
 
 		cmd.Println(cmdutil.FormatJSON(res, "deployment"))

@@ -8,17 +8,26 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
+
+	"encoding/json"
 )
 
 var QueryScalarDataCmd = &cobra.Command{
-	Use: "query-scalar-data",
+	Use: "query-scalar-data [payload]",
 
 	Short: "Query scalar data across multiple products",
-
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.ScalarFormulaQueryResponse
+		var err error
+
+		var body datadogV2.ScalarFormulaQueryRequest
+		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
+		cmdutil.HandleError(err, "failed to unmarshal request body")
+
 		api := datadogV2.NewMetricsApi(client.NewAPIClient())
-		res, _, err := api.QueryScalarData(client.NewContext(apiKey, appKey, site), datadogV2.ScalarFormulaQueryRequest{})
+		res, _, err = api.QueryScalarData(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to query-scalar-data")
 
 		cmd.Println(cmdutil.FormatJSON(res, "scalar_response"))

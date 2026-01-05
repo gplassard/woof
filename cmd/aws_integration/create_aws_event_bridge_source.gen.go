@@ -8,17 +8,26 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
+
+	"encoding/json"
 )
 
 var CreateAWSEventBridgeSourceCmd = &cobra.Command{
-	Use: "create-aws-event-bridge-source",
+	Use: "create-aws-event-bridge-source [payload]",
 
 	Short: "Create an Amazon EventBridge source",
-
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.AWSEventBridgeCreateResponse
+		var err error
+
+		var body datadogV2.AWSEventBridgeCreateRequest
+		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
+		cmdutil.HandleError(err, "failed to unmarshal request body")
+
 		api := datadogV2.NewAWSIntegrationApi(client.NewAPIClient())
-		res, _, err := api.CreateAWSEventBridgeSource(client.NewContext(apiKey, appKey, site), datadogV2.AWSEventBridgeCreateRequest{})
+		res, _, err = api.CreateAWSEventBridgeSource(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-aws-event-bridge-source")
 
 		cmd.Println(cmdutil.FormatJSON(res, "event_bridge"))

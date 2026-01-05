@@ -64,6 +64,21 @@ func parseTemplates(config *Config) (*template.Template, *template.Template, err
 		"toKebabCase": func(s string) string {
 			return toKebabCase(s, config)
 		},
+		"sub": func(a, b int) int {
+			return a - b
+		},
+		"ternary": func(cond bool, a, b int) int {
+			if cond {
+				return a
+			}
+			return b
+		},
+		"len": func(v interface{}) int {
+			if s, ok := v.([]string); ok {
+				return len(s)
+			}
+			return 0
+		},
 	}
 
 	commandTmplContent, err := generatorFS.ReadFile("command.go.tmpl")

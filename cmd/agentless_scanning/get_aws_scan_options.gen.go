@@ -17,8 +17,11 @@ var GetAwsScanOptionsCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.AwsScanOptionsResponse
+		var err error
+
 		api := datadogV2.NewAgentlessScanningApi(client.NewAPIClient())
-		res, _, err := api.GetAwsScanOptions(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.GetAwsScanOptions(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-aws-scan-options")
 
 		cmd.Println(cmdutil.FormatJSON(res, "aws_scan_options"))

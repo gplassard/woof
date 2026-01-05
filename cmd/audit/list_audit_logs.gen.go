@@ -17,8 +17,11 @@ var ListAuditLogsCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.AuditLogsEventsResponse
+		var err error
+
 		api := datadogV2.NewAuditApi(client.NewAPIClient())
-		res, _, err := api.ListAuditLogs(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListAuditLogs(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-audit-logs")
 
 		cmd.Println(cmdutil.FormatJSON(res, "audit"))

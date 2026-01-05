@@ -18,8 +18,11 @@ var PublishAppCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.PublishAppResponse
+		var err error
+
 		api := datadogV2.NewAppBuilderApi(client.NewAPIClient())
-		res, _, err := api.PublishApp(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
+		res, _, err = api.PublishApp(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
 		cmdutil.HandleError(err, "failed to publish-app")
 
 		cmd.Println(cmdutil.FormatJSON(res, "deployment"))

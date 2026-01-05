@@ -8,17 +8,26 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
+
+	"encoding/json"
 )
 
 var UpdateTenantBasedHandleCmd = &cobra.Command{
-	Use: "update-tenant-based-handle [handle_id]",
+	Use: "update-tenant-based-handle [handle_id] [payload]",
 
 	Short: "Update tenant-based handle",
-	Args:  cobra.ExactArgs(1),
+	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.MicrosoftTeamsTenantBasedHandleResponse
+		var err error
+
+		var body datadogV2.MicrosoftTeamsUpdateTenantBasedHandleRequest
+		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
+		cmdutil.HandleError(err, "failed to unmarshal request body")
+
 		api := datadogV2.NewMicrosoftTeamsIntegrationApi(client.NewAPIClient())
-		res, _, err := api.UpdateTenantBasedHandle(client.NewContext(apiKey, appKey, site), args[0], datadogV2.MicrosoftTeamsUpdateTenantBasedHandleRequest{})
+		res, _, err = api.UpdateTenantBasedHandle(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-tenant-based-handle")
 
 		cmd.Println(cmdutil.FormatJSON(res, "tenant-based-handle"))

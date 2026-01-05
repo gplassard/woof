@@ -17,8 +17,11 @@ var GetSecurityMonitoringRuleCmd = &cobra.Command{
 	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.SecurityMonitoringRuleResponse
+		var err error
+
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
-		res, _, err := api.GetSecurityMonitoringRule(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.GetSecurityMonitoringRule(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-security-monitoring-rule")
 
 		cmd.Println(cmdutil.FormatJSON(res, "security_monitoring"))

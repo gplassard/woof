@@ -18,8 +18,11 @@ var GetRowsByIDCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.TableRowResourceArray
+		var err error
+
 		api := datadogV2.NewReferenceTablesApi(client.NewAPIClient())
-		res, _, err := api.GetRowsByID(client.NewContext(apiKey, appKey, site), args[0], strings.Split(args[1], ","))
+		res, _, err = api.GetRowsByID(client.NewContext(apiKey, appKey, site), args[0], strings.Split(args[1], ","))
 		cmdutil.HandleError(err, "failed to get-rows-by-id")
 
 		cmd.Println(cmdutil.FormatJSON(res, "row"))

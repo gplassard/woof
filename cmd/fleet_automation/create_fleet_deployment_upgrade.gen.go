@@ -8,17 +8,26 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
+
+	"encoding/json"
 )
 
 var CreateFleetDeploymentUpgradeCmd = &cobra.Command{
-	Use: "create-fleet-deployment-upgrade",
+	Use: "create-fleet-deployment-upgrade [payload]",
 
 	Short: "Upgrade hosts",
-
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.FleetDeploymentResponse
+		var err error
+
+		var body datadogV2.FleetDeploymentPackageUpgradeCreateRequest
+		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
+		cmdutil.HandleError(err, "failed to unmarshal request body")
+
 		api := datadogV2.NewFleetAutomationApi(client.NewAPIClient())
-		res, _, err := api.CreateFleetDeploymentUpgrade(client.NewContext(apiKey, appKey, site), datadogV2.FleetDeploymentPackageUpgradeCreateRequest{})
+		res, _, err = api.CreateFleetDeploymentUpgrade(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-fleet-deployment-upgrade")
 
 		cmd.Println(cmdutil.FormatJSON(res, "deployment"))

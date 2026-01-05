@@ -8,17 +8,26 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
+
+	"encoding/json"
 )
 
 var SearchSecurityMonitoringSignalsCmd = &cobra.Command{
-	Use:     "search-security-monitoring-signals",
+	Use:     "search-security-monitoring-signals [payload]",
 	Aliases: []string{"search-signals"},
 	Short:   "Get a list of security signals",
-
+	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.SecurityMonitoringSignalsListResponse
+		var err error
+
+		var body datadogV2.SearchSecurityMonitoringSignalsOptionalParameters
+		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
+		cmdutil.HandleError(err, "failed to unmarshal request body")
+
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
-		res, _, err := api.SearchSecurityMonitoringSignals(client.NewContext(apiKey, appKey, site), *datadogV2.NewSearchSecurityMonitoringSignalsOptionalParameters())
+		res, _, err = api.SearchSecurityMonitoringSignals(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to search-security-monitoring-signals")
 
 		cmd.Println(cmdutil.FormatJSON(res, "signal"))

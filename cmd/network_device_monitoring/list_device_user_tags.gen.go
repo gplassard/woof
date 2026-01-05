@@ -17,8 +17,11 @@ var ListDeviceUserTagsCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.ListTagsResponse
+		var err error
+
 		api := datadogV2.NewNetworkDeviceMonitoringApi(client.NewAPIClient())
-		res, _, err := api.ListDeviceUserTags(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.ListDeviceUserTags(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-device-user-tags")
 
 		cmd.Println(cmdutil.FormatJSON(res, "network_device_monitoring"))

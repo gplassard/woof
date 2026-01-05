@@ -17,8 +17,11 @@ var GetRUMApplicationsCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.RUMApplicationsResponse
+		var err error
+
 		api := datadogV2.NewRUMApi(client.NewAPIClient())
-		res, _, err := api.GetRUMApplications(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.GetRUMApplications(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-rum-applications")
 
 		cmd.Println(cmdutil.FormatJSON(res, "rum_application"))

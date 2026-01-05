@@ -17,8 +17,11 @@ var GetConfluentAccountCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.ConfluentAccountResponse
+		var err error
+
 		api := datadogV2.NewConfluentCloudApi(client.NewAPIClient())
-		res, _, err := api.GetConfluentAccount(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.GetConfluentAccount(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-confluent-account")
 
 		cmd.Println(cmdutil.FormatJSON(res, "confluent-cloud-accounts"))

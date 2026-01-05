@@ -17,8 +17,11 @@ var ListCurrentUserApplicationKeysCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.ListApplicationKeysResponse
+		var err error
+
 		api := datadogV2.NewKeyManagementApi(client.NewAPIClient())
-		res, _, err := api.ListCurrentUserApplicationKeys(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListCurrentUserApplicationKeys(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-current-user-application-keys")
 
 		cmd.Println(cmdutil.FormatJSON(res, "application_keys"))

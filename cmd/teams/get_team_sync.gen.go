@@ -17,8 +17,11 @@ var GetTeamSyncCmd = &cobra.Command{
 	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.TeamSyncResponse
+		var err error
+
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
-		res, _, err := api.GetTeamSync(client.NewContext(apiKey, appKey, site), datadogV2.TeamSyncAttributesSource(args[0]))
+		res, _, err = api.GetTeamSync(client.NewContext(apiKey, appKey, site), datadogV2.TeamSyncAttributesSource(args[0]))
 		cmdutil.HandleError(err, "failed to get-team-sync")
 
 		cmd.Println(cmdutil.FormatJSON(res, "team_sync_bulk"))

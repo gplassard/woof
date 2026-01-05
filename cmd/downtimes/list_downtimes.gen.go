@@ -17,8 +17,11 @@ var ListDowntimesCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.ListDowntimesResponse
+		var err error
+
 		api := datadogV2.NewDowntimesApi(client.NewAPIClient())
-		res, _, err := api.ListDowntimes(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListDowntimes(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-downtimes")
 
 		cmd.Println(cmdutil.FormatJSON(res, "downtime"))

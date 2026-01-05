@@ -8,17 +8,26 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
+
+	"encoding/json"
 )
 
 var SyncTeamsCmd = &cobra.Command{
-	Use:     "sync-teams",
+	Use:     "sync-teams [payload]",
 	Aliases: []string{"sync"},
 	Short:   "Link Teams with GitHub Teams",
-
+	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
+		var err error
+
+		var body datadogV2.TeamSyncRequest
+		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
+		cmdutil.HandleError(err, "failed to unmarshal request body")
+
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
-		_, err := api.SyncTeams(client.NewContext(apiKey, appKey, site), datadogV2.TeamSyncRequest{})
+		_, err = api.SyncTeams(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to sync-teams")
 
 	},

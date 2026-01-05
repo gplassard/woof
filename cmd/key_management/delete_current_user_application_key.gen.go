@@ -17,8 +17,11 @@ var DeleteCurrentUserApplicationKeyCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
+		var err error
+
 		api := datadogV2.NewKeyManagementApi(client.NewAPIClient())
-		_, err := api.DeleteCurrentUserApplicationKey(client.NewContext(apiKey, appKey, site), args[0])
+		_, err = api.DeleteCurrentUserApplicationKey(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to delete-current-user-application-key")
 
 	},

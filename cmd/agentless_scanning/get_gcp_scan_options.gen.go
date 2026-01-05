@@ -17,8 +17,11 @@ var GetGcpScanOptionsCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.GcpScanOptions
+		var err error
+
 		api := datadogV2.NewAgentlessScanningApi(client.NewAPIClient())
-		res, _, err := api.GetGcpScanOptions(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.GetGcpScanOptions(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-gcp-scan-options")
 
 		cmd.Println(cmdutil.FormatJSON(res, "gcp_scan_options"))

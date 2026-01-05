@@ -17,8 +17,11 @@ var GetAllCaseTypesCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.CaseTypesResponse
+		var err error
+
 		api := datadogV2.NewCaseManagementTypeApi(client.NewAPIClient())
-		res, _, err := api.GetAllCaseTypes(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.GetAllCaseTypes(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-all-case-types")
 
 		cmd.Println(cmdutil.FormatJSON(res, "case_type"))

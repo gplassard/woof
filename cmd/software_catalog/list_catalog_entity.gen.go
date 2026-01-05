@@ -17,8 +17,11 @@ var ListCatalogEntityCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.ListEntityCatalogResponse
+		var err error
+
 		api := datadogV2.NewSoftwareCatalogApi(client.NewAPIClient())
-		res, _, err := api.ListCatalogEntity(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListCatalogEntity(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-catalog-entity")
 
 		cmd.Println(cmdutil.FormatJSON(res, "software_catalog"))

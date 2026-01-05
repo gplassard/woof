@@ -18,8 +18,11 @@ var DeleteCostAWSCURConfigCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+
+		var err error
+
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
-		_, err := api.DeleteCostAWSCURConfig(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }())
+		_, err = api.DeleteCostAWSCURConfig(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }())
 		cmdutil.HandleError(err, "failed to delete-cost-aws-cur-config")
 
 	},

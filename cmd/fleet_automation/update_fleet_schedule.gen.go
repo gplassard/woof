@@ -8,17 +8,26 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
+
+	"encoding/json"
 )
 
 var UpdateFleetScheduleCmd = &cobra.Command{
-	Use: "update-fleet-schedule [id]",
+	Use: "update-fleet-schedule [id] [payload]",
 
 	Short: "Update a schedule",
-	Args:  cobra.ExactArgs(1),
+	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.FleetScheduleResponse
+		var err error
+
+		var body datadogV2.FleetSchedulePatchRequest
+		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
+		cmdutil.HandleError(err, "failed to unmarshal request body")
+
 		api := datadogV2.NewFleetAutomationApi(client.NewAPIClient())
-		res, _, err := api.UpdateFleetSchedule(client.NewContext(apiKey, appKey, site), args[0], datadogV2.FleetSchedulePatchRequest{})
+		res, _, err = api.UpdateFleetSchedule(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-fleet-schedule")
 
 		cmd.Println(cmdutil.FormatJSON(res, "schedule"))

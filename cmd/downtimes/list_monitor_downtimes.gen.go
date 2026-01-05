@@ -18,8 +18,11 @@ var ListMonitorDowntimesCmd = &cobra.Command{
 	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.MonitorDowntimeMatchResponse
+		var err error
+
 		api := datadogV2.NewDowntimesApi(client.NewAPIClient())
-		res, _, err := api.ListMonitorDowntimes(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }())
+		res, _, err = api.ListMonitorDowntimes(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }())
 		cmdutil.HandleError(err, "failed to list-monitor-downtimes")
 
 		cmd.Println(cmdutil.FormatJSON(res, "downtime_match"))

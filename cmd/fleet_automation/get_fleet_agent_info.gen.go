@@ -17,8 +17,11 @@ var GetFleetAgentInfoCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.FleetAgentInfoResponse
+		var err error
+
 		api := datadogV2.NewFleetAutomationApi(client.NewAPIClient())
-		res, _, err := api.GetFleetAgentInfo(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.GetFleetAgentInfo(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-fleet-agent-info")
 
 		cmd.Println(cmdutil.FormatJSON(res, "datadog_agent_key"))

@@ -17,8 +17,11 @@ var GetTenantBasedHandleCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.MicrosoftTeamsTenantBasedHandleResponse
+		var err error
+
 		api := datadogV2.NewMicrosoftTeamsIntegrationApi(client.NewAPIClient())
-		res, _, err := api.GetTenantBasedHandle(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.GetTenantBasedHandle(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-tenant-based-handle")
 
 		cmd.Println(cmdutil.FormatJSON(res, "tenant-based-handle"))

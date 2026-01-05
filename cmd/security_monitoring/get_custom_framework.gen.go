@@ -17,8 +17,11 @@ var GetCustomFrameworkCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.GetCustomFrameworkResponse
+		var err error
+
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
-		res, _, err := api.GetCustomFramework(client.NewContext(apiKey, appKey, site), args[0], args[1])
+		res, _, err = api.GetCustomFramework(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		cmdutil.HandleError(err, "failed to get-custom-framework")
 
 		cmd.Println(cmdutil.FormatJSON(res, "custom_framework"))

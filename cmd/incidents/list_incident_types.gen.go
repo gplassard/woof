@@ -17,8 +17,11 @@ var ListIncidentTypesCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.IncidentTypeListResponse
+		var err error
+
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
-		res, _, err := api.ListIncidentTypes(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListIncidentTypes(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-incident-types")
 
 		cmd.Println(cmdutil.FormatJSON(res, "incident_types"))

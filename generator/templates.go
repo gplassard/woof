@@ -224,6 +224,10 @@ func prepareTemplateData(bundle, rawBundle, apiBundleName, method, path string, 
 	requestBodyType := ""
 	isOptionalParams := false
 	if hasRequestBody {
+		use += " [payload]"
+		args = append(args, "payload")
+		argTypes = append(argTypes, "string")
+
 		for _, content := range op.RequestBody.Content {
 			if content.Schema.Ref != "" {
 				requestBodyType = filepath.Base(content.Schema.Ref)
@@ -241,13 +245,22 @@ func prepareTemplateData(bundle, rawBundle, apiBundleName, method, path string, 
 	}
 
 	resourceType := ""
+	responseTypeGo := ""
 	if hasResponse {
 		for code, resp := range op.Responses {
 			if code == "200" || code == "201" || code == "202" {
 				if resp.Content != nil {
-					if jsonContent, ok := resp.Content["application/json"].(map[string]interface{}); ok {
-						if schema, ok := jsonContent["schema"].(map[string]interface{}); ok {
-							resourceType = resolveResourceType(spec, resolveSchema(spec, schema))
+					for contentType, content := range resp.Content {
+						if strings.HasPrefix(contentType, "application/json") {
+							if jsonContent, ok := content.(map[string]interface{}); ok {
+								if schema, ok := jsonContent["schema"].(map[string]interface{}); ok {
+									resourceType = resolveResourceType(spec, resolveSchema(spec, schema))
+									if ref, ok := schema["$ref"].(string); ok {
+										responseTypeGo = filepath.Base(ref)
+									}
+								}
+							}
+							break
 						}
 					}
 				}
@@ -257,6 +270,16 @@ func prepareTemplateData(bundle, rawBundle, apiBundleName, method, path string, 
 	// Fallback to package name if we can't find it, or use special logic
 	if resourceType == "" {
 		resourceType = bundle
+	}
+	if responseTypeGo == "" {
+		responseTypeGo = "interface{}"
+	}
+
+	responseTypeOverrides := map[string]string{
+		"AttachmentArray": "IncidentAttachmentsResponse",
+	}
+	if override, ok := responseTypeOverrides[responseTypeGo]; ok {
+		responseTypeGo = override
 	}
 
 	aliases := computeAliases(bundle, op.OperationID, config)
@@ -278,6 +301,7 @@ func prepareTemplateData(bundle, rawBundle, apiBundleName, method, path string, 
 		IsOptionalParams: isOptionalParams,
 		HasResponse:      hasResponse,
 		ResourceType:     resourceType,
+		ResponseTypeGo:   responseTypeGo,
 		Aliases:          aliases,
 	}
 }

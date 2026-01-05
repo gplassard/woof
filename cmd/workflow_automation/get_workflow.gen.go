@@ -17,8 +17,11 @@ var GetWorkflowCmd = &cobra.Command{
 	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.GetWorkflowResponse
+		var err error
+
 		api := datadogV2.NewWorkflowAutomationApi(client.NewAPIClient())
-		res, _, err := api.GetWorkflow(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.GetWorkflow(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-workflow")
 
 		cmd.Println(cmdutil.FormatJSON(res, "workflows"))

@@ -17,8 +17,11 @@ var ListRoleTemplatesCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.RoleTemplateArray
+		var err error
+
 		api := datadogV2.NewRolesApi(client.NewAPIClient())
-		res, _, err := api.ListRoleTemplates(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListRoleTemplates(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-role-templates")
 
 		cmd.Println(cmdutil.FormatJSON(res, "roles"))

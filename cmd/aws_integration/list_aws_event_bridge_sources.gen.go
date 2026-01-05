@@ -17,8 +17,11 @@ var ListAWSEventBridgeSourcesCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.AWSEventBridgeListResponse
+		var err error
+
 		api := datadogV2.NewAWSIntegrationApi(client.NewAPIClient())
-		res, _, err := api.ListAWSEventBridgeSources(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListAWSEventBridgeSources(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-aws-event-bridge-sources")
 
 		cmd.Println(cmdutil.FormatJSON(res, "event_bridge"))

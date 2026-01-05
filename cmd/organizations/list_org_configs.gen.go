@@ -17,8 +17,11 @@ var ListOrgConfigsCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.OrgConfigListResponse
+		var err error
+
 		api := datadogV2.NewOrganizationsApi(client.NewAPIClient())
-		res, _, err := api.ListOrgConfigs(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListOrgConfigs(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-org-configs")
 
 		cmd.Println(cmdutil.FormatJSON(res, "org_configs"))

@@ -17,8 +17,11 @@ var DeleteCaseCustomAttributeCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.CaseResponse
+		var err error
+
 		api := datadogV2.NewCaseManagementApi(client.NewAPIClient())
-		res, _, err := api.DeleteCaseCustomAttribute(client.NewContext(apiKey, appKey, site), args[0], args[1])
+		res, _, err = api.DeleteCaseCustomAttribute(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		cmdutil.HandleError(err, "failed to delete-case-custom-attribute")
 
 		cmd.Println(cmdutil.FormatJSON(res, "case"))

@@ -17,8 +17,11 @@ var ListPowerpacksCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.ListPowerpacksResponse
+		var err error
+
 		api := datadogV2.NewPowerpackApi(client.NewAPIClient())
-		res, _, err := api.ListPowerpacks(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListPowerpacks(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-powerpacks")
 
 		cmd.Println(cmdutil.FormatJSON(res, "powerpack"))

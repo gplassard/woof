@@ -17,8 +17,11 @@ var GetPowerpackCmd = &cobra.Command{
 	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.PowerpackResponse
+		var err error
+
 		api := datadogV2.NewPowerpackApi(client.NewAPIClient())
-		res, _, err := api.GetPowerpack(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.GetPowerpack(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-powerpack")
 
 		cmd.Println(cmdutil.FormatJSON(res, "powerpack"))

@@ -17,8 +17,11 @@ var ListSecurityMonitoringSignalsCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.SecurityMonitoringSignalsListResponse
+		var err error
+
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
-		res, _, err := api.ListSecurityMonitoringSignals(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListSecurityMonitoringSignals(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-security-monitoring-signals")
 
 		cmd.Println(cmdutil.FormatJSON(res, "signal"))

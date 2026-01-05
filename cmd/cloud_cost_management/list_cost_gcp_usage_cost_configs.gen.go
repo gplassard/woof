@@ -17,8 +17,11 @@ var ListCostGCPUsageCostConfigsCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.GCPUsageCostConfigsResponse
+		var err error
+
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
-		res, _, err := api.ListCostGCPUsageCostConfigs(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListCostGCPUsageCostConfigs(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-cost-gcp-usage-cost-configs")
 
 		cmd.Println(cmdutil.FormatJSON(res, "gcp_uc_config"))

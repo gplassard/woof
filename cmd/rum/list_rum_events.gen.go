@@ -17,8 +17,11 @@ var ListRUMEventsCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.RUMEventsResponse
+		var err error
+
 		api := datadogV2.NewRUMApi(client.NewAPIClient())
-		res, _, err := api.ListRUMEvents(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListRUMEvents(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-rum-events")
 
 		cmd.Println(cmdutil.FormatJSON(res, "rum"))

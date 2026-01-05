@@ -17,8 +17,11 @@ var ListIncidentsCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.IncidentsResponse
+		var err error
+
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
-		res, _, err := api.ListIncidents(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListIncidents(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-incidents")
 
 		cmd.Println(cmdutil.FormatJSON(res, "incidents"))

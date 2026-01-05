@@ -8,17 +8,26 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
+
+	"encoding/json"
 )
 
 var CreateServiceAccountCmd = &cobra.Command{
-	Use:     "create-service-account",
+	Use:     "create-service-account [payload]",
 	Aliases: []string{"create"},
 	Short:   "Create a service account",
-
+	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.UserResponse
+		var err error
+
+		var body datadogV2.ServiceAccountCreateRequest
+		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
+		cmdutil.HandleError(err, "failed to unmarshal request body")
+
 		api := datadogV2.NewServiceAccountsApi(client.NewAPIClient())
-		res, _, err := api.CreateServiceAccount(client.NewContext(apiKey, appKey, site), datadogV2.ServiceAccountCreateRequest{})
+		res, _, err = api.CreateServiceAccount(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-service-account")
 
 		cmd.Println(cmdutil.FormatJSON(res, "users"))

@@ -17,8 +17,11 @@ var GetAllCustomAttributeConfigsByCaseTypeCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.CustomAttributeConfigsResponse
+		var err error
+
 		api := datadogV2.NewCaseManagementAttributeApi(client.NewAPIClient())
-		res, _, err := api.GetAllCustomAttributeConfigsByCaseType(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.GetAllCustomAttributeConfigsByCaseType(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-all-custom-attribute-configs-by-case-type")
 
 		cmd.Println(cmdutil.FormatJSON(res, "custom_attribute"))

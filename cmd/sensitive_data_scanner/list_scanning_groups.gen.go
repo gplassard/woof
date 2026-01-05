@@ -17,8 +17,11 @@ var ListScanningGroupsCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.SensitiveDataScannerGetConfigResponse
+		var err error
+
 		api := datadogV2.NewSensitiveDataScannerApi(client.NewAPIClient())
-		res, _, err := api.ListScanningGroups(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListScanningGroups(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-scanning-groups")
 
 		cmd.Println(cmdutil.FormatJSON(res, "sensitive_data_scanner_configuration"))

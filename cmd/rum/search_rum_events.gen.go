@@ -8,17 +8,26 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
+
+	"encoding/json"
 )
 
 var SearchRUMEventsCmd = &cobra.Command{
-	Use:     "search-rum-events",
+	Use:     "search-rum-events [payload]",
 	Aliases: []string{"search-events"},
 	Short:   "Search RUM events",
-
+	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.RUMEventsResponse
+		var err error
+
+		var body datadogV2.RUMSearchEventsRequest
+		err = json.Unmarshal([]byte(args[len(args)-1]), &body)
+		cmdutil.HandleError(err, "failed to unmarshal request body")
+
 		api := datadogV2.NewRUMApi(client.NewAPIClient())
-		res, _, err := api.SearchRUMEvents(client.NewContext(apiKey, appKey, site), datadogV2.RUMSearchEventsRequest{})
+		res, _, err = api.SearchRUMEvents(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to search-rum-events")
 
 		cmd.Println(cmdutil.FormatJSON(res, "rum"))

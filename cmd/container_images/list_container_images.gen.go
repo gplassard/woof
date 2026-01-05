@@ -17,8 +17,11 @@ var ListContainerImagesCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.ContainerImagesResponse
+		var err error
+
 		api := datadogV2.NewContainerImagesApi(client.NewAPIClient())
-		res, _, err := api.ListContainerImages(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListContainerImages(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-container-images")
 
 		cmd.Println(cmdutil.FormatJSON(res, "container_images"))
