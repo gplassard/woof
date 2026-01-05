@@ -16,7 +16,9 @@ var UpdateResourceEvaluationFiltersCmd = &cobra.Command{
 	Use: "update-resource-evaluation-filters [payload]",
 
 	Short: "Update resource filters",
-	Args:  cobra.ExactArgs(1),
+	Long: `Update resource filters
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#update-resource-evaluation-filters`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.UpdateResourceEvaluationFiltersResponse

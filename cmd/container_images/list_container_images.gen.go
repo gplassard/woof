@@ -14,6 +14,8 @@ var ListContainerImagesCmd = &cobra.Command{
 	Use:     "list-container-images",
 	Aliases: []string{"list"},
 	Short:   "Get all Container Images",
+	Long: `Get all Container Images
+Documentation: https://docs.datadoghq.com/api/latest/container-images/#list-container-images`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

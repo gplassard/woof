@@ -14,7 +14,9 @@ var DeleteCaseCustomAttributeCmd = &cobra.Command{
 	Use: "delete-case-custom-attribute [case_id] [custom_attribute_key]",
 
 	Short: "Delete custom attribute from case",
-	Args:  cobra.ExactArgs(2),
+	Long: `Delete custom attribute from case
+Documentation: https://docs.datadoghq.com/api/latest/case-management/#delete-case-custom-attribute`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.CaseResponse

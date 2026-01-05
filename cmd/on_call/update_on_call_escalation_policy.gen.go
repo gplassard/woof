@@ -16,7 +16,9 @@ var UpdateOnCallEscalationPolicyCmd = &cobra.Command{
 	Use:     "update-on-call-escalation-policy [policy_id] [payload]",
 	Aliases: []string{"update-escalation-policy"},
 	Short:   "Update On-Call escalation policy",
-	Args:    cobra.ExactArgs(2),
+	Long: `Update On-Call escalation policy
+Documentation: https://docs.datadoghq.com/api/latest/on-call/#update-on-call-escalation-policy`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.EscalationPolicy

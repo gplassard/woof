@@ -14,7 +14,9 @@ var GetWorkflowCmd = &cobra.Command{
 	Use:     "get-workflow [workflow_id]",
 	Aliases: []string{"get"},
 	Short:   "Get an existing Workflow",
-	Args:    cobra.ExactArgs(1),
+	Long: `Get an existing Workflow
+Documentation: https://docs.datadoghq.com/api/latest/workflow-automation/#get-workflow`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.GetWorkflowResponse

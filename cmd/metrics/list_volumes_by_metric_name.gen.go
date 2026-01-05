@@ -14,7 +14,9 @@ var ListVolumesByMetricNameCmd = &cobra.Command{
 	Use:     "list-volumes-by-metric-name [metric_name]",
 	Aliases: []string{"list-volumes-by-name"},
 	Short:   "List distinct metric volumes by metric name",
-	Args:    cobra.ExactArgs(1),
+	Long: `List distinct metric volumes by metric name
+Documentation: https://docs.datadoghq.com/api/latest/metrics/#list-volumes-by-metric-name`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.MetricVolumesResponse

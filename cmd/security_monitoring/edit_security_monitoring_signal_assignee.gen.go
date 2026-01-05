@@ -16,7 +16,9 @@ var EditSecurityMonitoringSignalAssigneeCmd = &cobra.Command{
 	Use:     "edit-security-monitoring-signal-assignee [signal_id] [payload]",
 	Aliases: []string{"edit-signal-assignee"},
 	Short:   "Modify the triage assignee of a security signal",
-	Args:    cobra.ExactArgs(2),
+	Long: `Modify the triage assignee of a security signal
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#edit-security-monitoring-signal-assignee`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.SecurityMonitoringSignalTriageUpdateResponse

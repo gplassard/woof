@@ -16,7 +16,9 @@ var AttachJiraIssueCmd = &cobra.Command{
 	Use: "attach-jira-issue [payload]",
 
 	Short: "Attach security findings to a Jira issue",
-	Args:  cobra.ExactArgs(1),
+	Long: `Attach security findings to a Jira issue
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#attach-jira-issue`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.FindingCaseResponse

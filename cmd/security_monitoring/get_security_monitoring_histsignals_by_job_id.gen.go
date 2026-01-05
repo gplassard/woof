@@ -14,7 +14,9 @@ var GetSecurityMonitoringHistsignalsByJobIdCmd = &cobra.Command{
 	Use:     "get-security-monitoring-histsignals-by-job-id [job_id]",
 	Aliases: []string{"get-histsignals-by-job-id"},
 	Short:   "Get a job's hist signals",
-	Args:    cobra.ExactArgs(1),
+	Long: `Get a job's hist signals
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-security-monitoring-histsignals-by-job-id`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.SecurityMonitoringSignalsListResponse

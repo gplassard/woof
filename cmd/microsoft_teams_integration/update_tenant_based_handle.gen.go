@@ -16,7 +16,9 @@ var UpdateTenantBasedHandleCmd = &cobra.Command{
 	Use: "update-tenant-based-handle [handle_id] [payload]",
 
 	Short: "Update tenant-based handle",
-	Args:  cobra.ExactArgs(2),
+	Long: `Update tenant-based handle
+Documentation: https://docs.datadoghq.com/api/latest/microsoft-teams-integration/#update-tenant-based-handle`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.MicrosoftTeamsTenantBasedHandleResponse

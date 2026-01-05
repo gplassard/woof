@@ -14,6 +14,8 @@ var PreviewCatalogEntitiesCmd = &cobra.Command{
 	Use: "preview-catalog-entities",
 
 	Short: "Preview catalog entities",
+	Long: `Preview catalog entities
+Documentation: https://docs.datadoghq.com/api/latest/software-catalog/#preview-catalog-entities`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

@@ -14,7 +14,9 @@ var GetSecurityMonitoringRuleCmd = &cobra.Command{
 	Use:     "get-security-monitoring-rule [rule_id]",
 	Aliases: []string{"get-rule"},
 	Short:   "Get a rule's details",
-	Args:    cobra.ExactArgs(1),
+	Long: `Get a rule's details
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-security-monitoring-rule`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.SecurityMonitoringRuleResponse

@@ -14,6 +14,8 @@ var ListCustomCostsFilesCmd = &cobra.Command{
 	Use: "list-custom-costs-files",
 
 	Short: "List Custom Costs files",
+	Long: `List Custom Costs files
+Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#list-custom-costs-files`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

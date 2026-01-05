@@ -14,7 +14,9 @@ var ListWorkflowInstancesCmd = &cobra.Command{
 	Use:     "list-workflow-instances [workflow_id]",
 	Aliases: []string{"list-instances"},
 	Short:   "List workflow instances",
-	Args:    cobra.ExactArgs(1),
+	Long: `List workflow instances
+Documentation: https://docs.datadoghq.com/api/latest/workflow-automation/#list-workflow-instances`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.WorkflowListInstancesResponse

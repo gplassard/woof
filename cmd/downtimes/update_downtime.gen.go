@@ -16,7 +16,9 @@ var UpdateDowntimeCmd = &cobra.Command{
 	Use:     "update-downtime [downtime_id] [payload]",
 	Aliases: []string{"update"},
 	Short:   "Update a downtime",
-	Args:    cobra.ExactArgs(2),
+	Long: `Update a downtime
+Documentation: https://docs.datadoghq.com/api/latest/downtimes/#update-downtime`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.DowntimeResponse

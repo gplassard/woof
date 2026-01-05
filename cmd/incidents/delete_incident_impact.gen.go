@@ -14,7 +14,9 @@ var DeleteIncidentImpactCmd = &cobra.Command{
 	Use:     "delete-incident-impact [incident_id] [impact_id]",
 	Aliases: []string{"delete-impact"},
 	Short:   "Delete an incident impact",
-	Args:    cobra.ExactArgs(2),
+	Long: `Delete an incident impact
+Documentation: https://docs.datadoghq.com/api/latest/incidents/#delete-incident-impact`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

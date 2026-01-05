@@ -14,7 +14,9 @@ var GetRumMetricCmd = &cobra.Command{
 	Use:     "get-rum-metric [metric_id]",
 	Aliases: []string{"get"},
 	Short:   "Get a rum-based metric",
-	Args:    cobra.ExactArgs(1),
+	Long: `Get a rum-based metric
+Documentation: https://docs.datadoghq.com/api/latest/rum-metrics/#get-rum-metric`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.RumMetricResponse

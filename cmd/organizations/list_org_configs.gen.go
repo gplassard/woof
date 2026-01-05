@@ -14,6 +14,8 @@ var ListOrgConfigsCmd = &cobra.Command{
 	Use: "list-org-configs",
 
 	Short: "List Org Configs",
+	Long: `List Org Configs
+Documentation: https://docs.datadoghq.com/api/latest/organizations/#list-org-configs`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

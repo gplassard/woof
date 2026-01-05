@@ -14,6 +14,8 @@ var ListSecurityMonitoringHistsignalsCmd = &cobra.Command{
 	Use:     "list-security-monitoring-histsignals",
 	Aliases: []string{"list-histsignals"},
 	Short:   "List hist signals",
+	Long: `List hist signals
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#list-security-monitoring-histsignals`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

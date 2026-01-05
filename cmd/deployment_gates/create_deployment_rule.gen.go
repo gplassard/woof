@@ -16,7 +16,9 @@ var CreateDeploymentRuleCmd = &cobra.Command{
 	Use: "create-deployment-rule [gate_id] [payload]",
 
 	Short: "Create deployment rule",
-	Args:  cobra.ExactArgs(2),
+	Long: `Create deployment rule
+Documentation: https://docs.datadoghq.com/api/latest/deployment-gates/#create-deployment-rule`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.DeploymentRuleResponse

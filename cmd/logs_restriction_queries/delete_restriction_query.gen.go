@@ -14,7 +14,9 @@ var DeleteRestrictionQueryCmd = &cobra.Command{
 	Use: "delete-restriction-query [restriction_query_id]",
 
 	Short: "Delete a restriction query",
-	Args:  cobra.ExactArgs(1),
+	Long: `Delete a restriction query
+Documentation: https://docs.datadoghq.com/api/latest/logs-restriction-queries/#delete-restriction-query`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

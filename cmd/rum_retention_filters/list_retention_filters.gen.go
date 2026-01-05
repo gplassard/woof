@@ -14,7 +14,9 @@ var ListRetentionFiltersCmd = &cobra.Command{
 	Use: "list-retention-filters [app_id]",
 
 	Short: "Get all RUM retention filters",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get all RUM retention filters
+Documentation: https://docs.datadoghq.com/api/latest/rum-retention-filters/#list-retention-filters`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.RumRetentionFiltersResponse

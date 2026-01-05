@@ -14,7 +14,9 @@ var ListServiceAccountApplicationKeysCmd = &cobra.Command{
 	Use:     "list-service-account-application-keys [service_account_id]",
 	Aliases: []string{"list-application-keys"},
 	Short:   "List application keys for this service account",
-	Args:    cobra.ExactArgs(1),
+	Long: `List application keys for this service account
+Documentation: https://docs.datadoghq.com/api/latest/service-accounts/#list-service-account-application-keys`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.ListApplicationKeysResponse

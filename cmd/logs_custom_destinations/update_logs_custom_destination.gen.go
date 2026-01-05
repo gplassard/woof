@@ -16,7 +16,9 @@ var UpdateLogsCustomDestinationCmd = &cobra.Command{
 	Use:     "update-logs-custom-destination [custom_destination_id] [payload]",
 	Aliases: []string{"update"},
 	Short:   "Update a custom destination",
-	Args:    cobra.ExactArgs(2),
+	Long: `Update a custom destination
+Documentation: https://docs.datadoghq.com/api/latest/logs-custom-destinations/#update-logs-custom-destination`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.CustomDestinationResponse

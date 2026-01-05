@@ -16,7 +16,9 @@ var CreateCasesCmd = &cobra.Command{
 	Use: "create-cases [payload]",
 
 	Short: "Create cases for security findings",
-	Args:  cobra.ExactArgs(1),
+	Long: `Create cases for security findings
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#create-cases`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.FindingCaseResponseArray

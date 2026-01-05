@@ -16,7 +16,9 @@ var TestSecurityMonitoringRuleCmd = &cobra.Command{
 	Use:     "test-security-monitoring-rule [payload]",
 	Aliases: []string{"test-rule"},
 	Short:   "Test a rule",
-	Args:    cobra.ExactArgs(1),
+	Long: `Test a rule
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#test-security-monitoring-rule`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.SecurityMonitoringRuleTestResponse

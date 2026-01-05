@@ -16,7 +16,9 @@ var SetOnCallTeamRoutingRulesCmd = &cobra.Command{
 	Use:     "set-on-call-team-routing-rules [team_id] [payload]",
 	Aliases: []string{"set-team-routing-rules"},
 	Short:   "Set On-Call team routing rules",
-	Args:    cobra.ExactArgs(2),
+	Long: `Set On-Call team routing rules
+Documentation: https://docs.datadoghq.com/api/latest/on-call/#set-on-call-team-routing-rules`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.TeamRoutingRules

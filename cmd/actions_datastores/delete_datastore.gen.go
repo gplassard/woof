@@ -14,7 +14,9 @@ var DeleteDatastoreCmd = &cobra.Command{
 	Use:     "delete-datastore [datastore_id]",
 	Aliases: []string{"delete"},
 	Short:   "Delete datastore",
-	Args:    cobra.ExactArgs(1),
+	Long: `Delete datastore
+Documentation: https://docs.datadoghq.com/api/latest/actions-datastores/#delete-datastore`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

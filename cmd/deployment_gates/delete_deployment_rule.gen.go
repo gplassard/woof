@@ -14,7 +14,9 @@ var DeleteDeploymentRuleCmd = &cobra.Command{
 	Use: "delete-deployment-rule [gate_id] [id]",
 
 	Short: "Delete deployment rule",
-	Args:  cobra.ExactArgs(2),
+	Long: `Delete deployment rule
+Documentation: https://docs.datadoghq.com/api/latest/deployment-gates/#delete-deployment-rule`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

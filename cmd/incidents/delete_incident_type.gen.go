@@ -14,7 +14,9 @@ var DeleteIncidentTypeCmd = &cobra.Command{
 	Use:     "delete-incident-type [incident_type_id]",
 	Aliases: []string{"delete-type"},
 	Short:   "Delete an incident type",
-	Args:    cobra.ExactArgs(1),
+	Long: `Delete an incident type
+Documentation: https://docs.datadoghq.com/api/latest/incidents/#delete-incident-type`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

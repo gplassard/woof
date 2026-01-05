@@ -14,7 +14,9 @@ var GetSLOReportJobStatusCmd = &cobra.Command{
 	Use:     "get-slo-report-job-status [report_id]",
 	Aliases: []string{"get-report-job-status"},
 	Short:   "Get SLO report status",
-	Args:    cobra.ExactArgs(1),
+	Long: `Get SLO report status
+Documentation: https://docs.datadoghq.com/api/latest/service-level-objectives/#get-slo-report-job-status`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.SLOReportStatusGetResponse

@@ -14,7 +14,9 @@ var DeleteCaseTypeCmd = &cobra.Command{
 	Use: "delete-case-type [case_type_id]",
 
 	Short: "Delete a case type",
-	Args:  cobra.ExactArgs(1),
+	Long: `Delete a case type
+Documentation: https://docs.datadoghq.com/api/latest/case-management-type/#delete-case-type`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

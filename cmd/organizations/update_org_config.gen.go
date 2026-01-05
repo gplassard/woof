@@ -16,7 +16,9 @@ var UpdateOrgConfigCmd = &cobra.Command{
 	Use: "update-org-config [org_config_name] [payload]",
 
 	Short: "Update a specific Org Config",
-	Args:  cobra.ExactArgs(2),
+	Long: `Update a specific Org Config
+Documentation: https://docs.datadoghq.com/api/latest/organizations/#update-org-config`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.OrgConfigGetResponse

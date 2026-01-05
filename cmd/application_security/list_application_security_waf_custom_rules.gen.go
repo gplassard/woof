@@ -14,6 +14,8 @@ var ListApplicationSecurityWAFCustomRulesCmd = &cobra.Command{
 	Use:     "list-application-security-waf-custom-rules",
 	Aliases: []string{"list-waf-custom-rules"},
 	Short:   "List all WAF custom rules",
+	Long: `List all WAF custom rules
+Documentation: https://docs.datadoghq.com/api/latest/application-security/#list-application-security-waf-custom-rules`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

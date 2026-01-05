@@ -16,7 +16,9 @@ var CreateDataDeletionRequestCmd = &cobra.Command{
 	Use:     "create-data-deletion-request [product] [payload]",
 	Aliases: []string{"create-request"},
 	Short:   "Creates a data deletion request",
-	Args:    cobra.ExactArgs(2),
+	Long: `Creates a data deletion request
+Documentation: https://docs.datadoghq.com/api/latest/data-deletion/#create-data-deletion-request`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.CreateDataDeletionResponseBody

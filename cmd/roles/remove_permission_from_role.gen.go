@@ -16,7 +16,9 @@ var RemovePermissionFromRoleCmd = &cobra.Command{
 	Use:     "remove-permission-from-role [role_id] [payload]",
 	Aliases: []string{"remove-permission-from"},
 	Short:   "Revoke permission",
-	Args:    cobra.ExactArgs(2),
+	Long: `Revoke permission
+Documentation: https://docs.datadoghq.com/api/latest/roles/#remove-permission-from-role`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.PermissionsResponse

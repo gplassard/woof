@@ -14,7 +14,9 @@ var DeleteApplicationSecurityWafCustomRuleCmd = &cobra.Command{
 	Use:     "delete-application-security-waf-custom-rule [custom_rule_id]",
 	Aliases: []string{"delete-waf-custom-rule"},
 	Short:   "Delete a WAF Custom Rule",
-	Args:    cobra.ExactArgs(1),
+	Long: `Delete a WAF Custom Rule
+Documentation: https://docs.datadoghq.com/api/latest/application-security/#delete-application-security-waf-custom-rule`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

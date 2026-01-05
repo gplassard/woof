@@ -16,7 +16,9 @@ var UpdatePriorityCmd = &cobra.Command{
 	Use: "update-priority [case_id] [payload]",
 
 	Short: "Update case priority",
-	Args:  cobra.ExactArgs(2),
+	Long: `Update case priority
+Documentation: https://docs.datadoghq.com/api/latest/case-management/#update-priority`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.CaseResponse

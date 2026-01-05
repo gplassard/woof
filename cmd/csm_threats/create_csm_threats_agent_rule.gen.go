@@ -16,7 +16,9 @@ var CreateCSMThreatsAgentRuleCmd = &cobra.Command{
 	Use:     "create-csm-threats-agent-rule [payload]",
 	Aliases: []string{"create-agent-rule"},
 	Short:   "Create a Workload Protection agent rule",
-	Args:    cobra.ExactArgs(1),
+	Long: `Create a Workload Protection agent rule
+Documentation: https://docs.datadoghq.com/api/latest/csm-threats/#create-csm-threats-agent-rule`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.CloudWorkloadSecurityAgentRuleResponse

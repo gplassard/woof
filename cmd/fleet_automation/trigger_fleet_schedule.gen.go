@@ -14,7 +14,9 @@ var TriggerFleetScheduleCmd = &cobra.Command{
 	Use: "trigger-fleet-schedule [id]",
 
 	Short: "Trigger a schedule deployment",
-	Args:  cobra.ExactArgs(1),
+	Long: `Trigger a schedule deployment
+Documentation: https://docs.datadoghq.com/api/latest/fleet-automation/#trigger-fleet-schedule`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.FleetDeploymentResponse

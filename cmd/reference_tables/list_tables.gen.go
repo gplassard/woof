@@ -14,6 +14,8 @@ var ListTablesCmd = &cobra.Command{
 	Use: "list-tables",
 
 	Short: "List tables",
+	Long: `List tables
+Documentation: https://docs.datadoghq.com/api/latest/reference-tables/#list-tables`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

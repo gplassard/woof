@@ -14,7 +14,9 @@ var DeleteCustomAttributeConfigCmd = &cobra.Command{
 	Use: "delete-custom-attribute-config [case_type_id] [custom_attribute_id]",
 
 	Short: "Delete custom attributes config",
-	Args:  cobra.ExactArgs(2),
+	Long: `Delete custom attributes config
+Documentation: https://docs.datadoghq.com/api/latest/case-management-attribute/#delete-custom-attribute-config`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

@@ -16,7 +16,9 @@ var ListSpansCmd = &cobra.Command{
 	Use:     "list-spans [payload]",
 	Aliases: []string{"list"},
 	Short:   "Search spans",
-	Args:    cobra.ExactArgs(1),
+	Long: `Search spans
+Documentation: https://docs.datadoghq.com/api/latest/spans/#list-spans`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.SpansListResponse

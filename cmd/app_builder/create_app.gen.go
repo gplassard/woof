@@ -16,7 +16,9 @@ var CreateAppCmd = &cobra.Command{
 	Use: "create-app [payload]",
 
 	Short: "Create App",
-	Args:  cobra.ExactArgs(1),
+	Long: `Create App
+Documentation: https://docs.datadoghq.com/api/latest/app-builder/#create-app`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.CreateAppResponse

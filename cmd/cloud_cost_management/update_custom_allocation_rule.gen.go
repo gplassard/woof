@@ -16,7 +16,9 @@ var UpdateCustomAllocationRuleCmd = &cobra.Command{
 	Use: "update-custom-allocation-rule [rule_id] [payload]",
 
 	Short: "Update custom allocation rule",
-	Args:  cobra.ExactArgs(2),
+	Long: `Update custom allocation rule
+Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#update-custom-allocation-rule`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.ArbitraryRuleResponse

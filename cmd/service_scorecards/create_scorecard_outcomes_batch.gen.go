@@ -16,7 +16,9 @@ var CreateScorecardOutcomesBatchCmd = &cobra.Command{
 	Use:     "create-scorecard-outcomes-batch [payload]",
 	Aliases: []string{"create-outcomes-batch"},
 	Short:   "Create outcomes batch",
-	Args:    cobra.ExactArgs(1),
+	Long: `Create outcomes batch
+Documentation: https://docs.datadoghq.com/api/latest/service-scorecards/#create-scorecard-outcomes-batch`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.OutcomesBatchResponse

@@ -14,6 +14,8 @@ var ListPipelinesCmd = &cobra.Command{
 	Use: "list-pipelines",
 
 	Short: "List pipelines",
+	Long: `List pipelines
+Documentation: https://docs.datadoghq.com/api/latest/observability-pipelines/#list-pipelines`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

@@ -16,7 +16,9 @@ var UpsertCatalogEntityCmd = &cobra.Command{
 	Use: "upsert-catalog-entity [payload]",
 
 	Short: "Create or update entities",
-	Args:  cobra.ExactArgs(1),
+	Long: `Create or update entities
+Documentation: https://docs.datadoghq.com/api/latest/software-catalog/#upsert-catalog-entity`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.UpsertCatalogEntityResponse

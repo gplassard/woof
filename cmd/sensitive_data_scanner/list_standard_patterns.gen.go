@@ -14,6 +14,8 @@ var ListStandardPatternsCmd = &cobra.Command{
 	Use: "list-standard-patterns",
 
 	Short: "List standard patterns",
+	Long: `List standard patterns
+Documentation: https://docs.datadoghq.com/api/latest/sensitive-data-scanner/#list-standard-patterns`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

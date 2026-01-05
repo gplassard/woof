@@ -14,7 +14,9 @@ var GetTeamOnCallUsersCmd = &cobra.Command{
 	Use:     "get-team-on-call-users [team_id]",
 	Aliases: []string{"get-team-users"},
 	Short:   "Get team on-call users",
-	Args:    cobra.ExactArgs(1),
+	Long: `Get team on-call users
+Documentation: https://docs.datadoghq.com/api/latest/on-call/#get-team-on-call-users`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.TeamOnCallResponders

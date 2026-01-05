@@ -14,7 +14,9 @@ var GetScheduleOnCallUserCmd = &cobra.Command{
 	Use:     "get-schedule-on-call-user [schedule_id]",
 	Aliases: []string{"get-schedule-user"},
 	Short:   "Get scheduled on-call user",
-	Args:    cobra.ExactArgs(1),
+	Long: `Get scheduled on-call user
+Documentation: https://docs.datadoghq.com/api/latest/on-call/#get-schedule-on-call-user`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.Shift

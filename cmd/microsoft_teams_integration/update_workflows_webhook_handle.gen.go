@@ -16,7 +16,9 @@ var UpdateWorkflowsWebhookHandleCmd = &cobra.Command{
 	Use: "update-workflows-webhook-handle [handle_id] [payload]",
 
 	Short: "Update Workflows webhook handle",
-	Args:  cobra.ExactArgs(2),
+	Long: `Update Workflows webhook handle
+Documentation: https://docs.datadoghq.com/api/latest/microsoft-teams-integration/#update-workflows-webhook-handle`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.MicrosoftTeamsWorkflowsWebhookHandleResponse

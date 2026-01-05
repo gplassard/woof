@@ -15,7 +15,9 @@ var GetCustomAllocationRuleCmd = &cobra.Command{
 	Use: "get-custom-allocation-rule [rule_id]",
 
 	Short: "Get custom allocation rule",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get custom allocation rule
+Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#get-custom-allocation-rule`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.ArbitraryRuleResponse

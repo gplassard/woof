@@ -14,6 +14,8 @@ var ListDatastoresCmd = &cobra.Command{
 	Use:     "list-datastores",
 	Aliases: []string{"list"},
 	Short:   "List datastores",
+	Long: `List datastores
+Documentation: https://docs.datadoghq.com/api/latest/actions-datastores/#list-datastores`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

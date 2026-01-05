@@ -14,7 +14,9 @@ var DeleteLogsArchiveCmd = &cobra.Command{
 	Use:     "delete-logs-archive [archive_id]",
 	Aliases: []string{"delete"},
 	Short:   "Delete an archive",
-	Args:    cobra.ExactArgs(1),
+	Long: `Delete an archive
+Documentation: https://docs.datadoghq.com/api/latest/logs-archives/#delete-logs-archive`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

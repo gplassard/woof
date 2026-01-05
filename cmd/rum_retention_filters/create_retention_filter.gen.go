@@ -16,7 +16,9 @@ var CreateRetentionFilterCmd = &cobra.Command{
 	Use: "create-retention-filter [app_id] [payload]",
 
 	Short: "Create a RUM retention filter",
-	Args:  cobra.ExactArgs(2),
+	Long: `Create a RUM retention filter
+Documentation: https://docs.datadoghq.com/api/latest/rum-retention-filters/#create-retention-filter`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.RumRetentionFilterResponse

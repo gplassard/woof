@@ -14,7 +14,9 @@ var GetCaseCmd = &cobra.Command{
 	Use: "get-case [case_id]",
 
 	Short: "Get the details of a case",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get the details of a case
+Documentation: https://docs.datadoghq.com/api/latest/case-management/#get-case`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.CaseResponse

@@ -16,7 +16,9 @@ var ListLogsCmd = &cobra.Command{
 	Use:     "list-logs [payload]",
 	Aliases: []string{"list"},
 	Short:   "Search logs (POST)",
-	Args:    cobra.ExactArgs(1),
+	Long: `Search logs (POST)
+Documentation: https://docs.datadoghq.com/api/latest/logs/#list-logs`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.LogsListResponse

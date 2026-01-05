@@ -16,7 +16,9 @@ var CreateTeamConnectionsCmd = &cobra.Command{
 	Use:     "create-team-connections [payload]",
 	Aliases: []string{"create-connections"},
 	Short:   "Create team connections",
-	Args:    cobra.ExactArgs(1),
+	Long: `Create team connections
+Documentation: https://docs.datadoghq.com/api/latest/teams/#create-team-connections`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.TeamConnectionsResponse

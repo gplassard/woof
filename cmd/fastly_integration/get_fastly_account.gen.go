@@ -14,7 +14,9 @@ var GetFastlyAccountCmd = &cobra.Command{
 	Use: "get-fastly-account [account_id]",
 
 	Short: "Get Fastly account",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get Fastly account
+Documentation: https://docs.datadoghq.com/api/latest/fastly-integration/#get-fastly-account`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.FastlyAccountResponse

@@ -14,6 +14,8 @@ var ListApplicationKeysCmd = &cobra.Command{
 	Use: "list-application-keys",
 
 	Short: "Get all application keys",
+	Long: `Get all application keys
+Documentation: https://docs.datadoghq.com/api/latest/key-management/#list-application-keys`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

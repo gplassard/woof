@@ -15,7 +15,9 @@ var GetOpenAPICmd = &cobra.Command{
 	Use: "get-open-api [id]",
 
 	Short: "Get an API",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get an API
+Documentation: https://docs.datadoghq.com/api/latest/api-management/#get-open-api`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res interface{}

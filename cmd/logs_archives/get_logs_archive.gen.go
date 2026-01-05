@@ -14,7 +14,9 @@ var GetLogsArchiveCmd = &cobra.Command{
 	Use:     "get-logs-archive [archive_id]",
 	Aliases: []string{"get"},
 	Short:   "Get an archive",
-	Args:    cobra.ExactArgs(1),
+	Long: `Get an archive
+Documentation: https://docs.datadoghq.com/api/latest/logs-archives/#get-logs-archive`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.LogsArchive

@@ -14,7 +14,9 @@ var GetIssueCmd = &cobra.Command{
 	Use: "get-issue [issue_id]",
 
 	Short: "Get the details of an error tracking issue",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get the details of an error tracking issue
+Documentation: https://docs.datadoghq.com/api/latest/error-tracking/#get-issue`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.IssueResponse

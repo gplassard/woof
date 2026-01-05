@@ -14,7 +14,9 @@ var DeleteIncidentIntegrationCmd = &cobra.Command{
 	Use:     "delete-incident-integration [incident_id] [integration_metadata_id]",
 	Aliases: []string{"delete-integration"},
 	Short:   "Delete an incident integration metadata",
-	Args:    cobra.ExactArgs(2),
+	Long: `Delete an incident integration metadata
+Documentation: https://docs.datadoghq.com/api/latest/incidents/#delete-incident-integration`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

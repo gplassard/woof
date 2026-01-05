@@ -16,7 +16,9 @@ var QueryTimeseriesDataCmd = &cobra.Command{
 	Use: "query-timeseries-data [payload]",
 
 	Short: "Query timeseries data across multiple products",
-	Args:  cobra.ExactArgs(1),
+	Long: `Query timeseries data across multiple products
+Documentation: https://docs.datadoghq.com/api/latest/metrics/#query-timeseries-data`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.TimeseriesFormulaQueryResponse

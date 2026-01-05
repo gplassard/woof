@@ -14,6 +14,8 @@ var ListAppsCmd = &cobra.Command{
 	Use: "list-apps",
 
 	Short: "List Apps",
+	Long: `List Apps
+Documentation: https://docs.datadoghq.com/api/latest/app-builder/#list-apps`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

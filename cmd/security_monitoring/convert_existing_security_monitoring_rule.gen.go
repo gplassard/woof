@@ -14,7 +14,9 @@ var ConvertExistingSecurityMonitoringRuleCmd = &cobra.Command{
 	Use:     "convert-existing-security-monitoring-rule [rule_id]",
 	Aliases: []string{"convert-existing-rule"},
 	Short:   "Convert an existing rule from JSON to Terraform",
-	Args:    cobra.ExactArgs(1),
+	Long: `Convert an existing rule from JSON to Terraform
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#convert-existing-security-monitoring-rule`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.SecurityMonitoringRuleConvertResponse

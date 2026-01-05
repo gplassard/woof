@@ -14,6 +14,8 @@ var ListRestrictionQueriesCmd = &cobra.Command{
 	Use: "list-restriction-queries",
 
 	Short: "List restriction queries",
+	Long: `List restriction queries
+Documentation: https://docs.datadoghq.com/api/latest/logs-restriction-queries/#list-restriction-queries`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

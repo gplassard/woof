@@ -14,7 +14,9 @@ var DeleteDeploymentGateCmd = &cobra.Command{
 	Use:     "delete-deployment-gate [id]",
 	Aliases: []string{"delete"},
 	Short:   "Delete deployment gate",
-	Args:    cobra.ExactArgs(1),
+	Long: `Delete deployment gate
+Documentation: https://docs.datadoghq.com/api/latest/deployment-gates/#delete-deployment-gate`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

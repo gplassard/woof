@@ -14,6 +14,8 @@ var ListScannedAssetsMetadataCmd = &cobra.Command{
 	Use: "list-scanned-assets-metadata",
 
 	Short: "List scanned assets metadata",
+	Long: `List scanned assets metadata
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#list-scanned-assets-metadata`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

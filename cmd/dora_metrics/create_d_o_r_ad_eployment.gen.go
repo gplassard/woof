@@ -16,7 +16,9 @@ var CreateDORADeploymentCmd = &cobra.Command{
 	Use: "create-d-o-r-ad-eployment [payload]",
 
 	Short: "Send a deployment event",
-	Args:  cobra.ExactArgs(1),
+	Long: `Send a deployment event
+Documentation: https://docs.datadoghq.com/api/latest/dora-metrics/#create-d-o-r-ad-eployment`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.DORADeploymentResponse

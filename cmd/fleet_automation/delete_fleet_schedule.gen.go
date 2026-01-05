@@ -14,7 +14,9 @@ var DeleteFleetScheduleCmd = &cobra.Command{
 	Use: "delete-fleet-schedule [id]",
 
 	Short: "Delete a schedule",
-	Args:  cobra.ExactArgs(1),
+	Long: `Delete a schedule
+Documentation: https://docs.datadoghq.com/api/latest/fleet-automation/#delete-fleet-schedule`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

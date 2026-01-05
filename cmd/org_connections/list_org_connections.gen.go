@@ -14,6 +14,8 @@ var ListOrgConnectionsCmd = &cobra.Command{
 	Use:     "list-org-connections",
 	Aliases: []string{"list"},
 	Short:   "List Org Connections",
+	Long: `List Org Connections
+Documentation: https://docs.datadoghq.com/api/latest/org-connections/#list-org-connections`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

@@ -16,7 +16,9 @@ var UpdateRoleCmd = &cobra.Command{
 	Use:     "update-role [role_id] [payload]",
 	Aliases: []string{"update"},
 	Short:   "Update a role",
-	Args:    cobra.ExactArgs(2),
+	Long: `Update a role
+Documentation: https://docs.datadoghq.com/api/latest/roles/#update-role`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.RoleUpdateResponse

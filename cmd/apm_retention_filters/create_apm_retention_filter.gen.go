@@ -16,7 +16,9 @@ var CreateApmRetentionFilterCmd = &cobra.Command{
 	Use:     "create-apm-retention-filter [payload]",
 	Aliases: []string{"create"},
 	Short:   "Create a retention filter",
-	Args:    cobra.ExactArgs(1),
+	Long: `Create a retention filter
+Documentation: https://docs.datadoghq.com/api/latest/apm-retention-filters/#create-apm-retention-filter`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.RetentionFilterCreateResponse

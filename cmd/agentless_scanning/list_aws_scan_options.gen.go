@@ -14,6 +14,8 @@ var ListAwsScanOptionsCmd = &cobra.Command{
 	Use: "list-aws-scan-options",
 
 	Short: "List AWS scan options",
+	Long: `List AWS scan options
+Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#list-aws-scan-options`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

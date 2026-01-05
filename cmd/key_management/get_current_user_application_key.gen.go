@@ -14,7 +14,9 @@ var GetCurrentUserApplicationKeyCmd = &cobra.Command{
 	Use: "get-current-user-application-key [app_key_id]",
 
 	Short: "Get one application key owned by current user",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get one application key owned by current user
+Documentation: https://docs.datadoghq.com/api/latest/key-management/#get-current-user-application-key`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.ApplicationKeyResponse

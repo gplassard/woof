@@ -14,7 +14,9 @@ var ListDeviceUserTagsCmd = &cobra.Command{
 	Use: "list-device-user-tags [device_id]",
 
 	Short: "Get the list of tags for a device",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get the list of tags for a device
+Documentation: https://docs.datadoghq.com/api/latest/network-device-monitoring/#list-device-user-tags`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.ListTagsResponse

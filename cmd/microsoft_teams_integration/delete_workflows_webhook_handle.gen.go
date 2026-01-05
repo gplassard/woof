@@ -14,7 +14,9 @@ var DeleteWorkflowsWebhookHandleCmd = &cobra.Command{
 	Use: "delete-workflows-webhook-handle [handle_id]",
 
 	Short: "Delete Workflows webhook handle",
-	Args:  cobra.ExactArgs(1),
+	Long: `Delete Workflows webhook handle
+Documentation: https://docs.datadoghq.com/api/latest/microsoft-teams-integration/#delete-workflows-webhook-handle`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

@@ -16,7 +16,9 @@ var DeleteDashboardListItemsCmd = &cobra.Command{
 	Use:     "delete-dashboard-list-items [dashboard_list_id] [payload]",
 	Aliases: []string{"delete-items"},
 	Short:   "Delete items from a dashboard list",
-	Args:    cobra.ExactArgs(2),
+	Long: `Delete items from a dashboard list
+Documentation: https://docs.datadoghq.com/api/latest/dashboard-lists/#delete-dashboard-list-items`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.DashboardListDeleteItemsResponse

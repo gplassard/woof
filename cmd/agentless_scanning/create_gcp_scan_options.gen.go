@@ -16,7 +16,9 @@ var CreateGcpScanOptionsCmd = &cobra.Command{
 	Use: "create-gcp-scan-options [payload]",
 
 	Short: "Create GCP scan options",
-	Args:  cobra.ExactArgs(1),
+	Long: `Create GCP scan options
+Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#create-gcp-scan-options`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.GcpScanOptions

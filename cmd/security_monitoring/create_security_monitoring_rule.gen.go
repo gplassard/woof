@@ -16,7 +16,9 @@ var CreateSecurityMonitoringRuleCmd = &cobra.Command{
 	Use:     "create-security-monitoring-rule [payload]",
 	Aliases: []string{"create-rule"},
 	Short:   "Create a detection rule",
-	Args:    cobra.ExactArgs(1),
+	Long: `Create a detection rule
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#create-security-monitoring-rule`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.SecurityMonitoringRuleResponse

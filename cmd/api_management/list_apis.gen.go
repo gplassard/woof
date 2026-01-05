@@ -14,6 +14,8 @@ var ListAPIsCmd = &cobra.Command{
 	Use: "list-apis",
 
 	Short: "List APIs",
+	Long: `List APIs
+Documentation: https://docs.datadoghq.com/api/latest/api-management/#list-apis`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

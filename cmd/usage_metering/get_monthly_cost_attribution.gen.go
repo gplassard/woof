@@ -16,7 +16,9 @@ var GetMonthlyCostAttributionCmd = &cobra.Command{
 	Use: "get-monthly-cost-attribution [start_month] [fields]",
 
 	Short: "Get Monthly Cost Attribution",
-	Args:  cobra.ExactArgs(2),
+	Long: `Get Monthly Cost Attribution
+Documentation: https://docs.datadoghq.com/api/latest/usage-metering/#get-monthly-cost-attribution`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.MonthlyCostAttributionResponse

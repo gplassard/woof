@@ -17,7 +17,9 @@ var UpdateIncidentNotificationRuleCmd = &cobra.Command{
 	Use:     "update-incident-notification-rule [id] [payload]",
 	Aliases: []string{"update-notification-rule"},
 	Short:   "Update an incident notification rule",
-	Args:    cobra.ExactArgs(2),
+	Long: `Update an incident notification rule
+Documentation: https://docs.datadoghq.com/api/latest/incidents/#update-incident-notification-rule`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.IncidentNotificationRule

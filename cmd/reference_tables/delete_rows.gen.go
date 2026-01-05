@@ -16,7 +16,9 @@ var DeleteRowsCmd = &cobra.Command{
 	Use: "delete-rows [id] [payload]",
 
 	Short: "Delete rows",
-	Args:  cobra.ExactArgs(2),
+	Long: `Delete rows
+Documentation: https://docs.datadoghq.com/api/latest/reference-tables/#delete-rows`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

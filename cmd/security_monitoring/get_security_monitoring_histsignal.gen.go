@@ -14,7 +14,9 @@ var GetSecurityMonitoringHistsignalCmd = &cobra.Command{
 	Use:     "get-security-monitoring-histsignal [histsignal_id]",
 	Aliases: []string{"get-histsignal"},
 	Short:   "Get a hist signal's details",
-	Args:    cobra.ExactArgs(1),
+	Long: `Get a hist signal's details
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-security-monitoring-histsignal`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.SecurityMonitoringSignalResponse

@@ -16,7 +16,9 @@ var CreateOpsgenieServiceCmd = &cobra.Command{
 	Use: "create-opsgenie-service [payload]",
 
 	Short: "Create a new service object",
-	Args:  cobra.ExactArgs(1),
+	Long: `Create a new service object
+Documentation: https://docs.datadoghq.com/api/latest/opsgenie-integration/#create-opsgenie-service`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.OpsgenieServiceResponse

@@ -14,6 +14,8 @@ var ListSecurityFiltersCmd = &cobra.Command{
 	Use: "list-security-filters",
 
 	Short: "Get all security filters",
+	Long: `Get all security filters
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#list-security-filters`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

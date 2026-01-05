@@ -14,6 +14,8 @@ var ListBudgetsCmd = &cobra.Command{
 	Use: "list-budgets",
 
 	Short: "List budgets",
+	Long: `List budgets
+Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#list-budgets`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

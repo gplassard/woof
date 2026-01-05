@@ -14,7 +14,9 @@ var GetSuppressionsAffectingRuleCmd = &cobra.Command{
 	Use: "get-suppressions-affecting-rule [rule_id]",
 
 	Short: "Get suppressions affecting a specific rule",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get suppressions affecting a specific rule
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-suppressions-affecting-rule`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.SecurityMonitoringSuppressionsResponse

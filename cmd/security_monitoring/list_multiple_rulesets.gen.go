@@ -16,7 +16,9 @@ var ListMultipleRulesetsCmd = &cobra.Command{
 	Use: "list-multiple-rulesets [payload]",
 
 	Short: "Ruleset get multiple",
-	Args:  cobra.ExactArgs(1),
+	Long: `Ruleset get multiple
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#list-multiple-rulesets`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.GetMultipleRulesetsResponse

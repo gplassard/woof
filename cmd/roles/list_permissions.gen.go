@@ -14,6 +14,8 @@ var ListPermissionsCmd = &cobra.Command{
 	Use: "list-permissions",
 
 	Short: "List permissions",
+	Long: `List permissions
+Documentation: https://docs.datadoghq.com/api/latest/roles/#list-permissions`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

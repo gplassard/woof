@@ -16,7 +16,9 @@ var CreateCustomFrameworkCmd = &cobra.Command{
 	Use: "create-custom-framework [payload]",
 
 	Short: "Create a custom framework",
-	Args:  cobra.ExactArgs(1),
+	Long: `Create a custom framework
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#create-custom-framework`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.CreateCustomFrameworkResponse

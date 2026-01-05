@@ -16,7 +16,9 @@ var CreatePipelineCmd = &cobra.Command{
 	Use: "create-pipeline [payload]",
 
 	Short: "Create a new pipeline",
-	Args:  cobra.ExactArgs(1),
+	Long: `Create a new pipeline
+Documentation: https://docs.datadoghq.com/api/latest/observability-pipelines/#create-pipeline`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.ObservabilityPipeline

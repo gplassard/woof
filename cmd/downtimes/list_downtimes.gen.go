@@ -14,6 +14,8 @@ var ListDowntimesCmd = &cobra.Command{
 	Use:     "list-downtimes",
 	Aliases: []string{"list"},
 	Short:   "Get all downtimes",
+	Long: `Get all downtimes
+Documentation: https://docs.datadoghq.com/api/latest/downtimes/#list-downtimes`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

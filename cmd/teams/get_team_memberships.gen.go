@@ -14,7 +14,9 @@ var GetTeamMembershipsCmd = &cobra.Command{
 	Use:     "get-team-memberships [team_id]",
 	Aliases: []string{"get-memberships"},
 	Short:   "Get team memberships",
-	Args:    cobra.ExactArgs(1),
+	Long: `Get team memberships
+Documentation: https://docs.datadoghq.com/api/latest/teams/#get-team-memberships`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.UserTeamsResponse

@@ -14,7 +14,9 @@ var GetSuppressionVersionHistoryCmd = &cobra.Command{
 	Use: "get-suppression-version-history [suppression_id]",
 
 	Short: "Get a suppression's version history",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get a suppression's version history
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-suppression-version-history`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.GetSuppressionVersionHistoryResponse

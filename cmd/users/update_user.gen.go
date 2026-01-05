@@ -16,7 +16,9 @@ var UpdateUserCmd = &cobra.Command{
 	Use:     "update-user [user_id] [payload]",
 	Aliases: []string{"update"},
 	Short:   "Update a user",
-	Args:    cobra.ExactArgs(2),
+	Long: `Update a user
+Documentation: https://docs.datadoghq.com/api/latest/users/#update-user`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.UserResponse

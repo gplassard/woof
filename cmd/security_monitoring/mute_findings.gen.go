@@ -16,7 +16,9 @@ var MuteFindingsCmd = &cobra.Command{
 	Use: "mute-findings [payload]",
 
 	Short: "Mute or unmute a batch of findings",
-	Args:  cobra.ExactArgs(1),
+	Long: `Mute or unmute a batch of findings
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#mute-findings`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.BulkMuteFindingsResponse

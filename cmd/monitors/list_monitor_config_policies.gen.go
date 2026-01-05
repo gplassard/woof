@@ -14,6 +14,8 @@ var ListMonitorConfigPoliciesCmd = &cobra.Command{
 	Use:     "list-monitor-config-policies",
 	Aliases: []string{"list-config-policies"},
 	Short:   "Get all monitor configuration policies",
+	Long: `Get all monitor configuration policies
+Documentation: https://docs.datadoghq.com/api/latest/monitors/#list-monitor-config-policies`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

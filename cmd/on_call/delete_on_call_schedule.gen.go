@@ -14,7 +14,9 @@ var DeleteOnCallScheduleCmd = &cobra.Command{
 	Use:     "delete-on-call-schedule [schedule_id]",
 	Aliases: []string{"delete-schedule"},
 	Short:   "Delete On-Call schedule",
-	Args:    cobra.ExactArgs(1),
+	Long: `Delete On-Call schedule
+Documentation: https://docs.datadoghq.com/api/latest/on-call/#delete-on-call-schedule`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

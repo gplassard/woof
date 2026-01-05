@@ -14,7 +14,9 @@ var GetAllCustomAttributeConfigsByCaseTypeCmd = &cobra.Command{
 	Use: "get-all-custom-attribute-configs-by-case-type [case_type_id]",
 
 	Short: "Get all custom attributes config of case type",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get all custom attributes config of case type
+Documentation: https://docs.datadoghq.com/api/latest/case-management-attribute/#get-all-custom-attribute-configs-by-case-type`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.CustomAttributeConfigsResponse

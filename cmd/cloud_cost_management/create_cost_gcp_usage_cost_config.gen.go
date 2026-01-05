@@ -16,7 +16,9 @@ var CreateCostGCPUsageCostConfigCmd = &cobra.Command{
 	Use: "create-cost-gcp-usage-cost-config [payload]",
 
 	Short: "Create Google Cloud Usage Cost config",
-	Args:  cobra.ExactArgs(1),
+	Long: `Create Google Cloud Usage Cost config
+Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#create-cost-gcp-usage-cost-config`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.GCPUsageCostConfigResponse

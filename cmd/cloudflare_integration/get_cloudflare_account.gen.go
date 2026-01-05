@@ -14,7 +14,9 @@ var GetCloudflareAccountCmd = &cobra.Command{
 	Use: "get-cloudflare-account [account_id]",
 
 	Short: "Get Cloudflare account",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get Cloudflare account
+Documentation: https://docs.datadoghq.com/api/latest/cloudflare-integration/#get-cloudflare-account`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.CloudflareAccountResponse

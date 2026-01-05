@@ -14,6 +14,8 @@ var ListIncidentNotificationRulesCmd = &cobra.Command{
 	Use:     "list-incident-notification-rules",
 	Aliases: []string{"list-notification-rules"},
 	Short:   "List incident notification rules",
+	Long: `List incident notification rules
+Documentation: https://docs.datadoghq.com/api/latest/incidents/#list-incident-notification-rules`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

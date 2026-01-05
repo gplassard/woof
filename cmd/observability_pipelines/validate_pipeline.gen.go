@@ -16,7 +16,9 @@ var ValidatePipelineCmd = &cobra.Command{
 	Use: "validate-pipeline [payload]",
 
 	Short: "Validate an observability pipeline",
-	Args:  cobra.ExactArgs(1),
+	Long: `Validate an observability pipeline
+Documentation: https://docs.datadoghq.com/api/latest/observability-pipelines/#validate-pipeline`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.ValidationResponse

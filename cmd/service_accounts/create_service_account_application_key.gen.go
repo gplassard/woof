@@ -16,7 +16,9 @@ var CreateServiceAccountApplicationKeyCmd = &cobra.Command{
 	Use:     "create-service-account-application-key [service_account_id] [payload]",
 	Aliases: []string{"create-application-key"},
 	Short:   "Create an application key for this service account",
-	Args:    cobra.ExactArgs(2),
+	Long: `Create an application key for this service account
+Documentation: https://docs.datadoghq.com/api/latest/service-accounts/#create-service-account-application-key`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.ApplicationKeyResponse

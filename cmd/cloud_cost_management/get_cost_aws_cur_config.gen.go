@@ -15,7 +15,9 @@ var GetCostAWSCURConfigCmd = &cobra.Command{
 	Use: "get-cost-aws-cur-config [cloud_account_id]",
 
 	Short: "Get cost AWS CUR config",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get cost AWS CUR config
+Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#get-cost-aws-cur-config`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.AwsCurConfigResponse

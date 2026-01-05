@@ -14,6 +14,8 @@ var ListCatalogKindCmd = &cobra.Command{
 	Use: "list-catalog-kind",
 
 	Short: "Get a list of entity kinds",
+	Long: `Get a list of entity kinds
+Documentation: https://docs.datadoghq.com/api/latest/software-catalog/#list-catalog-kind`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

@@ -14,7 +14,9 @@ var ListMetricAssetsCmd = &cobra.Command{
 	Use:     "list-metric-assets [metric_name]",
 	Aliases: []string{"list-assets"},
 	Short:   "Related Assets to a Metric",
-	Args:    cobra.ExactArgs(1),
+	Long: `Related Assets to a Metric
+Documentation: https://docs.datadoghq.com/api/latest/metrics/#list-metric-assets`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.MetricAssetsResponse

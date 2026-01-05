@@ -14,6 +14,8 @@ var ListFleetAgentVersionsCmd = &cobra.Command{
 	Use: "list-fleet-agent-versions",
 
 	Short: "List all available Agent versions",
+	Long: `List all available Agent versions
+Documentation: https://docs.datadoghq.com/api/latest/fleet-automation/#list-fleet-agent-versions`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

@@ -14,7 +14,9 @@ var DeleteSignalNotificationRuleCmd = &cobra.Command{
 	Use: "delete-signal-notification-rule [id]",
 
 	Short: "Delete a signal-based notification rule",
-	Args:  cobra.ExactArgs(1),
+	Long: `Delete a signal-based notification rule
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#delete-signal-notification-rule`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

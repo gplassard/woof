@@ -14,7 +14,9 @@ var DeleteSecurityMonitoringSuppressionCmd = &cobra.Command{
 	Use:     "delete-security-monitoring-suppression [suppression_id]",
 	Aliases: []string{"delete-suppression"},
 	Short:   "Delete a suppression rule",
-	Args:    cobra.ExactArgs(1),
+	Long: `Delete a suppression rule
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#delete-security-monitoring-suppression`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

@@ -14,7 +14,9 @@ var GetSecurityFilterCmd = &cobra.Command{
 	Use: "get-security-filter [security_filter_id]",
 
 	Short: "Get a security filter",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get a security filter
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-security-filter`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.SecurityFilterResponse

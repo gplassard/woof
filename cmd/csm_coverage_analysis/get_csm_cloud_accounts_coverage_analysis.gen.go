@@ -14,6 +14,8 @@ var GetCSMCloudAccountsCoverageAnalysisCmd = &cobra.Command{
 	Use: "get-csm-cloud-accounts-coverage-analysis",
 
 	Short: "Get the CSM Cloud Accounts Coverage Analysis",
+	Long: `Get the CSM Cloud Accounts Coverage Analysis
+Documentation: https://docs.datadoghq.com/api/latest/csm-coverage-analysis/#get-csm-cloud-accounts-coverage-analysis`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

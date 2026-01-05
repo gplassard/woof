@@ -14,6 +14,8 @@ var GetOnDemandConcurrencyCapCmd = &cobra.Command{
 	Use: "get-on-demand-concurrency-cap",
 
 	Short: "Get the on-demand concurrency cap",
+	Long: `Get the on-demand concurrency cap
+Documentation: https://docs.datadoghq.com/api/latest/synthetics/#get-on-demand-concurrency-cap`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

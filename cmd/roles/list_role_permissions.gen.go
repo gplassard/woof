@@ -14,7 +14,9 @@ var ListRolePermissionsCmd = &cobra.Command{
 	Use:     "list-role-permissions [role_id]",
 	Aliases: []string{"list-permissions"},
 	Short:   "List permissions for a role",
-	Args:    cobra.ExactArgs(1),
+	Long: `List permissions for a role
+Documentation: https://docs.datadoghq.com/api/latest/roles/#list-role-permissions`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.PermissionsResponse

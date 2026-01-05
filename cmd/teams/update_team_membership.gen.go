@@ -16,7 +16,9 @@ var UpdateTeamMembershipCmd = &cobra.Command{
 	Use:     "update-team-membership [team_id] [user_id] [payload]",
 	Aliases: []string{"update-membership"},
 	Short:   "Update a user's membership attributes on a team",
-	Args:    cobra.ExactArgs(3),
+	Long: `Update a user's membership attributes on a team
+Documentation: https://docs.datadoghq.com/api/latest/teams/#update-team-membership`,
+	Args: cobra.ExactArgs(3),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.UserTeamResponse

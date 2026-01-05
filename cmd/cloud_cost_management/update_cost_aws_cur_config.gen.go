@@ -16,7 +16,9 @@ var UpdateCostAWSCURConfigCmd = &cobra.Command{
 	Use: "update-cost-aws-cur-config [cloud_account_id] [payload]",
 
 	Short: "Update Cloud Cost Management AWS CUR config",
-	Args:  cobra.ExactArgs(2),
+	Long: `Update Cloud Cost Management AWS CUR config
+Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#update-cost-aws-cur-config`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.AwsCURConfigsResponse

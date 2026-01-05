@@ -16,7 +16,9 @@ var SearchFlakyTestsCmd = &cobra.Command{
 	Use: "search-flaky-tests [payload]",
 
 	Short: "Search flaky tests",
-	Args:  cobra.ExactArgs(1),
+	Long: `Search flaky tests
+Documentation: https://docs.datadoghq.com/api/latest/test-optimization/#search-flaky-tests`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.FlakyTestsSearchResponse

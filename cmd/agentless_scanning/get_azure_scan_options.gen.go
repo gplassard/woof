@@ -14,7 +14,9 @@ var GetAzureScanOptionsCmd = &cobra.Command{
 	Use: "get-azure-scan-options [subscription_id]",
 
 	Short: "Get Azure scan options",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get Azure scan options
+Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#get-azure-scan-options`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.AzureScanOptions

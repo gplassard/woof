@@ -14,7 +14,9 @@ var GetConfluentAccountCmd = &cobra.Command{
 	Use: "get-confluent-account [account_id]",
 
 	Short: "Get Confluent account",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get Confluent account
+Documentation: https://docs.datadoghq.com/api/latest/confluent-cloud/#get-confluent-account`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.ConfluentAccountResponse

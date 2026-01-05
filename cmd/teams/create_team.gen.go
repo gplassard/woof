@@ -16,7 +16,9 @@ var CreateTeamCmd = &cobra.Command{
 	Use:     "create-team [payload]",
 	Aliases: []string{"create"},
 	Short:   "Create a team",
-	Args:    cobra.ExactArgs(1),
+	Long: `Create a team
+Documentation: https://docs.datadoghq.com/api/latest/teams/#create-team`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.TeamResponse

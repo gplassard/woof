@@ -16,7 +16,9 @@ var AggregateRUMEventsCmd = &cobra.Command{
 	Use:     "aggregate-rum-events [payload]",
 	Aliases: []string{"aggregate-events"},
 	Short:   "Aggregate RUM events",
-	Args:    cobra.ExactArgs(1),
+	Long: `Aggregate RUM events
+Documentation: https://docs.datadoghq.com/api/latest/rum/#aggregate-rum-events`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.RUMAnalyticsAggregateResponse

@@ -14,7 +14,9 @@ var DeleteCurrentUserApplicationKeyCmd = &cobra.Command{
 	Use: "delete-current-user-application-key [app_key_id]",
 
 	Short: "Delete an application key owned by current user",
-	Args:  cobra.ExactArgs(1),
+	Long: `Delete an application key owned by current user
+Documentation: https://docs.datadoghq.com/api/latest/key-management/#delete-current-user-application-key`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

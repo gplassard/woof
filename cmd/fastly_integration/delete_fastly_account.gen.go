@@ -14,7 +14,9 @@ var DeleteFastlyAccountCmd = &cobra.Command{
 	Use: "delete-fastly-account [account_id]",
 
 	Short: "Delete Fastly account",
-	Args:  cobra.ExactArgs(1),
+	Long: `Delete Fastly account
+Documentation: https://docs.datadoghq.com/api/latest/fastly-integration/#delete-fastly-account`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

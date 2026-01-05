@@ -16,7 +16,9 @@ var CreateIncidentTeamCmd = &cobra.Command{
 	Use:     "create-incident-team [payload]",
 	Aliases: []string{"create"},
 	Short:   "Create a new incident team",
-	Args:    cobra.ExactArgs(1),
+	Long: `Create a new incident team
+Documentation: https://docs.datadoghq.com/api/latest/incident-teams/#create-incident-team`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.IncidentTeamResponse

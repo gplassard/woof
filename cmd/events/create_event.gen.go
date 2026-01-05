@@ -16,7 +16,9 @@ var CreateEventCmd = &cobra.Command{
 	Use:     "create-event [payload]",
 	Aliases: []string{"create"},
 	Short:   "Post an event",
-	Args:    cobra.ExactArgs(1),
+	Long: `Post an event
+Documentation: https://docs.datadoghq.com/api/latest/events/#create-event`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.EventCreateResponsePayload

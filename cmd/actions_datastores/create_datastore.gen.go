@@ -16,7 +16,9 @@ var CreateDatastoreCmd = &cobra.Command{
 	Use:     "create-datastore [payload]",
 	Aliases: []string{"create"},
 	Short:   "Create datastore",
-	Args:    cobra.ExactArgs(1),
+	Long: `Create datastore
+Documentation: https://docs.datadoghq.com/api/latest/actions-datastores/#create-datastore`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.CreateAppsDatastoreResponse

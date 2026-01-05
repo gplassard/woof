@@ -14,7 +14,9 @@ var GetMonitorUserTemplateCmd = &cobra.Command{
 	Use:     "get-monitor-user-template [template_id]",
 	Aliases: []string{"get-user-template"},
 	Short:   "Get a monitor user template",
-	Args:    cobra.ExactArgs(1),
+	Long: `Get a monitor user template
+Documentation: https://docs.datadoghq.com/api/latest/monitors/#get-monitor-user-template`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.MonitorUserTemplateResponse

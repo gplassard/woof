@@ -15,7 +15,9 @@ var DeleteCostAWSCURConfigCmd = &cobra.Command{
 	Use: "delete-cost-aws-cur-config [cloud_account_id]",
 
 	Short: "Delete Cloud Cost Management AWS CUR config",
-	Args:  cobra.ExactArgs(1),
+	Long: `Delete Cloud Cost Management AWS CUR config
+Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#delete-cost-aws-cur-config`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

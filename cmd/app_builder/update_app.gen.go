@@ -17,7 +17,9 @@ var UpdateAppCmd = &cobra.Command{
 	Use: "update-app [app_id] [payload]",
 
 	Short: "Update App",
-	Args:  cobra.ExactArgs(2),
+	Long: `Update App
+Documentation: https://docs.datadoghq.com/api/latest/app-builder/#update-app`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.UpdateAppResponse

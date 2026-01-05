@@ -284,6 +284,9 @@ func prepareTemplateData(bundle, rawBundle, apiBundleName, method, path string, 
 
 	aliases := computeAliases(bundle, op.OperationID, config)
 
+	docBundle := strings.ReplaceAll(strings.ToLower(rawBundle), " ", "-")
+	docURL := fmt.Sprintf("https://docs.datadoghq.com/api/latest/%s/#%s", docBundle, toKebabCase(op.OperationID, config))
+
 	return TemplateData{
 		PackageName:      bundle,
 		CommandName:      strings.ToUpper(op.OperationID[:1]) + op.OperationID[1:] + "Cmd",
@@ -303,6 +306,7 @@ func prepareTemplateData(bundle, rawBundle, apiBundleName, method, path string, 
 		ResourceType:     resourceType,
 		ResponseTypeGo:   responseTypeGo,
 		Aliases:          aliases,
+		DocURL:           docURL,
 	}
 }
 

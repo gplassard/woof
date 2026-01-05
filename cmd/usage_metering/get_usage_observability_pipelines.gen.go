@@ -16,7 +16,9 @@ var GetUsageObservabilityPipelinesCmd = &cobra.Command{
 	Use: "get-usage-observability-pipelines [start_hr]",
 
 	Short: "Get hourly usage for observability pipelines",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get hourly usage for observability pipelines
+Documentation: https://docs.datadoghq.com/api/latest/usage-metering/#get-usage-observability-pipelines`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.UsageObservabilityPipelinesResponse

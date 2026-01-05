@@ -14,6 +14,8 @@ var GetDomainAllowlistCmd = &cobra.Command{
 	Use:     "get-domain-allowlist",
 	Aliases: []string{"get"},
 	Short:   "Get Domain Allowlist",
+	Long: `Get Domain Allowlist
+Documentation: https://docs.datadoghq.com/api/latest/domain-allowlist/#get-domain-allowlist`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

@@ -16,7 +16,9 @@ var UpdateServiceAccountApplicationKeyCmd = &cobra.Command{
 	Use:     "update-service-account-application-key [service_account_id] [app_key_id] [payload]",
 	Aliases: []string{"update-application-key"},
 	Short:   "Edit an application key for this service account",
-	Args:    cobra.ExactArgs(3),
+	Long: `Edit an application key for this service account
+Documentation: https://docs.datadoghq.com/api/latest/service-accounts/#update-service-account-application-key`,
+	Args: cobra.ExactArgs(3),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.PartialApplicationKeyResponse

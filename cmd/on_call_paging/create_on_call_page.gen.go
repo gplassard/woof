@@ -16,7 +16,9 @@ var CreateOnCallPageCmd = &cobra.Command{
 	Use: "create-on-call-page [payload]",
 
 	Short: "Create On-Call Page",
-	Args:  cobra.ExactArgs(1),
+	Long: `Create On-Call Page
+Documentation: https://docs.datadoghq.com/api/latest/on-call-paging/#create-on-call-page`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.CreatePageResponse

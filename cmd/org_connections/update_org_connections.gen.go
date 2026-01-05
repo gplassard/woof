@@ -17,7 +17,9 @@ var UpdateOrgConnectionsCmd = &cobra.Command{
 	Use:     "update-org-connections [connection_id] [payload]",
 	Aliases: []string{"update"},
 	Short:   "Update Org Connection",
-	Args:    cobra.ExactArgs(2),
+	Long: `Update Org Connection
+Documentation: https://docs.datadoghq.com/api/latest/org-connections/#update-org-connections`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.OrgConnectionResponse

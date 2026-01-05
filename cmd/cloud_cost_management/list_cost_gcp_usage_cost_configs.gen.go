@@ -14,6 +14,8 @@ var ListCostGCPUsageCostConfigsCmd = &cobra.Command{
 	Use: "list-cost-gcp-usage-cost-configs",
 
 	Short: "List Google Cloud Usage Cost configs",
+	Long: `List Google Cloud Usage Cost configs
+Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#list-cost-gcp-usage-cost-configs`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

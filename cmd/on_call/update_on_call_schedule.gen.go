@@ -16,7 +16,9 @@ var UpdateOnCallScheduleCmd = &cobra.Command{
 	Use:     "update-on-call-schedule [schedule_id] [payload]",
 	Aliases: []string{"update-schedule"},
 	Short:   "Update On-Call schedule",
-	Args:    cobra.ExactArgs(2),
+	Long: `Update On-Call schedule
+Documentation: https://docs.datadoghq.com/api/latest/on-call/#update-on-call-schedule`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.Schedule

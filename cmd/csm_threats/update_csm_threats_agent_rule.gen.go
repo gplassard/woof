@@ -16,7 +16,9 @@ var UpdateCSMThreatsAgentRuleCmd = &cobra.Command{
 	Use:     "update-csm-threats-agent-rule [agent_rule_id] [payload]",
 	Aliases: []string{"update-agent-rule"},
 	Short:   "Update a Workload Protection agent rule",
-	Args:    cobra.ExactArgs(2),
+	Long: `Update a Workload Protection agent rule
+Documentation: https://docs.datadoghq.com/api/latest/csm-threats/#update-csm-threats-agent-rule`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.CloudWorkloadSecurityAgentRuleResponse

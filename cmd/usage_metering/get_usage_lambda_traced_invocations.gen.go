@@ -16,7 +16,9 @@ var GetUsageLambdaTracedInvocationsCmd = &cobra.Command{
 	Use: "get-usage-lambda-traced-invocations [start_hr]",
 
 	Short: "Get hourly usage for Lambda traced invocations",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get hourly usage for Lambda traced invocations
+Documentation: https://docs.datadoghq.com/api/latest/usage-metering/#get-usage-lambda-traced-invocations`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.UsageLambdaTracedInvocationsResponse

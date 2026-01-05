@@ -16,7 +16,9 @@ var UpdateLogsArchiveCmd = &cobra.Command{
 	Use:     "update-logs-archive [archive_id] [payload]",
 	Aliases: []string{"update"},
 	Short:   "Update an archive",
-	Args:    cobra.ExactArgs(2),
+	Long: `Update an archive
+Documentation: https://docs.datadoghq.com/api/latest/logs-archives/#update-logs-archive`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.LogsArchive

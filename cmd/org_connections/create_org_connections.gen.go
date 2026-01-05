@@ -16,7 +16,9 @@ var CreateOrgConnectionsCmd = &cobra.Command{
 	Use:     "create-org-connections [payload]",
 	Aliases: []string{"create"},
 	Short:   "Create Org Connection",
-	Args:    cobra.ExactArgs(1),
+	Long: `Create Org Connection
+Documentation: https://docs.datadoghq.com/api/latest/org-connections/#create-org-connections`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.OrgConnectionResponse

@@ -14,7 +14,9 @@ var GetDowntimeCmd = &cobra.Command{
 	Use:     "get-downtime [downtime_id]",
 	Aliases: []string{"get"},
 	Short:   "Get a downtime",
-	Args:    cobra.ExactArgs(1),
+	Long: `Get a downtime
+Documentation: https://docs.datadoghq.com/api/latest/downtimes/#get-downtime`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.DowntimeResponse

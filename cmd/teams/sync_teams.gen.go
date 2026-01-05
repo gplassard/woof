@@ -16,7 +16,9 @@ var SyncTeamsCmd = &cobra.Command{
 	Use:     "sync-teams [payload]",
 	Aliases: []string{"sync"},
 	Short:   "Link Teams with GitHub Teams",
-	Args:    cobra.ExactArgs(1),
+	Long: `Link Teams with GitHub Teams
+Documentation: https://docs.datadoghq.com/api/latest/teams/#sync-teams`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

@@ -16,7 +16,9 @@ var GetHourlyUsageCmd = &cobra.Command{
 	Use: "get-hourly-usage [filter[timestamp][start]] [filter[product_families]]",
 
 	Short: "Get hourly usage by product family",
-	Args:  cobra.ExactArgs(2),
+	Long: `Get hourly usage by product family
+Documentation: https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.HourlyUsageResponse

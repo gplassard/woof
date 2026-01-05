@@ -14,6 +14,8 @@ var GetSecretsRulesCmd = &cobra.Command{
 	Use: "get-secrets-rules",
 
 	Short: "Returns a list of Secrets rules",
+	Long: `Returns a list of Secrets rules
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-secrets-rules`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

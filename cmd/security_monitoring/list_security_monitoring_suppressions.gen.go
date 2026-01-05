@@ -14,6 +14,8 @@ var ListSecurityMonitoringSuppressionsCmd = &cobra.Command{
 	Use:     "list-security-monitoring-suppressions",
 	Aliases: []string{"list-suppressions"},
 	Short:   "Get all suppression rules",
+	Long: `Get all suppression rules
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#list-security-monitoring-suppressions`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

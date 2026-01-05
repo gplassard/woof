@@ -14,6 +14,8 @@ var ListTagPipelinesRulesetsCmd = &cobra.Command{
 	Use: "list-tag-pipelines-rulesets",
 
 	Short: "List tag pipeline rulesets",
+	Long: `List tag pipeline rulesets
+Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#list-tag-pipelines-rulesets`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

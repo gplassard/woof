@@ -16,7 +16,9 @@ var CreateServiceAccountCmd = &cobra.Command{
 	Use:     "create-service-account [payload]",
 	Aliases: []string{"create"},
 	Short:   "Create a service account",
-	Args:    cobra.ExactArgs(1),
+	Long: `Create a service account
+Documentation: https://docs.datadoghq.com/api/latest/service-accounts/#create-service-account`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.UserResponse

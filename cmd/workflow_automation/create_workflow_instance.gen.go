@@ -16,7 +16,9 @@ var CreateWorkflowInstanceCmd = &cobra.Command{
 	Use:     "create-workflow-instance [workflow_id] [payload]",
 	Aliases: []string{"create-instance"},
 	Short:   "Execute a workflow",
-	Args:    cobra.ExactArgs(2),
+	Long: `Execute a workflow
+Documentation: https://docs.datadoghq.com/api/latest/workflow-automation/#create-workflow-instance`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.WorkflowInstanceCreateResponse

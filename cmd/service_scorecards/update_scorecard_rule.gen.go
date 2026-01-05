@@ -16,7 +16,9 @@ var UpdateScorecardRuleCmd = &cobra.Command{
 	Use:     "update-scorecard-rule [rule_id] [payload]",
 	Aliases: []string{"update-rule"},
 	Short:   "Update an existing rule",
-	Args:    cobra.ExactArgs(2),
+	Long: `Update an existing rule
+Documentation: https://docs.datadoghq.com/api/latest/service-scorecards/#update-scorecard-rule`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.UpdateRuleResponse

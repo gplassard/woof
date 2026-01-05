@@ -14,7 +14,9 @@ var DeleteTagPipelinesRulesetCmd = &cobra.Command{
 	Use: "delete-tag-pipelines-ruleset [ruleset_id]",
 
 	Short: "Delete tag pipeline ruleset",
-	Args:  cobra.ExactArgs(1),
+	Long: `Delete tag pipeline ruleset
+Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#delete-tag-pipelines-ruleset`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

@@ -14,6 +14,8 @@ var ListWorkflowsWebhookHandlesCmd = &cobra.Command{
 	Use: "list-workflows-webhook-handles",
 
 	Short: "Get all Workflows webhook handles",
+	Long: `Get all Workflows webhook handles
+Documentation: https://docs.datadoghq.com/api/latest/microsoft-teams-integration/#list-workflows-webhook-handles`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

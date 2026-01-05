@@ -16,7 +16,9 @@ var CreateOnCallScheduleCmd = &cobra.Command{
 	Use:     "create-on-call-schedule [payload]",
 	Aliases: []string{"create-schedule"},
 	Short:   "Create On-Call schedule",
-	Args:    cobra.ExactArgs(1),
+	Long: `Create On-Call schedule
+Documentation: https://docs.datadoghq.com/api/latest/on-call/#create-on-call-schedule`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.Schedule

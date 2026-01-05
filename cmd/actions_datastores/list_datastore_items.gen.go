@@ -14,7 +14,9 @@ var ListDatastoreItemsCmd = &cobra.Command{
 	Use:     "list-datastore-items [datastore_id]",
 	Aliases: []string{"list-items"},
 	Short:   "List datastore items",
-	Args:    cobra.ExactArgs(1),
+	Long: `List datastore items
+Documentation: https://docs.datadoghq.com/api/latest/actions-datastores/#list-datastore-items`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.ItemApiPayloadArray

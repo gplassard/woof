@@ -16,7 +16,9 @@ var CreateCurrentUserApplicationKeyCmd = &cobra.Command{
 	Use: "create-current-user-application-key [payload]",
 
 	Short: "Create an application key for current user",
-	Args:  cobra.ExactArgs(1),
+	Long: `Create an application key for current user
+Documentation: https://docs.datadoghq.com/api/latest/key-management/#create-current-user-application-key`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.ApplicationKeyResponse

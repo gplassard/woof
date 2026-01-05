@@ -16,7 +16,9 @@ var CreateSecurityMonitoringSuppressionCmd = &cobra.Command{
 	Use:     "create-security-monitoring-suppression [payload]",
 	Aliases: []string{"create-suppression"},
 	Short:   "Create a suppression rule",
-	Args:    cobra.ExactArgs(1),
+	Long: `Create a suppression rule
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#create-security-monitoring-suppression`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.SecurityMonitoringSuppressionResponse

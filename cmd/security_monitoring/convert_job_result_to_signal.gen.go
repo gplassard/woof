@@ -16,7 +16,9 @@ var ConvertJobResultToSignalCmd = &cobra.Command{
 	Use: "convert-job-result-to-signal [payload]",
 
 	Short: "Convert a job result to a signal",
-	Args:  cobra.ExactArgs(1),
+	Long: `Convert a job result to a signal
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#convert-job-result-to-signal`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

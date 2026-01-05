@@ -16,7 +16,9 @@ var QueryEventFilteredUsersCmd = &cobra.Command{
 	Use: "query-event-filtered-users [payload]",
 
 	Short: "Query event filtered users",
-	Args:  cobra.ExactArgs(1),
+	Long: `Query event filtered users
+Documentation: https://docs.datadoghq.com/api/latest/rum-audience-management/#query-event-filtered-users`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.QueryResponse

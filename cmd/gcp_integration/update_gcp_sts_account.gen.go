@@ -16,7 +16,9 @@ var UpdateGCPSTSAccountCmd = &cobra.Command{
 	Use: "update-gcp-sts-account [account_id] [payload]",
 
 	Short: "Update STS Service Account",
-	Args:  cobra.ExactArgs(2),
+	Long: `Update STS Service Account
+Documentation: https://docs.datadoghq.com/api/latest/gcp-integration/#update-gcp-sts-account`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.GCPSTSServiceAccountResponse

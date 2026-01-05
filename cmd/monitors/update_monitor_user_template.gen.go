@@ -16,7 +16,9 @@ var UpdateMonitorUserTemplateCmd = &cobra.Command{
 	Use:     "update-monitor-user-template [template_id] [payload]",
 	Aliases: []string{"update-user-template"},
 	Short:   "Update a monitor user template to a new version",
-	Args:    cobra.ExactArgs(2),
+	Long: `Update a monitor user template to a new version
+Documentation: https://docs.datadoghq.com/api/latest/monitors/#update-monitor-user-template`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.MonitorUserTemplateResponse

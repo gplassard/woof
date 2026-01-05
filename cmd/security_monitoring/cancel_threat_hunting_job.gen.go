@@ -14,7 +14,9 @@ var CancelThreatHuntingJobCmd = &cobra.Command{
 	Use: "cancel-threat-hunting-job [job_id]",
 
 	Short: "Cancel a threat hunting job",
-	Args:  cobra.ExactArgs(1),
+	Long: `Cancel a threat hunting job
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#cancel-threat-hunting-job`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

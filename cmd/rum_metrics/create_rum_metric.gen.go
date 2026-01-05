@@ -16,7 +16,9 @@ var CreateRumMetricCmd = &cobra.Command{
 	Use:     "create-rum-metric [payload]",
 	Aliases: []string{"create"},
 	Short:   "Create a rum-based metric",
-	Args:    cobra.ExactArgs(1),
+	Long: `Create a rum-based metric
+Documentation: https://docs.datadoghq.com/api/latest/rum-metrics/#create-rum-metric`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.RumMetricResponse

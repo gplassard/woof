@@ -14,7 +14,9 @@ var DeleteRetentionFilterCmd = &cobra.Command{
 	Use: "delete-retention-filter [app_id] [rf_id]",
 
 	Short: "Delete a RUM retention filter",
-	Args:  cobra.ExactArgs(2),
+	Long: `Delete a RUM retention filter
+Documentation: https://docs.datadoghq.com/api/latest/rum-retention-filters/#delete-retention-filter`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

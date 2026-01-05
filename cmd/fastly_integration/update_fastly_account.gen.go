@@ -16,7 +16,9 @@ var UpdateFastlyAccountCmd = &cobra.Command{
 	Use: "update-fastly-account [account_id] [payload]",
 
 	Short: "Update Fastly account",
-	Args:  cobra.ExactArgs(2),
+	Long: `Update Fastly account
+Documentation: https://docs.datadoghq.com/api/latest/fastly-integration/#update-fastly-account`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.FastlyAccountResponse

@@ -16,7 +16,9 @@ var UpdateCostGCPUsageCostConfigCmd = &cobra.Command{
 	Use: "update-cost-gcp-usage-cost-config [cloud_account_id] [payload]",
 
 	Short: "Update Google Cloud Usage Cost config",
-	Args:  cobra.ExactArgs(2),
+	Long: `Update Google Cloud Usage Cost config
+Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#update-cost-gcp-usage-cost-config`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.GCPUsageCostConfigResponse

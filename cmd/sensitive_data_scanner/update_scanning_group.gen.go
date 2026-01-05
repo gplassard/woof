@@ -16,7 +16,9 @@ var UpdateScanningGroupCmd = &cobra.Command{
 	Use: "update-scanning-group [group_id] [payload]",
 
 	Short: "Update Scanning Group",
-	Args:  cobra.ExactArgs(2),
+	Long: `Update Scanning Group
+Documentation: https://docs.datadoghq.com/api/latest/sensitive-data-scanner/#update-scanning-group`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.SensitiveDataScannerGroupUpdateResponse

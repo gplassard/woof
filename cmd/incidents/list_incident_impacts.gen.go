@@ -14,7 +14,9 @@ var ListIncidentImpactsCmd = &cobra.Command{
 	Use:     "list-incident-impacts [incident_id]",
 	Aliases: []string{"list-impacts"},
 	Short:   "List an incident's impacts",
-	Args:    cobra.ExactArgs(1),
+	Long: `List an incident's impacts
+Documentation: https://docs.datadoghq.com/api/latest/incidents/#list-incident-impacts`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.IncidentImpactsResponse

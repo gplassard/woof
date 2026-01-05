@@ -16,7 +16,9 @@ var CreateWorkflowsWebhookHandleCmd = &cobra.Command{
 	Use: "create-workflows-webhook-handle [payload]",
 
 	Short: "Create Workflows webhook handle",
-	Args:  cobra.ExactArgs(1),
+	Long: `Create Workflows webhook handle
+Documentation: https://docs.datadoghq.com/api/latest/microsoft-teams-integration/#create-workflows-webhook-handle`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.MicrosoftTeamsWorkflowsWebhookHandleResponse

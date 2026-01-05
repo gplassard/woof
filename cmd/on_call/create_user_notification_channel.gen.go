@@ -16,7 +16,9 @@ var CreateUserNotificationChannelCmd = &cobra.Command{
 	Use: "create-user-notification-channel [user_id] [payload]",
 
 	Short: "Create an On-Call notification channel for a user",
-	Args:  cobra.ExactArgs(2),
+	Long: `Create an On-Call notification channel for a user
+Documentation: https://docs.datadoghq.com/api/latest/on-call/#create-user-notification-channel`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.NotificationChannel

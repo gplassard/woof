@@ -14,6 +14,8 @@ var ListAwsOnDemandTasksCmd = &cobra.Command{
 	Use: "list-aws-on-demand-tasks",
 
 	Short: "List AWS on demand tasks",
+	Long: `List AWS on demand tasks
+Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#list-aws-on-demand-tasks`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

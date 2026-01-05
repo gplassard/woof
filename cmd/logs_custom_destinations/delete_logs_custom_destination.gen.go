@@ -14,7 +14,9 @@ var DeleteLogsCustomDestinationCmd = &cobra.Command{
 	Use:     "delete-logs-custom-destination [custom_destination_id]",
 	Aliases: []string{"delete"},
 	Short:   "Delete a custom destination",
-	Args:    cobra.ExactArgs(1),
+	Long: `Delete a custom destination
+Documentation: https://docs.datadoghq.com/api/latest/logs-custom-destinations/#delete-logs-custom-destination`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

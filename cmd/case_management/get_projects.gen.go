@@ -14,6 +14,8 @@ var GetProjectsCmd = &cobra.Command{
 	Use: "get-projects",
 
 	Short: "Get all projects",
+	Long: `Get all projects
+Documentation: https://docs.datadoghq.com/api/latest/case-management/#get-projects`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

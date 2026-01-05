@@ -16,7 +16,9 @@ var CreateAwsOnDemandTaskCmd = &cobra.Command{
 	Use: "create-aws-on-demand-task [payload]",
 
 	Short: "Create AWS on demand task",
-	Args:  cobra.ExactArgs(1),
+	Long: `Create AWS on demand task
+Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#create-aws-on-demand-task`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.AwsOnDemandResponse

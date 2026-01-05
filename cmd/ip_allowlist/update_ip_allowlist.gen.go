@@ -16,7 +16,9 @@ var UpdateIPAllowlistCmd = &cobra.Command{
 	Use:     "update-ip-allowlist [payload]",
 	Aliases: []string{"update"},
 	Short:   "Update IP Allowlist",
-	Args:    cobra.ExactArgs(1),
+	Long: `Update IP Allowlist
+Documentation: https://docs.datadoghq.com/api/latest/ip-allowlist/#update-ip-allowlist`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.IPAllowlistResponse

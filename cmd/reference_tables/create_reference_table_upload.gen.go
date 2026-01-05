@@ -16,7 +16,9 @@ var CreateReferenceTableUploadCmd = &cobra.Command{
 	Use:     "create-reference-table-upload [payload]",
 	Aliases: []string{"create-upload"},
 	Short:   "Create reference table upload",
-	Args:    cobra.ExactArgs(1),
+	Long: `Create reference table upload
+Documentation: https://docs.datadoghq.com/api/latest/reference-tables/#create-reference-table-upload`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.CreateUploadResponse

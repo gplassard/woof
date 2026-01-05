@@ -14,7 +14,9 @@ var DeleteCloudflareAccountCmd = &cobra.Command{
 	Use: "delete-cloudflare-account [account_id]",
 
 	Short: "Delete Cloudflare account",
-	Args:  cobra.ExactArgs(1),
+	Long: `Delete Cloudflare account
+Documentation: https://docs.datadoghq.com/api/latest/cloudflare-integration/#delete-cloudflare-account`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

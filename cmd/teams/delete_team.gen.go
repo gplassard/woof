@@ -14,7 +14,9 @@ var DeleteTeamCmd = &cobra.Command{
 	Use:     "delete-team [team_id]",
 	Aliases: []string{"delete"},
 	Short:   "Remove a team",
-	Args:    cobra.ExactArgs(1),
+	Long: `Remove a team
+Documentation: https://docs.datadoghq.com/api/latest/teams/#delete-team`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

@@ -14,6 +14,8 @@ var ListCurrentUserApplicationKeysCmd = &cobra.Command{
 	Use: "list-current-user-application-keys",
 
 	Short: "Get all application keys owned by current user",
+	Long: `Get all application keys owned by current user
+Documentation: https://docs.datadoghq.com/api/latest/key-management/#list-current-user-application-keys`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

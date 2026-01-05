@@ -14,6 +14,8 @@ var GetAWSIntegrationIAMPermissionsResourceCollectionCmd = &cobra.Command{
 	Use:     "get-aws-integration-iam-permissions-resource-collection",
 	Aliases: []string{"get-iam-permissions-resource-collection"},
 	Short:   "Get resource collection IAM permissions",
+	Long: `Get resource collection IAM permissions
+Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#get-aws-integration-iam-permissions-resource-collection`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

@@ -16,7 +16,9 @@ var CreateCaseTypeCmd = &cobra.Command{
 	Use: "create-case-type [payload]",
 
 	Short: "Create a case type",
-	Args:  cobra.ExactArgs(1),
+	Long: `Create a case type
+Documentation: https://docs.datadoghq.com/api/latest/case-management-type/#create-case-type`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.CaseTypeResponse

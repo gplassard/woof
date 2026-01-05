@@ -16,7 +16,9 @@ var AggregateSpansCmd = &cobra.Command{
 	Use:     "aggregate-spans [payload]",
 	Aliases: []string{"aggregate"},
 	Short:   "Aggregate spans",
-	Args:    cobra.ExactArgs(1),
+	Long: `Aggregate spans
+Documentation: https://docs.datadoghq.com/api/latest/spans/#aggregate-spans`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.SpansAggregateResponse

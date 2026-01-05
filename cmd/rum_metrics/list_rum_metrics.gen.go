@@ -14,6 +14,8 @@ var ListRumMetricsCmd = &cobra.Command{
 	Use:     "list-rum-metrics",
 	Aliases: []string{"list"},
 	Short:   "Get all rum-based metrics",
+	Long: `Get all rum-based metrics
+Documentation: https://docs.datadoghq.com/api/latest/rum-metrics/#list-rum-metrics`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

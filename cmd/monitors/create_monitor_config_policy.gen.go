@@ -16,7 +16,9 @@ var CreateMonitorConfigPolicyCmd = &cobra.Command{
 	Use:     "create-monitor-config-policy [payload]",
 	Aliases: []string{"create-config-policy"},
 	Short:   "Create a monitor configuration policy",
-	Args:    cobra.ExactArgs(1),
+	Long: `Create a monitor configuration policy
+Documentation: https://docs.datadoghq.com/api/latest/monitors/#create-monitor-config-policy`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.MonitorConfigPolicyResponse

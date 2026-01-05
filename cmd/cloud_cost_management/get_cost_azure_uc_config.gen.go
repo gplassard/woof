@@ -15,7 +15,9 @@ var GetCostAzureUCConfigCmd = &cobra.Command{
 	Use: "get-cost-azure-uc-config [cloud_account_id]",
 
 	Short: "Get cost Azure UC config",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get cost Azure UC config
+Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#get-cost-azure-uc-config`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.UCConfigPair

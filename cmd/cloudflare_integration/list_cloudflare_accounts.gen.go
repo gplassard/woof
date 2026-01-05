@@ -14,6 +14,8 @@ var ListCloudflareAccountsCmd = &cobra.Command{
 	Use: "list-cloudflare-accounts",
 
 	Short: "List Cloudflare accounts",
+	Long: `List Cloudflare accounts
+Documentation: https://docs.datadoghq.com/api/latest/cloudflare-integration/#list-cloudflare-accounts`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

@@ -16,7 +16,9 @@ var UpdateIssueAssigneeCmd = &cobra.Command{
 	Use: "update-issue-assignee [issue_id] [payload]",
 
 	Short: "Update the assignee of an issue",
-	Args:  cobra.ExactArgs(2),
+	Long: `Update the assignee of an issue
+Documentation: https://docs.datadoghq.com/api/latest/error-tracking/#update-issue-assignee`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.IssueResponse

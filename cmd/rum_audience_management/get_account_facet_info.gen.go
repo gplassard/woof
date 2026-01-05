@@ -16,7 +16,9 @@ var GetAccountFacetInfoCmd = &cobra.Command{
 	Use: "get-account-facet-info [payload]",
 
 	Short: "Get account facet info",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get account facet info
+Documentation: https://docs.datadoghq.com/api/latest/rum-audience-management/#get-account-facet-info`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.FacetInfoResponse

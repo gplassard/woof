@@ -16,7 +16,9 @@ var SearchSecurityMonitoringHistsignalsCmd = &cobra.Command{
 	Use:     "search-security-monitoring-histsignals [payload]",
 	Aliases: []string{"search-histsignals"},
 	Short:   "Search hist signals",
-	Args:    cobra.ExactArgs(1),
+	Long: `Search hist signals
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#search-security-monitoring-histsignals`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.SecurityMonitoringSignalsListResponse

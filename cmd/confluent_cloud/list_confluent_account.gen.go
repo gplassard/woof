@@ -14,6 +14,8 @@ var ListConfluentAccountCmd = &cobra.Command{
 	Use: "list-confluent-account",
 
 	Short: "List Confluent accounts",
+	Long: `List Confluent accounts
+Documentation: https://docs.datadoghq.com/api/latest/confluent-cloud/#list-confluent-account`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

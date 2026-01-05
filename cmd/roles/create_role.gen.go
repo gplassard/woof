@@ -16,7 +16,9 @@ var CreateRoleCmd = &cobra.Command{
 	Use:     "create-role [payload]",
 	Aliases: []string{"create"},
 	Short:   "Create role",
-	Args:    cobra.ExactArgs(1),
+	Long: `Create role
+Documentation: https://docs.datadoghq.com/api/latest/roles/#create-role`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.RoleCreateResponse

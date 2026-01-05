@@ -16,7 +16,9 @@ var UpdateReferenceTableCmd = &cobra.Command{
 	Use:     "update-reference-table [id] [payload]",
 	Aliases: []string{"update"},
 	Short:   "Update reference table",
-	Args:    cobra.ExactArgs(2),
+	Long: `Update reference table
+Documentation: https://docs.datadoghq.com/api/latest/reference-tables/#update-reference-table`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

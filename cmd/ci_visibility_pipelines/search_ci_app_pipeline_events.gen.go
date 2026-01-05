@@ -16,7 +16,9 @@ var SearchCIAppPipelineEventsCmd = &cobra.Command{
 	Use: "search-ci-app-pipeline-events [payload]",
 
 	Short: "Search pipelines events",
-	Args:  cobra.ExactArgs(1),
+	Long: `Search pipelines events
+Documentation: https://docs.datadoghq.com/api/latest/ci-visibility-pipelines/#search-ci-app-pipeline-events`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.CIAppPipelineEventsResponse

@@ -16,7 +16,9 @@ var CreateTagConfigurationCmd = &cobra.Command{
 	Use: "create-tag-configuration [metric_name] [payload]",
 
 	Short: "Create a tag configuration",
-	Args:  cobra.ExactArgs(2),
+	Long: `Create a tag configuration
+Documentation: https://docs.datadoghq.com/api/latest/metrics/#create-tag-configuration`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.MetricTagConfigurationResponse

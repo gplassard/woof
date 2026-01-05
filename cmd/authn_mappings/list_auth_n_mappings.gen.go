@@ -14,6 +14,8 @@ var ListAuthNMappingsCmd = &cobra.Command{
 	Use: "list-auth-n-mappings",
 
 	Short: "List all AuthN Mappings",
+	Long: `List all AuthN Mappings
+Documentation: https://docs.datadoghq.com/api/latest/authn-mappings/#list-auth-n-mappings`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

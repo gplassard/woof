@@ -14,7 +14,9 @@ var GetFindingCmd = &cobra.Command{
 	Use: "get-finding [finding_id]",
 
 	Short: "Get a finding",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get a finding
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-finding`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.GetFindingResponse

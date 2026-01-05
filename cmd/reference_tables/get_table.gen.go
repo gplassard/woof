@@ -14,7 +14,9 @@ var GetTableCmd = &cobra.Command{
 	Use: "get-table [id]",
 
 	Short: "Get table",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get table
+Documentation: https://docs.datadoghq.com/api/latest/reference-tables/#get-table`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.TableResultV2

@@ -14,7 +14,9 @@ var GetIncidentTodoCmd = &cobra.Command{
 	Use:     "get-incident-todo [incident_id] [todo_id]",
 	Aliases: []string{"get-todo"},
 	Short:   "Get incident todo details",
-	Args:    cobra.ExactArgs(2),
+	Long: `Get incident todo details
+Documentation: https://docs.datadoghq.com/api/latest/incidents/#get-incident-todo`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.IncidentTodoResponse

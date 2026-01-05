@@ -15,7 +15,9 @@ var EscalateOnCallPageCmd = &cobra.Command{
 	Use: "escalate-on-call-page [page_id]",
 
 	Short: "Escalate On-Call Page",
-	Args:  cobra.ExactArgs(1),
+	Long: `Escalate On-Call Page
+Documentation: https://docs.datadoghq.com/api/latest/on-call-paging/#escalate-on-call-page`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

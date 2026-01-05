@@ -16,7 +16,9 @@ var CreateLogsMetricCmd = &cobra.Command{
 	Use:     "create-logs-metric [payload]",
 	Aliases: []string{"create"},
 	Short:   "Create a log-based metric",
-	Args:    cobra.ExactArgs(1),
+	Long: `Create a log-based metric
+Documentation: https://docs.datadoghq.com/api/latest/logs-metrics/#create-logs-metric`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.LogsMetricResponse

@@ -15,7 +15,9 @@ var DeleteOrgConnectionsCmd = &cobra.Command{
 	Use:     "delete-org-connections [connection_id]",
 	Aliases: []string{"delete"},
 	Short:   "Delete Org Connection",
-	Args:    cobra.ExactArgs(1),
+	Long: `Delete Org Connection
+Documentation: https://docs.datadoghq.com/api/latest/org-connections/#delete-org-connections`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

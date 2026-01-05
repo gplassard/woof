@@ -16,7 +16,9 @@ var UpsertCatalogKindCmd = &cobra.Command{
 	Use: "upsert-catalog-kind [payload]",
 
 	Short: "Create or update kinds",
-	Args:  cobra.ExactArgs(1),
+	Long: `Create or update kinds
+Documentation: https://docs.datadoghq.com/api/latest/software-catalog/#upsert-catalog-kind`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.UpsertCatalogKindResponse

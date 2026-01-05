@@ -16,7 +16,9 @@ var UpdateLogsMetricCmd = &cobra.Command{
 	Use:     "update-logs-metric [metric_id] [payload]",
 	Aliases: []string{"update"},
 	Short:   "Update a log-based metric",
-	Args:    cobra.ExactArgs(2),
+	Long: `Update a log-based metric
+Documentation: https://docs.datadoghq.com/api/latest/logs-metrics/#update-logs-metric`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.LogsMetricResponse

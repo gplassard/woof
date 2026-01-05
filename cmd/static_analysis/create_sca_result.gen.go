@@ -16,7 +16,9 @@ var CreateSCAResultCmd = &cobra.Command{
 	Use: "create-sca-result [payload]",
 
 	Short: "Post dependencies for analysis",
-	Args:  cobra.ExactArgs(1),
+	Long: `Post dependencies for analysis
+Documentation: https://docs.datadoghq.com/api/latest/static-analysis/#create-sca-result`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

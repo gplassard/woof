@@ -15,7 +15,9 @@ var AcknowledgeOnCallPageCmd = &cobra.Command{
 	Use: "acknowledge-on-call-page [page_id]",
 
 	Short: "Acknowledge On-Call Page",
-	Args:  cobra.ExactArgs(1),
+	Long: `Acknowledge On-Call Page
+Documentation: https://docs.datadoghq.com/api/latest/on-call-paging/#acknowledge-on-call-page`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

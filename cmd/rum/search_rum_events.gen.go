@@ -16,7 +16,9 @@ var SearchRUMEventsCmd = &cobra.Command{
 	Use:     "search-rum-events [payload]",
 	Aliases: []string{"search-events"},
 	Short:   "Search RUM events",
-	Args:    cobra.ExactArgs(1),
+	Long: `Search RUM events
+Documentation: https://docs.datadoghq.com/api/latest/rum/#search-rum-events`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.RUMEventsResponse

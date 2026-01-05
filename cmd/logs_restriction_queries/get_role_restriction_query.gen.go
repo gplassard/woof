@@ -14,7 +14,9 @@ var GetRoleRestrictionQueryCmd = &cobra.Command{
 	Use: "get-role-restriction-query [role_id]",
 
 	Short: "Get restriction query for a given role",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get restriction query for a given role
+Documentation: https://docs.datadoghq.com/api/latest/logs-restriction-queries/#get-role-restriction-query`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.RestrictionQueryListResponse

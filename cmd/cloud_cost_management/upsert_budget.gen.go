@@ -16,7 +16,9 @@ var UpsertBudgetCmd = &cobra.Command{
 	Use: "upsert-budget [payload]",
 
 	Short: "Create or update a budget",
-	Args:  cobra.ExactArgs(1),
+	Long: `Create or update a budget
+Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#upsert-budget`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.BudgetWithEntries

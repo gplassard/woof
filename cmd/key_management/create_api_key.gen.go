@@ -16,7 +16,9 @@ var CreateAPIKeyCmd = &cobra.Command{
 	Use: "create-api-key [payload]",
 
 	Short: "Create an API key",
-	Args:  cobra.ExactArgs(1),
+	Long: `Create an API key
+Documentation: https://docs.datadoghq.com/api/latest/key-management/#create-api-key`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.APIKeyResponse

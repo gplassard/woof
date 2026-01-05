@@ -16,7 +16,9 @@ var CreateLogsCustomDestinationCmd = &cobra.Command{
 	Use:     "create-logs-custom-destination [payload]",
 	Aliases: []string{"create"},
 	Short:   "Create a custom destination",
-	Args:    cobra.ExactArgs(1),
+	Long: `Create a custom destination
+Documentation: https://docs.datadoghq.com/api/latest/logs-custom-destinations/#create-logs-custom-destination`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.CustomDestinationResponse

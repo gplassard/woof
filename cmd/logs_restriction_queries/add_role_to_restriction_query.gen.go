@@ -16,7 +16,9 @@ var AddRoleToRestrictionQueryCmd = &cobra.Command{
 	Use: "add-role-to-restriction-query [restriction_query_id] [payload]",
 
 	Short: "Grant role to a restriction query",
-	Args:  cobra.ExactArgs(2),
+	Long: `Grant role to a restriction query
+Documentation: https://docs.datadoghq.com/api/latest/logs-restriction-queries/#add-role-to-restriction-query`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

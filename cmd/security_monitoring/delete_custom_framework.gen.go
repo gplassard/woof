@@ -14,7 +14,9 @@ var DeleteCustomFrameworkCmd = &cobra.Command{
 	Use: "delete-custom-framework [handle] [version]",
 
 	Short: "Delete a custom framework",
-	Args:  cobra.ExactArgs(2),
+	Long: `Delete a custom framework
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#delete-custom-framework`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.DeleteCustomFrameworkResponse

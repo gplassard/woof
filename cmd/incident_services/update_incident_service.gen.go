@@ -16,7 +16,9 @@ var UpdateIncidentServiceCmd = &cobra.Command{
 	Use:     "update-incident-service [service_id] [payload]",
 	Aliases: []string{"update"},
 	Short:   "Update an existing incident service",
-	Args:    cobra.ExactArgs(2),
+	Long: `Update an existing incident service
+Documentation: https://docs.datadoghq.com/api/latest/incident-services/#update-incident-service`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.IncidentServiceResponse

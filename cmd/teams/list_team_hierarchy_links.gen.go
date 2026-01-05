@@ -14,6 +14,8 @@ var ListTeamHierarchyLinksCmd = &cobra.Command{
 	Use:     "list-team-hierarchy-links",
 	Aliases: []string{"list-hierarchy-links"},
 	Short:   "Get team hierarchy links",
+	Long: `Get team hierarchy links
+Documentation: https://docs.datadoghq.com/api/latest/teams/#list-team-hierarchy-links`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

@@ -14,7 +14,9 @@ var GetTeamCmd = &cobra.Command{
 	Use:     "get-team [team_id]",
 	Aliases: []string{"get"},
 	Short:   "Get a team",
-	Args:    cobra.ExactArgs(1),
+	Long: `Get a team
+Documentation: https://docs.datadoghq.com/api/latest/teams/#get-team`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.TeamResponse

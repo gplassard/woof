@@ -14,6 +14,8 @@ var GetAllCaseTypesCmd = &cobra.Command{
 	Use: "get-all-case-types",
 
 	Short: "Get all case types",
+	Long: `Get all case types
+Documentation: https://docs.datadoghq.com/api/latest/case-management-type/#get-all-case-types`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

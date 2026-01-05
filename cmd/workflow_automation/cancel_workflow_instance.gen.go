@@ -14,7 +14,9 @@ var CancelWorkflowInstanceCmd = &cobra.Command{
 	Use:     "cancel-workflow-instance [workflow_id] [instance_id]",
 	Aliases: []string{"cancel-instance"},
 	Short:   "Cancel a workflow instance",
-	Args:    cobra.ExactArgs(2),
+	Long: `Cancel a workflow instance
+Documentation: https://docs.datadoghq.com/api/latest/workflow-automation/#cancel-workflow-instance`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.WorklflowCancelInstanceResponse

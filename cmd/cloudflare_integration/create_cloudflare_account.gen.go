@@ -16,7 +16,9 @@ var CreateCloudflareAccountCmd = &cobra.Command{
 	Use: "create-cloudflare-account [payload]",
 
 	Short: "Add Cloudflare account",
-	Args:  cobra.ExactArgs(1),
+	Long: `Add Cloudflare account
+Documentation: https://docs.datadoghq.com/api/latest/cloudflare-integration/#create-cloudflare-account`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.CloudflareAccountResponse

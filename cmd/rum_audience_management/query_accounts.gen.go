@@ -16,7 +16,9 @@ var QueryAccountsCmd = &cobra.Command{
 	Use: "query-accounts [payload]",
 
 	Short: "Query accounts",
-	Args:  cobra.ExactArgs(1),
+	Long: `Query accounts
+Documentation: https://docs.datadoghq.com/api/latest/rum-audience-management/#query-accounts`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.QueryResponse

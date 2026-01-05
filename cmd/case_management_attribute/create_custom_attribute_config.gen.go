@@ -16,7 +16,9 @@ var CreateCustomAttributeConfigCmd = &cobra.Command{
 	Use: "create-custom-attribute-config [case_type_id] [payload]",
 
 	Short: "Create custom attribute config for a case type",
-	Args:  cobra.ExactArgs(2),
+	Long: `Create custom attribute config for a case type
+Documentation: https://docs.datadoghq.com/api/latest/case-management-attribute/#create-custom-attribute-config`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.CustomAttributeConfigResponse

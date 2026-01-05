@@ -16,7 +16,9 @@ var UpdateTeamLinkCmd = &cobra.Command{
 	Use:     "update-team-link [team_id] [link_id] [payload]",
 	Aliases: []string{"update-link"},
 	Short:   "Update a team link",
-	Args:    cobra.ExactArgs(3),
+	Long: `Update a team link
+Documentation: https://docs.datadoghq.com/api/latest/teams/#update-team-link`,
+	Args: cobra.ExactArgs(3),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.TeamLinkResponse

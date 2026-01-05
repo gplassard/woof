@@ -16,7 +16,9 @@ var UpdateConnectionCmd = &cobra.Command{
 	Use: "update-connection [entity] [payload]",
 
 	Short: "Update connection",
-	Args:  cobra.ExactArgs(2),
+	Long: `Update connection
+Documentation: https://docs.datadoghq.com/api/latest/rum-audience-management/#update-connection`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

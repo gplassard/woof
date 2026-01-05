@@ -16,7 +16,9 @@ var CreateUserCmd = &cobra.Command{
 	Use:     "create-user [payload]",
 	Aliases: []string{"create"},
 	Short:   "Create a user",
-	Args:    cobra.ExactArgs(1),
+	Long: `Create a user
+Documentation: https://docs.datadoghq.com/api/latest/users/#create-user`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.UserResponse

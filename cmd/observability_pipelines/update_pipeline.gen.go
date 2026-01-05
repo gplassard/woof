@@ -16,7 +16,9 @@ var UpdatePipelineCmd = &cobra.Command{
 	Use: "update-pipeline [pipeline_id] [payload]",
 
 	Short: "Update a pipeline",
-	Args:  cobra.ExactArgs(2),
+	Long: `Update a pipeline
+Documentation: https://docs.datadoghq.com/api/latest/observability-pipelines/#update-pipeline`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.ObservabilityPipeline

@@ -14,6 +14,8 @@ var ListCatalogEntityCmd = &cobra.Command{
 	Use: "list-catalog-entity",
 
 	Short: "Get a list of entities",
+	Long: `Get a list of entities
+Documentation: https://docs.datadoghq.com/api/latest/software-catalog/#list-catalog-entity`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

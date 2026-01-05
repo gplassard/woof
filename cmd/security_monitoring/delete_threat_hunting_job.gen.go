@@ -14,7 +14,9 @@ var DeleteThreatHuntingJobCmd = &cobra.Command{
 	Use: "delete-threat-hunting-job [job_id]",
 
 	Short: "Delete an existing job",
-	Args:  cobra.ExactArgs(1),
+	Long: `Delete an existing job
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#delete-threat-hunting-job`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

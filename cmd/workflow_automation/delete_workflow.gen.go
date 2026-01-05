@@ -14,7 +14,9 @@ var DeleteWorkflowCmd = &cobra.Command{
 	Use:     "delete-workflow [workflow_id]",
 	Aliases: []string{"delete"},
 	Short:   "Delete an existing Workflow",
-	Args:    cobra.ExactArgs(1),
+	Long: `Delete an existing Workflow
+Documentation: https://docs.datadoghq.com/api/latest/workflow-automation/#delete-workflow`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

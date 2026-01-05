@@ -14,7 +14,9 @@ var ListTagsByMetricNameCmd = &cobra.Command{
 	Use:     "list-tags-by-metric-name [metric_name]",
 	Aliases: []string{"list-tags-by-name"},
 	Short:   "List tags by metric name",
-	Args:    cobra.ExactArgs(1),
+	Long: `List tags by metric name
+Documentation: https://docs.datadoghq.com/api/latest/metrics/#list-tags-by-metric-name`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.MetricAllTagsResponse

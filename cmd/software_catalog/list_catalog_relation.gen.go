@@ -14,6 +14,8 @@ var ListCatalogRelationCmd = &cobra.Command{
 	Use: "list-catalog-relation",
 
 	Short: "Get a list of entity relations",
+	Long: `Get a list of entity relations
+Documentation: https://docs.datadoghq.com/api/latest/software-catalog/#list-catalog-relation`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

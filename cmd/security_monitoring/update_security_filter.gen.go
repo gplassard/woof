@@ -16,7 +16,9 @@ var UpdateSecurityFilterCmd = &cobra.Command{
 	Use: "update-security-filter [security_filter_id] [payload]",
 
 	Short: "Update a security filter",
-	Args:  cobra.ExactArgs(2),
+	Long: `Update a security filter
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#update-security-filter`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.SecurityFilterResponse

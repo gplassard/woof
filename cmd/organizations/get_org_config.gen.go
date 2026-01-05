@@ -14,7 +14,9 @@ var GetOrgConfigCmd = &cobra.Command{
 	Use: "get-org-config [org_config_name]",
 
 	Short: "Get a specific Org Config value",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get a specific Org Config value
+Documentation: https://docs.datadoghq.com/api/latest/organizations/#get-org-config`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.OrgConfigGetResponse

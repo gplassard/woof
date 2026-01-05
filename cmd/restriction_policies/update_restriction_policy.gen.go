@@ -16,7 +16,9 @@ var UpdateRestrictionPolicyCmd = &cobra.Command{
 	Use: "update-restriction-policy [resource_id] [payload]",
 
 	Short: "Update a restriction policy",
-	Args:  cobra.ExactArgs(2),
+	Long: `Update a restriction policy
+Documentation: https://docs.datadoghq.com/api/latest/restriction-policies/#update-restriction-policy`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.RestrictionPolicyResponse

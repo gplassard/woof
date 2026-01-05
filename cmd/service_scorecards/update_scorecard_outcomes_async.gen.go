@@ -16,7 +16,9 @@ var UpdateScorecardOutcomesAsyncCmd = &cobra.Command{
 	Use:     "update-scorecard-outcomes-async [payload]",
 	Aliases: []string{"update-outcomes-async"},
 	Short:   "Update Scorecard outcomes asynchronously",
-	Args:    cobra.ExactArgs(1),
+	Long: `Update Scorecard outcomes asynchronously
+Documentation: https://docs.datadoghq.com/api/latest/service-scorecards/#update-scorecard-outcomes-async`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

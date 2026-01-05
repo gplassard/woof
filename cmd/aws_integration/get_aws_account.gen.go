@@ -14,7 +14,9 @@ var GetAWSAccountCmd = &cobra.Command{
 	Use: "get-aws-account [aws_account_config_id]",
 
 	Short: "Get an AWS integration by config ID",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get an AWS integration by config ID
+Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#get-aws-account`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.AWSAccountResponse

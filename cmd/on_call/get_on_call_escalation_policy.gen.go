@@ -14,7 +14,9 @@ var GetOnCallEscalationPolicyCmd = &cobra.Command{
 	Use:     "get-on-call-escalation-policy [policy_id]",
 	Aliases: []string{"get-escalation-policy"},
 	Short:   "Get On-Call escalation policy",
-	Args:    cobra.ExactArgs(1),
+	Long: `Get On-Call escalation policy
+Documentation: https://docs.datadoghq.com/api/latest/on-call/#get-on-call-escalation-policy`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.EscalationPolicy

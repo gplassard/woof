@@ -15,7 +15,9 @@ var UnpublishAppCmd = &cobra.Command{
 	Use: "unpublish-app [app_id]",
 
 	Short: "Unpublish App",
-	Args:  cobra.ExactArgs(1),
+	Long: `Unpublish App
+Documentation: https://docs.datadoghq.com/api/latest/app-builder/#unpublish-app`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.UnpublishAppResponse

@@ -14,7 +14,9 @@ var DeleteAWSAccountCmd = &cobra.Command{
 	Use: "delete-aws-account [aws_account_config_id]",
 
 	Short: "Delete an AWS integration",
-	Args:  cobra.ExactArgs(1),
+	Long: `Delete an AWS integration
+Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#delete-aws-account`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

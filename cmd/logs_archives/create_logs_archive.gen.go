@@ -16,7 +16,9 @@ var CreateLogsArchiveCmd = &cobra.Command{
 	Use:     "create-logs-archive [payload]",
 	Aliases: []string{"create"},
 	Short:   "Create an archive",
-	Args:    cobra.ExactArgs(1),
+	Long: `Create an archive
+Documentation: https://docs.datadoghq.com/api/latest/logs-archives/#create-logs-archive`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.LogsArchive

@@ -14,7 +14,9 @@ var DeleteActionConnectionCmd = &cobra.Command{
 	Use:     "delete-action-connection [connection_id]",
 	Aliases: []string{"delete"},
 	Short:   "Delete an existing Action Connection",
-	Args:    cobra.ExactArgs(1),
+	Long: `Delete an existing Action Connection
+Documentation: https://docs.datadoghq.com/api/latest/action-connection/#delete-action-connection`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 
