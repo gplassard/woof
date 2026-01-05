@@ -1,6 +1,6 @@
 package main
 
-import "ouaf/cmd"
+import "github.com/gplassard/ouaf/cmd"
 
 func main() {
 	cmd.Execute()
