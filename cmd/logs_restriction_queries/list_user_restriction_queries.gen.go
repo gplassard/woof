@@ -14,7 +14,9 @@ var ListUserRestrictionQueriesCmd = &cobra.Command{
 	Use: "list-user-restriction-queries [user_id]",
 
 	Short: "Get all restriction queries for a given user",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get all restriction queries for a given user
+Documentation: https://docs.datadoghq.com/api/latest/logs-restriction-queries/#list-user-restriction-queries`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.RestrictionQueryListResponse

@@ -14,7 +14,9 @@ var GetAPIKeyCmd = &cobra.Command{
 	Use: "get-api-key [api_key_id]",
 
 	Short: "Get API key",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get API key
+Documentation: https://docs.datadoghq.com/api/latest/key-management/#get-api-key`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.APIKeyResponse

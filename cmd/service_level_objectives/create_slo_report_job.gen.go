@@ -16,7 +16,9 @@ var CreateSLOReportJobCmd = &cobra.Command{
 	Use:     "create-slo-report-job [payload]",
 	Aliases: []string{"create-report-job"},
 	Short:   "Create a new SLO report",
-	Args:    cobra.ExactArgs(1),
+	Long: `Create a new SLO report
+Documentation: https://docs.datadoghq.com/api/latest/service-level-objectives/#create-slo-report-job`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.SLOReportPostResponse

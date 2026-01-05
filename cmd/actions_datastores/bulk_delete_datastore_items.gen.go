@@ -16,7 +16,9 @@ var BulkDeleteDatastoreItemsCmd = &cobra.Command{
 	Use:     "bulk-delete-datastore-items [datastore_id] [payload]",
 	Aliases: []string{"bulk-delete-items"},
 	Short:   "Bulk delete datastore items",
-	Args:    cobra.ExactArgs(2),
+	Long: `Bulk delete datastore items
+Documentation: https://docs.datadoghq.com/api/latest/actions-datastores/#bulk-delete-datastore-items`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.DeleteAppsDatastoreItemResponseArray

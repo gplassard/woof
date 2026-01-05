@@ -14,6 +14,8 @@ var ListScanningGroupsCmd = &cobra.Command{
 	Use: "list-scanning-groups",
 
 	Short: "List Scanning Groups",
+	Long: `List Scanning Groups
+Documentation: https://docs.datadoghq.com/api/latest/sensitive-data-scanner/#list-scanning-groups`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

@@ -16,7 +16,9 @@ var CreateScorecardRuleCmd = &cobra.Command{
 	Use:     "create-scorecard-rule [payload]",
 	Aliases: []string{"create-rule"},
 	Short:   "Create a new rule",
-	Args:    cobra.ExactArgs(1),
+	Long: `Create a new rule
+Documentation: https://docs.datadoghq.com/api/latest/service-scorecards/#create-scorecard-rule`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.CreateRuleResponse

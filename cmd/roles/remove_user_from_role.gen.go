@@ -16,7 +16,9 @@ var RemoveUserFromRoleCmd = &cobra.Command{
 	Use:     "remove-user-from-role [role_id] [payload]",
 	Aliases: []string{"remove-user-from"},
 	Short:   "Remove a user from a role",
-	Args:    cobra.ExactArgs(2),
+	Long: `Remove a user from a role
+Documentation: https://docs.datadoghq.com/api/latest/roles/#remove-user-from-role`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.UsersResponse

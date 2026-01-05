@@ -14,6 +14,8 @@ var GetProjectedCostCmd = &cobra.Command{
 	Use: "get-projected-cost",
 
 	Short: "Get projected cost across your account",
+	Long: `Get projected cost across your account
+Documentation: https://docs.datadoghq.com/api/latest/usage-metering/#get-projected-cost`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

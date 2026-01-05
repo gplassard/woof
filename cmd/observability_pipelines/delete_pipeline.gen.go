@@ -14,7 +14,9 @@ var DeletePipelineCmd = &cobra.Command{
 	Use: "delete-pipeline [pipeline_id]",
 
 	Short: "Delete a pipeline",
-	Args:  cobra.ExactArgs(1),
+	Long: `Delete a pipeline
+Documentation: https://docs.datadoghq.com/api/latest/observability-pipelines/#delete-pipeline`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

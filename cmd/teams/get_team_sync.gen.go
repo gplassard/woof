@@ -14,7 +14,9 @@ var GetTeamSyncCmd = &cobra.Command{
 	Use:     "get-team-sync [filter[source]]",
 	Aliases: []string{"get-sync"},
 	Short:   "Get team sync configurations",
-	Args:    cobra.ExactArgs(1),
+	Long: `Get team sync configurations
+Documentation: https://docs.datadoghq.com/api/latest/teams/#get-team-sync`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.TeamSyncResponse

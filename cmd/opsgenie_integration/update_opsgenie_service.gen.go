@@ -16,7 +16,9 @@ var UpdateOpsgenieServiceCmd = &cobra.Command{
 	Use: "update-opsgenie-service [integration_service_id] [payload]",
 
 	Short: "Update a single service object",
-	Args:  cobra.ExactArgs(2),
+	Long: `Update a single service object
+Documentation: https://docs.datadoghq.com/api/latest/opsgenie-integration/#update-opsgenie-service`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.OpsgenieServiceResponse

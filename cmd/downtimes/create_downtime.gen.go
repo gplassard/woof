@@ -16,7 +16,9 @@ var CreateDowntimeCmd = &cobra.Command{
 	Use:     "create-downtime [payload]",
 	Aliases: []string{"create"},
 	Short:   "Schedule a downtime",
-	Args:    cobra.ExactArgs(1),
+	Long: `Schedule a downtime
+Documentation: https://docs.datadoghq.com/api/latest/downtimes/#create-downtime`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.DowntimeResponse

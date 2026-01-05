@@ -16,7 +16,9 @@ var SubmitMetricsCmd = &cobra.Command{
 	Use:     "submit-metrics [payload]",
 	Aliases: []string{"submit"},
 	Short:   "Submit metrics",
-	Args:    cobra.ExactArgs(1),
+	Long: `Submit metrics
+Documentation: https://docs.datadoghq.com/api/latest/metrics/#submit-metrics`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.IntakePayloadAccepted

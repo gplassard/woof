@@ -14,6 +14,8 @@ var GetCSMHostsAndContainersCoverageAnalysisCmd = &cobra.Command{
 	Use: "get-csm-hosts-and-containers-coverage-analysis",
 
 	Short: "Get the CSM Hosts and Containers Coverage Analysis",
+	Long: `Get the CSM Hosts and Containers Coverage Analysis
+Documentation: https://docs.datadoghq.com/api/latest/csm-coverage-analysis/#get-csm-hosts-and-containers-coverage-analysis`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

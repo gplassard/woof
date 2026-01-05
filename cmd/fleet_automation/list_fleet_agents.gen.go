@@ -14,6 +14,8 @@ var ListFleetAgentsCmd = &cobra.Command{
 	Use: "list-fleet-agents",
 
 	Short: "List all Datadog Agents",
+	Long: `List all Datadog Agents
+Documentation: https://docs.datadoghq.com/api/latest/fleet-automation/#list-fleet-agents`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

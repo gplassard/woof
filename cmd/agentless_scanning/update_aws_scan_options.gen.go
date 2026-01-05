@@ -16,7 +16,9 @@ var UpdateAwsScanOptionsCmd = &cobra.Command{
 	Use: "update-aws-scan-options [account_id] [payload]",
 
 	Short: "Update AWS scan options",
-	Args:  cobra.ExactArgs(2),
+	Long: `Update AWS scan options
+Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#update-aws-scan-options`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

@@ -16,7 +16,9 @@ var UpdateCloudflareAccountCmd = &cobra.Command{
 	Use: "update-cloudflare-account [account_id] [payload]",
 
 	Short: "Update Cloudflare account",
-	Args:  cobra.ExactArgs(2),
+	Long: `Update Cloudflare account
+Documentation: https://docs.datadoghq.com/api/latest/cloudflare-integration/#update-cloudflare-account`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.CloudflareAccountResponse

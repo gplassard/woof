@@ -14,6 +14,8 @@ var GetIPAllowlistCmd = &cobra.Command{
 	Use:     "get-ip-allowlist",
 	Aliases: []string{"get"},
 	Short:   "Get IP Allowlist",
+	Long: `Get IP Allowlist
+Documentation: https://docs.datadoghq.com/api/latest/ip-allowlist/#get-ip-allowlist`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

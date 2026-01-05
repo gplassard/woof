@@ -16,7 +16,9 @@ var QueryScalarDataCmd = &cobra.Command{
 	Use: "query-scalar-data [payload]",
 
 	Short: "Query scalar data across multiple products",
-	Args:  cobra.ExactArgs(1),
+	Long: `Query scalar data across multiple products
+Documentation: https://docs.datadoghq.com/api/latest/metrics/#query-scalar-data`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.ScalarFormulaQueryResponse

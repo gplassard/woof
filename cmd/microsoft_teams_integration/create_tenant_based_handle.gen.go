@@ -16,7 +16,9 @@ var CreateTenantBasedHandleCmd = &cobra.Command{
 	Use: "create-tenant-based-handle [payload]",
 
 	Short: "Create tenant-based handle",
-	Args:  cobra.ExactArgs(1),
+	Long: `Create tenant-based handle
+Documentation: https://docs.datadoghq.com/api/latest/microsoft-teams-integration/#create-tenant-based-handle`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.MicrosoftTeamsTenantBasedHandleResponse

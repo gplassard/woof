@@ -14,7 +14,9 @@ var GetUserCmd = &cobra.Command{
 	Use:     "get-user [user_id]",
 	Aliases: []string{"get"},
 	Short:   "Get user details",
-	Args:    cobra.ExactArgs(1),
+	Long: `Get user details
+Documentation: https://docs.datadoghq.com/api/latest/users/#get-user`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.UserResponse

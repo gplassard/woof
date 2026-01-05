@@ -16,7 +16,9 @@ var UpdateMonitorNotificationRuleCmd = &cobra.Command{
 	Use:     "update-monitor-notification-rule [rule_id] [payload]",
 	Aliases: []string{"update-notification-rule"},
 	Short:   "Update a monitor notification rule",
-	Args:    cobra.ExactArgs(2),
+	Long: `Update a monitor notification rule
+Documentation: https://docs.datadoghq.com/api/latest/monitors/#update-monitor-notification-rule`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.MonitorNotificationRuleResponse

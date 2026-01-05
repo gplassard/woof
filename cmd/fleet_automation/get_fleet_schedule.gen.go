@@ -14,7 +14,9 @@ var GetFleetScheduleCmd = &cobra.Command{
 	Use: "get-fleet-schedule [id]",
 
 	Short: "Get a schedule by ID",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get a schedule by ID
+Documentation: https://docs.datadoghq.com/api/latest/fleet-automation/#get-fleet-schedule`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.FleetScheduleResponse

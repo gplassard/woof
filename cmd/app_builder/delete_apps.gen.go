@@ -16,7 +16,9 @@ var DeleteAppsCmd = &cobra.Command{
 	Use: "delete-apps [payload]",
 
 	Short: "Delete Multiple Apps",
-	Args:  cobra.ExactArgs(1),
+	Long: `Delete Multiple Apps
+Documentation: https://docs.datadoghq.com/api/latest/app-builder/#delete-apps`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.DeleteAppsResponse

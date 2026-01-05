@@ -16,7 +16,9 @@ var UpdateMonitorConfigPolicyCmd = &cobra.Command{
 	Use:     "update-monitor-config-policy [policy_id] [payload]",
 	Aliases: []string{"update-config-policy"},
 	Short:   "Edit a monitor configuration policy",
-	Args:    cobra.ExactArgs(2),
+	Long: `Edit a monitor configuration policy
+Documentation: https://docs.datadoghq.com/api/latest/monitors/#update-monitor-config-policy`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.MonitorConfigPolicyResponse

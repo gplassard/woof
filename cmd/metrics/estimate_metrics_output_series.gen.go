@@ -14,7 +14,9 @@ var EstimateMetricsOutputSeriesCmd = &cobra.Command{
 	Use:     "estimate-metrics-output-series [metric_name]",
 	Aliases: []string{"estimate-output-series"},
 	Short:   "Tag Configuration Cardinality Estimator",
-	Args:    cobra.ExactArgs(1),
+	Long: `Tag Configuration Cardinality Estimator
+Documentation: https://docs.datadoghq.com/api/latest/metrics/#estimate-metrics-output-series`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.MetricEstimateResponse

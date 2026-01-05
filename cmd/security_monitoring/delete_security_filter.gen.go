@@ -14,7 +14,9 @@ var DeleteSecurityFilterCmd = &cobra.Command{
 	Use: "delete-security-filter [security_filter_id]",
 
 	Short: "Delete a security filter",
-	Args:  cobra.ExactArgs(1),
+	Long: `Delete a security filter
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#delete-security-filter`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

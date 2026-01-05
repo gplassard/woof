@@ -14,7 +14,9 @@ var GetIncidentIntegrationCmd = &cobra.Command{
 	Use:     "get-incident-integration [incident_id] [integration_metadata_id]",
 	Aliases: []string{"get-integration"},
 	Short:   "Get incident integration metadata details",
-	Args:    cobra.ExactArgs(2),
+	Long: `Get incident integration metadata details
+Documentation: https://docs.datadoghq.com/api/latest/incidents/#get-incident-integration`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.IncidentIntegrationMetadataResponse

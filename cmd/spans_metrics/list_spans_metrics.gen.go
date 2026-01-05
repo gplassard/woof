@@ -14,6 +14,8 @@ var ListSpansMetricsCmd = &cobra.Command{
 	Use:     "list-spans-metrics",
 	Aliases: []string{"list"},
 	Short:   "Get all span-based metrics",
+	Long: `Get all span-based metrics
+Documentation: https://docs.datadoghq.com/api/latest/spans-metrics/#list-spans-metrics`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

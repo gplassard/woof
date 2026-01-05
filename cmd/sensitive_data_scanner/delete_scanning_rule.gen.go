@@ -16,7 +16,9 @@ var DeleteScanningRuleCmd = &cobra.Command{
 	Use: "delete-scanning-rule [rule_id] [payload]",
 
 	Short: "Delete Scanning Rule",
-	Args:  cobra.ExactArgs(2),
+	Long: `Delete Scanning Rule
+Documentation: https://docs.datadoghq.com/api/latest/sensitive-data-scanner/#delete-scanning-rule`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.SensitiveDataScannerRuleDeleteResponse

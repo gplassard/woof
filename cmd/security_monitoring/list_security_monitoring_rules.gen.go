@@ -14,6 +14,8 @@ var ListSecurityMonitoringRulesCmd = &cobra.Command{
 	Use:     "list-security-monitoring-rules",
 	Aliases: []string{"list-rules"},
 	Short:   "List rules",
+	Long: `List rules
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#list-security-monitoring-rules`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

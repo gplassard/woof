@@ -16,7 +16,9 @@ var CreateSignalNotificationRuleCmd = &cobra.Command{
 	Use: "create-signal-notification-rule [payload]",
 
 	Short: "Create a new signal-based notification rule",
-	Args:  cobra.ExactArgs(1),
+	Long: `Create a new signal-based notification rule
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#create-signal-notification-rule`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.NotificationRuleResponse

@@ -14,6 +14,8 @@ var ListScorecardOutcomesCmd = &cobra.Command{
 	Use:     "list-scorecard-outcomes",
 	Aliases: []string{"list-outcomes"},
 	Short:   "List all rule outcomes",
+	Long: `List all rule outcomes
+Documentation: https://docs.datadoghq.com/api/latest/service-scorecards/#list-scorecard-outcomes`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

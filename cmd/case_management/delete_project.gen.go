@@ -14,7 +14,9 @@ var DeleteProjectCmd = &cobra.Command{
 	Use: "delete-project [project_id]",
 
 	Short: "Remove a project",
-	Args:  cobra.ExactArgs(1),
+	Long: `Remove a project
+Documentation: https://docs.datadoghq.com/api/latest/case-management/#delete-project`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

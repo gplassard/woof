@@ -14,6 +14,8 @@ var ListAssetsSBOMsCmd = &cobra.Command{
 	Use: "list-assets-sbom-s",
 
 	Short: "List assets SBOMs",
+	Long: `List assets SBOMs
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#list-assets-sbom-s`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

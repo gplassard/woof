@@ -14,7 +14,9 @@ var GetAppKeyRegistrationCmd = &cobra.Command{
 	Use: "get-app-key-registration [app_key_id]",
 
 	Short: "Get an existing App Key Registration",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get an existing App Key Registration
+Documentation: https://docs.datadoghq.com/api/latest/action-connection/#get-app-key-registration`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.GetAppKeyRegistrationResponse

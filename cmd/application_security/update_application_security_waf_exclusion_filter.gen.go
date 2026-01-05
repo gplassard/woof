@@ -16,7 +16,9 @@ var UpdateApplicationSecurityWafExclusionFilterCmd = &cobra.Command{
 	Use:     "update-application-security-waf-exclusion-filter [exclusion_filter_id] [payload]",
 	Aliases: []string{"update-waf-exclusion-filter"},
 	Short:   "Update a WAF exclusion filter",
-	Args:    cobra.ExactArgs(2),
+	Long: `Update a WAF exclusion filter
+Documentation: https://docs.datadoghq.com/api/latest/application-security/#update-application-security-waf-exclusion-filter`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.ApplicationSecurityWafExclusionFilterResponse

@@ -14,7 +14,9 @@ var GetSBOMCmd = &cobra.Command{
 	Use: "get-sbom [asset_type] [filter[asset_name]]",
 
 	Short: "Get SBOM",
-	Args:  cobra.ExactArgs(2),
+	Long: `Get SBOM
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-sbom`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.GetSBOMResponse

@@ -16,7 +16,9 @@ var AddUserToRoleCmd = &cobra.Command{
 	Use:     "add-user-to-role [role_id] [payload]",
 	Aliases: []string{"add-user-to"},
 	Short:   "Add a user to a role",
-	Args:    cobra.ExactArgs(2),
+	Long: `Add a user to a role
+Documentation: https://docs.datadoghq.com/api/latest/roles/#add-user-to-role`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.UsersResponse

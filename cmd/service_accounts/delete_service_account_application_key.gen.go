@@ -14,7 +14,9 @@ var DeleteServiceAccountApplicationKeyCmd = &cobra.Command{
 	Use:     "delete-service-account-application-key [service_account_id] [app_key_id]",
 	Aliases: []string{"delete-application-key"},
 	Short:   "Delete an application key for this service account",
-	Args:    cobra.ExactArgs(2),
+	Long: `Delete an application key for this service account
+Documentation: https://docs.datadoghq.com/api/latest/service-accounts/#delete-service-account-application-key`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

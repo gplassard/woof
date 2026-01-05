@@ -16,7 +16,9 @@ var CreateJiraIssuesCmd = &cobra.Command{
 	Use: "create-jira-issues [payload]",
 
 	Short: "Create Jira issues for security findings",
-	Args:  cobra.ExactArgs(1),
+	Long: `Create Jira issues for security findings
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#create-jira-issues`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.FindingCaseResponseArray

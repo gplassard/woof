@@ -14,7 +14,9 @@ var DeleteIssueAssigneeCmd = &cobra.Command{
 	Use: "delete-issue-assignee [issue_id]",
 
 	Short: "Remove the assignee of an issue",
-	Args:  cobra.ExactArgs(1),
+	Long: `Remove the assignee of an issue
+Documentation: https://docs.datadoghq.com/api/latest/error-tracking/#delete-issue-assignee`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

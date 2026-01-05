@@ -16,7 +16,9 @@ var CreateSCAResolveVulnerableSymbolsCmd = &cobra.Command{
 	Use: "create-sca-resolve-vulnerable-symbols [payload]",
 
 	Short: "POST request to resolve vulnerable symbols",
-	Args:  cobra.ExactArgs(1),
+	Long: `POST request to resolve vulnerable symbols
+Documentation: https://docs.datadoghq.com/api/latest/static-analysis/#create-sca-resolve-vulnerable-symbols`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.ResolveVulnerableSymbolsResponse

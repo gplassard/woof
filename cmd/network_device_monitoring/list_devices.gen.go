@@ -14,6 +14,8 @@ var ListDevicesCmd = &cobra.Command{
 	Use: "list-devices",
 
 	Short: "Get the list of devices",
+	Long: `Get the list of devices
+Documentation: https://docs.datadoghq.com/api/latest/network-device-monitoring/#list-devices`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

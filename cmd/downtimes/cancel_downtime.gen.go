@@ -14,7 +14,9 @@ var CancelDowntimeCmd = &cobra.Command{
 	Use:     "cancel-downtime [downtime_id]",
 	Aliases: []string{"cancel"},
 	Short:   "Cancel a downtime",
-	Args:    cobra.ExactArgs(1),
+	Long: `Cancel a downtime
+Documentation: https://docs.datadoghq.com/api/latest/downtimes/#cancel-downtime`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

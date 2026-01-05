@@ -14,7 +14,9 @@ var ListUserNotificationChannelsCmd = &cobra.Command{
 	Use: "list-user-notification-channels [user_id]",
 
 	Short: "List On-Call notification channels for a user",
-	Args:  cobra.ExactArgs(1),
+	Long: `List On-Call notification channels for a user
+Documentation: https://docs.datadoghq.com/api/latest/on-call/#list-user-notification-channels`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.ListNotificationChannelsResponse

@@ -14,7 +14,9 @@ var GetEventCmd = &cobra.Command{
 	Use:     "get-event [event_id]",
 	Aliases: []string{"get"},
 	Short:   "Get an event",
-	Args:    cobra.ExactArgs(1),
+	Long: `Get an event
+Documentation: https://docs.datadoghq.com/api/latest/events/#get-event`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.V2EventResponse

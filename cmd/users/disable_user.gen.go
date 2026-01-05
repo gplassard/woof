@@ -14,7 +14,9 @@ var DisableUserCmd = &cobra.Command{
 	Use:     "disable-user [user_id]",
 	Aliases: []string{"disable"},
 	Short:   "Disable a user",
-	Args:    cobra.ExactArgs(1),
+	Long: `Disable a user
+Documentation: https://docs.datadoghq.com/api/latest/users/#disable-user`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

@@ -16,7 +16,9 @@ var CreateConnectionCmd = &cobra.Command{
 	Use: "create-connection [entity] [payload]",
 
 	Short: "Create connection",
-	Args:  cobra.ExactArgs(2),
+	Long: `Create connection
+Documentation: https://docs.datadoghq.com/api/latest/rum-audience-management/#create-connection`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

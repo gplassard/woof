@@ -16,7 +16,9 @@ var CreateIncidentServiceCmd = &cobra.Command{
 	Use:     "create-incident-service [payload]",
 	Aliases: []string{"create"},
 	Short:   "Create a new incident service",
-	Args:    cobra.ExactArgs(1),
+	Long: `Create a new incident service
+Documentation: https://docs.datadoghq.com/api/latest/incident-services/#create-incident-service`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.IncidentServiceResponse

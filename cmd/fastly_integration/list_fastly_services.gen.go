@@ -14,7 +14,9 @@ var ListFastlyServicesCmd = &cobra.Command{
 	Use: "list-fastly-services [account_id]",
 
 	Short: "List Fastly services",
-	Args:  cobra.ExactArgs(1),
+	Long: `List Fastly services
+Documentation: https://docs.datadoghq.com/api/latest/fastly-integration/#list-fastly-services`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.FastlyServicesResponse

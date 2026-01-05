@@ -15,7 +15,9 @@ var DeleteAppCmd = &cobra.Command{
 	Use: "delete-app [app_id]",
 
 	Short: "Delete App",
-	Args:  cobra.ExactArgs(1),
+	Long: `Delete App
+Documentation: https://docs.datadoghq.com/api/latest/app-builder/#delete-app`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.DeleteAppResponse

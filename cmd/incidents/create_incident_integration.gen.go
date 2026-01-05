@@ -16,7 +16,9 @@ var CreateIncidentIntegrationCmd = &cobra.Command{
 	Use:     "create-incident-integration [incident_id] [payload]",
 	Aliases: []string{"create-integration"},
 	Short:   "Create an incident integration metadata",
-	Args:    cobra.ExactArgs(2),
+	Long: `Create an incident integration metadata
+Documentation: https://docs.datadoghq.com/api/latest/incidents/#create-incident-integration`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.IncidentIntegrationMetadataResponse

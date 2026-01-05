@@ -16,7 +16,9 @@ var UpdateRestrictionQueryCmd = &cobra.Command{
 	Use: "update-restriction-query [restriction_query_id] [payload]",
 
 	Short: "Update a restriction query",
-	Args:  cobra.ExactArgs(2),
+	Long: `Update a restriction query
+Documentation: https://docs.datadoghq.com/api/latest/logs-restriction-queries/#update-restriction-query`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.RestrictionQueryWithoutRelationshipsResponse

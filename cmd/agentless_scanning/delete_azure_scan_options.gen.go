@@ -14,7 +14,9 @@ var DeleteAzureScanOptionsCmd = &cobra.Command{
 	Use: "delete-azure-scan-options [subscription_id]",
 
 	Short: "Delete Azure scan options",
-	Args:  cobra.ExactArgs(1),
+	Long: `Delete Azure scan options
+Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#delete-azure-scan-options`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

@@ -14,7 +14,9 @@ var DeleteConnectionCmd = &cobra.Command{
 	Use: "delete-connection [id] [entity]",
 
 	Short: "Delete connection",
-	Args:  cobra.ExactArgs(2),
+	Long: `Delete connection
+Documentation: https://docs.datadoghq.com/api/latest/rum-audience-management/#delete-connection`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

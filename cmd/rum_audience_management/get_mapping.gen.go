@@ -14,7 +14,9 @@ var GetMappingCmd = &cobra.Command{
 	Use: "get-mapping [entity]",
 
 	Short: "Get mapping",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get mapping
+Documentation: https://docs.datadoghq.com/api/latest/rum-audience-management/#get-mapping`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.GetMappingResponse

@@ -14,6 +14,8 @@ var ListTeamConnectionsCmd = &cobra.Command{
 	Use:     "list-team-connections",
 	Aliases: []string{"list-connections"},
 	Short:   "List team connections",
+	Long: `List team connections
+Documentation: https://docs.datadoghq.com/api/latest/teams/#list-team-connections`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

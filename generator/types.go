@@ -68,6 +68,7 @@ type TemplateData struct {
 	ResourceType     string
 	ResponseTypeGo   string
 	Aliases          []string
+	DocURL           string
 }
 
 type RootTemplateData struct {

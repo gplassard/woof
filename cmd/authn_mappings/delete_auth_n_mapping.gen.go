@@ -14,7 +14,9 @@ var DeleteAuthNMappingCmd = &cobra.Command{
 	Use: "delete-auth-n-mapping [authn_mapping_id]",
 
 	Short: "Delete an AuthN Mapping",
-	Args:  cobra.ExactArgs(1),
+	Long: `Delete an AuthN Mapping
+Documentation: https://docs.datadoghq.com/api/latest/authn-mappings/#delete-auth-n-mapping`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

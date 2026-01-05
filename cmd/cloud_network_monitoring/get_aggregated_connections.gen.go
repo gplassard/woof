@@ -14,6 +14,8 @@ var GetAggregatedConnectionsCmd = &cobra.Command{
 	Use: "get-aggregated-connections",
 
 	Short: "Get all aggregated connections",
+	Long: `Get all aggregated connections
+Documentation: https://docs.datadoghq.com/api/latest/cloud-network-monitoring/#get-aggregated-connections`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

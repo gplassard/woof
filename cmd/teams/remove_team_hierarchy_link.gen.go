@@ -14,7 +14,9 @@ var RemoveTeamHierarchyLinkCmd = &cobra.Command{
 	Use:     "remove-team-hierarchy-link [link_id]",
 	Aliases: []string{"remove-hierarchy-link"},
 	Short:   "Remove a team hierarchy link",
-	Args:    cobra.ExactArgs(1),
+	Long: `Remove a team hierarchy link
+Documentation: https://docs.datadoghq.com/api/latest/teams/#remove-team-hierarchy-link`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

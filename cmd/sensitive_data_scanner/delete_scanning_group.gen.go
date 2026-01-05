@@ -16,7 +16,9 @@ var DeleteScanningGroupCmd = &cobra.Command{
 	Use: "delete-scanning-group [group_id] [payload]",
 
 	Short: "Delete Scanning Group",
-	Args:  cobra.ExactArgs(2),
+	Long: `Delete Scanning Group
+Documentation: https://docs.datadoghq.com/api/latest/sensitive-data-scanner/#delete-scanning-group`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.SensitiveDataScannerGroupDeleteResponse

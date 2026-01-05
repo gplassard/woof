@@ -14,7 +14,9 @@ var DeleteServiceDefinitionCmd = &cobra.Command{
 	Use:     "delete-service-definition [service_name]",
 	Aliases: []string{"delete"},
 	Short:   "Delete a single service definition",
-	Args:    cobra.ExactArgs(1),
+	Long: `Delete a single service definition
+Documentation: https://docs.datadoghq.com/api/latest/service-definition/#delete-service-definition`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

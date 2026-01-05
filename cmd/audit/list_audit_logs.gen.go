@@ -14,6 +14,8 @@ var ListAuditLogsCmd = &cobra.Command{
 	Use:     "list-audit-logs",
 	Aliases: []string{"list-logs"},
 	Short:   "Get a list of Audit Logs events",
+	Long: `Get a list of Audit Logs events
+Documentation: https://docs.datadoghq.com/api/latest/audit/#list-audit-logs`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

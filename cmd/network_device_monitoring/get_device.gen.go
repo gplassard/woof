@@ -14,7 +14,9 @@ var GetDeviceCmd = &cobra.Command{
 	Use: "get-device [device_id]",
 
 	Short: "Get the device details",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get the device details
+Documentation: https://docs.datadoghq.com/api/latest/network-device-monitoring/#get-device`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.GetDeviceResponse

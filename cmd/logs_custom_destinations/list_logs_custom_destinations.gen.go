@@ -14,6 +14,8 @@ var ListLogsCustomDestinationsCmd = &cobra.Command{
 	Use:     "list-logs-custom-destinations",
 	Aliases: []string{"list"},
 	Short:   "Get all custom destinations",
+	Long: `Get all custom destinations
+Documentation: https://docs.datadoghq.com/api/latest/logs-custom-destinations/#list-logs-custom-destinations`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

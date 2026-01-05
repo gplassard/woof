@@ -16,7 +16,9 @@ var UpdateGcpScanOptionsCmd = &cobra.Command{
 	Use: "update-gcp-scan-options [project_id] [payload]",
 
 	Short: "Update GCP scan options",
-	Args:  cobra.ExactArgs(2),
+	Long: `Update GCP scan options
+Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#update-gcp-scan-options`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.GcpScanOptions

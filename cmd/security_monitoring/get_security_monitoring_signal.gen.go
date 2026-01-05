@@ -14,7 +14,9 @@ var GetSecurityMonitoringSignalCmd = &cobra.Command{
 	Use:     "get-security-monitoring-signal [signal_id]",
 	Aliases: []string{"get-signal"},
 	Short:   "Get a signal's details",
-	Args:    cobra.ExactArgs(1),
+	Long: `Get a signal's details
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-security-monitoring-signal`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.SecurityMonitoringSignalResponse

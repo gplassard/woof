@@ -15,7 +15,9 @@ var ListMonitorDowntimesCmd = &cobra.Command{
 	Use:     "list-monitor-downtimes [monitor_id]",
 	Aliases: []string{"list-monitor"},
 	Short:   "Get active downtimes for a monitor",
-	Args:    cobra.ExactArgs(1),
+	Long: `Get active downtimes for a monitor
+Documentation: https://docs.datadoghq.com/api/latest/downtimes/#list-monitor-downtimes`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.MonitorDowntimeMatchResponse

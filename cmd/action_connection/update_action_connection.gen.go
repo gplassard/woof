@@ -16,7 +16,9 @@ var UpdateActionConnectionCmd = &cobra.Command{
 	Use:     "update-action-connection [connection_id] [payload]",
 	Aliases: []string{"update"},
 	Short:   "Update an existing Action Connection",
-	Args:    cobra.ExactArgs(2),
+	Long: `Update an existing Action Connection
+Documentation: https://docs.datadoghq.com/api/latest/action-connection/#update-action-connection`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.UpdateActionConnectionResponse

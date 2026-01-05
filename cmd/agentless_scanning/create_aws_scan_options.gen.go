@@ -16,7 +16,9 @@ var CreateAwsScanOptionsCmd = &cobra.Command{
 	Use: "create-aws-scan-options [payload]",
 
 	Short: "Create AWS scan options",
-	Args:  cobra.ExactArgs(1),
+	Long: `Create AWS scan options
+Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#create-aws-scan-options`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.AwsScanOptionsResponse

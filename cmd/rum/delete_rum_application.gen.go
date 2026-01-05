@@ -14,7 +14,9 @@ var DeleteRUMApplicationCmd = &cobra.Command{
 	Use:     "delete-rum-application [id]",
 	Aliases: []string{"delete-application"},
 	Short:   "Delete a RUM application",
-	Args:    cobra.ExactArgs(1),
+	Long: `Delete a RUM application
+Documentation: https://docs.datadoghq.com/api/latest/rum/#delete-rum-application`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

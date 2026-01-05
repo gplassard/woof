@@ -14,6 +14,8 @@ var ListFleetSchedulesCmd = &cobra.Command{
 	Use: "list-fleet-schedules",
 
 	Short: "List all schedules",
+	Long: `List all schedules
+Documentation: https://docs.datadoghq.com/api/latest/fleet-automation/#list-fleet-schedules`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

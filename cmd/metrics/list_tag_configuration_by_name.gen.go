@@ -14,7 +14,9 @@ var ListTagConfigurationByNameCmd = &cobra.Command{
 	Use: "list-tag-configuration-by-name [metric_name]",
 
 	Short: "List tag configuration by name",
-	Args:  cobra.ExactArgs(1),
+	Long: `List tag configuration by name
+Documentation: https://docs.datadoghq.com/api/latest/metrics/#list-tag-configuration-by-name`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.MetricTagConfigurationResponse

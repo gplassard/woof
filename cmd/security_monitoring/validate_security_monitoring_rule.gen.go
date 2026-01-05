@@ -16,7 +16,9 @@ var ValidateSecurityMonitoringRuleCmd = &cobra.Command{
 	Use:     "validate-security-monitoring-rule [payload]",
 	Aliases: []string{"validate-rule"},
 	Short:   "Validate a detection rule",
-	Args:    cobra.ExactArgs(1),
+	Long: `Validate a detection rule
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#validate-security-monitoring-rule`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

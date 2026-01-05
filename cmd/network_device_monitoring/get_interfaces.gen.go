@@ -14,7 +14,9 @@ var GetInterfacesCmd = &cobra.Command{
 	Use: "get-interfaces [device_id]",
 
 	Short: "Get the list of interfaces of the device",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get the list of interfaces of the device
+Documentation: https://docs.datadoghq.com/api/latest/network-device-monitoring/#get-interfaces`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.GetInterfacesResponse

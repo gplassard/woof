@@ -14,7 +14,9 @@ var DeleteIncidentTeamCmd = &cobra.Command{
 	Use:     "delete-incident-team [team_id]",
 	Aliases: []string{"delete"},
 	Short:   "Delete an existing incident team",
-	Args:    cobra.ExactArgs(1),
+	Long: `Delete an existing incident team
+Documentation: https://docs.datadoghq.com/api/latest/incident-teams/#delete-incident-team`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

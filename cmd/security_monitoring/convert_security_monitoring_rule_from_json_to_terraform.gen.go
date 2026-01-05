@@ -16,7 +16,9 @@ var ConvertSecurityMonitoringRuleFromJSONToTerraformCmd = &cobra.Command{
 	Use:     "convert-security-monitoring-rule-from-json-to-terraform [payload]",
 	Aliases: []string{"convert-rule-from-json-to-terraform"},
 	Short:   "Convert a rule from JSON to Terraform",
-	Args:    cobra.ExactArgs(1),
+	Long: `Convert a rule from JSON to Terraform
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#convert-security-monitoring-rule-from-json-to-terraform`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.SecurityMonitoringRuleConvertResponse

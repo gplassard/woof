@@ -16,7 +16,9 @@ var UpdateFleetScheduleCmd = &cobra.Command{
 	Use: "update-fleet-schedule [id] [payload]",
 
 	Short: "Update a schedule",
-	Args:  cobra.ExactArgs(2),
+	Long: `Update a schedule
+Documentation: https://docs.datadoghq.com/api/latest/fleet-automation/#update-fleet-schedule`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.FleetScheduleResponse

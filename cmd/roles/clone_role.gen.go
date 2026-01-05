@@ -16,7 +16,9 @@ var CloneRoleCmd = &cobra.Command{
 	Use:     "clone-role [role_id] [payload]",
 	Aliases: []string{"clone"},
 	Short:   "Create a new role by cloning an existing role",
-	Args:    cobra.ExactArgs(2),
+	Long: `Create a new role by cloning an existing role
+Documentation: https://docs.datadoghq.com/api/latest/roles/#clone-role`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.RoleResponse

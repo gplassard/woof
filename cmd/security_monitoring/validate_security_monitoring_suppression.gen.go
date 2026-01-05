@@ -16,7 +16,9 @@ var ValidateSecurityMonitoringSuppressionCmd = &cobra.Command{
 	Use:     "validate-security-monitoring-suppression [payload]",
 	Aliases: []string{"validate-suppression"},
 	Short:   "Validate a suppression rule",
-	Args:    cobra.ExactArgs(1),
+	Long: `Validate a suppression rule
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#validate-security-monitoring-suppression`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

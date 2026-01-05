@@ -16,7 +16,9 @@ var ReorderCustomAllocationRulesCmd = &cobra.Command{
 	Use: "reorder-custom-allocation-rules [payload]",
 
 	Short: "Reorder custom allocation rules",
-	Args:  cobra.ExactArgs(1),
+	Long: `Reorder custom allocation rules
+Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#reorder-custom-allocation-rules`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

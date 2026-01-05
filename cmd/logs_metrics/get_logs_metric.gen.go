@@ -14,7 +14,9 @@ var GetLogsMetricCmd = &cobra.Command{
 	Use:     "get-logs-metric [metric_id]",
 	Aliases: []string{"get"},
 	Short:   "Get a log-based metric",
-	Args:    cobra.ExactArgs(1),
+	Long: `Get a log-based metric
+Documentation: https://docs.datadoghq.com/api/latest/logs-metrics/#get-logs-metric`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.LogsMetricResponse

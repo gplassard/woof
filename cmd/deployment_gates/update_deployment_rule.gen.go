@@ -16,7 +16,9 @@ var UpdateDeploymentRuleCmd = &cobra.Command{
 	Use: "update-deployment-rule [gate_id] [id] [payload]",
 
 	Short: "Update deployment rule",
-	Args:  cobra.ExactArgs(3),
+	Long: `Update deployment rule
+Documentation: https://docs.datadoghq.com/api/latest/deployment-gates/#update-deployment-rule`,
+	Args: cobra.ExactArgs(3),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.DeploymentRuleResponse

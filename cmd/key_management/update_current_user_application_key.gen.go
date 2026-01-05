@@ -16,7 +16,9 @@ var UpdateCurrentUserApplicationKeyCmd = &cobra.Command{
 	Use: "update-current-user-application-key [app_key_id] [payload]",
 
 	Short: "Edit an application key owned by current user",
-	Args:  cobra.ExactArgs(2),
+	Long: `Edit an application key owned by current user
+Documentation: https://docs.datadoghq.com/api/latest/key-management/#update-current-user-application-key`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.ApplicationKeyResponse

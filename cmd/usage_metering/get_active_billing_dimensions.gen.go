@@ -14,6 +14,8 @@ var GetActiveBillingDimensionsCmd = &cobra.Command{
 	Use: "get-active-billing-dimensions",
 
 	Short: "Get active billing dimensions for cost attribution",
+	Long: `Get active billing dimensions for cost attribution
+Documentation: https://docs.datadoghq.com/api/latest/usage-metering/#get-active-billing-dimensions`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

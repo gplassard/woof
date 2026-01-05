@@ -16,7 +16,9 @@ var DeleteDatastoreItemCmd = &cobra.Command{
 	Use:     "delete-datastore-item [datastore_id] [payload]",
 	Aliases: []string{"delete-item"},
 	Short:   "Delete datastore item",
-	Args:    cobra.ExactArgs(2),
+	Long: `Delete datastore item
+Documentation: https://docs.datadoghq.com/api/latest/actions-datastores/#delete-datastore-item`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.DeleteAppsDatastoreItemResponse

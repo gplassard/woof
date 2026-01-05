@@ -16,7 +16,9 @@ var UpdateIncidentIntegrationCmd = &cobra.Command{
 	Use:     "update-incident-integration [incident_id] [integration_metadata_id] [payload]",
 	Aliases: []string{"update-integration"},
 	Short:   "Update an existing incident integration metadata",
-	Args:    cobra.ExactArgs(3),
+	Long: `Update an existing incident integration metadata
+Documentation: https://docs.datadoghq.com/api/latest/incidents/#update-incident-integration`,
+	Args: cobra.ExactArgs(3),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.IncidentIntegrationMetadataResponse

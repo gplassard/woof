@@ -16,7 +16,9 @@ var QueryUsersCmd = &cobra.Command{
 	Use: "query-users [payload]",
 
 	Short: "Query users",
-	Args:  cobra.ExactArgs(1),
+	Long: `Query users
+Documentation: https://docs.datadoghq.com/api/latest/rum-audience-management/#query-users`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.QueryResponse

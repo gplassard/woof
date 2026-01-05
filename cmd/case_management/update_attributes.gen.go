@@ -16,7 +16,9 @@ var UpdateAttributesCmd = &cobra.Command{
 	Use: "update-attributes [case_id] [payload]",
 
 	Short: "Update case attributes",
-	Args:  cobra.ExactArgs(2),
+	Long: `Update case attributes
+Documentation: https://docs.datadoghq.com/api/latest/case-management/#update-attributes`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.CaseResponse

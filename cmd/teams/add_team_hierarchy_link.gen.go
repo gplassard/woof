@@ -16,7 +16,9 @@ var AddTeamHierarchyLinkCmd = &cobra.Command{
 	Use:     "add-team-hierarchy-link [payload]",
 	Aliases: []string{"add-hierarchy-link"},
 	Short:   "Create a team hierarchy link",
-	Args:    cobra.ExactArgs(1),
+	Long: `Create a team hierarchy link
+Documentation: https://docs.datadoghq.com/api/latest/teams/#add-team-hierarchy-link`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.TeamHierarchyLinkResponse

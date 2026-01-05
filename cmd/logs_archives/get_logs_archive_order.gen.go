@@ -14,6 +14,8 @@ var GetLogsArchiveOrderCmd = &cobra.Command{
 	Use:     "get-logs-archive-order",
 	Aliases: []string{"get-order"},
 	Short:   "Get archive order",
+	Long: `Get archive order
+Documentation: https://docs.datadoghq.com/api/latest/logs-archives/#get-logs-archive-order`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

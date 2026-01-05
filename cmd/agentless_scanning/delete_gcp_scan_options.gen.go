@@ -14,7 +14,9 @@ var DeleteGcpScanOptionsCmd = &cobra.Command{
 	Use: "delete-gcp-scan-options [project_id]",
 
 	Short: "Delete GCP scan options",
-	Args:  cobra.ExactArgs(1),
+	Long: `Delete GCP scan options
+Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#delete-gcp-scan-options`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

@@ -14,6 +14,8 @@ var ListEventsCmd = &cobra.Command{
 	Use:     "list-events",
 	Aliases: []string{"list"},
 	Short:   "Get a list of events",
+	Long: `Get a list of events
+Documentation: https://docs.datadoghq.com/api/latest/events/#list-events`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

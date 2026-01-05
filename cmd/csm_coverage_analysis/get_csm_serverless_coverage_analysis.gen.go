@@ -14,6 +14,8 @@ var GetCSMServerlessCoverageAnalysisCmd = &cobra.Command{
 	Use: "get-csm-serverless-coverage-analysis",
 
 	Short: "Get the CSM Serverless Coverage Analysis",
+	Long: `Get the CSM Serverless Coverage Analysis
+Documentation: https://docs.datadoghq.com/api/latest/csm-coverage-analysis/#get-csm-serverless-coverage-analysis`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

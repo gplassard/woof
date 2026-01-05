@@ -14,6 +14,8 @@ var ListLogsMetricsCmd = &cobra.Command{
 	Use:     "list-logs-metrics",
 	Aliases: []string{"list"},
 	Short:   "Get all log-based metrics",
+	Long: `Get all log-based metrics
+Documentation: https://docs.datadoghq.com/api/latest/logs-metrics/#list-logs-metrics`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

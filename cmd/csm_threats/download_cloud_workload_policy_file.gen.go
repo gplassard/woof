@@ -14,6 +14,8 @@ var DownloadCloudWorkloadPolicyFileCmd = &cobra.Command{
 	Use: "download-cloud-workload-policy-file",
 
 	Short: "Download the Workload Protection policy (US1-FED)",
+	Long: `Download the Workload Protection policy (US1-FED)
+Documentation: https://docs.datadoghq.com/api/latest/csm-threats/#download-cloud-workload-policy-file`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

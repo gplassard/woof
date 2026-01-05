@@ -14,7 +14,9 @@ var GetDatasetCmd = &cobra.Command{
 	Use:     "get-dataset [dataset_id]",
 	Aliases: []string{"get"},
 	Short:   "Get a single dataset by ID",
-	Args:    cobra.ExactArgs(1),
+	Long: `Get a single dataset by ID
+Documentation: https://docs.datadoghq.com/api/latest/datasets/#get-dataset`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.DatasetResponseSingle

@@ -16,7 +16,9 @@ var AggregateCIAppPipelineEventsCmd = &cobra.Command{
 	Use: "aggregate-ci-app-pipeline-events [payload]",
 
 	Short: "Aggregate pipelines events",
-	Args:  cobra.ExactArgs(1),
+	Long: `Aggregate pipelines events
+Documentation: https://docs.datadoghq.com/api/latest/ci-visibility-pipelines/#aggregate-ci-app-pipeline-events`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.CIAppPipelinesAnalyticsAggregateResponse

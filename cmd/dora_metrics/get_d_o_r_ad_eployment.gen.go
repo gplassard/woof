@@ -14,7 +14,9 @@ var GetDORADeploymentCmd = &cobra.Command{
 	Use: "get-d-o-r-ad-eployment [deployment_id]",
 
 	Short: "Get a deployment event",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get a deployment event
+Documentation: https://docs.datadoghq.com/api/latest/dora-metrics/#get-d-o-r-ad-eployment`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.DORAFetchResponse

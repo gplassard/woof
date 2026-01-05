@@ -16,7 +16,9 @@ var UpdateIncidentTypeCmd = &cobra.Command{
 	Use:     "update-incident-type [incident_type_id] [payload]",
 	Aliases: []string{"update-type"},
 	Short:   "Update an incident type",
-	Args:    cobra.ExactArgs(2),
+	Long: `Update an incident type
+Documentation: https://docs.datadoghq.com/api/latest/incidents/#update-incident-type`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.IncidentTypeResponse

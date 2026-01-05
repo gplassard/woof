@@ -14,6 +14,8 @@ var ListMonitorUserTemplatesCmd = &cobra.Command{
 	Use:     "list-monitor-user-templates",
 	Aliases: []string{"list-user-templates"},
 	Short:   "Get all monitor user templates",
+	Long: `Get all monitor user templates
+Documentation: https://docs.datadoghq.com/api/latest/monitors/#list-monitor-user-templates`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

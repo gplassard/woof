@@ -15,7 +15,9 @@ var GetAppCmd = &cobra.Command{
 	Use: "get-app [app_id]",
 
 	Short: "Get App",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get App
+Documentation: https://docs.datadoghq.com/api/latest/app-builder/#get-app`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.GetAppResponse

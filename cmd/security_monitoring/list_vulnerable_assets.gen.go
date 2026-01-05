@@ -14,6 +14,8 @@ var ListVulnerableAssetsCmd = &cobra.Command{
 	Use: "list-vulnerable-assets",
 
 	Short: "List vulnerable assets",
+	Long: `List vulnerable assets
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#list-vulnerable-assets`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

@@ -16,7 +16,9 @@ var UpdateDeploymentGateCmd = &cobra.Command{
 	Use:     "update-deployment-gate [id] [payload]",
 	Aliases: []string{"update"},
 	Short:   "Update deployment gate",
-	Args:    cobra.ExactArgs(2),
+	Long: `Update deployment gate
+Documentation: https://docs.datadoghq.com/api/latest/deployment-gates/#update-deployment-gate`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.DeploymentGateResponse

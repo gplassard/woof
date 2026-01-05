@@ -16,7 +16,9 @@ var CreateOktaAccountCmd = &cobra.Command{
 	Use: "create-okta-account [payload]",
 
 	Short: "Add Okta account",
-	Args:  cobra.ExactArgs(1),
+	Long: `Add Okta account
+Documentation: https://docs.datadoghq.com/api/latest/okta-integration/#create-okta-account`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.OktaAccountResponse

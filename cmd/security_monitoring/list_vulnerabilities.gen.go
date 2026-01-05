@@ -14,6 +14,8 @@ var ListVulnerabilitiesCmd = &cobra.Command{
 	Use: "list-vulnerabilities",
 
 	Short: "List vulnerabilities",
+	Long: `List vulnerabilities
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#list-vulnerabilities`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

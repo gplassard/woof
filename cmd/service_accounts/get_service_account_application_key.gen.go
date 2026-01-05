@@ -14,7 +14,9 @@ var GetServiceAccountApplicationKeyCmd = &cobra.Command{
 	Use:     "get-service-account-application-key [service_account_id] [app_key_id]",
 	Aliases: []string{"get-application-key"},
 	Short:   "Get one application key for this service account",
-	Args:    cobra.ExactArgs(2),
+	Long: `Get one application key for this service account
+Documentation: https://docs.datadoghq.com/api/latest/service-accounts/#get-service-account-application-key`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.PartialApplicationKeyResponse

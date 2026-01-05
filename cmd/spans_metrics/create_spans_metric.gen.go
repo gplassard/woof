@@ -16,7 +16,9 @@ var CreateSpansMetricCmd = &cobra.Command{
 	Use:     "create-spans-metric [payload]",
 	Aliases: []string{"create"},
 	Short:   "Create a span-based metric",
-	Args:    cobra.ExactArgs(1),
+	Long: `Create a span-based metric
+Documentation: https://docs.datadoghq.com/api/latest/spans-metrics/#create-spans-metric`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.SpansMetricResponse

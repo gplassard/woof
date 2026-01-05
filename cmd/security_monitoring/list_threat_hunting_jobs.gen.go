@@ -14,6 +14,8 @@ var ListThreatHuntingJobsCmd = &cobra.Command{
 	Use: "list-threat-hunting-jobs",
 
 	Short: "List threat hunting jobs",
+	Long: `List threat hunting jobs
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#list-threat-hunting-jobs`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

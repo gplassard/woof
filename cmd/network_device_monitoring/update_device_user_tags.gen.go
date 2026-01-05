@@ -16,7 +16,9 @@ var UpdateDeviceUserTagsCmd = &cobra.Command{
 	Use: "update-device-user-tags [device_id] [payload]",
 
 	Short: "Update the tags for a device",
-	Args:  cobra.ExactArgs(2),
+	Long: `Update the tags for a device
+Documentation: https://docs.datadoghq.com/api/latest/network-device-monitoring/#update-device-user-tags`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.ListTagsResponse

@@ -16,7 +16,9 @@ var ValidateQueryCmd = &cobra.Command{
 	Use: "validate-query [payload]",
 
 	Short: "Validate query",
-	Args:  cobra.ExactArgs(1),
+	Long: `Validate query
+Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#validate-query`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.RulesValidateQueryResponse

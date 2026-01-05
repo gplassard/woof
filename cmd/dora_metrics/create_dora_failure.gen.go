@@ -16,7 +16,9 @@ var CreateDORAFailureCmd = &cobra.Command{
 	Use: "create-dora-failure [payload]",
 
 	Short: "Send a failure event",
-	Args:  cobra.ExactArgs(1),
+	Long: `Send a failure event
+Documentation: https://docs.datadoghq.com/api/latest/dora-metrics/#create-dora-failure`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.DORAFailureResponse

@@ -16,7 +16,9 @@ var CreateBulkTagsMetricsConfigurationCmd = &cobra.Command{
 	Use:     "create-bulk-tags-metrics-configuration [payload]",
 	Aliases: []string{"create-bulk-tags-configuration"},
 	Short:   "Configure tags for multiple metrics",
-	Args:    cobra.ExactArgs(1),
+	Long: `Configure tags for multiple metrics
+Documentation: https://docs.datadoghq.com/api/latest/metrics/#create-bulk-tags-metrics-configuration`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.MetricBulkTagConfigResponse

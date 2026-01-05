@@ -16,7 +16,9 @@ var CreateCostAzureUCConfigsCmd = &cobra.Command{
 	Use: "create-cost-azure-uc-configs [payload]",
 
 	Short: "Create Cloud Cost Management Azure configs",
-	Args:  cobra.ExactArgs(1),
+	Long: `Create Cloud Cost Management Azure configs
+Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#create-cost-azure-uc-configs`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.AzureUCConfigPairsResponse

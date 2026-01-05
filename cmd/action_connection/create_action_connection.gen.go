@@ -16,7 +16,9 @@ var CreateActionConnectionCmd = &cobra.Command{
 	Use:     "create-action-connection [payload]",
 	Aliases: []string{"create"},
 	Short:   "Create a new Action Connection",
-	Args:    cobra.ExactArgs(1),
+	Long: `Create a new Action Connection
+Documentation: https://docs.datadoghq.com/api/latest/action-connection/#create-action-connection`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.CreateActionConnectionResponse

@@ -17,7 +17,9 @@ var UpdateOpenAPICmd = &cobra.Command{
 	Use: "update-open-api [id] [payload]",
 
 	Short: "Update an API",
-	Args:  cobra.ExactArgs(2),
+	Long: `Update an API
+Documentation: https://docs.datadoghq.com/api/latest/api-management/#update-open-api`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.UpdateOpenAPIResponse

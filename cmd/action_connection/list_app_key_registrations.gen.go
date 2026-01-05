@@ -14,6 +14,8 @@ var ListAppKeyRegistrationsCmd = &cobra.Command{
 	Use: "list-app-key-registrations",
 
 	Short: "List App Key Registrations",
+	Long: `List App Key Registrations
+Documentation: https://docs.datadoghq.com/api/latest/action-connection/#list-app-key-registrations`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

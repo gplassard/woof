@@ -16,7 +16,9 @@ var CreateConfluentAccountCmd = &cobra.Command{
 	Use: "create-confluent-account [payload]",
 
 	Short: "Add Confluent account",
-	Args:  cobra.ExactArgs(1),
+	Long: `Add Confluent account
+Documentation: https://docs.datadoghq.com/api/latest/confluent-cloud/#create-confluent-account`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.ConfluentAccountResponse

@@ -16,7 +16,9 @@ var ListDORADeploymentsCmd = &cobra.Command{
 	Use: "list-d-o-r-ad-eployments [payload]",
 
 	Short: "Get a list of deployment events",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get a list of deployment events
+Documentation: https://docs.datadoghq.com/api/latest/dora-metrics/#list-d-o-r-ad-eployments`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.DORAListResponse

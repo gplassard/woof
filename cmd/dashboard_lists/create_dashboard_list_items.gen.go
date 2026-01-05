@@ -16,7 +16,9 @@ var CreateDashboardListItemsCmd = &cobra.Command{
 	Use:     "create-dashboard-list-items [dashboard_list_id] [payload]",
 	Aliases: []string{"create-items"},
 	Short:   "Add Items to a Dashboard List",
-	Args:    cobra.ExactArgs(2),
+	Long: `Add Items to a Dashboard List
+Documentation: https://docs.datadoghq.com/api/latest/dashboard-lists/#create-dashboard-list-items`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.DashboardListAddItemsResponse

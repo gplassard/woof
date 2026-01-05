@@ -14,7 +14,9 @@ var DeleteCSMThreatsAgentRuleCmd = &cobra.Command{
 	Use:     "delete-csm-threats-agent-rule [agent_rule_id]",
 	Aliases: []string{"delete-agent-rule"},
 	Short:   "Delete a Workload Protection agent rule",
-	Args:    cobra.ExactArgs(1),
+	Long: `Delete a Workload Protection agent rule
+Documentation: https://docs.datadoghq.com/api/latest/csm-threats/#delete-csm-threats-agent-rule`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

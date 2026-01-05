@@ -14,7 +14,9 @@ var GetTeamLinksCmd = &cobra.Command{
 	Use:     "get-team-links [team_id]",
 	Aliases: []string{"get-links"},
 	Short:   "Get links for a team",
-	Args:    cobra.ExactArgs(1),
+	Long: `Get links for a team
+Documentation: https://docs.datadoghq.com/api/latest/teams/#get-team-links`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.TeamLinksResponse

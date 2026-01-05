@@ -14,7 +14,9 @@ var DeleteOnCallEscalationPolicyCmd = &cobra.Command{
 	Use:     "delete-on-call-escalation-policy [policy_id]",
 	Aliases: []string{"delete-escalation-policy"},
 	Short:   "Delete On-Call escalation policy",
-	Args:    cobra.ExactArgs(1),
+	Long: `Delete On-Call escalation policy
+Documentation: https://docs.datadoghq.com/api/latest/on-call/#delete-on-call-escalation-policy`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

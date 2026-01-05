@@ -14,6 +14,8 @@ var GetAllDatasetsCmd = &cobra.Command{
 	Use:     "get-all-datasets",
 	Aliases: []string{"get-all"},
 	Short:   "Get all datasets",
+	Long: `Get all datasets
+Documentation: https://docs.datadoghq.com/api/latest/datasets/#get-all-datasets`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

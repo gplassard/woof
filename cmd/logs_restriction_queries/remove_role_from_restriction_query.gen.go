@@ -16,7 +16,9 @@ var RemoveRoleFromRestrictionQueryCmd = &cobra.Command{
 	Use: "remove-role-from-restriction-query [restriction_query_id] [payload]",
 
 	Short: "Revoke role from a restriction query",
-	Args:  cobra.ExactArgs(2),
+	Long: `Revoke role from a restriction query
+Documentation: https://docs.datadoghq.com/api/latest/logs-restriction-queries/#remove-role-from-restriction-query`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

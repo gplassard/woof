@@ -14,7 +14,9 @@ var DeleteAPIKeyCmd = &cobra.Command{
 	Use: "delete-api-key [api_key_id]",
 
 	Short: "Delete an API key",
-	Args:  cobra.ExactArgs(1),
+	Long: `Delete an API key
+Documentation: https://docs.datadoghq.com/api/latest/key-management/#delete-api-key`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

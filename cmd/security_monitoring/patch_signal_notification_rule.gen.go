@@ -16,7 +16,9 @@ var PatchSignalNotificationRuleCmd = &cobra.Command{
 	Use: "patch-signal-notification-rule [id] [payload]",
 
 	Short: "Patch a signal-based notification rule",
-	Args:  cobra.ExactArgs(2),
+	Long: `Patch a signal-based notification rule
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#patch-signal-notification-rule`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.NotificationRuleResponse

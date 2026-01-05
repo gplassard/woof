@@ -14,7 +14,9 @@ var DeleteAwsScanOptionsCmd = &cobra.Command{
 	Use: "delete-aws-scan-options [account_id]",
 
 	Short: "Delete AWS scan options",
-	Args:  cobra.ExactArgs(1),
+	Long: `Delete AWS scan options
+Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#delete-aws-scan-options`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

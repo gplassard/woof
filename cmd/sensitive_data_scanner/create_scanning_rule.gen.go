@@ -16,7 +16,9 @@ var CreateScanningRuleCmd = &cobra.Command{
 	Use: "create-scanning-rule [payload]",
 
 	Short: "Create Scanning Rule",
-	Args:  cobra.ExactArgs(1),
+	Long: `Create Scanning Rule
+Documentation: https://docs.datadoghq.com/api/latest/sensitive-data-scanner/#create-scanning-rule`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.SensitiveDataScannerCreateRuleResponse

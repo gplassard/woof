@@ -16,7 +16,9 @@ var CreateApplicationSecurityWafCustomRuleCmd = &cobra.Command{
 	Use:     "create-application-security-waf-custom-rule [payload]",
 	Aliases: []string{"create-waf-custom-rule"},
 	Short:   "Create a WAF custom rule",
-	Args:    cobra.ExactArgs(1),
+	Long: `Create a WAF custom rule
+Documentation: https://docs.datadoghq.com/api/latest/application-security/#create-application-security-waf-custom-rule`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.ApplicationSecurityWafCustomRuleResponse

@@ -14,7 +14,9 @@ var GetRestrictionPolicyCmd = &cobra.Command{
 	Use: "get-restriction-policy [resource_id]",
 
 	Short: "Get a restriction policy",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get a restriction policy
+Documentation: https://docs.datadoghq.com/api/latest/restriction-policies/#get-restriction-policy`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.RestrictionPolicyResponse

@@ -14,6 +14,8 @@ var ListApplicationSecurityWafExclusionFiltersCmd = &cobra.Command{
 	Use:     "list-application-security-waf-exclusion-filters",
 	Aliases: []string{"list-waf-exclusion-filters"},
 	Short:   "List all WAF exclusion filters",
+	Long: `List all WAF exclusion filters
+Documentation: https://docs.datadoghq.com/api/latest/application-security/#list-application-security-waf-exclusion-filters`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

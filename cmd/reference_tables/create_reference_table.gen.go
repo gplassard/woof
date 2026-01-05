@@ -16,7 +16,9 @@ var CreateReferenceTableCmd = &cobra.Command{
 	Use:     "create-reference-table [payload]",
 	Aliases: []string{"create"},
 	Short:   "Create reference table",
-	Args:    cobra.ExactArgs(1),
+	Long: `Create reference table
+Documentation: https://docs.datadoghq.com/api/latest/reference-tables/#create-reference-table`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.TableResultV2

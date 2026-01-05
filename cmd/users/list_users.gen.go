@@ -14,6 +14,8 @@ var ListUsersCmd = &cobra.Command{
 	Use:     "list-users",
 	Aliases: []string{"list"},
 	Short:   "List all users",
+	Long: `List all users
+Documentation: https://docs.datadoghq.com/api/latest/users/#list-users`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

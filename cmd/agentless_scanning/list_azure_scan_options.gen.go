@@ -14,6 +14,8 @@ var ListAzureScanOptionsCmd = &cobra.Command{
 	Use: "list-azure-scan-options",
 
 	Short: "List Azure scan options",
+	Long: `List Azure scan options
+Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#list-azure-scan-options`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

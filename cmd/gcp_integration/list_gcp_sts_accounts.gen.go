@@ -14,6 +14,8 @@ var ListGCPSTSAccountsCmd = &cobra.Command{
 	Use: "list-gcp-sts-accounts",
 
 	Short: "List all GCP STS-enabled service accounts",
+	Long: `List all GCP STS-enabled service accounts
+Documentation: https://docs.datadoghq.com/api/latest/gcp-integration/#list-gcp-sts-accounts`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

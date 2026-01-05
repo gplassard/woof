@@ -14,7 +14,9 @@ var GetApplicationSecurityWafExclusionFilterCmd = &cobra.Command{
 	Use:     "get-application-security-waf-exclusion-filter [exclusion_filter_id]",
 	Aliases: []string{"get-waf-exclusion-filter"},
 	Short:   "Get a WAF exclusion filter",
-	Args:    cobra.ExactArgs(1),
+	Long: `Get a WAF exclusion filter
+Documentation: https://docs.datadoghq.com/api/latest/application-security/#get-application-security-waf-exclusion-filter`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.ApplicationSecurityWafExclusionFilterResponse

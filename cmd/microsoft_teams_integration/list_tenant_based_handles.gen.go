@@ -14,6 +14,8 @@ var ListTenantBasedHandlesCmd = &cobra.Command{
 	Use: "list-tenant-based-handles",
 
 	Short: "Get all tenant-based handles",
+	Long: `Get all tenant-based handles
+Documentation: https://docs.datadoghq.com/api/latest/microsoft-teams-integration/#list-tenant-based-handles`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

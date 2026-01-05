@@ -16,7 +16,9 @@ var UpdateLogsArchiveOrderCmd = &cobra.Command{
 	Use:     "update-logs-archive-order [payload]",
 	Aliases: []string{"update-order"},
 	Short:   "Update archive order",
-	Args:    cobra.ExactArgs(1),
+	Long: `Update archive order
+Documentation: https://docs.datadoghq.com/api/latest/logs-archives/#update-logs-archive-order`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.LogsArchiveOrder

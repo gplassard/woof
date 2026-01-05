@@ -16,7 +16,9 @@ var UpdateAuthNMappingCmd = &cobra.Command{
 	Use: "update-auth-n-mapping [authn_mapping_id] [payload]",
 
 	Short: "Edit an AuthN Mapping",
-	Args:  cobra.ExactArgs(2),
+	Long: `Edit an AuthN Mapping
+Documentation: https://docs.datadoghq.com/api/latest/authn-mappings/#update-auth-n-mapping`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.AuthNMappingResponse

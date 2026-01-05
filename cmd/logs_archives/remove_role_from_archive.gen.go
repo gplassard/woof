@@ -16,7 +16,9 @@ var RemoveRoleFromArchiveCmd = &cobra.Command{
 	Use: "remove-role-from-archive [archive_id] [payload]",
 
 	Short: "Revoke role from an archive",
-	Args:  cobra.ExactArgs(2),
+	Long: `Revoke role from an archive
+Documentation: https://docs.datadoghq.com/api/latest/logs-archives/#remove-role-from-archive`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

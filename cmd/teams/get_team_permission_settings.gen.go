@@ -14,7 +14,9 @@ var GetTeamPermissionSettingsCmd = &cobra.Command{
 	Use:     "get-team-permission-settings [team_id]",
 	Aliases: []string{"get-permission-settings"},
 	Short:   "Get permission settings for a team",
-	Args:    cobra.ExactArgs(1),
+	Long: `Get permission settings for a team
+Documentation: https://docs.datadoghq.com/api/latest/teams/#get-team-permission-settings`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.TeamPermissionSettingsResponse

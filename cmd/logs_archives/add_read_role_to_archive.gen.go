@@ -16,7 +16,9 @@ var AddReadRoleToArchiveCmd = &cobra.Command{
 	Use: "add-read-role-to-archive [archive_id] [payload]",
 
 	Short: "Grant role to an archive",
-	Args:  cobra.ExactArgs(2),
+	Long: `Grant role to an archive
+Documentation: https://docs.datadoghq.com/api/latest/logs-archives/#add-read-role-to-archive`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

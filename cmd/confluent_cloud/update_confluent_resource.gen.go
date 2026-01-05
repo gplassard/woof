@@ -16,7 +16,9 @@ var UpdateConfluentResourceCmd = &cobra.Command{
 	Use: "update-confluent-resource [account_id] [resource_id] [payload]",
 
 	Short: "Update resource in Confluent account",
-	Args:  cobra.ExactArgs(3),
+	Long: `Update resource in Confluent account
+Documentation: https://docs.datadoghq.com/api/latest/confluent-cloud/#update-confluent-resource`,
+	Args: cobra.ExactArgs(3),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.ConfluentResourceResponse

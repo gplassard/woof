@@ -14,6 +14,8 @@ var ListCostAWSCURConfigsCmd = &cobra.Command{
 	Use: "list-cost-aws-cur-configs",
 
 	Short: "List Cloud Cost Management AWS CUR configs",
+	Long: `List Cloud Cost Management AWS CUR configs
+Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#list-cost-aws-cur-configs`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

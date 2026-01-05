@@ -14,7 +14,9 @@ var DeleteTagConfigurationCmd = &cobra.Command{
 	Use: "delete-tag-configuration [metric_name]",
 
 	Short: "Delete a tag configuration",
-	Args:  cobra.ExactArgs(1),
+	Long: `Delete a tag configuration
+Documentation: https://docs.datadoghq.com/api/latest/metrics/#delete-tag-configuration`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

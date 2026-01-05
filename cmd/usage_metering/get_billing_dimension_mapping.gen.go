@@ -14,6 +14,8 @@ var GetBillingDimensionMappingCmd = &cobra.Command{
 	Use: "get-billing-dimension-mapping",
 
 	Short: "Get billing dimension mapping for usage endpoints",
+	Long: `Get billing dimension mapping for usage endpoints
+Documentation: https://docs.datadoghq.com/api/latest/usage-metering/#get-billing-dimension-mapping`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

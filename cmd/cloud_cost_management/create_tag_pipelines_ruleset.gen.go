@@ -16,7 +16,9 @@ var CreateTagPipelinesRulesetCmd = &cobra.Command{
 	Use: "create-tag-pipelines-ruleset [payload]",
 
 	Short: "Create tag pipeline ruleset",
-	Args:  cobra.ExactArgs(1),
+	Long: `Create tag pipeline ruleset
+Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#create-tag-pipelines-ruleset`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.RulesetResp

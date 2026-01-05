@@ -14,7 +14,9 @@ var DeleteRoleCmd = &cobra.Command{
 	Use:     "delete-role [role_id]",
 	Aliases: []string{"delete"},
 	Short:   "Delete role",
-	Args:    cobra.ExactArgs(1),
+	Long: `Delete role
+Documentation: https://docs.datadoghq.com/api/latest/roles/#delete-role`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

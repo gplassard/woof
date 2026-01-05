@@ -16,7 +16,9 @@ var GetSuppressionsAffectingFutureRuleCmd = &cobra.Command{
 	Use: "get-suppressions-affecting-future-rule [payload]",
 
 	Short: "Get suppressions affecting future rule",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get suppressions affecting future rule
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-suppressions-affecting-future-rule`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.SecurityMonitoringSuppressionsResponse

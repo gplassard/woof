@@ -16,7 +16,9 @@ var EditSecurityMonitoringSignalIncidentsCmd = &cobra.Command{
 	Use:     "edit-security-monitoring-signal-incidents [signal_id] [payload]",
 	Aliases: []string{"edit-signal-incidents"},
 	Short:   "Change the related incidents of a security signal",
-	Args:    cobra.ExactArgs(2),
+	Long: `Change the related incidents of a security signal
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#edit-security-monitoring-signal-incidents`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.SecurityMonitoringSignalTriageUpdateResponse

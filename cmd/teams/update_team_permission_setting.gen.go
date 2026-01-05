@@ -16,7 +16,9 @@ var UpdateTeamPermissionSettingCmd = &cobra.Command{
 	Use:     "update-team-permission-setting [team_id] [action] [payload]",
 	Aliases: []string{"update-permission-setting"},
 	Short:   "Update permission setting for team",
-	Args:    cobra.ExactArgs(3),
+	Long: `Update permission setting for team
+Documentation: https://docs.datadoghq.com/api/latest/teams/#update-team-permission-setting`,
+	Args: cobra.ExactArgs(3),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.TeamPermissionSettingResponse

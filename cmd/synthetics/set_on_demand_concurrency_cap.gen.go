@@ -16,7 +16,9 @@ var SetOnDemandConcurrencyCapCmd = &cobra.Command{
 	Use: "set-on-demand-concurrency-cap [payload]",
 
 	Short: "Save new value for on-demand concurrency cap",
-	Args:  cobra.ExactArgs(1),
+	Long: `Save new value for on-demand concurrency cap
+Documentation: https://docs.datadoghq.com/api/latest/synthetics/#set-on-demand-concurrency-cap`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.OnDemandConcurrencyCapResponse

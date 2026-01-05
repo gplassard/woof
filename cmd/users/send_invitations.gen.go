@@ -16,7 +16,9 @@ var SendInvitationsCmd = &cobra.Command{
 	Use: "send-invitations [payload]",
 
 	Short: "Send invitation emails",
-	Args:  cobra.ExactArgs(1),
+	Long: `Send invitation emails
+Documentation: https://docs.datadoghq.com/api/latest/users/#send-invitations`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.UserInvitationsResponse

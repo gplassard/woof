@@ -15,7 +15,9 @@ var DeleteIncidentNotificationRuleCmd = &cobra.Command{
 	Use:     "delete-incident-notification-rule [id]",
 	Aliases: []string{"delete-notification-rule"},
 	Short:   "Delete an incident notification rule",
-	Args:    cobra.ExactArgs(1),
+	Long: `Delete an incident notification rule
+Documentation: https://docs.datadoghq.com/api/latest/incidents/#delete-incident-notification-rule`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

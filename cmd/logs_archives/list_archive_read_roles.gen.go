@@ -14,7 +14,9 @@ var ListArchiveReadRolesCmd = &cobra.Command{
 	Use: "list-archive-read-roles [archive_id]",
 
 	Short: "List read roles for an archive",
-	Args:  cobra.ExactArgs(1),
+	Long: `List read roles for an archive
+Documentation: https://docs.datadoghq.com/api/latest/logs-archives/#list-archive-read-roles`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.RolesResponse

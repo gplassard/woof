@@ -16,7 +16,9 @@ var UpdateCustomFrameworkCmd = &cobra.Command{
 	Use: "update-custom-framework [handle] [version] [payload]",
 
 	Short: "Update a custom framework",
-	Args:  cobra.ExactArgs(3),
+	Long: `Update a custom framework
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#update-custom-framework`,
+	Args: cobra.ExactArgs(3),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.UpdateCustomFrameworkResponse

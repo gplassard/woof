@@ -16,7 +16,9 @@ var DeleteBulkTagsMetricsConfigurationCmd = &cobra.Command{
 	Use:     "delete-bulk-tags-metrics-configuration [payload]",
 	Aliases: []string{"delete-bulk-tags-configuration"},
 	Short:   "Delete tags for multiple metrics",
-	Args:    cobra.ExactArgs(1),
+	Long: `Delete tags for multiple metrics
+Documentation: https://docs.datadoghq.com/api/latest/metrics/#delete-bulk-tags-metrics-configuration`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.MetricBulkTagConfigResponse

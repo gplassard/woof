@@ -16,7 +16,9 @@ var AddPermissionToRoleCmd = &cobra.Command{
 	Use:     "add-permission-to-role [role_id] [payload]",
 	Aliases: []string{"add-permission-to"},
 	Short:   "Grant permission to a role",
-	Args:    cobra.ExactArgs(2),
+	Long: `Grant permission to a role
+Documentation: https://docs.datadoghq.com/api/latest/roles/#add-permission-to-role`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.PermissionsResponse

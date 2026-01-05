@@ -16,7 +16,9 @@ var UpsertRowsCmd = &cobra.Command{
 	Use: "upsert-rows [id] [payload]",
 
 	Short: "Upsert rows",
-	Args:  cobra.ExactArgs(2),
+	Long: `Upsert rows
+Documentation: https://docs.datadoghq.com/api/latest/reference-tables/#upsert-rows`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

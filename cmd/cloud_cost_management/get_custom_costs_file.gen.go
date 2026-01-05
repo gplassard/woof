@@ -14,7 +14,9 @@ var GetCustomCostsFileCmd = &cobra.Command{
 	Use: "get-custom-costs-file [file_id]",
 
 	Short: "Get Custom Costs file",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get Custom Costs file
+Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#get-custom-costs-file`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.CustomCostsFileGetResponse

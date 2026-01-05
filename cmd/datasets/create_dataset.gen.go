@@ -16,7 +16,9 @@ var CreateDatasetCmd = &cobra.Command{
 	Use:     "create-dataset [payload]",
 	Aliases: []string{"create"},
 	Short:   "Create a dataset",
-	Args:    cobra.ExactArgs(1),
+	Long: `Create a dataset
+Documentation: https://docs.datadoghq.com/api/latest/datasets/#create-dataset`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.DatasetResponseSingle

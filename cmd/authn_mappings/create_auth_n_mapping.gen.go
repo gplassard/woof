@@ -16,7 +16,9 @@ var CreateAuthNMappingCmd = &cobra.Command{
 	Use: "create-auth-n-mapping [payload]",
 
 	Short: "Create an AuthN Mapping",
-	Args:  cobra.ExactArgs(1),
+	Long: `Create an AuthN Mapping
+Documentation: https://docs.datadoghq.com/api/latest/authn-mappings/#create-auth-n-mapping`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.AuthNMappingResponse

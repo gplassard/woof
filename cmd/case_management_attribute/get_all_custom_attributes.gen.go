@@ -14,6 +14,8 @@ var GetAllCustomAttributesCmd = &cobra.Command{
 	Use: "get-all-custom-attributes",
 
 	Short: "Get all custom attributes",
+	Long: `Get all custom attributes
+Documentation: https://docs.datadoghq.com/api/latest/case-management-attribute/#get-all-custom-attributes`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

@@ -14,6 +14,8 @@ var ListCustomAllocationRulesCmd = &cobra.Command{
 	Use: "list-custom-allocation-rules",
 
 	Short: "List custom allocation rules",
+	Long: `List custom allocation rules
+Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#list-custom-allocation-rules`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

@@ -16,7 +16,9 @@ var CreateFleetDeploymentUpgradeCmd = &cobra.Command{
 	Use: "create-fleet-deployment-upgrade [payload]",
 
 	Short: "Upgrade hosts",
-	Args:  cobra.ExactArgs(1),
+	Long: `Upgrade hosts
+Documentation: https://docs.datadoghq.com/api/latest/fleet-automation/#create-fleet-deployment-upgrade`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.FleetDeploymentResponse

@@ -16,7 +16,9 @@ var UpdateSpansMetricCmd = &cobra.Command{
 	Use:     "update-spans-metric [metric_id] [payload]",
 	Aliases: []string{"update"},
 	Short:   "Update a span-based metric",
-	Args:    cobra.ExactArgs(2),
+	Long: `Update a span-based metric
+Documentation: https://docs.datadoghq.com/api/latest/spans-metrics/#update-spans-metric`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.SpansMetricResponse

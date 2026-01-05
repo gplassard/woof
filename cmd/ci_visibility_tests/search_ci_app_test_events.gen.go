@@ -16,7 +16,9 @@ var SearchCIAppTestEventsCmd = &cobra.Command{
 	Use: "search-ci-app-test-events [payload]",
 
 	Short: "Search tests events",
-	Args:  cobra.ExactArgs(1),
+	Long: `Search tests events
+Documentation: https://docs.datadoghq.com/api/latest/ci-visibility-tests/#search-ci-app-test-events`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.CIAppTestEventsResponse

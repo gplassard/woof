@@ -14,6 +14,8 @@ var ListLogsArchivesCmd = &cobra.Command{
 	Use:     "list-logs-archives",
 	Aliases: []string{"list"},
 	Short:   "Get all archives",
+	Long: `Get all archives
+Documentation: https://docs.datadoghq.com/api/latest/logs-archives/#list-logs-archives`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

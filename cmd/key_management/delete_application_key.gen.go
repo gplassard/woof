@@ -14,7 +14,9 @@ var DeleteApplicationKeyCmd = &cobra.Command{
 	Use: "delete-application-key [app_key_id]",
 
 	Short: "Delete an application key",
-	Args:  cobra.ExactArgs(1),
+	Long: `Delete an application key
+Documentation: https://docs.datadoghq.com/api/latest/key-management/#delete-application-key`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

@@ -14,7 +14,9 @@ var GetTeamHierarchyLinkCmd = &cobra.Command{
 	Use:     "get-team-hierarchy-link [link_id]",
 	Aliases: []string{"get-hierarchy-link"},
 	Short:   "Get a team hierarchy link",
-	Args:    cobra.ExactArgs(1),
+	Long: `Get a team hierarchy link
+Documentation: https://docs.datadoghq.com/api/latest/teams/#get-team-hierarchy-link`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.TeamHierarchyLinkResponse

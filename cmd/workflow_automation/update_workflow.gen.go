@@ -16,7 +16,9 @@ var UpdateWorkflowCmd = &cobra.Command{
 	Use:     "update-workflow [workflow_id] [payload]",
 	Aliases: []string{"update"},
 	Short:   "Update an existing Workflow",
-	Args:    cobra.ExactArgs(2),
+	Long: `Update an existing Workflow
+Documentation: https://docs.datadoghq.com/api/latest/workflow-automation/#update-workflow`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.UpdateWorkflowResponse

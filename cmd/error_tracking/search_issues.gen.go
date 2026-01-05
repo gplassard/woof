@@ -16,7 +16,9 @@ var SearchIssuesCmd = &cobra.Command{
 	Use: "search-issues [payload]",
 
 	Short: "Search error tracking issues",
-	Args:  cobra.ExactArgs(1),
+	Long: `Search error tracking issues
+Documentation: https://docs.datadoghq.com/api/latest/error-tracking/#search-issues`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.IssuesSearchResponse

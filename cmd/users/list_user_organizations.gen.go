@@ -14,7 +14,9 @@ var ListUserOrganizationsCmd = &cobra.Command{
 	Use:     "list-user-organizations [user_id]",
 	Aliases: []string{"list-organizations"},
 	Short:   "Get a user organization",
-	Args:    cobra.ExactArgs(1),
+	Long: `Get a user organization
+Documentation: https://docs.datadoghq.com/api/latest/users/#list-user-organizations`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.UserResponse

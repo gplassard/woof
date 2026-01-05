@@ -14,7 +14,9 @@ var GetTenantBasedHandleCmd = &cobra.Command{
 	Use: "get-tenant-based-handle [handle_id]",
 
 	Short: "Get tenant-based handle information",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get tenant-based handle information
+Documentation: https://docs.datadoghq.com/api/latest/microsoft-teams-integration/#get-tenant-based-handle`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.MicrosoftTeamsTenantBasedHandleResponse

@@ -14,6 +14,8 @@ var ListSecurityMonitoringSignalsCmd = &cobra.Command{
 	Use:     "list-security-monitoring-signals",
 	Aliases: []string{"list-signals"},
 	Short:   "Get a quick list of security signals",
+	Long: `Get a quick list of security signals
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#list-security-monitoring-signals`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

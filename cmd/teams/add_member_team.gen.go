@@ -16,7 +16,9 @@ var AddMemberTeamCmd = &cobra.Command{
 	Use:     "add-member-team [super_team_id] [payload]",
 	Aliases: []string{"add-member"},
 	Short:   "Add a member team",
-	Args:    cobra.ExactArgs(2),
+	Long: `Add a member team
+Documentation: https://docs.datadoghq.com/api/latest/teams/#add-member-team`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

@@ -17,7 +17,9 @@ var UpdateIncidentNotificationTemplateCmd = &cobra.Command{
 	Use:     "update-incident-notification-template [id] [payload]",
 	Aliases: []string{"update-notification-template"},
 	Short:   "Update incident notification template",
-	Args:    cobra.ExactArgs(2),
+	Long: `Update incident notification template
+Documentation: https://docs.datadoghq.com/api/latest/incidents/#update-incident-notification-template`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.IncidentNotificationTemplate

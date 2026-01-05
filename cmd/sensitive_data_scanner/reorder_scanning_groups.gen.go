@@ -16,7 +16,9 @@ var ReorderScanningGroupsCmd = &cobra.Command{
 	Use: "reorder-scanning-groups [payload]",
 
 	Short: "Reorder Groups",
-	Args:  cobra.ExactArgs(1),
+	Long: `Reorder Groups
+Documentation: https://docs.datadoghq.com/api/latest/sensitive-data-scanner/#reorder-scanning-groups`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.SensitiveDataScannerReorderGroupsResponse

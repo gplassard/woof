@@ -14,7 +14,9 @@ var GetChannelByNameCmd = &cobra.Command{
 	Use: "get-channel-by-name [tenant_name] [team_name] [channel_name]",
 
 	Short: "Get channel information by name",
-	Args:  cobra.ExactArgs(3),
+	Long: `Get channel information by name
+Documentation: https://docs.datadoghq.com/api/latest/microsoft-teams-integration/#get-channel-by-name`,
+	Args: cobra.ExactArgs(3),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.MicrosoftTeamsGetChannelByNameResponse

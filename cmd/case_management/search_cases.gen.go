@@ -14,6 +14,8 @@ var SearchCasesCmd = &cobra.Command{
 	Use: "search-cases",
 
 	Short: "Search cases",
+	Long: `Search cases
+Documentation: https://docs.datadoghq.com/api/latest/case-management/#search-cases`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

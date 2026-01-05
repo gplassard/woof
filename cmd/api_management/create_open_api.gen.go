@@ -16,7 +16,9 @@ var CreateOpenAPICmd = &cobra.Command{
 	Use: "create-open-api [payload]",
 
 	Short: "Create a new API",
-	Args:  cobra.ExactArgs(1),
+	Long: `Create a new API
+Documentation: https://docs.datadoghq.com/api/latest/api-management/#create-open-api`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.CreateOpenAPIResponse

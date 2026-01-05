@@ -16,7 +16,9 @@ var CreateTeamLinkCmd = &cobra.Command{
 	Use:     "create-team-link [team_id] [payload]",
 	Aliases: []string{"create-link"},
 	Short:   "Create a team link",
-	Args:    cobra.ExactArgs(2),
+	Long: `Create a team link
+Documentation: https://docs.datadoghq.com/api/latest/teams/#create-team-link`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.TeamLinkResponse

@@ -16,7 +16,9 @@ var CreatePowerpackCmd = &cobra.Command{
 	Use:     "create-powerpack [payload]",
 	Aliases: []string{"create"},
 	Short:   "Create a new powerpack",
-	Args:    cobra.ExactArgs(1),
+	Long: `Create a new powerpack
+Documentation: https://docs.datadoghq.com/api/latest/powerpack/#create-powerpack`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.PowerpackResponse

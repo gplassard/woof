@@ -16,7 +16,9 @@ var UpdateTagPipelinesRulesetCmd = &cobra.Command{
 	Use: "update-tag-pipelines-ruleset [ruleset_id] [payload]",
 
 	Short: "Update tag pipeline ruleset",
-	Args:  cobra.ExactArgs(2),
+	Long: `Update tag pipeline ruleset
+Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#update-tag-pipelines-ruleset`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.RulesetResp

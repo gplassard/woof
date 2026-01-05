@@ -14,6 +14,8 @@ var GetEstimatedCostByOrgCmd = &cobra.Command{
 	Use: "get-estimated-cost-by-org",
 
 	Short: "Get estimated cost across your account",
+	Long: `Get estimated cost across your account
+Documentation: https://docs.datadoghq.com/api/latest/usage-metering/#get-estimated-cost-by-org`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

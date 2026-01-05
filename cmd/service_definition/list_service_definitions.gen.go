@@ -14,6 +14,8 @@ var ListServiceDefinitionsCmd = &cobra.Command{
 	Use:     "list-service-definitions",
 	Aliases: []string{"list"},
 	Short:   "Get all service definitions",
+	Long: `Get all service definitions
+Documentation: https://docs.datadoghq.com/api/latest/service-definition/#list-service-definitions`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

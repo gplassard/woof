@@ -14,7 +14,9 @@ var DeleteOpsgenieServiceCmd = &cobra.Command{
 	Use: "delete-opsgenie-service [integration_service_id]",
 
 	Short: "Delete a single service object",
-	Args:  cobra.ExactArgs(1),
+	Long: `Delete a single service object
+Documentation: https://docs.datadoghq.com/api/latest/opsgenie-integration/#delete-opsgenie-service`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

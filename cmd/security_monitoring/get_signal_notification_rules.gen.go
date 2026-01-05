@@ -14,6 +14,8 @@ var GetSignalNotificationRulesCmd = &cobra.Command{
 	Use: "get-signal-notification-rules",
 
 	Short: "Get the list of signal-based notification rules",
+	Long: `Get the list of signal-based notification rules
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-signal-notification-rules`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

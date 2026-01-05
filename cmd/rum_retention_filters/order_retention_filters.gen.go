@@ -16,7 +16,9 @@ var OrderRetentionFiltersCmd = &cobra.Command{
 	Use: "order-retention-filters [app_id] [payload]",
 
 	Short: "Order RUM retention filters",
-	Args:  cobra.ExactArgs(2),
+	Long: `Order RUM retention filters
+Documentation: https://docs.datadoghq.com/api/latest/rum-retention-filters/#order-retention-filters`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.RumRetentionFiltersOrderResponse

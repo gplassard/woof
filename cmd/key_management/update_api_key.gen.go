@@ -16,7 +16,9 @@ var UpdateAPIKeyCmd = &cobra.Command{
 	Use: "update-api-key [api_key_id] [payload]",
 
 	Short: "Edit an API key",
-	Args:  cobra.ExactArgs(2),
+	Long: `Edit an API key
+Documentation: https://docs.datadoghq.com/api/latest/key-management/#update-api-key`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.APIKeyResponse

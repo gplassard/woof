@@ -16,7 +16,9 @@ var PatchDomainAllowlistCmd = &cobra.Command{
 	Use:     "patch-domain-allowlist [payload]",
 	Aliases: []string{"patch"},
 	Short:   "Sets Domain Allowlist",
-	Args:    cobra.ExactArgs(1),
+	Long: `Sets Domain Allowlist
+Documentation: https://docs.datadoghq.com/api/latest/domain-allowlist/#patch-domain-allowlist`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.DomainAllowlistResponse

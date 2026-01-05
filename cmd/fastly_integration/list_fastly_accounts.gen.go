@@ -14,6 +14,8 @@ var ListFastlyAccountsCmd = &cobra.Command{
 	Use: "list-fastly-accounts",
 
 	Short: "List Fastly accounts",
+	Long: `List Fastly accounts
+Documentation: https://docs.datadoghq.com/api/latest/fastly-integration/#list-fastly-accounts`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

@@ -14,6 +14,8 @@ var ListTagConfigurationsCmd = &cobra.Command{
 	Use: "list-tag-configurations",
 
 	Short: "Get a list of metrics",
+	Long: `Get a list of metrics
+Documentation: https://docs.datadoghq.com/api/latest/metrics/#list-tag-configurations`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

@@ -14,7 +14,9 @@ var GetDeploymentGateCmd = &cobra.Command{
 	Use:     "get-deployment-gate [id]",
 	Aliases: []string{"get"},
 	Short:   "Get deployment gate",
-	Args:    cobra.ExactArgs(1),
+	Long: `Get deployment gate
+Documentation: https://docs.datadoghq.com/api/latest/deployment-gates/#get-deployment-gate`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.DeploymentGateResponse

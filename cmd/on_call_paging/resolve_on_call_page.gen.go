@@ -15,7 +15,9 @@ var ResolveOnCallPageCmd = &cobra.Command{
 	Use: "resolve-on-call-page [page_id]",
 
 	Short: "Resolve On-Call Page",
-	Args:  cobra.ExactArgs(1),
+	Long: `Resolve On-Call Page
+Documentation: https://docs.datadoghq.com/api/latest/on-call-paging/#resolve-on-call-page`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

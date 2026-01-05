@@ -14,7 +14,9 @@ var GetDatastoreCmd = &cobra.Command{
 	Use:     "get-datastore [datastore_id]",
 	Aliases: []string{"get"},
 	Short:   "Get datastore",
-	Args:    cobra.ExactArgs(1),
+	Long: `Get datastore
+Documentation: https://docs.datadoghq.com/api/latest/actions-datastores/#get-datastore`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.Datastore

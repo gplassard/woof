@@ -16,7 +16,9 @@ var GetUsageApplicationSecurityMonitoringCmd = &cobra.Command{
 	Use: "get-usage-application-security-monitoring [start_hr]",
 
 	Short: "Get hourly usage for application security",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get hourly usage for application security
+Documentation: https://docs.datadoghq.com/api/latest/usage-metering/#get-usage-application-security-monitoring`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.UsageApplicationSecurityMonitoringResponse

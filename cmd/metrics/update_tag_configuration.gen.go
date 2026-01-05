@@ -16,7 +16,9 @@ var UpdateTagConfigurationCmd = &cobra.Command{
 	Use: "update-tag-configuration [metric_name] [payload]",
 
 	Short: "Update a tag configuration",
-	Args:  cobra.ExactArgs(2),
+	Long: `Update a tag configuration
+Documentation: https://docs.datadoghq.com/api/latest/metrics/#update-tag-configuration`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.MetricTagConfigurationResponse

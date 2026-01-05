@@ -14,7 +14,9 @@ var GetAuthNMappingCmd = &cobra.Command{
 	Use: "get-auth-n-mapping [authn_mapping_id]",
 
 	Short: "Get an AuthN Mapping by UUID",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get an AuthN Mapping by UUID
+Documentation: https://docs.datadoghq.com/api/latest/authn-mappings/#get-auth-n-mapping`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.AuthNMappingResponse

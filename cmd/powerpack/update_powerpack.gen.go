@@ -16,7 +16,9 @@ var UpdatePowerpackCmd = &cobra.Command{
 	Use:     "update-powerpack [powerpack_id] [payload]",
 	Aliases: []string{"update"},
 	Short:   "Update a powerpack",
-	Args:    cobra.ExactArgs(2),
+	Long: `Update a powerpack
+Documentation: https://docs.datadoghq.com/api/latest/powerpack/#update-powerpack`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.PowerpackResponse

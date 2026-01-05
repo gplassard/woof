@@ -16,7 +16,9 @@ var CreateDORAIncidentCmd = &cobra.Command{
 	Use: "create-d-o-r-ai-ncident [payload]",
 
 	Short: "Send an incident event",
-	Args:  cobra.ExactArgs(1),
+	Long: `Send an incident event
+Documentation: https://docs.datadoghq.com/api/latest/dora-metrics/#create-d-o-r-ai-ncident`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.DORAFailureResponse

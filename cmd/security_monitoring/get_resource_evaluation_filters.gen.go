@@ -14,6 +14,8 @@ var GetResourceEvaluationFiltersCmd = &cobra.Command{
 	Use: "get-resource-evaluation-filters",
 
 	Short: "List resource filters",
+	Long: `List resource filters
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-resource-evaluation-filters`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

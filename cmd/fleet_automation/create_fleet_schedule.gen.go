@@ -16,7 +16,9 @@ var CreateFleetScheduleCmd = &cobra.Command{
 	Use: "create-fleet-schedule [payload]",
 
 	Short: "Create a schedule",
-	Args:  cobra.ExactArgs(1),
+	Long: `Create a schedule
+Documentation: https://docs.datadoghq.com/api/latest/fleet-automation/#create-fleet-schedule`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.FleetScheduleResponse

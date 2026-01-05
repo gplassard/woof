@@ -16,7 +16,9 @@ var UpdateCostAzureUCConfigsCmd = &cobra.Command{
 	Use: "update-cost-azure-uc-configs [cloud_account_id] [payload]",
 
 	Short: "Update Cloud Cost Management Azure config",
-	Args:  cobra.ExactArgs(2),
+	Long: `Update Cloud Cost Management Azure config
+Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#update-cost-azure-uc-configs`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.AzureUCConfigPairsResponse

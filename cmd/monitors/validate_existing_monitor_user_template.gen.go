@@ -16,7 +16,9 @@ var ValidateExistingMonitorUserTemplateCmd = &cobra.Command{
 	Use:     "validate-existing-monitor-user-template [template_id] [payload]",
 	Aliases: []string{"validate-existing-user-template"},
 	Short:   "Validate an existing monitor user template",
-	Args:    cobra.ExactArgs(2),
+	Long: `Validate an existing monitor user template
+Documentation: https://docs.datadoghq.com/api/latest/monitors/#validate-existing-monitor-user-template`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

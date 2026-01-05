@@ -14,6 +14,8 @@ var GetAggregatedDnsCmd = &cobra.Command{
 	Use: "get-aggregated-dns",
 
 	Short: "Get all aggregated DNS traffic",
+	Long: `Get all aggregated DNS traffic
+Documentation: https://docs.datadoghq.com/api/latest/cloud-network-monitoring/#get-aggregated-dns`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

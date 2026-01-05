@@ -14,7 +14,9 @@ var ListRestrictionQueryRolesCmd = &cobra.Command{
 	Use: "list-restriction-query-roles [restriction_query_id]",
 
 	Short: "List roles for a restriction query",
-	Args:  cobra.ExactArgs(1),
+	Long: `List roles for a restriction query
+Documentation: https://docs.datadoghq.com/api/latest/logs-restriction-queries/#list-restriction-query-roles`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.RestrictionQueryRolesResponse

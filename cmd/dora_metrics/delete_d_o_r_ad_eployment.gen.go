@@ -14,7 +14,9 @@ var DeleteDORADeploymentCmd = &cobra.Command{
 	Use: "delete-d-o-r-ad-eployment [deployment_id]",
 
 	Short: "Delete a deployment event",
-	Args:  cobra.ExactArgs(1),
+	Long: `Delete a deployment event
+Documentation: https://docs.datadoghq.com/api/latest/dora-metrics/#delete-d-o-r-ad-eployment`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

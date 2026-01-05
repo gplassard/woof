@@ -14,7 +14,9 @@ var CancelFleetDeploymentCmd = &cobra.Command{
 	Use: "cancel-fleet-deployment [deployment_id]",
 
 	Short: "Cancel a deployment",
-	Args:  cobra.ExactArgs(1),
+	Long: `Cancel a deployment
+Documentation: https://docs.datadoghq.com/api/latest/fleet-automation/#cancel-fleet-deployment`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

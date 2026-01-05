@@ -14,6 +14,8 @@ var ListCostAzureUCConfigsCmd = &cobra.Command{
 	Use: "list-cost-azure-uc-configs",
 
 	Short: "List Cloud Cost Management Azure configs",
+	Long: `List Cloud Cost Management Azure configs
+Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#list-cost-azure-uc-configs`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

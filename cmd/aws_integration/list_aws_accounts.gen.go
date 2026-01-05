@@ -14,6 +14,8 @@ var ListAWSAccountsCmd = &cobra.Command{
 	Use: "list-aws-accounts",
 
 	Short: "List all AWS integrations",
+	Long: `List all AWS integrations
+Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#list-aws-accounts`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

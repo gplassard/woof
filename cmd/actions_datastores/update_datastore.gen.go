@@ -16,7 +16,9 @@ var UpdateDatastoreCmd = &cobra.Command{
 	Use:     "update-datastore [datastore_id] [payload]",
 	Aliases: []string{"update"},
 	Short:   "Update datastore",
-	Args:    cobra.ExactArgs(2),
+	Long: `Update datastore
+Documentation: https://docs.datadoghq.com/api/latest/actions-datastores/#update-datastore`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.Datastore

@@ -16,7 +16,9 @@ var UpdateOktaAccountCmd = &cobra.Command{
 	Use: "update-okta-account [account_id] [payload]",
 
 	Short: "Update Okta account",
-	Args:  cobra.ExactArgs(2),
+	Long: `Update Okta account
+Documentation: https://docs.datadoghq.com/api/latest/okta-integration/#update-okta-account`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.OktaAccountResponse

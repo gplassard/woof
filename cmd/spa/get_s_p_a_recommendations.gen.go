@@ -14,7 +14,9 @@ var GetSPARecommendationsCmd = &cobra.Command{
 	Use: "get-s-p-a-recommendations [shard] [service]",
 
 	Short: "Get SPA Recommendations",
-	Args:  cobra.ExactArgs(2),
+	Long: `Get SPA Recommendations
+Documentation: https://docs.datadoghq.com/api/latest/spa/#get-s-p-a-recommendations`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.RecommendationDocument

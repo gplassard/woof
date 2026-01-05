@@ -14,7 +14,9 @@ var ListIncidentAttachmentsCmd = &cobra.Command{
 	Use:     "list-incident-attachments [incident_id]",
 	Aliases: []string{"list-attachments"},
 	Short:   "List incident attachments",
-	Args:    cobra.ExactArgs(1),
+	Long: `List incident attachments
+Documentation: https://docs.datadoghq.com/api/latest/incidents/#list-incident-attachments`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.IncidentAttachmentsResponse

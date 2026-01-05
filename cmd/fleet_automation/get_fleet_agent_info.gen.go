@@ -14,7 +14,9 @@ var GetFleetAgentInfoCmd = &cobra.Command{
 	Use: "get-fleet-agent-info [agent_key]",
 
 	Short: "Get detailed information about an agent",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get detailed information about an agent
+Documentation: https://docs.datadoghq.com/api/latest/fleet-automation/#get-fleet-agent-info`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.FleetAgentInfoResponse

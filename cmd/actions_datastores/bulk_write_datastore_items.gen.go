@@ -16,7 +16,9 @@ var BulkWriteDatastoreItemsCmd = &cobra.Command{
 	Use:     "bulk-write-datastore-items [datastore_id] [payload]",
 	Aliases: []string{"bulk-write-items"},
 	Short:   "Bulk write datastore items",
-	Args:    cobra.ExactArgs(2),
+	Long: `Bulk write datastore items
+Documentation: https://docs.datadoghq.com/api/latest/actions-datastores/#bulk-write-datastore-items`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.PutAppsDatastoreItemResponseArray

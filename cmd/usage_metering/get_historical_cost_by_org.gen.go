@@ -16,7 +16,9 @@ var GetHistoricalCostByOrgCmd = &cobra.Command{
 	Use: "get-historical-cost-by-org [start_month]",
 
 	Short: "Get historical cost across your account",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get historical cost across your account
+Documentation: https://docs.datadoghq.com/api/latest/usage-metering/#get-historical-cost-by-org`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.CostByOrgResponse

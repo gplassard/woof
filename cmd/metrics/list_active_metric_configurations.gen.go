@@ -14,7 +14,9 @@ var ListActiveMetricConfigurationsCmd = &cobra.Command{
 	Use:     "list-active-metric-configurations [metric_name]",
 	Aliases: []string{"list-active-configurations"},
 	Short:   "List active tags and aggregations",
-	Args:    cobra.ExactArgs(1),
+	Long: `List active tags and aggregations
+Documentation: https://docs.datadoghq.com/api/latest/metrics/#list-active-metric-configurations`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.MetricSuggestedTagsAndAggregationsResponse

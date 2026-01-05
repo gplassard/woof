@@ -16,7 +16,9 @@ var UploadIdPMetadataCmd = &cobra.Command{
 	Use: "upload-id-p-metadata [payload]",
 
 	Short: "Upload IdP metadata",
-	Args:  cobra.ExactArgs(1),
+	Long: `Upload IdP metadata
+Documentation: https://docs.datadoghq.com/api/latest/organizations/#upload-id-p-metadata`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

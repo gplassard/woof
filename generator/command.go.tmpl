@@ -18,6 +18,8 @@ var {{.CommandName}} = &cobra.Command{
 	Use:   "{{.Use}}",
 	{{if .Aliases}}Aliases: []string{ {{range .Aliases}}"{{.}}",{{end}} },{{end}}
 	Short: "{{.Short}}",
+	Long:  `{{.Short}}
+Documentation: {{.DocURL}}`,
 	{{if .Args}}Args:  cobra.ExactArgs({{len .Args}}),{{end}}
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

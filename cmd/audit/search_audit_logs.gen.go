@@ -16,7 +16,9 @@ var SearchAuditLogsCmd = &cobra.Command{
 	Use:     "search-audit-logs [payload]",
 	Aliases: []string{"search-logs"},
 	Short:   "Search Audit Logs events",
-	Args:    cobra.ExactArgs(1),
+	Long: `Search Audit Logs events
+Documentation: https://docs.datadoghq.com/api/latest/audit/#search-audit-logs`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.AuditLogsEventsResponse

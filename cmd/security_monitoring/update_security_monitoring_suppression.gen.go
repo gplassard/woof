@@ -16,7 +16,9 @@ var UpdateSecurityMonitoringSuppressionCmd = &cobra.Command{
 	Use:     "update-security-monitoring-suppression [suppression_id] [payload]",
 	Aliases: []string{"update-suppression"},
 	Short:   "Update a suppression rule",
-	Args:    cobra.ExactArgs(2),
+	Long: `Update a suppression rule
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#update-security-monitoring-suppression`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.SecurityMonitoringSuppressionResponse

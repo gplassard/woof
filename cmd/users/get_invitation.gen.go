@@ -14,7 +14,9 @@ var GetInvitationCmd = &cobra.Command{
 	Use: "get-invitation [user_invitation_uuid]",
 
 	Short: "Get a user invitation",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get a user invitation
+Documentation: https://docs.datadoghq.com/api/latest/users/#get-invitation`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.UserInvitationResponse

@@ -14,6 +14,8 @@ var ListProcessesCmd = &cobra.Command{
 	Use:     "list-processes",
 	Aliases: []string{"list"},
 	Short:   "Get all processes",
+	Long: `Get all processes
+Documentation: https://docs.datadoghq.com/api/latest/processes/#list-processes`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

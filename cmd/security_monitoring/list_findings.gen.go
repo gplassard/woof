@@ -14,6 +14,8 @@ var ListFindingsCmd = &cobra.Command{
 	Use: "list-findings",
 
 	Short: "List findings",
+	Long: `List findings
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#list-findings`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

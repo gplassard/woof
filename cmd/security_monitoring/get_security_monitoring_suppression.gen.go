@@ -14,7 +14,9 @@ var GetSecurityMonitoringSuppressionCmd = &cobra.Command{
 	Use:     "get-security-monitoring-suppression [suppression_id]",
 	Aliases: []string{"get-suppression"},
 	Short:   "Get a suppression rule",
-	Args:    cobra.ExactArgs(1),
+	Long: `Get a suppression rule
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-security-monitoring-suppression`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.SecurityMonitoringSuppressionResponse

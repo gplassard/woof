@@ -14,6 +14,8 @@ var ListCIAppPipelineEventsCmd = &cobra.Command{
 	Use: "list-ci-app-pipeline-events",
 
 	Short: "Get a list of pipelines events",
+	Long: `Get a list of pipelines events
+Documentation: https://docs.datadoghq.com/api/latest/ci-visibility-pipelines/#list-ci-app-pipeline-events`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

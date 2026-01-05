@@ -16,7 +16,9 @@ var CreateFastlyServiceCmd = &cobra.Command{
 	Use: "create-fastly-service [account_id] [payload]",
 
 	Short: "Add Fastly service",
-	Args:  cobra.ExactArgs(2),
+	Long: `Add Fastly service
+Documentation: https://docs.datadoghq.com/api/latest/fastly-integration/#create-fastly-service`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.FastlyServiceResponse

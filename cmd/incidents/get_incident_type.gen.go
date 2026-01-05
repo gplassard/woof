@@ -14,7 +14,9 @@ var GetIncidentTypeCmd = &cobra.Command{
 	Use:     "get-incident-type [incident_type_id]",
 	Aliases: []string{"get-type"},
 	Short:   "Get incident type details",
-	Args:    cobra.ExactArgs(1),
+	Long: `Get incident type details
+Documentation: https://docs.datadoghq.com/api/latest/incidents/#get-incident-type`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.IncidentTypeResponse

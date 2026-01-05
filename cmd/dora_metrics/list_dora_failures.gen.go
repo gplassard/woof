@@ -16,7 +16,9 @@ var ListDORAFailuresCmd = &cobra.Command{
 	Use: "list-dora-failures [payload]",
 
 	Short: "Get a list of failure events",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get a list of failure events
+Documentation: https://docs.datadoghq.com/api/latest/dora-metrics/#list-dora-failures`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.DORAListResponse

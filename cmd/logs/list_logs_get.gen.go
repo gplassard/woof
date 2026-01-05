@@ -14,6 +14,8 @@ var ListLogsGetCmd = &cobra.Command{
 	Use:     "list-logs-get",
 	Aliases: []string{"list-get"},
 	Short:   "Search logs (GET)",
+	Long: `Search logs (GET)
+Documentation: https://docs.datadoghq.com/api/latest/logs/#list-logs-get`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

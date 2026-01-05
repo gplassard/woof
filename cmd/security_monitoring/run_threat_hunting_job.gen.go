@@ -16,7 +16,9 @@ var RunThreatHuntingJobCmd = &cobra.Command{
 	Use: "run-threat-hunting-job [payload]",
 
 	Short: "Run a threat hunting job",
-	Args:  cobra.ExactArgs(1),
+	Long: `Run a threat hunting job
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#run-threat-hunting-job`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.JobCreateResponse

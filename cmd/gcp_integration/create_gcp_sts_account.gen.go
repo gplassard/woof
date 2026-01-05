@@ -16,7 +16,9 @@ var CreateGCPSTSAccountCmd = &cobra.Command{
 	Use: "create-gcp-sts-account [payload]",
 
 	Short: "Create a new entry for your service account",
-	Args:  cobra.ExactArgs(1),
+	Long: `Create a new entry for your service account
+Documentation: https://docs.datadoghq.com/api/latest/gcp-integration/#create-gcp-sts-account`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.GCPSTSServiceAccountResponse

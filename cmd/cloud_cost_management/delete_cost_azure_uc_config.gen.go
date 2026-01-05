@@ -15,7 +15,9 @@ var DeleteCostAzureUCConfigCmd = &cobra.Command{
 	Use: "delete-cost-azure-uc-config [cloud_account_id]",
 
 	Short: "Delete Cloud Cost Management Azure config",
-	Args:  cobra.ExactArgs(1),
+	Long: `Delete Cloud Cost Management Azure config
+Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#delete-cost-azure-uc-config`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

@@ -14,7 +14,9 @@ var DeleteCatalogEntityCmd = &cobra.Command{
 	Use: "delete-catalog-entity [entity_id]",
 
 	Short: "Delete a single entity",
-	Args:  cobra.ExactArgs(1),
+	Long: `Delete a single entity
+Documentation: https://docs.datadoghq.com/api/latest/software-catalog/#delete-catalog-entity`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

@@ -14,6 +14,8 @@ var ListFleetDeploymentsCmd = &cobra.Command{
 	Use: "list-fleet-deployments",
 
 	Short: "List all deployments",
+	Long: `List all deployments
+Documentation: https://docs.datadoghq.com/api/latest/fleet-automation/#list-fleet-deployments`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

@@ -14,6 +14,8 @@ var ListGcpScanOptionsCmd = &cobra.Command{
 	Use: "list-gcp-scan-options",
 
 	Short: "List GCP scan options",
+	Long: `List GCP scan options
+Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#list-gcp-scan-options`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

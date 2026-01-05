@@ -16,7 +16,9 @@ var AggregateLogsCmd = &cobra.Command{
 	Use:     "aggregate-logs [payload]",
 	Aliases: []string{"aggregate"},
 	Short:   "Aggregate events",
-	Args:    cobra.ExactArgs(1),
+	Long: `Aggregate events
+Documentation: https://docs.datadoghq.com/api/latest/logs/#aggregate-logs`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.LogsAggregateResponse

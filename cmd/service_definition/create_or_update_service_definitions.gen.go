@@ -16,7 +16,9 @@ var CreateOrUpdateServiceDefinitionsCmd = &cobra.Command{
 	Use:     "create-or-update-service-definitions [payload]",
 	Aliases: []string{"create-or-update"},
 	Short:   "Create or update service definition",
-	Args:    cobra.ExactArgs(1),
+	Long: `Create or update service definition
+Documentation: https://docs.datadoghq.com/api/latest/service-definition/#create-or-update-service-definitions`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.ServiceDefinitionCreateResponse

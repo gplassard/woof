@@ -14,7 +14,9 @@ var DeleteRumMetricCmd = &cobra.Command{
 	Use:     "delete-rum-metric [metric_id]",
 	Aliases: []string{"delete"},
 	Short:   "Delete a rum-based metric",
-	Args:    cobra.ExactArgs(1),
+	Long: `Delete a rum-based metric
+Documentation: https://docs.datadoghq.com/api/latest/rum-metrics/#delete-rum-metric`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

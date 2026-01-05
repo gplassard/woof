@@ -16,7 +16,9 @@ var UpdateIncidentTodoCmd = &cobra.Command{
 	Use:     "update-incident-todo [incident_id] [todo_id] [payload]",
 	Aliases: []string{"update-todo"},
 	Short:   "Update an incident todo",
-	Args:    cobra.ExactArgs(3),
+	Long: `Update an incident todo
+Documentation: https://docs.datadoghq.com/api/latest/incidents/#update-incident-todo`,
+	Args: cobra.ExactArgs(3),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.IncidentTodoResponse

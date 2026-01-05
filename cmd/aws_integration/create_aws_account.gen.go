@@ -16,7 +16,9 @@ var CreateAWSAccountCmd = &cobra.Command{
 	Use: "create-aws-account [payload]",
 
 	Short: "Create an AWS integration",
-	Args:  cobra.ExactArgs(1),
+	Long: `Create an AWS integration
+Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#create-aws-account`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.AWSAccountResponse

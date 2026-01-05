@@ -14,6 +14,8 @@ var ListIncidentServicesCmd = &cobra.Command{
 	Use:     "list-incident-services",
 	Aliases: []string{"list"},
 	Short:   "Get a list of all incident services",
+	Long: `Get a list of all incident services
+Documentation: https://docs.datadoghq.com/api/latest/incident-services/#list-incident-services`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

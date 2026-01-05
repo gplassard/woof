@@ -16,7 +16,9 @@ var UpdateRetentionFilterCmd = &cobra.Command{
 	Use: "update-retention-filter [app_id] [rf_id] [payload]",
 
 	Short: "Update a RUM retention filter",
-	Args:  cobra.ExactArgs(3),
+	Long: `Update a RUM retention filter
+Documentation: https://docs.datadoghq.com/api/latest/rum-retention-filters/#update-retention-filter`,
+	Args: cobra.ExactArgs(3),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.RumRetentionFilterResponse

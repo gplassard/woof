@@ -14,7 +14,9 @@ var GetRUMApplicationCmd = &cobra.Command{
 	Use:     "get-rum-application [id]",
 	Aliases: []string{"get-application"},
 	Short:   "Get a RUM application",
-	Args:    cobra.ExactArgs(1),
+	Long: `Get a RUM application
+Documentation: https://docs.datadoghq.com/api/latest/rum/#get-rum-application`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.RUMApplicationResponse

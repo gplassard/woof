@@ -16,7 +16,9 @@ var UpdateDashboardListItemsCmd = &cobra.Command{
 	Use:     "update-dashboard-list-items [dashboard_list_id] [payload]",
 	Aliases: []string{"update-items"},
 	Short:   "Update items of a dashboard list",
-	Args:    cobra.ExactArgs(2),
+	Long: `Update items of a dashboard list
+Documentation: https://docs.datadoghq.com/api/latest/dashboard-lists/#update-dashboard-list-items`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.DashboardListUpdateItemsResponse

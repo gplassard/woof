@@ -16,7 +16,9 @@ var UpdateApplicationSecurityWafCustomRuleCmd = &cobra.Command{
 	Use:     "update-application-security-waf-custom-rule [custom_rule_id] [payload]",
 	Aliases: []string{"update-waf-custom-rule"},
 	Short:   "Update a WAF Custom Rule",
-	Args:    cobra.ExactArgs(2),
+	Long: `Update a WAF Custom Rule
+Documentation: https://docs.datadoghq.com/api/latest/application-security/#update-application-security-waf-custom-rule`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.ApplicationSecurityWafCustomRuleResponse

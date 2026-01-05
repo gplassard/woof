@@ -16,7 +16,9 @@ var DeleteTeamConnectionsCmd = &cobra.Command{
 	Use:     "delete-team-connections [payload]",
 	Aliases: []string{"delete-connections"},
 	Short:   "Delete team connections",
-	Args:    cobra.ExactArgs(1),
+	Long: `Delete team connections
+Documentation: https://docs.datadoghq.com/api/latest/teams/#delete-team-connections`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

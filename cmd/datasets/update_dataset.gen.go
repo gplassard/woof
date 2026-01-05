@@ -16,7 +16,9 @@ var UpdateDatasetCmd = &cobra.Command{
 	Use:     "update-dataset [dataset_id] [payload]",
 	Aliases: []string{"update"},
 	Short:   "Edit a dataset",
-	Args:    cobra.ExactArgs(2),
+	Long: `Edit a dataset
+Documentation: https://docs.datadoghq.com/api/latest/datasets/#update-dataset`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.DatasetResponseSingle

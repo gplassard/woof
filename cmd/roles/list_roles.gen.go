@@ -14,6 +14,8 @@ var ListRolesCmd = &cobra.Command{
 	Use:     "list-roles",
 	Aliases: []string{"list"},
 	Short:   "List roles",
+	Long: `List roles
+Documentation: https://docs.datadoghq.com/api/latest/roles/#list-roles`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

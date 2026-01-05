@@ -16,7 +16,9 @@ var ReorderTagPipelinesRulesetsCmd = &cobra.Command{
 	Use: "reorder-tag-pipelines-rulesets [payload]",
 
 	Short: "Reorder tag pipeline rulesets",
-	Args:  cobra.ExactArgs(1),
+	Long: `Reorder tag pipeline rulesets
+Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#reorder-tag-pipelines-rulesets`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

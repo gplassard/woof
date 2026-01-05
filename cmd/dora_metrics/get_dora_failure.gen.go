@@ -14,7 +14,9 @@ var GetDORAFailureCmd = &cobra.Command{
 	Use: "get-dora-failure [failure_id]",
 
 	Short: "Get a failure event",
-	Args:  cobra.ExactArgs(1),
+	Long: `Get a failure event
+Documentation: https://docs.datadoghq.com/api/latest/dora-metrics/#get-dora-failure`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.DORAFetchResponse

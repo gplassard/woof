@@ -14,7 +14,9 @@ var DeleteScorecardRuleCmd = &cobra.Command{
 	Use:     "delete-scorecard-rule [rule_id]",
 	Aliases: []string{"delete-rule"},
 	Short:   "Delete a rule",
-	Args:    cobra.ExactArgs(1),
+	Long: `Delete a rule
+Documentation: https://docs.datadoghq.com/api/latest/service-scorecards/#delete-scorecard-rule`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

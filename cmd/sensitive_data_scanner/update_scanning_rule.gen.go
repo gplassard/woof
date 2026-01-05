@@ -16,7 +16,9 @@ var UpdateScanningRuleCmd = &cobra.Command{
 	Use: "update-scanning-rule [rule_id] [payload]",
 
 	Short: "Update Scanning Rule",
-	Args:  cobra.ExactArgs(2),
+	Long: `Update Scanning Rule
+Documentation: https://docs.datadoghq.com/api/latest/sensitive-data-scanner/#update-scanning-rule`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.SensitiveDataScannerRuleUpdateResponse

@@ -14,6 +14,8 @@ var GetMonitorNotificationRulesCmd = &cobra.Command{
 	Use:     "get-monitor-notification-rules",
 	Aliases: []string{"get-notification-rules"},
 	Short:   "Get all monitor notification rules",
+	Long: `Get all monitor notification rules
+Documentation: https://docs.datadoghq.com/api/latest/monitors/#get-monitor-notification-rules`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

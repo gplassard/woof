@@ -16,7 +16,9 @@ var DetachCaseCmd = &cobra.Command{
 	Use: "detach-case [payload]",
 
 	Short: "Detach security findings from their case",
-	Args:  cobra.ExactArgs(1),
+	Long: `Detach security findings from their case
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#detach-case`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 

@@ -14,7 +14,9 @@ var GetSpansMetricCmd = &cobra.Command{
 	Use:     "get-spans-metric [metric_id]",
 	Aliases: []string{"get"},
 	Short:   "Get a span-based metric",
-	Args:    cobra.ExactArgs(1),
+	Long: `Get a span-based metric
+Documentation: https://docs.datadoghq.com/api/latest/spans-metrics/#get-spans-metric`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.SpansMetricResponse

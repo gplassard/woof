@@ -14,7 +14,9 @@ var ListIncidentTodosCmd = &cobra.Command{
 	Use:     "list-incident-todos [incident_id]",
 	Aliases: []string{"list-todos"},
 	Short:   "Get a list of an incident's todos",
-	Args:    cobra.ExactArgs(1),
+	Long: `Get a list of an incident's todos
+Documentation: https://docs.datadoghq.com/api/latest/incidents/#list-incident-todos`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.IncidentTodoListResponse

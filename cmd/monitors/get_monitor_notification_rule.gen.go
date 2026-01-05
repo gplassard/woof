@@ -14,7 +14,9 @@ var GetMonitorNotificationRuleCmd = &cobra.Command{
 	Use:     "get-monitor-notification-rule [rule_id]",
 	Aliases: []string{"get-notification-rule"},
 	Short:   "Get a monitor notification rule",
-	Args:    cobra.ExactArgs(1),
+	Long: `Get a monitor notification rule
+Documentation: https://docs.datadoghq.com/api/latest/monitors/#get-monitor-notification-rule`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.MonitorNotificationRuleResponse

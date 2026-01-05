@@ -14,6 +14,8 @@ var ListSpansGetCmd = &cobra.Command{
 	Use:     "list-spans-get",
 	Aliases: []string{"list-get"},
 	Short:   "Get a list of spans",
+	Long: `Get a list of spans
+Documentation: https://docs.datadoghq.com/api/latest/spans/#list-spans-get`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

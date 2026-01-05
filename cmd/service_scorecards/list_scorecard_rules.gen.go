@@ -14,6 +14,8 @@ var ListScorecardRulesCmd = &cobra.Command{
 	Use:     "list-scorecard-rules",
 	Aliases: []string{"list-rules"},
 	Short:   "List all rules",
+	Long: `List all rules
+Documentation: https://docs.datadoghq.com/api/latest/service-scorecards/#list-scorecard-rules`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

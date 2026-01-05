@@ -14,6 +14,8 @@ var ListContainersCmd = &cobra.Command{
 	Use:     "list-containers",
 	Aliases: []string{"list"},
 	Short:   "Get All Containers",
+	Long: `Get All Containers
+Documentation: https://docs.datadoghq.com/api/latest/containers/#list-containers`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

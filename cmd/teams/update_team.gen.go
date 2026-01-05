@@ -16,7 +16,9 @@ var UpdateTeamCmd = &cobra.Command{
 	Use:     "update-team [team_id] [payload]",
 	Aliases: []string{"update"},
 	Short:   "Update a team",
-	Args:    cobra.ExactArgs(2),
+	Long: `Update a team
+Documentation: https://docs.datadoghq.com/api/latest/teams/#update-team`,
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.TeamResponse

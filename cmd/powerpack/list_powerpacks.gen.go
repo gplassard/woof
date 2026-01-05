@@ -14,6 +14,8 @@ var ListPowerpacksCmd = &cobra.Command{
 	Use:     "list-powerpacks",
 	Aliases: []string{"list"},
 	Short:   "Get all powerpacks",
+	Long: `Get all powerpacks
+Documentation: https://docs.datadoghq.com/api/latest/powerpack/#list-powerpacks`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
