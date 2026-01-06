@@ -19,7 +19,7 @@ importers:
 packages:
 
   '@gplassard/projen-extensions@file:../projen-extensions/gplassard-projen-extensions-0.0.0.tgz':
-    resolution: {integrity: sha512-/wVD+n0PgSe2CqWACUTxYKV1zJWfM8uBgSidfrZjvAGs6MQLP+epsbcl1+h5Dc+6GIqbdge4Fy3UTmq3LVOBXA==, tarball: file:../projen-extensions/gplassard-projen-extensions-0.0.0.tgz}
+    resolution: {integrity: sha512-kSb+8v+6C7E6q7a1E1+ehhvKXLVYPX3PMGJhpsI41lvk4iklMqDNWIUDRsShIdRVUuMUZG4e75D1LrkgL0OqXg==, tarball: file:../projen-extensions/gplassard-projen-extensions-0.0.0.tgz}
     version: 0.0.0
     peerDependencies:
       constructs: ^10.4.4

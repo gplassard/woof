@@ -18,8 +18,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    outputs:
-      patch_created: ${{ steps.create_patch.outputs.patch_created }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -31,70 +29,5 @@ jobs:
           go-version: "1.25"
       - name: Build
         run: go build ./...
-      - name: Run golangci-lint
-        uses: golangci/golangci-lint-action@v9
-        with:
-          version: v2.7.2
-      - name: Format Code
-        run: go fmt ./...
-      - name: Find mutations
-        id: create_patch
-        run: |-
-          git add .
-          git diff --staged --patch --exit-code > repo.patch || echo "patch_created=true" >> $GITHUB_OUTPUT
-        shell: bash
-        working-directory: ./
-      - name: Upload patch
-        if: steps.create_patch.outputs.patch_created
-        uses: actions/upload-artifact@v4.6.2
-        with:
-          name: repo.patch
-          path: repo.patch
-          overwrite: true
       - name: Tests
         run: go test -v ./...
-      - name: Fail build on mutation
-        if: steps.create_patch.outputs.patch_created
-        run: |-
-          echo "::error::Files were changed during build (see build log). If this was triggered from a fork, you will need to update your branch."
-          cat repo.patch
-          exit 1
-  self-mutation:
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    if: always() && needs.build.outputs.patch_created && !(github.event.pull_request.head.repo.full_name != github.repository)
-    steps:
-      - name: Generate token
-        id: generate_token
-        uses: actions/create-github-app-token@3ff1caaa28b64c9cc276ce0a02e2ff584f3900c5
-        with:
-          app-id: ${{ secrets.PROJEN_APP_ID }}
-          private-key: ${{ secrets.PROJEN_APP_PRIVATE_KEY }}
-          permission-pull-requests: write
-          permission-contents: write
-      - name: Checkout
-        uses: actions/checkout@v5
-        with:
-          token: ${{ steps.generate_token.outputs.token }}
-          ref: ${{ github.event.pull_request.head.ref }}
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
-      - name: Download patch
-        uses: actions/download-artifact@v5
-        with:
-          name: repo.patch
-          path: ${{ runner.temp }}
-      - name: Apply patch
-        run: '[ -s ${{ runner.temp }}/repo.patch ] && git apply ${{ runner.temp }}/repo.patch || echo "Empty patch. Skipping."'
-      - name: Set git identity
-        run: |-
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-      - name: Push changes
-        env:
-          PULL_REQUEST_REF: ${{ github.event.pull_request.head.ref }}
-        run: |-
-          git add .
-          git commit -s -m "chore: self mutation"
-          git push origin HEAD:$PULL_REQUEST_REF
