@@ -1,0 +1,64 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      '@gplassard/projen-extensions':
+        specifier: file:/Users/gabriel/git/projen-extensions/gplassard-projen-extensions-0.0.0.tgz
+        version: file:../projen-extensions/gplassard-projen-extensions-0.0.0.tgz(constructs@10.4.4)(projen@0.98.32(constructs@10.4.4))
+    devDependencies:
+      projen:
+        specifier: ^0.98.32
+        version: 0.98.32(constructs@10.4.4)
+
+packages:
+
+  '@gplassard/projen-extensions@file:../projen-extensions/gplassard-projen-extensions-0.0.0.tgz':
+    resolution: {integrity: sha512-/wVD+n0PgSe2CqWACUTxYKV1zJWfM8uBgSidfrZjvAGs6MQLP+epsbcl1+h5Dc+6GIqbdge4Fy3UTmq3LVOBXA==, tarball: file:../projen-extensions/gplassard-projen-extensions-0.0.0.tgz}
+    version: 0.0.0
+    peerDependencies:
+      constructs: ^10.4.4
+      projen: ^0.98.32
+
+  constructs@10.4.4:
+    resolution: {integrity: sha512-lP0qC1oViYf1cutHo9/KQ8QL637f/W29tDmv/6sy35F5zs+MD9f66nbAAIjicwc7fwyuF3rkg6PhZh4sfvWIpA==}
+
+  projen@0.98.32:
+    resolution: {integrity: sha512-5YvQLD6P8BDwhpWZ296fODhDslsnJud39rDrVtpBEuEPrXU3pQd/tsGIgAZa0tpeL3JzBeCqMZc4mJ9wE8hQ/Q==}
+    engines: {node: '>= 16.0.0'}
+    hasBin: true
+    peerDependencies:
+      constructs: ^10.0.0
+    bundledDependencies:
+      - '@iarna/toml'
+      - case
+      - chalk
+      - comment-json
+      - conventional-changelog-config-spec
+      - fast-glob
+      - fast-json-patch
+      - ini
+      - parse-conflict-json
+      - semver
+      - shx
+      - xmlbuilder2
+      - yaml
+      - yargs
+
+snapshots:
+
+  '@gplassard/projen-extensions@file:../projen-extensions/gplassard-projen-extensions-0.0.0.tgz(constructs@10.4.4)(projen@0.98.32(constructs@10.4.4))':
+    dependencies:
+      constructs: 10.4.4
+      projen: 0.98.32(constructs@10.4.4)
+
+  constructs@10.4.4: {}
+
+  projen@0.98.32(constructs@10.4.4):
+    dependencies:
+      constructs: 10.4.4

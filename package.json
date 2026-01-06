@@ -1,0 +1,19 @@
+{
+  "name": "woof",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.24.0",
+  "devDependencies": {
+    "projen": "^0.98.32"
+  },
+  "dependencies": {
+    "@gplassard/projen-extensions": "file:/Users/gabriel/git/projen-extensions/gplassard-projen-extensions-0.0.0.tgz"
+  }
+}
