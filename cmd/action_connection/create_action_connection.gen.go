@@ -11,7 +11,7 @@ import (
 )
 
 var CreateActionConnectionCmd = &cobra.Command{
-	Use:  "create-action-connection",
+	Use:     "create-action-connection",
 	Aliases: []string{"create"},
 	Short:   "Create a new Action Connection",
 	Long: `Create a new Action Connection
