@@ -24,6 +24,7 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call-paging/#resolve-on-
 		var err error
 
 		api := datadogV2.NewOnCallPagingApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.ResolveOnCallPage(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
 		cmdutil.HandleError(err, "failed to resolve-on-call-page")
 

@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/case-management/#create-cas
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewCaseManagementApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.CreateCase(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-case")
 

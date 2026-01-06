@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/csm-threats/#get-csm-threat
 		var err error
 
 		api := datadogV2.NewCSMThreatsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetCSMThreatsAgentRule(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-csm-threats-agent-rule")
 

@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/fastly-integration/#delete-
 		var err error
 
 		api := datadogV2.NewFastlyIntegrationApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.DeleteFastlyService(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		cmdutil.HandleError(err, "failed to delete-fastly-service")
 

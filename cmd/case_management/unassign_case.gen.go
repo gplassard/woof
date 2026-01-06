@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/case-management/#unassign-c
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewCaseManagementApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.UnassignCase(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to unassign-case")
 

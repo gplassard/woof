@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/api-management/#list-apis`,
 		var err error
 
 		api := datadogV2.NewAPIManagementApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListAPIs(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-apis")
 

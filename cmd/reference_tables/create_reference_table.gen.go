@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/reference-tables/#create-re
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewReferenceTablesApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.CreateReferenceTable(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-reference-table")
 

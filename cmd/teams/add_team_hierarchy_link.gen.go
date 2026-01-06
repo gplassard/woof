@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/teams/#add-team-hierarchy-l
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.AddTeamHierarchyLink(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to add-team-hierarchy-link")
 

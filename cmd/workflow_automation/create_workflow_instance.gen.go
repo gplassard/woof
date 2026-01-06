@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/workflow-automation/#create
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewWorkflowAutomationApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.CreateWorkflowInstance(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to create-workflow-instance")
 

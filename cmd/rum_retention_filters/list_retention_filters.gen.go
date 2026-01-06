@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/rum-retention-filters/#list
 		var err error
 
 		api := datadogV2.NewRumRetentionFiltersApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListRetentionFilters(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-retention-filters")
 

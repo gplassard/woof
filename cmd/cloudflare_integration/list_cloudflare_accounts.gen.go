@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/cloudflare-integration/#lis
 		var err error
 
 		api := datadogV2.NewCloudflareIntegrationApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListCloudflareAccounts(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-cloudflare-accounts")
 

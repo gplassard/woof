@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/reference-tables/#upsert-ro
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewReferenceTablesApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.UpsertRows(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to upsert-rows")
 

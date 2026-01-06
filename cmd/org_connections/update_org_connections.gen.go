@@ -28,6 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/org-connections/#update-org
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewOrgConnectionsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.UpdateOrgConnections(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]), body)
 		cmdutil.HandleError(err, "failed to update-org-connections")
 

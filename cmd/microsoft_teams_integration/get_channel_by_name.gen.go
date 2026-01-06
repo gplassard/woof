@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/microsoft-teams-integration
 		var err error
 
 		api := datadogV2.NewMicrosoftTeamsIntegrationApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetChannelByName(client.NewContext(apiKey, appKey, site), args[0], args[1], args[2])
 		cmdutil.HandleError(err, "failed to get-channel-by-name")
 

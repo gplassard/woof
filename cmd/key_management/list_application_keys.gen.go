@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/key-management/#list-applic
 		var err error
 
 		api := datadogV2.NewKeyManagementApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListApplicationKeys(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-application-keys")
 

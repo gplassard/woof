@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-se
 		var err error
 
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetSecretsRules(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-secrets-rules")
 

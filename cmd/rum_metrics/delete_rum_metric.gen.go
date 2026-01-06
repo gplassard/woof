@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/rum-metrics/#delete-rum-met
 		var err error
 
 		api := datadogV2.NewRumMetricsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.DeleteRumMetric(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to delete-rum-metric")
 

@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/okta-integration/#list-okta
 		var err error
 
 		api := datadogV2.NewOktaIntegrationApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListOktaAccounts(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-okta-accounts")
 

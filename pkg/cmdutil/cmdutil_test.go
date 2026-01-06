@@ -103,7 +103,7 @@ func TestUnmarshalPayload(t *testing.T) {
 					t.Fatal(err)
 				}
 				return "test_UnmarshalPayload.json", func() {
-					os.Remove("test_UnmarshalPayload.json")
+					_ = os.Remove("test_UnmarshalPayload.json")
 				}
 			},
 			expectedBody: TestBody{Name: "file-json"},

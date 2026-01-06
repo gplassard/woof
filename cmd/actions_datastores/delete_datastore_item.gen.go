@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/actions-datastores/#delete-
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewActionsDatastoresApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.DeleteDatastoreItem(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to delete-datastore-item")
 

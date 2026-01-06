@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#delete-aws
 		var err error
 
 		api := datadogV2.NewAWSIntegrationApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.DeleteAWSAccount(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to delete-aws-account")
 

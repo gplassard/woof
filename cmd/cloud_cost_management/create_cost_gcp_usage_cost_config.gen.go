@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#crea
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.CreateCostGCPUsageCostConfig(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-cost-gcp-usage-cost-config")
 

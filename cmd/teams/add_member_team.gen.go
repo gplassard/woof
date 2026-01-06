@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/teams/#add-member-team`,
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.AddMemberTeam(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to add-member-team")
 

@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/audit/#search-audit-logs`,
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewAuditApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.SearchAuditLogs(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to search-audit-logs")
 

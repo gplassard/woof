@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/service-definition/#get-ser
 		var err error
 
 		api := datadogV2.NewServiceDefinitionApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetServiceDefinition(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-service-definition")
 

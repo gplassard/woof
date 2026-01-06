@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/authn-mappings/#create-auth
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewAuthNMappingsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.CreateAuthNMapping(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-auth-n-mapping")
 

@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/logs/#list-logs`,
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewLogsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListLogs(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to list-logs")
 

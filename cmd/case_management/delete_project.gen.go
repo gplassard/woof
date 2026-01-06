@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/case-management/#delete-pro
 		var err error
 
 		api := datadogV2.NewCaseManagementApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.DeleteProject(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to delete-project")
 

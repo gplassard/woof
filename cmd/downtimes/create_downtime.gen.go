@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/downtimes/#create-downtime`
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewDowntimesApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.CreateDowntime(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-downtime")
 

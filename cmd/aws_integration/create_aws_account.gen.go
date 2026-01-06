@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#create-aws
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewAWSIntegrationApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.CreateAWSAccount(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-aws-account")
 

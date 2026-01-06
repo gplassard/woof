@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#search-incidents
 		var err error
 
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.SearchIncidents(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to search-incidents")
 

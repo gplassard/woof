@@ -24,6 +24,7 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#get-incident-not
 		var err error
 
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetIncidentNotificationTemplate(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
 		cmdutil.HandleError(err, "failed to get-incident-notification-template")
 

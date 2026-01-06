@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/fleet-automation/#trigger-f
 		var err error
 
 		api := datadogV2.NewFleetAutomationApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.TriggerFleetSchedule(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to trigger-fleet-schedule")
 

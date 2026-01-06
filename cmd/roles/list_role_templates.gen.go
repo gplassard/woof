@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/roles/#list-role-templates`
 		var err error
 
 		api := datadogV2.NewRolesApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListRoleTemplates(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-role-templates")
 

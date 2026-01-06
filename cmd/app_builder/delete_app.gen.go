@@ -24,6 +24,7 @@ Documentation: https://docs.datadoghq.com/api/latest/app-builder/#delete-app`,
 		var err error
 
 		api := datadogV2.NewAppBuilderApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.DeleteApp(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
 		cmdutil.HandleError(err, "failed to delete-app")
 

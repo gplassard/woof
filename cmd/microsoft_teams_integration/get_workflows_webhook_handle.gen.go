@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/microsoft-teams-integration
 		var err error
 
 		api := datadogV2.NewMicrosoftTeamsIntegrationApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetWorkflowsWebhookHandle(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-workflows-webhook-handle")
 

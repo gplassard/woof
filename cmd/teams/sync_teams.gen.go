@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/teams/#sync-teams`,
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.SyncTeams(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to sync-teams")
 

@@ -24,6 +24,7 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call-paging/#escalate-on
 		var err error
 
 		api := datadogV2.NewOnCallPagingApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.EscalateOnCallPage(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
 		cmdutil.HandleError(err, "failed to escalate-on-call-page")
 

@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/software-catalog/#list-cata
 		var err error
 
 		api := datadogV2.NewSoftwareCatalogApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListCatalogRelation(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-catalog-relation")
 

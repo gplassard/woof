@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/logs-restriction-queries/#d
 		var err error
 
 		api := datadogV2.NewLogsRestrictionQueriesApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.DeleteRestrictionQuery(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to delete-restriction-query")
 

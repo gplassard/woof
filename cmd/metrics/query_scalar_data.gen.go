@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/metrics/#query-scalar-data`
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewMetricsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.QueryScalarData(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to query-scalar-data")
 

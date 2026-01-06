@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/apm-retention-filters/#upda
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewAPMRetentionFiltersApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.UpdateApmRetentionFilter(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-apm-retention-filter")
 

@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/sensitive-data-scanner/#lis
 		var err error
 
 		api := datadogV2.NewSensitiveDataScannerApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListStandardPatterns(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-standard-patterns")
 

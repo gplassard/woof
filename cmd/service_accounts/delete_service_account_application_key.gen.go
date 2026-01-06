@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/service-accounts/#delete-se
 		var err error
 
 		api := datadogV2.NewServiceAccountsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.DeleteServiceAccountApplicationKey(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		cmdutil.HandleError(err, "failed to delete-service-account-application-key")
 

@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#delete-
 		var err error
 
 		api := datadogV2.NewAgentlessScanningApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.DeleteGcpScanOptions(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to delete-gcp-scan-options")
 

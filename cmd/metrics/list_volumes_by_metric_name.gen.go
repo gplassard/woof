@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/metrics/#list-volumes-by-me
 		var err error
 
 		api := datadogV2.NewMetricsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListVolumesByMetricName(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-volumes-by-metric-name")
 

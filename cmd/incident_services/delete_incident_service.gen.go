@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/incident-services/#delete-i
 		var err error
 
 		api := datadogV2.NewIncidentServicesApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.DeleteIncidentService(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to delete-incident-service")
 

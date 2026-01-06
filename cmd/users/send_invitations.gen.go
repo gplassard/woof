@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/users/#send-invitations`,
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewUsersApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.SendInvitations(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to send-invitations")
 

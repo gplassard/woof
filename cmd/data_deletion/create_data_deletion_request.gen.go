@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/data-deletion/#create-data-
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewDataDeletionApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.CreateDataDeletionRequest(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to create-data-deletion-request")
 

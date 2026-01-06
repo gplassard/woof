@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/downtimes/#cancel-downtime`
 		var err error
 
 		api := datadogV2.NewDowntimesApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.CancelDowntime(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to cancel-downtime")
 

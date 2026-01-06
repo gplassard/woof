@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/metrics/#query-timeseries-d
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewMetricsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.QueryTimeseriesData(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to query-timeseries-data")
 

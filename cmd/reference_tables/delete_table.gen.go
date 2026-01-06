@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/reference-tables/#delete-ta
 		var err error
 
 		api := datadogV2.NewReferenceTablesApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.DeleteTable(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to delete-table")
 

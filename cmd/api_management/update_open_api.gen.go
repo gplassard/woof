@@ -28,6 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/api-management/#update-open
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewAPIManagementApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.UpdateOpenAPI(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]), body)
 		cmdutil.HandleError(err, "failed to update-open-api")
 

@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/case-management/#get-projec
 		var err error
 
 		api := datadogV2.NewCaseManagementApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetProjects(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-projects")
 

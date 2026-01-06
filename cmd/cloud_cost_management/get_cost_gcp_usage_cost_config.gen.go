@@ -24,6 +24,7 @@ Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#get-
 		var err error
 
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetCostGCPUsageCostConfig(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }())
 		cmdutil.HandleError(err, "failed to get-cost-gcp-usage-cost-config")
 

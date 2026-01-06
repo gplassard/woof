@@ -174,9 +174,10 @@ func prepareTemplateData(bundle, rawBundle, apiBundleName, method, path string, 
 				case "number":
 					argType = "float64"
 				case "string":
-					if sFormat == "uuid" {
+					switch sFormat {
+					case "uuid":
 						argType = "uuid.UUID"
-					} else if sFormat == "date-time" {
+					case "date-time":
 						argType = "time.Time"
 					}
 				case "array":

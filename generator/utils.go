@@ -32,8 +32,7 @@ func loadConfig() (*Config, error) {
 }
 
 func cleanupGeneratedFiles() error {
-	os.RemoveAll("cmd")
-	return nil
+	return os.RemoveAll("cmd")
 }
 
 func downloadOpenAPI() (*OpenAPI, error) {
@@ -51,7 +50,9 @@ func downloadOpenAPI() (*OpenAPI, error) {
 	if err != nil {
 		return nil, fmt.Errorf("failed to download openapi spec: %w", err)
 	}
-	defer resp.Body.Close()
+	defer func() {
+		_ = resp.Body.Close()
+	}()
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {

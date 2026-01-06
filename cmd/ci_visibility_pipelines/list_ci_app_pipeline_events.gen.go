@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/ci-visibility-pipelines/#li
 		var err error
 
 		api := datadogV2.NewCIVisibilityPipelinesApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListCIAppPipelineEvents(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-ci-app-pipeline-events")
 

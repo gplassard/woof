@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/roles/#remove-user-from-rol
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewRolesApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.RemoveUserFromRole(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to remove-user-from-role")
 

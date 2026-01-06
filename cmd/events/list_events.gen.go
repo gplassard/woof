@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/events/#list-events`,
 		var err error
 
 		api := datadogV2.NewEventsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListEvents(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-events")
 

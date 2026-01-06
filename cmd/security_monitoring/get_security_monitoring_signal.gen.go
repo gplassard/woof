@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-se
 		var err error
 
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetSecurityMonitoringSignal(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-security-monitoring-signal")
 

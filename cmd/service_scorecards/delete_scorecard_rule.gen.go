@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/service-scorecards/#delete-
 		var err error
 
 		api := datadogV2.NewServiceScorecardsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.DeleteScorecardRule(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to delete-scorecard-rule")
 

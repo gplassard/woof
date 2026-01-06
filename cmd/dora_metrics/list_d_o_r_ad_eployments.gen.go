@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/dora-metrics/#list-d-o-r-ad
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewDORAMetricsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListDORADeployments(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to list-d-o-r-ad-eployments")
 

@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/usage-metering/#get-active-
 		var err error
 
 		api := datadogV2.NewUsageMeteringApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetActiveBillingDimensions(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-active-billing-dimensions")
 

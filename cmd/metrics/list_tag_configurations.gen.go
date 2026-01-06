@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/metrics/#list-tag-configura
 		var err error
 
 		api := datadogV2.NewMetricsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListTagConfigurations(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-tag-configurations")
 

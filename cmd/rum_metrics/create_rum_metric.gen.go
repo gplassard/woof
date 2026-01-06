@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/rum-metrics/#create-rum-met
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewRumMetricsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.CreateRumMetric(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-rum-metric")
 

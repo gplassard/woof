@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/aws-logs-integration/#list-
 		var err error
 
 		api := datadogV2.NewAWSLogsIntegrationApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListAWSLogsServices(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-aws-logs-services")
 

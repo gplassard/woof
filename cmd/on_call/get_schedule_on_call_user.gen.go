@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#get-schedule-on-ca
 		var err error
 
 		api := datadogV2.NewOnCallApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetScheduleOnCallUser(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-schedule-on-call-user")
 

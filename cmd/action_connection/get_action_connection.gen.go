@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/action-connection/#get-acti
 		var err error
 
 		api := datadogV2.NewActionConnectionApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetActionConnection(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-action-connection")
 

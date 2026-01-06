@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#delete
 		var err error
 
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.DeleteSecurityMonitoringRule(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to delete-security-monitoring-rule")
 

@@ -21,7 +21,9 @@ func RunGenerate() error {
 		if err := os.Chdir(".."); err != nil {
 			return fmt.Errorf("failed to change directory to project root: %w", err)
 		}
-		defer os.Chdir(cwd)
+		defer func() {
+			_ = os.Chdir(cwd)
+		}()
 	}
 
 	config, err := loadConfig()

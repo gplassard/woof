@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/metrics/#list-tags-by-metri
 		var err error
 
 		api := datadogV2.NewMetricsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListTagsByMetricName(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-tags-by-metric-name")
 

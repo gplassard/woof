@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/service-accounts/#update-se
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewServiceAccountsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.UpdateServiceAccountApplicationKey(client.NewContext(apiKey, appKey, site), args[0], args[1], body)
 		cmdutil.HandleError(err, "failed to update-service-account-application-key")
 

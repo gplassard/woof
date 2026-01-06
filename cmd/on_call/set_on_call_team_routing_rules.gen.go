@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#set-on-call-team-r
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewOnCallApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.SetOnCallTeamRoutingRules(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to set-on-call-team-routing-rules")
 

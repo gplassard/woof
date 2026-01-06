@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/observability-pipelines/#ge
 		var err error
 
 		api := datadogV2.NewObservabilityPipelinesApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetPipeline(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-pipeline")
 

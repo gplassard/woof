@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/application-security/#updat
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewApplicationSecurityApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.UpdateApplicationSecurityWafExclusionFilter(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-application-security-waf-exclusion-filter")
 

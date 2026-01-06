@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/csm-threats/#delete-csm-thr
 		var err error
 
 		api := datadogV2.NewCSMThreatsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.DeleteCSMThreatsAgentRule(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to delete-csm-threats-agent-rule")
 

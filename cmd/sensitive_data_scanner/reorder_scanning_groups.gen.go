@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/sensitive-data-scanner/#reo
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewSensitiveDataScannerApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ReorderScanningGroups(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to reorder-scanning-groups")
 

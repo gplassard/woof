@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#create-
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewAgentlessScanningApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.CreateAwsOnDemandTask(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-aws-on-demand-task")
 

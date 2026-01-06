@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/key-management/#delete-curr
 		var err error
 
 		api := datadogV2.NewKeyManagementApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.DeleteCurrentUserApplicationKey(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to delete-current-user-application-key")
 

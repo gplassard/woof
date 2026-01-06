@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/case-management-attribute/#
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewCaseManagementAttributeApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.CreateCustomAttributeConfig(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to create-custom-attribute-config")
 

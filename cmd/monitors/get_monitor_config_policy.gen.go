@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/monitors/#get-monitor-confi
 		var err error
 
 		api := datadogV2.NewMonitorsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetMonitorConfigPolicy(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-monitor-config-policy")
 

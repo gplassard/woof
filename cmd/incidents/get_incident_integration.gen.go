@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#get-incident-int
 		var err error
 
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetIncidentIntegration(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		cmdutil.HandleError(err, "failed to get-incident-integration")
 

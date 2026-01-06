@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/logs-restriction-queries/#c
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewLogsRestrictionQueriesApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.CreateRestrictionQuery(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-restriction-query")
 

@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/rum/#get-rum-applications`,
 		var err error
 
 		api := datadogV2.NewRUMApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetRUMApplications(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-rum-applications")
 

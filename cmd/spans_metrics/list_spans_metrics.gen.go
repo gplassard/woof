@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/spans-metrics/#list-spans-m
 		var err error
 
 		api := datadogV2.NewSpansMetricsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListSpansMetrics(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-spans-metrics")
 

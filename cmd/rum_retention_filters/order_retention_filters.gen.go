@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/rum-retention-filters/#orde
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewRumRetentionFiltersApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.OrderRetentionFilters(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to order-retention-filters")
 

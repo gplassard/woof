@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/users/#list-users`,
 		var err error
 
 		api := datadogV2.NewUsersApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListUsers(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-users")
 

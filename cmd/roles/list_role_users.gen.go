@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/roles/#list-role-users`,
 		var err error
 
 		api := datadogV2.NewRolesApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListRoleUsers(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-role-users")
 

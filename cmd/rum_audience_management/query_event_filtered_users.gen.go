@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/rum-audience-management/#qu
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewRumAudienceManagementApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.QueryEventFilteredUsers(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to query-event-filtered-users")
 

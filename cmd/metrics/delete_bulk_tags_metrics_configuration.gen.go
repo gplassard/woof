@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/metrics/#delete-bulk-tags-m
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewMetricsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.DeleteBulkTagsMetricsConfiguration(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to delete-bulk-tags-metrics-configuration")
 

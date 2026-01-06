@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/logs-metrics/#get-logs-metr
 		var err error
 
 		api := datadogV2.NewLogsMetricsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetLogsMetric(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-logs-metric")
 

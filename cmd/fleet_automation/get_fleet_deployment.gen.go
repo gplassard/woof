@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/fleet-automation/#get-fleet
 		var err error
 
 		api := datadogV2.NewFleetAutomationApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetFleetDeployment(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-fleet-deployment")
 

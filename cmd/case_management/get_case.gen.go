@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/case-management/#get-case`,
 		var err error
 
 		api := datadogV2.NewCaseManagementApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetCase(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-case")
 

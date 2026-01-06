@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/gcp-integration/#update-gcp
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewGCPIntegrationApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.UpdateGCPSTSAccount(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-gcp-sts-account")
 

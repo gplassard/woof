@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#delete-on-call-esc
 		var err error
 
 		api := datadogV2.NewOnCallApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.DeleteOnCallEscalationPolicy(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to delete-on-call-escalation-policy")
 

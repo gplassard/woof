@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/fastly-integration/#get-fas
 		var err error
 
 		api := datadogV2.NewFastlyIntegrationApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetFastlyAccount(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-fastly-account")
 

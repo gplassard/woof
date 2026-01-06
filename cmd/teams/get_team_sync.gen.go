@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/teams/#get-team-sync`,
 		var err error
 
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetTeamSync(client.NewContext(apiKey, appKey, site), datadogV2.TeamSyncAttributesSource(args[0]))
 		cmdutil.HandleError(err, "failed to get-team-sync")
 

@@ -24,6 +24,7 @@ Documentation: https://docs.datadoghq.com/api/latest/dashboard-lists/#get-dashbo
 		var err error
 
 		api := datadogV2.NewDashboardListsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetDashboardListItems(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }())
 		cmdutil.HandleError(err, "failed to get-dashboard-list-items")
 

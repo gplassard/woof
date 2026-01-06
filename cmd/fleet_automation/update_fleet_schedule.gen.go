@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/fleet-automation/#update-fl
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewFleetAutomationApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.UpdateFleetSchedule(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-fleet-schedule")
 

@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/rum-audience-management/#cr
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewRumAudienceManagementApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.CreateConnection(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to create-connection")
 

@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/application-security/#delet
 		var err error
 
 		api := datadogV2.NewApplicationSecurityApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.DeleteApplicationSecurityWafCustomRule(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to delete-application-security-waf-custom-rule")
 

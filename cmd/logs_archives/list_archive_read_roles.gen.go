@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/logs-archives/#list-archive
 		var err error
 
 		api := datadogV2.NewLogsArchivesApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListArchiveReadRoles(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-archive-read-roles")
 

@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/datasets/#get-dataset`,
 		var err error
 
 		api := datadogV2.NewDatasetsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetDataset(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-dataset")
 

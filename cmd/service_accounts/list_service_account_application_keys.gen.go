@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/service-accounts/#list-serv
 		var err error
 
 		api := datadogV2.NewServiceAccountsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListServiceAccountApplicationKeys(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-service-account-application-keys")
 

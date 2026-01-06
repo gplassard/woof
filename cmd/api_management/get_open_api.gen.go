@@ -24,6 +24,7 @@ Documentation: https://docs.datadoghq.com/api/latest/api-management/#get-open-ap
 		var err error
 
 		api := datadogV2.NewAPIManagementApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetOpenAPI(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
 		cmdutil.HandleError(err, "failed to get-open-api")
 

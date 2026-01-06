@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/authn-mappings/#update-auth
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewAuthNMappingsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.UpdateAuthNMapping(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-auth-n-mapping")
 

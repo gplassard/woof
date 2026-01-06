@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/application-security/#list-
 		var err error
 
 		api := datadogV2.NewApplicationSecurityApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListApplicationSecurityWafExclusionFilters(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-application-security-waf-exclusion-filters")
 

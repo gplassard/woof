@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/logs-archives/#remove-role-
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewLogsArchivesApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.RemoveRoleFromArchive(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to remove-role-from-archive")
 

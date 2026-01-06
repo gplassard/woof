@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/action-connection/#update-a
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewActionConnectionApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.UpdateActionConnection(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-action-connection")
 

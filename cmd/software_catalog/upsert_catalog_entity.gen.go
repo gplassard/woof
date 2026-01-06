@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/software-catalog/#upsert-ca
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewSoftwareCatalogApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.UpsertCatalogEntity(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to upsert-catalog-entity")
 

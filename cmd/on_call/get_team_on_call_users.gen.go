@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#get-team-on-call-u
 		var err error
 
 		api := datadogV2.NewOnCallApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetTeamOnCallUsers(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-team-on-call-users")
 

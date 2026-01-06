@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/logs-archives/#list-logs-ar
 		var err error
 
 		api := datadogV2.NewLogsArchivesApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListLogsArchives(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-logs-archives")
 

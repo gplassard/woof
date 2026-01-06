@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/authn-mappings/#delete-auth
 		var err error
 
 		api := datadogV2.NewAuthNMappingsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.DeleteAuthNMapping(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to delete-auth-n-mapping")
 

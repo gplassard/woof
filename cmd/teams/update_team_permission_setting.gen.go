@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/teams/#update-team-permissi
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.UpdateTeamPermissionSetting(client.NewContext(apiKey, appKey, site), args[0], args[1], body)
 		cmdutil.HandleError(err, "failed to update-team-permission-setting")
 

@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/logs-metrics/#update-logs-m
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewLogsMetricsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.UpdateLogsMetric(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-logs-metric")
 

@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/monitors/#update-monitor-no
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewMonitorsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.UpdateMonitorNotificationRule(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-monitor-notification-rule")
 

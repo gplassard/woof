@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/sensitive-data-scanner/#del
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewSensitiveDataScannerApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.DeleteScanningGroup(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to delete-scanning-group")
 

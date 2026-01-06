@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#update-
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewAgentlessScanningApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.UpdateGcpScanOptions(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-gcp-scan-options")
 

@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/powerpack/#list-powerpacks`
 		var err error
 
 		api := datadogV2.NewPowerpackApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListPowerpacks(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-powerpacks")
 

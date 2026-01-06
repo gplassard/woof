@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/csm-agents/#list-all-csm-se
 		var err error
 
 		api := datadogV2.NewCSMAgentsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListAllCSMServerlessAgents(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-all-csm-serverless-agents")
 

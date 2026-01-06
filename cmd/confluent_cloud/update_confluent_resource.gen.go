@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/confluent-cloud/#update-con
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewConfluentCloudApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.UpdateConfluentResource(client.NewContext(apiKey, appKey, site), args[0], args[1], body)
 		cmdutil.HandleError(err, "failed to update-confluent-resource")
 

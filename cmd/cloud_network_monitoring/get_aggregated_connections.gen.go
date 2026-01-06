@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/cloud-network-monitoring/#g
 		var err error
 
 		api := datadogV2.NewCloudNetworkMonitoringApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetAggregatedConnections(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-aggregated-connections")
 

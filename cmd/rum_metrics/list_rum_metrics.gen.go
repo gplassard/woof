@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/rum-metrics/#list-rum-metri
 		var err error
 
 		api := datadogV2.NewRumMetricsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListRumMetrics(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-rum-metrics")
 

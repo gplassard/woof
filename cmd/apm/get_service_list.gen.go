@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/apm/#get-service-list`,
 		var err error
 
 		api := datadogV2.NewAPMApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetServiceList(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-service-list")
 

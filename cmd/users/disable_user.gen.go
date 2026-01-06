@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/users/#disable-user`,
 		var err error
 
 		api := datadogV2.NewUsersApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.DisableUser(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to disable-user")
 
