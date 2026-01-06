@@ -93,9 +93,10 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "woof",
-	Short: "woof is a Datadog CLI",
-	Long:  `woof is a Datadog CLI built with Cobra.`,
+	Use:     "woof",
+	Short:   "woof is a Datadog CLI",
+	Long:    `woof is a Datadog CLI built with Cobra.`,
+	Version: config.Version,
 }
 
 func Execute() {
