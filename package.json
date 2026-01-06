@@ -1,0 +1,16 @@
+{
+  "name": "woof",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "projen": "projen"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@gplassard/projen-extensions": "^0.1.21",
+    "projen": "^0.98.32"
+  }
+}
