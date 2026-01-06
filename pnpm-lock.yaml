@@ -7,20 +7,18 @@ settings:
 importers:
 
   .:
-    dependencies:
-      '@gplassard/projen-extensions':
-        specifier: file:/Users/gabriel/git/projen-extensions/gplassard-projen-extensions-0.0.0.tgz
-        version: file:../projen-extensions/gplassard-projen-extensions-0.0.0.tgz(constructs@10.4.4)(projen@0.98.32(constructs@10.4.4))
     devDependencies:
+      '@gplassard/projen-extensions':
+        specifier: ^0.1.21
+        version: 0.1.21(constructs@10.4.4)(projen@0.98.32(constructs@10.4.4))
       projen:
         specifier: ^0.98.32
         version: 0.98.32(constructs@10.4.4)
 
 packages:
 
-  '@gplassard/projen-extensions@file:../projen-extensions/gplassard-projen-extensions-0.0.0.tgz':
-    resolution: {integrity: sha512-tmhM/QJd6sflWdc+JUc/v7dWiuCKgnMJVbY3Mq3fZA3X5zWUAYGVXslLxBsKa7+phBz7W//Or3t0OFb/h9UxDA==, tarball: file:../projen-extensions/gplassard-projen-extensions-0.0.0.tgz}
-    version: 0.0.0
+  '@gplassard/projen-extensions@0.1.21':
+    resolution: {integrity: sha512-C3rhOLPffgQUS+NuQ/YOLtq54hCRFzvB82kgIKNGvDAnSrjYFsSpFAIoDC6jv+h1V4vjrBas3w68CvpsLW7dlQ==, tarball: https://npm.pkg.github.com/download/@gplassard/projen-extensions/0.1.21/2c549d474869d6943cb7de2ba39f31d41eddec40}
     peerDependencies:
       constructs: ^10.4.4
       projen: ^0.98.32
@@ -52,7 +50,7 @@ packages:
 
 snapshots:
 
-  '@gplassard/projen-extensions@file:../projen-extensions/gplassard-projen-extensions-0.0.0.tgz(constructs@10.4.4)(projen@0.98.32(constructs@10.4.4))':
+  '@gplassard/projen-extensions@0.1.21(constructs@10.4.4)(projen@0.98.32(constructs@10.4.4))':
     dependencies:
       constructs: 10.4.4
       projen: 0.98.32(constructs@10.4.4)
