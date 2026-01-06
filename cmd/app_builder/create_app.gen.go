@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/app-builder/#create-app`,
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewAppBuilderApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.CreateApp(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-app")
 

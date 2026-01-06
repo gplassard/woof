@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/service-accounts/#create-se
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewServiceAccountsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.CreateServiceAccount(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-service-account")
 

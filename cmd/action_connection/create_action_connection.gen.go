@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/action-connection/#create-a
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewActionConnectionApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.CreateActionConnection(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-action-connection")
 

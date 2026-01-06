@@ -24,6 +24,7 @@ Documentation: https://docs.datadoghq.com/api/latest/api-management/#delete-open
 		var err error
 
 		api := datadogV2.NewAPIManagementApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.DeleteOpenAPI(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
 		cmdutil.HandleError(err, "failed to delete-open-api")
 

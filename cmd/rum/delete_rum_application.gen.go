@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/rum/#delete-rum-application
 		var err error
 
 		api := datadogV2.NewRUMApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.DeleteRUMApplication(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to delete-rum-application")
 

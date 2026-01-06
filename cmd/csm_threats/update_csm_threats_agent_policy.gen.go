@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/csm-threats/#update-csm-thr
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewCSMThreatsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.UpdateCSMThreatsAgentPolicy(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-csm-threats-agent-policy")
 

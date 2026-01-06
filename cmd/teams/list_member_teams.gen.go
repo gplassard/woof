@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/teams/#list-member-teams`,
 		var err error
 
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListMemberTeams(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-member-teams")
 

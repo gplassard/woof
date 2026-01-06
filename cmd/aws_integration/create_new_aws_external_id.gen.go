@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#create-new
 		var err error
 
 		api := datadogV2.NewAWSIntegrationApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.CreateNewAWSExternalID(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to create-new-aws-external-id")
 

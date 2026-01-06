@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/spa/#get-s-p-a-recommendati
 		var err error
 
 		api := datadogV2.NewSpaApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetSPARecommendations(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		cmdutil.HandleError(err, "failed to get-s-p-a-recommendations")
 

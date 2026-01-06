@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/observability-pipelines/#cr
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewObservabilityPipelinesApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.CreatePipeline(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-pipeline")
 

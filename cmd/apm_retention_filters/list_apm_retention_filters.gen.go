@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/apm-retention-filters/#list
 		var err error
 
 		api := datadogV2.NewAPMRetentionFiltersApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListApmRetentionFilters(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-apm-retention-filters")
 

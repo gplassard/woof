@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/workflow-automation/#cancel
 		var err error
 
 		api := datadogV2.NewWorkflowAutomationApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.CancelWorkflowInstance(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		cmdutil.HandleError(err, "failed to cancel-workflow-instance")
 

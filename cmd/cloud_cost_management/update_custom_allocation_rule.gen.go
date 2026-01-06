@@ -28,6 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#upda
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.UpdateCustomAllocationRule(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }(), body)
 		cmdutil.HandleError(err, "failed to update-custom-allocation-rule")
 

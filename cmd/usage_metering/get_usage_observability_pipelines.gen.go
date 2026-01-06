@@ -25,6 +25,7 @@ Documentation: https://docs.datadoghq.com/api/latest/usage-metering/#get-usage-o
 		var err error
 
 		api := datadogV2.NewUsageMeteringApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetUsageObservabilityPipelines(client.NewContext(apiKey, appKey, site), func() time.Time { t, _ := time.Parse(time.RFC3339, args[0]); return t }())
 		cmdutil.HandleError(err, "failed to get-usage-observability-pipelines")
 

@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/confluent-cloud/#list-confl
 		var err error
 
 		api := datadogV2.NewConfluentCloudApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListConfluentResource(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-confluent-resource")
 

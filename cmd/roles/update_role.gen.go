@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/roles/#update-role`,
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewRolesApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.UpdateRole(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-role")
 

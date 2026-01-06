@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/data-deletion/#get-data-del
 		var err error
 
 		api := datadogV2.NewDataDeletionApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetDataDeletionRequests(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-data-deletion-requests")
 

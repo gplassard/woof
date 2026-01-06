@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/reference-tables/#get-table
 		var err error
 
 		api := datadogV2.NewReferenceTablesApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetTable(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-table")
 

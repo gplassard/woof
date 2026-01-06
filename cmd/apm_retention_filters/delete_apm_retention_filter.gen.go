@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/apm-retention-filters/#dele
 		var err error
 
 		api := datadogV2.NewAPMRetentionFiltersApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.DeleteApmRetentionFilter(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to delete-apm-retention-filter")
 

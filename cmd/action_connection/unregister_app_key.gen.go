@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/action-connection/#unregist
 		var err error
 
 		api := datadogV2.NewActionConnectionApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.UnregisterAppKey(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to unregister-app-key")
 

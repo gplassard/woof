@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/service-definition/#list-se
 		var err error
 
 		api := datadogV2.NewServiceDefinitionApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListServiceDefinitions(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-service-definitions")
 

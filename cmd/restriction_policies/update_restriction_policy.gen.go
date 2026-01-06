@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/restriction-policies/#updat
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewRestrictionPoliciesApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.UpdateRestrictionPolicy(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-restriction-policy")
 

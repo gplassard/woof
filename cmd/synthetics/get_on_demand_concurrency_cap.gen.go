@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/synthetics/#get-on-demand-c
 		var err error
 
 		api := datadogV2.NewSyntheticsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetOnDemandConcurrencyCap(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-on-demand-concurrency-cap")
 

@@ -24,6 +24,7 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call-paging/#acknowledge
 		var err error
 
 		api := datadogV2.NewOnCallPagingApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.AcknowledgeOnCallPage(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
 		cmdutil.HandleError(err, "failed to acknowledge-on-call-page")
 

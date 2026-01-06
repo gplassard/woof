@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/datasets/#create-dataset`,
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewDatasetsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.CreateDataset(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-dataset")
 

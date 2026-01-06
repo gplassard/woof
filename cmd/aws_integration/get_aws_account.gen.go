@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#get-aws-ac
 		var err error
 
 		api := datadogV2.NewAWSIntegrationApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetAWSAccount(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-aws-account")
 

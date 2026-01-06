@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/deployment-gates/#get-deplo
 		var err error
 
 		api := datadogV2.NewDeploymentGatesApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetDeploymentGateRules(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-deployment-gate-rules")
 

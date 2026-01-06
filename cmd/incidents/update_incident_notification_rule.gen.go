@@ -28,6 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#update-incident-
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.UpdateIncidentNotificationRule(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]), body)
 		cmdutil.HandleError(err, "failed to update-incident-notification-rule")
 

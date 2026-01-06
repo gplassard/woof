@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#delete-aws
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewAWSIntegrationApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.DeleteAWSEventBridgeSource(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to delete-aws-event-bridge-source")
 

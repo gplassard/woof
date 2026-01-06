@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/gcp-integration/#create-gcp
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewGCPIntegrationApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.CreateGCPSTSAccount(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-gcp-sts-account")
 

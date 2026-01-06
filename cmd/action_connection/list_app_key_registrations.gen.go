@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/action-connection/#list-app
 		var err error
 
 		api := datadogV2.NewActionConnectionApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListAppKeyRegistrations(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-app-key-registrations")
 

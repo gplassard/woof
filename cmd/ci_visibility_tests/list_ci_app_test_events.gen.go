@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/ci-visibility-tests/#list-c
 		var err error
 
 		api := datadogV2.NewCIVisibilityTestsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListCIAppTestEvents(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-ci-app-test-events")
 

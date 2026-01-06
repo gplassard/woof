@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/restriction-policies/#get-r
 		var err error
 
 		api := datadogV2.NewRestrictionPoliciesApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetRestrictionPolicy(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-restriction-policy")
 

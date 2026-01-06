@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/software-catalog/#delete-ca
 		var err error
 
 		api := datadogV2.NewSoftwareCatalogApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.DeleteCatalogKind(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to delete-catalog-kind")
 

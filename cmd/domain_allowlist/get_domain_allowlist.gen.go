@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/domain-allowlist/#get-domai
 		var err error
 
 		api := datadogV2.NewDomainAllowlistApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetDomainAllowlist(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-domain-allowlist")
 

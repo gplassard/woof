@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/teams/#delete-team-connecti
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.DeleteTeamConnections(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to delete-team-connections")
 

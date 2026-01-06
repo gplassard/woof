@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#update-on-call-sch
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewOnCallApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.UpdateOnCallSchedule(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-on-call-schedule")
 

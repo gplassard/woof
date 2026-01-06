@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#list-v
 		var err error
 
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListVulnerabilities(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-vulnerabilities")
 

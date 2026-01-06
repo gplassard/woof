@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/ip-allowlist/#get-ip-allowl
 		var err error
 
 		api := datadogV2.NewIPAllowlistApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetIPAllowlist(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-ip-allowlist")
 

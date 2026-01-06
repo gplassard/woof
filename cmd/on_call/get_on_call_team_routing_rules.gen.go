@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#get-on-call-team-r
 		var err error
 
 		api := datadogV2.NewOnCallApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetOnCallTeamRoutingRules(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-on-call-team-routing-rules")
 

@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/case-management-attribute/#
 		var err error
 
 		api := datadogV2.NewCaseManagementAttributeApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetAllCustomAttributes(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-all-custom-attributes")
 

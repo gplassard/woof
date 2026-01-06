@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#reor
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.ReorderCustomAllocationRules(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to reorder-custom-allocation-rules")
 

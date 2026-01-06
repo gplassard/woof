@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/rum/#aggregate-rum-events`,
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewRUMApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.AggregateRUMEvents(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to aggregate-rum-events")
 

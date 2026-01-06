@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#list-aws-e
 		var err error
 
 		api := datadogV2.NewAWSIntegrationApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListAWSEventBridgeSources(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-aws-event-bridge-sources")
 

@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/apm-retention-filters/#reor
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewAPMRetentionFiltersApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.ReorderApmRetentionFilters(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to reorder-apm-retention-filters")
 

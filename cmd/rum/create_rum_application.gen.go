@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/rum/#create-rum-application
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewRUMApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.CreateRUMApplication(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-rum-application")
 

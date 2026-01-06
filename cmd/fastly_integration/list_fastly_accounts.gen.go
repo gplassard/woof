@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/fastly-integration/#list-fa
 		var err error
 
 		api := datadogV2.NewFastlyIntegrationApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListFastlyAccounts(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-fastly-accounts")
 

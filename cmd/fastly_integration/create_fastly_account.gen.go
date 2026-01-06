@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/fastly-integration/#create-
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewFastlyIntegrationApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.CreateFastlyAccount(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-fastly-account")
 

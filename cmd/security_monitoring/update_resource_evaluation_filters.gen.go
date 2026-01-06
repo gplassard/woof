@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#update
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.UpdateResourceEvaluationFilters(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to update-resource-evaluation-filters")
 

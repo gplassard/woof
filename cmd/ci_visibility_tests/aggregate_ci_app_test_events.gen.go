@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/ci-visibility-tests/#aggreg
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewCIVisibilityTestsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.AggregateCIAppTestEvents(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to aggregate-ci-app-test-events")
 

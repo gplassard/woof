@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/okta-integration/#create-ok
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewOktaIntegrationApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.CreateOktaAccount(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-okta-account")
 

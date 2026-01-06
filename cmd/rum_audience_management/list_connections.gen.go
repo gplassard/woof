@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/rum-audience-management/#li
 		var err error
 
 		api := datadogV2.NewRumAudienceManagementApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListConnections(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-connections")
 

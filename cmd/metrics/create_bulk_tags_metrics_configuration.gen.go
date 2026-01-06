@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/metrics/#create-bulk-tags-m
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewMetricsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.CreateBulkTagsMetricsConfiguration(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-bulk-tags-metrics-configuration")
 

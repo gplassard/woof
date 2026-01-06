@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/gcp-integration/#get-gcp-st
 		var err error
 
 		api := datadogV2.NewGCPIntegrationApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetGCPSTSDelegate(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-gcp-sts-delegate")
 

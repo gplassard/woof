@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/gcp-integration/#delete-gcp
 		var err error
 
 		api := datadogV2.NewGCPIntegrationApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.DeleteGCPSTSAccount(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to delete-gcp-sts-account")
 

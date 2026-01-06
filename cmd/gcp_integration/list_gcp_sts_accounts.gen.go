@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/gcp-integration/#list-gcp-s
 		var err error
 
 		api := datadogV2.NewGCPIntegrationApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListGCPSTSAccounts(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-gcp-sts-accounts")
 

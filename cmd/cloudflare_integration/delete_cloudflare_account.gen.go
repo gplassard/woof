@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/cloudflare-integration/#del
 		var err error
 
 		api := datadogV2.NewCloudflareIntegrationApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.DeleteCloudflareAccount(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to delete-cloudflare-account")
 

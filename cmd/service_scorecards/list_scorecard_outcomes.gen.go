@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/service-scorecards/#list-sc
 		var err error
 
 		api := datadogV2.NewServiceScorecardsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListScorecardOutcomes(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-scorecard-outcomes")
 

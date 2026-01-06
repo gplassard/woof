@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/powerpack/#create-powerpack
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewPowerpackApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.CreatePowerpack(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-powerpack")
 

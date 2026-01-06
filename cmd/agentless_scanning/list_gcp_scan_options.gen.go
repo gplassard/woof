@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#list-gc
 		var err error
 
 		api := datadogV2.NewAgentlessScanningApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListGcpScanOptions(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-gcp-scan-options")
 

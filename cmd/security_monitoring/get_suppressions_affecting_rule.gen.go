@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-su
 		var err error
 
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetSuppressionsAffectingRule(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-suppressions-affecting-rule")
 

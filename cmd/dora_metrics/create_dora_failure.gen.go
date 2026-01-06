@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/dora-metrics/#create-dora-f
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewDORAMetricsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.CreateDORAFailure(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-dora-failure")
 

@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/service-level-objectives/#c
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewServiceLevelObjectivesApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.CreateSLOReportJob(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-slo-report-job")
 

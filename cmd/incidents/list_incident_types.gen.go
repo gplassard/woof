@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#list-incident-ty
 		var err error
 
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListIncidentTypes(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-incident-types")
 

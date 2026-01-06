@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/service-definition/#create-
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewServiceDefinitionApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.CreateOrUpdateServiceDefinitions(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-or-update-service-definitions")
 

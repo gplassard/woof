@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/fleet-automation/#create-fl
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewFleetAutomationApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.CreateFleetDeploymentUpgrade(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-fleet-deployment-upgrade")
 

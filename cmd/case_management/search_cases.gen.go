@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/case-management/#search-cas
 		var err error
 
 		api := datadogV2.NewCaseManagementApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.SearchCases(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to search-cases")
 

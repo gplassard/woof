@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/logs-custom-destinations/#g
 		var err error
 
 		api := datadogV2.NewLogsCustomDestinationsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetLogsCustomDestination(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-logs-custom-destination")
 

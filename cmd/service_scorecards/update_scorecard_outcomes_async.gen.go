@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/service-scorecards/#update-
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewServiceScorecardsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.UpdateScorecardOutcomesAsync(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to update-scorecard-outcomes-async")
 

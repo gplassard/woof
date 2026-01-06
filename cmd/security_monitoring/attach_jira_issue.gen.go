@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#attach
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.AttachJiraIssue(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to attach-jira-issue")
 

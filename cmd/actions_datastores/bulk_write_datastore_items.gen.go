@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/actions-datastores/#bulk-wr
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewActionsDatastoresApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.BulkWriteDatastoreItems(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to bulk-write-datastore-items")
 

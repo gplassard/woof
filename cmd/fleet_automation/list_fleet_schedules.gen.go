@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/fleet-automation/#list-flee
 		var err error
 
 		api := datadogV2.NewFleetAutomationApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListFleetSchedules(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-fleet-schedules")
 

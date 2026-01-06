@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/ci-visibility-tests/#search
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewCIVisibilityTestsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.SearchCIAppTestEvents(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to search-ci-app-test-events")
 

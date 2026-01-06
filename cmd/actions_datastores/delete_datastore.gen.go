@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/actions-datastores/#delete-
 		var err error
 
 		api := datadogV2.NewActionsDatastoresApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.DeleteDatastore(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to delete-datastore")
 

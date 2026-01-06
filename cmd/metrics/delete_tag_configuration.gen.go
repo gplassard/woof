@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/metrics/#delete-tag-configu
 		var err error
 
 		api := datadogV2.NewMetricsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.DeleteTagConfiguration(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to delete-tag-configuration")
 

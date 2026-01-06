@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#get-aws-in
 		var err error
 
 		api := datadogV2.NewAWSIntegrationApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetAWSIntegrationIAMPermissionsResourceCollection(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-aws-integration-iam-permissions-resource-collection")
 

@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/service-level-objectives/#g
 		var err error
 
 		api := datadogV2.NewServiceLevelObjectivesApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetSLOReport(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-slo-report")
 

@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/deployment-gates/#create-de
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewDeploymentGatesApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.CreateDeploymentRule(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to create-deployment-rule")
 

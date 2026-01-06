@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/organizations/#upload-id-p-
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewOrganizationsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.UploadIdPMetadata(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to upload-id-p-metadata")
 

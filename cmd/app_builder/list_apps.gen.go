@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/app-builder/#list-apps`,
 		var err error
 
 		api := datadogV2.NewAppBuilderApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListApps(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-apps")
 

@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/logs-custom-destinations/#u
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewLogsCustomDestinationsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.UpdateLogsCustomDestination(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-logs-custom-destination")
 

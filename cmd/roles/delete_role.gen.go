@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/roles/#delete-role`,
 		var err error
 
 		api := datadogV2.NewRolesApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.DeleteRole(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to delete-role")
 

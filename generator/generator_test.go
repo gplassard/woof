@@ -21,7 +21,7 @@ func TestGenerationNoChanges(t *testing.T) {
 		t.Fatalf("Failed to change directory to root: %v", err)
 	}
 	t.Cleanup(func() {
-		os.Chdir(origDir)
+		_ = os.Chdir(origDir)
 	})
 
 	// 2. Run the generator

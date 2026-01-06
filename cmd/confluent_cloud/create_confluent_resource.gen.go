@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/confluent-cloud/#create-con
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewConfluentCloudApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.CreateConfluentResource(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to create-confluent-resource")
 

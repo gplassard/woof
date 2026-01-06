@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/organizations/#list-org-con
 		var err error
 
 		api := datadogV2.NewOrganizationsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListOrgConfigs(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-org-configs")
 

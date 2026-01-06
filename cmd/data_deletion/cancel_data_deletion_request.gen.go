@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/data-deletion/#cancel-data-
 		var err error
 
 		api := datadogV2.NewDataDeletionApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.CancelDataDeletionRequest(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to cancel-data-deletion-request")
 

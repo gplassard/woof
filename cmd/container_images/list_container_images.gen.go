@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/container-images/#list-cont
 		var err error
 
 		api := datadogV2.NewContainerImagesApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListContainerImages(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-container-images")
 

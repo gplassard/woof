@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/monitors/#validate-monitor-
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewMonitorsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.ValidateMonitorUserTemplate(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to validate-monitor-user-template")
 

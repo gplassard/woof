@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/logs-metrics/#delete-logs-m
 		var err error
 
 		api := datadogV2.NewLogsMetricsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.DeleteLogsMetric(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to delete-logs-metric")
 

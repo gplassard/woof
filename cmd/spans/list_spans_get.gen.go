@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/spans/#list-spans-get`,
 		var err error
 
 		api := datadogV2.NewSpansApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListSpansGet(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-spans-get")
 

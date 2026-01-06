@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/app-builder/#delete-apps`,
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewAppBuilderApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.DeleteApps(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to delete-apps")
 

@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/network-device-monitoring/#
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewNetworkDeviceMonitoringApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.UpdateDeviceUserTags(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-device-user-tags")
 

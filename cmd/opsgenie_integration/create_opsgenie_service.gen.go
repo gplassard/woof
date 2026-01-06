@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/opsgenie-integration/#creat
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewOpsgenieIntegrationApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.CreateOpsgenieService(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-opsgenie-service")
 

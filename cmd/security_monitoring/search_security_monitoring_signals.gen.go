@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#search
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.SearchSecurityMonitoringSignals(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to search-security-monitoring-signals")
 

@@ -24,6 +24,7 @@ Documentation: https://docs.datadoghq.com/api/latest/downtimes/#list-monitor-dow
 		var err error
 
 		api := datadogV2.NewDowntimesApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListMonitorDowntimes(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }())
 		cmdutil.HandleError(err, "failed to list-monitor-downtimes")
 

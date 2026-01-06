@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/usage-metering/#get-project
 		var err error
 
 		api := datadogV2.NewUsageMeteringApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetProjectedCost(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-projected-cost")
 

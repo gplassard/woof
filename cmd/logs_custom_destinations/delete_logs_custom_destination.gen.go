@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/logs-custom-destinations/#d
 		var err error
 
 		api := datadogV2.NewLogsCustomDestinationsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.DeleteLogsCustomDestination(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to delete-logs-custom-destination")
 

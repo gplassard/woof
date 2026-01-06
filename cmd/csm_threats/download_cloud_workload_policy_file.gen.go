@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/csm-threats/#download-cloud
 		var err error
 
 		api := datadogV2.NewCSMThreatsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.DownloadCloudWorkloadPolicyFile(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to download-cloud-workload-policy-file")
 

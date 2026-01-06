@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/error-tracking/#update-issu
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewErrorTrackingApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.UpdateIssueAssignee(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-issue-assignee")
 

@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/actions-datastores/#list-da
 		var err error
 
 		api := datadogV2.NewActionsDatastoresApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListDatastoreItems(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-datastore-items")
 

@@ -24,6 +24,7 @@ Documentation: https://docs.datadoghq.com/api/latest/org-connections/#delete-org
 		var err error
 
 		api := datadogV2.NewOrgConnectionsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		_, err = api.DeleteOrgConnections(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
 		cmdutil.HandleError(err, "failed to delete-org-connections")
 

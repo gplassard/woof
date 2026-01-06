@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/api-management/#create-open
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewAPIManagementApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.CreateOpenAPI(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-open-api")
 

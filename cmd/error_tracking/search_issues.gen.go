@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/error-tracking/#search-issu
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewErrorTrackingApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.SearchIssues(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to search-issues")
 

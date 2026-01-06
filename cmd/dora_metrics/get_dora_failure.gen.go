@@ -23,6 +23,7 @@ Documentation: https://docs.datadoghq.com/api/latest/dora-metrics/#get-dora-fail
 		var err error
 
 		api := datadogV2.NewDORAMetricsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetDORAFailure(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-dora-failure")
 

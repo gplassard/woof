@@ -27,6 +27,7 @@ Documentation: https://docs.datadoghq.com/api/latest/deployment-gates/#update-de
 		cmdutil.HandleError(err, "failed to read payload")
 
 		api := datadogV2.NewDeploymentGatesApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.UpdateDeploymentRule(client.NewContext(apiKey, appKey, site), args[0], args[1], body)
 		cmdutil.HandleError(err, "failed to update-deployment-rule")
 
