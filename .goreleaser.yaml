@@ -39,7 +39,7 @@ archives:
         formats: [zip]
 
 changelog:
-  use: github
+  use: git
   sort: asc
   filters:
     exclude:
@@ -49,18 +49,22 @@ changelog:
       - "^ci"
       - "^build"
   groups:
-    - title: Features
-      regexp: "^.*feat[(\\w)]*:+.*$"
+    - title: "🚀 Features"
+      regexp: '^feat'
       order: 0
-    - title: 'Bug fixes'
-      regexp: "^.*fix[(\\w)]*:+.*$"
+    - title: "🐛 Bug fixes"
+      regexp: '^fix'
       order: 1
-    - title: Others
+    - title: "🏔️ Others"
       order: 999
   abbrev: -1
 
 release:
+  header: |
+    ## 📋 Changelog
   footer: >-
+
+    **Full Changelog**: https://github.com/gplassard/woof/compare/{{ .PreviousTag }}...{{ .Tag }}
 
     ---
 
