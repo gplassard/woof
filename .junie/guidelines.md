@@ -41,6 +41,7 @@ When adding new features or fixing bugs, add tests in the corresponding package.
 #### Code Generator
 The `cmd/` directory is fully generated. Do not manually edit any files in this directory.
 - **Run Generator**: `go run ./generator`
+- **Regenerate Single Command**: `go run ./generator <OperationID>` (e.g., `go run ./generator ListWorkflowInstances`). This is the preferred way of iterating on features as it is much faster.
 - **Templates**: Located in `generator/*.tmpl`.
 - **Configuration**: `generator/config.yaml` allows skipping specific operations.
 - **Important**: If you modify templates or the generator logic, run the generator and ensure `TestGenerationNoChanges` in `generator/generator_test.go` passes (it checks if `git status` is clean after generation).

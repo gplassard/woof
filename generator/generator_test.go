@@ -25,7 +25,7 @@ func TestGenerationNoChanges(t *testing.T) {
 	})
 
 	// 2. Run the generator
-	if err := RunGenerate(); err != nil {
+	if err := RunGenerate(nil); err != nil {
 		t.Fatalf("Failed to run generator: %v", err)
 	}
 
