@@ -1,6 +1,7 @@
 package authn_mappings
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/authn-mappings/#list-auth-n
 		res, _, err = api.ListAuthNMappings(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-auth-n-mappings")
 
-		cmd.Println(cmdutil.FormatJSON(res, "authn_mappings"))
+		fmt.Println(cmdutil.FormatJSON(res, "authn_mappings"))
 	},
 }
 

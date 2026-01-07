@@ -1,6 +1,7 @@
 package powerpack
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/powerpack/#get-powerpack`,
 		res, _, err = api.GetPowerpack(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-powerpack")
 
-		cmd.Println(cmdutil.FormatJSON(res, "powerpack"))
+		fmt.Println(cmdutil.FormatJSON(res, "powerpack"))
 	},
 }
 

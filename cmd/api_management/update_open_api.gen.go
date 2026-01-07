@@ -1,6 +1,7 @@
 package api_management
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -32,7 +33,7 @@ Documentation: https://docs.datadoghq.com/api/latest/api-management/#update-open
 		res, _, err = api.UpdateOpenAPI(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]), body)
 		cmdutil.HandleError(err, "failed to update-open-api")
 
-		cmd.Println(cmdutil.FormatJSON(res, "api_management"))
+		fmt.Println(cmdutil.FormatJSON(res, "api_management"))
 	},
 }
 

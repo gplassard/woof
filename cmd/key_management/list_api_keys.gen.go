@@ -1,6 +1,7 @@
 package key_management
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/key-management/#list-api-ke
 		res, _, err = api.ListAPIKeys(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-api-keys")
 
-		cmd.Println(cmdutil.FormatJSON(res, "api_keys"))
+		fmt.Println(cmdutil.FormatJSON(res, "api_keys"))
 	},
 }
 

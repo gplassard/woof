@@ -1,6 +1,7 @@
 package actions_datastores
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/actions-datastores/#list-da
 		res, _, err = api.ListDatastoreItems(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-datastore-items")
 
-		cmd.Println(cmdutil.FormatJSON(res, "items"))
+		fmt.Println(cmdutil.FormatJSON(res, "items"))
 	},
 }
 

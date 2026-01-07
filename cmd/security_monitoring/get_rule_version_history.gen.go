@@ -1,6 +1,7 @@
 package security_monitoring
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-ru
 		res, _, err = api.GetRuleVersionHistory(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-rule-version-history")
 
-		cmd.Println(cmdutil.FormatJSON(res, "GetRuleVersionHistoryResponse"))
+		fmt.Println(cmdutil.FormatJSON(res, "GetRuleVersionHistoryResponse"))
 	},
 }
 

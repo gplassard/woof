@@ -1,6 +1,7 @@
 package microsoft_teams_integration
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/microsoft-teams-integration
 		res, _, err = api.ListTenantBasedHandles(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-tenant-based-handles")
 
-		cmd.Println(cmdutil.FormatJSON(res, "ms-teams-tenant-based-handle-info"))
+		fmt.Println(cmdutil.FormatJSON(res, "ms-teams-tenant-based-handle-info"))
 	},
 }
 

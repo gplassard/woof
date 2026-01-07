@@ -1,6 +1,7 @@
 package agentless_scanning
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#update-
 		res, _, err = api.UpdateGcpScanOptions(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-gcp-scan-options")
 
-		cmd.Println(cmdutil.FormatJSON(res, "gcp_scan_options"))
+		fmt.Println(cmdutil.FormatJSON(res, "gcp_scan_options"))
 	},
 }
 

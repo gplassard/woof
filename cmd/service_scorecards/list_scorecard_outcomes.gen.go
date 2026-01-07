@@ -1,6 +1,7 @@
 package service_scorecards
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/service-scorecards/#list-sc
 		res, _, err = api.ListScorecardOutcomes(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-scorecard-outcomes")
 
-		cmd.Println(cmdutil.FormatJSON(res, "service_scorecards"))
+		fmt.Println(cmdutil.FormatJSON(res, "service_scorecards"))
 	},
 }
 

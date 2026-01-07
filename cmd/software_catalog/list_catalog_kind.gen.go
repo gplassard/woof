@@ -1,6 +1,7 @@
 package software_catalog
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/software-catalog/#list-cata
 		res, _, err = api.ListCatalogKind(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-catalog-kind")
 
-		cmd.Println(cmdutil.FormatJSON(res, "software_catalog"))
+		fmt.Println(cmdutil.FormatJSON(res, "software_catalog"))
 	},
 }
 

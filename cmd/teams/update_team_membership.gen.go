@@ -1,6 +1,7 @@
 package teams
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/teams/#update-team-membersh
 		res, _, err = api.UpdateTeamMembership(client.NewContext(apiKey, appKey, site), args[0], args[1], body)
 		cmdutil.HandleError(err, "failed to update-team-membership")
 
-		cmd.Println(cmdutil.FormatJSON(res, "team_memberships"))
+		fmt.Println(cmdutil.FormatJSON(res, "team_memberships"))
 	},
 }
 

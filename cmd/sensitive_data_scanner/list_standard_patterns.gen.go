@@ -1,6 +1,7 @@
 package sensitive_data_scanner
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/sensitive-data-scanner/#lis
 		res, _, err = api.ListStandardPatterns(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-standard-patterns")
 
-		cmd.Println(cmdutil.FormatJSON(res, "sensitive_data_scanner"))
+		fmt.Println(cmdutil.FormatJSON(res, "sensitive_data_scanner"))
 	},
 }
 

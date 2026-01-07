@@ -1,6 +1,7 @@
 package spans_metrics
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/spans-metrics/#update-spans
 		res, _, err = api.UpdateSpansMetric(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-spans-metric")
 
-		cmd.Println(cmdutil.FormatJSON(res, "spans_metrics"))
+		fmt.Println(cmdutil.FormatJSON(res, "spans_metrics"))
 	},
 }
 

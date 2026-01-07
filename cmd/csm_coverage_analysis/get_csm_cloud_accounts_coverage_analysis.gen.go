@@ -1,6 +1,7 @@
 package csm_coverage_analysis
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/csm-coverage-analysis/#get-
 		res, _, err = api.GetCSMCloudAccountsCoverageAnalysis(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-csm-cloud-accounts-coverage-analysis")
 
-		cmd.Println(cmdutil.FormatJSON(res, "csm_coverage_analysis"))
+		fmt.Println(cmdutil.FormatJSON(res, "csm_coverage_analysis"))
 	},
 }
 

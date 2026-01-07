@@ -1,6 +1,7 @@
 package network_device_monitoring
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/network-device-monitoring/#
 		res, _, err = api.UpdateDeviceUserTags(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-device-user-tags")
 
-		cmd.Println(cmdutil.FormatJSON(res, "network_device_monitoring"))
+		fmt.Println(cmdutil.FormatJSON(res, "network_device_monitoring"))
 	},
 }
 

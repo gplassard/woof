@@ -1,6 +1,7 @@
 package fastly_integration
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/fastly-integration/#get-fas
 		res, _, err = api.GetFastlyAccount(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-fastly-account")
 
-		cmd.Println(cmdutil.FormatJSON(res, "fastly-accounts"))
+		fmt.Println(cmdutil.FormatJSON(res, "fastly-accounts"))
 	},
 }
 

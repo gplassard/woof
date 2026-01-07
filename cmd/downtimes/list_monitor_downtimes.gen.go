@@ -1,6 +1,7 @@
 package downtimes
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -28,7 +29,7 @@ Documentation: https://docs.datadoghq.com/api/latest/downtimes/#list-monitor-dow
 		res, _, err = api.ListMonitorDowntimes(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }())
 		cmdutil.HandleError(err, "failed to list-monitor-downtimes")
 
-		cmd.Println(cmdutil.FormatJSON(res, "downtime_match"))
+		fmt.Println(cmdutil.FormatJSON(res, "downtime_match"))
 	},
 }
 

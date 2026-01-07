@@ -1,6 +1,7 @@
 package microsoft_teams_integration
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/microsoft-teams-integration
 		res, _, err = api.GetChannelByName(client.NewContext(apiKey, appKey, site), args[0], args[1], args[2])
 		cmdutil.HandleError(err, "failed to get-channel-by-name")
 
-		cmd.Println(cmdutil.FormatJSON(res, "ms-teams-channel-info"))
+		fmt.Println(cmdutil.FormatJSON(res, "ms-teams-channel-info"))
 	},
 }
 

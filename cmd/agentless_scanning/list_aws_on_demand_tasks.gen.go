@@ -1,6 +1,7 @@
 package agentless_scanning
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#list-aw
 		res, _, err = api.ListAwsOnDemandTasks(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-aws-on-demand-tasks")
 
-		cmd.Println(cmdutil.FormatJSON(res, "aws_resource"))
+		fmt.Println(cmdutil.FormatJSON(res, "aws_resource"))
 	},
 }
 

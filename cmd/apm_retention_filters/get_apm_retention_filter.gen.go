@@ -1,6 +1,7 @@
 package apm_retention_filters
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/apm-retention-filters/#get-
 		res, _, err = api.GetApmRetentionFilter(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-apm-retention-filter")
 
-		cmd.Println(cmdutil.FormatJSON(res, "apm_retention_filter"))
+		fmt.Println(cmdutil.FormatJSON(res, "apm_retention_filter"))
 	},
 }
 

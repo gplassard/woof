@@ -1,6 +1,7 @@
 package organizations
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/organizations/#get-org-conf
 		res, _, err = api.GetOrgConfig(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-org-config")
 
-		cmd.Println(cmdutil.FormatJSON(res, "org_configs"))
+		fmt.Println(cmdutil.FormatJSON(res, "org_configs"))
 	},
 }
 

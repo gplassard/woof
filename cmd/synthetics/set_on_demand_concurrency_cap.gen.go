@@ -1,6 +1,7 @@
 package synthetics
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/synthetics/#set-on-demand-c
 		res, _, err = api.SetOnDemandConcurrencyCap(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to set-on-demand-concurrency-cap")
 
-		cmd.Println(cmdutil.FormatJSON(res, "on_demand_concurrency_cap"))
+		fmt.Println(cmdutil.FormatJSON(res, "on_demand_concurrency_cap"))
 	},
 }
 

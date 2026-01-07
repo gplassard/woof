@@ -1,6 +1,7 @@
 package cloud_cost_management
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#crea
 		res, _, err = api.CreateCostAWSCURConfig(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-cost-aws-cur-config")
 
-		cmd.Println(cmdutil.FormatJSON(res, "aws_cur_config"))
+		fmt.Println(cmdutil.FormatJSON(res, "aws_cur_config"))
 	},
 }
 

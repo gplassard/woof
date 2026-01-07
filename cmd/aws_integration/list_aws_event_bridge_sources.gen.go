@@ -1,6 +1,7 @@
 package aws_integration
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#list-aws-e
 		res, _, err = api.ListAWSEventBridgeSources(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-aws-event-bridge-sources")
 
-		cmd.Println(cmdutil.FormatJSON(res, "event_bridge"))
+		fmt.Println(cmdutil.FormatJSON(res, "event_bridge"))
 	},
 }
 

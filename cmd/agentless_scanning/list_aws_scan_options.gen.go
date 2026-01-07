@@ -1,6 +1,7 @@
 package agentless_scanning
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#list-aw
 		res, _, err = api.ListAwsScanOptions(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-aws-scan-options")
 
-		cmd.Println(cmdutil.FormatJSON(res, "aws_scan_options"))
+		fmt.Println(cmdutil.FormatJSON(res, "aws_scan_options"))
 	},
 }
 

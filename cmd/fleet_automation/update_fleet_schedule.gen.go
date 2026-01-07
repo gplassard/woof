@@ -1,6 +1,7 @@
 package fleet_automation
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/fleet-automation/#update-fl
 		res, _, err = api.UpdateFleetSchedule(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-fleet-schedule")
 
-		cmd.Println(cmdutil.FormatJSON(res, "schedule"))
+		fmt.Println(cmdutil.FormatJSON(res, "schedule"))
 	},
 }
 

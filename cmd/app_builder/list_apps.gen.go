@@ -1,6 +1,7 @@
 package app_builder
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/app-builder/#list-apps`,
 		res, _, err = api.ListApps(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-apps")
 
-		cmd.Println(cmdutil.FormatJSON(res, "appDefinitions"))
+		fmt.Println(cmdutil.FormatJSON(res, "appDefinitions"))
 	},
 }
 

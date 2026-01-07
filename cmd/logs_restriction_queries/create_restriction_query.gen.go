@@ -1,6 +1,7 @@
 package logs_restriction_queries
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/logs-restriction-queries/#c
 		res, _, err = api.CreateRestrictionQuery(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-restriction-query")
 
-		cmd.Println(cmdutil.FormatJSON(res, "logs_restriction_queries"))
+		fmt.Println(cmdutil.FormatJSON(res, "logs_restriction_queries"))
 	},
 }
 

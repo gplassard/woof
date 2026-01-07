@@ -1,6 +1,7 @@
 package security_monitoring
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-se
 		res, _, err = api.GetSecretsRules(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-secrets-rules")
 
-		cmd.Println(cmdutil.FormatJSON(res, "secret_rule"))
+		fmt.Println(cmdutil.FormatJSON(res, "secret_rule"))
 	},
 }
 

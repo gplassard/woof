@@ -1,6 +1,7 @@
 package error_tracking
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/error-tracking/#update-issu
 		res, _, err = api.UpdateIssueState(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-issue-state")
 
-		cmd.Println(cmdutil.FormatJSON(res, "issue"))
+		fmt.Println(cmdutil.FormatJSON(res, "issue"))
 	},
 }
 

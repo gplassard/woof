@@ -1,6 +1,7 @@
 package gcp_integration
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/gcp-integration/#update-gcp
 		res, _, err = api.UpdateGCPSTSAccount(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-gcp-sts-account")
 
-		cmd.Println(cmdutil.FormatJSON(res, "gcp_service_account"))
+		fmt.Println(cmdutil.FormatJSON(res, "gcp_service_account"))
 	},
 }
 

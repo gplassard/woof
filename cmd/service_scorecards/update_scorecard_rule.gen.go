@@ -1,6 +1,7 @@
 package service_scorecards
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/service-scorecards/#update-
 		res, _, err = api.UpdateScorecardRule(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-scorecard-rule")
 
-		cmd.Println(cmdutil.FormatJSON(res, "rule"))
+		fmt.Println(cmdutil.FormatJSON(res, "rule"))
 	},
 }
 

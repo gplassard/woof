@@ -1,6 +1,7 @@
 package csm_threats
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/csm-threats/#list-csm-threa
 		res, _, err = api.ListCSMThreatsAgentRules(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-csm-threats-agent-rules")
 
-		cmd.Println(cmdutil.FormatJSON(res, "agent_rule"))
+		fmt.Println(cmdutil.FormatJSON(res, "agent_rule"))
 	},
 }
 

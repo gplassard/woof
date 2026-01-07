@@ -1,6 +1,7 @@
 package ci_visibility_tests
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/ci-visibility-tests/#search
 		res, _, err = api.SearchCIAppTestEvents(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to search-ci-app-test-events")
 
-		cmd.Println(cmdutil.FormatJSON(res, "citest"))
+		fmt.Println(cmdutil.FormatJSON(res, "citest"))
 	},
 }
 

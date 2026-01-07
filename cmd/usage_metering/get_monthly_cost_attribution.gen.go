@@ -1,6 +1,7 @@
 package usage_metering
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -29,7 +30,7 @@ Documentation: https://docs.datadoghq.com/api/latest/usage-metering/#get-monthly
 		res, _, err = api.GetMonthlyCostAttribution(client.NewContext(apiKey, appKey, site), func() time.Time { t, _ := time.Parse(time.RFC3339, args[0]); return t }(), args[1])
 		cmdutil.HandleError(err, "failed to get-monthly-cost-attribution")
 
-		cmd.Println(cmdutil.FormatJSON(res, "cost_by_tag"))
+		fmt.Println(cmdutil.FormatJSON(res, "cost_by_tag"))
 	},
 }
 

@@ -1,6 +1,7 @@
 package spa
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/spa/#get-s-p-a-recommendati
 		res, _, err = api.GetSPARecommendations(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		cmdutil.HandleError(err, "failed to get-s-p-a-recommendations")
 
-		cmd.Println(cmdutil.FormatJSON(res, "recommendation"))
+		fmt.Println(cmdutil.FormatJSON(res, "recommendation"))
 	},
 }
 

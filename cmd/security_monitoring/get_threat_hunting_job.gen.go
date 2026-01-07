@@ -1,6 +1,7 @@
 package security_monitoring
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-th
 		res, _, err = api.GetThreatHuntingJob(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-threat-hunting-job")
 
-		cmd.Println(cmdutil.FormatJSON(res, "historicalDetectionsJob"))
+		fmt.Println(cmdutil.FormatJSON(res, "historicalDetectionsJob"))
 	},
 }
 

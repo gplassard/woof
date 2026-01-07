@@ -1,6 +1,7 @@
 package usage_metering
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -29,7 +30,7 @@ Documentation: https://docs.datadoghq.com/api/latest/usage-metering/#get-histori
 		res, _, err = api.GetHistoricalCostByOrg(client.NewContext(apiKey, appKey, site), func() time.Time { t, _ := time.Parse(time.RFC3339, args[0]); return t }())
 		cmdutil.HandleError(err, "failed to get-historical-cost-by-org")
 
-		cmd.Println(cmdutil.FormatJSON(res, "cost_by_org"))
+		fmt.Println(cmdutil.FormatJSON(res, "cost_by_org"))
 	},
 }
 

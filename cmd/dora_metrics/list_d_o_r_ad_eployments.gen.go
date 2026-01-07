@@ -1,6 +1,7 @@
 package dora_metrics
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/dora-metrics/#list-d-o-r-ad
 		res, _, err = api.ListDORADeployments(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to list-d-o-r-ad-eployments")
 
-		cmd.Println(cmdutil.FormatJSON(res, "dora_metrics"))
+		fmt.Println(cmdutil.FormatJSON(res, "dora_metrics"))
 	},
 }
 

@@ -1,6 +1,7 @@
 package agentless_scanning
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#create-
 		res, _, err = api.CreateAwsOnDemandTask(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-aws-on-demand-task")
 
-		cmd.Println(cmdutil.FormatJSON(res, "aws_resource"))
+		fmt.Println(cmdutil.FormatJSON(res, "aws_resource"))
 	},
 }
 

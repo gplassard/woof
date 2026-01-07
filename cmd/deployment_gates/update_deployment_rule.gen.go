@@ -1,6 +1,7 @@
 package deployment_gates
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/deployment-gates/#update-de
 		res, _, err = api.UpdateDeploymentRule(client.NewContext(apiKey, appKey, site), args[0], args[1], body)
 		cmdutil.HandleError(err, "failed to update-deployment-rule")
 
-		cmd.Println(cmdutil.FormatJSON(res, "deployment_rule"))
+		fmt.Println(cmdutil.FormatJSON(res, "deployment_rule"))
 	},
 }
 

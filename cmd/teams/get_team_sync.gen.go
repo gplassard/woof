@@ -1,6 +1,7 @@
 package teams
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/teams/#get-team-sync`,
 		res, _, err = api.GetTeamSync(client.NewContext(apiKey, appKey, site), datadogV2.TeamSyncAttributesSource(args[0]))
 		cmdutil.HandleError(err, "failed to get-team-sync")
 
-		cmd.Println(cmdutil.FormatJSON(res, "team_sync_bulk"))
+		fmt.Println(cmdutil.FormatJSON(res, "team_sync_bulk"))
 	},
 }
 

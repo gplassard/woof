@@ -1,6 +1,7 @@
 package service_definition
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/service-definition/#create-
 		res, _, err = api.CreateOrUpdateServiceDefinitions(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-or-update-service-definitions")
 
-		cmd.Println(cmdutil.FormatJSON(res, "service_definition"))
+		fmt.Println(cmdutil.FormatJSON(res, "service_definition"))
 	},
 }
 

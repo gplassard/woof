@@ -1,6 +1,7 @@
 package security_monitoring
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#list-a
 		res, _, err = api.ListAssetsSBOMs(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-assets-sbom-s")
 
-		cmd.Println(cmdutil.FormatJSON(res, "sboms"))
+		fmt.Println(cmdutil.FormatJSON(res, "sboms"))
 	},
 }
 

@@ -1,6 +1,7 @@
 package cloud_network_monitoring
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/cloud-network-monitoring/#g
 		res, _, err = api.GetAggregatedConnections(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-aggregated-connections")
 
-		cmd.Println(cmdutil.FormatJSON(res, "aggregated_connection"))
+		fmt.Println(cmdutil.FormatJSON(res, "aggregated_connection"))
 	},
 }
 

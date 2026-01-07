@@ -1,6 +1,7 @@
 package data_deletion
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/data-deletion/#cancel-data-
 		res, _, err = api.CancelDataDeletionRequest(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to cancel-data-deletion-request")
 
-		cmd.Println(cmdutil.FormatJSON(res, "data_deletion"))
+		fmt.Println(cmdutil.FormatJSON(res, "data_deletion"))
 	},
 }
 

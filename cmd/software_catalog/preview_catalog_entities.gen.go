@@ -1,6 +1,7 @@
 package software_catalog
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/software-catalog/#preview-c
 		res, _, err = api.PreviewCatalogEntities(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to preview-catalog-entities")
 
-		cmd.Println(cmdutil.FormatJSON(res, "entity"))
+		fmt.Println(cmdutil.FormatJSON(res, "entity"))
 	},
 }
 

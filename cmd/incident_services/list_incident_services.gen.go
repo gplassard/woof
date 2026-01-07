@@ -1,6 +1,7 @@
 package incident_services
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/incident-services/#list-inc
 		res, _, err = api.ListIncidentServices(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-incident-services")
 
-		cmd.Println(cmdutil.FormatJSON(res, "services"))
+		fmt.Println(cmdutil.FormatJSON(res, "services"))
 	},
 }
 

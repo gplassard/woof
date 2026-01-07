@@ -1,6 +1,7 @@
 package case_management
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/case-management/#comment-ca
 		res, _, err = api.CommentCase(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to comment-case")
 
-		cmd.Println(cmdutil.FormatJSON(res, "timeline_cell"))
+		fmt.Println(cmdutil.FormatJSON(res, "timeline_cell"))
 	},
 }
 

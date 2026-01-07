@@ -1,6 +1,7 @@
 package sensitive_data_scanner
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/sensitive-data-scanner/#cre
 		res, _, err = api.CreateScanningRule(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-scanning-rule")
 
-		cmd.Println(cmdutil.FormatJSON(res, "sensitive_data_scanner_rule"))
+		fmt.Println(cmdutil.FormatJSON(res, "sensitive_data_scanner_rule"))
 	},
 }
 

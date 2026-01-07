@@ -1,6 +1,7 @@
 package on_call
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#get-team-on-call-u
 		res, _, err = api.GetTeamOnCallUsers(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-team-on-call-users")
 
-		cmd.Println(cmdutil.FormatJSON(res, "team_oncall_responders"))
+		fmt.Println(cmdutil.FormatJSON(res, "team_oncall_responders"))
 	},
 }
 

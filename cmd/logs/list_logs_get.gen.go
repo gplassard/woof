@@ -1,6 +1,7 @@
 package logs
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/logs/#list-logs-get`,
 		res, _, err = api.ListLogsGet(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-logs-get")
 
-		cmd.Println(cmdutil.FormatJSON(res, "log"))
+		fmt.Println(cmdutil.FormatJSON(res, "log"))
 	},
 }
 

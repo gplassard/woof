@@ -1,6 +1,7 @@
 package microsoft_teams_integration
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/microsoft-teams-integration
 		res, _, err = api.CreateWorkflowsWebhookHandle(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-workflows-webhook-handle")
 
-		cmd.Println(cmdutil.FormatJSON(res, "workflows-webhook-handle"))
+		fmt.Println(cmdutil.FormatJSON(res, "workflows-webhook-handle"))
 	},
 }
 

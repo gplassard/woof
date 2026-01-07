@@ -1,6 +1,7 @@
 package rum_audience_management
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/rum-audience-management/#ge
 		res, _, err = api.GetUserFacetInfo(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to get-user-facet-info")
 
-		cmd.Println(cmdutil.FormatJSON(res, "users_facet_info"))
+		fmt.Println(cmdutil.FormatJSON(res, "users_facet_info"))
 	},
 }
 

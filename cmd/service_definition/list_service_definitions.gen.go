@@ -1,6 +1,7 @@
 package service_definition
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/service-definition/#list-se
 		res, _, err = api.ListServiceDefinitions(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-service-definitions")
 
-		cmd.Println(cmdutil.FormatJSON(res, "service_definition"))
+		fmt.Println(cmdutil.FormatJSON(res, "service_definition"))
 	},
 }
 

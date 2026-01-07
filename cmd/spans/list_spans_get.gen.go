@@ -1,6 +1,7 @@
 package spans
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/spans/#list-spans-get`,
 		res, _, err = api.ListSpansGet(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-spans-get")
 
-		cmd.Println(cmdutil.FormatJSON(res, "spans"))
+		fmt.Println(cmdutil.FormatJSON(res, "spans"))
 	},
 }
 

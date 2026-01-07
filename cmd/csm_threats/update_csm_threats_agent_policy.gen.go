@@ -1,6 +1,7 @@
 package csm_threats
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/csm-threats/#update-csm-thr
 		res, _, err = api.UpdateCSMThreatsAgentPolicy(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-csm-threats-agent-policy")
 
-		cmd.Println(cmdutil.FormatJSON(res, "policy"))
+		fmt.Println(cmdutil.FormatJSON(res, "policy"))
 	},
 }
 

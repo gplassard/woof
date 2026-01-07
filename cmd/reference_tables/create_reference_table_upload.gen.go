@@ -1,6 +1,7 @@
 package reference_tables
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/reference-tables/#create-re
 		res, _, err = api.CreateReferenceTableUpload(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-reference-table-upload")
 
-		cmd.Println(cmdutil.FormatJSON(res, "upload"))
+		fmt.Println(cmdutil.FormatJSON(res, "upload"))
 	},
 }
 

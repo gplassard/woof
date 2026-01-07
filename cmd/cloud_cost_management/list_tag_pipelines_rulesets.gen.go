@@ -1,6 +1,7 @@
 package cloud_cost_management
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#list
 		res, _, err = api.ListTagPipelinesRulesets(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-tag-pipelines-rulesets")
 
-		cmd.Println(cmdutil.FormatJSON(res, "ruleset"))
+		fmt.Println(cmdutil.FormatJSON(res, "ruleset"))
 	},
 }
 

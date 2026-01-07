@@ -1,6 +1,7 @@
 package application_security
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/application-security/#get-a
 		res, _, err = api.GetApplicationSecurityWafCustomRule(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-application-security-waf-custom-rule")
 
-		cmd.Println(cmdutil.FormatJSON(res, "custom_rule"))
+		fmt.Println(cmdutil.FormatJSON(res, "custom_rule"))
 	},
 }
 

@@ -1,6 +1,7 @@
 package action_connection
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/action-connection/#create-a
 		res, _, err = api.CreateActionConnection(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-action-connection")
 
-		cmd.Println(cmdutil.FormatJSON(res, "action_connection"))
+		fmt.Println(cmdutil.FormatJSON(res, "action_connection"))
 	},
 }
 

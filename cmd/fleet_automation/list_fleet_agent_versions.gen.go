@@ -1,6 +1,7 @@
 package fleet_automation
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/fleet-automation/#list-flee
 		res, _, err = api.ListFleetAgentVersions(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-fleet-agent-versions")
 
-		cmd.Println(cmdutil.FormatJSON(res, "agent_version"))
+		fmt.Println(cmdutil.FormatJSON(res, "agent_version"))
 	},
 }
 

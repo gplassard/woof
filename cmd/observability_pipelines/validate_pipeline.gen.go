@@ -1,6 +1,7 @@
 package observability_pipelines
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/observability-pipelines/#va
 		res, _, err = api.ValidatePipeline(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to validate-pipeline")
 
-		cmd.Println(cmdutil.FormatJSON(res, "observability_pipelines"))
+		fmt.Println(cmdutil.FormatJSON(res, "observability_pipelines"))
 	},
 }
 

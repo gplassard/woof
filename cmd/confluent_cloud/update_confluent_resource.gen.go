@@ -1,6 +1,7 @@
 package confluent_cloud
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/confluent-cloud/#update-con
 		res, _, err = api.UpdateConfluentResource(client.NewContext(apiKey, appKey, site), args[0], args[1], body)
 		cmdutil.HandleError(err, "failed to update-confluent-resource")
 
-		cmd.Println(cmdutil.FormatJSON(res, "confluent-cloud-resources"))
+		fmt.Println(cmdutil.FormatJSON(res, "confluent-cloud-resources"))
 	},
 }
 

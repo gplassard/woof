@@ -1,6 +1,7 @@
 package fleet_automation
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/fleet-automation/#get-fleet
 		res, _, err = api.GetFleetAgentInfo(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-fleet-agent-info")
 
-		cmd.Println(cmdutil.FormatJSON(res, "datadog_agent_key"))
+		fmt.Println(cmdutil.FormatJSON(res, "datadog_agent_key"))
 	},
 }
 

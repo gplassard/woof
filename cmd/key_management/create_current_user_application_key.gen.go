@@ -1,6 +1,7 @@
 package key_management
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/key-management/#create-curr
 		res, _, err = api.CreateCurrentUserApplicationKey(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-current-user-application-key")
 
-		cmd.Println(cmdutil.FormatJSON(res, "application_keys"))
+		fmt.Println(cmdutil.FormatJSON(res, "application_keys"))
 	},
 }
 

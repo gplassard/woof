@@ -1,6 +1,7 @@
 package service_level_objectives
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/service-level-objectives/#c
 		res, _, err = api.CreateSLOReportJob(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-slo-report-job")
 
-		cmd.Println(cmdutil.FormatJSON(res, "service_level_objectives"))
+		fmt.Println(cmdutil.FormatJSON(res, "service_level_objectives"))
 	},
 }
 
