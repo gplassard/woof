@@ -9,13 +9,17 @@ import (
 )
 
 func main() {
-	if err := RunGenerate(); err != nil {
+	if err := RunGenerate(os.Args[1:]); err != nil {
 		fmt.Fprintf(os.Stderr, "Error: %v\n", err)
 		os.Exit(1)
 	}
 }
 
-func RunGenerate() error {
+func RunGenerate(args []string) error {
+	filter := ""
+	if len(args) > 0 {
+		filter = args[0]
+	}
 	// Ensure we are working from the project root if we are in the generator directory
 	if cwd, err := os.Getwd(); err == nil && filepath.Base(cwd) == "generator" {
 		if err := os.Chdir(".."); err != nil {
@@ -31,8 +35,10 @@ func RunGenerate() error {
 		return err
 	}
 
-	if err := cleanupGeneratedFiles(); err != nil {
-		return err
+	if filter == "" {
+		if err := cleanupGeneratedFiles(); err != nil {
+			return err
+		}
 	}
 
 	spec, err := downloadOpenAPI()
@@ -57,6 +63,10 @@ func RunGenerate() error {
 				continue
 			}
 
+			if filter != "" && filter != op.OperationID {
+				continue
+			}
+
 			bundle, rawBundle := normalizeBundle(op)
 			bundles[bundle] = true
 			apiBundleName := normalizeApiBundleName(rawBundle)
@@ -78,5 +88,9 @@ func RunGenerate() error {
 		}
 	}
 
-	return updateRootGo(bundles)
+	if filter == "" {
+		return updateRootGo(bundles)
+	}
+
+	return nil
 }
