@@ -1,6 +1,7 @@
 package ci_visibility_pipelines
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/ci-visibility-pipelines/#li
 		res, _, err = api.ListCIAppPipelineEvents(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-ci-app-pipeline-events")
 
-		cmd.Println(cmdutil.FormatJSON(res, "cipipeline"))
+		fmt.Println(cmdutil.FormatJSON(res, "cipipeline"))
 	},
 }
 

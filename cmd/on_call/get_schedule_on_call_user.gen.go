@@ -1,6 +1,7 @@
 package on_call
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#get-schedule-on-ca
 		res, _, err = api.GetScheduleOnCallUser(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-schedule-on-call-user")
 
-		cmd.Println(cmdutil.FormatJSON(res, "shifts"))
+		fmt.Println(cmdutil.FormatJSON(res, "shifts"))
 	},
 }
 

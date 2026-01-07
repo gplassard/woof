@@ -1,6 +1,7 @@
 package teams
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/teams/#list-team-connection
 		res, _, err = api.ListTeamConnections(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-team-connections")
 
-		cmd.Println(cmdutil.FormatJSON(res, "team_connection"))
+		fmt.Println(cmdutil.FormatJSON(res, "team_connection"))
 	},
 }
 

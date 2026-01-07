@@ -1,6 +1,7 @@
 package metrics
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/metrics/#list-active-metric
 		res, _, err = api.ListActiveMetricConfigurations(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-active-metric-configurations")
 
-		cmd.Println(cmdutil.FormatJSON(res, "actively_queried_configurations"))
+		fmt.Println(cmdutil.FormatJSON(res, "actively_queried_configurations"))
 	},
 }
 

@@ -1,6 +1,7 @@
 package cloud_cost_management
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#list
 		res, _, err = api.ListCostAWSCURConfigs(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-cost-aws-cur-configs")
 
-		cmd.Println(cmdutil.FormatJSON(res, "aws_cur_config"))
+		fmt.Println(cmdutil.FormatJSON(res, "aws_cur_config"))
 	},
 }
 

@@ -1,6 +1,7 @@
 package roles
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/roles/#list-roles`,
 		res, _, err = api.ListRoles(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-roles")
 
-		cmd.Println(cmdutil.FormatJSON(res, "roles"))
+		fmt.Println(cmdutil.FormatJSON(res, "roles"))
 	},
 }
 

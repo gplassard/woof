@@ -1,6 +1,7 @@
 package application_security
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/application-security/#creat
 		res, _, err = api.CreateApplicationSecurityWafExclusionFilter(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-application-security-waf-exclusion-filter")
 
-		cmd.Println(cmdutil.FormatJSON(res, "exclusion_filter"))
+		fmt.Println(cmdutil.FormatJSON(res, "exclusion_filter"))
 	},
 }
 

@@ -1,6 +1,7 @@
 package monitors
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/monitors/#create-monitor-co
 		res, _, err = api.CreateMonitorConfigPolicy(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-monitor-config-policy")
 
-		cmd.Println(cmdutil.FormatJSON(res, "monitor-config-policy"))
+		fmt.Println(cmdutil.FormatJSON(res, "monitor-config-policy"))
 	},
 }
 

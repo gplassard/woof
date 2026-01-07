@@ -1,6 +1,7 @@
 package usage_metering
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/usage-metering/#get-billing
 		res, _, err = api.GetBillingDimensionMapping(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-billing-dimension-mapping")
 
-		cmd.Println(cmdutil.FormatJSON(res, "usage_metering"))
+		fmt.Println(cmdutil.FormatJSON(res, "usage_metering"))
 	},
 }
 

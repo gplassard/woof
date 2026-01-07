@@ -1,6 +1,7 @@
 package metrics
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/metrics/#list-tag-configura
 		res, _, err = api.ListTagConfigurationByName(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-tag-configuration-by-name")
 
-		cmd.Println(cmdutil.FormatJSON(res, "manage_tags"))
+		fmt.Println(cmdutil.FormatJSON(res, "manage_tags"))
 	},
 }
 

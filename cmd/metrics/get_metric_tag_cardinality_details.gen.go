@@ -1,6 +1,7 @@
 package metrics
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/metrics/#get-metric-tag-car
 		res, _, err = api.GetMetricTagCardinalityDetails(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-metric-tag-cardinality-details")
 
-		cmd.Println(cmdutil.FormatJSON(res, "metrics"))
+		fmt.Println(cmdutil.FormatJSON(res, "metrics"))
 	},
 }
 

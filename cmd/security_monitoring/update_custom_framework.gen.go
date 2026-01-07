@@ -1,6 +1,7 @@
 package security_monitoring
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#update
 		res, _, err = api.UpdateCustomFramework(client.NewContext(apiKey, appKey, site), args[0], args[1], body)
 		cmdutil.HandleError(err, "failed to update-custom-framework")
 
-		cmd.Println(cmdutil.FormatJSON(res, "custom_framework"))
+		fmt.Println(cmdutil.FormatJSON(res, "custom_framework"))
 	},
 }
 

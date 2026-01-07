@@ -1,6 +1,7 @@
 package downtimes
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/downtimes/#update-downtime`
 		res, _, err = api.UpdateDowntime(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-downtime")
 
-		cmd.Println(cmdutil.FormatJSON(res, "downtime"))
+		fmt.Println(cmdutil.FormatJSON(res, "downtime"))
 	},
 }
 

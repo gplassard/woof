@@ -1,6 +1,7 @@
 package opsgenie_integration
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/opsgenie-integration/#list-
 		res, _, err = api.ListOpsgenieServices(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-opsgenie-services")
 
-		cmd.Println(cmdutil.FormatJSON(res, "opsgenie-service"))
+		fmt.Println(cmdutil.FormatJSON(res, "opsgenie-service"))
 	},
 }
 

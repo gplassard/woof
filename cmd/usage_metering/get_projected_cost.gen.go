@@ -1,6 +1,7 @@
 package usage_metering
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/usage-metering/#get-project
 		res, _, err = api.GetProjectedCost(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-projected-cost")
 
-		cmd.Println(cmdutil.FormatJSON(res, "projected_cost"))
+		fmt.Println(cmdutil.FormatJSON(res, "projected_cost"))
 	},
 }
 

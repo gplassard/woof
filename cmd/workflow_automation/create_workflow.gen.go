@@ -1,6 +1,7 @@
 package workflow_automation
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/workflow-automation/#create
 		res, _, err = api.CreateWorkflow(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-workflow")
 
-		cmd.Println(cmdutil.FormatJSON(res, "workflows"))
+		fmt.Println(cmdutil.FormatJSON(res, "workflows"))
 	},
 }
 

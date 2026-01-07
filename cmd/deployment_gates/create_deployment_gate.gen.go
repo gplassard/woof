@@ -1,6 +1,7 @@
 package deployment_gates
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/deployment-gates/#create-de
 		res, _, err = api.CreateDeploymentGate(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-deployment-gate")
 
-		cmd.Println(cmdutil.FormatJSON(res, "deployment_gate"))
+		fmt.Println(cmdutil.FormatJSON(res, "deployment_gate"))
 	},
 }
 

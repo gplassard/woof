@@ -1,6 +1,7 @@
 package ip_allowlist
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/ip-allowlist/#get-ip-allowl
 		res, _, err = api.GetIPAllowlist(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-ip-allowlist")
 
-		cmd.Println(cmdutil.FormatJSON(res, "ip_allowlist"))
+		fmt.Println(cmdutil.FormatJSON(res, "ip_allowlist"))
 	},
 }
 

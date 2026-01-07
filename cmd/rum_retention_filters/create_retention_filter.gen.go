@@ -1,6 +1,7 @@
 package rum_retention_filters
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/rum-retention-filters/#crea
 		res, _, err = api.CreateRetentionFilter(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to create-retention-filter")
 
-		cmd.Println(cmdutil.FormatJSON(res, "retention_filters"))
+		fmt.Println(cmdutil.FormatJSON(res, "retention_filters"))
 	},
 }
 

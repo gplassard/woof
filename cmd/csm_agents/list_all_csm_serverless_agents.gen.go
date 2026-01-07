@@ -1,6 +1,7 @@
 package csm_agents
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/csm-agents/#list-all-csm-se
 		res, _, err = api.ListAllCSMServerlessAgents(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-all-csm-serverless-agents")
 
-		cmd.Println(cmdutil.FormatJSON(res, "datadog_agent"))
+		fmt.Println(cmdutil.FormatJSON(res, "datadog_agent"))
 	},
 }
 

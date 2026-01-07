@@ -1,6 +1,7 @@
 package api_management
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/api-management/#create-open
 		res, _, err = api.CreateOpenAPI(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-open-api")
 
-		cmd.Println(cmdutil.FormatJSON(res, "api_management"))
+		fmt.Println(cmdutil.FormatJSON(res, "api_management"))
 	},
 }
 

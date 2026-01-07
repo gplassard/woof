@@ -1,6 +1,7 @@
 package service_accounts
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/service-accounts/#create-se
 		res, _, err = api.CreateServiceAccount(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-service-account")
 
-		cmd.Println(cmdutil.FormatJSON(res, "users"))
+		fmt.Println(cmdutil.FormatJSON(res, "users"))
 	},
 }
 

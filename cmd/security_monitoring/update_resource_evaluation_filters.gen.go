@@ -1,6 +1,7 @@
 package security_monitoring
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#update
 		res, _, err = api.UpdateResourceEvaluationFilters(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to update-resource-evaluation-filters")
 
-		cmd.Println(cmdutil.FormatJSON(res, "csm_resource_filter"))
+		fmt.Println(cmdutil.FormatJSON(res, "csm_resource_filter"))
 	},
 }
 

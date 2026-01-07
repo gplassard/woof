@@ -1,6 +1,7 @@
 package events
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/events/#list-events`,
 		res, _, err = api.ListEvents(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-events")
 
-		cmd.Println(cmdutil.FormatJSON(res, "event"))
+		fmt.Println(cmdutil.FormatJSON(res, "event"))
 	},
 }
 

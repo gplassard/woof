@@ -1,6 +1,7 @@
 package software_catalog
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/software-catalog/#upsert-ca
 		res, _, err = api.UpsertCatalogKind(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to upsert-catalog-kind")
 
-		cmd.Println(cmdutil.FormatJSON(res, "software_catalog"))
+		fmt.Println(cmdutil.FormatJSON(res, "software_catalog"))
 	},
 }
 

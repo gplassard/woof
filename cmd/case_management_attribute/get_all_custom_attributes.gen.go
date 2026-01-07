@@ -1,6 +1,7 @@
 package case_management_attribute
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/case-management-attribute/#
 		res, _, err = api.GetAllCustomAttributes(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-all-custom-attributes")
 
-		cmd.Println(cmdutil.FormatJSON(res, "custom_attribute"))
+		fmt.Println(cmdutil.FormatJSON(res, "custom_attribute"))
 	},
 }
 

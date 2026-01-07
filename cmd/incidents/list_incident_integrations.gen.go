@@ -1,6 +1,7 @@
 package incidents
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#list-incident-in
 		res, _, err = api.ListIncidentIntegrations(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-incident-integrations")
 
-		cmd.Println(cmdutil.FormatJSON(res, "incident_integrations"))
+		fmt.Println(cmdutil.FormatJSON(res, "incident_integrations"))
 	},
 }
 

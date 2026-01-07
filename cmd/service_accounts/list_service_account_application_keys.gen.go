@@ -1,6 +1,7 @@
 package service_accounts
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/service-accounts/#list-serv
 		res, _, err = api.ListServiceAccountApplicationKeys(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-service-account-application-keys")
 
-		cmd.Println(cmdutil.FormatJSON(res, "application_keys"))
+		fmt.Println(cmdutil.FormatJSON(res, "application_keys"))
 	},
 }
 

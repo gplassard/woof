@@ -1,6 +1,7 @@
 package dora_metrics
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/dora-metrics/#create-d-o-r-
 		res, _, err = api.CreateDORAIncident(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-d-o-r-ai-ncident")
 
-		cmd.Println(cmdutil.FormatJSON(res, "dora_failure"))
+		fmt.Println(cmdutil.FormatJSON(res, "dora_failure"))
 	},
 }
 

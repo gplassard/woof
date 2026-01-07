@@ -1,6 +1,7 @@
 package security_monitoring
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-su
 		res, _, err = api.GetSuppressionVersionHistory(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-suppression-version-history")
 
-		cmd.Println(cmdutil.FormatJSON(res, "suppression_version_history"))
+		fmt.Println(cmdutil.FormatJSON(res, "suppression_version_history"))
 	},
 }
 

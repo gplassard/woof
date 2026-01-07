@@ -1,6 +1,7 @@
 package container_images
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/container-images/#list-cont
 		res, _, err = api.ListContainerImages(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-container-images")
 
-		cmd.Println(cmdutil.FormatJSON(res, "container_images"))
+		fmt.Println(cmdutil.FormatJSON(res, "container_images"))
 	},
 }
 

@@ -1,6 +1,7 @@
 package domain_allowlist
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/domain-allowlist/#get-domai
 		res, _, err = api.GetDomainAllowlist(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-domain-allowlist")
 
-		cmd.Println(cmdutil.FormatJSON(res, "domain_allowlist"))
+		fmt.Println(cmdutil.FormatJSON(res, "domain_allowlist"))
 	},
 }
 

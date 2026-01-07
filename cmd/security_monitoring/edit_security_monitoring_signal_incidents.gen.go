@@ -1,6 +1,7 @@
 package security_monitoring
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#edit-s
 		res, _, err = api.EditSecurityMonitoringSignalIncidents(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to edit-security-monitoring-signal-incidents")
 
-		cmd.Println(cmdutil.FormatJSON(res, "signal_metadata"))
+		fmt.Println(cmdutil.FormatJSON(res, "signal_metadata"))
 	},
 }
 

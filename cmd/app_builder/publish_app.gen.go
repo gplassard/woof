@@ -1,6 +1,7 @@
 package app_builder
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -28,7 +29,7 @@ Documentation: https://docs.datadoghq.com/api/latest/app-builder/#publish-app`,
 		res, _, err = api.PublishApp(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
 		cmdutil.HandleError(err, "failed to publish-app")
 
-		cmd.Println(cmdutil.FormatJSON(res, "deployment"))
+		fmt.Println(cmdutil.FormatJSON(res, "deployment"))
 	},
 }
 

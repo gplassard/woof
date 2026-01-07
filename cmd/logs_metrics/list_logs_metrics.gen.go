@@ -1,6 +1,7 @@
 package logs_metrics
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/logs-metrics/#list-logs-met
 		res, _, err = api.ListLogsMetrics(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-logs-metrics")
 
-		cmd.Println(cmdutil.FormatJSON(res, "logs_metrics"))
+		fmt.Println(cmdutil.FormatJSON(res, "logs_metrics"))
 	},
 }
 

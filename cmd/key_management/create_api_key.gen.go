@@ -1,6 +1,7 @@
 package key_management
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/key-management/#create-api-
 		res, _, err = api.CreateAPIKey(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-api-key")
 
-		cmd.Println(cmdutil.FormatJSON(res, "api_keys"))
+		fmt.Println(cmdutil.FormatJSON(res, "api_keys"))
 	},
 }
 

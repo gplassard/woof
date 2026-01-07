@@ -1,6 +1,7 @@
 package incidents
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#get-incident-tod
 		res, _, err = api.GetIncidentTodo(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		cmdutil.HandleError(err, "failed to get-incident-todo")
 
-		cmd.Println(cmdutil.FormatJSON(res, "incident_todos"))
+		fmt.Println(cmdutil.FormatJSON(res, "incident_todos"))
 	},
 }
 

@@ -1,6 +1,7 @@
 package on_call
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#get-user-notificat
 		res, _, err = api.GetUserNotificationChannel(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		cmdutil.HandleError(err, "failed to get-user-notification-channel")
 
-		cmd.Println(cmdutil.FormatJSON(res, "notification_channels"))
+		fmt.Println(cmdutil.FormatJSON(res, "notification_channels"))
 	},
 }
 

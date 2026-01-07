@@ -1,6 +1,7 @@
 package network_device_monitoring
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/network-device-monitoring/#
 		res, _, err = api.ListDevices(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-devices")
 
-		cmd.Println(cmdutil.FormatJSON(res, "network_device_monitoring"))
+		fmt.Println(cmdutil.FormatJSON(res, "network_device_monitoring"))
 	},
 }
 

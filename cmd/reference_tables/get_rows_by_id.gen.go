@@ -1,6 +1,7 @@
 package reference_tables
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -28,7 +29,7 @@ Documentation: https://docs.datadoghq.com/api/latest/reference-tables/#get-rows-
 		res, _, err = api.GetRowsByID(client.NewContext(apiKey, appKey, site), args[0], strings.Split(args[1], ", "))
 		cmdutil.HandleError(err, "failed to get-rows-by-id")
 
-		cmd.Println(cmdutil.FormatJSON(res, "row"))
+		fmt.Println(cmdutil.FormatJSON(res, "row"))
 	},
 }
 

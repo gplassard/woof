@@ -1,6 +1,7 @@
 package authn_mappings
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/authn-mappings/#create-auth
 		res, _, err = api.CreateAuthNMapping(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-auth-n-mapping")
 
-		cmd.Println(cmdutil.FormatJSON(res, "authn_mappings"))
+		fmt.Println(cmdutil.FormatJSON(res, "authn_mappings"))
 	},
 }
 

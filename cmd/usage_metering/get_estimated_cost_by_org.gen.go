@@ -1,6 +1,7 @@
 package usage_metering
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/usage-metering/#get-estimat
 		res, _, err = api.GetEstimatedCostByOrg(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-estimated-cost-by-org")
 
-		cmd.Println(cmdutil.FormatJSON(res, "cost_by_org"))
+		fmt.Println(cmdutil.FormatJSON(res, "cost_by_org"))
 	},
 }
 

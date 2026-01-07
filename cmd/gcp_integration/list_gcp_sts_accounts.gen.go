@@ -1,6 +1,7 @@
 package gcp_integration
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/gcp-integration/#list-gcp-s
 		res, _, err = api.ListGCPSTSAccounts(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-gcp-sts-accounts")
 
-		cmd.Println(cmdutil.FormatJSON(res, "gcp_service_account"))
+		fmt.Println(cmdutil.FormatJSON(res, "gcp_service_account"))
 	},
 }
 

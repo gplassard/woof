@@ -1,6 +1,7 @@
 package aws_integration
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#create-new
 		res, _, err = api.CreateNewAWSExternalID(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to create-new-aws-external-id")
 
-		cmd.Println(cmdutil.FormatJSON(res, "external_id"))
+		fmt.Println(cmdutil.FormatJSON(res, "external_id"))
 	},
 }
 

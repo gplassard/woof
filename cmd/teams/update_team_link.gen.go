@@ -1,6 +1,7 @@
 package teams
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/teams/#update-team-link`,
 		res, _, err = api.UpdateTeamLink(client.NewContext(apiKey, appKey, site), args[0], args[1], body)
 		cmdutil.HandleError(err, "failed to update-team-link")
 
-		cmd.Println(cmdutil.FormatJSON(res, "team_links"))
+		fmt.Println(cmdutil.FormatJSON(res, "team_links"))
 	},
 }
 

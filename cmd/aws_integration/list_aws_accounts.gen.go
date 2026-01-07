@@ -1,6 +1,7 @@
 package aws_integration
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#list-aws-a
 		res, _, err = api.ListAWSAccounts(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-aws-accounts")
 
-		cmd.Println(cmdutil.FormatJSON(res, "account"))
+		fmt.Println(cmdutil.FormatJSON(res, "account"))
 	},
 }
 

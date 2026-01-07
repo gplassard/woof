@@ -1,6 +1,7 @@
 package users
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/users/#send-invitations`,
 		res, _, err = api.SendInvitations(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to send-invitations")
 
-		cmd.Println(cmdutil.FormatJSON(res, "user_invitations"))
+		fmt.Println(cmdutil.FormatJSON(res, "user_invitations"))
 	},
 }
 

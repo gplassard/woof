@@ -1,6 +1,7 @@
 package audit
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/audit/#list-audit-logs`,
 		res, _, err = api.ListAuditLogs(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-audit-logs")
 
-		cmd.Println(cmdutil.FormatJSON(res, "audit"))
+		fmt.Println(cmdutil.FormatJSON(res, "audit"))
 	},
 }
 

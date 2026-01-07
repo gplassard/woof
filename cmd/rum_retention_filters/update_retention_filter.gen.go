@@ -1,6 +1,7 @@
 package rum_retention_filters
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/rum-retention-filters/#upda
 		res, _, err = api.UpdateRetentionFilter(client.NewContext(apiKey, appKey, site), args[0], args[1], body)
 		cmdutil.HandleError(err, "failed to update-retention-filter")
 
-		cmd.Println(cmdutil.FormatJSON(res, "retention_filters"))
+		fmt.Println(cmdutil.FormatJSON(res, "retention_filters"))
 	},
 }
 

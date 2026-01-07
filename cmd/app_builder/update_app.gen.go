@@ -1,6 +1,7 @@
 package app_builder
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -32,7 +33,7 @@ Documentation: https://docs.datadoghq.com/api/latest/app-builder/#update-app`,
 		res, _, err = api.UpdateApp(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]), body)
 		cmdutil.HandleError(err, "failed to update-app")
 
-		cmd.Println(cmdutil.FormatJSON(res, "appDefinitions"))
+		fmt.Println(cmdutil.FormatJSON(res, "appDefinitions"))
 	},
 }
 

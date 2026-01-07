@@ -1,6 +1,7 @@
 package powerpack
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/powerpack/#update-powerpack
 		res, _, err = api.UpdatePowerpack(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-powerpack")
 
-		cmd.Println(cmdutil.FormatJSON(res, "powerpack"))
+		fmt.Println(cmdutil.FormatJSON(res, "powerpack"))
 	},
 }
 

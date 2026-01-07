@@ -1,6 +1,7 @@
 package security_monitoring
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-su
 		res, _, err = api.GetSuppressionsAffectingFutureRule(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to get-suppressions-affecting-future-rule")
 
-		cmd.Println(cmdutil.FormatJSON(res, "suppressions"))
+		fmt.Println(cmdutil.FormatJSON(res, "suppressions"))
 	},
 }
 

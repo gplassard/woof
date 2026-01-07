@@ -1,6 +1,7 @@
 package aws_integration
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#list-aws-n
 		res, _, err = api.ListAWSNamespaces(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-aws-namespaces")
 
-		cmd.Println(cmdutil.FormatJSON(res, "namespaces"))
+		fmt.Println(cmdutil.FormatJSON(res, "namespaces"))
 	},
 }
 

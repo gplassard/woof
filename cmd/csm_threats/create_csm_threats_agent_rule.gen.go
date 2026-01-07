@@ -1,6 +1,7 @@
 package csm_threats
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/csm-threats/#create-csm-thr
 		res, _, err = api.CreateCSMThreatsAgentRule(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-csm-threats-agent-rule")
 
-		cmd.Println(cmdutil.FormatJSON(res, "agent_rule"))
+		fmt.Println(cmdutil.FormatJSON(res, "agent_rule"))
 	},
 }
 

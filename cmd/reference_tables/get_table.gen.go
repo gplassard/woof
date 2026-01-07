@@ -1,6 +1,7 @@
 package reference_tables
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/reference-tables/#get-table
 		res, _, err = api.GetTable(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-table")
 
-		cmd.Println(cmdutil.FormatJSON(res, "reference_table"))
+		fmt.Println(cmdutil.FormatJSON(res, "reference_table"))
 	},
 }
 

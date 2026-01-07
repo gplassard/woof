@@ -1,6 +1,7 @@
 package incidents
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#list-incident-no
 		res, _, err = api.ListIncidentNotificationTemplates(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-incident-notification-templates")
 
-		cmd.Println(cmdutil.FormatJSON(res, "notification_templates"))
+		fmt.Println(cmdutil.FormatJSON(res, "notification_templates"))
 	},
 }
 

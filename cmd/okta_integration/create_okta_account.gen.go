@@ -1,6 +1,7 @@
 package okta_integration
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/okta-integration/#create-ok
 		res, _, err = api.CreateOktaAccount(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-okta-account")
 
-		cmd.Println(cmdutil.FormatJSON(res, "okta-accounts"))
+		fmt.Println(cmdutil.FormatJSON(res, "okta-accounts"))
 	},
 }
 

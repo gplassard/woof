@@ -1,6 +1,7 @@
 package monitors
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/monitors/#get-monitor-notif
 		res, _, err = api.GetMonitorNotificationRules(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-monitor-notification-rules")
 
-		cmd.Println(cmdutil.FormatJSON(res, "monitor-notification-rule"))
+		fmt.Println(cmdutil.FormatJSON(res, "monitor-notification-rule"))
 	},
 }
 

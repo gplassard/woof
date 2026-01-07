@@ -1,6 +1,7 @@
 package error_tracking
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/error-tracking/#get-issue`,
 		res, _, err = api.GetIssue(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-issue")
 
-		cmd.Println(cmdutil.FormatJSON(res, "issue"))
+		fmt.Println(cmdutil.FormatJSON(res, "issue"))
 	},
 }
 

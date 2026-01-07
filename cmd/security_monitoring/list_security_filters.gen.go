@@ -1,6 +1,7 @@
 package security_monitoring
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -27,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#list-s
 		res, _, err = api.ListSecurityFilters(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-security-filters")
 
-		cmd.Println(cmdutil.FormatJSON(res, "security_filters"))
+		fmt.Println(cmdutil.FormatJSON(res, "security_filters"))
 	},
 }
 

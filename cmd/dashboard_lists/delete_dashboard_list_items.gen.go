@@ -1,6 +1,7 @@
 package dashboard_lists
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -32,7 +33,7 @@ Documentation: https://docs.datadoghq.com/api/latest/dashboard-lists/#delete-das
 		res, _, err = api.DeleteDashboardListItems(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }(), body)
 		cmdutil.HandleError(err, "failed to delete-dashboard-list-items")
 
-		cmd.Println(cmdutil.FormatJSON(res, "dashboard_lists"))
+		fmt.Println(cmdutil.FormatJSON(res, "dashboard_lists"))
 	},
 }
 

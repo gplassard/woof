@@ -1,6 +1,7 @@
 package on_call
 
 import (
+	"fmt"
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"
@@ -31,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#update-on-call-sch
 		res, _, err = api.UpdateOnCallSchedule(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-on-call-schedule")
 
-		cmd.Println(cmdutil.FormatJSON(res, "schedules"))
+		fmt.Println(cmdutil.FormatJSON(res, "schedules"))
 	},
 }
 
