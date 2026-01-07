@@ -22,9 +22,16 @@ Documentation: https://docs.datadoghq.com/api/latest/incident-teams/#get-inciden
 		var res datadogV2.IncidentTeamResponse
 		var err error
 
+		optionalParams := datadogV2.NewGetIncidentTeamOptionalParameters()
+
+		if cmd.Flags().Changed("include") {
+			val, _ := cmd.Flags().GetString("include")
+			optionalParams.WithInclude(val)
+		}
+
 		api := datadogV2.NewIncidentTeamsApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.GetIncidentTeam(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.GetIncidentTeam(client.NewContext(apiKey, appKey, site), args[0], *optionalParams)
 		cmdutil.HandleError(err, "failed to get-incident-team")
 
 		cmd.Println(cmdutil.FormatJSON(res, "teams"))
@@ -32,6 +39,8 @@ Documentation: https://docs.datadoghq.com/api/latest/incident-teams/#get-inciden
 }
 
 func init() {
+
+	GetIncidentTeamCmd.Flags().String("include", "", "Specifies which types of related objects should be included in the response.")
 
 	Cmd.AddCommand(GetIncidentTeamCmd)
 }

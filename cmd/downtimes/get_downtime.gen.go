@@ -22,9 +22,16 @@ Documentation: https://docs.datadoghq.com/api/latest/downtimes/#get-downtime`,
 		var res datadogV2.DowntimeResponse
 		var err error
 
+		optionalParams := datadogV2.NewGetDowntimeOptionalParameters()
+
+		if cmd.Flags().Changed("include") {
+			val, _ := cmd.Flags().GetString("include")
+			optionalParams.WithInclude(val)
+		}
+
 		api := datadogV2.NewDowntimesApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.GetDowntime(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.GetDowntime(client.NewContext(apiKey, appKey, site), args[0], *optionalParams)
 		cmdutil.HandleError(err, "failed to get-downtime")
 
 		cmd.Println(cmdutil.FormatJSON(res, "downtime"))
@@ -32,6 +39,8 @@ Documentation: https://docs.datadoghq.com/api/latest/downtimes/#get-downtime`,
 }
 
 func init() {
+
+	GetDowntimeCmd.Flags().String("include", "", "Comma-separated list of resource paths for related resources to include in the response. Supported resource paths are 'created_by' and 'monitor'.")
 
 	Cmd.AddCommand(GetDowntimeCmd)
 }

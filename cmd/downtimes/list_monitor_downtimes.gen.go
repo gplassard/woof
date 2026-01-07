@@ -23,9 +23,21 @@ Documentation: https://docs.datadoghq.com/api/latest/downtimes/#list-monitor-dow
 		var res datadogV2.MonitorDowntimeMatchResponse
 		var err error
 
+		optionalParams := datadogV2.NewListMonitorDowntimesOptionalParameters()
+
+		if cmd.Flags().Changed("page-offset") {
+			val, _ := cmd.Flags().GetInt64("page-offset")
+			optionalParams.WithPageOffset(val)
+		}
+
+		if cmd.Flags().Changed("page-limit") {
+			val, _ := cmd.Flags().GetInt64("page-limit")
+			optionalParams.WithPageLimit(val)
+		}
+
 		api := datadogV2.NewDowntimesApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.ListMonitorDowntimes(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }())
+		res, _, err = api.ListMonitorDowntimes(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }(), *optionalParams)
 		cmdutil.HandleError(err, "failed to list-monitor-downtimes")
 
 		cmd.Println(cmdutil.FormatJSON(res, "downtime_match"))
@@ -33,6 +45,10 @@ Documentation: https://docs.datadoghq.com/api/latest/downtimes/#list-monitor-dow
 }
 
 func init() {
+
+	ListMonitorDowntimesCmd.Flags().Int64("page-offset", 0, "Specific offset to use as the beginning of the returned page.")
+
+	ListMonitorDowntimesCmd.Flags().Int64("page-limit", 0, "Maximum number of downtimes in the response.")
 
 	Cmd.AddCommand(ListMonitorDowntimesCmd)
 }

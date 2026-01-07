@@ -22,9 +22,16 @@ Documentation: https://docs.datadoghq.com/api/latest/error-tracking/#get-issue`,
 		var res datadogV2.IssueResponse
 		var err error
 
+		optionalParams := datadogV2.NewGetIssueOptionalParameters()
+
+		if cmd.Flags().Changed("include") {
+			val, _ := cmd.Flags().GetString("include")
+			optionalParams.WithInclude(val)
+		}
+
 		api := datadogV2.NewErrorTrackingApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.GetIssue(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.GetIssue(client.NewContext(apiKey, appKey, site), args[0], *optionalParams)
 		cmdutil.HandleError(err, "failed to get-issue")
 
 		cmd.Println(cmdutil.FormatJSON(res, "issue"))
@@ -32,6 +39,8 @@ Documentation: https://docs.datadoghq.com/api/latest/error-tracking/#get-issue`,
 }
 
 func init() {
+
+	GetIssueCmd.Flags().String("include", "", "Comma-separated list of relationship objects that should be included in the response. Possible values are 'assignee', 'case', and 'team_owners'.")
 
 	Cmd.AddCommand(GetIssueCmd)
 }

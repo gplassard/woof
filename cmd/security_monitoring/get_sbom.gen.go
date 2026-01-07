@@ -22,9 +22,21 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-sb
 		var res datadogV2.GetSBOMResponse
 		var err error
 
+		optionalParams := datadogV2.NewGetSBOMOptionalParameters()
+
+		if cmd.Flags().Changed("filter-repo-digest") {
+			val, _ := cmd.Flags().GetString("filter-repo-digest")
+			optionalParams.WithFilterRepoDigest(val)
+		}
+
+		if cmd.Flags().Changed("ext:format") {
+			val, _ := cmd.Flags().GetString("ext:format")
+			optionalParams.WithExtFormat(val)
+		}
+
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.GetSBOM(client.NewContext(apiKey, appKey, site), datadogV2.AssetType(args[0]), args[1])
+		res, _, err = api.GetSBOM(client.NewContext(apiKey, appKey, site), datadogV2.AssetType(args[0]), args[1], *optionalParams)
 		cmdutil.HandleError(err, "failed to get-sbom")
 
 		cmd.Println(cmdutil.FormatJSON(res, "sboms"))
@@ -32,6 +44,10 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-sb
 }
 
 func init() {
+
+	GetSBOMCmd.Flags().String("filter-repo-digest", "", "The container image 'repo_digest' for the SBOM request. When the requested asset type is 'Image', this filter is mandatory.")
+
+	GetSBOMCmd.Flags().String("ext:format", "", "The standard of the SBOM.")
 
 	Cmd.AddCommand(GetSBOMCmd)
 }

@@ -22,9 +22,16 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#list-incident-ty
 		var res datadogV2.IncidentTypeListResponse
 		var err error
 
+		optionalParams := datadogV2.NewListIncidentTypesOptionalParameters()
+
+		if cmd.Flags().Changed("include-deleted") {
+			val, _ := cmd.Flags().GetString("include-deleted")
+			optionalParams.WithIncludeDeleted(val)
+		}
+
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.ListIncidentTypes(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListIncidentTypes(client.NewContext(apiKey, appKey, site), *optionalParams)
 		cmdutil.HandleError(err, "failed to list-incident-types")
 
 		cmd.Println(cmdutil.FormatJSON(res, "incident_types"))
@@ -32,6 +39,8 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#list-incident-ty
 }
 
 func init() {
+
+	ListIncidentTypesCmd.Flags().String("include-deleted", "", "Include deleted incident types in the response.")
 
 	Cmd.AddCommand(ListIncidentTypesCmd)
 }

@@ -22,9 +22,26 @@ Documentation: https://docs.datadoghq.com/api/latest/service-definition/#list-se
 		var res datadogV2.ServiceDefinitionsListResponse
 		var err error
 
+		optionalParams := datadogV2.NewListServiceDefinitionsOptionalParameters()
+
+		if cmd.Flags().Changed("page-size") {
+			val, _ := cmd.Flags().GetInt64("page-size")
+			optionalParams.WithPageSize(val)
+		}
+
+		if cmd.Flags().Changed("page-number") {
+			val, _ := cmd.Flags().GetInt64("page-number")
+			optionalParams.WithPageNumber(val)
+		}
+
+		if cmd.Flags().Changed("schema-version") {
+			val, _ := cmd.Flags().GetString("schema-version")
+			optionalParams.WithSchemaVersion(val)
+		}
+
 		api := datadogV2.NewServiceDefinitionApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.ListServiceDefinitions(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListServiceDefinitions(client.NewContext(apiKey, appKey, site), *optionalParams)
 		cmdutil.HandleError(err, "failed to list-service-definitions")
 
 		cmd.Println(cmdutil.FormatJSON(res, "service_definition"))
@@ -32,6 +49,12 @@ Documentation: https://docs.datadoghq.com/api/latest/service-definition/#list-se
 }
 
 func init() {
+
+	ListServiceDefinitionsCmd.Flags().Int64("page-size", 0, "Size for a given page. The maximum allowed value is 100.")
+
+	ListServiceDefinitionsCmd.Flags().Int64("page-number", 0, "Specific page number to return.")
+
+	ListServiceDefinitionsCmd.Flags().String("schema-version", "", "The schema version desired in the response.")
 
 	Cmd.AddCommand(ListServiceDefinitionsCmd)
 }

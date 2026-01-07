@@ -22,9 +22,16 @@ Documentation: https://docs.datadoghq.com/api/latest/metrics/#list-active-metric
 		var res datadogV2.MetricSuggestedTagsAndAggregationsResponse
 		var err error
 
+		optionalParams := datadogV2.NewListActiveMetricConfigurationsOptionalParameters()
+
+		if cmd.Flags().Changed("window-seconds") {
+			val, _ := cmd.Flags().GetInt64("window-seconds")
+			optionalParams.WithWindowSeconds(val)
+		}
+
 		api := datadogV2.NewMetricsApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.ListActiveMetricConfigurations(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.ListActiveMetricConfigurations(client.NewContext(apiKey, appKey, site), args[0], *optionalParams)
 		cmdutil.HandleError(err, "failed to list-active-metric-configurations")
 
 		cmd.Println(cmdutil.FormatJSON(res, "actively_queried_configurations"))
@@ -32,6 +39,8 @@ Documentation: https://docs.datadoghq.com/api/latest/metrics/#list-active-metric
 }
 
 func init() {
+
+	ListActiveMetricConfigurationsCmd.Flags().Int64("window-seconds", 0, "The number of seconds of look back (from now). Default value is 604,800 (1 week), minimum value is 7200 (2 hours), maximum value is 2,630,000 (1 month).")
 
 	Cmd.AddCommand(ListActiveMetricConfigurationsCmd)
 }

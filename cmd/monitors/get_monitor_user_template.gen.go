@@ -22,9 +22,16 @@ Documentation: https://docs.datadoghq.com/api/latest/monitors/#get-monitor-user-
 		var res datadogV2.MonitorUserTemplateResponse
 		var err error
 
+		optionalParams := datadogV2.NewGetMonitorUserTemplateOptionalParameters()
+
+		if cmd.Flags().Changed("with-all-versions") {
+			val, _ := cmd.Flags().GetString("with-all-versions")
+			optionalParams.WithWithAllVersions(val)
+		}
+
 		api := datadogV2.NewMonitorsApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.GetMonitorUserTemplate(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.GetMonitorUserTemplate(client.NewContext(apiKey, appKey, site), args[0], *optionalParams)
 		cmdutil.HandleError(err, "failed to get-monitor-user-template")
 
 		cmd.Println(cmdutil.FormatJSON(res, "monitor-user-template"))
@@ -32,6 +39,8 @@ Documentation: https://docs.datadoghq.com/api/latest/monitors/#get-monitor-user-
 }
 
 func init() {
+
+	GetMonitorUserTemplateCmd.Flags().String("with-all-versions", "", "Whether to include all versions of the template in the response in the versions field.")
 
 	Cmd.AddCommand(GetMonitorUserTemplateCmd)
 }

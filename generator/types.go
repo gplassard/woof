@@ -1,10 +1,9 @@
 package main
 
 type Config struct {
-	SkipOperations               []string            `yaml:"skip_operations"`
-	OptionalParametersOperations map[string]string   `yaml:"optional_parameters_operations"`
-	BundleAliases                map[string][]string `yaml:"bundle_aliases"`
-	Acronyms                     []string            `yaml:"acronyms"`
+	SkipOperations []string            `yaml:"skip_operations"`
+	BundleAliases  map[string][]string `yaml:"bundle_aliases"`
+	Acronyms       []string            `yaml:"acronyms"`
 }
 
 type OpenAPI struct {

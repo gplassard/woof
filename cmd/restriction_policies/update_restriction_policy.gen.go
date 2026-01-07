@@ -22,13 +22,21 @@ Documentation: https://docs.datadoghq.com/api/latest/restriction-policies/#updat
 		var res datadogV2.RestrictionPolicyResponse
 		var err error
 
-		var body datadogV2.RestrictionPolicyUpdateRequest
-		err = cmdutil.UnmarshalPayload(cmd, &body)
-		cmdutil.HandleError(err, "failed to read payload")
+		optionalParams := datadogV2.NewUpdateRestrictionPolicyOptionalParameters()
+
+		if cmd.Flags().Changed("payload") || cmd.Flags().Changed("payload-file") {
+			err = cmdutil.UnmarshalPayload(cmd, optionalParams)
+			cmdutil.HandleError(err, "failed to read payload")
+		}
+
+		if cmd.Flags().Changed("allow-self-lockout") {
+			val, _ := cmd.Flags().GetString("allow-self-lockout")
+			optionalParams.WithAllowSelfLockout(val)
+		}
 
 		api := datadogV2.NewRestrictionPoliciesApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.UpdateRestrictionPolicy(client.NewContext(apiKey, appKey, site), args[0], body)
+		res, _, err = api.UpdateRestrictionPolicy(client.NewContext(apiKey, appKey, site), args[0], *optionalParams)
 		cmdutil.HandleError(err, "failed to update-restriction-policy")
 
 		cmd.Println(cmdutil.FormatJSON(res, "restriction_policy"))
@@ -39,6 +47,8 @@ func init() {
 
 	UpdateRestrictionPolicyCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
 	UpdateRestrictionPolicyCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
+	UpdateRestrictionPolicyCmd.Flags().String("allow-self-lockout", "", "Allows admins (users with the 'user_access_manage' permission) to remove their own access from the resource if set to 'true'. By default, this is set to 'false', preventing admins from locking themselves out.")
 
 	Cmd.AddCommand(UpdateRestrictionPolicyCmd)
 }

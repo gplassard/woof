@@ -22,9 +22,36 @@ Documentation: https://docs.datadoghq.com/api/latest/data-deletion/#get-data-del
 		var res datadogV2.GetDataDeletionsResponseBody
 		var err error
 
+		optionalParams := datadogV2.NewGetDataDeletionRequestsOptionalParameters()
+
+		if cmd.Flags().Changed("next-page") {
+			val, _ := cmd.Flags().GetString("next-page")
+			optionalParams.WithNextPage(val)
+		}
+
+		if cmd.Flags().Changed("product") {
+			val, _ := cmd.Flags().GetString("product")
+			optionalParams.WithProduct(val)
+		}
+
+		if cmd.Flags().Changed("query") {
+			val, _ := cmd.Flags().GetString("query")
+			optionalParams.WithQuery(val)
+		}
+
+		if cmd.Flags().Changed("status") {
+			val, _ := cmd.Flags().GetString("status")
+			optionalParams.WithStatus(val)
+		}
+
+		if cmd.Flags().Changed("page-size") {
+			val, _ := cmd.Flags().GetInt64("page-size")
+			optionalParams.WithPageSize(val)
+		}
+
 		api := datadogV2.NewDataDeletionApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.GetDataDeletionRequests(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.GetDataDeletionRequests(client.NewContext(apiKey, appKey, site), *optionalParams)
 		cmdutil.HandleError(err, "failed to get-data-deletion-requests")
 
 		cmd.Println(cmdutil.FormatJSON(res, "data_deletion"))
@@ -32,6 +59,16 @@ Documentation: https://docs.datadoghq.com/api/latest/data-deletion/#get-data-del
 }
 
 func init() {
+
+	GetDataDeletionRequestsCmd.Flags().String("next-page", "", "The next page of the previous search. If the next_page parameter is included, the rest of the query elements are ignored.")
+
+	GetDataDeletionRequestsCmd.Flags().String("product", "", "Retrieve only the requests related to the given product.")
+
+	GetDataDeletionRequestsCmd.Flags().String("query", "", "Retrieve only the requests that matches the given query.")
+
+	GetDataDeletionRequestsCmd.Flags().String("status", "", "Retrieve only the requests with the given status.")
+
+	GetDataDeletionRequestsCmd.Flags().Int64("page-size", 0, "Sets the page size of the search.")
 
 	Cmd.AddCommand(GetDataDeletionRequestsCmd)
 }

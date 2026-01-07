@@ -22,9 +22,16 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#get-incident`,
 		var res datadogV2.IncidentResponse
 		var err error
 
+		optionalParams := datadogV2.NewGetIncidentOptionalParameters()
+
+		if cmd.Flags().Changed("include") {
+			val, _ := cmd.Flags().GetString("include")
+			optionalParams.WithInclude(val)
+		}
+
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.GetIncident(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.GetIncident(client.NewContext(apiKey, appKey, site), args[0], *optionalParams)
 		cmdutil.HandleError(err, "failed to get-incident")
 
 		cmd.Println(cmdutil.FormatJSON(res, "incidents"))
@@ -32,6 +39,8 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#get-incident`,
 }
 
 func init() {
+
+	GetIncidentCmd.Flags().String("include", "", "Specifies which types of related objects should be included in the response.")
 
 	Cmd.AddCommand(GetIncidentCmd)
 }

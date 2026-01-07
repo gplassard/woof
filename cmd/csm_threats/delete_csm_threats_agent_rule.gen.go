@@ -22,15 +22,24 @@ Documentation: https://docs.datadoghq.com/api/latest/csm-threats/#delete-csm-thr
 
 		var err error
 
+		optionalParams := datadogV2.NewDeleteCSMThreatsAgentRuleOptionalParameters()
+
+		if cmd.Flags().Changed("policy-id") {
+			val, _ := cmd.Flags().GetString("policy-id")
+			optionalParams.WithPolicyId(val)
+		}
+
 		api := datadogV2.NewCSMThreatsApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		_, err = api.DeleteCSMThreatsAgentRule(client.NewContext(apiKey, appKey, site), args[0])
+		_, err = api.DeleteCSMThreatsAgentRule(client.NewContext(apiKey, appKey, site), args[0], *optionalParams)
 		cmdutil.HandleError(err, "failed to delete-csm-threats-agent-rule")
 
 	},
 }
 
 func init() {
+
+	DeleteCSMThreatsAgentRuleCmd.Flags().String("policy-id", "", "The ID of the Agent policy")
 
 	Cmd.AddCommand(DeleteCSMThreatsAgentRuleCmd)
 }

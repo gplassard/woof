@@ -22,9 +22,21 @@ Documentation: https://docs.datadoghq.com/api/latest/observability-pipelines/#li
 		var res datadogV2.ListPipelinesResponse
 		var err error
 
+		optionalParams := datadogV2.NewListPipelinesOptionalParameters()
+
+		if cmd.Flags().Changed("page-size") {
+			val, _ := cmd.Flags().GetInt64("page-size")
+			optionalParams.WithPageSize(val)
+		}
+
+		if cmd.Flags().Changed("page-number") {
+			val, _ := cmd.Flags().GetInt64("page-number")
+			optionalParams.WithPageNumber(val)
+		}
+
 		api := datadogV2.NewObservabilityPipelinesApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.ListPipelines(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListPipelines(client.NewContext(apiKey, appKey, site), *optionalParams)
 		cmdutil.HandleError(err, "failed to list-pipelines")
 
 		cmd.Println(cmdutil.FormatJSON(res, "observability_pipelines"))
@@ -32,6 +44,10 @@ Documentation: https://docs.datadoghq.com/api/latest/observability-pipelines/#li
 }
 
 func init() {
+
+	ListPipelinesCmd.Flags().Int64("page-size", 0, "Size for a given page. The maximum allowed value is 100.")
+
+	ListPipelinesCmd.Flags().Int64("page-number", 0, "Specific page number to return.")
 
 	Cmd.AddCommand(ListPipelinesCmd)
 }

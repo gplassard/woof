@@ -22,9 +22,16 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#get-on-call-team-r
 		var res datadogV2.TeamRoutingRules
 		var err error
 
+		optionalParams := datadogV2.NewGetOnCallTeamRoutingRulesOptionalParameters()
+
+		if cmd.Flags().Changed("include") {
+			val, _ := cmd.Flags().GetString("include")
+			optionalParams.WithInclude(val)
+		}
+
 		api := datadogV2.NewOnCallApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.GetOnCallTeamRoutingRules(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.GetOnCallTeamRoutingRules(client.NewContext(apiKey, appKey, site), args[0], *optionalParams)
 		cmdutil.HandleError(err, "failed to get-on-call-team-routing-rules")
 
 		cmd.Println(cmdutil.FormatJSON(res, "team_routing_rules"))
@@ -32,6 +39,8 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#get-on-call-team-r
 }
 
 func init() {
+
+	GetOnCallTeamRoutingRulesCmd.Flags().String("include", "", "Comma-separated list of included relationships to be returned. Allowed values: 'rules', 'rules.policy'.")
 
 	Cmd.AddCommand(GetOnCallTeamRoutingRulesCmd)
 }

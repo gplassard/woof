@@ -22,9 +22,31 @@ Documentation: https://docs.datadoghq.com/api/latest/roles/#list-role-users`,
 		var res datadogV2.UsersResponse
 		var err error
 
+		optionalParams := datadogV2.NewListRoleUsersOptionalParameters()
+
+		if cmd.Flags().Changed("page-size") {
+			val, _ := cmd.Flags().GetInt64("page-size")
+			optionalParams.WithPageSize(val)
+		}
+
+		if cmd.Flags().Changed("page-number") {
+			val, _ := cmd.Flags().GetInt64("page-number")
+			optionalParams.WithPageNumber(val)
+		}
+
+		if cmd.Flags().Changed("sort") {
+			val, _ := cmd.Flags().GetString("sort")
+			optionalParams.WithSort(val)
+		}
+
+		if cmd.Flags().Changed("filter") {
+			val, _ := cmd.Flags().GetString("filter")
+			optionalParams.WithFilter(val)
+		}
+
 		api := datadogV2.NewRolesApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.ListRoleUsers(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.ListRoleUsers(client.NewContext(apiKey, appKey, site), args[0], *optionalParams)
 		cmdutil.HandleError(err, "failed to list-role-users")
 
 		cmd.Println(cmdutil.FormatJSON(res, "users"))
@@ -32,6 +54,14 @@ Documentation: https://docs.datadoghq.com/api/latest/roles/#list-role-users`,
 }
 
 func init() {
+
+	ListRoleUsersCmd.Flags().Int64("page-size", 0, "Size for a given page. The maximum allowed value is 100.")
+
+	ListRoleUsersCmd.Flags().Int64("page-number", 0, "Specific page number to return.")
+
+	ListRoleUsersCmd.Flags().String("sort", "", "User attribute to order results by. Sort order is **ascending** by default. Sort order is **descending** if the field is prefixed by a negative sign, for example 'sort=-name'. Options: 'name', 'email', 'status'.")
+
+	ListRoleUsersCmd.Flags().String("filter", "", "Filter all users by the given string. Defaults to no filtering.")
 
 	Cmd.AddCommand(ListRoleUsersCmd)
 }

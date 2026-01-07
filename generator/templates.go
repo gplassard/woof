@@ -126,6 +126,14 @@ func resolveSchema(spec *OpenAPI, schema map[string]interface{}) map[string]inte
 	return schema
 }
 
+func sanitize(s string) string {
+	s = strings.ReplaceAll(s, "\n", " ")
+	s = strings.ReplaceAll(s, "\r", " ")
+	s = strings.ReplaceAll(s, "\"", "\\\"")
+	s = strings.ReplaceAll(s, "`", "'")
+	return s
+}
+
 func prepareTemplateData(bundle, rawBundle, apiBundleName, method, path string, op Operation, spec *OpenAPI, config *Config) TemplateData {
 	var args []string
 	var argTypes []string
@@ -212,7 +220,7 @@ func prepareTemplateData(bundle, rawBundle, apiBundleName, method, path string, 
 	for _, param := range op.Parameters {
 		name := param.Name
 		in := param.In
-		description := param.Description
+		description := sanitize(param.Description)
 		required := param.Required
 		schema := param.Schema
 
@@ -221,7 +229,7 @@ func prepareTemplateData(bundle, rawBundle, apiBundleName, method, path string, 
 			if p, ok := spec.Components.Parameters[refName]; ok {
 				name = p.Name
 				in = p.In
-				description = p.Description
+				description = sanitize(p.Description)
 				required = p.Required
 				schema = p.Schema
 			}
@@ -233,8 +241,12 @@ func prepareTemplateData(bundle, rawBundle, apiBundleName, method, path string, 
 			flagName = strings.ReplaceAll(flagName, "_", "-")
 			flagName = strings.ToLower(flagName)
 
-			goName := strings.ReplaceAll(name, "[", " ")
-			goName = strings.ReplaceAll(goName, "]", " ")
+			goName := strings.Map(func(r rune) rune {
+				if (r >= 'a' && r <= 'z') || (r >= 'A' && r <= 'Z') || (r >= '0' && r <= '9') {
+					return r
+				}
+				return ' '
+			}, name)
 			//nolint:staticcheck // SA1019: strings.Title is deprecated, but we want to keep it simple
 			goName = strings.Title(goName)
 			goName = strings.ReplaceAll(goName, " ", "")
@@ -294,22 +306,38 @@ func prepareTemplateData(bundle, rawBundle, apiBundleName, method, path string, 
 
 	hasRequestBody := op.RequestBody != nil
 	requestBodyType := ""
-	isOptionalParams := false
-	if optType, ok := config.OptionalParametersOperations[op.OperationID]; ok {
+	isOptionalParams := len(optionalFlags) > 0
+	if hasRequestBody && !op.RequestBody.Required {
 		isOptionalParams = true
-		requestBodyType = optType
 	}
 	if hasRequestBody {
-		if requestBodyType == "" {
+		for contentType := range op.RequestBody.Content {
+			if contentType == "multipart/form-data" {
+				isOptionalParams = true
+				break
+			}
+		}
+	}
+
+	if isOptionalParams {
+		requestBodyType = op.OperationID + "OptionalParameters"
+	}
+
+	if hasRequestBody {
+		if requestBodyType == "" || isOptionalParams {
+			actualRequestBodyType := ""
 			for _, content := range op.RequestBody.Content {
 				if content.Schema.Ref != "" {
-					requestBodyType = filepath.Base(content.Schema.Ref)
+					actualRequestBodyType = filepath.Base(content.Schema.Ref)
 					break
 				}
 			}
-		}
-		if requestBodyType == "" {
-			requestBodyType = op.OperationID + "Request"
+			if actualRequestBodyType == "" {
+				actualRequestBodyType = op.OperationID + "Request"
+			}
+			if !isOptionalParams {
+				requestBodyType = actualRequestBodyType
+			}
 		}
 	}
 
@@ -360,7 +388,7 @@ func prepareTemplateData(bundle, rawBundle, apiBundleName, method, path string, 
 		PackageName:      bundle,
 		CommandName:      strings.ToUpper(op.OperationID[:1]) + op.OperationID[1:] + "Cmd",
 		Use:              use,
-		Short:            op.Summary,
+		Short:            sanitize(op.Summary),
 		Method:           strings.ToUpper(method),
 		Path:             path,
 		OperationID:      op.OperationID,

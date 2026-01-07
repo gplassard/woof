@@ -22,9 +22,46 @@ Documentation: https://docs.datadoghq.com/api/latest/key-management/#list-applic
 		var res datadogV2.ListApplicationKeysResponse
 		var err error
 
+		optionalParams := datadogV2.NewListApplicationKeysOptionalParameters()
+
+		if cmd.Flags().Changed("page-size") {
+			val, _ := cmd.Flags().GetInt64("page-size")
+			optionalParams.WithPageSize(val)
+		}
+
+		if cmd.Flags().Changed("page-number") {
+			val, _ := cmd.Flags().GetInt64("page-number")
+			optionalParams.WithPageNumber(val)
+		}
+
+		if cmd.Flags().Changed("sort") {
+			val, _ := cmd.Flags().GetString("sort")
+			optionalParams.WithSort(val)
+		}
+
+		if cmd.Flags().Changed("filter") {
+			val, _ := cmd.Flags().GetString("filter")
+			optionalParams.WithFilter(val)
+		}
+
+		if cmd.Flags().Changed("filter-created-at-start") {
+			val, _ := cmd.Flags().GetString("filter-created-at-start")
+			optionalParams.WithFilterCreatedAtStart(val)
+		}
+
+		if cmd.Flags().Changed("filter-created-at-end") {
+			val, _ := cmd.Flags().GetString("filter-created-at-end")
+			optionalParams.WithFilterCreatedAtEnd(val)
+		}
+
+		if cmd.Flags().Changed("include") {
+			val, _ := cmd.Flags().GetString("include")
+			optionalParams.WithInclude(val)
+		}
+
 		api := datadogV2.NewKeyManagementApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.ListApplicationKeys(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListApplicationKeys(client.NewContext(apiKey, appKey, site), *optionalParams)
 		cmdutil.HandleError(err, "failed to list-application-keys")
 
 		cmd.Println(cmdutil.FormatJSON(res, "application_keys"))
@@ -32,6 +69,20 @@ Documentation: https://docs.datadoghq.com/api/latest/key-management/#list-applic
 }
 
 func init() {
+
+	ListApplicationKeysCmd.Flags().Int64("page-size", 0, "Size for a given page. The maximum allowed value is 100.")
+
+	ListApplicationKeysCmd.Flags().Int64("page-number", 0, "Specific page number to return.")
+
+	ListApplicationKeysCmd.Flags().String("sort", "", "Application key attribute used to sort results. Sort order is ascending by default. In order to specify a descending sort, prefix the attribute with a minus sign.")
+
+	ListApplicationKeysCmd.Flags().String("filter", "", "Filter application keys by the specified string.")
+
+	ListApplicationKeysCmd.Flags().String("filter-created-at-start", "", "Only include application keys created on or after the specified date.")
+
+	ListApplicationKeysCmd.Flags().String("filter-created-at-end", "", "Only include application keys created on or before the specified date.")
+
+	ListApplicationKeysCmd.Flags().String("include", "", "Resource path for related resources to include in the response. Only 'owned_by' is supported.")
 
 	Cmd.AddCommand(ListApplicationKeysCmd)
 }

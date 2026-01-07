@@ -22,9 +22,31 @@ Documentation: https://docs.datadoghq.com/api/latest/teams/#list-team-hierarchy-
 		var res datadogV2.TeamHierarchyLinksResponse
 		var err error
 
+		optionalParams := datadogV2.NewListTeamHierarchyLinksOptionalParameters()
+
+		if cmd.Flags().Changed("page-number") {
+			val, _ := cmd.Flags().GetInt64("page-number")
+			optionalParams.WithPageNumber(val)
+		}
+
+		if cmd.Flags().Changed("page-size") {
+			val, _ := cmd.Flags().GetInt64("page-size")
+			optionalParams.WithPageSize(val)
+		}
+
+		if cmd.Flags().Changed("filter-parent-team") {
+			val, _ := cmd.Flags().GetString("filter-parent-team")
+			optionalParams.WithFilterParentTeam(val)
+		}
+
+		if cmd.Flags().Changed("filter-sub-team") {
+			val, _ := cmd.Flags().GetString("filter-sub-team")
+			optionalParams.WithFilterSubTeam(val)
+		}
+
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.ListTeamHierarchyLinks(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListTeamHierarchyLinks(client.NewContext(apiKey, appKey, site), *optionalParams)
 		cmdutil.HandleError(err, "failed to list-team-hierarchy-links")
 
 		cmd.Println(cmdutil.FormatJSON(res, "team_hierarchy_links"))
@@ -32,6 +54,14 @@ Documentation: https://docs.datadoghq.com/api/latest/teams/#list-team-hierarchy-
 }
 
 func init() {
+
+	ListTeamHierarchyLinksCmd.Flags().Int64("page-number", 0, "Specific page number to return.")
+
+	ListTeamHierarchyLinksCmd.Flags().Int64("page-size", 0, "Size for a given page. The maximum allowed value is 100.")
+
+	ListTeamHierarchyLinksCmd.Flags().String("filter-parent-team", "", "Filter by parent team ID")
+
+	ListTeamHierarchyLinksCmd.Flags().String("filter-sub-team", "", "Filter by sub team ID")
 
 	Cmd.AddCommand(ListTeamHierarchyLinksCmd)
 }

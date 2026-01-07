@@ -22,9 +22,21 @@ Documentation: https://docs.datadoghq.com/api/latest/powerpack/#list-powerpacks`
 		var res datadogV2.ListPowerpacksResponse
 		var err error
 
+		optionalParams := datadogV2.NewListPowerpacksOptionalParameters()
+
+		if cmd.Flags().Changed("page-limit") {
+			val, _ := cmd.Flags().GetInt64("page-limit")
+			optionalParams.WithPageLimit(val)
+		}
+
+		if cmd.Flags().Changed("page-offset") {
+			val, _ := cmd.Flags().GetInt64("page-offset")
+			optionalParams.WithPageOffset(val)
+		}
+
 		api := datadogV2.NewPowerpackApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.ListPowerpacks(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListPowerpacks(client.NewContext(apiKey, appKey, site), *optionalParams)
 		cmdutil.HandleError(err, "failed to list-powerpacks")
 
 		cmd.Println(cmdutil.FormatJSON(res, "powerpack"))
@@ -32,6 +44,10 @@ Documentation: https://docs.datadoghq.com/api/latest/powerpack/#list-powerpacks`
 }
 
 func init() {
+
+	ListPowerpacksCmd.Flags().Int64("page-limit", 0, "Maximum number of powerpacks in the response.")
+
+	ListPowerpacksCmd.Flags().Int64("page-offset", 0, "Specific offset to use as the beginning of the returned page.")
 
 	Cmd.AddCommand(ListPowerpacksCmd)
 }

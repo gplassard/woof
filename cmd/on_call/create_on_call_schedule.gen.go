@@ -22,13 +22,21 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#create-on-call-sch
 		var res datadogV2.Schedule
 		var err error
 
-		var body datadogV2.ScheduleCreateRequest
-		err = cmdutil.UnmarshalPayload(cmd, &body)
-		cmdutil.HandleError(err, "failed to read payload")
+		optionalParams := datadogV2.NewCreateOnCallScheduleOptionalParameters()
+
+		if cmd.Flags().Changed("payload") || cmd.Flags().Changed("payload-file") {
+			err = cmdutil.UnmarshalPayload(cmd, optionalParams)
+			cmdutil.HandleError(err, "failed to read payload")
+		}
+
+		if cmd.Flags().Changed("include") {
+			val, _ := cmd.Flags().GetString("include")
+			optionalParams.WithInclude(val)
+		}
 
 		api := datadogV2.NewOnCallApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.CreateOnCallSchedule(client.NewContext(apiKey, appKey, site), body)
+		res, _, err = api.CreateOnCallSchedule(client.NewContext(apiKey, appKey, site), *optionalParams)
 		cmdutil.HandleError(err, "failed to create-on-call-schedule")
 
 		cmd.Println(cmdutil.FormatJSON(res, "schedules"))
@@ -39,6 +47,8 @@ func init() {
 
 	CreateOnCallScheduleCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
 	CreateOnCallScheduleCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
+	CreateOnCallScheduleCmd.Flags().String("include", "", "Comma-separated list of included relationships to be returned. Allowed values: 'teams', 'layers', 'layers.members', 'layers.members.user'.")
 
 	Cmd.AddCommand(CreateOnCallScheduleCmd)
 }

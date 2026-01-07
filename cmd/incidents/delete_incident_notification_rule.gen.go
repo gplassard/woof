@@ -23,15 +23,24 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#delete-incident-
 
 		var err error
 
+		optionalParams := datadogV2.NewDeleteIncidentNotificationRuleOptionalParameters()
+
+		if cmd.Flags().Changed("include") {
+			val, _ := cmd.Flags().GetString("include")
+			optionalParams.WithInclude(val)
+		}
+
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		_, err = api.DeleteIncidentNotificationRule(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
+		_, err = api.DeleteIncidentNotificationRule(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]), *optionalParams)
 		cmdutil.HandleError(err, "failed to delete-incident-notification-rule")
 
 	},
 }
 
 func init() {
+
+	DeleteIncidentNotificationRuleCmd.Flags().String("include", "", "Comma-separated list of resources to include. Supported values: 'created_by_user', 'last_modified_by_user', 'incident_type', 'notification_template'")
 
 	Cmd.AddCommand(DeleteIncidentNotificationRuleCmd)
 }

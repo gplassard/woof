@@ -22,9 +22,16 @@ Documentation: https://docs.datadoghq.com/api/latest/csm-threats/#get-csm-threat
 		var res datadogV2.CloudWorkloadSecurityAgentRuleResponse
 		var err error
 
+		optionalParams := datadogV2.NewGetCSMThreatsAgentRuleOptionalParameters()
+
+		if cmd.Flags().Changed("policy-id") {
+			val, _ := cmd.Flags().GetString("policy-id")
+			optionalParams.WithPolicyId(val)
+		}
+
 		api := datadogV2.NewCSMThreatsApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.GetCSMThreatsAgentRule(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.GetCSMThreatsAgentRule(client.NewContext(apiKey, appKey, site), args[0], *optionalParams)
 		cmdutil.HandleError(err, "failed to get-csm-threats-agent-rule")
 
 		cmd.Println(cmdutil.FormatJSON(res, "agent_rule"))
@@ -32,6 +39,8 @@ Documentation: https://docs.datadoghq.com/api/latest/csm-threats/#get-csm-threat
 }
 
 func init() {
+
+	GetCSMThreatsAgentRuleCmd.Flags().String("policy-id", "", "The ID of the Agent policy")
 
 	Cmd.AddCommand(GetCSMThreatsAgentRuleCmd)
 }

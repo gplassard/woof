@@ -22,13 +22,21 @@ Documentation: https://docs.datadoghq.com/api/latest/csm-threats/#update-csm-thr
 		var res datadogV2.CloudWorkloadSecurityAgentRuleResponse
 		var err error
 
-		var body datadogV2.CloudWorkloadSecurityAgentRuleUpdateRequest
-		err = cmdutil.UnmarshalPayload(cmd, &body)
-		cmdutil.HandleError(err, "failed to read payload")
+		optionalParams := datadogV2.NewUpdateCSMThreatsAgentRuleOptionalParameters()
+
+		if cmd.Flags().Changed("payload") || cmd.Flags().Changed("payload-file") {
+			err = cmdutil.UnmarshalPayload(cmd, optionalParams)
+			cmdutil.HandleError(err, "failed to read payload")
+		}
+
+		if cmd.Flags().Changed("policy-id") {
+			val, _ := cmd.Flags().GetString("policy-id")
+			optionalParams.WithPolicyId(val)
+		}
 
 		api := datadogV2.NewCSMThreatsApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.UpdateCSMThreatsAgentRule(client.NewContext(apiKey, appKey, site), args[0], body)
+		res, _, err = api.UpdateCSMThreatsAgentRule(client.NewContext(apiKey, appKey, site), args[0], *optionalParams)
 		cmdutil.HandleError(err, "failed to update-csm-threats-agent-rule")
 
 		cmd.Println(cmdutil.FormatJSON(res, "agent_rule"))
@@ -39,6 +47,8 @@ func init() {
 
 	UpdateCSMThreatsAgentRuleCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
 	UpdateCSMThreatsAgentRuleCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
+	UpdateCSMThreatsAgentRuleCmd.Flags().String("policy-id", "", "The ID of the Agent policy")
 
 	Cmd.AddCommand(UpdateCSMThreatsAgentRuleCmd)
 }
