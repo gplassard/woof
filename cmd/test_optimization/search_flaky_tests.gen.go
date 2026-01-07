@@ -22,13 +22,16 @@ Documentation: https://docs.datadoghq.com/api/latest/test-optimization/#search-f
 		var res datadogV2.FlakyTestsSearchResponse
 		var err error
 
-		var body datadogV2.SearchFlakyTestsOptionalParameters
-		err = cmdutil.UnmarshalPayload(cmd, &body)
-		cmdutil.HandleError(err, "failed to read payload")
+		optionalParams := datadogV2.NewSearchFlakyTestsOptionalParameters()
+
+		if cmd.Flags().Changed("payload") || cmd.Flags().Changed("payload-file") {
+			err = cmdutil.UnmarshalPayload(cmd, optionalParams)
+			cmdutil.HandleError(err, "failed to read payload")
+		}
 
 		api := datadogV2.NewTestOptimizationApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.SearchFlakyTests(client.NewContext(apiKey, appKey, site), body)
+		res, _, err = api.SearchFlakyTests(client.NewContext(apiKey, appKey, site), *optionalParams)
 		cmdutil.HandleError(err, "failed to search-flaky-tests")
 
 		cmd.Println(cmdutil.FormatJSON(res, "flaky_test"))

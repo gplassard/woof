@@ -22,13 +22,16 @@ Documentation: https://docs.datadoghq.com/api/latest/logs/#list-logs`,
 		var res datadogV2.LogsListResponse
 		var err error
 
-		var body datadogV2.ListLogsOptionalParameters
-		err = cmdutil.UnmarshalPayload(cmd, &body)
-		cmdutil.HandleError(err, "failed to read payload")
+		optionalParams := datadogV2.NewListLogsOptionalParameters()
+
+		if cmd.Flags().Changed("payload") || cmd.Flags().Changed("payload-file") {
+			err = cmdutil.UnmarshalPayload(cmd, optionalParams)
+			cmdutil.HandleError(err, "failed to read payload")
+		}
 
 		api := datadogV2.NewLogsApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.ListLogs(client.NewContext(apiKey, appKey, site), body)
+		res, _, err = api.ListLogs(client.NewContext(apiKey, appKey, site), *optionalParams)
 		cmdutil.HandleError(err, "failed to list-logs")
 
 		cmd.Println(cmdutil.FormatJSON(res, "log"))

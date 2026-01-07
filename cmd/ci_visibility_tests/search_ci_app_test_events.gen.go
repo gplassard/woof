@@ -22,13 +22,16 @@ Documentation: https://docs.datadoghq.com/api/latest/ci-visibility-tests/#search
 		var res datadogV2.CIAppTestEventsResponse
 		var err error
 
-		var body datadogV2.SearchCIAppTestEventsOptionalParameters
-		err = cmdutil.UnmarshalPayload(cmd, &body)
-		cmdutil.HandleError(err, "failed to read payload")
+		optionalParams := datadogV2.NewSearchCIAppTestEventsOptionalParameters()
+
+		if cmd.Flags().Changed("payload") || cmd.Flags().Changed("payload-file") {
+			err = cmdutil.UnmarshalPayload(cmd, optionalParams)
+			cmdutil.HandleError(err, "failed to read payload")
+		}
 
 		api := datadogV2.NewCIVisibilityTestsApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.SearchCIAppTestEvents(client.NewContext(apiKey, appKey, site), body)
+		res, _, err = api.SearchCIAppTestEvents(client.NewContext(apiKey, appKey, site), *optionalParams)
 		cmdutil.HandleError(err, "failed to search-ci-app-test-events")
 
 		cmd.Println(cmdutil.FormatJSON(res, "citest"))

@@ -28,6 +28,7 @@ optional_parameters_operations:
   SearchFlakyTests: SearchFlakyTestsOptionalParameters
   SearchSecurityMonitoringHistsignals: SearchSecurityMonitoringHistsignalsOptionalParameters
   SearchSecurityMonitoringSignals: SearchSecurityMonitoringSignalsOptionalParameters
+  ListWorkflowInstances: ListWorkflowInstancesOptionalParameters
 
 bundle_aliases:
   actions_datastores:

@@ -22,13 +22,16 @@ Documentation: https://docs.datadoghq.com/api/latest/audit/#search-audit-logs`,
 		var res datadogV2.AuditLogsEventsResponse
 		var err error
 
-		var body datadogV2.SearchAuditLogsOptionalParameters
-		err = cmdutil.UnmarshalPayload(cmd, &body)
-		cmdutil.HandleError(err, "failed to read payload")
+		optionalParams := datadogV2.NewSearchAuditLogsOptionalParameters()
+
+		if cmd.Flags().Changed("payload") || cmd.Flags().Changed("payload-file") {
+			err = cmdutil.UnmarshalPayload(cmd, optionalParams)
+			cmdutil.HandleError(err, "failed to read payload")
+		}
 
 		api := datadogV2.NewAuditApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.SearchAuditLogs(client.NewContext(apiKey, appKey, site), body)
+		res, _, err = api.SearchAuditLogs(client.NewContext(apiKey, appKey, site), *optionalParams)
 		cmdutil.HandleError(err, "failed to search-audit-logs")
 
 		cmd.Println(cmdutil.FormatJSON(res, "audit"))

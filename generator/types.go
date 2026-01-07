@@ -11,10 +11,11 @@ type OpenAPI struct {
 	Paths      map[string]map[string]Operation `yaml:"paths"`
 	Components struct {
 		Parameters map[string]struct {
-			Name     string                 `yaml:"name"`
-			In       string                 `yaml:"in"`
-			Required bool                   `yaml:"required"`
-			Schema   map[string]interface{} `yaml:"schema"`
+			Name        string                 `yaml:"name"`
+			In          string                 `yaml:"in"`
+			Description string                 `yaml:"description"`
+			Required    bool                   `yaml:"required"`
+			Schema      map[string]interface{} `yaml:"schema"`
 		} `yaml:"parameters"`
 		Schemas map[string]struct {
 			Type   string                 `yaml:"type"`
@@ -30,11 +31,12 @@ type Operation struct {
 	Summary     string   `yaml:"summary"`
 	Tags        []string `yaml:"tags"`
 	Parameters  []struct {
-		Name     string                 `yaml:"name"`
-		In       string                 `yaml:"in"`
-		Required bool                   `yaml:"required"`
-		Ref      string                 `yaml:"$ref"`
-		Schema   map[string]interface{} `yaml:"schema"`
+		Name        string                 `yaml:"name"`
+		In          string                 `yaml:"in"`
+		Description string                 `yaml:"description"`
+		Required    bool                   `yaml:"required"`
+		Ref         string                 `yaml:"$ref"`
+		Schema      map[string]interface{} `yaml:"schema"`
 	} `yaml:"parameters"`
 	RequestBody *struct {
 		Required bool `yaml:"required"`
@@ -61,6 +63,7 @@ type TemplateData struct {
 	ApiBundleName    string
 	Args             []string
 	ArgTypes         []string
+	OptionalFlags    []OptionalFlag
 	HasRequestBody   bool
 	RequestBodyType  string
 	IsOptionalParams bool
@@ -69,6 +72,15 @@ type TemplateData struct {
 	ResponseTypeGo   string
 	Aliases          []string
 	DocURL           string
+}
+
+type OptionalFlag struct {
+	Name        string
+	Type        string
+	FlagName    string
+	GoName      string
+	ShortName   string
+	Description string
 }
 
 type RootTemplateData struct {
