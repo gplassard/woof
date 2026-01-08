@@ -3,8 +3,6 @@ package main
 import (
 	"embed"
 	"fmt"
-	"io"
-	"net/http"
 	"os"
 	"strings"
 	"text/template"
@@ -33,37 +31,6 @@ func loadConfig() (*Config, error) {
 
 func cleanupGeneratedFiles() error {
 	return os.RemoveAll("cmd")
-}
-
-func downloadOpenAPI() (*OpenAPI, error) {
-	versionContent, err := generatorFS.ReadFile("version.json")
-	if err != nil {
-		return nil, fmt.Errorf("failed to read version file: %w", err)
-	}
-	var version Version
-	if err := yaml.Unmarshal(versionContent, &version); err != nil {
-		return nil, fmt.Errorf("failed to unmarshal version: %w", err)
-	}
-
-	url := fmt.Sprintf("https://raw.githubusercontent.com/DataDog/datadog-api-client-go/%s/.generator/schemas/v2/openapi.yaml", version.Sha)
-	resp, err := http.Get(url)
-	if err != nil {
-		return nil, fmt.Errorf("failed to download openapi spec: %w", err)
-	}
-	defer func() {
-		_ = resp.Body.Close()
-	}()
-
-	body, err := io.ReadAll(resp.Body)
-	if err != nil {
-		return nil, fmt.Errorf("failed to read response body: %w", err)
-	}
-
-	var spec OpenAPI
-	if err := yaml.Unmarshal(body, &spec); err != nil {
-		return nil, fmt.Errorf("failed to unmarshal yaml: %w", err)
-	}
-	return &spec, nil
 }
 
 func parseTemplates(config *Config) (*template.Template, *template.Template, error) {
@@ -114,17 +81,6 @@ func parseTemplates(config *Config) (*template.Template, *template.Template, err
 	}
 
 	return tmpl, entrypointTmpl, nil
-}
-
-func normalizeBundle(op Operation) (string, string) {
-	rawBundle := "general"
-	if len(op.Tags) > 0 {
-		rawBundle = op.Tags[0]
-	}
-	bundle := strings.ToLower(rawBundle)
-	bundle = strings.ReplaceAll(bundle, " ", "_")
-	bundle = strings.ReplaceAll(bundle, "-", "_")
-	return bundle, rawBundle
 }
 
 func normalizeApiBundleName(rawBundle string) string {

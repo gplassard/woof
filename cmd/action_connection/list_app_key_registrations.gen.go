@@ -2,6 +2,7 @@ package action_connection
 
 import (
 	"fmt"
+
 	"github.com/gplassard/woof/pkg/client"
 	"github.com/gplassard/woof/pkg/cmdutil"
 	"github.com/gplassard/woof/pkg/config"

@@ -8,6 +8,41 @@ type Config struct {
 	Acronyms                     []string            `yaml:"acronyms"`
 }
 
+// SDK-based types for parsing the Go SDK
+
+type SDKSpec struct {
+	Operations map[string]*SDKOperation
+}
+
+type SDKOperation struct {
+	OperationID       string
+	Summary           string
+	Description       string
+	Tags              []string
+	Method            string // GET, POST, PUT, PATCH, DELETE
+	Path              string
+	APIName           string // e.g., "action_connection"
+	Parameters        []SDKParameter
+	HasOptionalParams bool
+	RequestBody       *SDKRequestBody
+	ResponseType      string
+	HasResponse       bool
+}
+
+type SDKParameter struct {
+	Name     string
+	Type     string
+	In       string // "path", "query", "body"
+	Required bool
+}
+
+type SDKRequestBody struct {
+	Required bool
+	Type     string
+}
+
+// Legacy OpenAPI types (kept for backward compatibility during migration)
+
 type OpenAPI struct {
 	Paths      map[string]map[string]Operation `yaml:"paths"`
 	Components struct {
