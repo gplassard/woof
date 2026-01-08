@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/fleet-automation/#get-fleet
 		res, _, err = api.GetFleetSchedule(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-fleet-schedule")
 
-		fmt.Println(cmdutil.FormatJSON(res, "schedule"))
+		fmt.Println(cmdutil.FormatJSON(res, "fleet_schedule"))
 	},
 }
 

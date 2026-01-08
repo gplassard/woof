@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/metrics/#query-scalar-data`
 		res, _, err = api.QueryScalarData(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to query-scalar-data")
 
-		fmt.Println(cmdutil.FormatJSON(res, "scalar_response"))
+		fmt.Println(cmdutil.FormatJSON(res, "scalar_data"))
 	},
 }
 

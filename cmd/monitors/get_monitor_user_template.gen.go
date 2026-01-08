@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/monitors/#get-monitor-user-
 		res, _, err = api.GetMonitorUserTemplate(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-monitor-user-template")
 
-		fmt.Println(cmdutil.FormatJSON(res, "monitor-user-template"))
+		fmt.Println(cmdutil.FormatJSON(res, "monitor_user_template"))
 	},
 }
 

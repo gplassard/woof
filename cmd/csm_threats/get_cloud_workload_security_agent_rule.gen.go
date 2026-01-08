@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/csm-threats/#get-cloud-work
 		res, _, err = api.GetCloudWorkloadSecurityAgentRule(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-cloud-workload-security-agent-rule")
 
-		fmt.Println(cmdutil.FormatJSON(res, "agent_rule"))
+		fmt.Println(cmdutil.FormatJSON(res, "cloud_workload_security_agent_rule"))
 	},
 }
 

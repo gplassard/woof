@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/service-accounts/#list-serv
 		res, _, err = api.ListServiceAccountApplicationKeys(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-service-account-application-keys")
 
-		fmt.Println(cmdutil.FormatJSON(res, "application_keys"))
+		fmt.Println(cmdutil.FormatJSON(res, "service_account_application_key"))
 	},
 }
 

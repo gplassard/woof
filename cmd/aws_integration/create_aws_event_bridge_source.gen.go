@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#create-aws
 		res, _, err = api.CreateAWSEventBridgeSource(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-aws-event-bridge-source")
 
-		fmt.Println(cmdutil.FormatJSON(res, "event_bridge"))
+		fmt.Println(cmdutil.FormatJSON(res, "a_w_s_event_bridge_source"))
 	},
 }
 

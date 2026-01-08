@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/cloud-network-monitoring/#g
 		res, _, err = api.GetAggregatedDns(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-aggregated-dns")
 
-		fmt.Println(cmdutil.FormatJSON(res, "aggregated_dns"))
+		fmt.Println(cmdutil.FormatJSON(res, "aggregated_dn"))
 	},
 }
 

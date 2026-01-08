@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#get-aws
 		res, _, err = api.GetAwsScanOptions(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-aws-scan-options")
 
-		fmt.Println(cmdutil.FormatJSON(res, "aws_scan_options"))
+		fmt.Println(cmdutil.FormatJSON(res, "aws_scan_option"))
 	},
 }
 

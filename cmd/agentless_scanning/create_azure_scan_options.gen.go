@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#create-
 		res, _, err = api.CreateAzureScanOptions(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-azure-scan-options")
 
-		fmt.Println(cmdutil.FormatJSON(res, "azure_scan_options"))
+		fmt.Println(cmdutil.FormatJSON(res, "azure_scan_option"))
 	},
 }
 

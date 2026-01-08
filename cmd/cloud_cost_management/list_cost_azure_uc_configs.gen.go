@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#list
 		res, _, err = api.ListCostAzureUCConfigs(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-cost-azure-uc-configs")
 
-		fmt.Println(cmdutil.FormatJSON(res, "azure_uc_configs"))
+		fmt.Println(cmdutil.FormatJSON(res, "cost_azure_u_c_config"))
 	},
 }
 

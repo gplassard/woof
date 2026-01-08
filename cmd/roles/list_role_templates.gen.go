@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/roles/#list-role-templates`
 		res, _, err = api.ListRoleTemplates(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-role-templates")
 
-		fmt.Println(cmdutil.FormatJSON(res, "roles"))
+		fmt.Println(cmdutil.FormatJSON(res, "role_template"))
 	},
 }
 

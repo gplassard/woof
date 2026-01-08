@@ -33,7 +33,7 @@ Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#upda
 		res, _, err = api.UpdateCostAzureUCConfigs(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }(), body)
 		cmdutil.HandleError(err, "failed to update-cost-azure-uc-configs")
 
-		fmt.Println(cmdutil.FormatJSON(res, "azure_uc_configs"))
+		fmt.Println(cmdutil.FormatJSON(res, "cost_azure_u_c_config"))
 	},
 }
 

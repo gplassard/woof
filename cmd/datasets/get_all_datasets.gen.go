@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/datasets/#get-all-datasets`
 		res, _, err = api.GetAllDatasets(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-all-datasets")
 
-		fmt.Println(cmdutil.FormatJSON(res, "dataset"))
+		fmt.Println(cmdutil.FormatJSON(res, "all_dataset"))
 	},
 }
 

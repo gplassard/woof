@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/roles/#remove-user-from-rol
 		res, _, err = api.RemoveUserFromRole(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to remove-user-from-role")
 
-		fmt.Println(cmdutil.FormatJSON(res, "users"))
+		fmt.Println(cmdutil.FormatJSON(res, "roles"))
 	},
 }
 

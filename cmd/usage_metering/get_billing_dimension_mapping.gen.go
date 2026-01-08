@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/usage-metering/#get-billing
 		res, _, err = api.GetBillingDimensionMapping(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-billing-dimension-mapping")
 
-		fmt.Println(cmdutil.FormatJSON(res, "usage_metering"))
+		fmt.Println(cmdutil.FormatJSON(res, "billing_dimension_mapping"))
 	},
 }
 

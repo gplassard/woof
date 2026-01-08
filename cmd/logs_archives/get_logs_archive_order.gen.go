@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/logs-archives/#get-logs-arc
 		res, _, err = api.GetLogsArchiveOrder(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-logs-archive-order")
 
-		fmt.Println(cmdutil.FormatJSON(res, "archive_order"))
+		fmt.Println(cmdutil.FormatJSON(res, "logs_archive_order"))
 	},
 }
 

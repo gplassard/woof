@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#get-aws
 		res, _, err = api.GetAwsOnDemandTask(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-aws-on-demand-task")
 
-		fmt.Println(cmdutil.FormatJSON(res, "aws_resource"))
+		fmt.Println(cmdutil.FormatJSON(res, "aws_on_demand_task"))
 	},
 }
 

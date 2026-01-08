@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#update-aws
 		res, _, err = api.UpdateAWSAccount(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-aws-account")
 
-		fmt.Println(cmdutil.FormatJSON(res, "account"))
+		fmt.Println(cmdutil.FormatJSON(res, "a_w_s_account"))
 	},
 }
 

@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/key-management/#update-api-
 		res, _, err = api.UpdateAPIKey(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-api-key")
 
-		fmt.Println(cmdutil.FormatJSON(res, "api_keys"))
+		fmt.Println(cmdutil.FormatJSON(res, "a_p_i_key"))
 	},
 }
 

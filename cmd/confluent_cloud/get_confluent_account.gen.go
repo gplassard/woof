@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/confluent-cloud/#get-conflu
 		res, _, err = api.GetConfluentAccount(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-confluent-account")
 
-		fmt.Println(cmdutil.FormatJSON(res, "confluent-cloud-accounts"))
+		fmt.Println(cmdutil.FormatJSON(res, "confluent_account"))
 	},
 }
 

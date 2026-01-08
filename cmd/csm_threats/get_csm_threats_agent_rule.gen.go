@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/csm-threats/#get-csm-threat
 		res, _, err = api.GetCSMThreatsAgentRule(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-csm-threats-agent-rule")
 
-		fmt.Println(cmdutil.FormatJSON(res, "agent_rule"))
+		fmt.Println(cmdutil.FormatJSON(res, "c_s_m_threats_agent_rule"))
 	},
 }
 

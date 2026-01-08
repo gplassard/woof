@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/dora-metrics/#create-dora-f
 		res, _, err = api.CreateDORAFailure(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-dora-failure")
 
-		fmt.Println(cmdutil.FormatJSON(res, "dora_failure"))
+		fmt.Println(cmdutil.FormatJSON(res, "d_o_r_a_failure"))
 	},
 }
 

@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#get-aws-in
 		res, _, err = api.GetAWSIntegrationIAMPermissions(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-aws-integration-iam-permissions")
 
-		fmt.Println(cmdutil.FormatJSON(res, "permissions"))
+		fmt.Println(cmdutil.FormatJSON(res, "a_w_s_integration_i_a_m_permission"))
 	},
 }
 

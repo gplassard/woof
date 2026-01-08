@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-su
 		res, _, err = api.GetSuppressionsAffectingRule(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-suppressions-affecting-rule")
 
-		fmt.Println(cmdutil.FormatJSON(res, "suppressions"))
+		fmt.Println(cmdutil.FormatJSON(res, "suppressions_affecting_rule"))
 	},
 }
 

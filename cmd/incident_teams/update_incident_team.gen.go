@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/incident-teams/#update-inci
 		res, _, err = api.UpdateIncidentTeam(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-incident-team")
 
-		fmt.Println(cmdutil.FormatJSON(res, "teams"))
+		fmt.Println(cmdutil.FormatJSON(res, "incident_team"))
 	},
 }
 

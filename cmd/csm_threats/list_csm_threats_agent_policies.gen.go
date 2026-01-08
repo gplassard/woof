@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/csm-threats/#list-csm-threa
 		res, _, err = api.ListCSMThreatsAgentPolicies(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-csm-threats-agent-policies")
 
-		fmt.Println(cmdutil.FormatJSON(res, "policy"))
+		fmt.Println(cmdutil.FormatJSON(res, "c_s_m_threats_agent_policie"))
 	},
 }
 

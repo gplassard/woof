@@ -1,3 +1,10 @@
+only_bundles:
+#  - service_level_objectives
+#  - a_p_i_management
+#  - action_connection
+#  - users
+#  - teams
+
 skip_operations:
   - CreateIncidentAttachment
   - DeleteIncidentAttachment
@@ -55,6 +62,7 @@ bundle_aliases:
     - wf
 
 acronyms:
+  - APM
   - AD
   - AI
   - APIs

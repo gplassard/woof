@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/cloudflare-integration/#lis
 		res, _, err = api.ListCloudflareAccounts(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-cloudflare-accounts")
 
-		fmt.Println(cmdutil.FormatJSON(res, "cloudflare-accounts"))
+		fmt.Println(cmdutil.FormatJSON(res, "cloudflare_account"))
 	},
 }
 

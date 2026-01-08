@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#crea
 		res, _, err = api.CreateTagPipelinesRuleset(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-tag-pipelines-ruleset")
 
-		fmt.Println(cmdutil.FormatJSON(res, "ruleset"))
+		fmt.Println(cmdutil.FormatJSON(res, "tag_pipelines_ruleset"))
 	},
 }
 

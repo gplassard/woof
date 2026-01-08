@@ -14,8 +14,8 @@ import (
 var GetServiceListCmd = &cobra.Command{
 	Use: "get-service-list",
 
-	Short: "Get service list",
-	Long: `Get service list
+	Short: "",
+	Long: `
 Documentation: https://docs.datadoghq.com/api/latest/apm/#get-service-list`,
 
 	Run: func(cmd *cobra.Command, args []string) {
@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/apm/#get-service-list`,
 		res, _, err = api.GetServiceList(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-service-list")
 
-		fmt.Println(cmdutil.FormatJSON(res, "services_list"))
+		fmt.Println(cmdutil.FormatJSON(res, "service_list"))
 	},
 }
 

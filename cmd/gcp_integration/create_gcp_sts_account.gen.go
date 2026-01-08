@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/gcp-integration/#create-gcp
 		res, _, err = api.CreateGCPSTSAccount(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-gcp-sts-account")
 
-		fmt.Println(cmdutil.FormatJSON(res, "gcp_service_account"))
+		fmt.Println(cmdutil.FormatJSON(res, "g_c_p_s_t_s_account"))
 	},
 }
 

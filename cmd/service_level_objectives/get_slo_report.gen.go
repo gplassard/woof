@@ -20,7 +20,7 @@ Documentation: https://docs.datadoghq.com/api/latest/service-level-objectives/#g
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
-		var res interface{}
+		var res string
 		var err error
 
 		api := datadogV2.NewServiceLevelObjectivesApi(client.NewAPIClient())
@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/service-level-objectives/#g
 		res, _, err = api.GetSLOReport(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-slo-report")
 
-		fmt.Println(cmdutil.FormatJSON(res, "service_level_objectives"))
+		fmt.Println(cmdutil.FormatJSON(res, "s_l_o_report"))
 	},
 }
 

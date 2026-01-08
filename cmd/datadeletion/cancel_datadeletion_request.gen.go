@@ -1,4 +1,4 @@
-package data_deletion
+package datadeletion
 
 import (
 	"fmt"
@@ -12,11 +12,11 @@ import (
 )
 
 var CancelDataDeletionRequestCmd = &cobra.Command{
-	Use:     "cancel-data-deletion-request [id]",
+	Use:     "cancel-datadeletion-request [id]",
 	Aliases: []string{"cancel-request"},
 	Short:   "Cancels a data deletion request",
 	Long: `Cancels a data deletion request
-Documentation: https://docs.datadoghq.com/api/latest/data-deletion/#cancel-data-deletion-request`,
+Documentation: https://docs.datadoghq.com/api/latest/datadeletion/#cancel-datadeletion-request`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
@@ -26,9 +26,9 @@ Documentation: https://docs.datadoghq.com/api/latest/data-deletion/#cancel-data-
 		api := datadogV2.NewDataDeletionApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.CancelDataDeletionRequest(client.NewContext(apiKey, appKey, site), args[0])
-		cmdutil.HandleError(err, "failed to cancel-data-deletion-request")
+		cmdutil.HandleError(err, "failed to cancel-datadeletion-request")
 
-		fmt.Println(cmdutil.FormatJSON(res, "data_deletion"))
+		fmt.Println(cmdutil.FormatJSON(res, "data_deletion_request"))
 	},
 }
 

@@ -8,8 +8,9 @@ import (
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
-	"github.com/spf13/cobra"
 	"strings"
+
+	"github.com/spf13/cobra"
 )
 
 var GetRowsByIDCmd = &cobra.Command{
@@ -29,7 +30,7 @@ Documentation: https://docs.datadoghq.com/api/latest/reference-tables/#get-rows-
 		res, _, err = api.GetRowsByID(client.NewContext(apiKey, appKey, site), args[0], strings.Split(args[1], ", "))
 		cmdutil.HandleError(err, "failed to get-rows-by-id")
 
-		fmt.Println(cmdutil.FormatJSON(res, "row"))
+		fmt.Println(cmdutil.FormatJSON(res, "rows_by_i_d"))
 	},
 }
 

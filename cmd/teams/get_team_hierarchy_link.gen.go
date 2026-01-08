@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/teams/#get-team-hierarchy-l
 		res, _, err = api.GetTeamHierarchyLink(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-team-hierarchy-link")
 
-		fmt.Println(cmdutil.FormatJSON(res, "team_hierarchy_links"))
+		fmt.Println(cmdutil.FormatJSON(res, "team_hierarchy_link"))
 	},
 }
 

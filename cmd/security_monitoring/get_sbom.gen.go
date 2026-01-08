@@ -12,7 +12,7 @@ import (
 )
 
 var GetSBOMCmd = &cobra.Command{
-	Use: "get-sbom [asset_type] [filter[asset_name]]",
+	Use: "get-sbom [asset_type] [filter_asset_name]",
 
 	Short: "Get SBOM",
 	Long: `Get SBOM
@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-sb
 		res, _, err = api.GetSBOM(client.NewContext(apiKey, appKey, site), datadogV2.AssetType(args[0]), args[1])
 		cmdutil.HandleError(err, "failed to get-sbom")
 
-		fmt.Println(cmdutil.FormatJSON(res, "sboms"))
+		fmt.Println(cmdutil.FormatJSON(res, "s_b_o_m"))
 	},
 }
 

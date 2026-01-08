@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/fastly-integration/#update-
 		res, _, err = api.UpdateFastlyAccount(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-fastly-account")
 
-		fmt.Println(cmdutil.FormatJSON(res, "fastly-accounts"))
+		fmt.Println(cmdutil.FormatJSON(res, "fastly_account"))
 	},
 }
 

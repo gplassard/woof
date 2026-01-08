@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/metrics/#estimate-metrics-o
 		res, _, err = api.EstimateMetricsOutputSeries(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to estimate-metrics-output-series")
 
-		fmt.Println(cmdutil.FormatJSON(res, "metric_cardinality_estimate"))
+		fmt.Println(cmdutil.FormatJSON(res, "metrics"))
 	},
 }
 

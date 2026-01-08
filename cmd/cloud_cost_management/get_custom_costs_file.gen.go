@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#get-
 		res, _, err = api.GetCustomCostsFile(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-custom-costs-file")
 
-		fmt.Println(cmdutil.FormatJSON(res, "cloud_cost_management"))
+		fmt.Println(cmdutil.FormatJSON(res, "custom_costs_file"))
 	},
 }
 

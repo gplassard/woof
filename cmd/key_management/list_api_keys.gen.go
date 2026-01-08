@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/key-management/#list-api-ke
 		res, _, err = api.ListAPIKeys(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-api-keys")
 
-		fmt.Println(cmdutil.FormatJSON(res, "api_keys"))
+		fmt.Println(cmdutil.FormatJSON(res, "a_p_i_key"))
 	},
 }
 

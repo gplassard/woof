@@ -1,4 +1,4 @@
-package data_deletion
+package datadeletion
 
 import (
 	"fmt"
@@ -12,11 +12,11 @@ import (
 )
 
 var CreateDataDeletionRequestCmd = &cobra.Command{
-	Use:     "create-data-deletion-request [product]",
+	Use:     "create-datadeletion-request [product]",
 	Aliases: []string{"create-request"},
 	Short:   "Creates a data deletion request",
 	Long: `Creates a data deletion request
-Documentation: https://docs.datadoghq.com/api/latest/data-deletion/#create-data-deletion-request`,
+Documentation: https://docs.datadoghq.com/api/latest/datadeletion/#create-datadeletion-request`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
@@ -30,9 +30,9 @@ Documentation: https://docs.datadoghq.com/api/latest/data-deletion/#create-data-
 		api := datadogV2.NewDataDeletionApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.CreateDataDeletionRequest(client.NewContext(apiKey, appKey, site), args[0], body)
-		cmdutil.HandleError(err, "failed to create-data-deletion-request")
+		cmdutil.HandleError(err, "failed to create-datadeletion-request")
 
-		fmt.Println(cmdutil.FormatJSON(res, "data_deletion"))
+		fmt.Println(cmdutil.FormatJSON(res, "data_deletion_request"))
 	},
 }
 

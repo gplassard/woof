@@ -33,7 +33,7 @@ Documentation: https://docs.datadoghq.com/api/latest/app-builder/#update-app`,
 		res, _, err = api.UpdateApp(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]), body)
 		cmdutil.HandleError(err, "failed to update-app")
 
-		fmt.Println(cmdutil.FormatJSON(res, "appDefinitions"))
+		fmt.Println(cmdutil.FormatJSON(res, "app"))
 	},
 }
 

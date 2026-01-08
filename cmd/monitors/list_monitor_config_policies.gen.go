@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/monitors/#list-monitor-conf
 		res, _, err = api.ListMonitorConfigPolicies(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-monitor-config-policies")
 
-		fmt.Println(cmdutil.FormatJSON(res, "monitor-config-policy"))
+		fmt.Println(cmdutil.FormatJSON(res, "monitor_config_policie"))
 	},
 }
 

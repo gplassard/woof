@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#list-m
 		res, _, err = api.ListMultipleRulesets(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to list-multiple-rulesets")
 
-		fmt.Println(cmdutil.FormatJSON(res, "get_multiple_rulesets_response"))
+		fmt.Println(cmdutil.FormatJSON(res, "multiple_ruleset"))
 	},
 }
 

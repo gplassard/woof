@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/application-security/#updat
 		res, _, err = api.UpdateApplicationSecurityWafCustomRule(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-application-security-waf-custom-rule")
 
-		fmt.Println(cmdutil.FormatJSON(res, "custom_rule"))
+		fmt.Println(cmdutil.FormatJSON(res, "application_security_waf_custom_rule"))
 	},
 }
 

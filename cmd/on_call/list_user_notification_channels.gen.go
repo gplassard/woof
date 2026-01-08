@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#list-user-notifica
 		res, _, err = api.ListUserNotificationChannels(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-user-notification-channels")
 
-		fmt.Println(cmdutil.FormatJSON(res, "notification_channels"))
+		fmt.Println(cmdutil.FormatJSON(res, "user_notification_channel"))
 	},
 }
 

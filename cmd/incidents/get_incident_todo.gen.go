@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#get-incident-tod
 		res, _, err = api.GetIncidentTodo(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		cmdutil.HandleError(err, "failed to get-incident-todo")
 
-		fmt.Println(cmdutil.FormatJSON(res, "incident_todos"))
+		fmt.Println(cmdutil.FormatJSON(res, "incident_todo"))
 	},
 }
 

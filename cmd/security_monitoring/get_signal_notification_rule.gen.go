@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-si
 		res, _, err = api.GetSignalNotificationRule(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-signal-notification-rule")
 
-		fmt.Println(cmdutil.FormatJSON(res, "notification_rules"))
+		fmt.Println(cmdutil.FormatJSON(res, "signal_notification_rule"))
 	},
 }
 

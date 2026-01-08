@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/organizations/#update-org-c
 		res, _, err = api.UpdateOrgConfig(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-org-config")
 
-		fmt.Println(cmdutil.FormatJSON(res, "org_configs"))
+		fmt.Println(cmdutil.FormatJSON(res, "org_config"))
 	},
 }
 

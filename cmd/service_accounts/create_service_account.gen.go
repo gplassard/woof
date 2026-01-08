@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/service-accounts/#create-se
 		res, _, err = api.CreateServiceAccount(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-service-account")
 
-		fmt.Println(cmdutil.FormatJSON(res, "users"))
+		fmt.Println(cmdutil.FormatJSON(res, "service_account"))
 	},
 }
 

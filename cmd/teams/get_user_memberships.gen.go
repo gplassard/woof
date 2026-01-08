@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/teams/#get-user-memberships
 		res, _, err = api.GetUserMemberships(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-user-memberships")
 
-		fmt.Println(cmdutil.FormatJSON(res, "team_memberships"))
+		fmt.Println(cmdutil.FormatJSON(res, "user_membership"))
 	},
 }
 

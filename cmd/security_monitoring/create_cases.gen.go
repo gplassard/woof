@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#create
 		res, _, err = api.CreateCases(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-cases")
 
-		fmt.Println(cmdutil.FormatJSON(res, "cases"))
+		fmt.Println(cmdutil.FormatJSON(res, "case"))
 	},
 }
 

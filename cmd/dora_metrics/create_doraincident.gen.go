@@ -12,11 +12,11 @@ import (
 )
 
 var CreateDORAIncidentCmd = &cobra.Command{
-	Use: "create-d-o-r-ai-ncident",
+	Use: "create-doraincident",
 
 	Short: "Send an incident event",
 	Long: `Send an incident event
-Documentation: https://docs.datadoghq.com/api/latest/dora-metrics/#create-d-o-r-ai-ncident`,
+Documentation: https://docs.datadoghq.com/api/latest/dora-metrics/#create-doraincident`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
@@ -30,9 +30,9 @@ Documentation: https://docs.datadoghq.com/api/latest/dora-metrics/#create-d-o-r-
 		api := datadogV2.NewDORAMetricsApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.CreateDORAIncident(client.NewContext(apiKey, appKey, site), body)
-		cmdutil.HandleError(err, "failed to create-d-o-r-ai-ncident")
+		cmdutil.HandleError(err, "failed to create-doraincident")
 
-		fmt.Println(cmdutil.FormatJSON(res, "dora_failure"))
+		fmt.Println(cmdutil.FormatJSON(res, "d_o_r_a_incident"))
 	},
 }
 

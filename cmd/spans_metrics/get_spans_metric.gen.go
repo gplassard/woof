@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/spans-metrics/#get-spans-me
 		res, _, err = api.GetSpansMetric(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-spans-metric")
 
-		fmt.Println(cmdutil.FormatJSON(res, "spans_metrics"))
+		fmt.Println(cmdutil.FormatJSON(res, "spans_metric"))
 	},
 }
 

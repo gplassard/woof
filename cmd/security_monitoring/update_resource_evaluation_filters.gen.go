@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#update
 		res, _, err = api.UpdateResourceEvaluationFilters(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to update-resource-evaluation-filters")
 
-		fmt.Println(cmdutil.FormatJSON(res, "csm_resource_filter"))
+		fmt.Println(cmdutil.FormatJSON(res, "resource_evaluation_filter"))
 	},
 }
 

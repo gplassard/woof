@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/api-management/#list-apis`,
 		res, _, err = api.ListAPIs(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-apis")
 
-		fmt.Println(cmdutil.FormatJSON(res, "api_management"))
+		fmt.Println(cmdutil.FormatJSON(res, "a_p_i"))
 	},
 }
 

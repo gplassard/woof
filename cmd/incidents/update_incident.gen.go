@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#update-incident`
 		res, _, err = api.UpdateIncident(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-incident")
 
-		fmt.Println(cmdutil.FormatJSON(res, "incidents"))
+		fmt.Println(cmdutil.FormatJSON(res, "incident"))
 	},
 }
 

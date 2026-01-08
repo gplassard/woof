@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/ci-visibility-tests/#list-c
 		res, _, err = api.ListCIAppTestEvents(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-ci-app-test-events")
 
-		fmt.Println(cmdutil.FormatJSON(res, "citest"))
+		fmt.Println(cmdutil.FormatJSON(res, "c_i_app_test_event"))
 	},
 }
 

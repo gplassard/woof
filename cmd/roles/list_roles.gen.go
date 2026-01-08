@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/roles/#list-roles`,
 		res, _, err = api.ListRoles(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-roles")
 
-		fmt.Println(cmdutil.FormatJSON(res, "roles"))
+		fmt.Println(cmdutil.FormatJSON(res, "role"))
 	},
 }
 

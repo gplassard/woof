@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#list-v
 		res, _, err = api.ListVulnerableAssets(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-vulnerable-assets")
 
-		fmt.Println(cmdutil.FormatJSON(res, "assets"))
+		fmt.Println(cmdutil.FormatJSON(res, "vulnerable_asset"))
 	},
 }
 

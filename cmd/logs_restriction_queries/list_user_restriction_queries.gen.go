@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/logs-restriction-queries/#l
 		res, _, err = api.ListUserRestrictionQueries(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-user-restriction-queries")
 
-		fmt.Println(cmdutil.FormatJSON(res, "logs_restriction_queries"))
+		fmt.Println(cmdutil.FormatJSON(res, "user_restriction_querie"))
 	},
 }
 

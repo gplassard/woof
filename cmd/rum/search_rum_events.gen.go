@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/rum/#search-rum-events`,
 		res, _, err = api.SearchRUMEvents(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to search-rum-events")
 
-		fmt.Println(cmdutil.FormatJSON(res, "rum"))
+		fmt.Println(cmdutil.FormatJSON(res, "r_u_m_event"))
 	},
 }
 

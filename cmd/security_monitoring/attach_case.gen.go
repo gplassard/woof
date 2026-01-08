@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#attach
 		res, _, err = api.AttachCase(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to attach-case")
 
-		fmt.Println(cmdutil.FormatJSON(res, "cases"))
+		fmt.Println(cmdutil.FormatJSON(res, "security_monitoring"))
 	},
 }
 

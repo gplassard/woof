@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/key-management/#get-api-key
 		res, _, err = api.GetAPIKey(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-api-key")
 
-		fmt.Println(cmdutil.FormatJSON(res, "api_keys"))
+		fmt.Println(cmdutil.FormatJSON(res, "a_p_i_key"))
 	},
 }
 

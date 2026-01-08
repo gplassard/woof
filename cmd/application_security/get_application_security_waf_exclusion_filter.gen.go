@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/application-security/#get-a
 		res, _, err = api.GetApplicationSecurityWafExclusionFilter(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-application-security-waf-exclusion-filter")
 
-		fmt.Println(cmdutil.FormatJSON(res, "exclusion_filter"))
+		fmt.Println(cmdutil.FormatJSON(res, "application_security_waf_exclusion_filter"))
 	},
 }
 

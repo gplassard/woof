@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/logs-custom-destinations/#g
 		res, _, err = api.GetLogsCustomDestination(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-logs-custom-destination")
 
-		fmt.Println(cmdutil.FormatJSON(res, "custom_destination"))
+		fmt.Println(cmdutil.FormatJSON(res, "logs_custom_destination"))
 	},
 }
 

@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/application-security/#list-
 		res, _, err = api.ListApplicationSecurityWAFCustomRules(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-application-security-waf-custom-rules")
 
-		fmt.Println(cmdutil.FormatJSON(res, "custom_rule"))
+		fmt.Println(cmdutil.FormatJSON(res, "application_security_w_a_f_custom_rule"))
 	},
 }
 

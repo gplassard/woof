@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/case-management-attribute/#
 		res, _, err = api.GetAllCustomAttributeConfigsByCaseType(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-all-custom-attribute-configs-by-case-type")
 
-		fmt.Println(cmdutil.FormatJSON(res, "custom_attribute"))
+		fmt.Println(cmdutil.FormatJSON(res, "all_custom_attribute_configs_by_case_type"))
 	},
 }
 

@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/error-tracking/#search-issu
 		res, _, err = api.SearchIssues(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to search-issues")
 
-		fmt.Println(cmdutil.FormatJSON(res, "error_tracking_search_result"))
+		fmt.Println(cmdutil.FormatJSON(res, "issue"))
 	},
 }
 

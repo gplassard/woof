@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/audit/#list-audit-logs`,
 		res, _, err = api.ListAuditLogs(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-audit-logs")
 
-		fmt.Println(cmdutil.FormatJSON(res, "audit"))
+		fmt.Println(cmdutil.FormatJSON(res, "audit_log"))
 	},
 }
 

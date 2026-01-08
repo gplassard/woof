@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/rum-retention-filters/#orde
 		res, _, err = api.OrderRetentionFilters(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to order-retention-filters")
 
-		fmt.Println(cmdutil.FormatJSON(res, "retention_filters"))
+		fmt.Println(cmdutil.FormatJSON(res, "rum_retention_filters"))
 	},
 }
 

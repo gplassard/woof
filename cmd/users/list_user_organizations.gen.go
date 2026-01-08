@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/users/#list-user-organizati
 		res, _, err = api.ListUserOrganizations(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-user-organizations")
 
-		fmt.Println(cmdutil.FormatJSON(res, "users"))
+		fmt.Println(cmdutil.FormatJSON(res, "user_organization"))
 	},
 }
 

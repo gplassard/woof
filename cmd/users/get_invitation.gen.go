@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/users/#get-invitation`,
 		res, _, err = api.GetInvitation(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-invitation")
 
-		fmt.Println(cmdutil.FormatJSON(res, "user_invitations"))
+		fmt.Println(cmdutil.FormatJSON(res, "invitation"))
 	},
 }
 

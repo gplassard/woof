@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/fastly-integration/#list-fa
 		res, _, err = api.ListFastlyAccounts(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-fastly-accounts")
 
-		fmt.Println(cmdutil.FormatJSON(res, "fastly-accounts"))
+		fmt.Println(cmdutil.FormatJSON(res, "fastly_account"))
 	},
 }
 

@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/metrics/#list-active-metric
 		res, _, err = api.ListActiveMetricConfigurations(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-active-metric-configurations")
 
-		fmt.Println(cmdutil.FormatJSON(res, "actively_queried_configurations"))
+		fmt.Println(cmdutil.FormatJSON(res, "active_metric_configuration"))
 	},
 }
 

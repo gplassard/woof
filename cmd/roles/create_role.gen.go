@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/roles/#create-role`,
 		res, _, err = api.CreateRole(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-role")
 
-		fmt.Println(cmdutil.FormatJSON(res, "roles"))
+		fmt.Println(cmdutil.FormatJSON(res, "role"))
 	},
 }
 

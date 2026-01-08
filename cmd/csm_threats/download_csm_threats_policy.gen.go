@@ -9,6 +9,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 
 	"github.com/spf13/cobra"
+	"io"
 )
 
 var DownloadCSMThreatsPolicyCmd = &cobra.Command{
@@ -20,7 +21,7 @@ Documentation: https://docs.datadoghq.com/api/latest/csm-threats/#download-csm-t
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
-		var res interface{}
+		var res io.Reader
 		var err error
 
 		api := datadogV2.NewCSMThreatsApi(client.NewAPIClient())

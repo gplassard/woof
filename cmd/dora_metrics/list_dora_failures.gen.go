@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/dora-metrics/#list-dora-fai
 		res, _, err = api.ListDORAFailures(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to list-dora-failures")
 
-		fmt.Println(cmdutil.FormatJSON(res, "dora_metrics"))
+		fmt.Println(cmdutil.FormatJSON(res, "d_o_r_a_failure"))
 	},
 }
 

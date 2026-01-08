@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#get-gcp
 		res, _, err = api.GetGcpScanOptions(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-gcp-scan-options")
 
-		fmt.Println(cmdutil.FormatJSON(res, "gcp_scan_options"))
+		fmt.Println(cmdutil.FormatJSON(res, "gcp_scan_option"))
 	},
 }
 

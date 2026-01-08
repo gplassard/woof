@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/csm-coverage-analysis/#get-
 		res, _, err = api.GetCSMCloudAccountsCoverageAnalysis(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-csm-cloud-accounts-coverage-analysis")
 
-		fmt.Println(cmdutil.FormatJSON(res, "csm_coverage_analysis"))
+		fmt.Println(cmdutil.FormatJSON(res, "c_s_m_cloud_accounts_coverage_analysi"))
 	},
 }
 

@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#create-new
 		res, _, err = api.CreateNewAWSExternalID(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to create-new-aws-external-id")
 
-		fmt.Println(cmdutil.FormatJSON(res, "external_id"))
+		fmt.Println(cmdutil.FormatJSON(res, "new_a_w_s_external_i_d"))
 	},
 }
 

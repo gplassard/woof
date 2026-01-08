@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/observability-pipelines/#ge
 		res, _, err = api.GetPipeline(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-pipeline")
 
-		fmt.Println(cmdutil.FormatJSON(res, "observability_pipelines"))
+		fmt.Println(cmdutil.FormatJSON(res, "pipeline"))
 	},
 }
 

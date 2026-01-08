@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/rum/#create-rum-application
 		res, _, err = api.CreateRUMApplication(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-rum-application")
 
-		fmt.Println(cmdutil.FormatJSON(res, "rum_application"))
+		fmt.Println(cmdutil.FormatJSON(res, "r_u_m_application"))
 	},
 }
 
