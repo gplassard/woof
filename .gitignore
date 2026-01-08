@@ -17,3 +17,4 @@ node_modules/
 !/.github/workflows/datadog-static-analysis.yml
 !/static-analysis.datadog.yaml
 dist
+woof

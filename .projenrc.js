@@ -4,4 +4,5 @@ const project = new GoProject({
     name: 'woof',
 });
 project.addGitIgnore('dist');
+project.addGitIgnore('woof');
 project.synth();
