@@ -76,6 +76,11 @@ homebrew_casks:
   - repository:
       owner: gplassard
       name: homebrew-packages
-    directory: Formula
     homepage: "https://github.com/gplassard/woof"
-    description: "Datadog CLI tool built with Go"
+    description: "Datadog CLI tool"
+    hooks:
+      post:
+        install: |
+          if OS.mac?
+            system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{staged_path}/woof"]
+          end
