@@ -1,12 +1,12 @@
 package cmd
 
 import (
-	"github.com/gplassard/woof/cmd/a_p_m"
-	"github.com/gplassard/woof/cmd/a_p_m_retention_filters"
 	"github.com/gplassard/woof/cmd/action_connection"
 	"github.com/gplassard/woof/cmd/actions_datastores"
 	"github.com/gplassard/woof/cmd/agentless_scanning"
 	"github.com/gplassard/woof/cmd/api_management"
+	"github.com/gplassard/woof/cmd/apm"
+	"github.com/gplassard/woof/cmd/apm_retention_filters"
 	"github.com/gplassard/woof/cmd/app_builder"
 	"github.com/gplassard/woof/cmd/application_security"
 	"github.com/gplassard/woof/cmd/audit"
@@ -111,12 +111,12 @@ func Execute() {
 	rootCmd.PersistentFlags().BoolVar(&config.Debug, "debug", false, "Enable debug logging")
 
 	rootCmd.AddCommand(
-		a_p_m.Cmd,
-		a_p_m_retention_filters.Cmd,
 		action_connection.Cmd,
 		actions_datastores.Cmd,
 		agentless_scanning.Cmd,
 		api_management.Cmd,
+		apm.Cmd,
+		apm_retention_filters.Cmd,
 		app_builder.Cmd,
 		application_security.Cmd,
 		audit.Cmd,

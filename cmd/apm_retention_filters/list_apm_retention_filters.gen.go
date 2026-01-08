@@ -1,4 +1,4 @@
-package a_p_m_retention_filters
+package apm_retention_filters
 
 import (
 	"fmt"
@@ -12,9 +12,9 @@ import (
 )
 
 var ListApmRetentionFiltersCmd = &cobra.Command{
-	Use: "list-apm-retention-filters",
-
-	Short: "List all APM retention filters",
+	Use:     "list-apm-retention-filters",
+	Aliases: []string{"list"},
+	Short:   "List all APM retention filters",
 	Long: `List all APM retention filters
 Documentation: https://docs.datadoghq.com/api/latest/a-p-m-retention-filters/#list-apm-retention-filters`,
 

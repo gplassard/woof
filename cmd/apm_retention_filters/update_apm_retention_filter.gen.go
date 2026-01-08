@@ -1,4 +1,4 @@
-package a_p_m_retention_filters
+package apm_retention_filters
 
 import (
 	"fmt"
@@ -12,9 +12,9 @@ import (
 )
 
 var UpdateApmRetentionFilterCmd = &cobra.Command{
-	Use: "update-apm-retention-filter [filter_id]",
-
-	Short: "Update a retention filter",
+	Use:     "update-apm-retention-filter [filter_id]",
+	Aliases: []string{"update"},
+	Short:   "Update a retention filter",
 	Long: `Update a retention filter
 Documentation: https://docs.datadoghq.com/api/latest/a-p-m-retention-filters/#update-apm-retention-filter`,
 	Args: cobra.ExactArgs(1),

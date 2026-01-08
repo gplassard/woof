@@ -1,4 +1,4 @@
-package a_p_m_retention_filters
+package apm_retention_filters
 
 import (
 	"fmt"
@@ -12,9 +12,9 @@ import (
 )
 
 var GetApmRetentionFilterCmd = &cobra.Command{
-	Use: "get-apm-retention-filter [filter_id]",
-
-	Short: "Get a given APM retention filter",
+	Use:     "get-apm-retention-filter [filter_id]",
+	Aliases: []string{"get"},
+	Short:   "Get a given APM retention filter",
 	Long: `Get a given APM retention filter
 Documentation: https://docs.datadoghq.com/api/latest/a-p-m-retention-filters/#get-apm-retention-filter`,
 	Args: cobra.ExactArgs(1),

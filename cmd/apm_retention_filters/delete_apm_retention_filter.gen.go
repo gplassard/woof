@@ -1,4 +1,4 @@
-package a_p_m_retention_filters
+package apm_retention_filters
 
 import (
 	"github.com/gplassard/woof/pkg/client"
@@ -11,9 +11,9 @@ import (
 )
 
 var DeleteApmRetentionFilterCmd = &cobra.Command{
-	Use: "delete-apm-retention-filter [filter_id]",
-
-	Short: "Delete a retention filter",
+	Use:     "delete-apm-retention-filter [filter_id]",
+	Aliases: []string{"delete"},
+	Short:   "Delete a retention filter",
 	Long: `Delete a retention filter
 Documentation: https://docs.datadoghq.com/api/latest/a-p-m-retention-filters/#delete-apm-retention-filter`,
 	Args: cobra.ExactArgs(1),

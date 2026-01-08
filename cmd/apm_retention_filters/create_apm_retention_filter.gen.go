@@ -1,4 +1,4 @@
-package a_p_m_retention_filters
+package apm_retention_filters
 
 import (
 	"fmt"
@@ -12,9 +12,9 @@ import (
 )
 
 var CreateApmRetentionFilterCmd = &cobra.Command{
-	Use: "create-apm-retention-filter",
-
-	Short: "Create a retention filter",
+	Use:     "create-apm-retention-filter",
+	Aliases: []string{"create"},
+	Short:   "Create a retention filter",
 	Long: `Create a retention filter
 Documentation: https://docs.datadoghq.com/api/latest/a-p-m-retention-filters/#create-apm-retention-filter`,
 

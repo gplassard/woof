@@ -1,4 +1,4 @@
-package a_p_m_retention_filters
+package apm_retention_filters
 
 import (
 	"github.com/gplassard/woof/pkg/client"
@@ -11,9 +11,9 @@ import (
 )
 
 var ReorderApmRetentionFiltersCmd = &cobra.Command{
-	Use: "reorder-apm-retention-filters",
-
-	Short: "Re-order retention filters",
+	Use:     "reorder-apm-retention-filters",
+	Aliases: []string{"reorder"},
+	Short:   "Re-order retention filters",
 	Long: `Re-order retention filters
 Documentation: https://docs.datadoghq.com/api/latest/a-p-m-retention-filters/#reorder-apm-retention-filters`,
 
