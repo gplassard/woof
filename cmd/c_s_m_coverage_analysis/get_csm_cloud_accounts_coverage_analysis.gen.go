@@ -1,0 +1,38 @@
+package c_s_m_coverage_analysis
+
+import (
+	"fmt"
+	"github.com/gplassard/woof/pkg/client"
+	"github.com/gplassard/woof/pkg/cmdutil"
+	"github.com/gplassard/woof/pkg/config"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+
+	"github.com/spf13/cobra"
+)
+
+var GetCSMCloudAccountsCoverageAnalysisCmd = &cobra.Command{
+	Use: "get-csm-cloud-accounts-coverage-analysis",
+
+	Short: "Get the CSM Cloud Accounts Coverage Analysis",
+	Long: `Get the CSM Cloud Accounts Coverage Analysis
+Documentation: https://docs.datadoghq.com/api/latest/c-s-m-coverage-analysis/#get-csm-cloud-accounts-coverage-analysis`,
+
+	Run: func(cmd *cobra.Command, args []string) {
+		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.CsmCloudAccountsCoverageAnalysisResponse
+		var err error
+
+		api := datadogV2.NewCSMCoverageAnalysisApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
+		res, _, err = api.GetCSMCloudAccountsCoverageAnalysis(client.NewContext(apiKey, appKey, site))
+		cmdutil.HandleError(err, "failed to get-csm-cloud-accounts-coverage-analysis")
+
+		fmt.Println(cmdutil.FormatJSON(res, "c_s_m_cloud_accounts_coverage_analysi"))
+	},
+}
+
+func init() {
+
+	Cmd.AddCommand(GetCSMCloudAccountsCoverageAnalysisCmd)
+}

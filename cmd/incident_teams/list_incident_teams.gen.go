@@ -1,0 +1,38 @@
+package incident_teams
+
+import (
+	"fmt"
+	"github.com/gplassard/woof/pkg/client"
+	"github.com/gplassard/woof/pkg/cmdutil"
+	"github.com/gplassard/woof/pkg/config"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+
+	"github.com/spf13/cobra"
+)
+
+var ListIncidentTeamsCmd = &cobra.Command{
+	Use:     "list-incident-teams",
+	Aliases: []string{"list"},
+	Short:   "Get a list of all incident teams",
+	Long: `Get a list of all incident teams
+Documentation: https://docs.datadoghq.com/api/latest/incident-teams/#list-incident-teams`,
+
+	Run: func(cmd *cobra.Command, args []string) {
+		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.IncidentTeamsResponse
+		var err error
+
+		api := datadogV2.NewIncidentTeamsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
+		res, _, err = api.ListIncidentTeams(client.NewContext(apiKey, appKey, site))
+		cmdutil.HandleError(err, "failed to list-incident-teams")
+
+		fmt.Println(cmdutil.FormatJSON(res, "incident_team"))
+	},
+}
+
+func init() {
+
+	Cmd.AddCommand(ListIncidentTeamsCmd)
+}

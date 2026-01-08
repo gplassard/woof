@@ -60,6 +60,7 @@ func parseTemplates(config *Config) (*template.Template, *template.Template, err
 			}
 			return 0
 		},
+		"contains": strings.Contains,
 	}
 
 	commandTmplContent, err := generatorFS.ReadFile("command.go.tmpl")

@@ -197,13 +197,24 @@ func parseMethod(funcDecl *ast.FuncDecl, tag, apiName string, fset *token.FileSe
 		}
 	}
 
+	// Check if this is a pagination helper (returns channel and cancel func)
+	// These methods have names like "ListUsersWithPagination" and have different signatures
+	if strings.HasSuffix(op.OperationID, "WithPagination") {
+		// Skip pagination helpers - they're not standard API operations
+		return nil, nil
+	}
+
 	// Parse return type
 	if funcDecl.Type.Results != nil && len(funcDecl.Type.Results.List) > 0 {
 		firstResult := funcDecl.Type.Results.List[0]
 		resultType := getTypeString(firstResult.Type)
 
-		// If the first return value is not *_nethttp.Response, it's the response type
-		if resultType != "*_nethttp.Response" {
+		// If the first return value is *http.Response (mapped from *_nethttp.Response),
+		// it means there's no response body (delete operations, etc.)
+		if resultType == "*http.Response" {
+			op.HasResponse = false
+		} else {
+			// Otherwise, this is the actual response type
 			op.ResponseType = resultType
 			op.HasResponse = true
 		}
@@ -321,12 +332,34 @@ func getTypeString(expr ast.Expr) string {
 	case *ast.ArrayType:
 		return "[]" + getTypeString(t.Elt)
 	case *ast.SelectorExpr:
-		return getTypeString(t.X) + "." + t.Sel.Name
+		pkgName := getTypeString(t.X)
+		// Map SDK package aliases to standard package names
+		pkgName = mapSDKPackageAlias(pkgName)
+		return pkgName + "." + t.Sel.Name
 	case *ast.Ellipsis:
 		return "..." + getTypeString(t.Elt)
 	default:
 		return ""
 	}
+}
+
+// mapSDKPackageAlias maps SDK package aliases to their standard names
+// E.g., "_io" -> "io", "_nethttp" -> "http", "_context" -> "context"
+// Note: We use "http" not "net/http" because "/" breaks Go syntax in templates
+func mapSDKPackageAlias(pkgAlias string) string {
+	aliases := map[string]string{
+		"_io":      "io",
+		"_nethttp": "http", // Use http, templates will import "net/http" as http
+		"_context": "context",
+		"_neturl":  "url", // Use url, templates will import "net/url" as url
+		"_fmt":     "fmt",
+		"_time":    "time",
+	}
+
+	if mapped, ok := aliases[pkgAlias]; ok {
+		return mapped
+	}
+	return pkgAlias
 }
 
 // toSnakeCaseSimple converts camelCase to snake_case

@@ -1,0 +1,45 @@
+package security_monitoring
+
+import (
+	"fmt"
+	"github.com/gplassard/woof/pkg/client"
+	"github.com/gplassard/woof/pkg/cmdutil"
+	"github.com/gplassard/woof/pkg/config"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+
+	"github.com/spf13/cobra"
+)
+
+var CreateJiraIssuesCmd = &cobra.Command{
+	Use: "create-jira-issues",
+
+	Short: "Create Jira issues for security findings",
+	Long: `Create Jira issues for security findings
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#create-jira-issues`,
+
+	Run: func(cmd *cobra.Command, args []string) {
+		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.FindingCaseResponseArray
+		var err error
+
+		var body datadogV2.CreateJiraIssueRequestArray
+		err = cmdutil.UnmarshalPayload(cmd, &body)
+		cmdutil.HandleError(err, "failed to read payload")
+
+		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
+		res, _, err = api.CreateJiraIssues(client.NewContext(apiKey, appKey, site), body)
+		cmdutil.HandleError(err, "failed to create-jira-issues")
+
+		fmt.Println(cmdutil.FormatJSON(res, "jira_issue"))
+	},
+}
+
+func init() {
+
+	CreateJiraIssuesCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
+	CreateJiraIssuesCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
+	Cmd.AddCommand(CreateJiraIssuesCmd)
+}

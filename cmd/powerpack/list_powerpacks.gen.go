@@ -1,0 +1,38 @@
+package powerpack
+
+import (
+	"fmt"
+	"github.com/gplassard/woof/pkg/client"
+	"github.com/gplassard/woof/pkg/cmdutil"
+	"github.com/gplassard/woof/pkg/config"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+
+	"github.com/spf13/cobra"
+)
+
+var ListPowerpacksCmd = &cobra.Command{
+	Use:     "list-powerpacks",
+	Aliases: []string{"list"},
+	Short:   "Get all powerpacks",
+	Long: `Get all powerpacks
+Documentation: https://docs.datadoghq.com/api/latest/powerpack/#list-powerpacks`,
+
+	Run: func(cmd *cobra.Command, args []string) {
+		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.ListPowerpacksResponse
+		var err error
+
+		api := datadogV2.NewPowerpackApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
+		res, _, err = api.ListPowerpacks(client.NewContext(apiKey, appKey, site))
+		cmdutil.HandleError(err, "failed to list-powerpacks")
+
+		fmt.Println(cmdutil.FormatJSON(res, "powerpack"))
+	},
+}
+
+func init() {
+
+	Cmd.AddCommand(ListPowerpacksCmd)
+}

@@ -1,0 +1,38 @@
+package cloud_network_monitoring
+
+import (
+	"fmt"
+	"github.com/gplassard/woof/pkg/client"
+	"github.com/gplassard/woof/pkg/cmdutil"
+	"github.com/gplassard/woof/pkg/config"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+
+	"github.com/spf13/cobra"
+)
+
+var GetAggregatedDnsCmd = &cobra.Command{
+	Use: "get-aggregated-dns",
+
+	Short: "Get all aggregated DNS traffic",
+	Long: `Get all aggregated DNS traffic
+Documentation: https://docs.datadoghq.com/api/latest/cloud-network-monitoring/#get-aggregated-dns`,
+
+	Run: func(cmd *cobra.Command, args []string) {
+		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.SingleAggregatedDnsResponseArray
+		var err error
+
+		api := datadogV2.NewCloudNetworkMonitoringApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
+		res, _, err = api.GetAggregatedDns(client.NewContext(apiKey, appKey, site))
+		cmdutil.HandleError(err, "failed to get-aggregated-dns")
+
+		fmt.Println(cmdutil.FormatJSON(res, "aggregated_dn"))
+	},
+}
+
+func init() {
+
+	Cmd.AddCommand(GetAggregatedDnsCmd)
+}

@@ -1,0 +1,38 @@
+package cloud_cost_management
+
+import (
+	"fmt"
+	"github.com/gplassard/woof/pkg/client"
+	"github.com/gplassard/woof/pkg/cmdutil"
+	"github.com/gplassard/woof/pkg/config"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+
+	"github.com/spf13/cobra"
+)
+
+var ListCustomCostsFilesCmd = &cobra.Command{
+	Use: "list-custom-costs-files",
+
+	Short: "List Custom Costs files",
+	Long: `List Custom Costs files
+Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#list-custom-costs-files`,
+
+	Run: func(cmd *cobra.Command, args []string) {
+		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.CustomCostsFileListResponse
+		var err error
+
+		api := datadogV2.NewCloudCostManagementApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
+		res, _, err = api.ListCustomCostsFiles(client.NewContext(apiKey, appKey, site))
+		cmdutil.HandleError(err, "failed to list-custom-costs-files")
+
+		fmt.Println(cmdutil.FormatJSON(res, "custom_costs_file"))
+	},
+}
+
+func init() {
+
+	Cmd.AddCommand(ListCustomCostsFilesCmd)
+}

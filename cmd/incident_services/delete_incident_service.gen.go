@@ -1,0 +1,36 @@
+package incident_services
+
+import (
+	"github.com/gplassard/woof/pkg/client"
+	"github.com/gplassard/woof/pkg/cmdutil"
+	"github.com/gplassard/woof/pkg/config"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+
+	"github.com/spf13/cobra"
+)
+
+var DeleteIncidentServiceCmd = &cobra.Command{
+	Use:     "delete-incident-service [service_id]",
+	Aliases: []string{"delete"},
+	Short:   "Delete an existing incident service",
+	Long: `Delete an existing incident service
+Documentation: https://docs.datadoghq.com/api/latest/incident-services/#delete-incident-service`,
+	Args: cobra.ExactArgs(1),
+	Run: func(cmd *cobra.Command, args []string) {
+		apiKey, appKey, site := config.GetConfig()
+
+		var err error
+
+		api := datadogV2.NewIncidentServicesApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
+		_, err = api.DeleteIncidentService(client.NewContext(apiKey, appKey, site), args[0])
+		cmdutil.HandleError(err, "failed to delete-incident-service")
+
+	},
+}
+
+func init() {
+
+	Cmd.AddCommand(DeleteIncidentServiceCmd)
+}

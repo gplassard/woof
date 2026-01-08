@@ -1,0 +1,36 @@
+package software_catalog
+
+import (
+	"github.com/gplassard/woof/pkg/client"
+	"github.com/gplassard/woof/pkg/cmdutil"
+	"github.com/gplassard/woof/pkg/config"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+
+	"github.com/spf13/cobra"
+)
+
+var DeleteCatalogKindCmd = &cobra.Command{
+	Use: "delete-catalog-kind [kind_id]",
+
+	Short: "Delete a single kind",
+	Long: `Delete a single kind
+Documentation: https://docs.datadoghq.com/api/latest/software-catalog/#delete-catalog-kind`,
+	Args: cobra.ExactArgs(1),
+	Run: func(cmd *cobra.Command, args []string) {
+		apiKey, appKey, site := config.GetConfig()
+
+		var err error
+
+		api := datadogV2.NewSoftwareCatalogApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
+		_, err = api.DeleteCatalogKind(client.NewContext(apiKey, appKey, site), args[0])
+		cmdutil.HandleError(err, "failed to delete-catalog-kind")
+
+	},
+}
+
+func init() {
+
+	Cmd.AddCommand(DeleteCatalogKindCmd)
+}

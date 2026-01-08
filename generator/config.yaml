@@ -1,5 +1,9 @@
 only_bundles:
-  - action_connection
+#  - service_level_objectives
+#  - a_p_i_management
+#  - action_connection
+#  - users
+#  - teams
 
 skip_operations:
   - CreateIncidentAttachment

@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"path/filepath"
 	"strings"
 )
 
@@ -26,7 +25,8 @@ func convertSDKToTemplateData(op *SDKOperation, config *Config) TemplateData {
 			use += fmt.Sprintf(" [%s]", paramNameSnakeCase)
 
 			// Convert Go type to the type format used in templates
-			argType := convertGoTypeToArgType(param.Type, op.OperationID, paramNameSnakeCase)
+			// Use original param name for type lookup (not snake_case) to match SDK
+			argType := convertGoTypeToArgType(param.Type, op.OperationID, param.Name)
 			argTypes = append(argTypes, argType)
 		}
 	}
@@ -117,25 +117,13 @@ func normalizeBundleFromTag(op *SDKOperation) (string, string) {
 
 // convertGoTypeToArgType converts Go SDK types to the argument types used in templates
 func convertGoTypeToArgType(goType, operationID, paramName string) string {
-	// Remove any package prefix (e.g., "datadogV2.SomeType" -> "SomeType")
-	typeName := filepath.Base(goType)
-
-	// Apply custom overrides first
-	if operationID == "GetSBOM" && paramName == "asset_type" {
-		return "datadogV2.AssetType"
-	}
-	if operationID == "GetTeamSync" && paramName == "filter[source]" {
-		return "datadogV2.TeamSyncAttributesSource"
-	}
-	if (operationID == "GetCostByOrg" || operationID == "GetHistoricalCostByOrg" || operationID == "GetMonthlyCostAttribution") && paramName == "start_month" {
-		return "time.Time"
-	}
-	if (operationID == "GetHourlyUsage" || operationID == "GetUsageApplicationSecurityMonitoring" || operationID == "GetUsageLambdaTracedInvocations" || operationID == "GetUsageObservabilityPipelines") && paramName == "start_hr" {
-		return "time.Time"
+	// If the type is already package-qualified, keep it as-is
+	if strings.Contains(goType, ".") {
+		return goType
 	}
 
-	// Basic type mapping
-	switch typeName {
+	// Basic type mapping for built-in types
+	switch goType {
 	case "string":
 		return "string"
 	case "int", "int32", "int64":
@@ -147,8 +135,18 @@ func convertGoTypeToArgType(goType, operationID, paramName string) string {
 	case "[]string":
 		return "[]string"
 	default:
-		// For complex types, keep them as-is
-		return goType
+		// For other types without a package prefix, they're likely datadogV2 types
+		// But there might be special cases like time.Time
+		// Apply custom overrides for known special cases
+		if (operationID == "GetCostByOrg" || operationID == "GetHistoricalCostByOrg" || operationID == "GetMonthlyCostAttribution") && paramName == "startMonth" {
+			return "time.Time"
+		}
+		if (operationID == "GetHourlyUsage" || operationID == "GetUsageApplicationSecurityMonitoring" || operationID == "GetUsageLambdaTracedInvocations" || operationID == "GetUsageObservabilityPipelines") && paramName == "startHr" {
+			return "time.Time"
+		}
+
+		// Default: types without package prefix are from datadogV2 package
+		return "datadogV2." + goType
 	}
 }
 
@@ -156,14 +154,21 @@ func convertGoTypeToArgType(goType, operationID, paramName string) string {
 // E.g., "CreateActionConnectionRequest" -> "CreateActionConnectionRequest"
 // E.g., "datadogV2.CreateActionConnectionRequest" -> "CreateActionConnectionRequest"
 // E.g., "*CreateActionConnectionRequest" -> "CreateActionConnectionRequest"
+// E.g., "io.Reader" -> "io.Reader" (keep non-datadogV2 package prefixes)
 func extractTypeName(typeStr string) string {
 	// Remove pointer prefix
 	typeStr = strings.TrimPrefix(typeStr, "*")
 
-	// Remove package prefix if present
+	// Remove package prefix only if it's datadogV2
 	parts := strings.Split(typeStr, ".")
 	if len(parts) > 1 {
-		return parts[len(parts)-1]
+		// If it's a datadogV2 type, strip the package prefix
+		// Otherwise keep the full qualified name (e.g., io.Reader)
+		if parts[0] == "datadogV2" {
+			return parts[len(parts)-1]
+		}
+		// For other packages, return the full type as-is
+		return typeStr
 	}
 
 	return typeStr

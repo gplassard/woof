@@ -1,0 +1,38 @@
+package service_level_objectives
+
+import (
+	"fmt"
+	"github.com/gplassard/woof/pkg/client"
+	"github.com/gplassard/woof/pkg/cmdutil"
+	"github.com/gplassard/woof/pkg/config"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+
+	"github.com/spf13/cobra"
+)
+
+var GetSLOReportCmd = &cobra.Command{
+	Use:     "get-slo-report [report_id]",
+	Aliases: []string{"get-report"},
+	Short:   "Get SLO report",
+	Long: `Get SLO report
+Documentation: https://docs.datadoghq.com/api/latest/service-level-objectives/#get-slo-report`,
+	Args: cobra.ExactArgs(1),
+	Run: func(cmd *cobra.Command, args []string) {
+		apiKey, appKey, site := config.GetConfig()
+		var res string
+		var err error
+
+		api := datadogV2.NewServiceLevelObjectivesApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
+		res, _, err = api.GetSLOReport(client.NewContext(apiKey, appKey, site), args[0])
+		cmdutil.HandleError(err, "failed to get-slo-report")
+
+		fmt.Println(cmdutil.FormatJSON(res, "s_l_o_report"))
+	},
+}
+
+func init() {
+
+	Cmd.AddCommand(GetSLOReportCmd)
+}

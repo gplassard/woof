@@ -1,0 +1,38 @@
+package synthetics
+
+import (
+	"fmt"
+	"github.com/gplassard/woof/pkg/client"
+	"github.com/gplassard/woof/pkg/cmdutil"
+	"github.com/gplassard/woof/pkg/config"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+
+	"github.com/spf13/cobra"
+)
+
+var GetOnDemandConcurrencyCapCmd = &cobra.Command{
+	Use: "get-on-demand-concurrency-cap",
+
+	Short: "Get the on-demand concurrency cap",
+	Long: `Get the on-demand concurrency cap
+Documentation: https://docs.datadoghq.com/api/latest/synthetics/#get-on-demand-concurrency-cap`,
+
+	Run: func(cmd *cobra.Command, args []string) {
+		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.OnDemandConcurrencyCapResponse
+		var err error
+
+		api := datadogV2.NewSyntheticsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
+		res, _, err = api.GetOnDemandConcurrencyCap(client.NewContext(apiKey, appKey, site))
+		cmdutil.HandleError(err, "failed to get-on-demand-concurrency-cap")
+
+		fmt.Println(cmdutil.FormatJSON(res, "on_demand_concurrency_cap"))
+	},
+}
+
+func init() {
+
+	Cmd.AddCommand(GetOnDemandConcurrencyCapCmd)
+}

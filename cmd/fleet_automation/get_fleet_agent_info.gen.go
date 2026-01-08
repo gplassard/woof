@@ -1,0 +1,38 @@
+package fleet_automation
+
+import (
+	"fmt"
+	"github.com/gplassard/woof/pkg/client"
+	"github.com/gplassard/woof/pkg/cmdutil"
+	"github.com/gplassard/woof/pkg/config"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+
+	"github.com/spf13/cobra"
+)
+
+var GetFleetAgentInfoCmd = &cobra.Command{
+	Use: "get-fleet-agent-info [agent_key]",
+
+	Short: "Get detailed information about an agent",
+	Long: `Get detailed information about an agent
+Documentation: https://docs.datadoghq.com/api/latest/fleet-automation/#get-fleet-agent-info`,
+	Args: cobra.ExactArgs(1),
+	Run: func(cmd *cobra.Command, args []string) {
+		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.FleetAgentInfoResponse
+		var err error
+
+		api := datadogV2.NewFleetAutomationApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
+		res, _, err = api.GetFleetAgentInfo(client.NewContext(apiKey, appKey, site), args[0])
+		cmdutil.HandleError(err, "failed to get-fleet-agent-info")
+
+		fmt.Println(cmdutil.FormatJSON(res, "fleet_agent_info"))
+	},
+}
+
+func init() {
+
+	Cmd.AddCommand(GetFleetAgentInfoCmd)
+}
