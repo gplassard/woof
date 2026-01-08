@@ -16,7 +16,7 @@ var AggregateCIAppTestEventsCmd = &cobra.Command{
 
 	Short: "Aggregate tests events",
 	Long: `Aggregate tests events
-Documentation: https://docs.datadoghq.com/api/latest/c-i-visibility-tests/#aggregate-ci-app-test-events`,
+Documentation: https://docs.datadoghq.com/api/latest/ci-visibility-tests/#aggregate-ci-app-test-events`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

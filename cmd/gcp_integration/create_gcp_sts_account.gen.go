@@ -16,7 +16,7 @@ var CreateGCPSTSAccountCmd = &cobra.Command{
 
 	Short: "Create a new entry for your service account",
 	Long: `Create a new entry for your service account
-Documentation: https://docs.datadoghq.com/api/latest/g-c-p-integration/#create-gcp-sts-account`,
+Documentation: https://docs.datadoghq.com/api/latest/gcp-integration/#create-gcp-sts-account`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

@@ -16,7 +16,7 @@ var GetAWSIntegrationIAMPermissionsStandardCmd = &cobra.Command{
 	Aliases: []string{"get-iam-permissions-standard"},
 	Short:   "Get AWS integration standard IAM permissions",
 	Long: `Get AWS integration standard IAM permissions
-Documentation: https://docs.datadoghq.com/api/latest/a-w-s-integration/#get-aws-integration-iam-permissions-standard`,
+Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#get-aws-integration-iam-permissions-standard`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

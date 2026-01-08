@@ -16,7 +16,7 @@ var ListAWSEventBridgeSourcesCmd = &cobra.Command{
 
 	Short: "Get all Amazon EventBridge sources",
 	Long: `Get all Amazon EventBridge sources
-Documentation: https://docs.datadoghq.com/api/latest/a-w-s-integration/#list-aws-event-bridge-sources`,
+Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#list-aws-event-bridge-sources`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

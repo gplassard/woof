@@ -17,7 +17,7 @@ var DownloadCSMThreatsPolicyCmd = &cobra.Command{
 	Aliases: []string{"download-policy"},
 	Short:   "Download the Workload Protection policy",
 	Long: `Download the Workload Protection policy
-Documentation: https://docs.datadoghq.com/api/latest/c-s-m-threats/#download-csm-threats-policy`,
+Documentation: https://docs.datadoghq.com/api/latest/csm-threats/#download-csm-threats-policy`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

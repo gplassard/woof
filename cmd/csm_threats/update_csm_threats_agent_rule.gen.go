@@ -16,7 +16,7 @@ var UpdateCSMThreatsAgentRuleCmd = &cobra.Command{
 	Aliases: []string{"update-agent-rule"},
 	Short:   "Update a Workload Protection agent rule",
 	Long: `Update a Workload Protection agent rule
-Documentation: https://docs.datadoghq.com/api/latest/c-s-m-threats/#update-csm-threats-agent-rule`,
+Documentation: https://docs.datadoghq.com/api/latest/csm-threats/#update-csm-threats-agent-rule`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

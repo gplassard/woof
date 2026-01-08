@@ -16,7 +16,7 @@ var GetOktaAccountCmd = &cobra.Command{
 
 	Short: "Get Okta account",
 	Long: `Get Okta account
-Documentation: https://docs.datadoghq.com/api/latest/okta-integration/#get-okta-account`,
+Documentation: https://docs.datadoghq.com/api/latest/oktaintegration/#get-okta-account`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

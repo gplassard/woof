@@ -16,7 +16,7 @@ var AggregateCIAppPipelineEventsCmd = &cobra.Command{
 
 	Short: "Aggregate pipelines events",
 	Long: `Aggregate pipelines events
-Documentation: https://docs.datadoghq.com/api/latest/c-i-visibility-pipelines/#aggregate-ci-app-pipeline-events`,
+Documentation: https://docs.datadoghq.com/api/latest/ci-visibility-pipelines/#aggregate-ci-app-pipeline-events`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

@@ -15,7 +15,7 @@ var ReorderApmRetentionFiltersCmd = &cobra.Command{
 	Aliases: []string{"reorder"},
 	Short:   "Re-order retention filters",
 	Long: `Re-order retention filters
-Documentation: https://docs.datadoghq.com/api/latest/a-p-m-retention-filters/#reorder-apm-retention-filters`,
+Documentation: https://docs.datadoghq.com/api/latest/apm-retention-filters/#reorder-apm-retention-filters`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

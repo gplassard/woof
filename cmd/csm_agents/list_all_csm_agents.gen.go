@@ -16,7 +16,7 @@ var ListAllCSMAgentsCmd = &cobra.Command{
 	Aliases: []string{"list-all"},
 	Short:   "Get all CSM Agents",
 	Long: `Get all CSM Agents
-Documentation: https://docs.datadoghq.com/api/latest/c-s-m-agents/#list-all-csm-agents`,
+Documentation: https://docs.datadoghq.com/api/latest/csm-agents/#list-all-csm-agents`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

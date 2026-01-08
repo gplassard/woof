@@ -16,7 +16,7 @@ var UpdateAWSAccountCmd = &cobra.Command{
 
 	Short: "Update an AWS integration",
 	Long: `Update an AWS integration
-Documentation: https://docs.datadoghq.com/api/latest/a-w-s-integration/#update-aws-account`,
+Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#update-aws-account`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

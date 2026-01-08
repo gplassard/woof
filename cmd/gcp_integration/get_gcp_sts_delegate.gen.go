@@ -16,7 +16,7 @@ var GetGCPSTSDelegateCmd = &cobra.Command{
 
 	Short: "List delegate account",
 	Long: `List delegate account
-Documentation: https://docs.datadoghq.com/api/latest/g-c-p-integration/#get-gcp-sts-delegate`,
+Documentation: https://docs.datadoghq.com/api/latest/gcp-integration/#get-gcp-sts-delegate`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

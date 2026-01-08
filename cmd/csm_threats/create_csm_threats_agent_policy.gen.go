@@ -16,7 +16,7 @@ var CreateCSMThreatsAgentPolicyCmd = &cobra.Command{
 	Aliases: []string{"create-agent-policy"},
 	Short:   "Create a Workload Protection policy",
 	Long: `Create a Workload Protection policy
-Documentation: https://docs.datadoghq.com/api/latest/c-s-m-threats/#create-csm-threats-agent-policy`,
+Documentation: https://docs.datadoghq.com/api/latest/csm-threats/#create-csm-threats-agent-policy`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

@@ -16,7 +16,7 @@ var GetCSMThreatsAgentRuleCmd = &cobra.Command{
 	Aliases: []string{"get-agent-rule"},
 	Short:   "Get a Workload Protection agent rule",
 	Long: `Get a Workload Protection agent rule
-Documentation: https://docs.datadoghq.com/api/latest/c-s-m-threats/#get-csm-threats-agent-rule`,
+Documentation: https://docs.datadoghq.com/api/latest/csm-threats/#get-csm-threats-agent-rule`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

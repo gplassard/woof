@@ -15,7 +15,7 @@ var DeleteDORAFailureCmd = &cobra.Command{
 
 	Short: "Delete a failure event",
 	Long: `Delete a failure event
-Documentation: https://docs.datadoghq.com/api/latest/d-o-r-a-metrics/#delete-dora-failure`,
+Documentation: https://docs.datadoghq.com/api/latest/dora-metrics/#delete-dora-failure`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

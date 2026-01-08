@@ -16,7 +16,7 @@ var ListAllCSMServerlessAgentsCmd = &cobra.Command{
 
 	Short: "Get all CSM Serverless Agents",
 	Long: `Get all CSM Serverless Agents
-Documentation: https://docs.datadoghq.com/api/latest/c-s-m-agents/#list-all-csm-serverless-agents`,
+Documentation: https://docs.datadoghq.com/api/latest/csm-agents/#list-all-csm-serverless-agents`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

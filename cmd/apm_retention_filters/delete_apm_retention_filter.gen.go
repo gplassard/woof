@@ -15,7 +15,7 @@ var DeleteApmRetentionFilterCmd = &cobra.Command{
 	Aliases: []string{"delete"},
 	Short:   "Delete a retention filter",
 	Long: `Delete a retention filter
-Documentation: https://docs.datadoghq.com/api/latest/a-p-m-retention-filters/#delete-apm-retention-filter`,
+Documentation: https://docs.datadoghq.com/api/latest/apm-retention-filters/#delete-apm-retention-filter`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

@@ -16,7 +16,7 @@ var CreateCIAppPipelineEventCmd = &cobra.Command{
 
 	Short: "Send pipeline event",
 	Long: `Send pipeline event
-Documentation: https://docs.datadoghq.com/api/latest/c-i-visibility-pipelines/#create-ci-app-pipeline-event`,
+Documentation: https://docs.datadoghq.com/api/latest/ci-visibility-pipelines/#create-ci-app-pipeline-event`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

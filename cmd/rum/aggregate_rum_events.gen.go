@@ -16,7 +16,7 @@ var AggregateRUMEventsCmd = &cobra.Command{
 	Aliases: []string{"aggregate-events"},
 	Short:   "Aggregate RUM events",
 	Long: `Aggregate RUM events
-Documentation: https://docs.datadoghq.com/api/latest/r-u-m/#aggregate-rum-events`,
+Documentation: https://docs.datadoghq.com/api/latest/rum/#aggregate-rum-events`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

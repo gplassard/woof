@@ -16,7 +16,7 @@ var DeleteAWSEventBridgeSourceCmd = &cobra.Command{
 
 	Short: "Delete an Amazon EventBridge source",
 	Long: `Delete an Amazon EventBridge source
-Documentation: https://docs.datadoghq.com/api/latest/a-w-s-integration/#delete-aws-event-bridge-source`,
+Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#delete-aws-event-bridge-source`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

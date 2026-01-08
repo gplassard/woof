@@ -16,7 +16,7 @@ var ListAWSLogsServicesCmd = &cobra.Command{
 
 	Short: "Get list of AWS log ready services",
 	Long: `Get list of AWS log ready services
-Documentation: https://docs.datadoghq.com/api/latest/a-w-s-logs-integration/#list-aws-logs-services`,
+Documentation: https://docs.datadoghq.com/api/latest/aws-logs-integration/#list-aws-logs-services`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

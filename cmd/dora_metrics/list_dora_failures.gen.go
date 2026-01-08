@@ -16,7 +16,7 @@ var ListDORAFailuresCmd = &cobra.Command{
 
 	Short: "Get a list of failure events",
 	Long: `Get a list of failure events
-Documentation: https://docs.datadoghq.com/api/latest/d-o-r-a-metrics/#list-dora-failures`,
+Documentation: https://docs.datadoghq.com/api/latest/dora-metrics/#list-dora-failures`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

@@ -12,11 +12,11 @@ import (
 )
 
 var GetDataDeletionRequestsCmd = &cobra.Command{
-	Use: "get-data-deletion-requests",
-
-	Short: "Gets a list of data deletion requests",
+	Use:     "get-datadeletion-requests",
+	Aliases: []string{"get-requests"},
+	Short:   "Gets a list of data deletion requests",
 	Long: `Gets a list of data deletion requests
-Documentation: https://docs.datadoghq.com/api/latest/data-deletion/#get-data-deletion-requests`,
+Documentation: https://docs.datadoghq.com/api/latest/datadeletion/#get-datadeletion-requests`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
@@ -26,7 +26,7 @@ Documentation: https://docs.datadoghq.com/api/latest/data-deletion/#get-data-del
 		api := datadogV2.NewDataDeletionApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetDataDeletionRequests(client.NewContext(apiKey, appKey, site))
-		cmdutil.HandleError(err, "failed to get-data-deletion-requests")
+		cmdutil.HandleError(err, "failed to get-datadeletion-requests")
 
 		fmt.Println(cmdutil.FormatJSON(res, "data_deletion_request"))
 	},

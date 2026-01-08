@@ -16,7 +16,7 @@ var GetAWSAccountCmd = &cobra.Command{
 
 	Short: "Get an AWS integration by config ID",
 	Long: `Get an AWS integration by config ID
-Documentation: https://docs.datadoghq.com/api/latest/a-w-s-integration/#get-aws-account`,
+Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#get-aws-account`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

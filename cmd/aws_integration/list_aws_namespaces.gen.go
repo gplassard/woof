@@ -16,7 +16,7 @@ var ListAWSNamespacesCmd = &cobra.Command{
 
 	Short: "List available namespaces",
 	Long: `List available namespaces
-Documentation: https://docs.datadoghq.com/api/latest/a-w-s-integration/#list-aws-namespaces`,
+Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#list-aws-namespaces`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

@@ -16,7 +16,7 @@ var GetServiceListCmd = &cobra.Command{
 
 	Short: "",
 	Long: `
-Documentation: https://docs.datadoghq.com/api/latest/a-p-m/#get-service-list`,
+Documentation: https://docs.datadoghq.com/api/latest/apm/#get-service-list`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

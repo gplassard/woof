@@ -16,7 +16,7 @@ var GetDORAFailureCmd = &cobra.Command{
 
 	Short: "Get a failure event",
 	Long: `Get a failure event
-Documentation: https://docs.datadoghq.com/api/latest/d-o-r-a-metrics/#get-dora-failure`,
+Documentation: https://docs.datadoghq.com/api/latest/dora-metrics/#get-dora-failure`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

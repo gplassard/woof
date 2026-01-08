@@ -16,7 +16,7 @@ var CreateRUMApplicationCmd = &cobra.Command{
 	Aliases: []string{"create-application"},
 	Short:   "Create a new RUM application",
 	Long: `Create a new RUM application
-Documentation: https://docs.datadoghq.com/api/latest/r-u-m/#create-rum-application`,
+Documentation: https://docs.datadoghq.com/api/latest/rum/#create-rum-application`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

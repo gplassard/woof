@@ -16,7 +16,7 @@ var SearchCIAppTestEventsCmd = &cobra.Command{
 
 	Short: "Search tests events",
 	Long: `Search tests events
-Documentation: https://docs.datadoghq.com/api/latest/c-i-visibility-tests/#search-ci-app-test-events`,
+Documentation: https://docs.datadoghq.com/api/latest/ci-visibility-tests/#search-ci-app-test-events`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

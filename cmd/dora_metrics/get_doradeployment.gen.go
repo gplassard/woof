@@ -12,11 +12,11 @@ import (
 )
 
 var GetDORADeploymentCmd = &cobra.Command{
-	Use: "get-d-o-r-ad-eployment [deployment_id]",
+	Use: "get-doradeployment [deployment_id]",
 
 	Short: "Get a deployment event",
 	Long: `Get a deployment event
-Documentation: https://docs.datadoghq.com/api/latest/d-o-r-a-metrics/#get-d-o-r-ad-eployment`,
+Documentation: https://docs.datadoghq.com/api/latest/dora-metrics/#get-doradeployment`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
@@ -26,7 +26,7 @@ Documentation: https://docs.datadoghq.com/api/latest/d-o-r-a-metrics/#get-d-o-r-
 		api := datadogV2.NewDORAMetricsApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.GetDORADeployment(client.NewContext(apiKey, appKey, site), args[0])
-		cmdutil.HandleError(err, "failed to get-d-o-r-ad-eployment")
+		cmdutil.HandleError(err, "failed to get-doradeployment")
 
 		fmt.Println(cmdutil.FormatJSON(res, "d_o_r_a_deployment"))
 	},

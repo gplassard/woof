@@ -17,27 +17,37 @@ func toKebabCase(s string, config *Config) string {
 		acronyms = config.Acronyms
 	}
 
-	res := s
-	for _, acronym := range acronyms {
-		// Replace acronym with its lowercase version surrounded by markers to avoid further splitting
-		// e.g. CSM -> -csm-
-		// We use a temporary placeholder to avoid double replacement or splitting
-		res = strings.ReplaceAll(res, acronym, "-"+strings.ToLower(acronym)+"-")
-	}
+	// Replace spaces with hyphens first
+	s = strings.ReplaceAll(s, " ", "-")
 
+	// Convert to kebab-case
 	var finalRes strings.Builder
-	for i, r := range res {
+	for i, r := range s {
 		if i > 0 && r >= 'A' && r <= 'Z' {
 			finalRes.WriteRune('-')
 		}
 		finalRes.WriteRune(r)
 	}
 
-	s = strings.ToLower(finalRes.String())
-	// Clean up double hyphens and hyphens at start/end
-	s = strings.ReplaceAll(s, "--", "-")
-	s = strings.Trim(s, "-")
-	return s
+	result := strings.ToLower(finalRes.String())
+
+	// Clean up multiple hyphens first
+	for strings.Contains(result, "--") {
+		result = strings.ReplaceAll(result, "--", "-")
+	}
+
+	// Then apply acronym replacements on the cleaned kebab-case string
+	for _, acronym := range acronyms {
+		lowerAcronym := strings.ToLower(acronym)
+		// Replace the acronym with hyphens (e.g., "a-p-i" -> "api")
+		parts := strings.Split(lowerAcronym, "")
+		withHyphens := strings.Join(parts, "-")
+		result = strings.ReplaceAll(result, withHyphens, lowerAcronym)
+	}
+
+	// Trim any leading/trailing hyphens
+	result = strings.Trim(result, "-")
+	return result
 }
 
 func toSnakeCase(s string, config *Config) string {

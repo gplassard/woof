@@ -16,7 +16,7 @@ var CreateAWSEventBridgeSourceCmd = &cobra.Command{
 
 	Short: "Create an Amazon EventBridge source",
 	Long: `Create an Amazon EventBridge source
-Documentation: https://docs.datadoghq.com/api/latest/a-w-s-integration/#create-aws-event-bridge-source`,
+Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#create-aws-event-bridge-source`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

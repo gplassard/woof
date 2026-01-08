@@ -16,7 +16,7 @@ var ListRUMEventsCmd = &cobra.Command{
 	Aliases: []string{"list-events"},
 	Short:   "Get a list of RUM events",
 	Long: `Get a list of RUM events
-Documentation: https://docs.datadoghq.com/api/latest/r-u-m/#list-rum-events`,
+Documentation: https://docs.datadoghq.com/api/latest/rum/#list-rum-events`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

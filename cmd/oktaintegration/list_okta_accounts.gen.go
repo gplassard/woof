@@ -16,7 +16,7 @@ var ListOktaAccountsCmd = &cobra.Command{
 
 	Short: "List Okta accounts",
 	Long: `List Okta accounts
-Documentation: https://docs.datadoghq.com/api/latest/okta-integration/#list-okta-accounts`,
+Documentation: https://docs.datadoghq.com/api/latest/oktaintegration/#list-okta-accounts`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

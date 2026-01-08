@@ -16,7 +16,7 @@ var UpdateApmRetentionFilterCmd = &cobra.Command{
 	Aliases: []string{"update"},
 	Short:   "Update a retention filter",
 	Long: `Update a retention filter
-Documentation: https://docs.datadoghq.com/api/latest/a-p-m-retention-filters/#update-apm-retention-filter`,
+Documentation: https://docs.datadoghq.com/api/latest/apm-retention-filters/#update-apm-retention-filter`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

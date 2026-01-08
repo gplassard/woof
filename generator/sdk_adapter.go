@@ -73,8 +73,8 @@ func convertSDKToTemplateData(op *SDKOperation, config *Config) TemplateData {
 	// Compute aliases
 	aliases := computeAliases(bundle, op.OperationID, config)
 
-	// Build documentation URL
-	docBundle := strings.ReplaceAll(strings.ToLower(rawBundle), " ", "-")
+	// Build documentation URL (use kebab-case with acronym rules)
+	docBundle := toKebabCase(rawBundle, config)
 	docURL := fmt.Sprintf("https://docs.datadoghq.com/api/latest/%s/#%s", docBundle, toKebabCase(op.OperationID, config))
 
 	// Remove trailing period from summary for consistency

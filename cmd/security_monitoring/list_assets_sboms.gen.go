@@ -12,11 +12,11 @@ import (
 )
 
 var ListAssetsSBOMsCmd = &cobra.Command{
-	Use: "list-assets-sbom-s",
+	Use: "list-assets-sboms",
 
 	Short: "List assets SBOMs",
 	Long: `List assets SBOMs
-Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#list-assets-sbom-s`,
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#list-assets-sboms`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
@@ -26,7 +26,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#list-a
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListAssetsSBOMs(client.NewContext(apiKey, appKey, site))
-		cmdutil.HandleError(err, "failed to list-assets-sbom-s")
+		cmdutil.HandleError(err, "failed to list-assets-sboms")
 
 		fmt.Println(cmdutil.FormatJSON(res, "assets_s_b_o_m"))
 	},

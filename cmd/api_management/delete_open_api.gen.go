@@ -16,7 +16,7 @@ var DeleteOpenAPICmd = &cobra.Command{
 
 	Short: "Delete an API",
 	Long: `Delete an API
-Documentation: https://docs.datadoghq.com/api/latest/a-p-i-management/#delete-open-api`,
+Documentation: https://docs.datadoghq.com/api/latest/api-management/#delete-open-api`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

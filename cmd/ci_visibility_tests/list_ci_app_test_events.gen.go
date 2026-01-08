@@ -16,7 +16,7 @@ var ListCIAppTestEventsCmd = &cobra.Command{
 
 	Short: "Get a list of tests events",
 	Long: `Get a list of tests events
-Documentation: https://docs.datadoghq.com/api/latest/c-i-visibility-tests/#list-ci-app-test-events`,
+Documentation: https://docs.datadoghq.com/api/latest/ci-visibility-tests/#list-ci-app-test-events`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

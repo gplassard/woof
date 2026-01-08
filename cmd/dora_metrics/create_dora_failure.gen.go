@@ -16,7 +16,7 @@ var CreateDORAFailureCmd = &cobra.Command{
 
 	Short: "Send a failure event",
 	Long: `Send a failure event
-Documentation: https://docs.datadoghq.com/api/latest/d-o-r-a-metrics/#create-dora-failure`,
+Documentation: https://docs.datadoghq.com/api/latest/dora-metrics/#create-dora-failure`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

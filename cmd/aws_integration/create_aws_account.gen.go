@@ -16,7 +16,7 @@ var CreateAWSAccountCmd = &cobra.Command{
 
 	Short: "Create an AWS integration",
 	Long: `Create an AWS integration
-Documentation: https://docs.datadoghq.com/api/latest/a-w-s-integration/#create-aws-account`,
+Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#create-aws-account`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

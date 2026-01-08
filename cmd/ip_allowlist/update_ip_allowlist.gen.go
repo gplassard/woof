@@ -16,7 +16,7 @@ var UpdateIPAllowlistCmd = &cobra.Command{
 	Aliases: []string{"update"},
 	Short:   "Update IP Allowlist",
 	Long: `Update IP Allowlist
-Documentation: https://docs.datadoghq.com/api/latest/i-p-allowlist/#update-ip-allowlist`,
+Documentation: https://docs.datadoghq.com/api/latest/ip-allowlist/#update-ip-allowlist`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

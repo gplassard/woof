@@ -12,11 +12,11 @@ import (
 )
 
 var AttachJiraIssueCmd = &cobra.Command{
-	Use: "attach-jira-issue",
+	Use: "attach-jiraissue",
 
 	Short: "Attach security findings to a Jira issue",
 	Long: `Attach security findings to a Jira issue
-Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#attach-jira-issue`,
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#attach-jiraissue`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
@@ -30,7 +30,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#attach
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.AttachJiraIssue(client.NewContext(apiKey, appKey, site), body)
-		cmdutil.HandleError(err, "failed to attach-jira-issue")
+		cmdutil.HandleError(err, "failed to attach-jiraissue")
 
 		fmt.Println(cmdutil.FormatJSON(res, "security_monitoring"))
 	},

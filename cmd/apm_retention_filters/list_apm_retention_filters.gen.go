@@ -16,7 +16,7 @@ var ListApmRetentionFiltersCmd = &cobra.Command{
 	Aliases: []string{"list"},
 	Short:   "List all APM retention filters",
 	Long: `List all APM retention filters
-Documentation: https://docs.datadoghq.com/api/latest/a-p-m-retention-filters/#list-apm-retention-filters`,
+Documentation: https://docs.datadoghq.com/api/latest/apm-retention-filters/#list-apm-retention-filters`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

@@ -16,7 +16,7 @@ var CreateOpenAPICmd = &cobra.Command{
 
 	Short: "Create a new API",
 	Long: `Create a new API
-Documentation: https://docs.datadoghq.com/api/latest/a-p-i-management/#create-open-api`,
+Documentation: https://docs.datadoghq.com/api/latest/api-management/#create-open-api`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

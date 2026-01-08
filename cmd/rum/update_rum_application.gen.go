@@ -16,7 +16,7 @@ var UpdateRUMApplicationCmd = &cobra.Command{
 	Aliases: []string{"update-application"},
 	Short:   "Update a RUM application",
 	Long: `Update a RUM application
-Documentation: https://docs.datadoghq.com/api/latest/r-u-m/#update-rum-application`,
+Documentation: https://docs.datadoghq.com/api/latest/rum/#update-rum-application`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

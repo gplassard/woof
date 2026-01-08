@@ -16,7 +16,7 @@ var SearchCIAppPipelineEventsCmd = &cobra.Command{
 
 	Short: "Search pipelines events",
 	Long: `Search pipelines events
-Documentation: https://docs.datadoghq.com/api/latest/c-i-visibility-pipelines/#search-ci-app-pipeline-events`,
+Documentation: https://docs.datadoghq.com/api/latest/ci-visibility-pipelines/#search-ci-app-pipeline-events`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

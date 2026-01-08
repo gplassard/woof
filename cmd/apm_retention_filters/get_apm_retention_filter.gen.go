@@ -16,7 +16,7 @@ var GetApmRetentionFilterCmd = &cobra.Command{
 	Aliases: []string{"get"},
 	Short:   "Get a given APM retention filter",
 	Long: `Get a given APM retention filter
-Documentation: https://docs.datadoghq.com/api/latest/a-p-m-retention-filters/#get-apm-retention-filter`,
+Documentation: https://docs.datadoghq.com/api/latest/apm-retention-filters/#get-apm-retention-filter`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

@@ -16,7 +16,7 @@ var CreateNewAWSExternalIDCmd = &cobra.Command{
 
 	Short: "Generate a new external ID",
 	Long: `Generate a new external ID
-Documentation: https://docs.datadoghq.com/api/latest/a-w-s-integration/#create-new-aws-external-id`,
+Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#create-new-aws-external-id`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

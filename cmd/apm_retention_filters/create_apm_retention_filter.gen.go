@@ -16,7 +16,7 @@ var CreateApmRetentionFilterCmd = &cobra.Command{
 	Aliases: []string{"create"},
 	Short:   "Create a retention filter",
 	Long: `Create a retention filter
-Documentation: https://docs.datadoghq.com/api/latest/a-p-m-retention-filters/#create-apm-retention-filter`,
+Documentation: https://docs.datadoghq.com/api/latest/apm-retention-filters/#create-apm-retention-filter`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()

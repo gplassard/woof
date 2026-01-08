@@ -15,7 +15,7 @@ var DeleteGCPSTSAccountCmd = &cobra.Command{
 
 	Short: "Delete an STS enabled GCP Account",
 	Long: `Delete an STS enabled GCP Account
-Documentation: https://docs.datadoghq.com/api/latest/g-c-p-integration/#delete-gcp-sts-account`,
+Documentation: https://docs.datadoghq.com/api/latest/gcp-integration/#delete-gcp-sts-account`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
