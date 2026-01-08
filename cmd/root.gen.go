@@ -1,48 +1,48 @@
 package cmd
 
 import (
-	"github.com/gplassard/woof/cmd/a_p_i_management"
 	"github.com/gplassard/woof/cmd/a_p_m"
 	"github.com/gplassard/woof/cmd/a_p_m_retention_filters"
-	"github.com/gplassard/woof/cmd/a_w_s_integration"
-	"github.com/gplassard/woof/cmd/a_w_s_logs_integration"
 	"github.com/gplassard/woof/cmd/action_connection"
 	"github.com/gplassard/woof/cmd/actions_datastores"
 	"github.com/gplassard/woof/cmd/agentless_scanning"
+	"github.com/gplassard/woof/cmd/api_management"
 	"github.com/gplassard/woof/cmd/app_builder"
 	"github.com/gplassard/woof/cmd/application_security"
 	"github.com/gplassard/woof/cmd/audit"
 	"github.com/gplassard/woof/cmd/auth_n_mappings"
-	"github.com/gplassard/woof/cmd/c_i_visibility_pipelines"
-	"github.com/gplassard/woof/cmd/c_i_visibility_tests"
-	"github.com/gplassard/woof/cmd/c_s_m_agents"
-	"github.com/gplassard/woof/cmd/c_s_m_coverage_analysis"
-	"github.com/gplassard/woof/cmd/c_s_m_threats"
+	"github.com/gplassard/woof/cmd/aws_integration"
+	"github.com/gplassard/woof/cmd/aws_logs_integration"
 	"github.com/gplassard/woof/cmd/case_management"
 	"github.com/gplassard/woof/cmd/case_management_attribute"
 	"github.com/gplassard/woof/cmd/case_management_type"
+	"github.com/gplassard/woof/cmd/ci_visibility_pipelines"
+	"github.com/gplassard/woof/cmd/ci_visibility_tests"
 	"github.com/gplassard/woof/cmd/cloud_cost_management"
 	"github.com/gplassard/woof/cmd/cloud_network_monitoring"
 	"github.com/gplassard/woof/cmd/cloudflare_integration"
 	"github.com/gplassard/woof/cmd/confluent_cloud"
 	"github.com/gplassard/woof/cmd/container_images"
 	"github.com/gplassard/woof/cmd/containers"
-	"github.com/gplassard/woof/cmd/d_o_r_a_metrics"
+	"github.com/gplassard/woof/cmd/csm_agents"
+	"github.com/gplassard/woof/cmd/csm_coverage_analysis"
+	"github.com/gplassard/woof/cmd/csm_threats"
 	"github.com/gplassard/woof/cmd/dashboard_lists"
-	"github.com/gplassard/woof/cmd/data_deletion"
+	"github.com/gplassard/woof/cmd/datadeletion"
 	"github.com/gplassard/woof/cmd/datasets"
 	"github.com/gplassard/woof/cmd/deployment_gates"
 	"github.com/gplassard/woof/cmd/domain_allowlist"
+	"github.com/gplassard/woof/cmd/dora_metrics"
 	"github.com/gplassard/woof/cmd/downtimes"
 	"github.com/gplassard/woof/cmd/error_tracking"
 	"github.com/gplassard/woof/cmd/events"
 	"github.com/gplassard/woof/cmd/fastly_integration"
 	"github.com/gplassard/woof/cmd/fleet_automation"
-	"github.com/gplassard/woof/cmd/g_c_p_integration"
-	"github.com/gplassard/woof/cmd/i_p_allowlist"
+	"github.com/gplassard/woof/cmd/gcp_integration"
 	"github.com/gplassard/woof/cmd/incident_services"
 	"github.com/gplassard/woof/cmd/incident_teams"
 	"github.com/gplassard/woof/cmd/incidents"
+	"github.com/gplassard/woof/cmd/ip_allowlist"
 	"github.com/gplassard/woof/cmd/key_management"
 	"github.com/gplassard/woof/cmd/logs"
 	"github.com/gplassard/woof/cmd/logs_archives"
@@ -54,7 +54,7 @@ import (
 	"github.com/gplassard/woof/cmd/monitors"
 	"github.com/gplassard/woof/cmd/network_device_monitoring"
 	"github.com/gplassard/woof/cmd/observability_pipelines"
-	"github.com/gplassard/woof/cmd/okta_integration"
+	"github.com/gplassard/woof/cmd/oktaintegration"
 	"github.com/gplassard/woof/cmd/on_call"
 	"github.com/gplassard/woof/cmd/on_call_paging"
 	"github.com/gplassard/woof/cmd/opsgenie_integration"
@@ -62,10 +62,10 @@ import (
 	"github.com/gplassard/woof/cmd/organizations"
 	"github.com/gplassard/woof/cmd/powerpack"
 	"github.com/gplassard/woof/cmd/processes"
-	"github.com/gplassard/woof/cmd/r_u_m"
 	"github.com/gplassard/woof/cmd/reference_tables"
 	"github.com/gplassard/woof/cmd/restriction_policies"
 	"github.com/gplassard/woof/cmd/roles"
+	"github.com/gplassard/woof/cmd/rum"
 	"github.com/gplassard/woof/cmd/rum_audience_management"
 	"github.com/gplassard/woof/cmd/rum_metrics"
 	"github.com/gplassard/woof/cmd/rum_retention_filters"
@@ -111,48 +111,48 @@ func Execute() {
 	rootCmd.PersistentFlags().BoolVar(&config.Debug, "debug", false, "Enable debug logging")
 
 	rootCmd.AddCommand(
-		a_p_i_management.Cmd,
 		a_p_m.Cmd,
 		a_p_m_retention_filters.Cmd,
-		a_w_s_integration.Cmd,
-		a_w_s_logs_integration.Cmd,
 		action_connection.Cmd,
 		actions_datastores.Cmd,
 		agentless_scanning.Cmd,
+		api_management.Cmd,
 		app_builder.Cmd,
 		application_security.Cmd,
 		audit.Cmd,
 		auth_n_mappings.Cmd,
-		c_i_visibility_pipelines.Cmd,
-		c_i_visibility_tests.Cmd,
-		c_s_m_agents.Cmd,
-		c_s_m_coverage_analysis.Cmd,
-		c_s_m_threats.Cmd,
+		aws_integration.Cmd,
+		aws_logs_integration.Cmd,
 		case_management.Cmd,
 		case_management_attribute.Cmd,
 		case_management_type.Cmd,
+		ci_visibility_pipelines.Cmd,
+		ci_visibility_tests.Cmd,
 		cloud_cost_management.Cmd,
 		cloud_network_monitoring.Cmd,
 		cloudflare_integration.Cmd,
 		confluent_cloud.Cmd,
 		container_images.Cmd,
 		containers.Cmd,
-		d_o_r_a_metrics.Cmd,
+		csm_agents.Cmd,
+		csm_coverage_analysis.Cmd,
+		csm_threats.Cmd,
 		dashboard_lists.Cmd,
-		data_deletion.Cmd,
+		datadeletion.Cmd,
 		datasets.Cmd,
 		deployment_gates.Cmd,
 		domain_allowlist.Cmd,
+		dora_metrics.Cmd,
 		downtimes.Cmd,
 		error_tracking.Cmd,
 		events.Cmd,
 		fastly_integration.Cmd,
 		fleet_automation.Cmd,
-		g_c_p_integration.Cmd,
-		i_p_allowlist.Cmd,
+		gcp_integration.Cmd,
 		incident_services.Cmd,
 		incident_teams.Cmd,
 		incidents.Cmd,
+		ip_allowlist.Cmd,
 		key_management.Cmd,
 		logs.Cmd,
 		logs_archives.Cmd,
@@ -164,7 +164,7 @@ func Execute() {
 		monitors.Cmd,
 		network_device_monitoring.Cmd,
 		observability_pipelines.Cmd,
-		okta_integration.Cmd,
+		oktaintegration.Cmd,
 		on_call.Cmd,
 		on_call_paging.Cmd,
 		opsgenie_integration.Cmd,
@@ -172,10 +172,10 @@ func Execute() {
 		organizations.Cmd,
 		powerpack.Cmd,
 		processes.Cmd,
-		r_u_m.Cmd,
 		reference_tables.Cmd,
 		restriction_policies.Cmd,
 		roles.Cmd,
+		rum.Cmd,
 		rum_audience_management.Cmd,
 		rum_metrics.Cmd,
 		rum_retention_filters.Cmd,

@@ -7,8 +7,8 @@ import (
 
 // convertSDKToTemplateData converts an SDK operation to template data
 func convertSDKToTemplateData(op *SDKOperation, config *Config) TemplateData {
-	// Normalize bundle name from tag
-	bundle, rawBundle := normalizeBundleFromTag(op)
+	// Normalize bundle name from tag (applies acronym rules)
+	bundle, rawBundle := normalizeBundleFromTag(op, config)
 	apiBundleName := normalizeApiBundleName(rawBundle)
 
 	// Build the command use string
@@ -104,14 +104,27 @@ func convertSDKToTemplateData(op *SDKOperation, config *Config) TemplateData {
 }
 
 // normalizeBundleFromTag extracts bundle names from operation tags
-func normalizeBundleFromTag(op *SDKOperation) (string, string) {
+func normalizeBundleFromTag(op *SDKOperation, config *Config) (string, string) {
 	rawBundle := "general"
 	if len(op.Tags) > 0 {
 		rawBundle = op.Tags[0]
 	}
-	bundle := strings.ToLower(rawBundle)
-	bundle = strings.ReplaceAll(bundle, " ", "_")
-	bundle = strings.ReplaceAll(bundle, "-", "_")
+	// Use toSnakeCase which applies acronym rules from config
+	bundle := toSnakeCase(rawBundle, config)
+
+	// Check if bundle is a Go reserved keyword
+	goKeywords := map[string]bool{
+		"break": true, "case": true, "chan": true, "const": true, "continue": true,
+		"default": true, "defer": true, "else": true, "fallthrough": true, "for": true,
+		"func": true, "go": true, "goto": true, "if": true, "import": true,
+		"interface": true, "map": true, "package": true, "range": true, "return": true,
+		"select": true, "struct": true, "switch": true, "type": true, "var": true,
+	}
+
+	if goKeywords[bundle] {
+		bundle = bundle + "_management"
+	}
+
 	return bundle, rawBundle
 }
 

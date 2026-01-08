@@ -71,7 +71,7 @@ func RunGenerate(args []string) error {
 			continue
 		}
 
-		bundle, _ := normalizeBundleFromTag(op)
+		bundle, _ := normalizeBundleFromTag(op, config)
 
 		if len(onlyBundlesMap) > 0 && !onlyBundlesMap[bundle] {
 			continue

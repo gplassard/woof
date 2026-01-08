@@ -46,23 +46,37 @@ func toSnakeCase(s string, config *Config) string {
 		acronyms = config.Acronyms
 	}
 
-	res := s
-	for _, acronym := range acronyms {
-		res = strings.ReplaceAll(res, acronym, "_"+strings.ToLower(acronym)+"_")
-	}
+	// Replace spaces with underscores first
+	s = strings.ReplaceAll(s, " ", "_")
 
+	// Convert to snake_case
 	var finalRes strings.Builder
-	for i, r := range res {
+	for i, r := range s {
 		if i > 0 && r >= 'A' && r <= 'Z' {
 			finalRes.WriteRune('_')
 		}
 		finalRes.WriteRune(r)
 	}
 
-	s = strings.ToLower(finalRes.String())
-	s = strings.ReplaceAll(s, "__", "_")
-	s = strings.Trim(s, "_")
-	return s
+	result := strings.ToLower(finalRes.String())
+
+	// Clean up multiple underscores first
+	for strings.Contains(result, "__") {
+		result = strings.ReplaceAll(result, "__", "_")
+	}
+
+	// Then apply acronym replacements on the cleaned snake_case string
+	for _, acronym := range acronyms {
+		lowerAcronym := strings.ToLower(acronym)
+		// Replace the acronym with underscores (e.g., "c_s_m" -> "csm")
+		parts := strings.Split(lowerAcronym, "")
+		withUnderscores := strings.Join(parts, "_")
+		result = strings.ReplaceAll(result, withUnderscores, lowerAcronym)
+	}
+
+	// Trim any leading/trailing underscores
+	result = strings.Trim(result, "_")
+	return result
 }
 
 func ensureEntrypoint(pkgDir, bundle string, tmpl *template.Template, config *Config) error {

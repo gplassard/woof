@@ -1,0 +1,38 @@
+package csm_threats
+
+import (
+	"fmt"
+	"github.com/gplassard/woof/pkg/client"
+	"github.com/gplassard/woof/pkg/cmdutil"
+	"github.com/gplassard/woof/pkg/config"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+
+	"github.com/spf13/cobra"
+)
+
+var ListCloudWorkloadSecurityAgentRulesCmd = &cobra.Command{
+	Use: "list-cloud-workload-security-agent-rules",
+
+	Short: "Get all Workload Protection agent rules (US1-FED)",
+	Long: `Get all Workload Protection agent rules (US1-FED)
+Documentation: https://docs.datadoghq.com/api/latest/c-s-m-threats/#list-cloud-workload-security-agent-rules`,
+
+	Run: func(cmd *cobra.Command, args []string) {
+		apiKey, appKey, site := config.GetConfig()
+		var res datadogV2.CloudWorkloadSecurityAgentRulesListResponse
+		var err error
+
+		api := datadogV2.NewCSMThreatsApi(client.NewAPIClient())
+		//nolint:staticcheck // SA1019: deprecated
+		res, _, err = api.ListCloudWorkloadSecurityAgentRules(client.NewContext(apiKey, appKey, site))
+		cmdutil.HandleError(err, "failed to list-cloud-workload-security-agent-rules")
+
+		fmt.Println(cmdutil.FormatJSON(res, "cloud_workload_security_agent_rule"))
+	},
+}
+
+func init() {
+
+	Cmd.AddCommand(ListCloudWorkloadSecurityAgentRulesCmd)
+}
