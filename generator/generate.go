@@ -57,6 +57,11 @@ func RunGenerate(args []string) error {
 		skipOpsMap[op] = true
 	}
 
+	onlyBundlesMap := make(map[string]bool)
+	for _, bundle := range config.OnlyBundles {
+		onlyBundlesMap[bundle] = true
+	}
+
 	for path, methods := range spec.Paths {
 		for method, op := range methods {
 			if op.OperationID == "" || skipOpsMap[op.OperationID] {
@@ -68,6 +73,11 @@ func RunGenerate(args []string) error {
 			}
 
 			bundle, rawBundle := normalizeBundle(op)
+
+			if len(onlyBundlesMap) > 0 && !onlyBundlesMap[bundle] {
+				continue
+			}
+
 			bundles[bundle] = true
 			apiBundleName := normalizeApiBundleName(rawBundle)
 

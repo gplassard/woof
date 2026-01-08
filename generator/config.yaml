@@ -1,3 +1,6 @@
+only_bundles:
+  - action_connection
+
 skip_operations:
   - CreateIncidentAttachment
   - DeleteIncidentAttachment

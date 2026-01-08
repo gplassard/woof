@@ -1,6 +1,7 @@
 package main
 
 type Config struct {
+	OnlyBundles                  []string            `yaml:"only_bundles"`
 	SkipOperations               []string            `yaml:"skip_operations"`
 	OptionalParametersOperations map[string]string   `yaml:"optional_parameters_operations"`
 	BundleAliases                map[string][]string `yaml:"bundle_aliases"`
