@@ -23,13 +23,21 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#create-on-call-esc
 		var res datadogV2.EscalationPolicy
 		var err error
 
-		var body datadogV2.EscalationPolicyCreateRequest
-		err = cmdutil.UnmarshalPayload(cmd, &body)
-		cmdutil.HandleError(err, "failed to read payload")
+		optionalParams := datadogV2.NewCreateOnCallEscalationPolicyOptionalParameters()
+
+		if cmd.Flags().Changed("payload") || cmd.Flags().Changed("payload-file") {
+			err = cmdutil.UnmarshalPayload(cmd, optionalParams)
+			cmdutil.HandleError(err, "failed to read payload")
+		}
+
+		if cmd.Flags().Changed("include") {
+			val, _ := cmd.Flags().GetString("include")
+			optionalParams.WithInclude(val)
+		}
 
 		api := datadogV2.NewOnCallApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.CreateOnCallEscalationPolicy(client.NewContext(apiKey, appKey, site), body)
+		res, _, err = api.CreateOnCallEscalationPolicy(client.NewContext(apiKey, appKey, site), *optionalParams)
 		cmdutil.HandleError(err, "failed to create-on-call-escalation-policy")
 
 		fmt.Println(cmdutil.FormatJSON(res, "policies"))
@@ -40,6 +48,8 @@ func init() {
 
 	CreateOnCallEscalationPolicyCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
 	CreateOnCallEscalationPolicyCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
+	CreateOnCallEscalationPolicyCmd.Flags().String("include", "", "Comma-separated list of included relationships to be returned. Allowed values: 'teams', 'steps', 'steps.targets'.")
 
 	Cmd.AddCommand(CreateOnCallEscalationPolicyCmd)
 }

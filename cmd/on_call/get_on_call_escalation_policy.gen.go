@@ -23,9 +23,16 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#get-on-call-escala
 		var res datadogV2.EscalationPolicy
 		var err error
 
+		optionalParams := datadogV2.NewGetOnCallEscalationPolicyOptionalParameters()
+
+		if cmd.Flags().Changed("include") {
+			val, _ := cmd.Flags().GetString("include")
+			optionalParams.WithInclude(val)
+		}
+
 		api := datadogV2.NewOnCallApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.GetOnCallEscalationPolicy(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.GetOnCallEscalationPolicy(client.NewContext(apiKey, appKey, site), args[0], *optionalParams)
 		cmdutil.HandleError(err, "failed to get-on-call-escalation-policy")
 
 		fmt.Println(cmdutil.FormatJSON(res, "policies"))
@@ -33,6 +40,8 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#get-on-call-escala
 }
 
 func init() {
+
+	GetOnCallEscalationPolicyCmd.Flags().String("include", "", "Comma-separated list of included relationships to be returned. Allowed values: 'teams', 'steps', 'steps.targets'.")
 
 	Cmd.AddCommand(GetOnCallEscalationPolicyCmd)
 }

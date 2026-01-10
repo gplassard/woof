@@ -23,9 +23,16 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#list-s
 		var res datadogV2.SecurityMonitoringSuppressionsResponse
 		var err error
 
+		optionalParams := datadogV2.NewListSecurityMonitoringSuppressionsOptionalParameters()
+
+		if cmd.Flags().Changed("query") {
+			val, _ := cmd.Flags().GetString("query")
+			optionalParams.WithQuery(val)
+		}
+
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.ListSecurityMonitoringSuppressions(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListSecurityMonitoringSuppressions(client.NewContext(apiKey, appKey, site), *optionalParams)
 		cmdutil.HandleError(err, "failed to list-security-monitoring-suppressions")
 
 		fmt.Println(cmdutil.FormatJSON(res, "suppressions"))
@@ -33,6 +40,8 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#list-s
 }
 
 func init() {
+
+	ListSecurityMonitoringSuppressionsCmd.Flags().String("query", "", "Query string.")
 
 	Cmd.AddCommand(ListSecurityMonitoringSuppressionsCmd)
 }

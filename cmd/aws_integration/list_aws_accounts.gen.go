@@ -23,9 +23,16 @@ Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#list-aws-a
 		var res datadogV2.AWSAccountsResponse
 		var err error
 
+		optionalParams := datadogV2.NewListAWSAccountsOptionalParameters()
+
+		if cmd.Flags().Changed("aws-account-id") {
+			val, _ := cmd.Flags().GetString("aws-account-id")
+			optionalParams.WithAwsAccountId(val)
+		}
+
 		api := datadogV2.NewAWSIntegrationApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.ListAWSAccounts(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListAWSAccounts(client.NewContext(apiKey, appKey, site), *optionalParams)
 		cmdutil.HandleError(err, "failed to list-aws-accounts")
 
 		fmt.Println(cmdutil.FormatJSON(res, "account"))
@@ -33,6 +40,8 @@ Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#list-aws-a
 }
 
 func init() {
+
+	ListAWSAccountsCmd.Flags().String("aws-account-id", "", "Optional query parameter to filter accounts by AWS Account ID. If not provided, all accounts are returned.")
 
 	Cmd.AddCommand(ListAWSAccountsCmd)
 }

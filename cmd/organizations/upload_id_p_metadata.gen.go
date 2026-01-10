@@ -22,13 +22,16 @@ Documentation: https://docs.datadoghq.com/api/latest/organizations/#upload-id-p-
 
 		var err error
 
-		var body datadogV2.UploadIdPMetadataOptionalParameters
-		err = cmdutil.UnmarshalPayload(cmd, &body)
-		cmdutil.HandleError(err, "failed to read payload")
+		optionalParams := datadogV2.NewUploadIdPMetadataOptionalParameters()
+
+		if cmd.Flags().Changed("payload") || cmd.Flags().Changed("payload-file") {
+			err = cmdutil.UnmarshalPayload(cmd, optionalParams)
+			cmdutil.HandleError(err, "failed to read payload")
+		}
 
 		api := datadogV2.NewOrganizationsApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		_, err = api.UploadIdPMetadata(client.NewContext(apiKey, appKey, site), body)
+		_, err = api.UploadIdPMetadata(client.NewContext(apiKey, appKey, site), *optionalParams)
 		cmdutil.HandleError(err, "failed to upload-id-p-metadata")
 
 	},

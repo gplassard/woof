@@ -24,9 +24,16 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#get-incident-not
 		var res datadogV2.IncidentNotificationTemplate
 		var err error
 
+		optionalParams := datadogV2.NewGetIncidentNotificationTemplateOptionalParameters()
+
+		if cmd.Flags().Changed("include") {
+			val, _ := cmd.Flags().GetString("include")
+			optionalParams.WithInclude(val)
+		}
+
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.GetIncidentNotificationTemplate(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
+		res, _, err = api.GetIncidentNotificationTemplate(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]), *optionalParams)
 		cmdutil.HandleError(err, "failed to get-incident-notification-template")
 
 		fmt.Println(cmdutil.FormatJSON(res, "notification_templates"))
@@ -34,6 +41,8 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#get-incident-not
 }
 
 func init() {
+
+	GetIncidentNotificationTemplateCmd.Flags().String("include", "", "Comma-separated list of relationships to include. Supported values: 'created_by_user', 'last_modified_by_user', 'incident_type'")
 
 	Cmd.AddCommand(GetIncidentNotificationTemplateCmd)
 }

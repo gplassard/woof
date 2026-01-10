@@ -25,14 +25,36 @@ Documentation: {{.DocURL}}`,
 		apiKey, appKey, site := config.GetConfig()
 		{{if .HasResponse}}var res {{if eq .ResponseTypeGo "interface{}"}}{{.ResponseTypeGo}}{{else}}datadogV2.{{.ResponseTypeGo}}{{end}}{{end}}
 		var err error
-	{{if .HasRequestBody}}
+	{{if .IsOptionalParams}}
+		optionalParams := datadogV2.New{{.RequestBodyType}}()
+		{{if .HasRequestBody}}
+		if cmd.Flags().Changed("payload") || cmd.Flags().Changed("payload-file") {
+			err = cmdutil.UnmarshalPayload(cmd, optionalParams)
+			cmdutil.HandleError(err, "failed to read payload")
+		}
+		{{end}}
+{{range .OptionalFlags}}
+		if cmd.Flags().Changed("{{.FlagName}}") {
+			{{if eq .Type "int64" -}}
+			val, _ := cmd.Flags().GetInt64("{{.FlagName}}")
+			optionalParams.With{{.GoName}}(val)
+			{{else if eq .Type "float64" -}}
+			val, _ := cmd.Flags().GetFloat64("{{.FlagName}}")
+			optionalParams.With{{.GoName}}(val)
+			{{else -}}
+			val, _ := cmd.Flags().GetString("{{.FlagName}}")
+			optionalParams.With{{.GoName}}(val)
+			{{end -}}
+		}
+{{end}}
+	{{else if .HasRequestBody}}
 		var body datadogV2.{{.RequestBodyType}}
 		err = cmdutil.UnmarshalPayload(cmd, &body)
 		cmdutil.HandleError(err, "failed to read payload")
 	{{end}}
 		api := datadogV2.New{{.ApiBundleName}}Api(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		{{if .HasResponse}}res, _, err = {{else}}_, err = {{end}}api.{{.OperationID}}(client.NewContext(apiKey, appKey, site){{range $i, $type := .ArgTypes}}, {{if eq $type "uuid.UUID"}}uuid.MustParse(args[{{$i}}]){{else if eq $type "int64"}}func() int64 { i, _ := strconv.ParseInt(args[{{$i}}], 10, 64); return i }(){{else if eq $type "float64"}}func() float64 { f, _ := strconv.ParseFloat(args[{{$i}}], 64); return f }(){{else if eq $type "time.Time"}}func() time.Time { t, _ := time.Parse(time.RFC3339, args[{{$i}}]); return t }(){{else if eq $type "datadogV2.AssetType"}}datadogV2.AssetType(args[{{$i}}]){{else if eq $type "datadogV2.TeamSyncAttributesSource"}}datadogV2.TeamSyncAttributesSource(args[{{$i}}]){{else if eq $type "[]string"}}strings.Split(args[{{$i}}], ", "){{else}}args[{{$i}}]{{end}}{{end}}{{if .HasRequestBody}}, body{{end}})
+		{{if .HasResponse}}res, _, err = {{else}}_, err = {{end}}api.{{.OperationID}}(client.NewContext(apiKey, appKey, site){{range $i, $type := .ArgTypes}}, {{if eq $type "uuid.UUID"}}uuid.MustParse(args[{{$i}}]){{else if eq $type "int64"}}func() int64 { i, _ := strconv.ParseInt(args[{{$i}}], 10, 64); return i }(){{else if eq $type "float64"}}func() float64 { f, _ := strconv.ParseFloat(args[{{$i}}], 64); return f }(){{else if eq $type "time.Time"}}func() time.Time { t, _ := time.Parse(time.RFC3339, args[{{$i}}]); return t }(){{else if eq $type "datadogV2.AssetType"}}datadogV2.AssetType(args[{{$i}}]){{else if eq $type "datadogV2.TeamSyncAttributesSource"}}datadogV2.TeamSyncAttributesSource(args[{{$i}}]){{else if eq $type "[]string"}}strings.Split(args[{{$i}}], ", "){{else}}args[{{$i}}]{{end}}{{end}}{{if .IsOptionalParams}}, *optionalParams{{else if .HasRequestBody}}, body{{end}})
 		cmdutil.HandleError(err, "failed to {{.OperationID | toKebabCase}}")
 
 		{{if .HasResponse}}fmt.Println(cmdutil.FormatJSON(res, "{{.ResourceType}}")){{end}}
@@ -43,6 +65,17 @@ func init() {
 	{{if .HasRequestBody}}
 	{{.CommandName}}.Flags().StringP("payload", "p", "", "JSON payload of the request")
 	{{.CommandName}}.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+	{{end}}
+	{{if .IsOptionalParams}}
+		{{range .OptionalFlags}}
+			{{if eq .Type "int64"}}
+			{{$.CommandName}}.Flags().Int64("{{.FlagName}}", 0, "{{.Description}}")
+			{{else if eq .Type "float64"}}
+			{{$.CommandName}}.Flags().Float64("{{.FlagName}}", 0, "{{.Description}}")
+			{{else}}
+			{{$.CommandName}}.Flags().String("{{.FlagName}}", "", "{{.Description}}")
+			{{end}}
+		{{end}}
 	{{end}}
 	Cmd.AddCommand({{.CommandName}})
 }

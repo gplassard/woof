@@ -23,9 +23,16 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#list-incident-im
 		var res datadogV2.IncidentImpactsResponse
 		var err error
 
+		optionalParams := datadogV2.NewListIncidentImpactsOptionalParameters()
+
+		if cmd.Flags().Changed("include") {
+			val, _ := cmd.Flags().GetString("include")
+			optionalParams.WithInclude(val)
+		}
+
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.ListIncidentImpacts(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.ListIncidentImpacts(client.NewContext(apiKey, appKey, site), args[0], *optionalParams)
 		cmdutil.HandleError(err, "failed to list-incident-impacts")
 
 		fmt.Println(cmdutil.FormatJSON(res, "incident_impacts"))
@@ -33,6 +40,8 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#list-incident-im
 }
 
 func init() {
+
+	ListIncidentImpactsCmd.Flags().String("include", "", "Specifies which related resources should be included in the response.")
 
 	Cmd.AddCommand(ListIncidentImpactsCmd)
 }

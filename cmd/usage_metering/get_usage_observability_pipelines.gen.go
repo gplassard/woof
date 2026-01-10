@@ -25,9 +25,16 @@ Documentation: https://docs.datadoghq.com/api/latest/usage-metering/#get-usage-o
 		var res datadogV2.UsageObservabilityPipelinesResponse
 		var err error
 
+		optionalParams := datadogV2.NewGetUsageObservabilityPipelinesOptionalParameters()
+
+		if cmd.Flags().Changed("end-hr") {
+			val, _ := cmd.Flags().GetString("end-hr")
+			optionalParams.WithEndHr(val)
+		}
+
 		api := datadogV2.NewUsageMeteringApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.GetUsageObservabilityPipelines(client.NewContext(apiKey, appKey, site), func() time.Time { t, _ := time.Parse(time.RFC3339, args[0]); return t }())
+		res, _, err = api.GetUsageObservabilityPipelines(client.NewContext(apiKey, appKey, site), func() time.Time { t, _ := time.Parse(time.RFC3339, args[0]); return t }(), *optionalParams)
 		cmdutil.HandleError(err, "failed to get-usage-observability-pipelines")
 
 		fmt.Println(cmdutil.FormatJSON(res, "usage_timeseries"))
@@ -35,6 +42,8 @@ Documentation: https://docs.datadoghq.com/api/latest/usage-metering/#get-usage-o
 }
 
 func init() {
+
+	GetUsageObservabilityPipelinesCmd.Flags().String("end-hr", "", "Datetime in ISO-8601 format, UTC, precise to hour: '[YYYY-MM-DDThh]' for usage ending **before** this hour.")
 
 	Cmd.AddCommand(GetUsageObservabilityPipelinesCmd)
 }

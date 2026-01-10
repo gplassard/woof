@@ -23,9 +23,16 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-fi
 		var res datadogV2.GetFindingResponse
 		var err error
 
+		optionalParams := datadogV2.NewGetFindingOptionalParameters()
+
+		if cmd.Flags().Changed("snapshot-timestamp") {
+			val, _ := cmd.Flags().GetInt64("snapshot-timestamp")
+			optionalParams.WithSnapshotTimestamp(val)
+		}
+
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.GetFinding(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.GetFinding(client.NewContext(apiKey, appKey, site), args[0], *optionalParams)
 		cmdutil.HandleError(err, "failed to get-finding")
 
 		fmt.Println(cmdutil.FormatJSON(res, "detailed_finding"))
@@ -33,6 +40,8 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-fi
 }
 
 func init() {
+
+	GetFindingCmd.Flags().Int64("snapshot-timestamp", 0, "Return the finding for a given snapshot of time (Unix ms).")
 
 	Cmd.AddCommand(GetFindingCmd)
 }

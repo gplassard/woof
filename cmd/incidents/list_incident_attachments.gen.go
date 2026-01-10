@@ -23,9 +23,21 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#list-incident-at
 		var res datadogV2.IncidentAttachmentsResponse
 		var err error
 
+		optionalParams := datadogV2.NewListIncidentAttachmentsOptionalParameters()
+
+		if cmd.Flags().Changed("filter-attachment-type") {
+			val, _ := cmd.Flags().GetString("filter-attachment-type")
+			optionalParams.WithFilterAttachmentType(val)
+		}
+
+		if cmd.Flags().Changed("include") {
+			val, _ := cmd.Flags().GetString("include")
+			optionalParams.WithInclude(val)
+		}
+
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.ListIncidentAttachments(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.ListIncidentAttachments(client.NewContext(apiKey, appKey, site), args[0], *optionalParams)
 		cmdutil.HandleError(err, "failed to list-incident-attachments")
 
 		fmt.Println(cmdutil.FormatJSON(res, "incident_attachments"))
@@ -33,6 +45,10 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#list-incident-at
 }
 
 func init() {
+
+	ListIncidentAttachmentsCmd.Flags().String("filter-attachment-type", "", "Filter attachments by type. Supported values are '1' ('postmortem') and '2' ('link').")
+
+	ListIncidentAttachmentsCmd.Flags().String("include", "", "Resource to include in the response. Supported value: 'last_modified_by_user'.")
 
 	Cmd.AddCommand(ListIncidentAttachmentsCmd)
 }

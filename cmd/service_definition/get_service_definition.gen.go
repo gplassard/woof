@@ -23,9 +23,16 @@ Documentation: https://docs.datadoghq.com/api/latest/service-definition/#get-ser
 		var res datadogV2.ServiceDefinitionGetResponse
 		var err error
 
+		optionalParams := datadogV2.NewGetServiceDefinitionOptionalParameters()
+
+		if cmd.Flags().Changed("schema-version") {
+			val, _ := cmd.Flags().GetString("schema-version")
+			optionalParams.WithSchemaVersion(val)
+		}
+
 		api := datadogV2.NewServiceDefinitionApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.GetServiceDefinition(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.GetServiceDefinition(client.NewContext(apiKey, appKey, site), args[0], *optionalParams)
 		cmdutil.HandleError(err, "failed to get-service-definition")
 
 		fmt.Println(cmdutil.FormatJSON(res, "service_definition"))
@@ -33,6 +40,8 @@ Documentation: https://docs.datadoghq.com/api/latest/service-definition/#get-ser
 }
 
 func init() {
+
+	GetServiceDefinitionCmd.Flags().String("schema-version", "", "The schema version desired in the response.")
 
 	Cmd.AddCommand(GetServiceDefinitionCmd)
 }

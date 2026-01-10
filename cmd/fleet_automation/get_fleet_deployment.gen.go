@@ -23,9 +23,21 @@ Documentation: https://docs.datadoghq.com/api/latest/fleet-automation/#get-fleet
 		var res datadogV2.FleetDeploymentResponse
 		var err error
 
+		optionalParams := datadogV2.NewGetFleetDeploymentOptionalParameters()
+
+		if cmd.Flags().Changed("limit") {
+			val, _ := cmd.Flags().GetInt64("limit")
+			optionalParams.WithLimit(val)
+		}
+
+		if cmd.Flags().Changed("page") {
+			val, _ := cmd.Flags().GetInt64("page")
+			optionalParams.WithPage(val)
+		}
+
 		api := datadogV2.NewFleetAutomationApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.GetFleetDeployment(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.GetFleetDeployment(client.NewContext(apiKey, appKey, site), args[0], *optionalParams)
 		cmdutil.HandleError(err, "failed to get-fleet-deployment")
 
 		fmt.Println(cmdutil.FormatJSON(res, "deployment"))
@@ -33,6 +45,10 @@ Documentation: https://docs.datadoghq.com/api/latest/fleet-automation/#get-fleet
 }
 
 func init() {
+
+	GetFleetDeploymentCmd.Flags().Int64("limit", 0, "Maximum number of hosts to return per page. Default is 50, maximum is 100.")
+
+	GetFleetDeploymentCmd.Flags().Int64("page", 0, "Page index for pagination (zero-based). Use this to retrieve subsequent pages of hosts.")
 
 	Cmd.AddCommand(GetFleetDeploymentCmd)
 }

@@ -126,6 +126,14 @@ func resolveSchema(spec *OpenAPI, schema map[string]interface{}) map[string]inte
 	return schema
 }
 
+func sanitize(s string) string {
+	s = strings.ReplaceAll(s, "\n", " ")
+	s = strings.ReplaceAll(s, "\r", " ")
+	s = strings.ReplaceAll(s, "\"", "\\\"")
+	s = strings.ReplaceAll(s, "`", "'")
+	return s
+}
+
 func prepareTemplateData(bundle, rawBundle, apiBundleName, method, path string, op Operation, spec *OpenAPI, config *Config) TemplateData {
 	var args []string
 	var argTypes []string
@@ -208,6 +216,81 @@ func prepareTemplateData(bundle, rawBundle, apiBundleName, method, path string, 
 		}
 	}
 
+	var optionalFlags []OptionalFlag
+	for _, param := range op.Parameters {
+		name := param.Name
+		in := param.In
+		description := sanitize(param.Description)
+		required := param.Required
+		schema := param.Schema
+
+		if param.Ref != "" {
+			refName := filepath.Base(param.Ref)
+			if p, ok := spec.Components.Parameters[refName]; ok {
+				name = p.Name
+				in = p.In
+				description = sanitize(p.Description)
+				required = p.Required
+				schema = p.Schema
+			}
+		}
+
+		if in == "query" && !required {
+			flagName := strings.ReplaceAll(name, "[", "-")
+			flagName = strings.ReplaceAll(flagName, "]", "")
+			flagName = strings.ReplaceAll(flagName, "_", "-")
+			flagName = strings.ToLower(flagName)
+
+			goName := strings.Map(func(r rune) rune {
+				if (r >= 'a' && r <= 'z') || (r >= 'A' && r <= 'Z') || (r >= '0' && r <= '9') {
+					return r
+				}
+				return ' '
+			}, name)
+			//nolint:staticcheck // SA1019: strings.Title is deprecated, but we want to keep it simple
+			goName = strings.Title(goName)
+			goName = strings.ReplaceAll(goName, " ", "")
+
+			// Special case for ListWorkflowInstances as requested by user
+			if op.OperationID == "ListWorkflowInstances" && flagName == "page-number" {
+				flagName = "page-length"
+			}
+
+			argType := "string"
+			resolvedSchema := schema
+			if schema != nil {
+				if ref, ok := schema["$ref"].(string); ok {
+					refName := filepath.Base(ref)
+					if s, ok := spec.Components.Schemas[refName]; ok {
+						resolvedSchema = map[string]interface{}{
+							"type":   s.Type,
+							"format": s.Format,
+						}
+					}
+				}
+			}
+			if resolvedSchema != nil {
+				sType, _ := resolvedSchema["type"].(string)
+				sFormat, _ := resolvedSchema["format"].(string)
+				switch sType {
+				case "integer":
+					argType = "int64"
+				case "number":
+					argType = "float64"
+				}
+				_ = sFormat
+			}
+
+			optionalFlags = append(optionalFlags, OptionalFlag{
+				Name:        name,
+				Type:        argType,
+				FlagName:    flagName,
+				GoName:      goName,
+				Description: description,
+			})
+		}
+	}
+
 	hasResponse := false
 	for code, resp := range op.Responses {
 		if code == "200" || code == "201" || code == "202" {
@@ -223,21 +306,38 @@ func prepareTemplateData(bundle, rawBundle, apiBundleName, method, path string, 
 
 	hasRequestBody := op.RequestBody != nil
 	requestBodyType := ""
-	isOptionalParams := false
+	isOptionalParams := len(optionalFlags) > 0
+	if hasRequestBody && !op.RequestBody.Required {
+		isOptionalParams = true
+	}
 	if hasRequestBody {
-		for _, content := range op.RequestBody.Content {
-			if content.Schema.Ref != "" {
-				requestBodyType = filepath.Base(content.Schema.Ref)
+		for contentType := range op.RequestBody.Content {
+			if contentType == "multipart/form-data" {
+				isOptionalParams = true
 				break
 			}
 		}
-		if requestBodyType == "" {
-			requestBodyType = op.OperationID + "Request"
-		}
+	}
 
-		if optType, ok := config.OptionalParametersOperations[op.OperationID]; ok {
-			isOptionalParams = true
-			requestBodyType = optType
+	if isOptionalParams {
+		requestBodyType = op.OperationID + "OptionalParameters"
+	}
+
+	if hasRequestBody {
+		if requestBodyType == "" || isOptionalParams {
+			actualRequestBodyType := ""
+			for _, content := range op.RequestBody.Content {
+				if content.Schema.Ref != "" {
+					actualRequestBodyType = filepath.Base(content.Schema.Ref)
+					break
+				}
+			}
+			if actualRequestBodyType == "" {
+				actualRequestBodyType = op.OperationID + "Request"
+			}
+			if !isOptionalParams {
+				requestBodyType = actualRequestBodyType
+			}
 		}
 	}
 
@@ -288,7 +388,7 @@ func prepareTemplateData(bundle, rawBundle, apiBundleName, method, path string, 
 		PackageName:      bundle,
 		CommandName:      strings.ToUpper(op.OperationID[:1]) + op.OperationID[1:] + "Cmd",
 		Use:              use,
-		Short:            op.Summary,
+		Short:            sanitize(op.Summary),
 		Method:           strings.ToUpper(method),
 		Path:             path,
 		OperationID:      op.OperationID,
@@ -296,6 +396,7 @@ func prepareTemplateData(bundle, rawBundle, apiBundleName, method, path string, 
 		ApiBundleName:    apiBundleName,
 		Args:             args,
 		ArgTypes:         argTypes,
+		OptionalFlags:    optionalFlags,
 		HasRequestBody:   hasRequestBody,
 		RequestBodyType:  requestBodyType,
 		IsOptionalParams: isOptionalParams,

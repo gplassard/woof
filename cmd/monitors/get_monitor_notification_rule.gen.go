@@ -23,9 +23,16 @@ Documentation: https://docs.datadoghq.com/api/latest/monitors/#get-monitor-notif
 		var res datadogV2.MonitorNotificationRuleResponse
 		var err error
 
+		optionalParams := datadogV2.NewGetMonitorNotificationRuleOptionalParameters()
+
+		if cmd.Flags().Changed("include") {
+			val, _ := cmd.Flags().GetString("include")
+			optionalParams.WithInclude(val)
+		}
+
 		api := datadogV2.NewMonitorsApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.GetMonitorNotificationRule(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.GetMonitorNotificationRule(client.NewContext(apiKey, appKey, site), args[0], *optionalParams)
 		cmdutil.HandleError(err, "failed to get-monitor-notification-rule")
 
 		fmt.Println(cmdutil.FormatJSON(res, "monitor-notification-rule"))
@@ -33,6 +40,8 @@ Documentation: https://docs.datadoghq.com/api/latest/monitors/#get-monitor-notif
 }
 
 func init() {
+
+	GetMonitorNotificationRuleCmd.Flags().String("include", "", "Comma-separated list of resource paths for related resources to include in the response. Supported resource path is 'created_by'.")
 
 	Cmd.AddCommand(GetMonitorNotificationRuleCmd)
 }

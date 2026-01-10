@@ -23,9 +23,21 @@ Documentation: https://docs.datadoghq.com/api/latest/workflow-automation/#list-w
 		var res datadogV2.WorkflowListInstancesResponse
 		var err error
 
+		optionalParams := datadogV2.NewListWorkflowInstancesOptionalParameters()
+
+		if cmd.Flags().Changed("page-size") {
+			val, _ := cmd.Flags().GetInt64("page-size")
+			optionalParams.WithPageSize(val)
+		}
+
+		if cmd.Flags().Changed("page-length") {
+			val, _ := cmd.Flags().GetInt64("page-length")
+			optionalParams.WithPageNumber(val)
+		}
+
 		api := datadogV2.NewWorkflowAutomationApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.ListWorkflowInstances(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.ListWorkflowInstances(client.NewContext(apiKey, appKey, site), args[0], *optionalParams)
 		cmdutil.HandleError(err, "failed to list-workflow-instances")
 
 		fmt.Println(cmdutil.FormatJSON(res, "workflow_automation"))
@@ -33,6 +45,10 @@ Documentation: https://docs.datadoghq.com/api/latest/workflow-automation/#list-w
 }
 
 func init() {
+
+	ListWorkflowInstancesCmd.Flags().Int64("page-size", 0, "Size for a given page. The maximum allowed value is 100.")
+
+	ListWorkflowInstancesCmd.Flags().Int64("page-length", 0, "Specific page number to return.")
 
 	Cmd.AddCommand(ListWorkflowInstancesCmd)
 }

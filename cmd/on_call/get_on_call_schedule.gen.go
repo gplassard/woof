@@ -23,9 +23,16 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#get-on-call-schedu
 		var res datadogV2.Schedule
 		var err error
 
+		optionalParams := datadogV2.NewGetOnCallScheduleOptionalParameters()
+
+		if cmd.Flags().Changed("include") {
+			val, _ := cmd.Flags().GetString("include")
+			optionalParams.WithInclude(val)
+		}
+
 		api := datadogV2.NewOnCallApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.GetOnCallSchedule(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.GetOnCallSchedule(client.NewContext(apiKey, appKey, site), args[0], *optionalParams)
 		cmdutil.HandleError(err, "failed to get-on-call-schedule")
 
 		fmt.Println(cmdutil.FormatJSON(res, "schedules"))
@@ -33,6 +40,8 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#get-on-call-schedu
 }
 
 func init() {
+
+	GetOnCallScheduleCmd.Flags().String("include", "", "Comma-separated list of included relationships to be returned. Allowed values: 'teams', 'layers', 'layers.members', 'layers.members.user'.")
 
 	Cmd.AddCommand(GetOnCallScheduleCmd)
 }

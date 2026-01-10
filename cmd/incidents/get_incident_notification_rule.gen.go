@@ -24,9 +24,16 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#get-incident-not
 		var res datadogV2.IncidentNotificationRule
 		var err error
 
+		optionalParams := datadogV2.NewGetIncidentNotificationRuleOptionalParameters()
+
+		if cmd.Flags().Changed("include") {
+			val, _ := cmd.Flags().GetString("include")
+			optionalParams.WithInclude(val)
+		}
+
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.GetIncidentNotificationRule(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
+		res, _, err = api.GetIncidentNotificationRule(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]), *optionalParams)
 		cmdutil.HandleError(err, "failed to get-incident-notification-rule")
 
 		fmt.Println(cmdutil.FormatJSON(res, "incident_notification_rules"))
@@ -34,6 +41,8 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#get-incident-not
 }
 
 func init() {
+
+	GetIncidentNotificationRuleCmd.Flags().String("include", "", "Comma-separated list of resources to include. Supported values: 'created_by_user', 'last_modified_by_user', 'incident_type', 'notification_template'")
 
 	Cmd.AddCommand(GetIncidentNotificationRuleCmd)
 }
