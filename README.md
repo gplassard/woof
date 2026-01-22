@@ -2,6 +2,10 @@
 
 `woof` is a Datadog CLI tool built with Go. It provides a command-line interface to interact with Datadog API endpoints. The project includes a code generator that automatically creates CLI commands based on the Datadog OpenAPI specification.
 
+## Disclaimer
+
+This project was heavily built using AI.
+
 ## Requirements
 
 - **Go**: 1.25+ (as specified in `go.mod`)
@@ -99,4 +103,3 @@ To run the project tests:
 ```bash
 go test ./...
 ```
-
