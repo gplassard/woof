@@ -6,6 +6,7 @@ import (
 	"go/parser"
 	"go/token"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"strings"
 )
@@ -47,7 +48,22 @@ func getSDKPath() (string, error) {
 	// Use go list to find the module path
 	modPath := os.Getenv("GOMODCACHE")
 	if modPath == "" {
-		modPath = filepath.Join(os.Getenv("HOME"), "go", "pkg", "mod")
+		if out, err := exec.Command("go", "env", "GOMODCACHE").Output(); err == nil {
+			modPath = strings.TrimSpace(string(out))
+		}
+	}
+	if modPath == "" {
+		if gopath := os.Getenv("GOPATH"); gopath != "" {
+			modPath = filepath.Join(gopath, "pkg", "mod")
+		}
+	}
+	if modPath == "" {
+		if home, err := os.UserHomeDir(); err == nil && home != "" {
+			modPath = filepath.Join(home, "go", "pkg", "mod")
+		}
+	}
+	if modPath == "" {
+		return "", fmt.Errorf("GOMODCACHE is empty and could not be resolved")
 	}
 
 	// The module is at: github.com/!data!Dog/datadog-api-client-go/v2@v2.52.0
