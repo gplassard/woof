@@ -45,6 +45,15 @@ func parseSDK() (*SDKSpec, error) {
 
 // getSDKPath returns the path to the Datadog Go SDK
 func getSDKPath() (string, error) {
+	// Prefer go list to resolve the module directory (handles downloads/cache layout).
+	if out, err := exec.Command("go", "list", "-m", "-f", "{{.Dir}}", "github.com/DataDog/datadog-api-client-go/v2").Output(); err == nil {
+		if dir := strings.TrimSpace(string(out)); dir != "" {
+			if _, statErr := os.Stat(dir); statErr == nil {
+				return dir, nil
+			}
+		}
+	}
+
 	// Use go list to find the module path
 	modPath := os.Getenv("GOMODCACHE")
 	if modPath == "" {
