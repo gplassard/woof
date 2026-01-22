@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/spans/#list-spans`,
 		res, _, err = api.ListSpans(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to list-spans")
 
-		fmt.Println(cmdutil.FormatJSON(res, "spans"))
+		fmt.Println(cmdutil.FormatJSON(res, "span"))
 	},
 }
 

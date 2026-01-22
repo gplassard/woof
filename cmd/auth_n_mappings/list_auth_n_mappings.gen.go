@@ -1,4 +1,4 @@
-package authn_mappings
+package auth_n_mappings
 
 import (
 	"fmt"
@@ -12,11 +12,11 @@ import (
 )
 
 var ListAuthNMappingsCmd = &cobra.Command{
-	Use: "list-auth-n-mappings",
-
-	Short: "List all AuthN Mappings",
+	Use:     "list-auth-n-mappings",
+	Aliases: []string{"list"},
+	Short:   "List all AuthN Mappings",
 	Long: `List all AuthN Mappings
-Documentation: https://docs.datadoghq.com/api/latest/authn-mappings/#list-auth-n-mappings`,
+Documentation: https://docs.datadoghq.com/api/latest/auth-n-mappings/#list-auth-n-mappings`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/authn-mappings/#list-auth-n
 		res, _, err = api.ListAuthNMappings(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-auth-n-mappings")
 
-		fmt.Println(cmdutil.FormatJSON(res, "authn_mappings"))
+		fmt.Println(cmdutil.FormatJSON(res, "auth_n_mapping"))
 	},
 }
 

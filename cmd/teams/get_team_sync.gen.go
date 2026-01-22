@@ -12,7 +12,7 @@ import (
 )
 
 var GetTeamSyncCmd = &cobra.Command{
-	Use:     "get-team-sync [filter[source]]",
+	Use:     "get-team-sync [filter_source]",
 	Aliases: []string{"get-sync"},
 	Short:   "Get team sync configurations",
 	Long: `Get team sync configurations
@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/teams/#get-team-sync`,
 		res, _, err = api.GetTeamSync(client.NewContext(apiKey, appKey, site), datadogV2.TeamSyncAttributesSource(args[0]))
 		cmdutil.HandleError(err, "failed to get-team-sync")
 
-		fmt.Println(cmdutil.FormatJSON(res, "team_sync_bulk"))
+		fmt.Println(cmdutil.FormatJSON(res, "team_sync"))
 	},
 }
 

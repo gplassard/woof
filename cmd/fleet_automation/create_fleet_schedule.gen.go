@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/fleet-automation/#create-fl
 		res, _, err = api.CreateFleetSchedule(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-fleet-schedule")
 
-		fmt.Println(cmdutil.FormatJSON(res, "schedule"))
+		fmt.Println(cmdutil.FormatJSON(res, "fleet_schedule"))
 	},
 }
 

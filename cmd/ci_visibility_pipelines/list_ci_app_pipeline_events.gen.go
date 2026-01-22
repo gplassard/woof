@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/ci-visibility-pipelines/#li
 		res, _, err = api.ListCIAppPipelineEvents(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-ci-app-pipeline-events")
 
-		fmt.Println(cmdutil.FormatJSON(res, "cipipeline"))
+		fmt.Println(cmdutil.FormatJSON(res, "c_i_app_pipeline_event"))
 	},
 }
 

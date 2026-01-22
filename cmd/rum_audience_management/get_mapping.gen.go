@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/rum-audience-management/#ge
 		res, _, err = api.GetMapping(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-mapping")
 
-		fmt.Println(cmdutil.FormatJSON(res, "get_mappings_response"))
+		fmt.Println(cmdutil.FormatJSON(res, "mapping"))
 	},
 }
 

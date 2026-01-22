@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/case-management/#update-pri
 		res, _, err = api.UpdatePriority(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-priority")
 
-		fmt.Println(cmdutil.FormatJSON(res, "case"))
+		fmt.Println(cmdutil.FormatJSON(res, "priority"))
 	},
 }
 

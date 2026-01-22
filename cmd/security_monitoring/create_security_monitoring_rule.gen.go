@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#create
 		res, _, err = api.CreateSecurityMonitoringRule(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-security-monitoring-rule")
 
-		fmt.Println(cmdutil.FormatJSON(res, "security_monitoring"))
+		fmt.Println(cmdutil.FormatJSON(res, "security_monitoring_rule"))
 	},
 }
 

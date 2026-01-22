@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#list-aws-a
 		res, _, err = api.ListAWSAccounts(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-aws-accounts")
 
-		fmt.Println(cmdutil.FormatJSON(res, "account"))
+		fmt.Println(cmdutil.FormatJSON(res, "a_w_s_account"))
 	},
 }
 

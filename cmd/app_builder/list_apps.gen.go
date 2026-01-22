@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/app-builder/#list-apps`,
 		res, _, err = api.ListApps(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-apps")
 
-		fmt.Println(cmdutil.FormatJSON(res, "appDefinitions"))
+		fmt.Println(cmdutil.FormatJSON(res, "app"))
 	},
 }
 

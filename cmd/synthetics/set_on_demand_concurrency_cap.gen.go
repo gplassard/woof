@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/synthetics/#set-on-demand-c
 		res, _, err = api.SetOnDemandConcurrencyCap(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to set-on-demand-concurrency-cap")
 
-		fmt.Println(cmdutil.FormatJSON(res, "on_demand_concurrency_cap"))
+		fmt.Println(cmdutil.FormatJSON(res, "synthetics"))
 	},
 }
 

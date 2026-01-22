@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/actions-datastores/#update-
 		res, _, err = api.UpdateDatastore(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-datastore")
 
-		fmt.Println(cmdutil.FormatJSON(res, "datastores"))
+		fmt.Println(cmdutil.FormatJSON(res, "datastore"))
 	},
 }
 

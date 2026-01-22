@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/fastly-integration/#get-fas
 		res, _, err = api.GetFastlyService(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		cmdutil.HandleError(err, "failed to get-fastly-service")
 
-		fmt.Println(cmdutil.FormatJSON(res, "fastly-services"))
+		fmt.Println(cmdutil.FormatJSON(res, "fastly_service"))
 	},
 }
 

@@ -14,8 +14,8 @@ import (
 var CreateSCAResolveVulnerableSymbolsCmd = &cobra.Command{
 	Use: "create-sca-resolve-vulnerable-symbols",
 
-	Short: "POST request to resolve vulnerable symbols",
-	Long: `POST request to resolve vulnerable symbols
+	Short: "",
+	Long: `
 Documentation: https://docs.datadoghq.com/api/latest/static-analysis/#create-sca-resolve-vulnerable-symbols`,
 
 	Run: func(cmd *cobra.Command, args []string) {
@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/static-analysis/#create-sca
 		res, _, err = api.CreateSCAResolveVulnerableSymbols(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-sca-resolve-vulnerable-symbols")
 
-		fmt.Println(cmdutil.FormatJSON(res, "resolve-vulnerable-symbols-response"))
+		fmt.Println(cmdutil.FormatJSON(res, "s_c_a_resolve_vulnerable_symbol"))
 	},
 }
 

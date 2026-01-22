@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/monitors/#create-monitor-co
 		res, _, err = api.CreateMonitorConfigPolicy(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-monitor-config-policy")
 
-		fmt.Println(cmdutil.FormatJSON(res, "monitor-config-policy"))
+		fmt.Println(cmdutil.FormatJSON(res, "monitor_config_policy"))
 	},
 }
 

@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/opsgenie-integration/#creat
 		res, _, err = api.CreateOpsgenieService(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-opsgenie-service")
 
-		fmt.Println(cmdutil.FormatJSON(res, "opsgenie-service"))
+		fmt.Println(cmdutil.FormatJSON(res, "opsgenie_service"))
 	},
 }
 

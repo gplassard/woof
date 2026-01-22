@@ -29,7 +29,7 @@ Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#get-
 		res, _, err = api.GetCostGCPUsageCostConfig(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }())
 		cmdutil.HandleError(err, "failed to get-cost-gcp-usage-cost-config")
 
-		fmt.Println(cmdutil.FormatJSON(res, "gcp_uc_config"))
+		fmt.Println(cmdutil.FormatJSON(res, "cost_g_c_p_usage_cost_config"))
 	},
 }
 

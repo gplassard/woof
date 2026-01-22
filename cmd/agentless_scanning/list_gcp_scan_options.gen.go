@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#list-gc
 		res, _, err = api.ListGcpScanOptions(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-gcp-scan-options")
 
-		fmt.Println(cmdutil.FormatJSON(res, "gcp_scan_options"))
+		fmt.Println(cmdutil.FormatJSON(res, "gcp_scan_option"))
 	},
 }
 

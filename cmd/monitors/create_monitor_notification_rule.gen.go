@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/monitors/#create-monitor-no
 		res, _, err = api.CreateMonitorNotificationRule(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-monitor-notification-rule")
 
-		fmt.Println(cmdutil.FormatJSON(res, "monitor-notification-rule"))
+		fmt.Println(cmdutil.FormatJSON(res, "monitor_notification_rule"))
 	},
 }
 

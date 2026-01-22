@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#list-aw
 		res, _, err = api.ListAwsOnDemandTasks(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-aws-on-demand-tasks")
 
-		fmt.Println(cmdutil.FormatJSON(res, "aws_resource"))
+		fmt.Println(cmdutil.FormatJSON(res, "aws_on_demand_task"))
 	},
 }
 

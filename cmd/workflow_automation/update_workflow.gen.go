@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/workflow-automation/#update
 		res, _, err = api.UpdateWorkflow(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-workflow")
 
-		fmt.Println(cmdutil.FormatJSON(res, "workflows"))
+		fmt.Println(cmdutil.FormatJSON(res, "workflow"))
 	},
 }
 

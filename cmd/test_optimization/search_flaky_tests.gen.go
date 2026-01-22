@@ -23,13 +23,9 @@ Documentation: https://docs.datadoghq.com/api/latest/test-optimization/#search-f
 		var res datadogV2.FlakyTestsSearchResponse
 		var err error
 
-		var body datadogV2.SearchFlakyTestsOptionalParameters
-		err = cmdutil.UnmarshalPayload(cmd, &body)
-		cmdutil.HandleError(err, "failed to read payload")
-
 		api := datadogV2.NewTestOptimizationApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.SearchFlakyTests(client.NewContext(apiKey, appKey, site), body)
+		res, _, err = api.SearchFlakyTests(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to search-flaky-tests")
 
 		fmt.Println(cmdutil.FormatJSON(res, "flaky_test"))
@@ -37,9 +33,6 @@ Documentation: https://docs.datadoghq.com/api/latest/test-optimization/#search-f
 }
 
 func init() {
-
-	SearchFlakyTestsCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
-	SearchFlakyTestsCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
 
 	Cmd.AddCommand(SearchFlakyTestsCmd)
 }

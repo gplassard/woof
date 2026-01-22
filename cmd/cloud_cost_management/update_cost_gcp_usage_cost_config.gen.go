@@ -33,7 +33,7 @@ Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#upda
 		res, _, err = api.UpdateCostGCPUsageCostConfig(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }(), body)
 		cmdutil.HandleError(err, "failed to update-cost-gcp-usage-cost-config")
 
-		fmt.Println(cmdutil.FormatJSON(res, "gcp_uc_config"))
+		fmt.Println(cmdutil.FormatJSON(res, "cost_g_c_p_usage_cost_config"))
 	},
 }
 

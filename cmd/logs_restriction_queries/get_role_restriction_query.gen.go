@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/logs-restriction-queries/#g
 		res, _, err = api.GetRoleRestrictionQuery(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-role-restriction-query")
 
-		fmt.Println(cmdutil.FormatJSON(res, "logs_restriction_queries"))
+		fmt.Println(cmdutil.FormatJSON(res, "role_restriction_query"))
 	},
 }
 

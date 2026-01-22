@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/metrics/#list-metric-assets
 		res, _, err = api.ListMetricAssets(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-metric-assets")
 
-		fmt.Println(cmdutil.FormatJSON(res, "metrics"))
+		fmt.Println(cmdutil.FormatJSON(res, "metric_asset"))
 	},
 }
 

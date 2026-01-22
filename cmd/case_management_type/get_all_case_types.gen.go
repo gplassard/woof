@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/case-management-type/#get-a
 		res, _, err = api.GetAllCaseTypes(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-all-case-types")
 
-		fmt.Println(cmdutil.FormatJSON(res, "case_type"))
+		fmt.Println(cmdutil.FormatJSON(res, "all_case_type"))
 	},
 }
 

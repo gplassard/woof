@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/sensitive-data-scanner/#cre
 		res, _, err = api.CreateScanningGroup(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-scanning-group")
 
-		fmt.Println(cmdutil.FormatJSON(res, "sensitive_data_scanner_group"))
+		fmt.Println(cmdutil.FormatJSON(res, "scanning_group"))
 	},
 }
 

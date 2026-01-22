@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/events/#create-event`,
 		res, _, err = api.CreateEvent(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-event")
 
-		fmt.Println(cmdutil.FormatJSON(res, "events"))
+		fmt.Println(cmdutil.FormatJSON(res, "event"))
 	},
 }
 

@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/network-device-monitoring/#
 		res, _, err = api.GetDevice(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-device")
 
-		fmt.Println(cmdutil.FormatJSON(res, "network_device_monitoring"))
+		fmt.Println(cmdutil.FormatJSON(res, "device"))
 	},
 }
 

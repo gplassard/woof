@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/reference-tables/#create-re
 		res, _, err = api.CreateReferenceTableUpload(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-reference-table-upload")
 
-		fmt.Println(cmdutil.FormatJSON(res, "upload"))
+		fmt.Println(cmdutil.FormatJSON(res, "reference_table_upload"))
 	},
 }
 

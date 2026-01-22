@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/spans/#list-spans-get`,
 		res, _, err = api.ListSpansGet(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-spans-get")
 
-		fmt.Println(cmdutil.FormatJSON(res, "spans"))
+		fmt.Println(cmdutil.FormatJSON(res, "spans_get"))
 	},
 }
 

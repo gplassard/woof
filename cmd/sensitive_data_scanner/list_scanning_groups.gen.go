@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/sensitive-data-scanner/#lis
 		res, _, err = api.ListScanningGroups(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-scanning-groups")
 
-		fmt.Println(cmdutil.FormatJSON(res, "sensitive_data_scanner_configuration"))
+		fmt.Println(cmdutil.FormatJSON(res, "scanning_group"))
 	},
 }
 

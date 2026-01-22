@@ -1,4 +1,4 @@
-package okta_integration
+package oktaintegration
 
 import (
 	"fmt"
@@ -16,7 +16,7 @@ var GetOktaAccountCmd = &cobra.Command{
 
 	Short: "Get Okta account",
 	Long: `Get Okta account
-Documentation: https://docs.datadoghq.com/api/latest/okta-integration/#get-okta-account`,
+Documentation: https://docs.datadoghq.com/api/latest/oktaintegration/#get-okta-account`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/okta-integration/#get-okta-
 		res, _, err = api.GetOktaAccount(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-okta-account")
 
-		fmt.Println(cmdutil.FormatJSON(res, "okta-accounts"))
+		fmt.Println(cmdutil.FormatJSON(res, "okta_account"))
 	},
 }
 

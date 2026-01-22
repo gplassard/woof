@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/fleet-automation/#list-flee
 		res, _, err = api.ListFleetAgentVersions(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-fleet-agent-versions")
 
-		fmt.Println(cmdutil.FormatJSON(res, "agent_version"))
+		fmt.Println(cmdutil.FormatJSON(res, "fleet_agent_version"))
 	},
 }
 

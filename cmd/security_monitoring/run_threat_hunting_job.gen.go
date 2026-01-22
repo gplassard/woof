@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#run-th
 		res, _, err = api.RunThreatHuntingJob(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to run-threat-hunting-job")
 
-		fmt.Println(cmdutil.FormatJSON(res, "historicalDetectionsJob"))
+		fmt.Println(cmdutil.FormatJSON(res, "threat_hunting_job"))
 	},
 }
 

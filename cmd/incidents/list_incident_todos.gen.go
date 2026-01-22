@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#list-incident-to
 		res, _, err = api.ListIncidentTodos(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-incident-todos")
 
-		fmt.Println(cmdutil.FormatJSON(res, "incident_todos"))
+		fmt.Println(cmdutil.FormatJSON(res, "incident_todo"))
 	},
 }
 

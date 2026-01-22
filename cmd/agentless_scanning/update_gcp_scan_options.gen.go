@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#update-
 		res, _, err = api.UpdateGcpScanOptions(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-gcp-scan-options")
 
-		fmt.Println(cmdutil.FormatJSON(res, "gcp_scan_options"))
+		fmt.Println(cmdutil.FormatJSON(res, "gcp_scan_option"))
 	},
 }
 

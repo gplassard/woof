@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/fleet-automation/#create-fl
 		res, _, err = api.CreateFleetDeploymentUpgrade(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-fleet-deployment-upgrade")
 
-		fmt.Println(cmdutil.FormatJSON(res, "deployment"))
+		fmt.Println(cmdutil.FormatJSON(res, "fleet_deployment_upgrade"))
 	},
 }
 

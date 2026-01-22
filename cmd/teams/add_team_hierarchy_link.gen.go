@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/teams/#add-team-hierarchy-l
 		res, _, err = api.AddTeamHierarchyLink(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to add-team-hierarchy-link")
 
-		fmt.Println(cmdutil.FormatJSON(res, "team_hierarchy_links"))
+		fmt.Println(cmdutil.FormatJSON(res, "teams"))
 	},
 }
 

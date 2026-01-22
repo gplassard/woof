@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/incident-services/#create-i
 		res, _, err = api.CreateIncidentService(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-incident-service")
 
-		fmt.Println(cmdutil.FormatJSON(res, "services"))
+		fmt.Println(cmdutil.FormatJSON(res, "incident_service"))
 	},
 }
 

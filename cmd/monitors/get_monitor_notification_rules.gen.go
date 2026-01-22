@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/monitors/#get-monitor-notif
 		res, _, err = api.GetMonitorNotificationRules(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-monitor-notification-rules")
 
-		fmt.Println(cmdutil.FormatJSON(res, "monitor-notification-rule"))
+		fmt.Println(cmdutil.FormatJSON(res, "monitor_notification_rule"))
 	},
 }
 

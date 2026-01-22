@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-se
 		res, _, err = api.GetSecurityMonitoringHistsignalsByJobId(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-security-monitoring-histsignals-by-job-id")
 
-		fmt.Println(cmdutil.FormatJSON(res, "signal"))
+		fmt.Println(cmdutil.FormatJSON(res, "security_monitoring_histsignals_by_job_id"))
 	},
 }
 

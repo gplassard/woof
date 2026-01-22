@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/actions-datastores/#delete-
 		res, _, err = api.DeleteDatastoreItem(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to delete-datastore-item")
 
-		fmt.Println(cmdutil.FormatJSON(res, "items"))
+		fmt.Println(cmdutil.FormatJSON(res, "datastore_item"))
 	},
 }
 

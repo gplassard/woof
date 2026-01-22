@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-ru
 		res, _, err = api.GetRuleVersionHistory(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-rule-version-history")
 
-		fmt.Println(cmdutil.FormatJSON(res, "GetRuleVersionHistoryResponse"))
+		fmt.Println(cmdutil.FormatJSON(res, "rule_version_history"))
 	},
 }
 

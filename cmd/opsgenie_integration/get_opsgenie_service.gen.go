@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/opsgenie-integration/#get-o
 		res, _, err = api.GetOpsgenieService(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-opsgenie-service")
 
-		fmt.Println(cmdutil.FormatJSON(res, "opsgenie-service"))
+		fmt.Println(cmdutil.FormatJSON(res, "opsgenie_service"))
 	},
 }
 

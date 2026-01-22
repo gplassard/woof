@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/metrics/#get-metric-tag-car
 		res, _, err = api.GetMetricTagCardinalityDetails(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-metric-tag-cardinality-details")
 
-		fmt.Println(cmdutil.FormatJSON(res, "metrics"))
+		fmt.Println(cmdutil.FormatJSON(res, "metric_tag_cardinality_detail"))
 	},
 }
 

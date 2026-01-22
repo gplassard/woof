@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call-paging/#create-on-c
 		res, _, err = api.CreateOnCallPage(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-on-call-page")
 
-		fmt.Println(cmdutil.FormatJSON(res, "pages"))
+		fmt.Println(cmdutil.FormatJSON(res, "on_call_page"))
 	},
 }
 

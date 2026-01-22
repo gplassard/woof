@@ -23,23 +23,16 @@ Documentation: https://docs.datadoghq.com/api/latest/audit/#search-audit-logs`,
 		var res datadogV2.AuditLogsEventsResponse
 		var err error
 
-		var body datadogV2.SearchAuditLogsOptionalParameters
-		err = cmdutil.UnmarshalPayload(cmd, &body)
-		cmdutil.HandleError(err, "failed to read payload")
-
 		api := datadogV2.NewAuditApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.SearchAuditLogs(client.NewContext(apiKey, appKey, site), body)
+		res, _, err = api.SearchAuditLogs(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to search-audit-logs")
 
-		fmt.Println(cmdutil.FormatJSON(res, "audit"))
+		fmt.Println(cmdutil.FormatJSON(res, "audit_log"))
 	},
 }
 
 func init() {
-
-	SearchAuditLogsCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
-	SearchAuditLogsCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
 
 	Cmd.AddCommand(SearchAuditLogsCmd)
 }

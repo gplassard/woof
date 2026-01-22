@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/confluent-cloud/#list-confl
 		res, _, err = api.ListConfluentResource(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-confluent-resource")
 
-		fmt.Println(cmdutil.FormatJSON(res, "confluent-cloud-resources"))
+		fmt.Println(cmdutil.FormatJSON(res, "confluent_resource"))
 	},
 }
 

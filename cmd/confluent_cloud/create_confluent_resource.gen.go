@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/confluent-cloud/#create-con
 		res, _, err = api.CreateConfluentResource(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to create-confluent-resource")
 
-		fmt.Println(cmdutil.FormatJSON(res, "confluent-cloud-resources"))
+		fmt.Println(cmdutil.FormatJSON(res, "confluent_resource"))
 	},
 }
 

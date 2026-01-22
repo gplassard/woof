@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#list-aws-e
 		res, _, err = api.ListAWSEventBridgeSources(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-aws-event-bridge-sources")
 
-		fmt.Println(cmdutil.FormatJSON(res, "event_bridge"))
+		fmt.Println(cmdutil.FormatJSON(res, "a_w_s_event_bridge_source"))
 	},
 }
 

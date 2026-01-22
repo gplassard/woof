@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#create-
 		res, _, err = api.CreateAwsScanOptions(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-aws-scan-options")
 
-		fmt.Println(cmdutil.FormatJSON(res, "aws_scan_options"))
+		fmt.Println(cmdutil.FormatJSON(res, "aws_scan_option"))
 	},
 }
 

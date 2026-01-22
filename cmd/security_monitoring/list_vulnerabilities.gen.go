@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#list-v
 		res, _, err = api.ListVulnerabilities(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-vulnerabilities")
 
-		fmt.Println(cmdutil.FormatJSON(res, "vulnerabilities"))
+		fmt.Println(cmdutil.FormatJSON(res, "vulnerabilitie"))
 	},
 }
 

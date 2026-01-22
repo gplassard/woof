@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/metrics/#update-tag-configu
 		res, _, err = api.UpdateTagConfiguration(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-tag-configuration")
 
-		fmt.Println(cmdutil.FormatJSON(res, "manage_tags"))
+		fmt.Println(cmdutil.FormatJSON(res, "tag_configuration"))
 	},
 }
 

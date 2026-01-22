@@ -1,4 +1,4 @@
-package authn_mappings
+package auth_n_mappings
 
 import (
 	"fmt"
@@ -12,11 +12,11 @@ import (
 )
 
 var UpdateAuthNMappingCmd = &cobra.Command{
-	Use: "update-auth-n-mapping [authn_mapping_id]",
-
-	Short: "Edit an AuthN Mapping",
+	Use:     "update-auth-n-mapping [authn_mapping_id]",
+	Aliases: []string{"update"},
+	Short:   "Edit an AuthN Mapping",
 	Long: `Edit an AuthN Mapping
-Documentation: https://docs.datadoghq.com/api/latest/authn-mappings/#update-auth-n-mapping`,
+Documentation: https://docs.datadoghq.com/api/latest/auth-n-mappings/#update-auth-n-mapping`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/authn-mappings/#update-auth
 		res, _, err = api.UpdateAuthNMapping(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-auth-n-mapping")
 
-		fmt.Println(cmdutil.FormatJSON(res, "authn_mappings"))
+		fmt.Println(cmdutil.FormatJSON(res, "auth_n_mapping"))
 	},
 }
 

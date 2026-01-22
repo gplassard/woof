@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/logs-metrics/#create-logs-m
 		res, _, err = api.CreateLogsMetric(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-logs-metric")
 
-		fmt.Println(cmdutil.FormatJSON(res, "logs_metrics"))
+		fmt.Println(cmdutil.FormatJSON(res, "logs_metric"))
 	},
 }
 

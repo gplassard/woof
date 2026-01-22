@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/metrics/#list-volumes-by-me
 		res, _, err = api.ListVolumesByMetricName(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-volumes-by-metric-name")
 
-		fmt.Println(cmdutil.FormatJSON(res, "metrics"))
+		fmt.Println(cmdutil.FormatJSON(res, "volumes_by_metric_name"))
 	},
 }
 

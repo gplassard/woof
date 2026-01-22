@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/sensitive-data-scanner/#upd
 		res, _, err = api.UpdateScanningGroup(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-scanning-group")
 
-		fmt.Println(cmdutil.FormatJSON(res, "sensitive_data_scanner"))
+		fmt.Println(cmdutil.FormatJSON(res, "scanning_group"))
 	},
 }
 

@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/teams/#get-team-permission-
 		res, _, err = api.GetTeamPermissionSettings(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-team-permission-settings")
 
-		fmt.Println(cmdutil.FormatJSON(res, "team_permission_settings"))
+		fmt.Println(cmdutil.FormatJSON(res, "team_permission_setting"))
 	},
 }
 

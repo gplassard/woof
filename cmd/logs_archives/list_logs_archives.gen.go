@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/logs-archives/#list-logs-ar
 		res, _, err = api.ListLogsArchives(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-logs-archives")
 
-		fmt.Println(cmdutil.FormatJSON(res, "logs_archives"))
+		fmt.Println(cmdutil.FormatJSON(res, "logs_archive"))
 	},
 }
 

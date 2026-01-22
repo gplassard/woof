@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#list
 		res, _, err = api.ListCostAWSCURConfigs(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-cost-aws-cur-configs")
 
-		fmt.Println(cmdutil.FormatJSON(res, "aws_cur_config"))
+		fmt.Println(cmdutil.FormatJSON(res, "cost_a_w_s_c_u_r_config"))
 	},
 }
 

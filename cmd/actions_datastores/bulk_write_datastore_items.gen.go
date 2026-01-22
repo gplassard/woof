@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/actions-datastores/#bulk-wr
 		res, _, err = api.BulkWriteDatastoreItems(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to bulk-write-datastore-items")
 
-		fmt.Println(cmdutil.FormatJSON(res, "items"))
+		fmt.Println(cmdutil.FormatJSON(res, "write_datastore_item"))
 	},
 }
 

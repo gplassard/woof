@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/gcp-integration/#get-gcp-st
 		res, _, err = api.GetGCPSTSDelegate(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-gcp-sts-delegate")
 
-		fmt.Println(cmdutil.FormatJSON(res, "gcp_sts_delegate"))
+		fmt.Println(cmdutil.FormatJSON(res, "g_c_p_s_t_s_delegate"))
 	},
 }
 

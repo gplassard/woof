@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/service-scorecards/#create-
 		res, _, err = api.CreateScorecardRule(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-scorecard-rule")
 
-		fmt.Println(cmdutil.FormatJSON(res, "rule"))
+		fmt.Println(cmdutil.FormatJSON(res, "scorecard_rule"))
 	},
 }
 

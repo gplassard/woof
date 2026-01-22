@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/cloudflare-integration/#get
 		res, _, err = api.GetCloudflareAccount(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-cloudflare-account")
 
-		fmt.Println(cmdutil.FormatJSON(res, "cloudflare-accounts"))
+		fmt.Println(cmdutil.FormatJSON(res, "cloudflare_account"))
 	},
 }
 

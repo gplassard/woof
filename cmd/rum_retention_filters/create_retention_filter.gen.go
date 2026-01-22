@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/rum-retention-filters/#crea
 		res, _, err = api.CreateRetentionFilter(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to create-retention-filter")
 
-		fmt.Println(cmdutil.FormatJSON(res, "retention_filters"))
+		fmt.Println(cmdutil.FormatJSON(res, "retention_filter"))
 	},
 }
 

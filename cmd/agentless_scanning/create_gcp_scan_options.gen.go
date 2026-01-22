@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#create-
 		res, _, err = api.CreateGcpScanOptions(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-gcp-scan-options")
 
-		fmt.Println(cmdutil.FormatJSON(res, "gcp_scan_options"))
+		fmt.Println(cmdutil.FormatJSON(res, "gcp_scan_option"))
 	},
 }
 

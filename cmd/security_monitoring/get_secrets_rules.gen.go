@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-se
 		res, _, err = api.GetSecretsRules(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-secrets-rules")
 
-		fmt.Println(cmdutil.FormatJSON(res, "secret_rule"))
+		fmt.Println(cmdutil.FormatJSON(res, "secrets_rule"))
 	},
 }
 

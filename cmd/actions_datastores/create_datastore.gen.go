@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/actions-datastores/#create-
 		res, _, err = api.CreateDatastore(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-datastore")
 
-		fmt.Println(cmdutil.FormatJSON(res, "datastores"))
+		fmt.Println(cmdutil.FormatJSON(res, "datastore"))
 	},
 }
 

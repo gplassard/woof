@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/roles/#get-role`,
 		res, _, err = api.GetRole(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-role")
 
-		fmt.Println(cmdutil.FormatJSON(res, "roles"))
+		fmt.Println(cmdutil.FormatJSON(res, "role"))
 	},
 }
 

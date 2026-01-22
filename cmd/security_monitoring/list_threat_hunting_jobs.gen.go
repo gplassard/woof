@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#list-t
 		res, _, err = api.ListThreatHuntingJobs(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-threat-hunting-jobs")
 
-		fmt.Println(cmdutil.FormatJSON(res, "historicalDetectionsJob"))
+		fmt.Println(cmdutil.FormatJSON(res, "threat_hunting_job"))
 	},
 }
 

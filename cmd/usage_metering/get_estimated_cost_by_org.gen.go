@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/usage-metering/#get-estimat
 		res, _, err = api.GetEstimatedCostByOrg(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-estimated-cost-by-org")
 
-		fmt.Println(cmdutil.FormatJSON(res, "cost_by_org"))
+		fmt.Println(cmdutil.FormatJSON(res, "estimated_cost_by_org"))
 	},
 }
 

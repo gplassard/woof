@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#mute-f
 		res, _, err = api.MuteFindings(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to mute-findings")
 
-		fmt.Println(cmdutil.FormatJSON(res, "finding"))
+		fmt.Println(cmdutil.FormatJSON(res, "security_monitoring"))
 	},
 }
 

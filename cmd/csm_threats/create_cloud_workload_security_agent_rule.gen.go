@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/csm-threats/#create-cloud-w
 		res, _, err = api.CreateCloudWorkloadSecurityAgentRule(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-cloud-workload-security-agent-rule")
 
-		fmt.Println(cmdutil.FormatJSON(res, "agent_rule"))
+		fmt.Println(cmdutil.FormatJSON(res, "cloud_workload_security_agent_rule"))
 	},
 }
 

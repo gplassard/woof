@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#patch-
 		res, _, err = api.PatchSignalNotificationRule(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to patch-signal-notification-rule")
 
-		fmt.Println(cmdutil.FormatJSON(res, "notification_rules"))
+		fmt.Println(cmdutil.FormatJSON(res, "security_monitoring"))
 	},
 }
 

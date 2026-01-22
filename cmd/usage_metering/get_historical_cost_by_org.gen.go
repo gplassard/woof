@@ -30,7 +30,7 @@ Documentation: https://docs.datadoghq.com/api/latest/usage-metering/#get-histori
 		res, _, err = api.GetHistoricalCostByOrg(client.NewContext(apiKey, appKey, site), func() time.Time { t, _ := time.Parse(time.RFC3339, args[0]); return t }())
 		cmdutil.HandleError(err, "failed to get-historical-cost-by-org")
 
-		fmt.Println(cmdutil.FormatJSON(res, "cost_by_org"))
+		fmt.Println(cmdutil.FormatJSON(res, "historical_cost_by_org"))
 	},
 }
 

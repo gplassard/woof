@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/case-management/#comment-ca
 		res, _, err = api.CommentCase(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to comment-case")
 
-		fmt.Println(cmdutil.FormatJSON(res, "timeline_cell"))
+		fmt.Println(cmdutil.FormatJSON(res, "case_management"))
 	},
 }
 

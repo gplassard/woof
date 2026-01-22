@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#vali
 		res, _, err = api.ValidateQuery(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to validate-query")
 
-		fmt.Println(cmdutil.FormatJSON(res, "validate_response"))
+		fmt.Println(cmdutil.FormatJSON(res, "query"))
 	},
 }
 

@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/monitors/#update-monitor-co
 		res, _, err = api.UpdateMonitorConfigPolicy(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-monitor-config-policy")
 
-		fmt.Println(cmdutil.FormatJSON(res, "monitor-config-policy"))
+		fmt.Println(cmdutil.FormatJSON(res, "monitor_config_policy"))
 	},
 }
 

@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/monitors/#create-monitor-us
 		res, _, err = api.CreateMonitorUserTemplate(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-monitor-user-template")
 
-		fmt.Println(cmdutil.FormatJSON(res, "monitor-user-template"))
+		fmt.Println(cmdutil.FormatJSON(res, "monitor_user_template"))
 	},
 }
 

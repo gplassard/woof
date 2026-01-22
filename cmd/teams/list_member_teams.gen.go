@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/teams/#list-member-teams`,
 		res, _, err = api.ListMemberTeams(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-member-teams")
 
-		fmt.Println(cmdutil.FormatJSON(res, "team"))
+		fmt.Println(cmdutil.FormatJSON(res, "member_team"))
 	},
 }
 

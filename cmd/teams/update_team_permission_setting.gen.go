@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/teams/#update-team-permissi
 		res, _, err = api.UpdateTeamPermissionSetting(client.NewContext(apiKey, appKey, site), args[0], args[1], body)
 		cmdutil.HandleError(err, "failed to update-team-permission-setting")
 
-		fmt.Println(cmdutil.FormatJSON(res, "team_permission_settings"))
+		fmt.Println(cmdutil.FormatJSON(res, "team_permission_setting"))
 	},
 }
 

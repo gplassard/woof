@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#list-incident-ty
 		res, _, err = api.ListIncidentTypes(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-incident-types")
 
-		fmt.Println(cmdutil.FormatJSON(res, "incident_types"))
+		fmt.Println(cmdutil.FormatJSON(res, "incident_type"))
 	},
 }
 

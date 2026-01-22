@@ -23,13 +23,9 @@ Documentation: https://docs.datadoghq.com/api/latest/logs/#list-logs`,
 		var res datadogV2.LogsListResponse
 		var err error
 
-		var body datadogV2.ListLogsOptionalParameters
-		err = cmdutil.UnmarshalPayload(cmd, &body)
-		cmdutil.HandleError(err, "failed to read payload")
-
 		api := datadogV2.NewLogsApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.ListLogs(client.NewContext(apiKey, appKey, site), body)
+		res, _, err = api.ListLogs(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-logs")
 
 		fmt.Println(cmdutil.FormatJSON(res, "log"))
@@ -37,9 +33,6 @@ Documentation: https://docs.datadoghq.com/api/latest/logs/#list-logs`,
 }
 
 func init() {
-
-	ListLogsCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
-	ListLogsCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
 
 	Cmd.AddCommand(ListLogsCmd)
 }

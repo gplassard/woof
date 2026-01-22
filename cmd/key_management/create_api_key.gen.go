@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/key-management/#create-api-
 		res, _, err = api.CreateAPIKey(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-api-key")
 
-		fmt.Println(cmdutil.FormatJSON(res, "api_keys"))
+		fmt.Println(cmdutil.FormatJSON(res, "a_p_i_key"))
 	},
 }
 

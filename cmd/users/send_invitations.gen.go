@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/users/#send-invitations`,
 		res, _, err = api.SendInvitations(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to send-invitations")
 
-		fmt.Println(cmdutil.FormatJSON(res, "user_invitations"))
+		fmt.Println(cmdutil.FormatJSON(res, "users"))
 	},
 }
 

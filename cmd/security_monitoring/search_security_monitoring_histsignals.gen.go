@@ -23,23 +23,16 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#search
 		var res datadogV2.SecurityMonitoringSignalsListResponse
 		var err error
 
-		var body datadogV2.SearchSecurityMonitoringHistsignalsOptionalParameters
-		err = cmdutil.UnmarshalPayload(cmd, &body)
-		cmdutil.HandleError(err, "failed to read payload")
-
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.SearchSecurityMonitoringHistsignals(client.NewContext(apiKey, appKey, site), body)
+		res, _, err = api.SearchSecurityMonitoringHistsignals(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to search-security-monitoring-histsignals")
 
-		fmt.Println(cmdutil.FormatJSON(res, "signal"))
+		fmt.Println(cmdutil.FormatJSON(res, "security_monitoring_histsignal"))
 	},
 }
 
 func init() {
-
-	SearchSecurityMonitoringHistsignalsCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
-	SearchSecurityMonitoringHistsignalsCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
 
 	Cmd.AddCommand(SearchSecurityMonitoringHistsignalsCmd)
 }

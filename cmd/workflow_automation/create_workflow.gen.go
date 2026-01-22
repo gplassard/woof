@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/workflow-automation/#create
 		res, _, err = api.CreateWorkflow(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-workflow")
 
-		fmt.Println(cmdutil.FormatJSON(res, "workflows"))
+		fmt.Println(cmdutil.FormatJSON(res, "workflow"))
 	},
 }
 

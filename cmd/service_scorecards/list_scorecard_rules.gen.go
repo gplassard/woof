@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/service-scorecards/#list-sc
 		res, _, err = api.ListScorecardRules(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-scorecard-rules")
 
-		fmt.Println(cmdutil.FormatJSON(res, "service_scorecards"))
+		fmt.Println(cmdutil.FormatJSON(res, "scorecard_rule"))
 	},
 }
 

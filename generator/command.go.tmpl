@@ -10,6 +10,7 @@ import (
 	{{range .ArgTypes}}{{if eq . "uuid.UUID"}}"github.com/google/uuid"{{break}}{{end}}{{end}}
 	{{range .ArgTypes}}{{if eq . "time.Time"}}"time"{{break}}{{end}}{{end}}
 	{{range .ArgTypes}}{{if eq . "[]string"}}"strings"{{break}}{{end}}{{end}}
+	{{if contains .ResponseTypeGo "io."}}"io"{{end}}
 	"github.com/spf13/cobra"
 	{{range .ArgTypes}}{{if eq . "int64"}}"strconv"{{break}}{{end}}{{end}}
 )
@@ -23,7 +24,7 @@ Documentation: {{.DocURL}}`,
 	{{if .Args}}Args:  cobra.ExactArgs({{len .Args}}),{{end}}
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
-		{{if .HasResponse}}var res {{if eq .ResponseTypeGo "interface{}"}}{{.ResponseTypeGo}}{{else}}datadogV2.{{.ResponseTypeGo}}{{end}}{{end}}
+		{{if .HasResponse}}var res {{if eq .ResponseTypeGo "interface{}"}}{{.ResponseTypeGo}}{{else if eq .ResponseTypeGo "string"}}string{{else if eq .ResponseTypeGo "int"}}int{{else if eq .ResponseTypeGo "int64"}}int64{{else if eq .ResponseTypeGo "float64"}}float64{{else if eq .ResponseTypeGo "bool"}}bool{{else if (contains .ResponseTypeGo ".")}}{{.ResponseTypeGo}}{{else}}datadogV2.{{.ResponseTypeGo}}{{end}}{{end}}
 		var err error
 	{{if .HasRequestBody}}
 		var body datadogV2.{{.RequestBodyType}}

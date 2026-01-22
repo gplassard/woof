@@ -23,13 +23,9 @@ Documentation: https://docs.datadoghq.com/api/latest/events/#search-events`,
 		var res datadogV2.EventsListResponse
 		var err error
 
-		var body datadogV2.SearchEventsOptionalParameters
-		err = cmdutil.UnmarshalPayload(cmd, &body)
-		cmdutil.HandleError(err, "failed to read payload")
-
 		api := datadogV2.NewEventsApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.SearchEvents(client.NewContext(apiKey, appKey, site), body)
+		res, _, err = api.SearchEvents(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to search-events")
 
 		fmt.Println(cmdutil.FormatJSON(res, "event"))
@@ -37,9 +33,6 @@ Documentation: https://docs.datadoghq.com/api/latest/events/#search-events`,
 }
 
 func init() {
-
-	SearchEventsCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
-	SearchEventsCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
 
 	Cmd.AddCommand(SearchEventsCmd)
 }

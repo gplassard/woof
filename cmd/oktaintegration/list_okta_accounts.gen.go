@@ -1,4 +1,4 @@
-package okta_integration
+package oktaintegration
 
 import (
 	"fmt"
@@ -16,7 +16,7 @@ var ListOktaAccountsCmd = &cobra.Command{
 
 	Short: "List Okta accounts",
 	Long: `List Okta accounts
-Documentation: https://docs.datadoghq.com/api/latest/okta-integration/#list-okta-accounts`,
+Documentation: https://docs.datadoghq.com/api/latest/oktaintegration/#list-okta-accounts`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/okta-integration/#list-okta
 		res, _, err = api.ListOktaAccounts(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-okta-accounts")
 
-		fmt.Println(cmdutil.FormatJSON(res, "okta-accounts"))
+		fmt.Println(cmdutil.FormatJSON(res, "okta_account"))
 	},
 }
 

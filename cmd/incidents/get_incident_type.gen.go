@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#get-incident-typ
 		res, _, err = api.GetIncidentType(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-incident-type")
 
-		fmt.Println(cmdutil.FormatJSON(res, "incident_types"))
+		fmt.Println(cmdutil.FormatJSON(res, "incident_type"))
 	},
 }
 
