@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/actions-datastores/#bulk-de
 		res, _, err = api.BulkDeleteDatastoreItems(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to bulk-delete-datastore-items")
 
-		fmt.Println(cmdutil.FormatJSON(res, "items"))
+		fmt.Println(cmdutil.FormatJSON(res, "delete_datastore_item"))
 	},
 }
 

@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/monitors/#update-monitor-no
 		res, _, err = api.UpdateMonitorNotificationRule(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-monitor-notification-rule")
 
-		fmt.Println(cmdutil.FormatJSON(res, "monitor-notification-rule"))
+		fmt.Println(cmdutil.FormatJSON(res, "monitor_notification_rule"))
 	},
 }
 

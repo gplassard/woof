@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/users/#list-user-permission
 		res, _, err = api.ListUserPermissions(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-user-permissions")
 
-		fmt.Println(cmdutil.FormatJSON(res, "permissions"))
+		fmt.Println(cmdutil.FormatJSON(res, "user_permission"))
 	},
 }
 

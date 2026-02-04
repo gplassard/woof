@@ -29,7 +29,7 @@ Documentation: https://docs.datadoghq.com/api/latest/downtimes/#list-monitor-dow
 		res, _, err = api.ListMonitorDowntimes(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }())
 		cmdutil.HandleError(err, "failed to list-monitor-downtimes")
 
-		fmt.Println(cmdutil.FormatJSON(res, "downtime_match"))
+		fmt.Println(cmdutil.FormatJSON(res, "monitor_downtime"))
 	},
 }
 

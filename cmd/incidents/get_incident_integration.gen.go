@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#get-incident-int
 		res, _, err = api.GetIncidentIntegration(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		cmdutil.HandleError(err, "failed to get-incident-integration")
 
-		fmt.Println(cmdutil.FormatJSON(res, "incident_integrations"))
+		fmt.Println(cmdutil.FormatJSON(res, "incident_integration"))
 	},
 }
 

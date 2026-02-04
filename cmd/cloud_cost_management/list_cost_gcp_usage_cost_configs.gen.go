@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#list
 		res, _, err = api.ListCostGCPUsageCostConfigs(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-cost-gcp-usage-cost-configs")
 
-		fmt.Println(cmdutil.FormatJSON(res, "gcp_uc_config"))
+		fmt.Println(cmdutil.FormatJSON(res, "cost_g_c_p_usage_cost_config"))
 	},
 }
 

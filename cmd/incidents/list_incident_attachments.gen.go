@@ -14,8 +14,8 @@ import (
 var ListIncidentAttachmentsCmd = &cobra.Command{
 	Use:     "list-incident-attachments [incident_id]",
 	Aliases: []string{"list-attachments"},
-	Short:   "List incident attachments",
-	Long: `List incident attachments
+	Short:   "Get a list of attachments",
+	Long: `Get a list of attachments
 Documentation: https://docs.datadoghq.com/api/latest/incidents/#list-incident-attachments`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#list-incident-at
 		res, _, err = api.ListIncidentAttachments(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-incident-attachments")
 
-		fmt.Println(cmdutil.FormatJSON(res, "incident_attachments"))
+		fmt.Println(cmdutil.FormatJSON(res, "incident_attachment"))
 	},
 }
 

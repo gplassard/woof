@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/container-images/#list-cont
 		res, _, err = api.ListContainerImages(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-container-images")
 
-		fmt.Println(cmdutil.FormatJSON(res, "container_images"))
+		fmt.Println(cmdutil.FormatJSON(res, "container_image"))
 	},
 }
 

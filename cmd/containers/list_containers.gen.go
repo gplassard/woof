@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/containers/#list-containers
 		res, _, err = api.ListContainers(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-containers")
 
-		fmt.Println(cmdutil.FormatJSON(res, "containers"))
+		fmt.Println(cmdutil.FormatJSON(res, "container"))
 	},
 }
 

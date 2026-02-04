@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/observability-pipelines/#up
 		res, _, err = api.UpdatePipeline(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-pipeline")
 
-		fmt.Println(cmdutil.FormatJSON(res, "observability_pipelines"))
+		fmt.Println(cmdutil.FormatJSON(res, "pipeline"))
 	},
 }
 

@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/network-device-monitoring/#
 		res, _, err = api.GetInterfaces(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-interfaces")
 
-		fmt.Println(cmdutil.FormatJSON(res, "network_device_monitoring"))
+		fmt.Println(cmdutil.FormatJSON(res, "interface"))
 	},
 }
 

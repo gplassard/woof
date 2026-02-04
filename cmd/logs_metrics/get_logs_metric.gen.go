@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/logs-metrics/#get-logs-metr
 		res, _, err = api.GetLogsMetric(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-logs-metric")
 
-		fmt.Println(cmdutil.FormatJSON(res, "logs_metrics"))
+		fmt.Println(cmdutil.FormatJSON(res, "logs_metric"))
 	},
 }
 

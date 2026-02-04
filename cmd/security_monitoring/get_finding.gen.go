@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-fi
 		res, _, err = api.GetFinding(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-finding")
 
-		fmt.Println(cmdutil.FormatJSON(res, "detailed_finding"))
+		fmt.Println(cmdutil.FormatJSON(res, "finding"))
 	},
 }
 

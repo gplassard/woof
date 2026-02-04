@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#create-on-call-sch
 		res, _, err = api.CreateOnCallSchedule(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-on-call-schedule")
 
-		fmt.Println(cmdutil.FormatJSON(res, "schedules"))
+		fmt.Println(cmdutil.FormatJSON(res, "on_call_schedule"))
 	},
 }
 

@@ -12,11 +12,11 @@ import (
 )
 
 var ListDORADeploymentsCmd = &cobra.Command{
-	Use: "list-d-o-r-ad-eployments",
+	Use: "list-doradeployments",
 
 	Short: "Get a list of deployment events",
 	Long: `Get a list of deployment events
-Documentation: https://docs.datadoghq.com/api/latest/dora-metrics/#list-d-o-r-ad-eployments`,
+Documentation: https://docs.datadoghq.com/api/latest/dora-metrics/#list-doradeployments`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
@@ -30,9 +30,9 @@ Documentation: https://docs.datadoghq.com/api/latest/dora-metrics/#list-d-o-r-ad
 		api := datadogV2.NewDORAMetricsApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.ListDORADeployments(client.NewContext(apiKey, appKey, site), body)
-		cmdutil.HandleError(err, "failed to list-d-o-r-ad-eployments")
+		cmdutil.HandleError(err, "failed to list-doradeployments")
 
-		fmt.Println(cmdutil.FormatJSON(res, "dora_metrics"))
+		fmt.Println(cmdutil.FormatJSON(res, "d_o_r_a_deployment"))
 	},
 }
 

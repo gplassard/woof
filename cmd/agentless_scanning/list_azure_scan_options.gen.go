@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#list-az
 		res, _, err = api.ListAzureScanOptions(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-azure-scan-options")
 
-		fmt.Println(cmdutil.FormatJSON(res, "azure_scan_options"))
+		fmt.Println(cmdutil.FormatJSON(res, "azure_scan_option"))
 	},
 }
 

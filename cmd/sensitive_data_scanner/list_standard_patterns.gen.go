@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/sensitive-data-scanner/#lis
 		res, _, err = api.ListStandardPatterns(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-standard-patterns")
 
-		fmt.Println(cmdutil.FormatJSON(res, "sensitive_data_scanner"))
+		fmt.Println(cmdutil.FormatJSON(res, "standard_pattern"))
 	},
 }
 

@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#edit-s
 		res, _, err = api.EditSecurityMonitoringSignalState(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to edit-security-monitoring-signal-state")
 
-		fmt.Println(cmdutil.FormatJSON(res, "signal_metadata"))
+		fmt.Println(cmdutil.FormatJSON(res, "security_monitoring"))
 	},
 }
 

@@ -1,4 +1,4 @@
-package okta_integration
+package oktaintegration
 
 import (
 	"fmt"
@@ -16,7 +16,7 @@ var UpdateOktaAccountCmd = &cobra.Command{
 
 	Short: "Update Okta account",
 	Long: `Update Okta account
-Documentation: https://docs.datadoghq.com/api/latest/okta-integration/#update-okta-account`,
+Documentation: https://docs.datadoghq.com/api/latest/oktaintegration/#update-okta-account`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/okta-integration/#update-ok
 		res, _, err = api.UpdateOktaAccount(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-okta-account")
 
-		fmt.Println(cmdutil.FormatJSON(res, "okta-accounts"))
+		fmt.Println(cmdutil.FormatJSON(res, "okta_account"))
 	},
 }
 

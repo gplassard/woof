@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/application-security/#updat
 		res, _, err = api.UpdateApplicationSecurityWafExclusionFilter(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-application-security-waf-exclusion-filter")
 
-		fmt.Println(cmdutil.FormatJSON(res, "exclusion_filter"))
+		fmt.Println(cmdutil.FormatJSON(res, "application_security_waf_exclusion_filter"))
 	},
 }
 

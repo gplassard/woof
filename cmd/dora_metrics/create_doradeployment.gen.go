@@ -12,11 +12,11 @@ import (
 )
 
 var CreateDORADeploymentCmd = &cobra.Command{
-	Use: "create-d-o-r-ad-eployment",
+	Use: "create-doradeployment",
 
 	Short: "Send a deployment event",
 	Long: `Send a deployment event
-Documentation: https://docs.datadoghq.com/api/latest/dora-metrics/#create-d-o-r-ad-eployment`,
+Documentation: https://docs.datadoghq.com/api/latest/dora-metrics/#create-doradeployment`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
@@ -30,9 +30,9 @@ Documentation: https://docs.datadoghq.com/api/latest/dora-metrics/#create-d-o-r-
 		api := datadogV2.NewDORAMetricsApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.CreateDORADeployment(client.NewContext(apiKey, appKey, site), body)
-		cmdutil.HandleError(err, "failed to create-d-o-r-ad-eployment")
+		cmdutil.HandleError(err, "failed to create-doradeployment")
 
-		fmt.Println(cmdutil.FormatJSON(res, "dora_deployment"))
+		fmt.Println(cmdutil.FormatJSON(res, "d_o_r_a_deployment"))
 	},
 }
 

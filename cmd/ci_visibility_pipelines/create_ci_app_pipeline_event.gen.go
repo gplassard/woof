@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/ci-visibility-pipelines/#cr
 		res, _, err = api.CreateCIAppPipelineEvent(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-ci-app-pipeline-event")
 
-		fmt.Println(cmdutil.FormatJSON(res, "ci_visibility_pipelines"))
+		fmt.Println(cmdutil.FormatJSON(res, "c_i_app_pipeline_event"))
 	},
 }
 

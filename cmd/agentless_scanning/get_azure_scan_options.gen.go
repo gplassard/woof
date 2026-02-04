@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#get-azu
 		res, _, err = api.GetAzureScanOptions(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-azure-scan-options")
 
-		fmt.Println(cmdutil.FormatJSON(res, "azure_scan_options"))
+		fmt.Println(cmdutil.FormatJSON(res, "azure_scan_option"))
 	},
 }
 

@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#create-on-call-esc
 		res, _, err = api.CreateOnCallEscalationPolicy(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-on-call-escalation-policy")
 
-		fmt.Println(cmdutil.FormatJSON(res, "policies"))
+		fmt.Println(cmdutil.FormatJSON(res, "on_call_escalation_policy"))
 	},
 }
 

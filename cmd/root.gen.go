@@ -10,7 +10,7 @@ import (
 	"github.com/gplassard/woof/cmd/app_builder"
 	"github.com/gplassard/woof/cmd/application_security"
 	"github.com/gplassard/woof/cmd/audit"
-	"github.com/gplassard/woof/cmd/authn_mappings"
+	"github.com/gplassard/woof/cmd/auth_n_mappings"
 	"github.com/gplassard/woof/cmd/aws_integration"
 	"github.com/gplassard/woof/cmd/aws_logs_integration"
 	"github.com/gplassard/woof/cmd/case_management"
@@ -28,7 +28,7 @@ import (
 	"github.com/gplassard/woof/cmd/csm_coverage_analysis"
 	"github.com/gplassard/woof/cmd/csm_threats"
 	"github.com/gplassard/woof/cmd/dashboard_lists"
-	"github.com/gplassard/woof/cmd/data_deletion"
+	"github.com/gplassard/woof/cmd/datadeletion"
 	"github.com/gplassard/woof/cmd/datasets"
 	"github.com/gplassard/woof/cmd/deployment_gates"
 	"github.com/gplassard/woof/cmd/domain_allowlist"
@@ -54,7 +54,7 @@ import (
 	"github.com/gplassard/woof/cmd/monitors"
 	"github.com/gplassard/woof/cmd/network_device_monitoring"
 	"github.com/gplassard/woof/cmd/observability_pipelines"
-	"github.com/gplassard/woof/cmd/okta_integration"
+	"github.com/gplassard/woof/cmd/oktaintegration"
 	"github.com/gplassard/woof/cmd/on_call"
 	"github.com/gplassard/woof/cmd/on_call_paging"
 	"github.com/gplassard/woof/cmd/opsgenie_integration"
@@ -120,7 +120,7 @@ func Execute() {
 		app_builder.Cmd,
 		application_security.Cmd,
 		audit.Cmd,
-		authn_mappings.Cmd,
+		auth_n_mappings.Cmd,
 		aws_integration.Cmd,
 		aws_logs_integration.Cmd,
 		case_management.Cmd,
@@ -138,7 +138,7 @@ func Execute() {
 		csm_coverage_analysis.Cmd,
 		csm_threats.Cmd,
 		dashboard_lists.Cmd,
-		data_deletion.Cmd,
+		datadeletion.Cmd,
 		datasets.Cmd,
 		deployment_gates.Cmd,
 		domain_allowlist.Cmd,
@@ -164,7 +164,7 @@ func Execute() {
 		monitors.Cmd,
 		network_device_monitoring.Cmd,
 		observability_pipelines.Cmd,
-		okta_integration.Cmd,
+		oktaintegration.Cmd,
 		on_call.Cmd,
 		on_call_paging.Cmd,
 		opsgenie_integration.Cmd,

@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/incident-teams/#create-inci
 		res, _, err = api.CreateIncidentTeam(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-incident-team")
 
-		fmt.Println(cmdutil.FormatJSON(res, "teams"))
+		fmt.Println(cmdutil.FormatJSON(res, "incident_team"))
 	},
 }
 

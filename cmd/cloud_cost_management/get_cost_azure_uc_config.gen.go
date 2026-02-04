@@ -29,7 +29,7 @@ Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#get-
 		res, _, err = api.GetCostAzureUCConfig(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }())
 		cmdutil.HandleError(err, "failed to get-cost-azure-uc-config")
 
-		fmt.Println(cmdutil.FormatJSON(res, "azure_uc_configs"))
+		fmt.Println(cmdutil.FormatJSON(res, "cost_azure_u_c_config"))
 	},
 }
 

@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#create-incident-
 		res, _, err = api.CreateIncidentNotificationTemplate(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-incident-notification-template")
 
-		fmt.Println(cmdutil.FormatJSON(res, "notification_templates"))
+		fmt.Println(cmdutil.FormatJSON(res, "incident_notification_template"))
 	},
 }
 

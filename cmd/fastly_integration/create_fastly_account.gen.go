@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/fastly-integration/#create-
 		res, _, err = api.CreateFastlyAccount(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-fastly-account")
 
-		fmt.Println(cmdutil.FormatJSON(res, "fastly-accounts"))
+		fmt.Println(cmdutil.FormatJSON(res, "fastly_account"))
 	},
 }
 

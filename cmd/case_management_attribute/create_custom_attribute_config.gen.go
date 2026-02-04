@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/case-management-attribute/#
 		res, _, err = api.CreateCustomAttributeConfig(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to create-custom-attribute-config")
 
-		fmt.Println(cmdutil.FormatJSON(res, "custom_attribute"))
+		fmt.Println(cmdutil.FormatJSON(res, "custom_attribute_config"))
 	},
 }
 

@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#upda
 		res, _, err = api.UpdateTagPipelinesRuleset(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-tag-pipelines-ruleset")
 
-		fmt.Println(cmdutil.FormatJSON(res, "ruleset"))
+		fmt.Println(cmdutil.FormatJSON(res, "tag_pipelines_ruleset"))
 	},
 }
 

@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/incident-teams/#list-incide
 		res, _, err = api.ListIncidentTeams(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-incident-teams")
 
-		fmt.Println(cmdutil.FormatJSON(res, "teams"))
+		fmt.Println(cmdutil.FormatJSON(res, "incident_team"))
 	},
 }
 

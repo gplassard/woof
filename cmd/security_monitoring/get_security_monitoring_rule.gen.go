@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-se
 		res, _, err = api.GetSecurityMonitoringRule(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-security-monitoring-rule")
 
-		fmt.Println(cmdutil.FormatJSON(res, "security_monitoring"))
+		fmt.Println(cmdutil.FormatJSON(res, "security_monitoring_rule"))
 	},
 }
 

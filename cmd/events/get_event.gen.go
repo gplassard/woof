@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/events/#get-event`,
 		res, _, err = api.GetEvent(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-event")
 
-		fmt.Println(cmdutil.FormatJSON(res, "events"))
+		fmt.Println(cmdutil.FormatJSON(res, "event"))
 	},
 }
 

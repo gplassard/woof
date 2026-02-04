@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/metrics/#list-tag-configura
 		res, _, err = api.ListTagConfigurationByName(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-tag-configuration-by-name")
 
-		fmt.Println(cmdutil.FormatJSON(res, "manage_tags"))
+		fmt.Println(cmdutil.FormatJSON(res, "tag_configuration_by_name"))
 	},
 }
 

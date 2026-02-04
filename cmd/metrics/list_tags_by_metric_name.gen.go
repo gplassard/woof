@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/metrics/#list-tags-by-metri
 		res, _, err = api.ListTagsByMetricName(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-tags-by-metric-name")
 
-		fmt.Println(cmdutil.FormatJSON(res, "metrics"))
+		fmt.Println(cmdutil.FormatJSON(res, "tags_by_metric_name"))
 	},
 }
 

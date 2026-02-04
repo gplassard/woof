@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/fleet-automation/#list-flee
 		res, _, err = api.ListFleetDeployments(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-fleet-deployments")
 
-		fmt.Println(cmdutil.FormatJSON(res, "deployment"))
+		fmt.Println(cmdutil.FormatJSON(res, "fleet_deployment"))
 	},
 }
 

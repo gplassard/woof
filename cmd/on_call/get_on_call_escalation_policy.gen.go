@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#get-on-call-escala
 		res, _, err = api.GetOnCallEscalationPolicy(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-on-call-escalation-policy")
 
-		fmt.Println(cmdutil.FormatJSON(res, "policies"))
+		fmt.Println(cmdutil.FormatJSON(res, "on_call_escalation_policy"))
 	},
 }
 

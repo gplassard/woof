@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/teams/#create-team-link`,
 		res, _, err = api.CreateTeamLink(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to create-team-link")
 
-		fmt.Println(cmdutil.FormatJSON(res, "team_links"))
+		fmt.Println(cmdutil.FormatJSON(res, "team_link"))
 	},
 }
 

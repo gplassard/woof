@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/metrics/#delete-bulk-tags-m
 		res, _, err = api.DeleteBulkTagsMetricsConfiguration(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to delete-bulk-tags-metrics-configuration")
 
-		fmt.Println(cmdutil.FormatJSON(res, "metric_bulk_configure_tags"))
+		fmt.Println(cmdutil.FormatJSON(res, "bulk_tags_metrics_configuration"))
 	},
 }
 

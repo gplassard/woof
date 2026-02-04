@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#get-team-on-call-u
 		res, _, err = api.GetTeamOnCallUsers(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-team-on-call-users")
 
-		fmt.Println(cmdutil.FormatJSON(res, "team_oncall_responders"))
+		fmt.Println(cmdutil.FormatJSON(res, "team_on_call_user"))
 	},
 }
 

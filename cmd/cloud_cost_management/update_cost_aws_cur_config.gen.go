@@ -33,7 +33,7 @@ Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#upda
 		res, _, err = api.UpdateCostAWSCURConfig(client.NewContext(apiKey, appKey, site), func() int64 { i, _ := strconv.ParseInt(args[0], 10, 64); return i }(), body)
 		cmdutil.HandleError(err, "failed to update-cost-aws-cur-config")
 
-		fmt.Println(cmdutil.FormatJSON(res, "aws_cur_config"))
+		fmt.Println(cmdutil.FormatJSON(res, "cost_a_w_s_c_u_r_config"))
 	},
 }
 

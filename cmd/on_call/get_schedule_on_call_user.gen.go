@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#get-schedule-on-ca
 		res, _, err = api.GetScheduleOnCallUser(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-schedule-on-call-user")
 
-		fmt.Println(cmdutil.FormatJSON(res, "shifts"))
+		fmt.Println(cmdutil.FormatJSON(res, "schedule_on_call_user"))
 	},
 }
 

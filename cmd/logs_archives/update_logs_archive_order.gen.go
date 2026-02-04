@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/logs-archives/#update-logs-
 		res, _, err = api.UpdateLogsArchiveOrder(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to update-logs-archive-order")
 
-		fmt.Println(cmdutil.FormatJSON(res, "archive_order"))
+		fmt.Println(cmdutil.FormatJSON(res, "logs_archive_order"))
 	},
 }
 

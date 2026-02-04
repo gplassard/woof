@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/spa/#get-s-p-a-recommendati
 		res, _, err = api.GetSPARecommendations(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		cmdutil.HandleError(err, "failed to get-s-p-a-recommendations")
 
-		fmt.Println(cmdutil.FormatJSON(res, "recommendation"))
+		fmt.Println(cmdutil.FormatJSON(res, "s_p_a_recommendation"))
 	},
 }
 

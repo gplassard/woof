@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/usage-metering/#get-active-
 		res, _, err = api.GetActiveBillingDimensions(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-active-billing-dimensions")
 
-		fmt.Println(cmdutil.FormatJSON(res, "billing_dimensions"))
+		fmt.Println(cmdutil.FormatJSON(res, "active_billing_dimension"))
 	},
 }
 

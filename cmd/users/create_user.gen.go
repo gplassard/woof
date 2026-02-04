@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/users/#create-user`,
 		res, _, err = api.CreateUser(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-user")
 
-		fmt.Println(cmdutil.FormatJSON(res, "users"))
+		fmt.Println(cmdutil.FormatJSON(res, "user"))
 	},
 }
 

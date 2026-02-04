@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/rum-retention-filters/#upda
 		res, _, err = api.UpdateRetentionFilter(client.NewContext(apiKey, appKey, site), args[0], args[1], body)
 		cmdutil.HandleError(err, "failed to update-retention-filter")
 
-		fmt.Println(cmdutil.FormatJSON(res, "retention_filters"))
+		fmt.Println(cmdutil.FormatJSON(res, "retention_filter"))
 	},
 }
 

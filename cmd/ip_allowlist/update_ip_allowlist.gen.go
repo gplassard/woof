@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/ip-allowlist/#update-ip-all
 		res, _, err = api.UpdateIPAllowlist(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to update-ip-allowlist")
 
-		fmt.Println(cmdutil.FormatJSON(res, "ip_allowlist"))
+		fmt.Println(cmdutil.FormatJSON(res, "i_p_allowlist"))
 	},
 }
 

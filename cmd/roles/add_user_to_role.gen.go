@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/roles/#add-user-to-role`,
 		res, _, err = api.AddUserToRole(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to add-user-to-role")
 
-		fmt.Println(cmdutil.FormatJSON(res, "users"))
+		fmt.Println(cmdutil.FormatJSON(res, "roles"))
 	},
 }
 

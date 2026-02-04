@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#list-s
 		res, _, err = api.ListSecurityMonitoringSuppressions(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-security-monitoring-suppressions")
 
-		fmt.Println(cmdutil.FormatJSON(res, "suppressions"))
+		fmt.Println(cmdutil.FormatJSON(res, "security_monitoring_suppression"))
 	},
 }
 

@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#list-aws-n
 		res, _, err = api.ListAWSNamespaces(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-aws-namespaces")
 
-		fmt.Println(cmdutil.FormatJSON(res, "namespaces"))
+		fmt.Println(cmdutil.FormatJSON(res, "a_w_s_namespace"))
 	},
 }
 

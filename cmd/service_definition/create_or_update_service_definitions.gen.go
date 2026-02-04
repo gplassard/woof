@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/service-definition/#create-
 		res, _, err = api.CreateOrUpdateServiceDefinitions(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-or-update-service-definitions")
 
-		fmt.Println(cmdutil.FormatJSON(res, "service_definition"))
+		fmt.Println(cmdutil.FormatJSON(res, "or_update_service_definition"))
 	},
 }
 

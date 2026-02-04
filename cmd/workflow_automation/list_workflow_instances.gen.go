@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/workflow-automation/#list-w
 		res, _, err = api.ListWorkflowInstances(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-workflow-instances")
 
-		fmt.Println(cmdutil.FormatJSON(res, "workflow_automation"))
+		fmt.Println(cmdutil.FormatJSON(res, "workflow_instance"))
 	},
 }
 

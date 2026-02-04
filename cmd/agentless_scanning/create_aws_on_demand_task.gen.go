@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/agentless-scanning/#create-
 		res, _, err = api.CreateAwsOnDemandTask(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-aws-on-demand-task")
 
-		fmt.Println(cmdutil.FormatJSON(res, "aws_resource"))
+		fmt.Println(cmdutil.FormatJSON(res, "aws_on_demand_task"))
 	},
 }
 

@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/csm-threats/#update-csm-thr
 		res, _, err = api.UpdateCSMThreatsAgentRule(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-csm-threats-agent-rule")
 
-		fmt.Println(cmdutil.FormatJSON(res, "agent_rule"))
+		fmt.Println(cmdutil.FormatJSON(res, "c_s_m_threats_agent_rule"))
 	},
 }
 

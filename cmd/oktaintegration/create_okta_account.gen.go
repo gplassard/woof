@@ -1,4 +1,4 @@
-package okta_integration
+package oktaintegration
 
 import (
 	"fmt"
@@ -16,7 +16,7 @@ var CreateOktaAccountCmd = &cobra.Command{
 
 	Short: "Add Okta account",
 	Long: `Add Okta account
-Documentation: https://docs.datadoghq.com/api/latest/okta-integration/#create-okta-account`,
+Documentation: https://docs.datadoghq.com/api/latest/oktaintegration/#create-okta-account`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/okta-integration/#create-ok
 		res, _, err = api.CreateOktaAccount(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-okta-account")
 
-		fmt.Println(cmdutil.FormatJSON(res, "okta-accounts"))
+		fmt.Println(cmdutil.FormatJSON(res, "okta_account"))
 	},
 }
 

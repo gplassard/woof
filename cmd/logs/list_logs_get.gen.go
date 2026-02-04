@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/logs/#list-logs-get`,
 		res, _, err = api.ListLogsGet(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-logs-get")
 
-		fmt.Println(cmdutil.FormatJSON(res, "log"))
+		fmt.Println(cmdutil.FormatJSON(res, "logs_get"))
 	},
 }
 

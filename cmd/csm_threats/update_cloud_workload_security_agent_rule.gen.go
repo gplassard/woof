@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/csm-threats/#update-cloud-w
 		res, _, err = api.UpdateCloudWorkloadSecurityAgentRule(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-cloud-workload-security-agent-rule")
 
-		fmt.Println(cmdutil.FormatJSON(res, "agent_rule"))
+		fmt.Println(cmdutil.FormatJSON(res, "cloud_workload_security_agent_rule"))
 	},
 }
 

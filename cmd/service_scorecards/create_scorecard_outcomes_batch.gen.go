@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/service-scorecards/#create-
 		res, _, err = api.CreateScorecardOutcomesBatch(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-scorecard-outcomes-batch")
 
-		fmt.Println(cmdutil.FormatJSON(res, "service_scorecards"))
+		fmt.Println(cmdutil.FormatJSON(res, "scorecard_outcomes_batch"))
 	},
 }
 

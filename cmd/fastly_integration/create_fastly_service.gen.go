@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/fastly-integration/#create-
 		res, _, err = api.CreateFastlyService(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to create-fastly-service")
 
-		fmt.Println(cmdutil.FormatJSON(res, "fastly-services"))
+		fmt.Println(cmdutil.FormatJSON(res, "fastly_service"))
 	},
 }
 

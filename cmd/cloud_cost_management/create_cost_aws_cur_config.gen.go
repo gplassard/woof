@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#crea
 		res, _, err = api.CreateCostAWSCURConfig(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-cost-aws-cur-config")
 
-		fmt.Println(cmdutil.FormatJSON(res, "aws_cur_config"))
+		fmt.Println(cmdutil.FormatJSON(res, "cost_a_w_s_c_u_r_config"))
 	},
 }
 

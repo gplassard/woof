@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/cloudflare-integration/#cre
 		res, _, err = api.CreateCloudflareAccount(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-cloudflare-account")
 
-		fmt.Println(cmdutil.FormatJSON(res, "cloudflare-accounts"))
+		fmt.Println(cmdutil.FormatJSON(res, "cloudflare_account"))
 	},
 }
 

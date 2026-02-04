@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/actions-datastores/#get-dat
 		res, _, err = api.GetDatastore(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-datastore")
 
-		fmt.Println(cmdutil.FormatJSON(res, "datastores"))
+		fmt.Println(cmdutil.FormatJSON(res, "datastore"))
 	},
 }
 

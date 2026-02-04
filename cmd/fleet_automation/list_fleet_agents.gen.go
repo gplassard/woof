@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/fleet-automation/#list-flee
 		res, _, err = api.ListFleetAgents(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-fleet-agents")
 
-		fmt.Println(cmdutil.FormatJSON(res, "fleet_automation"))
+		fmt.Println(cmdutil.FormatJSON(res, "fleet_agent"))
 	},
 }
 

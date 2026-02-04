@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/rum-metrics/#get-rum-metric
 		res, _, err = api.GetRumMetric(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-rum-metric")
 
-		fmt.Println(cmdutil.FormatJSON(res, "rum_metrics"))
+		fmt.Println(cmdutil.FormatJSON(res, "rum_metric"))
 	},
 }
 

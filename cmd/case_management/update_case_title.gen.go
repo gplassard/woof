@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/case-management/#update-cas
 		res, _, err = api.UpdateCaseTitle(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-case-title")
 
-		fmt.Println(cmdutil.FormatJSON(res, "case"))
+		fmt.Println(cmdutil.FormatJSON(res, "case_title"))
 	},
 }
 

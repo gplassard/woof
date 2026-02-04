@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/rum/#get-rum-applications`,
 		res, _, err = api.GetRUMApplications(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-rum-applications")
 
-		fmt.Println(cmdutil.FormatJSON(res, "rum_application"))
+		fmt.Println(cmdutil.FormatJSON(res, "r_u_m_application"))
 	},
 }
 

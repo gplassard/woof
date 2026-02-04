@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/logs-custom-destinations/#u
 		res, _, err = api.UpdateLogsCustomDestination(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-logs-custom-destination")
 
-		fmt.Println(cmdutil.FormatJSON(res, "custom_destination"))
+		fmt.Println(cmdutil.FormatJSON(res, "logs_custom_destination"))
 	},
 }
 

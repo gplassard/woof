@@ -22,22 +22,15 @@ Documentation: https://docs.datadoghq.com/api/latest/organizations/#upload-id-p-
 
 		var err error
 
-		var body datadogV2.UploadIdPMetadataOptionalParameters
-		err = cmdutil.UnmarshalPayload(cmd, &body)
-		cmdutil.HandleError(err, "failed to read payload")
-
 		api := datadogV2.NewOrganizationsApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		_, err = api.UploadIdPMetadata(client.NewContext(apiKey, appKey, site), body)
+		_, err = api.UploadIdPMetadata(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to upload-id-p-metadata")
 
 	},
 }
 
 func init() {
-
-	UploadIdPMetadataCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
-	UploadIdPMetadataCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
 
 	Cmd.AddCommand(UploadIdPMetadataCmd)
 }

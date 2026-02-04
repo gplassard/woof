@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/workflow-automation/#cancel
 		res, _, err = api.CancelWorkflowInstance(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		cmdutil.HandleError(err, "failed to cancel-workflow-instance")
 
-		fmt.Println(cmdutil.FormatJSON(res, "workflow_automation"))
+		fmt.Println(cmdutil.FormatJSON(res, "workflow_instance"))
 	},
 }
 

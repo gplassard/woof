@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/users/#update-user`,
 		res, _, err = api.UpdateUser(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-user")
 
-		fmt.Println(cmdutil.FormatJSON(res, "users"))
+		fmt.Println(cmdutil.FormatJSON(res, "user"))
 	},
 }
 

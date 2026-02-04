@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#create
 		res, _, err = api.CreateSecurityMonitoringSuppression(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-security-monitoring-suppression")
 
-		fmt.Println(cmdutil.FormatJSON(res, "suppressions"))
+		fmt.Println(cmdutil.FormatJSON(res, "security_monitoring_suppression"))
 	},
 }
 

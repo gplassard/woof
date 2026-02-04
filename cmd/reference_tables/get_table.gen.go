@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/reference-tables/#get-table
 		res, _, err = api.GetTable(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-table")
 
-		fmt.Println(cmdutil.FormatJSON(res, "reference_table"))
+		fmt.Println(cmdutil.FormatJSON(res, "table"))
 	},
 }
 

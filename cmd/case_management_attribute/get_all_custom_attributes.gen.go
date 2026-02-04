@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/case-management-attribute/#
 		res, _, err = api.GetAllCustomAttributes(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-all-custom-attributes")
 
-		fmt.Println(cmdutil.FormatJSON(res, "custom_attribute"))
+		fmt.Println(cmdutil.FormatJSON(res, "all_custom_attribute"))
 	},
 }
 

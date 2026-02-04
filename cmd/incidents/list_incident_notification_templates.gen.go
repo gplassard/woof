@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#list-incident-no
 		res, _, err = api.ListIncidentNotificationTemplates(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-incident-notification-templates")
 
-		fmt.Println(cmdutil.FormatJSON(res, "notification_templates"))
+		fmt.Println(cmdutil.FormatJSON(res, "incident_notification_template"))
 	},
 }
 

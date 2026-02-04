@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/software-catalog/#list-cata
 		res, _, err = api.ListCatalogKind(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-catalog-kind")
 
-		fmt.Println(cmdutil.FormatJSON(res, "software_catalog"))
+		fmt.Println(cmdutil.FormatJSON(res, "catalog_kind"))
 	},
 }
 

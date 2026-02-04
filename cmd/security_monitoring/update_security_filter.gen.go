@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#update
 		res, _, err = api.UpdateSecurityFilter(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-security-filter")
 
-		fmt.Println(cmdutil.FormatJSON(res, "security_filters"))
+		fmt.Println(cmdutil.FormatJSON(res, "security_filter"))
 	},
 }
 

@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#get-on-call-schedu
 		res, _, err = api.GetOnCallSchedule(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-on-call-schedule")
 
-		fmt.Println(cmdutil.FormatJSON(res, "schedules"))
+		fmt.Println(cmdutil.FormatJSON(res, "on_call_schedule"))
 	},
 }
 

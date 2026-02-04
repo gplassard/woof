@@ -29,7 +29,7 @@ Documentation: https://docs.datadoghq.com/api/latest/app-builder/#get-app`,
 		res, _, err = api.GetApp(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
 		cmdutil.HandleError(err, "failed to get-app")
 
-		fmt.Println(cmdutil.FormatJSON(res, "appDefinitions"))
+		fmt.Println(cmdutil.FormatJSON(res, "app"))
 	},
 }
 

@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/microsoft-teams-integration
 		res, _, err = api.ListTenantBasedHandles(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-tenant-based-handles")
 
-		fmt.Println(cmdutil.FormatJSON(res, "ms-teams-tenant-based-handle-info"))
+		fmt.Println(cmdutil.FormatJSON(res, "tenant_based_handle"))
 	},
 }
 

@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/confluent-cloud/#list-confl
 		res, _, err = api.ListConfluentAccount(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-confluent-account")
 
-		fmt.Println(cmdutil.FormatJSON(res, "confluent-cloud-accounts"))
+		fmt.Println(cmdutil.FormatJSON(res, "confluent_account"))
 	},
 }
 

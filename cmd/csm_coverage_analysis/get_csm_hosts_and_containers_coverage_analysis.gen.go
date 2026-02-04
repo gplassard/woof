@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/csm-coverage-analysis/#get-
 		res, _, err = api.GetCSMHostsAndContainersCoverageAnalysis(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-csm-hosts-and-containers-coverage-analysis")
 
-		fmt.Println(cmdutil.FormatJSON(res, "csm_coverage_analysis"))
+		fmt.Println(cmdutil.FormatJSON(res, "c_s_m_hosts_and_containers_coverage_analysi"))
 	},
 }
 

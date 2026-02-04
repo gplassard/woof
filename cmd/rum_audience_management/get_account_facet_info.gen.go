@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/rum-audience-management/#ge
 		res, _, err = api.GetAccountFacetInfo(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to get-account-facet-info")
 
-		fmt.Println(cmdutil.FormatJSON(res, "users_facet_info"))
+		fmt.Println(cmdutil.FormatJSON(res, "account_facet_info"))
 	},
 }
 

@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/error-tracking/#update-issu
 		res, _, err = api.UpdateIssueState(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-issue-state")
 
-		fmt.Println(cmdutil.FormatJSON(res, "issue"))
+		fmt.Println(cmdutil.FormatJSON(res, "issue_state"))
 	},
 }
 

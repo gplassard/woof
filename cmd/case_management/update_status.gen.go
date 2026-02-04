@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/case-management/#update-sta
 		res, _, err = api.UpdateStatus(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-status")
 
-		fmt.Println(cmdutil.FormatJSON(res, "case"))
+		fmt.Println(cmdutil.FormatJSON(res, "statu"))
 	},
 }
 

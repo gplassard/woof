@@ -14,8 +14,8 @@ import (
 var PreviewCatalogEntitiesCmd = &cobra.Command{
 	Use: "preview-catalog-entities",
 
-	Short: "Preview catalog entities",
-	Long: `Preview catalog entities
+	Short: "",
+	Long: `
 Documentation: https://docs.datadoghq.com/api/latest/software-catalog/#preview-catalog-entities`,
 
 	Run: func(cmd *cobra.Command, args []string) {
@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/software-catalog/#preview-c
 		res, _, err = api.PreviewCatalogEntities(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to preview-catalog-entities")
 
-		fmt.Println(cmdutil.FormatJSON(res, "entity"))
+		fmt.Println(cmdutil.FormatJSON(res, "software_catalog"))
 	},
 }
 

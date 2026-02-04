@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/key-management/#get-applica
 		res, _, err = api.GetApplicationKey(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-application-key")
 
-		fmt.Println(cmdutil.FormatJSON(res, "application_keys"))
+		fmt.Println(cmdutil.FormatJSON(res, "application_key"))
 	},
 }
 

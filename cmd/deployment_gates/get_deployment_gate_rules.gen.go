@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/deployment-gates/#get-deplo
 		res, _, err = api.GetDeploymentGateRules(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-deployment-gate-rules")
 
-		fmt.Println(cmdutil.FormatJSON(res, "list_deployment_rules"))
+		fmt.Println(cmdutil.FormatJSON(res, "deployment_gate_rule"))
 	},
 }
 

@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#get-
 		res, _, err = api.GetBudget(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-budget")
 
-		fmt.Println(cmdutil.FormatJSON(res, "cloud_cost_management"))
+		fmt.Println(cmdutil.FormatJSON(res, "budget"))
 	},
 }
 

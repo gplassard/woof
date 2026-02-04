@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/network-device-monitoring/#
 		res, _, err = api.ListDevices(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-devices")
 
-		fmt.Println(cmdutil.FormatJSON(res, "network_device_monitoring"))
+		fmt.Println(cmdutil.FormatJSON(res, "device"))
 	},
 }
 

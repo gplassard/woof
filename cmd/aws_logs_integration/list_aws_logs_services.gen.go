@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/aws-logs-integration/#list-
 		res, _, err = api.ListAWSLogsServices(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-aws-logs-services")
 
-		fmt.Println(cmdutil.FormatJSON(res, "logs_services"))
+		fmt.Println(cmdutil.FormatJSON(res, "a_w_s_logs_service"))
 	},
 }
 

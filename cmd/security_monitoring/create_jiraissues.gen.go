@@ -12,11 +12,11 @@ import (
 )
 
 var CreateJiraIssuesCmd = &cobra.Command{
-	Use: "create-jira-issues",
+	Use: "create-jiraissues",
 
 	Short: "Create Jira issues for security findings",
 	Long: `Create Jira issues for security findings
-Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#create-jira-issues`,
+Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#create-jiraissues`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
@@ -30,9 +30,9 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#create
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
 		res, _, err = api.CreateJiraIssues(client.NewContext(apiKey, appKey, site), body)
-		cmdutil.HandleError(err, "failed to create-jira-issues")
+		cmdutil.HandleError(err, "failed to create-jiraissues")
 
-		fmt.Println(cmdutil.FormatJSON(res, "cases"))
+		fmt.Println(cmdutil.FormatJSON(res, "jira_issue"))
 	},
 }
 

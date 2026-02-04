@@ -33,7 +33,7 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#update-incident-
 		res, _, err = api.UpdateIncidentNotificationTemplate(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]), body)
 		cmdutil.HandleError(err, "failed to update-incident-notification-template")
 
-		fmt.Println(cmdutil.FormatJSON(res, "notification_templates"))
+		fmt.Println(cmdutil.FormatJSON(res, "incident_notification_template"))
 	},
 }
 

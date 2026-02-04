@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/rum/#update-rum-application
 		res, _, err = api.UpdateRUMApplication(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-rum-application")
 
-		fmt.Println(cmdutil.FormatJSON(res, "rum_application"))
+		fmt.Println(cmdutil.FormatJSON(res, "r_u_m_application"))
 	},
 }
 

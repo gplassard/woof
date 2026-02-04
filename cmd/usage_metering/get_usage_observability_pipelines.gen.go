@@ -30,7 +30,7 @@ Documentation: https://docs.datadoghq.com/api/latest/usage-metering/#get-usage-o
 		res, _, err = api.GetUsageObservabilityPipelines(client.NewContext(apiKey, appKey, site), func() time.Time { t, _ := time.Parse(time.RFC3339, args[0]); return t }())
 		cmdutil.HandleError(err, "failed to get-usage-observability-pipelines")
 
-		fmt.Println(cmdutil.FormatJSON(res, "usage_timeseries"))
+		fmt.Println(cmdutil.FormatJSON(res, "usage_observability_pipeline"))
 	},
 }
 

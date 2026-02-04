@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/teams/#get-team-link`,
 		res, _, err = api.GetTeamLink(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		cmdutil.HandleError(err, "failed to get-team-link")
 
-		fmt.Println(cmdutil.FormatJSON(res, "team_links"))
+		fmt.Println(cmdutil.FormatJSON(res, "team_link"))
 	},
 }
 

@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/fleet-automation/#get-fleet
 		res, _, err = api.GetFleetDeployment(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-fleet-deployment")
 
-		fmt.Println(cmdutil.FormatJSON(res, "deployment"))
+		fmt.Println(cmdutil.FormatJSON(res, "fleet_deployment"))
 	},
 }
 

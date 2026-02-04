@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-su
 		res, _, err = api.GetSuppressionsAffectingFutureRule(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to get-suppressions-affecting-future-rule")
 
-		fmt.Println(cmdutil.FormatJSON(res, "suppressions"))
+		fmt.Println(cmdutil.FormatJSON(res, "suppressions_affecting_future_rule"))
 	},
 }
 

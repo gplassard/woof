@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/rum-audience-management/#li
 		res, _, err = api.ListConnections(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-connections")
 
-		fmt.Println(cmdutil.FormatJSON(res, "list_connections_response"))
+		fmt.Println(cmdutil.FormatJSON(res, "connection"))
 	},
 }
 

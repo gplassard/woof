@@ -1,4 +1,4 @@
-package authn_mappings
+package auth_n_mappings
 
 import (
 	"fmt"
@@ -12,11 +12,11 @@ import (
 )
 
 var CreateAuthNMappingCmd = &cobra.Command{
-	Use: "create-auth-n-mapping",
-
-	Short: "Create an AuthN Mapping",
+	Use:     "create-auth-n-mapping",
+	Aliases: []string{"create"},
+	Short:   "Create an AuthN Mapping",
 	Long: `Create an AuthN Mapping
-Documentation: https://docs.datadoghq.com/api/latest/authn-mappings/#create-auth-n-mapping`,
+Documentation: https://docs.datadoghq.com/api/latest/auth-n-mappings/#create-auth-n-mapping`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/authn-mappings/#create-auth
 		res, _, err = api.CreateAuthNMapping(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-auth-n-mapping")
 
-		fmt.Println(cmdutil.FormatJSON(res, "authn_mappings"))
+		fmt.Println(cmdutil.FormatJSON(res, "auth_n_mapping"))
 	},
 }
 

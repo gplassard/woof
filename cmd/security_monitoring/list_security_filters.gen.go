@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#list-s
 		res, _, err = api.ListSecurityFilters(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-security-filters")
 
-		fmt.Println(cmdutil.FormatJSON(res, "security_filters"))
+		fmt.Println(cmdutil.FormatJSON(res, "security_filter"))
 	},
 }
 

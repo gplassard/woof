@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/service-level-objectives/#c
 		res, _, err = api.CreateSLOReportJob(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-slo-report-job")
 
-		fmt.Println(cmdutil.FormatJSON(res, "service_level_objectives"))
+		fmt.Println(cmdutil.FormatJSON(res, "s_l_o_report_job"))
 	},
 }
 

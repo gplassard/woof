@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/fleet-automation/#create-fl
 		res, _, err = api.CreateFleetDeploymentConfigure(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-fleet-deployment-configure")
 
-		fmt.Println(cmdutil.FormatJSON(res, "deployment"))
+		fmt.Println(cmdutil.FormatJSON(res, "fleet_deployment_configure"))
 	},
 }
 

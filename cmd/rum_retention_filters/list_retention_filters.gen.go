@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/rum-retention-filters/#list
 		res, _, err = api.ListRetentionFilters(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-retention-filters")
 
-		fmt.Println(cmdutil.FormatJSON(res, "retention_filters"))
+		fmt.Println(cmdutil.FormatJSON(res, "retention_filter"))
 	},
 }
 

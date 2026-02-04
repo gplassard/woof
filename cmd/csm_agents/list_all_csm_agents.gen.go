@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/csm-agents/#list-all-csm-ag
 		res, _, err = api.ListAllCSMAgents(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-all-csm-agents")
 
-		fmt.Println(cmdutil.FormatJSON(res, "datadog_agent"))
+		fmt.Println(cmdutil.FormatJSON(res, "all_c_s_m_agent"))
 	},
 }
 

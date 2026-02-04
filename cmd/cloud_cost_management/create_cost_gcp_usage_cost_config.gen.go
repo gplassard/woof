@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#crea
 		res, _, err = api.CreateCostGCPUsageCostConfig(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-cost-gcp-usage-cost-config")
 
-		fmt.Println(cmdutil.FormatJSON(res, "gcp_uc_config"))
+		fmt.Println(cmdutil.FormatJSON(res, "cost_g_c_p_usage_cost_config"))
 	},
 }
 

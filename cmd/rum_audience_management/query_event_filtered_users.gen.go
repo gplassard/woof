@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/rum-audience-management/#qu
 		res, _, err = api.QueryEventFilteredUsers(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to query-event-filtered-users")
 
-		fmt.Println(cmdutil.FormatJSON(res, "query_response"))
+		fmt.Println(cmdutil.FormatJSON(res, "event_filtered_user"))
 	},
 }
 

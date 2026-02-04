@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/roles/#update-role`,
 		res, _, err = api.UpdateRole(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-role")
 
-		fmt.Println(cmdutil.FormatJSON(res, "roles"))
+		fmt.Println(cmdutil.FormatJSON(res, "role"))
 	},
 }
 

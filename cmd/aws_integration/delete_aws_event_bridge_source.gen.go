@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#delete-aws
 		res, _, err = api.DeleteAWSEventBridgeSource(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to delete-aws-event-bridge-source")
 
-		fmt.Println(cmdutil.FormatJSON(res, "event_bridge"))
+		fmt.Println(cmdutil.FormatJSON(res, "a_w_s_event_bridge_source"))
 	},
 }
 

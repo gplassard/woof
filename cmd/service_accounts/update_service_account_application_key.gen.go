@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/service-accounts/#update-se
 		res, _, err = api.UpdateServiceAccountApplicationKey(client.NewContext(apiKey, appKey, site), args[0], args[1], body)
 		cmdutil.HandleError(err, "failed to update-service-account-application-key")
 
-		fmt.Println(cmdutil.FormatJSON(res, "application_keys"))
+		fmt.Println(cmdutil.FormatJSON(res, "service_account_application_key"))
 	},
 }
 

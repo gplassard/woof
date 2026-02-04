@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-th
 		res, _, err = api.GetThreatHuntingJob(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-threat-hunting-job")
 
-		fmt.Println(cmdutil.FormatJSON(res, "historicalDetectionsJob"))
+		fmt.Println(cmdutil.FormatJSON(res, "threat_hunting_job"))
 	},
 }
 

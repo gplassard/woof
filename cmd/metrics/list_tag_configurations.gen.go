@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/metrics/#list-tag-configura
 		res, _, err = api.ListTagConfigurations(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-tag-configurations")
 
-		fmt.Println(cmdutil.FormatJSON(res, "metrics"))
+		fmt.Println(cmdutil.FormatJSON(res, "tag_configuration"))
 	},
 }
 

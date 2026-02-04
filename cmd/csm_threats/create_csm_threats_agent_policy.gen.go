@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/csm-threats/#create-csm-thr
 		res, _, err = api.CreateCSMThreatsAgentPolicy(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-csm-threats-agent-policy")
 
-		fmt.Println(cmdutil.FormatJSON(res, "policy"))
+		fmt.Println(cmdutil.FormatJSON(res, "c_s_m_threats_agent_policy"))
 	},
 }
 

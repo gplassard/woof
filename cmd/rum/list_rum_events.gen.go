@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/rum/#list-rum-events`,
 		res, _, err = api.ListRUMEvents(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-rum-events")
 
-		fmt.Println(cmdutil.FormatJSON(res, "rum"))
+		fmt.Println(cmdutil.FormatJSON(res, "r_u_m_event"))
 	},
 }
 

@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/app-builder/#create-app`,
 		res, _, err = api.CreateApp(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-app")
 
-		fmt.Println(cmdutil.FormatJSON(res, "appDefinitions"))
+		fmt.Println(cmdutil.FormatJSON(res, "app"))
 	},
 }
 

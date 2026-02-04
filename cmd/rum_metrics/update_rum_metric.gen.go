@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/rum-metrics/#update-rum-met
 		res, _, err = api.UpdateRumMetric(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-rum-metric")
 
-		fmt.Println(cmdutil.FormatJSON(res, "rum_metrics"))
+		fmt.Println(cmdutil.FormatJSON(res, "rum_metric"))
 	},
 }
 

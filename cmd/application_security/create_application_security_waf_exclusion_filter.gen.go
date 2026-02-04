@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/application-security/#creat
 		res, _, err = api.CreateApplicationSecurityWafExclusionFilter(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-application-security-waf-exclusion-filter")
 
-		fmt.Println(cmdutil.FormatJSON(res, "exclusion_filter"))
+		fmt.Println(cmdutil.FormatJSON(res, "application_security_waf_exclusion_filter"))
 	},
 }
 

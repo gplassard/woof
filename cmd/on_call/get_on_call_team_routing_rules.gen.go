@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#get-on-call-team-r
 		res, _, err = api.GetOnCallTeamRoutingRules(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-on-call-team-routing-rules")
 
-		fmt.Println(cmdutil.FormatJSON(res, "team_routing_rules"))
+		fmt.Println(cmdutil.FormatJSON(res, "on_call_team_routing_rule"))
 	},
 }
 

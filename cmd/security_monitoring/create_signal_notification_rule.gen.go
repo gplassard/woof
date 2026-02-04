@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#create
 		res, _, err = api.CreateSignalNotificationRule(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-signal-notification-rule")
 
-		fmt.Println(cmdutil.FormatJSON(res, "notification_rules"))
+		fmt.Println(cmdutil.FormatJSON(res, "signal_notification_rule"))
 	},
 }
 

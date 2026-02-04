@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/incident-services/#get-inci
 		res, _, err = api.GetIncidentService(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-incident-service")
 
-		fmt.Println(cmdutil.FormatJSON(res, "services"))
+		fmt.Println(cmdutil.FormatJSON(res, "incident_service"))
 	},
 }
 

@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#get-aws-ac
 		res, _, err = api.GetAWSAccount(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-aws-account")
 
-		fmt.Println(cmdutil.FormatJSON(res, "account"))
+		fmt.Println(cmdutil.FormatJSON(res, "a_w_s_account"))
 	},
 }
 

@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/gcp-integration/#update-gcp
 		res, _, err = api.UpdateGCPSTSAccount(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-gcp-sts-account")
 
-		fmt.Println(cmdutil.FormatJSON(res, "gcp_service_account"))
+		fmt.Println(cmdutil.FormatJSON(res, "g_c_p_s_t_s_account"))
 	},
 }
 

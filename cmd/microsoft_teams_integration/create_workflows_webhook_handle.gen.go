@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/microsoft-teams-integration
 		res, _, err = api.CreateWorkflowsWebhookHandle(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-workflows-webhook-handle")
 
-		fmt.Println(cmdutil.FormatJSON(res, "workflows-webhook-handle"))
+		fmt.Println(cmdutil.FormatJSON(res, "workflows_webhook_handle"))
 	},
 }
 

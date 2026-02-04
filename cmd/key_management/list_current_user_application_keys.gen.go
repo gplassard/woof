@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/key-management/#list-curren
 		res, _, err = api.ListCurrentUserApplicationKeys(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-current-user-application-keys")
 
-		fmt.Println(cmdutil.FormatJSON(res, "application_keys"))
+		fmt.Println(cmdutil.FormatJSON(res, "current_user_application_key"))
 	},
 }
 

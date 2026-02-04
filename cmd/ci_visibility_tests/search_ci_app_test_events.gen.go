@@ -23,23 +23,16 @@ Documentation: https://docs.datadoghq.com/api/latest/ci-visibility-tests/#search
 		var res datadogV2.CIAppTestEventsResponse
 		var err error
 
-		var body datadogV2.SearchCIAppTestEventsOptionalParameters
-		err = cmdutil.UnmarshalPayload(cmd, &body)
-		cmdutil.HandleError(err, "failed to read payload")
-
 		api := datadogV2.NewCIVisibilityTestsApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.SearchCIAppTestEvents(client.NewContext(apiKey, appKey, site), body)
+		res, _, err = api.SearchCIAppTestEvents(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to search-ci-app-test-events")
 
-		fmt.Println(cmdutil.FormatJSON(res, "citest"))
+		fmt.Println(cmdutil.FormatJSON(res, "c_i_app_test_event"))
 	},
 }
 
 func init() {
-
-	SearchCIAppTestEventsCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
-	SearchCIAppTestEventsCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
 
 	Cmd.AddCommand(SearchCIAppTestEventsCmd)
 }

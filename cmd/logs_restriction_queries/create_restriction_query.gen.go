@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/logs-restriction-queries/#c
 		res, _, err = api.CreateRestrictionQuery(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-restriction-query")
 
-		fmt.Println(cmdutil.FormatJSON(res, "logs_restriction_queries"))
+		fmt.Println(cmdutil.FormatJSON(res, "restriction_query"))
 	},
 }
 

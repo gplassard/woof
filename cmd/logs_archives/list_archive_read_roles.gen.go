@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/logs-archives/#list-archive
 		res, _, err = api.ListArchiveReadRoles(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-archive-read-roles")
 
-		fmt.Println(cmdutil.FormatJSON(res, "roles"))
+		fmt.Println(cmdutil.FormatJSON(res, "archive_read_role"))
 	},
 }
 

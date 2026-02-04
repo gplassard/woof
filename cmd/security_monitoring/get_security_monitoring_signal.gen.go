@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-se
 		res, _, err = api.GetSecurityMonitoringSignal(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-security-monitoring-signal")
 
-		fmt.Println(cmdutil.FormatJSON(res, "signal"))
+		fmt.Println(cmdutil.FormatJSON(res, "security_monitoring_signal"))
 	},
 }
 

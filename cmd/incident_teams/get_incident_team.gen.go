@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/incident-teams/#get-inciden
 		res, _, err = api.GetIncidentTeam(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-incident-team")
 
-		fmt.Println(cmdutil.FormatJSON(res, "teams"))
+		fmt.Println(cmdutil.FormatJSON(res, "incident_team"))
 	},
 }
 

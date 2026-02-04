@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/organizations/#get-org-conf
 		res, _, err = api.GetOrgConfig(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-org-config")
 
-		fmt.Println(cmdutil.FormatJSON(res, "org_configs"))
+		fmt.Println(cmdutil.FormatJSON(res, "org_config"))
 	},
 }
 

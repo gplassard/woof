@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#set-on-call-team-r
 		res, _, err = api.SetOnCallTeamRoutingRules(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to set-on-call-team-routing-rules")
 
-		fmt.Println(cmdutil.FormatJSON(res, "team_routing_rules"))
+		fmt.Println(cmdutil.FormatJSON(res, "on_call"))
 	},
 }
 

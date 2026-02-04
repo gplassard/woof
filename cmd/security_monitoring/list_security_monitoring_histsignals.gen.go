@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#list-s
 		res, _, err = api.ListSecurityMonitoringHistsignals(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-security-monitoring-histsignals")
 
-		fmt.Println(cmdutil.FormatJSON(res, "signal"))
+		fmt.Println(cmdutil.FormatJSON(res, "security_monitoring_histsignal"))
 	},
 }
 

@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#search-incidents
 		res, _, err = api.SearchIncidents(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to search-incidents")
 
-		fmt.Println(cmdutil.FormatJSON(res, "incidents_search_results"))
+		fmt.Println(cmdutil.FormatJSON(res, "incident"))
 	},
 }
 

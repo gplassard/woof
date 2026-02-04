@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#list-incident-im
 		res, _, err = api.ListIncidentImpacts(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to list-incident-impacts")
 
-		fmt.Println(cmdutil.FormatJSON(res, "incident_impacts"))
+		fmt.Println(cmdutil.FormatJSON(res, "incident_impact"))
 	},
 }
 

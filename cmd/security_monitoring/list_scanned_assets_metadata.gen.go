@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#list-s
 		res, _, err = api.ListScannedAssetsMetadata(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-scanned-assets-metadata")
 
-		fmt.Println(cmdutil.FormatJSON(res, "security_monitoring"))
+		fmt.Println(cmdutil.FormatJSON(res, "scanned_assets_metadata"))
 	},
 }
 

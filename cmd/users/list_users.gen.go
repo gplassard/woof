@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/users/#list-users`,
 		res, _, err = api.ListUsers(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-users")
 
-		fmt.Println(cmdutil.FormatJSON(res, "users"))
+		fmt.Println(cmdutil.FormatJSON(res, "user"))
 	},
 }
 

@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/confluent-cloud/#get-conflu
 		res, _, err = api.GetConfluentResource(client.NewContext(apiKey, appKey, site), args[0], args[1])
 		cmdutil.HandleError(err, "failed to get-confluent-resource")
 
-		fmt.Println(cmdutil.FormatJSON(res, "confluent-cloud-resources"))
+		fmt.Println(cmdutil.FormatJSON(res, "confluent_resource"))
 	},
 }
 

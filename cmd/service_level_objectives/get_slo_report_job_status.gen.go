@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/service-level-objectives/#g
 		res, _, err = api.GetSLOReportJobStatus(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-slo-report-job-status")
 
-		fmt.Println(cmdutil.FormatJSON(res, "service_level_objectives"))
+		fmt.Println(cmdutil.FormatJSON(res, "s_l_o_report_job_statu"))
 	},
 }
 

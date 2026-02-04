@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#list
 		res, _, err = api.ListCustomAllocationRules(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-custom-allocation-rules")
 
-		fmt.Println(cmdutil.FormatJSON(res, "arbitrary_rule"))
+		fmt.Println(cmdutil.FormatJSON(res, "custom_allocation_rule"))
 	},
 }
 

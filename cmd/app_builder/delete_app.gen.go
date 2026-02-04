@@ -29,7 +29,7 @@ Documentation: https://docs.datadoghq.com/api/latest/app-builder/#delete-app`,
 		res, _, err = api.DeleteApp(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
 		cmdutil.HandleError(err, "failed to delete-app")
 
-		fmt.Println(cmdutil.FormatJSON(res, "appDefinitions"))
+		fmt.Println(cmdutil.FormatJSON(res, "app"))
 	},
 }
 

@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/key-management/#create-curr
 		res, _, err = api.CreateCurrentUserApplicationKey(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-current-user-application-key")
 
-		fmt.Println(cmdutil.FormatJSON(res, "application_keys"))
+		fmt.Println(cmdutil.FormatJSON(res, "current_user_application_key"))
 	},
 }
 

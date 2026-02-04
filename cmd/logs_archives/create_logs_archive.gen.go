@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/logs-archives/#create-logs-
 		res, _, err = api.CreateLogsArchive(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-logs-archive")
 
-		fmt.Println(cmdutil.FormatJSON(res, "logs_archives"))
+		fmt.Println(cmdutil.FormatJSON(res, "logs_archive"))
 	},
 }
 

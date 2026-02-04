@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/spans-metrics/#create-spans
 		res, _, err = api.CreateSpansMetric(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-spans-metric")
 
-		fmt.Println(cmdutil.FormatJSON(res, "spans_metrics"))
+		fmt.Println(cmdutil.FormatJSON(res, "spans_metric"))
 	},
 }
 

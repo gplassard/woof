@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/microsoft-teams-integration
 		res, _, err = api.UpdateTenantBasedHandle(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-tenant-based-handle")
 
-		fmt.Println(cmdutil.FormatJSON(res, "tenant-based-handle"))
+		fmt.Println(cmdutil.FormatJSON(res, "tenant_based_handle"))
 	},
 }
 

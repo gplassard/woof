@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#create-user-notifi
 		res, _, err = api.CreateUserNotificationChannel(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to create-user-notification-channel")
 
-		fmt.Println(cmdutil.FormatJSON(res, "notification_channels"))
+		fmt.Println(cmdutil.FormatJSON(res, "user_notification_channel"))
 	},
 }
 

@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/spans/#aggregate-spans`,
 		res, _, err = api.AggregateSpans(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to aggregate-spans")
 
-		fmt.Println(cmdutil.FormatJSON(res, "bucket"))
+		fmt.Println(cmdutil.FormatJSON(res, "spans"))
 	},
 }
 

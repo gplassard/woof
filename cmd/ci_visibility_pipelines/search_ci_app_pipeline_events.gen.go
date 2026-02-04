@@ -23,23 +23,16 @@ Documentation: https://docs.datadoghq.com/api/latest/ci-visibility-pipelines/#se
 		var res datadogV2.CIAppPipelineEventsResponse
 		var err error
 
-		var body datadogV2.SearchCIAppPipelineEventsOptionalParameters
-		err = cmdutil.UnmarshalPayload(cmd, &body)
-		cmdutil.HandleError(err, "failed to read payload")
-
 		api := datadogV2.NewCIVisibilityPipelinesApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.SearchCIAppPipelineEvents(client.NewContext(apiKey, appKey, site), body)
+		res, _, err = api.SearchCIAppPipelineEvents(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to search-ci-app-pipeline-events")
 
-		fmt.Println(cmdutil.FormatJSON(res, "cipipeline"))
+		fmt.Println(cmdutil.FormatJSON(res, "c_i_app_pipeline_event"))
 	},
 }
 
 func init() {
-
-	SearchCIAppPipelineEventsCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
-	SearchCIAppPipelineEventsCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
 
 	Cmd.AddCommand(SearchCIAppPipelineEventsCmd)
 }

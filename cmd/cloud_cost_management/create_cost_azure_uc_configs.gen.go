@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#crea
 		res, _, err = api.CreateCostAzureUCConfigs(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-cost-azure-uc-configs")
 
-		fmt.Println(cmdutil.FormatJSON(res, "azure_uc_configs"))
+		fmt.Println(cmdutil.FormatJSON(res, "cost_azure_u_c_config"))
 	},
 }
 

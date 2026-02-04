@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/service-scorecards/#list-sc
 		res, _, err = api.ListScorecardOutcomes(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-scorecard-outcomes")
 
-		fmt.Println(cmdutil.FormatJSON(res, "service_scorecards"))
+		fmt.Println(cmdutil.FormatJSON(res, "scorecard_outcome"))
 	},
 }
 

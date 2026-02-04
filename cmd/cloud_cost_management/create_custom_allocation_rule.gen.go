@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#crea
 		res, _, err = api.CreateCustomAllocationRule(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-custom-allocation-rule")
 
-		fmt.Println(cmdutil.FormatJSON(res, "arbitrary_rule"))
+		fmt.Println(cmdutil.FormatJSON(res, "custom_allocation_rule"))
 	},
 }
 

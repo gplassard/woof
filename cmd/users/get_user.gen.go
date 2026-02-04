@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/users/#get-user`,
 		res, _, err = api.GetUser(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-user")
 
-		fmt.Println(cmdutil.FormatJSON(res, "users"))
+		fmt.Println(cmdutil.FormatJSON(res, "user"))
 	},
 }
 

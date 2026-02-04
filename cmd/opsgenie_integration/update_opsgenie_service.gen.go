@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/opsgenie-integration/#updat
 		res, _, err = api.UpdateOpsgenieService(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-opsgenie-service")
 
-		fmt.Println(cmdutil.FormatJSON(res, "opsgenie-service"))
+		fmt.Println(cmdutil.FormatJSON(res, "opsgenie_service"))
 	},
 }
 

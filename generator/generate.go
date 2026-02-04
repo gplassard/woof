@@ -41,7 +41,7 @@ func RunGenerate(args []string) error {
 		}
 	}
 
-	spec, err := downloadOpenAPI()
+	spec, err := parseSDK()
 	if err != nil {
 		return err
 	}
@@ -57,34 +57,41 @@ func RunGenerate(args []string) error {
 		skipOpsMap[op] = true
 	}
 
-	for path, methods := range spec.Paths {
-		for method, op := range methods {
-			if op.OperationID == "" || skipOpsMap[op.OperationID] {
-				continue
-			}
+	onlyBundlesMap := make(map[string]bool)
+	for _, bundle := range config.OnlyBundles {
+		onlyBundlesMap[bundle] = true
+	}
 
-			if filter != "" && filter != op.OperationID {
-				continue
-			}
+	for _, op := range spec.Operations {
+		if op.OperationID == "" || skipOpsMap[op.OperationID] {
+			continue
+		}
 
-			bundle, rawBundle := normalizeBundle(op)
-			bundles[bundle] = true
-			apiBundleName := normalizeApiBundleName(rawBundle)
+		if filter != "" && filter != op.OperationID {
+			continue
+		}
 
-			pkgDir := filepath.Join("cmd", bundle)
-			if err := os.MkdirAll(pkgDir, 0755); err != nil {
-				return fmt.Errorf("failed to create directory %s: %w", pkgDir, err)
-			}
+		bundle, _ := normalizeBundleFromTag(op, config)
 
-			if err := ensureEntrypoint(pkgDir, bundle, entrypointTmpl, config); err != nil {
-				return err
-			}
+		if len(onlyBundlesMap) > 0 && !onlyBundlesMap[bundle] {
+			continue
+		}
 
-			data := prepareTemplateData(bundle, rawBundle, apiBundleName, method, path, op, spec, config)
+		bundles[bundle] = true
 
-			if err := generateCommandFile(pkgDir, op.OperationID, data, tmpl, config); err != nil {
-				return err
-			}
+		pkgDir := filepath.Join("cmd", bundle)
+		if err := os.MkdirAll(pkgDir, 0755); err != nil {
+			return fmt.Errorf("failed to create directory %s: %w", pkgDir, err)
+		}
+
+		if err := ensureEntrypoint(pkgDir, bundle, entrypointTmpl, config); err != nil {
+			return err
+		}
+
+		data := convertSDKToTemplateData(op, config)
+
+		if err := generateCommandFile(pkgDir, op.OperationID, data, tmpl, config); err != nil {
+			return err
 		}
 	}
 

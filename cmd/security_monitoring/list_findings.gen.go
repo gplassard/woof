@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#list-f
 		res, _, err = api.ListFindings(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-findings")
 
-		fmt.Println(cmdutil.FormatJSON(res, "security_monitoring"))
+		fmt.Println(cmdutil.FormatJSON(res, "finding"))
 	},
 }
 

@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/observability-pipelines/#va
 		res, _, err = api.ValidatePipeline(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to validate-pipeline")
 
-		fmt.Println(cmdutil.FormatJSON(res, "observability_pipelines"))
+		fmt.Println(cmdutil.FormatJSON(res, "pipeline"))
 	},
 }
 

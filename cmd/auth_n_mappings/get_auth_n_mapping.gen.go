@@ -1,4 +1,4 @@
-package authn_mappings
+package auth_n_mappings
 
 import (
 	"fmt"
@@ -12,11 +12,11 @@ import (
 )
 
 var GetAuthNMappingCmd = &cobra.Command{
-	Use: "get-auth-n-mapping [authn_mapping_id]",
-
-	Short: "Get an AuthN Mapping by UUID",
+	Use:     "get-auth-n-mapping [authn_mapping_id]",
+	Aliases: []string{"get"},
+	Short:   "Get an AuthN Mapping by UUID",
 	Long: `Get an AuthN Mapping by UUID
-Documentation: https://docs.datadoghq.com/api/latest/authn-mappings/#get-auth-n-mapping`,
+Documentation: https://docs.datadoghq.com/api/latest/auth-n-mappings/#get-auth-n-mapping`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/authn-mappings/#get-auth-n-
 		res, _, err = api.GetAuthNMapping(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-auth-n-mapping")
 
-		fmt.Println(cmdutil.FormatJSON(res, "authn_mappings"))
+		fmt.Println(cmdutil.FormatJSON(res, "auth_n_mapping"))
 	},
 }
 

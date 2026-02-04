@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/ip-allowlist/#get-ip-allowl
 		res, _, err = api.GetIPAllowlist(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to get-ip-allowlist")
 
-		fmt.Println(cmdutil.FormatJSON(res, "ip_allowlist"))
+		fmt.Println(cmdutil.FormatJSON(res, "i_p_allowlist"))
 	},
 }
 

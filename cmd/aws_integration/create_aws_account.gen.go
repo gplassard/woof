@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/aws-integration/#create-aws
 		res, _, err = api.CreateAWSAccount(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to create-aws-account")
 
-		fmt.Println(cmdutil.FormatJSON(res, "account"))
+		fmt.Println(cmdutil.FormatJSON(res, "a_w_s_account"))
 	},
 }
 

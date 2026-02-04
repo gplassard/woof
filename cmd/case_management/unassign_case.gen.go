@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/case-management/#unassign-c
 		res, _, err = api.UnassignCase(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to unassign-case")
 
-		fmt.Println(cmdutil.FormatJSON(res, "case"))
+		fmt.Println(cmdutil.FormatJSON(res, "case_management"))
 	},
 }
 

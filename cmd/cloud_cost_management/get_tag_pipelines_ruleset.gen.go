@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#get-
 		res, _, err = api.GetTagPipelinesRuleset(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-tag-pipelines-ruleset")
 
-		fmt.Println(cmdutil.FormatJSON(res, "ruleset"))
+		fmt.Println(cmdutil.FormatJSON(res, "tag_pipelines_ruleset"))
 	},
 }
 

@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/monitors/#list-monitor-user
 		res, _, err = api.ListMonitorUserTemplates(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-monitor-user-templates")
 
-		fmt.Println(cmdutil.FormatJSON(res, "monitor-user-template"))
+		fmt.Println(cmdutil.FormatJSON(res, "monitor_user_template"))
 	},
 }
 

@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/monitors/#update-monitor-us
 		res, _, err = api.UpdateMonitorUserTemplate(client.NewContext(apiKey, appKey, site), args[0], body)
 		cmdutil.HandleError(err, "failed to update-monitor-user-template")
 
-		fmt.Println(cmdutil.FormatJSON(res, "monitor-user-template"))
+		fmt.Println(cmdutil.FormatJSON(res, "monitor_user_template"))
 	},
 }
 

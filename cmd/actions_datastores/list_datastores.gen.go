@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/actions-datastores/#list-da
 		res, _, err = api.ListDatastores(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-datastores")
 
-		fmt.Println(cmdutil.FormatJSON(res, "datastores"))
+		fmt.Println(cmdutil.FormatJSON(res, "datastore"))
 	},
 }
 

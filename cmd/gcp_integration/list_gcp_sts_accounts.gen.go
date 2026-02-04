@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/gcp-integration/#list-gcp-s
 		res, _, err = api.ListGCPSTSAccounts(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-gcp-sts-accounts")
 
-		fmt.Println(cmdutil.FormatJSON(res, "gcp_service_account"))
+		fmt.Println(cmdutil.FormatJSON(res, "g_c_p_s_t_s_account"))
 	},
 }
 
