@@ -23,9 +23,16 @@ Documentation: https://docs.datadoghq.com/api/latest/incident-services/#get-inci
 		var res datadogV2.IncidentServiceResponse
 		var err error
 
+		optionalParams := datadogV2.NewGetIncidentServiceOptionalParameters()
+
+		if cmd.Flags().Changed("include") {
+			val, _ := cmd.Flags().GetString("include")
+			optionalParams.WithInclude(val)
+		}
+
 		api := datadogV2.NewIncidentServicesApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.GetIncidentService(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.GetIncidentService(client.NewContext(apiKey, appKey, site), args[0], *optionalParams)
 		cmdutil.HandleError(err, "failed to get-incident-service")
 
 		fmt.Println(cmdutil.FormatJSON(res, "services"))
@@ -33,6 +40,8 @@ Documentation: https://docs.datadoghq.com/api/latest/incident-services/#get-inci
 }
 
 func init() {
+
+	GetIncidentServiceCmd.Flags().String("include", "", "Specifies which types of related objects should be included in the response.")
 
 	Cmd.AddCommand(GetIncidentServiceCmd)
 }

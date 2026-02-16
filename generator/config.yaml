@@ -16,19 +16,6 @@ skip_operations:
   - GetTeamNotificationRules
   - UpdateTeamNotificationRule
 
-optional_parameters_operations:
-  SearchCIAppTestEvents: SearchCIAppTestEventsOptionalParameters
-  SearchCIAppPipelineEvents: SearchCIAppPipelineEventsOptionalParameters
-  SearchAuditLogs: SearchAuditLogsOptionalParameters
-  SearchEvents: SearchEventsOptionalParameters
-  CreateOpenAPI: CreateOpenAPIOptionalParameters
-  UpdateOpenAPI: UpdateOpenAPIOptionalParameters
-  ListLogs: ListLogsOptionalParameters
-  UploadIdPMetadata: UploadIdPMetadataOptionalParameters
-  SearchFlakyTests: SearchFlakyTestsOptionalParameters
-  SearchSecurityMonitoringHistsignals: SearchSecurityMonitoringHistsignalsOptionalParameters
-  SearchSecurityMonitoringSignals: SearchSecurityMonitoringSignalsOptionalParameters
-
 bundle_aliases:
   actions_datastores:
     - datastores

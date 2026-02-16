@@ -23,13 +23,16 @@ Documentation: https://docs.datadoghq.com/api/latest/events/#search-events`,
 		var res datadogV2.EventsListResponse
 		var err error
 
-		var body datadogV2.SearchEventsOptionalParameters
-		err = cmdutil.UnmarshalPayload(cmd, &body)
-		cmdutil.HandleError(err, "failed to read payload")
+		optionalParams := datadogV2.NewSearchEventsOptionalParameters()
+
+		if cmd.Flags().Changed("payload") || cmd.Flags().Changed("payload-file") {
+			err = cmdutil.UnmarshalPayload(cmd, optionalParams)
+			cmdutil.HandleError(err, "failed to read payload")
+		}
 
 		api := datadogV2.NewEventsApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.SearchEvents(client.NewContext(apiKey, appKey, site), body)
+		res, _, err = api.SearchEvents(client.NewContext(apiKey, appKey, site), *optionalParams)
 		cmdutil.HandleError(err, "failed to search-events")
 
 		fmt.Println(cmdutil.FormatJSON(res, "event"))

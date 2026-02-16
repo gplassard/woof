@@ -23,9 +23,21 @@ Documentation: https://docs.datadoghq.com/api/latest/logs-restriction-queries/#l
 		var res datadogV2.RestrictionQueryRolesResponse
 		var err error
 
+		optionalParams := datadogV2.NewListRestrictionQueryRolesOptionalParameters()
+
+		if cmd.Flags().Changed("page-size") {
+			val, _ := cmd.Flags().GetInt64("page-size")
+			optionalParams.WithPageSize(val)
+		}
+
+		if cmd.Flags().Changed("page-number") {
+			val, _ := cmd.Flags().GetInt64("page-number")
+			optionalParams.WithPageNumber(val)
+		}
+
 		api := datadogV2.NewLogsRestrictionQueriesApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.ListRestrictionQueryRoles(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.ListRestrictionQueryRoles(client.NewContext(apiKey, appKey, site), args[0], *optionalParams)
 		cmdutil.HandleError(err, "failed to list-restriction-query-roles")
 
 		fmt.Println(cmdutil.FormatJSON(res, "roles"))
@@ -33,6 +45,10 @@ Documentation: https://docs.datadoghq.com/api/latest/logs-restriction-queries/#l
 }
 
 func init() {
+
+	ListRestrictionQueryRolesCmd.Flags().Int64("page-size", 0, "Size for a given page. The maximum allowed value is 100.")
+
+	ListRestrictionQueryRolesCmd.Flags().Int64("page-number", 0, "Specific page number to return.")
 
 	Cmd.AddCommand(ListRestrictionQueryRolesCmd)
 }

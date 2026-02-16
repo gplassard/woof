@@ -23,9 +23,16 @@ Documentation: https://docs.datadoghq.com/api/latest/microsoft-teams-integration
 		var res datadogV2.MicrosoftTeamsWorkflowsWebhookHandlesResponse
 		var err error
 
+		optionalParams := datadogV2.NewListWorkflowsWebhookHandlesOptionalParameters()
+
+		if cmd.Flags().Changed("name") {
+			val, _ := cmd.Flags().GetString("name")
+			optionalParams.WithName(val)
+		}
+
 		api := datadogV2.NewMicrosoftTeamsIntegrationApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.ListWorkflowsWebhookHandles(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.ListWorkflowsWebhookHandles(client.NewContext(apiKey, appKey, site), *optionalParams)
 		cmdutil.HandleError(err, "failed to list-workflows-webhook-handles")
 
 		fmt.Println(cmdutil.FormatJSON(res, "workflows-webhook-handle"))
@@ -33,6 +40,8 @@ Documentation: https://docs.datadoghq.com/api/latest/microsoft-teams-integration
 }
 
 func init() {
+
+	ListWorkflowsWebhookHandlesCmd.Flags().String("name", "", "Your Workflows webhook handle name.")
 
 	Cmd.AddCommand(ListWorkflowsWebhookHandlesCmd)
 }

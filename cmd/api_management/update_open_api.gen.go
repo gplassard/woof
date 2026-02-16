@@ -24,13 +24,16 @@ Documentation: https://docs.datadoghq.com/api/latest/api-management/#update-open
 		var res datadogV2.UpdateOpenAPIResponse
 		var err error
 
-		var body datadogV2.UpdateOpenAPIOptionalParameters
-		err = cmdutil.UnmarshalPayload(cmd, &body)
-		cmdutil.HandleError(err, "failed to read payload")
+		optionalParams := datadogV2.NewUpdateOpenAPIOptionalParameters()
+
+		if cmd.Flags().Changed("payload") || cmd.Flags().Changed("payload-file") {
+			err = cmdutil.UnmarshalPayload(cmd, optionalParams)
+			cmdutil.HandleError(err, "failed to read payload")
+		}
 
 		api := datadogV2.NewAPIManagementApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.UpdateOpenAPI(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]), body)
+		res, _, err = api.UpdateOpenAPI(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]), *optionalParams)
 		cmdutil.HandleError(err, "failed to update-open-api")
 
 		fmt.Println(cmdutil.FormatJSON(res, "api_management"))

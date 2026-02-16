@@ -24,9 +24,16 @@ Documentation: https://docs.datadoghq.com/api/latest/app-builder/#get-app`,
 		var res datadogV2.GetAppResponse
 		var err error
 
+		optionalParams := datadogV2.NewGetAppOptionalParameters()
+
+		if cmd.Flags().Changed("version") {
+			val, _ := cmd.Flags().GetString("version")
+			optionalParams.WithVersion(val)
+		}
+
 		api := datadogV2.NewAppBuilderApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.GetApp(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
+		res, _, err = api.GetApp(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]), *optionalParams)
 		cmdutil.HandleError(err, "failed to get-app")
 
 		fmt.Println(cmdutil.FormatJSON(res, "appDefinitions"))
@@ -34,6 +41,8 @@ Documentation: https://docs.datadoghq.com/api/latest/app-builder/#get-app`,
 }
 
 func init() {
+
+	GetAppCmd.Flags().String("version", "", "The version number of the app to retrieve. If not specified, the latest version is returned. Version numbers start at 1 and increment with each update. The special values 'latest' and 'deployed' can be used to retrieve the latest version or the published version, respectively.")
 
 	Cmd.AddCommand(GetAppCmd)
 }

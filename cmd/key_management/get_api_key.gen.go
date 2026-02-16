@@ -23,9 +23,16 @@ Documentation: https://docs.datadoghq.com/api/latest/key-management/#get-api-key
 		var res datadogV2.APIKeyResponse
 		var err error
 
+		optionalParams := datadogV2.NewGetAPIKeyOptionalParameters()
+
+		if cmd.Flags().Changed("include") {
+			val, _ := cmd.Flags().GetString("include")
+			optionalParams.WithInclude(val)
+		}
+
 		api := datadogV2.NewKeyManagementApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.GetAPIKey(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.GetAPIKey(client.NewContext(apiKey, appKey, site), args[0], *optionalParams)
 		cmdutil.HandleError(err, "failed to get-api-key")
 
 		fmt.Println(cmdutil.FormatJSON(res, "api_keys"))
@@ -33,6 +40,8 @@ Documentation: https://docs.datadoghq.com/api/latest/key-management/#get-api-key
 }
 
 func init() {
+
+	GetAPIKeyCmd.Flags().String("include", "", "Comma separated list of resource paths for related resources to include in the response. Supported resource paths are 'created_by' and 'modified_by'.")
 
 	Cmd.AddCommand(GetAPIKeyCmd)
 }

@@ -23,9 +23,26 @@ Documentation: https://docs.datadoghq.com/api/latest/teams/#list-member-teams`,
 		var res datadogV2.TeamsResponse
 		var err error
 
+		optionalParams := datadogV2.NewListMemberTeamsOptionalParameters()
+
+		if cmd.Flags().Changed("page-size") {
+			val, _ := cmd.Flags().GetInt64("page-size")
+			optionalParams.WithPageSize(val)
+		}
+
+		if cmd.Flags().Changed("page-number") {
+			val, _ := cmd.Flags().GetInt64("page-number")
+			optionalParams.WithPageNumber(val)
+		}
+
+		if cmd.Flags().Changed("fields-team") {
+			val, _ := cmd.Flags().GetString("fields-team")
+			optionalParams.WithFieldsTeam(val)
+		}
+
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.ListMemberTeams(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.ListMemberTeams(client.NewContext(apiKey, appKey, site), args[0], *optionalParams)
 		cmdutil.HandleError(err, "failed to list-member-teams")
 
 		fmt.Println(cmdutil.FormatJSON(res, "team"))
@@ -33,6 +50,12 @@ Documentation: https://docs.datadoghq.com/api/latest/teams/#list-member-teams`,
 }
 
 func init() {
+
+	ListMemberTeamsCmd.Flags().Int64("page-size", 0, "Size for a given page. The maximum allowed value is 100.")
+
+	ListMemberTeamsCmd.Flags().Int64("page-number", 0, "Specific page number to return.")
+
+	ListMemberTeamsCmd.Flags().String("fields-team", "", "List of fields that need to be fetched.")
 
 	Cmd.AddCommand(ListMemberTeamsCmd)
 }

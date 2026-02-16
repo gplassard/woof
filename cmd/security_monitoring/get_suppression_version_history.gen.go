@@ -23,9 +23,21 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-su
 		var res datadogV2.GetSuppressionVersionHistoryResponse
 		var err error
 
+		optionalParams := datadogV2.NewGetSuppressionVersionHistoryOptionalParameters()
+
+		if cmd.Flags().Changed("page-size") {
+			val, _ := cmd.Flags().GetInt64("page-size")
+			optionalParams.WithPageSize(val)
+		}
+
+		if cmd.Flags().Changed("page-number") {
+			val, _ := cmd.Flags().GetInt64("page-number")
+			optionalParams.WithPageNumber(val)
+		}
+
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.GetSuppressionVersionHistory(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.GetSuppressionVersionHistory(client.NewContext(apiKey, appKey, site), args[0], *optionalParams)
 		cmdutil.HandleError(err, "failed to get-suppression-version-history")
 
 		fmt.Println(cmdutil.FormatJSON(res, "suppression_version_history"))
@@ -33,6 +45,10 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-su
 }
 
 func init() {
+
+	GetSuppressionVersionHistoryCmd.Flags().Int64("page-size", 0, "Size for a given page. The maximum allowed value is 100.")
+
+	GetSuppressionVersionHistoryCmd.Flags().Int64("page-number", 0, "Specific page number to return.")
 
 	Cmd.AddCommand(GetSuppressionVersionHistoryCmd)
 }

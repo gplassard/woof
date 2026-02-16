@@ -23,13 +23,21 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#update-incident`
 		var res datadogV2.IncidentResponse
 		var err error
 
-		var body datadogV2.IncidentUpdateRequest
-		err = cmdutil.UnmarshalPayload(cmd, &body)
-		cmdutil.HandleError(err, "failed to read payload")
+		optionalParams := datadogV2.NewUpdateIncidentOptionalParameters()
+
+		if cmd.Flags().Changed("payload") || cmd.Flags().Changed("payload-file") {
+			err = cmdutil.UnmarshalPayload(cmd, optionalParams)
+			cmdutil.HandleError(err, "failed to read payload")
+		}
+
+		if cmd.Flags().Changed("include") {
+			val, _ := cmd.Flags().GetString("include")
+			optionalParams.WithInclude(val)
+		}
 
 		api := datadogV2.NewIncidentsApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.UpdateIncident(client.NewContext(apiKey, appKey, site), args[0], body)
+		res, _, err = api.UpdateIncident(client.NewContext(apiKey, appKey, site), args[0], *optionalParams)
 		cmdutil.HandleError(err, "failed to update-incident")
 
 		fmt.Println(cmdutil.FormatJSON(res, "incidents"))
@@ -40,6 +48,8 @@ func init() {
 
 	UpdateIncidentCmd.Flags().StringP("payload", "p", "", "JSON payload of the request")
 	UpdateIncidentCmd.Flags().StringP("payload-file", "f", "", "Path to the JSON payload file")
+
+	UpdateIncidentCmd.Flags().String("include", "", "Specifies which types of related objects should be included in the response.")
 
 	Cmd.AddCommand(UpdateIncidentCmd)
 }

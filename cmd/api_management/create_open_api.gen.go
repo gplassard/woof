@@ -23,13 +23,16 @@ Documentation: https://docs.datadoghq.com/api/latest/api-management/#create-open
 		var res datadogV2.CreateOpenAPIResponse
 		var err error
 
-		var body datadogV2.CreateOpenAPIOptionalParameters
-		err = cmdutil.UnmarshalPayload(cmd, &body)
-		cmdutil.HandleError(err, "failed to read payload")
+		optionalParams := datadogV2.NewCreateOpenAPIOptionalParameters()
+
+		if cmd.Flags().Changed("payload") || cmd.Flags().Changed("payload-file") {
+			err = cmdutil.UnmarshalPayload(cmd, optionalParams)
+			cmdutil.HandleError(err, "failed to read payload")
+		}
 
 		api := datadogV2.NewAPIManagementApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.CreateOpenAPI(client.NewContext(apiKey, appKey, site), body)
+		res, _, err = api.CreateOpenAPI(client.NewContext(apiKey, appKey, site), *optionalParams)
 		cmdutil.HandleError(err, "failed to create-open-api")
 
 		fmt.Println(cmdutil.FormatJSON(res, "api_management"))

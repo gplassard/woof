@@ -23,9 +23,16 @@ Documentation: https://docs.datadoghq.com/api/latest/network-device-monitoring/#
 		var res datadogV2.GetInterfacesResponse
 		var err error
 
+		optionalParams := datadogV2.NewGetInterfacesOptionalParameters()
+
+		if cmd.Flags().Changed("get-ip-addresses") {
+			val, _ := cmd.Flags().GetString("get-ip-addresses")
+			optionalParams.WithGetIpAddresses(val)
+		}
+
 		api := datadogV2.NewNetworkDeviceMonitoringApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.GetInterfaces(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.GetInterfaces(client.NewContext(apiKey, appKey, site), args[0], *optionalParams)
 		cmdutil.HandleError(err, "failed to get-interfaces")
 
 		fmt.Println(cmdutil.FormatJSON(res, "network_device_monitoring"))
@@ -33,6 +40,8 @@ Documentation: https://docs.datadoghq.com/api/latest/network-device-monitoring/#
 }
 
 func init() {
+
+	GetInterfacesCmd.Flags().String("get-ip-addresses", "", "Whether to get the IP addresses of the interfaces.")
 
 	Cmd.AddCommand(GetInterfacesCmd)
 }

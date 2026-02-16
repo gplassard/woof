@@ -23,9 +23,41 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-se
 		var res datadogV2.SecurityMonitoringSignalsListResponse
 		var err error
 
+		optionalParams := datadogV2.NewGetSecurityMonitoringHistsignalsByJobIdOptionalParameters()
+
+		if cmd.Flags().Changed("filter-query") {
+			val, _ := cmd.Flags().GetString("filter-query")
+			optionalParams.WithFilterQuery(val)
+		}
+
+		if cmd.Flags().Changed("filter-from") {
+			val, _ := cmd.Flags().GetString("filter-from")
+			optionalParams.WithFilterFrom(val)
+		}
+
+		if cmd.Flags().Changed("filter-to") {
+			val, _ := cmd.Flags().GetString("filter-to")
+			optionalParams.WithFilterTo(val)
+		}
+
+		if cmd.Flags().Changed("sort") {
+			val, _ := cmd.Flags().GetString("sort")
+			optionalParams.WithSort(val)
+		}
+
+		if cmd.Flags().Changed("page-cursor") {
+			val, _ := cmd.Flags().GetString("page-cursor")
+			optionalParams.WithPageCursor(val)
+		}
+
+		if cmd.Flags().Changed("page-limit") {
+			val, _ := cmd.Flags().GetInt64("page-limit")
+			optionalParams.WithPageLimit(val)
+		}
+
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.GetSecurityMonitoringHistsignalsByJobId(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.GetSecurityMonitoringHistsignalsByJobId(client.NewContext(apiKey, appKey, site), args[0], *optionalParams)
 		cmdutil.HandleError(err, "failed to get-security-monitoring-histsignals-by-job-id")
 
 		fmt.Println(cmdutil.FormatJSON(res, "signal"))
@@ -33,6 +65,18 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#get-se
 }
 
 func init() {
+
+	GetSecurityMonitoringHistsignalsByJobIdCmd.Flags().String("filter-query", "", "The search query for security signals.")
+
+	GetSecurityMonitoringHistsignalsByJobIdCmd.Flags().String("filter-from", "", "The minimum timestamp for requested security signals.")
+
+	GetSecurityMonitoringHistsignalsByJobIdCmd.Flags().String("filter-to", "", "The maximum timestamp for requested security signals.")
+
+	GetSecurityMonitoringHistsignalsByJobIdCmd.Flags().String("sort", "", "The order of the security signals in results.")
+
+	GetSecurityMonitoringHistsignalsByJobIdCmd.Flags().String("page-cursor", "", "A list of results using the cursor provided in the previous query.")
+
+	GetSecurityMonitoringHistsignalsByJobIdCmd.Flags().Int64("page-limit", 0, "The maximum number of security signals in the response.")
 
 	Cmd.AddCommand(GetSecurityMonitoringHistsignalsByJobIdCmd)
 }

@@ -23,9 +23,31 @@ Documentation: https://docs.datadoghq.com/api/latest/teams/#get-team-memberships
 		var res datadogV2.UserTeamsResponse
 		var err error
 
+		optionalParams := datadogV2.NewGetTeamMembershipsOptionalParameters()
+
+		if cmd.Flags().Changed("page-size") {
+			val, _ := cmd.Flags().GetInt64("page-size")
+			optionalParams.WithPageSize(val)
+		}
+
+		if cmd.Flags().Changed("page-number") {
+			val, _ := cmd.Flags().GetInt64("page-number")
+			optionalParams.WithPageNumber(val)
+		}
+
+		if cmd.Flags().Changed("sort") {
+			val, _ := cmd.Flags().GetString("sort")
+			optionalParams.WithSort(val)
+		}
+
+		if cmd.Flags().Changed("filter-keyword") {
+			val, _ := cmd.Flags().GetString("filter-keyword")
+			optionalParams.WithFilterKeyword(val)
+		}
+
 		api := datadogV2.NewTeamsApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.GetTeamMemberships(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.GetTeamMemberships(client.NewContext(apiKey, appKey, site), args[0], *optionalParams)
 		cmdutil.HandleError(err, "failed to get-team-memberships")
 
 		fmt.Println(cmdutil.FormatJSON(res, "team_memberships"))
@@ -33,6 +55,14 @@ Documentation: https://docs.datadoghq.com/api/latest/teams/#get-team-memberships
 }
 
 func init() {
+
+	GetTeamMembershipsCmd.Flags().Int64("page-size", 0, "Size for a given page. The maximum allowed value is 100.")
+
+	GetTeamMembershipsCmd.Flags().Int64("page-number", 0, "Specific page number to return.")
+
+	GetTeamMembershipsCmd.Flags().String("sort", "", "Specifies the order of returned team memberships")
+
+	GetTeamMembershipsCmd.Flags().String("filter-keyword", "", "Search query, can be user email or name")
 
 	Cmd.AddCommand(GetTeamMembershipsCmd)
 }

@@ -23,9 +23,16 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#get-team-on-call-u
 		var res datadogV2.TeamOnCallResponders
 		var err error
 
+		optionalParams := datadogV2.NewGetTeamOnCallUsersOptionalParameters()
+
+		if cmd.Flags().Changed("include") {
+			val, _ := cmd.Flags().GetString("include")
+			optionalParams.WithInclude(val)
+		}
+
 		api := datadogV2.NewOnCallApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.GetTeamOnCallUsers(client.NewContext(apiKey, appKey, site), args[0])
+		res, _, err = api.GetTeamOnCallUsers(client.NewContext(apiKey, appKey, site), args[0], *optionalParams)
 		cmdutil.HandleError(err, "failed to get-team-on-call-users")
 
 		fmt.Println(cmdutil.FormatJSON(res, "team_oncall_responders"))
@@ -33,6 +40,8 @@ Documentation: https://docs.datadoghq.com/api/latest/on-call/#get-team-on-call-u
 }
 
 func init() {
+
+	GetTeamOnCallUsersCmd.Flags().String("include", "", "Comma-separated list of included relationships to be returned. Allowed values: 'responders', 'escalations', 'escalations.responders'.")
 
 	Cmd.AddCommand(GetTeamOnCallUsersCmd)
 }
