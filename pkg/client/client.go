@@ -21,9 +21,11 @@ func NewContext(apiKey, appKey, site string) context.Context {
 			},
 		},
 	)
+	ctx = context.WithValue(ctx, datadog.ContextServerIndex, 1)
 	ctx = context.WithValue(ctx,
 		datadog.ContextServerVariables,
 		map[string]string{
+			"name": site,
 			"site": site,
 		})
 	return ctx
