@@ -14,8 +14,8 @@ import (
 var GetBudgetCmd = &cobra.Command{
 	Use: "get-budget [budget_id]",
 
-	Short: "Get a budget",
-	Long: `Get a budget
+	Short: "Get budget",
+	Long: `Get budget
 Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#get-budget`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

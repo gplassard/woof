@@ -13,8 +13,8 @@ import (
 var DeleteBudgetCmd = &cobra.Command{
 	Use: "delete-budget [budget_id]",
 
-	Short: "Delete a budget",
-	Long: `Delete a budget
+	Short: "Delete budget",
+	Long: `Delete budget
 Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#delete-budget`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

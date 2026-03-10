@@ -14,8 +14,8 @@ import (
 var CreateDORAFailureCmd = &cobra.Command{
 	Use: "create-dora-failure",
 
-	Short: "Send a failure event",
-	Long: `Send a failure event
+	Short: "Send an incident event",
+	Long: `Send an incident event
 Documentation: https://docs.datadoghq.com/api/latest/dora-metrics/#create-dora-failure`,
 
 	Run: func(cmd *cobra.Command, args []string) {

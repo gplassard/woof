@@ -14,13 +14,13 @@ import (
 var ListDORAFailuresCmd = &cobra.Command{
 	Use: "list-dora-failures",
 
-	Short: "Get a list of failure events",
-	Long: `Get a list of failure events
+	Short: "Get a list of incident events",
+	Long: `Get a list of incident events
 Documentation: https://docs.datadoghq.com/api/latest/dora-metrics/#list-dora-failures`,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
-		var res datadogV2.DORAListResponse
+		var res datadogV2.DORAFailuresListResponse
 		var err error
 
 		var body datadogV2.DORAListFailuresRequest
@@ -32,7 +32,7 @@ Documentation: https://docs.datadoghq.com/api/latest/dora-metrics/#list-dora-fai
 		res, _, err = api.ListDORAFailures(client.NewContext(apiKey, appKey, site), body)
 		cmdutil.HandleError(err, "failed to list-dora-failures")
 
-		fmt.Println(cmdutil.FormatJSON(res, "dora_metrics"))
+		fmt.Println(cmdutil.FormatJSON(res, "dora_failure"))
 	},
 }
 
