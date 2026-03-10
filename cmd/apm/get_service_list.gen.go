@@ -12,12 +12,12 @@ import (
 )
 
 var GetServiceListCmd = &cobra.Command{
-	Use: "get-service-list",
+	Use: "get-service-list [filter[env]]",
 
 	Short: "Get service list",
 	Long: `Get service list
 Documentation: https://docs.datadoghq.com/api/latest/apm/#get-service-list`,
-
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
 		var res datadogV2.ServiceList
@@ -25,7 +25,7 @@ Documentation: https://docs.datadoghq.com/api/latest/apm/#get-service-list`,
 
 		api := datadogV2.NewAPMApi(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		res, _, err = api.GetServiceList(client.NewContext(apiKey, appKey, site))
+		res, _, err = api.GetServiceList(client.NewContext(apiKey, appKey, site), args[0])
 		cmdutil.HandleError(err, "failed to get-service-list")
 
 		fmt.Println(cmdutil.FormatJSON(res, "services_list"))

@@ -20,7 +20,7 @@ Documentation: https://docs.datadoghq.com/api/latest/security-monitoring/#list-s
 
 	Run: func(cmd *cobra.Command, args []string) {
 		apiKey, appKey, site := config.GetConfig()
-		var res datadogV2.SecurityMonitoringSuppressionsResponse
+		var res datadogV2.SecurityMonitoringPaginatedSuppressionsResponse
 		var err error
 
 		api := datadogV2.NewSecurityMonitoringApi(client.NewAPIClient())

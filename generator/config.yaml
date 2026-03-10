@@ -15,6 +15,20 @@ skip_operations:
   - GetTeamNotificationRule
   - GetTeamNotificationRules
   - UpdateTeamNotificationRule
+  - CreateAWSAccountCCMConfig
+  - GetAWSAccountCCMConfig
+  - DeleteAWSAccountCCMConfig
+  - UpdateAWSAccountCCMConfig
+  - ListIncidentAttachments
+  - AddRumReplaySessionToPlaylist
+  - RemoveRumReplaySessionFromPlaylist
+  - UpdateRumReplaySessionFromPlaylist
+  - ListRumReplayPlaylistSessions
+  - BulkRemoveRumReplayPlaylistSessions
+  - DeleteRumReplayPlaylist
+  - GetRumReplayPlaylist
+  - UpdateRumReplayPlaylist
+  - ListRumReplayPlaylist
 
 optional_parameters_operations:
   SearchCIAppTestEvents: SearchCIAppTestEventsOptionalParameters
@@ -55,6 +69,7 @@ bundle_aliases:
     - wf
 
 acronyms:
+  - DORA
   - AD
   - AI
   - APIs
@@ -77,3 +92,6 @@ acronyms:
   - WAF
   - CUR
   - UC
+  - SPA
+  - LLM
+  - CCM

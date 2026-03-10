@@ -16,11 +16,14 @@ import (
 	"github.com/gplassard/woof/cmd/case_management"
 	"github.com/gplassard/woof/cmd/case_management_attribute"
 	"github.com/gplassard/woof/cmd/case_management_type"
+	"github.com/gplassard/woof/cmd/change_management"
 	"github.com/gplassard/woof/cmd/ci_visibility_pipelines"
 	"github.com/gplassard/woof/cmd/ci_visibility_tests"
+	"github.com/gplassard/woof/cmd/cloud_authentication"
 	"github.com/gplassard/woof/cmd/cloud_cost_management"
 	"github.com/gplassard/woof/cmd/cloud_network_monitoring"
 	"github.com/gplassard/woof/cmd/cloudflare_integration"
+	"github.com/gplassard/woof/cmd/code_coverage"
 	"github.com/gplassard/woof/cmd/confluent_cloud"
 	"github.com/gplassard/woof/cmd/container_images"
 	"github.com/gplassard/woof/cmd/containers"
@@ -34,16 +37,22 @@ import (
 	"github.com/gplassard/woof/cmd/domain_allowlist"
 	"github.com/gplassard/woof/cmd/dora_metrics"
 	"github.com/gplassard/woof/cmd/downtimes"
+	"github.com/gplassard/woof/cmd/entity_risk_scores"
 	"github.com/gplassard/woof/cmd/error_tracking"
 	"github.com/gplassard/woof/cmd/events"
 	"github.com/gplassard/woof/cmd/fastly_integration"
 	"github.com/gplassard/woof/cmd/fleet_automation"
 	"github.com/gplassard/woof/cmd/gcp_integration"
+	"github.com/gplassard/woof/cmd/google_chat_integration"
+	"github.com/gplassard/woof/cmd/high_availability_multiregion"
 	"github.com/gplassard/woof/cmd/incident_services"
 	"github.com/gplassard/woof/cmd/incident_teams"
 	"github.com/gplassard/woof/cmd/incidents"
+	"github.com/gplassard/woof/cmd/integrations"
 	"github.com/gplassard/woof/cmd/ip_allowlist"
+	"github.com/gplassard/woof/cmd/jira_integration"
 	"github.com/gplassard/woof/cmd/key_management"
+	"github.com/gplassard/woof/cmd/llm_observability"
 	"github.com/gplassard/woof/cmd/logs"
 	"github.com/gplassard/woof/cmd/logs_archives"
 	"github.com/gplassard/woof/cmd/logs_custom_destinations"
@@ -54,6 +63,7 @@ import (
 	"github.com/gplassard/woof/cmd/monitors"
 	"github.com/gplassard/woof/cmd/network_device_monitoring"
 	"github.com/gplassard/woof/cmd/observability_pipelines"
+	"github.com/gplassard/woof/cmd/oci_integration"
 	"github.com/gplassard/woof/cmd/okta_integration"
 	"github.com/gplassard/woof/cmd/on_call"
 	"github.com/gplassard/woof/cmd/on_call_paging"
@@ -62,24 +72,32 @@ import (
 	"github.com/gplassard/woof/cmd/organizations"
 	"github.com/gplassard/woof/cmd/powerpack"
 	"github.com/gplassard/woof/cmd/processes"
+	"github.com/gplassard/woof/cmd/product_analytics"
 	"github.com/gplassard/woof/cmd/reference_tables"
 	"github.com/gplassard/woof/cmd/restriction_policies"
 	"github.com/gplassard/woof/cmd/roles"
 	"github.com/gplassard/woof/cmd/rum"
 	"github.com/gplassard/woof/cmd/rum_audience_management"
 	"github.com/gplassard/woof/cmd/rum_metrics"
+	"github.com/gplassard/woof/cmd/rum_replay_heatmaps"
+	"github.com/gplassard/woof/cmd/rum_replay_playlists"
+	"github.com/gplassard/woof/cmd/rum_replay_sessions"
+	"github.com/gplassard/woof/cmd/rum_replay_viewership"
 	"github.com/gplassard/woof/cmd/rum_retention_filters"
+	"github.com/gplassard/woof/cmd/seats"
 	"github.com/gplassard/woof/cmd/security_monitoring"
 	"github.com/gplassard/woof/cmd/sensitive_data_scanner"
 	"github.com/gplassard/woof/cmd/service_accounts"
 	"github.com/gplassard/woof/cmd/service_definition"
 	"github.com/gplassard/woof/cmd/service_level_objectives"
 	"github.com/gplassard/woof/cmd/service_scorecards"
+	"github.com/gplassard/woof/cmd/servicenow_integration"
 	"github.com/gplassard/woof/cmd/software_catalog"
 	"github.com/gplassard/woof/cmd/spa"
 	"github.com/gplassard/woof/cmd/spans"
 	"github.com/gplassard/woof/cmd/spans_metrics"
 	"github.com/gplassard/woof/cmd/static_analysis"
+	"github.com/gplassard/woof/cmd/status_pages"
 	"github.com/gplassard/woof/cmd/synthetics"
 	"github.com/gplassard/woof/cmd/teams"
 	"github.com/gplassard/woof/cmd/test_optimization"
@@ -126,11 +144,14 @@ func Execute() {
 		case_management.Cmd,
 		case_management_attribute.Cmd,
 		case_management_type.Cmd,
+		change_management.Cmd,
 		ci_visibility_pipelines.Cmd,
 		ci_visibility_tests.Cmd,
+		cloud_authentication.Cmd,
 		cloud_cost_management.Cmd,
 		cloud_network_monitoring.Cmd,
 		cloudflare_integration.Cmd,
+		code_coverage.Cmd,
 		confluent_cloud.Cmd,
 		container_images.Cmd,
 		containers.Cmd,
@@ -144,16 +165,22 @@ func Execute() {
 		domain_allowlist.Cmd,
 		dora_metrics.Cmd,
 		downtimes.Cmd,
+		entity_risk_scores.Cmd,
 		error_tracking.Cmd,
 		events.Cmd,
 		fastly_integration.Cmd,
 		fleet_automation.Cmd,
 		gcp_integration.Cmd,
+		google_chat_integration.Cmd,
+		high_availability_multiregion.Cmd,
 		incident_services.Cmd,
 		incident_teams.Cmd,
 		incidents.Cmd,
+		integrations.Cmd,
 		ip_allowlist.Cmd,
+		jira_integration.Cmd,
 		key_management.Cmd,
+		llm_observability.Cmd,
 		logs.Cmd,
 		logs_archives.Cmd,
 		logs_custom_destinations.Cmd,
@@ -164,6 +191,7 @@ func Execute() {
 		monitors.Cmd,
 		network_device_monitoring.Cmd,
 		observability_pipelines.Cmd,
+		oci_integration.Cmd,
 		okta_integration.Cmd,
 		on_call.Cmd,
 		on_call_paging.Cmd,
@@ -172,24 +200,32 @@ func Execute() {
 		organizations.Cmd,
 		powerpack.Cmd,
 		processes.Cmd,
+		product_analytics.Cmd,
 		reference_tables.Cmd,
 		restriction_policies.Cmd,
 		roles.Cmd,
 		rum.Cmd,
 		rum_audience_management.Cmd,
 		rum_metrics.Cmd,
+		rum_replay_heatmaps.Cmd,
+		rum_replay_playlists.Cmd,
+		rum_replay_sessions.Cmd,
+		rum_replay_viewership.Cmd,
 		rum_retention_filters.Cmd,
+		seats.Cmd,
 		security_monitoring.Cmd,
 		sensitive_data_scanner.Cmd,
 		service_accounts.Cmd,
 		service_definition.Cmd,
 		service_level_objectives.Cmd,
 		service_scorecards.Cmd,
+		servicenow_integration.Cmd,
 		software_catalog.Cmd,
 		spa.Cmd,
 		spans.Cmd,
 		spans_metrics.Cmd,
 		static_analysis.Cmd,
+		status_pages.Cmd,
 		synthetics.Cmd,
 		teams.Cmd,
 		test_optimization.Cmd,
