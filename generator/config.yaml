@@ -76,22 +76,6 @@ bundle_name_overrides:
   OCIIntegration: oci_integration
   ServiceNowIntegration: servicenow_integration
 
-argument_type_overrides:
-  GetCostByOrg:
-    start_month: time.Time
-  GetHistoricalCostByOrg:
-    start_month: time.Time
-  GetMonthlyCostAttribution:
-    start_month: time.Time
-  GetHourlyUsage:
-    filter[timestamp][start]: time.Time
-  GetUsageApplicationSecurityMonitoring:
-    start_hr: time.Time
-  GetUsageLambdaTracedInvocations:
-    start_hr: time.Time
-  GetUsageObservabilityPipelines:
-    start_hr: time.Time
-
 response_type_overrides:
   AttachmentArray: IncidentAttachmentsResponse
 
