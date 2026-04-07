@@ -1,34 +1,22 @@
 skip_operations:
-  - CreateIncidentAttachment
-  - DeleteIncidentAttachment
-  - UpdateIncidentAttachment
-  - CreateUserNotificationRule
-  - DeleteUserNotificationRule
-  - GetUserNotificationRule
-  - ListUserNotificationRules
-  - UpdateUserNotificationRule
-  - MakeGCPSTSDelegate
-  - SubmitLog
-  - UploadCustomCostsFile
-  - CreateTeamNotificationRule
-  - DeleteTeamNotificationRule
-  - GetTeamNotificationRule
-  - GetTeamNotificationRules
-  - UpdateTeamNotificationRule
+  # Not present in current SDK release
   - CreateAWSAccountCCMConfig
-  - GetAWSAccountCCMConfig
   - DeleteAWSAccountCCMConfig
+  - GetAWSAccountCCMConfig
+  - ListRumReplayPlaylist
   - UpdateAWSAccountCCMConfig
-  - ListIncidentAttachments
-  - AddRumReplaySessionToPlaylist
-  - RemoveRumReplaySessionFromPlaylist
   - UpdateRumReplaySessionFromPlaylist
-  - ListRumReplayPlaylistSessions
+  # Requires int32 CLI arg parsing support (not on this branch yet)
+  - AddRumReplaySessionToPlaylist
   - BulkRemoveRumReplayPlaylistSessions
   - DeleteRumReplayPlaylist
   - GetRumReplayPlaylist
+  - ListRumReplayPlaylistSessions
+  - RemoveRumReplaySessionFromPlaylist
   - UpdateRumReplayPlaylist
-  - ListRumReplayPlaylist
+  # Supported by SDK but current generator payload flow does not handle them yet
+  - SubmitLog
+  - UploadCustomCostsFile
 
 optional_parameters_operations:
   SearchCIAppTestEvents: SearchCIAppTestEventsOptionalParameters
