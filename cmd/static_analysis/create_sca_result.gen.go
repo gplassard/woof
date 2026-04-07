@@ -13,8 +13,8 @@ import (
 var CreateSCAResultCmd = &cobra.Command{
 	Use: "create-sca-result",
 
-	Short: "CreateSCAResult",
-	Long: `CreateSCAResult
+	Short: "Create sca result",
+	Long: `Create sca result
 Documentation: https://docs.datadoghq.com/api/latest/static-analysis/#create-sca-result`,
 
 	Run: func(cmd *cobra.Command, args []string) {

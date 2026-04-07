@@ -14,8 +14,8 @@ import (
 var GetSyntheticsNetworkTestCmd = &cobra.Command{
 	Use:     "get-synthetics-network-test [public_id]",
 	Aliases: []string{"get-network-test"},
-	Short:   "GetSyntheticsNetworkTest",
-	Long: `GetSyntheticsNetworkTest
+	Short:   "Get synthetics network test",
+	Long: `Get synthetics network test
 Documentation: https://docs.datadoghq.com/api/latest/synthetics/#get-synthetics-network-test`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

@@ -14,8 +14,8 @@ import (
 var GetServiceListCmd = &cobra.Command{
 	Use: "get-service-list [filter[env]]",
 
-	Short: "GetServiceList",
-	Long: `GetServiceList
+	Short: "Get service list",
+	Long: `Get service list
 Documentation: https://docs.datadoghq.com/api/latest/apm/#get-service-list`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

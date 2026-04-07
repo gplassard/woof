@@ -7,6 +7,7 @@ import (
 	"go/printer"
 	"go/token"
 	"path/filepath"
+	"reflect"
 	"sort"
 	"strconv"
 	"strings"
@@ -131,7 +132,7 @@ func collectStructsAndEnums(model *SDKModel, f *ast.File) {
 					if field.Tag != nil {
 						tagValue, err := strconv.Unquote(field.Tag.Value)
 						if err == nil {
-							jsonName = strings.Split(strings.Split(reflectStructTag(tagValue).Get("json"), ",")[0], ",")[0]
+							jsonName = strings.Split(reflect.StructTag(tagValue).Get("json"), ",")[0]
 						}
 					}
 					if jsonName == "" || jsonName == "-" {
@@ -174,50 +175,6 @@ func collectStructsAndEnums(model *SDKModel, f *ast.File) {
 			}
 		}
 	}
-}
-
-type reflectStructTag string
-
-func (t reflectStructTag) Get(key string) string {
-	for t != "" {
-		i := 0
-		for i < len(t) && t[i] == ' ' {
-			i++
-		}
-		t = t[i:]
-		if t == "" {
-			break
-		}
-		i = 0
-		for i < len(t) && t[i] > ' ' && t[i] != ':' && t[i] != '"' && t[i] != 0x7f {
-			i++
-		}
-		if i+1 >= len(t) || t[i] != ':' || t[i+1] != '"' {
-			break
-		}
-		name := string(t[:i])
-		t = t[i+1:]
-		i = 1
-		for i < len(t) && t[i] != '"' {
-			if t[i] == '\\' {
-				i++
-			}
-			i++
-		}
-		if i >= len(t) {
-			break
-		}
-		qvalue := string(t[:i+1])
-		t = t[i+1:]
-		if key == name {
-			value, err := strconv.Unquote(qvalue)
-			if err != nil {
-				break
-			}
-			return value
-		}
-	}
-	return ""
 }
 
 func parseOperation(fn *ast.FuncDecl, recvName string, model *SDKModel, config *Config) (OperationModel, bool) {
@@ -264,7 +221,7 @@ func parseOperation(fn *ast.FuncDecl, recvName string, model *SDKModel, config *
 
 	return OperationModel{
 		OperationID:      operationID,
-		Summary:          extractSummary(fn, operationID),
+		Summary:          extractSummary(fn, operationID, config),
 		Method:           strings.TrimPrefix(httpMethod, "Method"),
 		Path:             path,
 		Bundle:           bundle,
@@ -519,18 +476,30 @@ func findParameterType(fn *ast.FuncDecl, paramName string) string {
 	return ""
 }
 
-func extractSummary(fn *ast.FuncDecl, operationID string) string {
+func extractSummary(fn *ast.FuncDecl, operationID string, config *Config) string {
 	if fn.Doc == nil {
-		return operationID
+		return humanizeOperationID(operationID, config)
 	}
 	doc := strings.TrimSpace(fn.Doc.Text())
 	if doc == "" {
-		return operationID
+		return humanizeOperationID(operationID, config)
 	}
 	line := strings.Split(doc, "\n")[0]
 	line = strings.TrimSpace(line)
 	line = strings.TrimPrefix(line, operationID+" ")
-	return strings.TrimSpace(line)
+	line = strings.TrimSpace(line)
+	if line == "" || line == operationID {
+		return humanizeOperationID(operationID, config)
+	}
+	return line
+}
+
+func humanizeOperationID(operationID string, config *Config) string {
+	phrase := strings.ReplaceAll(toKebabCase(operationID, config), "-", " ")
+	if phrase == "" {
+		return operationID
+	}
+	return strings.ToUpper(phrase[:1]) + phrase[1:]
 }
 
 func exprString(expr ast.Expr) string {

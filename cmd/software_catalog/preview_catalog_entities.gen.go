@@ -14,8 +14,8 @@ import (
 var PreviewCatalogEntitiesCmd = &cobra.Command{
 	Use: "preview-catalog-entities",
 
-	Short: "PreviewCatalogEntities",
-	Long: `PreviewCatalogEntities
+	Short: "Preview catalog entities",
+	Long: `Preview catalog entities
 Documentation: https://docs.datadoghq.com/api/latest/software-catalog/#preview-catalog-entities`,
 
 	Run: func(cmd *cobra.Command, args []string) {

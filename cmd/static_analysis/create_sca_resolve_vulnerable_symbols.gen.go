@@ -14,8 +14,8 @@ import (
 var CreateSCAResolveVulnerableSymbolsCmd = &cobra.Command{
 	Use: "create-sca-resolve-vulnerable-symbols",
 
-	Short: "CreateSCAResolveVulnerableSymbols",
-	Long: `CreateSCAResolveVulnerableSymbols
+	Short: "Create sca resolve vulnerable symbols",
+	Long: `Create sca resolve vulnerable symbols
 Documentation: https://docs.datadoghq.com/api/latest/static-analysis/#create-sca-resolve-vulnerable-symbols`,
 
 	Run: func(cmd *cobra.Command, args []string) {
