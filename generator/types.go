@@ -1,10 +1,14 @@
 package main
 
 type Config struct {
-	SkipOperations               []string            `yaml:"skip_operations"`
-	OptionalParametersOperations map[string]string   `yaml:"optional_parameters_operations"`
-	BundleAliases                map[string][]string `yaml:"bundle_aliases"`
-	Acronyms                     []string            `yaml:"acronyms"`
+	SkipOperations               []string                     `yaml:"skip_operations"`
+	OptionalParametersOperations map[string]string            `yaml:"optional_parameters_operations"`
+	BundleAliases                map[string][]string          `yaml:"bundle_aliases"`
+	BundleNameOverrides          map[string]string            `yaml:"bundle_name_overrides"`
+	ArgumentTypeOverrides        map[string]map[string]string `yaml:"argument_type_overrides"`
+	ResponseTypeOverrides        map[string]string            `yaml:"response_type_overrides"`
+	ForceResponseOperations      []string                     `yaml:"force_response_operations"`
+	Acronyms                     []string                     `yaml:"acronyms"`
 }
 
 type GenerationInput struct {

@@ -68,6 +68,37 @@ bundle_aliases:
     - workflow
     - wf
 
+bundle_name_overrides:
+  APM: apm
+  APMRetentionFilters: apm_retention_filters
+  AuthNMappings: authn_mappings
+  HighAvailabilityMultiRegion: high_availability_multiregion
+  OCIIntegration: oci_integration
+  ServiceNowIntegration: servicenow_integration
+
+argument_type_overrides:
+  GetCostByOrg:
+    start_month: time.Time
+  GetHistoricalCostByOrg:
+    start_month: time.Time
+  GetMonthlyCostAttribution:
+    start_month: time.Time
+  GetHourlyUsage:
+    filter[timestamp][start]: time.Time
+  GetUsageApplicationSecurityMonitoring:
+    start_hr: time.Time
+  GetUsageLambdaTracedInvocations:
+    start_hr: time.Time
+  GetUsageObservabilityPipelines:
+    start_hr: time.Time
+
+response_type_overrides:
+  AttachmentArray: IncidentAttachmentsResponse
+
+force_response_operations:
+  - GetSignalNotificationRules
+  - GetVulnerabilityNotificationRules
+
 acronyms:
   - DORA
   - AD

@@ -44,7 +44,8 @@ func parseTemplates(config *Config) (*template.Template, *template.Template, err
 		"replace": func(old, new, src string) string {
 			return strings.ReplaceAll(src, old, new)
 		},
-		"lower": strings.ToLower,
+		"hasPrefix": strings.HasPrefix,
+		"lower":     strings.ToLower,
 		"toSnakeCase": func(s string) string {
 			return toSnakeCase(s, config)
 		},

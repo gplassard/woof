@@ -96,7 +96,7 @@ func prepareTemplateData(op OperationModel, config *Config) TemplateData {
 	for _, param := range op.Parameters {
 		args = append(args, param.Name)
 		use += fmt.Sprintf(" [%s]", param.Name)
-		argTypes = append(argTypes, normalizeArgumentType(op.OperationID, param.Name, param.GoType))
+		argTypes = append(argTypes, normalizeArgumentType(op.OperationID, param.Name, param.GoType, config))
 	}
 
 	resourceType := op.ResourceType
@@ -109,10 +109,7 @@ func prepareTemplateData(op OperationModel, config *Config) TemplateData {
 		responseTypeGo = "interface{}"
 	}
 
-	responseTypeOverrides := map[string]string{
-		"AttachmentArray": "IncidentAttachmentsResponse",
-	}
-	if override, ok := responseTypeOverrides[responseTypeGo]; ok {
+	if override, ok := responseTypeOverride(responseTypeGo, config); ok {
 		responseTypeGo = override
 	}
 
@@ -143,26 +140,45 @@ func prepareTemplateData(op OperationModel, config *Config) TemplateData {
 	}
 }
 
-func normalizeArgumentType(operationID, paramName, goType string) string {
+func normalizeArgumentType(operationID, paramName, goType string, config *Config) string {
 	switch goType {
 	case "uuid.UUID", "time.Time", "int64", "float64", "[]string":
 		return goType
 	}
-
-	if operationID == "GetSBOM" && paramName == "asset_type" {
-		return "datadogV2.AssetType"
+	if config != nil && config.ArgumentTypeOverrides != nil {
+		if opOverrides, ok := config.ArgumentTypeOverrides[operationID]; ok {
+			if override, ok := opOverrides[paramName]; ok && override != "" {
+				return override
+			}
+		}
 	}
-	if operationID == "GetTeamSync" && paramName == "filter[source]" {
-		return "datadogV2.TeamSyncAttributesSource"
+	if looksLikeSDKAliasType(goType) {
+		return "datadogV2." + goType
 	}
-	if (operationID == "GetCostByOrg" || operationID == "GetHistoricalCostByOrg" || operationID == "GetMonthlyCostAttribution") && paramName == "start_month" {
-		return "time.Time"
-	}
-	if (operationID == "GetHourlyUsage" || operationID == "GetUsageApplicationSecurityMonitoring" || operationID == "GetUsageLambdaTracedInvocations" || operationID == "GetUsageObservabilityPipelines") && (paramName == "start_hr" || paramName == "filter[timestamp][start]") {
-		return "time.Time"
-	}
-
 	return "string"
+}
+
+func responseTypeOverride(typeName string, config *Config) (string, bool) {
+	if config == nil || config.ResponseTypeOverrides == nil {
+		return "", false
+	}
+	override, ok := config.ResponseTypeOverrides[typeName]
+	return override, ok
+}
+
+func looksLikeSDKAliasType(goType string) bool {
+	if goType == "" {
+		return false
+	}
+	if strings.Contains(goType, ".") || strings.Contains(goType, "[]") || strings.Contains(goType, "*") {
+		return false
+	}
+	switch goType {
+	case "string", "bool", "int", "int32", "int64", "float32", "float64":
+		return false
+	}
+	r := rune(goType[0])
+	return r >= 'A' && r <= 'Z'
 }
 
 func computeAliases(bundle, operationID string, config *Config) []string {

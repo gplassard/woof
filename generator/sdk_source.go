@@ -195,7 +195,7 @@ func parseOperation(fn *ast.FuncDecl, recvName string, model *SDKModel, config *
 
 	params := extractParameters(fn, bodyParam, pathParamNames, queryParamNames)
 	responseTypeGo, hasResponse := extractResponseType(fn)
-	if operationID == "GetSignalNotificationRules" || operationID == "GetVulnerabilityNotificationRules" {
+	if containsString(config.ForceResponseOperations, operationID) {
 		hasResponse = true
 	}
 
@@ -408,16 +408,10 @@ func extractParameters(fn *ast.FuncDecl, bodyParam string, pathParamNames map[st
 }
 
 func normalizeBundleFromSDK(apiName string, config *Config) string {
-	compat := map[string]string{
-		"APM":                         "apm",
-		"APMRetentionFilters":         "apm_retention_filters",
-		"AuthNMappings":               "authn_mappings",
-		"HighAvailabilityMultiRegion": "high_availability_multiregion",
-		"OCIIntegration":              "oci_integration",
-		"ServiceNowIntegration":       "servicenow_integration",
-	}
-	if mapped, ok := compat[apiName]; ok {
-		return mapped
+	if config != nil && config.BundleNameOverrides != nil {
+		if mapped, ok := config.BundleNameOverrides[apiName]; ok {
+			return mapped
+		}
 	}
 	return toSnakeCase(apiName, config)
 }
@@ -500,6 +494,15 @@ func humanizeOperationID(operationID string, config *Config) string {
 		return operationID
 	}
 	return strings.ToUpper(phrase[:1]) + phrase[1:]
+}
+
+func containsString(values []string, v string) bool {
+	for _, item := range values {
+		if item == v {
+			return true
+		}
+	}
+	return false
 }
 
 func exprString(expr ast.Expr) string {
