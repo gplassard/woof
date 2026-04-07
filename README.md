@@ -1,6 +1,6 @@
 # woof
 
-`woof` is a Datadog CLI tool built with Go. It provides a command-line interface to interact with Datadog API endpoints. The project includes a code generator that automatically creates CLI commands based on the Datadog OpenAPI specification.
+`woof` is a Datadog CLI tool built with Go. It provides a command-line interface to interact with Datadog API endpoints. The project includes a code generator that automatically creates CLI commands from the Datadog Go SDK (`datadogV2`).
 
 ## Disclaimer
 
@@ -67,7 +67,7 @@ To see all available commands, run:
 
 ## Code Generator
 
-The project features a code generator located in the `generator/` directory. It downloads the Datadog OpenAPI V2 specification and generates the corresponding Cobra commands in the `cmd/` directory.
+The project features a code generator located in the `generator/` directory. It parses the Datadog Go SDK package `github.com/DataDog/datadog-api-client-go/v2/api/datadogV2` with Go AST and produces Cobra commands in the `cmd/` directory.
 
 ### Running the Generator
 
@@ -82,23 +82,22 @@ The generator uses templates found in `generator/*.tmpl` and configuration from 
 ## Project Structure
 
 - `main.go`: Entry point for the CLI application.
-- `cmd/`: Contains the CLI command implementations. Everything under this directory is generated.
+- `cmd/`: Contains generated CLI command implementations.
   - `root.gen.go`: The root command definition (generated).
-  - Subdirectories (e.g., `cmd/roles/`): Generated commands grouped by API tags.
-- `generator/`: Logic and templates for the code generator.
+  - Subdirectories (for example `cmd/roles/`): generated commands grouped by SDK services.
+- `generator/`: SDK parser + generation logic and templates.
   - `generate.go`: Main entry point for the generator.
+  - `sdk_source.go`: SDK model extraction and operation parsing.
   - `config.yaml`: Configuration for skipping or customizing operations.
   - `*.tmpl`: Go templates for generating command files.
 - `pkg/`: Shared packages and utilities.
   - `config/`: Configuration and credential management.
   - `client/`: Datadog API client initialization.
   - `cmdutil/`: Utilities for command execution and output formatting.
-  - `output/`: Placeholder for output formatting logic.
-- `woof`: The compiled binary (after building).
 
 ## Tests
 
-To run the project tests:
+To run project tests:
 
 ```bash
 go test ./...

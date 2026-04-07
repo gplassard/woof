@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/servicenow-integration/#lis
 		res, _, err = api.ListServiceNowTemplates(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-service-now-templates")
 
-		fmt.Println(cmdutil.FormatJSON(res, "servicenow_integration"))
+		fmt.Println(cmdutil.FormatJSON(res, "servicenow_templates"))
 	},
 }
 

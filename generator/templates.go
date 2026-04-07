@@ -19,9 +19,6 @@ func toKebabCase(s string, config *Config) string {
 
 	res := s
 	for _, acronym := range acronyms {
-		// Replace acronym with its lowercase version surrounded by markers to avoid further splitting
-		// e.g. CSM -> -csm-
-		// We use a temporary placeholder to avoid double replacement or splitting
 		res = strings.ReplaceAll(res, acronym, "-"+strings.ToLower(acronym)+"-")
 	}
 
@@ -34,7 +31,6 @@ func toKebabCase(s string, config *Config) string {
 	}
 
 	s = strings.ToLower(finalRes.String())
-	// Clean up double hyphens and hyphens at start/end
 	s = strings.ReplaceAll(s, "--", "-")
 	s = strings.Trim(s, "-")
 	return s
@@ -85,189 +81,30 @@ func ensureEntrypoint(pkgDir, bundle string, tmpl *template.Template, config *Co
 			return fmt.Errorf("failed to format entrypoint for %s: %w", bundle, err)
 		}
 
-		if err := os.WriteFile(entrypointPath, formatted, 0644); err != nil {
+		if err := os.WriteFile(entrypointPath, formatted, 0o644); err != nil {
 			return fmt.Errorf("failed to write entrypoint for %s: %w", bundle, err)
 		}
 	}
 	return nil
 }
 
-func resolveResourceType(spec *OpenAPI, schema map[string]interface{}) string {
-	if schema == nil {
-		return ""
-	}
-
-	if props, ok := schema["properties"].(map[string]interface{}); ok {
-		if dataProp, ok := props["data"].(map[string]interface{}); ok {
-			// Check if data is an array
-			if items, ok := dataProp["items"].(map[string]interface{}); ok {
-				return resolveResourceType(spec, resolveSchema(spec, items))
-			}
-			// Check if data is an object
-			return resolveResourceType(spec, resolveSchema(spec, dataProp))
-		}
-		if typeProp, ok := props["type"].(map[string]interface{}); ok {
-			resolvedTypeProp := resolveSchema(spec, typeProp)
-			if enum, ok := resolvedTypeProp["enum"].([]interface{}); ok && len(enum) > 0 {
-				return enum[0].(string)
-			}
-		}
-	}
-	return ""
-}
-
-func resolveSchema(spec *OpenAPI, schema map[string]interface{}) map[string]interface{} {
-	if ref, ok := schema["$ref"].(string); ok {
-		refName := filepath.Base(ref)
-		if s, ok := spec.Components.Schemas[refName]; ok {
-			return s.Schema
-		}
-	}
-	return schema
-}
-
-func prepareTemplateData(bundle, rawBundle, apiBundleName, method, path string, op Operation, spec *OpenAPI, config *Config) TemplateData {
-	var args []string
-	var argTypes []string
+func prepareTemplateData(op OperationModel, config *Config) TemplateData {
+	args := make([]string, 0, len(op.Parameters))
+	argTypes := make([]string, 0, len(op.Parameters))
 	use := toKebabCase(op.OperationID, config)
 
 	for _, param := range op.Parameters {
-		name := param.Name
-		in := param.In
-		required := param.Required
-		schema := param.Schema
-
-		if param.Ref != "" {
-			refName := filepath.Base(param.Ref)
-			if p, ok := spec.Components.Parameters[refName]; ok {
-				name = p.Name
-				in = p.In
-				required = p.Required
-				schema = p.Schema
-			}
-		}
-
-		if (in == "path" || required) && in != "header" && in != "cookie" {
-			args = append(args, name)
-			use += fmt.Sprintf(" [%s]", name)
-			argType := "string"
-
-			resolvedSchema := schema
-			if schema != nil {
-				if ref, ok := schema["$ref"].(string); ok {
-					refName := filepath.Base(ref)
-					if s, ok := spec.Components.Schemas[refName]; ok {
-						resolvedSchema = map[string]interface{}{
-							"type":   s.Type,
-							"format": s.Format,
-						}
-					}
-				}
-			}
-
-			if resolvedSchema != nil {
-				sType, _ := resolvedSchema["type"].(string)
-				sFormat, _ := resolvedSchema["format"].(string)
-				switch sType {
-				case "integer":
-					argType = "int64"
-				case "number":
-					argType = "float64"
-				case "string":
-					switch sFormat {
-					case "uuid":
-						argType = "uuid.UUID"
-					case "date-time":
-						argType = "time.Time"
-					}
-				case "array":
-					items, _ := resolvedSchema["items"].(map[string]interface{})
-					if items != nil {
-						if iType, ok := items["type"].(string); ok && iType == "string" {
-							argType = "[]string"
-						}
-					}
-				}
-			}
-
-			// Custom overrides
-			if op.OperationID == "GetSBOM" && name == "asset_type" {
-				argType = "datadogV2.AssetType"
-			}
-			if op.OperationID == "GetTeamSync" && name == "filter[source]" {
-				argType = "datadogV2.TeamSyncAttributesSource"
-			}
-			if (op.OperationID == "GetCostByOrg" || op.OperationID == "GetHistoricalCostByOrg" || op.OperationID == "GetMonthlyCostAttribution") && name == "start_month" {
-				argType = "time.Time"
-			}
-			if (op.OperationID == "GetHourlyUsage" || op.OperationID == "GetUsageApplicationSecurityMonitoring" || op.OperationID == "GetUsageLambdaTracedInvocations" || op.OperationID == "GetUsageObservabilityPipelines") && name == "start_hr" {
-				argType = "time.Time"
-			}
-
-			argTypes = append(argTypes, argType)
-		}
+		args = append(args, param.Name)
+		use += fmt.Sprintf(" [%s]", param.Name)
+		argTypes = append(argTypes, normalizeArgumentType(op.OperationID, param.Name, param.GoType))
 	}
 
-	hasResponse := false
-	for code, resp := range op.Responses {
-		if code == "200" || code == "201" || code == "202" {
-			if resp.Content != nil {
-				hasResponse = true
-				break
-			}
-		}
-	}
-	if op.OperationID == "GetSignalNotificationRules" || op.OperationID == "GetVulnerabilityNotificationRules" {
-		hasResponse = true
-	}
-
-	hasRequestBody := op.RequestBody != nil
-	requestBodyType := ""
-	isOptionalParams := false
-	if hasRequestBody {
-		for _, content := range op.RequestBody.Content {
-			if content.Schema.Ref != "" {
-				requestBodyType = filepath.Base(content.Schema.Ref)
-				break
-			}
-		}
-		if requestBodyType == "" {
-			requestBodyType = op.OperationID + "Request"
-		}
-
-		if optType, ok := config.OptionalParametersOperations[op.OperationID]; ok {
-			isOptionalParams = true
-			requestBodyType = optType
-		}
-	}
-
-	resourceType := ""
-	responseTypeGo := ""
-	if hasResponse {
-		for code, resp := range op.Responses {
-			if code == "200" || code == "201" || code == "202" {
-				if resp.Content != nil {
-					for contentType, content := range resp.Content {
-						if strings.HasPrefix(contentType, "application/json") {
-							if jsonContent, ok := content.(map[string]interface{}); ok {
-								if schema, ok := jsonContent["schema"].(map[string]interface{}); ok {
-									resourceType = resolveResourceType(spec, resolveSchema(spec, schema))
-									if ref, ok := schema["$ref"].(string); ok {
-										responseTypeGo = filepath.Base(ref)
-									}
-								}
-							}
-							break
-						}
-					}
-				}
-			}
-		}
-	}
-	// Fallback to package name if we can't find it, or use special logic
+	resourceType := op.ResourceType
 	if resourceType == "" {
-		resourceType = bundle
+		resourceType = op.Bundle
 	}
+
+	responseTypeGo := op.ResponseTypeGo
 	if responseTypeGo == "" {
 		responseTypeGo = "interface{}"
 	}
@@ -279,32 +116,53 @@ func prepareTemplateData(bundle, rawBundle, apiBundleName, method, path string, 
 		responseTypeGo = override
 	}
 
-	aliases := computeAliases(bundle, op.OperationID, config)
-
-	docBundle := strings.ReplaceAll(strings.ToLower(rawBundle), " ", "-")
+	aliases := computeAliases(op.Bundle, op.OperationID, config)
+	docBundle := strings.ReplaceAll(op.Bundle, "_", "-")
 	docURL := fmt.Sprintf("https://docs.datadoghq.com/api/latest/%s/#%s", docBundle, toKebabCase(op.OperationID, config))
 
 	return TemplateData{
-		PackageName:      bundle,
+		PackageName:      op.Bundle,
 		CommandName:      strings.ToUpper(op.OperationID[:1]) + op.OperationID[1:] + "Cmd",
 		Use:              use,
-		Short:            op.Summary,
-		Method:           strings.ToUpper(method),
-		Path:             path,
+		Short:            strings.TrimSuffix(op.Summary, "."),
+		Method:           strings.ToUpper(op.Method),
+		Path:             op.Path,
 		OperationID:      op.OperationID,
-		BundleName:       rawBundle,
-		ApiBundleName:    apiBundleName,
+		BundleName:       op.Bundle,
+		ApiBundleName:    op.ApiBundleName,
 		Args:             args,
 		ArgTypes:         argTypes,
-		HasRequestBody:   hasRequestBody,
-		RequestBodyType:  requestBodyType,
-		IsOptionalParams: isOptionalParams,
-		HasResponse:      hasResponse,
+		HasRequestBody:   op.HasRequestBody,
+		RequestBodyType:  op.RequestBodyType,
+		IsOptionalParams: op.IsOptionalParams,
+		HasResponse:      op.HasResponse,
 		ResourceType:     resourceType,
 		ResponseTypeGo:   responseTypeGo,
 		Aliases:          aliases,
 		DocURL:           docURL,
 	}
+}
+
+func normalizeArgumentType(operationID, paramName, goType string) string {
+	switch goType {
+	case "uuid.UUID", "time.Time", "int64", "float64", "[]string":
+		return goType
+	}
+
+	if operationID == "GetSBOM" && paramName == "asset_type" {
+		return "datadogV2.AssetType"
+	}
+	if operationID == "GetTeamSync" && paramName == "filter[source]" {
+		return "datadogV2.TeamSyncAttributesSource"
+	}
+	if (operationID == "GetCostByOrg" || operationID == "GetHistoricalCostByOrg" || operationID == "GetMonthlyCostAttribution") && paramName == "start_month" {
+		return "time.Time"
+	}
+	if (operationID == "GetHourlyUsage" || operationID == "GetUsageApplicationSecurityMonitoring" || operationID == "GetUsageLambdaTracedInvocations" || operationID == "GetUsageObservabilityPipelines") && (paramName == "start_hr" || paramName == "filter[timestamp][start]") {
+		return "time.Time"
+	}
+
+	return "string"
 }
 
 func computeAliases(bundle, operationID string, config *Config) []string {
@@ -330,7 +188,6 @@ func computeAliases(bundle, operationID string, config *Config) []string {
 		if variant == "" {
 			continue
 		}
-		// Only replace if it matches a whole segment to avoid "list-spans-get" -> "list-s-get"
 		parts := strings.Split(opKebab, "-")
 		variantParts := strings.Split(variant, "-")
 
@@ -367,7 +224,6 @@ func computeAliases(bundle, operationID string, config *Config) []string {
 		}
 	}
 
-	// Keep only the shortest alias
 	if len(aliases) > 1 {
 		sort.Slice(aliases, func(i, j int) bool {
 			return len(aliases[i]) < len(aliases[j])
@@ -388,7 +244,6 @@ func computeAliases(bundle, operationID string, config *Config) []string {
 		aliases = uniqueAliases
 	}
 
-	// If we have multiple aliases, keep only the shortest ones (don't keep both 'create' and 'create-action')
 	if len(aliases) > 1 {
 		sort.Slice(aliases, func(i, j int) bool {
 			return len(aliases[i]) < len(aliases[j])
@@ -425,7 +280,7 @@ func generateCommandFile(pkgDir, operationID string, data TemplateData, tmpl *te
 		return fmt.Errorf("failed to format %s: %w", filePath, err)
 	}
 
-	if err := os.WriteFile(filePath, formatted, 0644); err != nil {
+	if err := os.WriteFile(filePath, formatted, 0o644); err != nil {
 		return fmt.Errorf("failed to write %s: %w", filePath, err)
 	}
 
@@ -471,5 +326,5 @@ func updateRootGo(bundles map[string]bool) error {
 		return fmt.Errorf("failed to format cmd/root.gen.go: %w", err)
 	}
 
-	return os.WriteFile("cmd/root.gen.go", formatted, 0644)
+	return os.WriteFile("cmd/root.gen.go", formatted, 0o644)
 }

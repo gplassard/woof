@@ -14,8 +14,8 @@ import (
 var ListIntegrationsCmd = &cobra.Command{
 	Use:     "list-integrations",
 	Aliases: []string{"list"},
-	Short:   "List Integrations",
-	Long: `List Integrations
+	Short:   "ListIntegrations",
+	Long: `ListIntegrations
 Documentation: https://docs.datadoghq.com/api/latest/integrations/#list-integrations`,
 
 	Run: func(cmd *cobra.Command, args []string) {

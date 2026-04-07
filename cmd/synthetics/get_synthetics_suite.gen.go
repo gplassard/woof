@@ -14,8 +14,8 @@ import (
 var GetSyntheticsSuiteCmd = &cobra.Command{
 	Use:     "get-synthetics-suite [public_id]",
 	Aliases: []string{"get-suite"},
-	Short:   "Get a suite",
-	Long: `Get a suite
+	Short:   "GetSyntheticsSuite",
+	Long: `GetSyntheticsSuite
 Documentation: https://docs.datadoghq.com/api/latest/synthetics/#get-synthetics-suite`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

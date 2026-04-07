@@ -14,8 +14,8 @@ import (
 var EditSyntheticsSuiteCmd = &cobra.Command{
 	Use:     "edit-synthetics-suite [public_id]",
 	Aliases: []string{"edit-suite"},
-	Short:   "Edit a test suite",
-	Long: `Edit a test suite
+	Short:   "EditSyntheticsSuite",
+	Long: `EditSyntheticsSuite
 Documentation: https://docs.datadoghq.com/api/latest/synthetics/#edit-synthetics-suite`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

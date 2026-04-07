@@ -7,46 +7,60 @@ type Config struct {
 	Acronyms                     []string            `yaml:"acronyms"`
 }
 
-type OpenAPI struct {
-	Paths      map[string]map[string]Operation `yaml:"paths"`
-	Components struct {
-		Parameters map[string]struct {
-			Name     string                 `yaml:"name"`
-			In       string                 `yaml:"in"`
-			Required bool                   `yaml:"required"`
-			Schema   map[string]interface{} `yaml:"schema"`
-		} `yaml:"parameters"`
-		Schemas map[string]struct {
-			Type   string                 `yaml:"type"`
-			Format string                 `yaml:"format"`
-			Ref    string                 `yaml:"$ref"`
-			Schema map[string]interface{} `yaml:",inline"`
-		} `yaml:"schemas"`
-	} `yaml:"components"`
+type GenerationInput struct {
+	Operations []OperationModel
 }
 
-type Operation struct {
-	OperationID string   `yaml:"operationId"`
-	Summary     string   `yaml:"summary"`
-	Tags        []string `yaml:"tags"`
-	Parameters  []struct {
-		Name     string                 `yaml:"name"`
-		In       string                 `yaml:"in"`
-		Required bool                   `yaml:"required"`
-		Ref      string                 `yaml:"$ref"`
-		Schema   map[string]interface{} `yaml:"schema"`
-	} `yaml:"parameters"`
-	RequestBody *struct {
-		Required bool `yaml:"required"`
-		Content  map[string]struct {
-			Schema struct {
-				Ref string `yaml:"$ref"`
-			} `yaml:"schema"`
-		} `yaml:"content"`
-	} `yaml:"requestBody"`
-	Responses map[string]struct {
-		Content map[string]interface{} `yaml:"content"`
-	} `yaml:"responses"`
+type OperationModel struct {
+	OperationID      string
+	Summary          string
+	Method           string
+	Path             string
+	Bundle           string
+	ApiBundleName    string
+	Parameters       []ParameterModel
+	HasRequestBody   bool
+	RequestBodyType  string
+	IsOptionalParams bool
+	HasResponse      bool
+	ResponseTypeGo   string
+	ResourceType     string
+}
+
+type ParameterModel struct {
+	GoName string
+	Name   string
+	GoType string
+	In     string
+}
+
+type SDKModel struct {
+	Services   []SDKService
+	Operations []OperationModel
+	Structs    map[string]SDKStruct
+	Enums      map[string]SDKEnum
+}
+
+type SDKService struct {
+	Name       string
+	Bundle     string
+	ApiName    string
+	Operations []string
+}
+
+type SDKStruct struct {
+	Name   string
+	Fields map[string]SDKField
+}
+
+type SDKField struct {
+	JSONName string
+	TypeName string
+}
+
+type SDKEnum struct {
+	Name   string
+	Values []string
 }
 
 type TemplateData struct {

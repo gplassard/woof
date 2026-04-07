@@ -14,8 +14,8 @@ import (
 var DeleteSyntheticsTestsCmd = &cobra.Command{
 	Use:     "delete-synthetics-tests",
 	Aliases: []string{"delete-tests"},
-	Short:   "Bulk delete tests",
-	Long: `Bulk delete tests
+	Short:   "DeleteSyntheticsTests",
+	Long: `DeleteSyntheticsTests
 Documentation: https://docs.datadoghq.com/api/latest/synthetics/#delete-synthetics-tests`,
 
 	Run: func(cmd *cobra.Command, args []string) {

@@ -14,8 +14,8 @@ import (
 var CreateSyntheticsSuiteCmd = &cobra.Command{
 	Use:     "create-synthetics-suite",
 	Aliases: []string{"create-suite"},
-	Short:   "Create a test suite",
-	Long: `Create a test suite
+	Short:   "CreateSyntheticsSuite",
+	Long: `CreateSyntheticsSuite
 Documentation: https://docs.datadoghq.com/api/latest/synthetics/#create-synthetics-suite`,
 
 	Run: func(cmd *cobra.Command, args []string) {

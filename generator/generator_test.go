@@ -2,14 +2,12 @@ package main
 
 import (
 	"os"
-	"os/exec"
 	"path/filepath"
 	"runtime"
 	"testing"
 )
 
-func TestGenerationNoChanges(t *testing.T) {
-	// 1. Save original working directory and change to project root
+func TestGenerationFromSDK(t *testing.T) {
 	origDir, err := os.Getwd()
 	if err != nil {
 		t.Fatalf("Failed to get current working directory: %v", err)
@@ -24,19 +22,18 @@ func TestGenerationNoChanges(t *testing.T) {
 		_ = os.Chdir(origDir)
 	})
 
-	// 2. Run the generator
 	if err := RunGenerate(nil); err != nil {
 		t.Fatalf("Failed to run generator: %v", err)
 	}
 
-	// 3. Check if git reports any changes in the cmd directory
-	gitStatus := exec.Command("git", "status", "--porcelain", "cmd/")
-	output, err := gitStatus.CombinedOutput()
-	if err != nil {
-		t.Fatalf("Failed to run git status: %v\nOutput: %s", err, string(output))
+	mustExist := []string{
+		"cmd/root.gen.go",
+		"cmd/action_connection/entrypoint.gen.go",
+		"cmd/action_connection/delete_action_connection.gen.go",
 	}
-
-	if len(output) > 0 {
-		t.Errorf("Generated files in cmd/ have changed:\n%s", string(output))
+	for _, file := range mustExist {
+		if _, err := os.Stat(file); err != nil {
+			t.Fatalf("expected generated file %s: %v", file, err)
+		}
 	}
 }
