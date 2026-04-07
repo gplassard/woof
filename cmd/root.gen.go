@@ -126,6 +126,11 @@ func Execute() {
 	rootCmd.PersistentFlags().StringVar(&config.ApiKey, "api-key", os.Getenv("DD_API_KEY"), "Datadog API Key")
 	rootCmd.PersistentFlags().StringVar(&config.AppKey, "app-key", os.Getenv("DD_APP_KEY"), "Datadog App Key")
 	rootCmd.PersistentFlags().StringVar(&config.Site, "site", defaultSite, "Datadog Site")
+	rootCmd.PersistentFlags().StringVar(&config.CloudAuthOrgUUID, "cloud-auth-org-uuid", os.Getenv("DD_CLOUD_AUTH_ORG_UUID"), "Datadog organization UUID for cloud auth")
+	rootCmd.PersistentFlags().StringVar(&config.CloudAuthAWSRegion, "cloud-auth-aws-region", os.Getenv("DD_CLOUD_AUTH_AWS_REGION"), "AWS region for cloud auth STS signing (defaults to us-east-1 if empty)")
+	rootCmd.PersistentFlags().StringVar(&config.AWSAccessKeyID, "aws-access-key-id", os.Getenv("AWS_ACCESS_KEY_ID"), "AWS access key ID for cloud auth")
+	rootCmd.PersistentFlags().StringVar(&config.AWSSecretAccessKey, "aws-secret-access-key", os.Getenv("AWS_SECRET_ACCESS_KEY"), "AWS secret access key for cloud auth")
+	rootCmd.PersistentFlags().StringVar(&config.AWSSessionToken, "aws-session-token", os.Getenv("AWS_SESSION_TOKEN"), "AWS session token for cloud auth")
 	rootCmd.PersistentFlags().BoolVar(&config.Debug, "debug", false, "Enable debug logging")
 
 	rootCmd.AddCommand(
