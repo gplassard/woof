@@ -11,7 +11,7 @@ import (
 	{{range .ArgTypes}}{{if eq . "time.Time"}}"time"{{break}}{{end}}{{end}}
 	{{range .ArgTypes}}{{if eq . "[]string"}}"strings"{{break}}{{end}}{{end}}
 	"github.com/spf13/cobra"
-	{{range .ArgTypes}}{{if eq . "int64"}}"strconv"{{break}}{{end}}{{end}}
+	{{range .ArgTypes}}{{if or (eq . "int64") (eq . "int32") (eq . "int")}}"strconv"{{break}}{{end}}{{end}}
 )
 
 var {{.CommandName}} = &cobra.Command{
@@ -32,7 +32,7 @@ Documentation: {{.DocURL}}`,
 	{{end}}
 		api := datadogV2.New{{.ApiBundleName}}Api(client.NewAPIClient())
 		//nolint:staticcheck // SA1019: deprecated
-		{{if .HasResponse}}res, _, err = {{else}}_, err = {{end}}api.{{.OperationID}}(client.NewContext(apiKey, appKey, site){{range $i, $type := .ArgTypes}}, {{if eq $type "uuid.UUID"}}uuid.MustParse(args[{{$i}}]){{else if eq $type "int64"}}func() int64 { i, _ := strconv.ParseInt(args[{{$i}}], 10, 64); return i }(){{else if eq $type "float64"}}func() float64 { f, _ := strconv.ParseFloat(args[{{$i}}], 64); return f }(){{else if eq $type "time.Time"}}func() time.Time { t, _ := time.Parse(time.RFC3339, args[{{$i}}]); return t }(){{else if hasPrefix $type "datadogV2."}}{{$type}}(args[{{$i}}]){{else if eq $type "[]string"}}strings.Split(args[{{$i}}], ", "){{else}}args[{{$i}}]{{end}}{{end}}{{if .HasRequestBody}}, body{{end}})
+		{{if .HasResponse}}res, _, err = {{else}}_, err = {{end}}api.{{.OperationID}}(client.NewContext(apiKey, appKey, site){{range $i, $type := .ArgTypes}}, {{if eq $type "uuid.UUID"}}uuid.MustParse(args[{{$i}}]){{else if eq $type "int64"}}func() int64 { i, _ := strconv.ParseInt(args[{{$i}}], 10, 64); return i }(){{else if eq $type "int32"}}func() int32 { i, _ := strconv.ParseInt(args[{{$i}}], 10, 32); return int32(i) }(){{else if eq $type "int"}}func() int { i, _ := strconv.Atoi(args[{{$i}}]); return i }(){{else if eq $type "float64"}}func() float64 { f, _ := strconv.ParseFloat(args[{{$i}}], 64); return f }(){{else if eq $type "time.Time"}}func() time.Time { t, _ := time.Parse(time.RFC3339, args[{{$i}}]); return t }(){{else if hasPrefix $type "datadogV2."}}{{$type}}(args[{{$i}}]){{else if eq $type "[]string"}}strings.Split(args[{{$i}}], ", "){{else}}args[{{$i}}]{{end}}{{end}}{{if .HasRequestBody}}, body{{end}})
 		cmdutil.HandleError(err, "failed to {{.OperationID | toKebabCase}}")
 
 		{{if .HasResponse}}fmt.Println(cmdutil.FormatJSON(res, "{{.ResourceType}}")){{end}}
