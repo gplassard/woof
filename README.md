@@ -38,6 +38,11 @@ This project was heavily built using AI.
 - `DD_API_KEY`: Your Datadog API key.
 - `DD_APP_KEY`: Your Datadog Application key.
 - `DD_SITE`: The Datadog site to use (defaults to `datadoghq.com`).
+- `DD_CLOUD_AUTH_ORG_UUID`: Datadog organization UUID for cloud auth delegated token flow.
+- `DD_CLOUD_AUTH_AWS_REGION`: Optional AWS region for STS signing. If empty, Datadog SDK defaults to `us-east-1`.
+- `AWS_ACCESS_KEY_ID`: AWS access key ID for cloud auth.
+- `AWS_SECRET_ACCESS_KEY`: AWS secret access key for cloud auth.
+- `AWS_SESSION_TOKEN`: AWS session token for cloud auth.
 
 ### Command-line Flags
 
@@ -46,6 +51,11 @@ The following flags are available for all commands:
 - `--api-key`: Datadog API Key (defaults to `DD_API_KEY`)
 - `--app-key`: Datadog App Key (defaults to `DD_APP_KEY`)
 - `--site`: Datadog Site (defaults to `DD_SITE`)
+- `--cloud-auth-org-uuid`: Datadog org UUID for cloud auth (defaults to `DD_CLOUD_AUTH_ORG_UUID`)
+- `--cloud-auth-aws-region`: AWS region for cloud auth STS signing (defaults to `DD_CLOUD_AUTH_AWS_REGION`)
+- `--aws-access-key-id`: AWS access key ID for cloud auth (defaults to `AWS_ACCESS_KEY_ID`)
+- `--aws-secret-access-key`: AWS secret access key for cloud auth (defaults to `AWS_SECRET_ACCESS_KEY`)
+- `--aws-session-token`: AWS session token for cloud auth (defaults to `AWS_SESSION_TOKEN`)
 
 ## Usage
 
