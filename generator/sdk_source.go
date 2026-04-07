@@ -6,6 +6,7 @@ import (
 	"go/parser"
 	"go/printer"
 	"go/token"
+	"os"
 	"path/filepath"
 	"reflect"
 	"sort"
@@ -29,13 +30,9 @@ func loadFromSDK(config *Config) (*GenerationInput, error) {
 
 func parseSDKModel(sdkDir string, config *Config) (*SDKModel, error) {
 	fset := token.NewFileSet()
-	pkgs, err := parser.ParseDir(fset, sdkDir, nil, parser.ParseComments)
+	dirEntries, err := os.ReadDir(sdkDir)
 	if err != nil {
-		return nil, fmt.Errorf("failed to parse sdk directory: %w", err)
-	}
-	pkg, ok := pkgs["datadogV2"]
-	if !ok {
-		return nil, fmt.Errorf("datadogV2 package not found in %s", sdkDir)
+		return nil, fmt.Errorf("failed to read sdk directory: %w", err)
 	}
 
 	model := &SDKModel{
@@ -43,9 +40,23 @@ func parseSDKModel(sdkDir string, config *Config) (*SDKModel, error) {
 		Enums:   map[string]SDKEnum{},
 	}
 
-	files := make([]*ast.File, 0, len(pkg.Files))
-	for _, f := range pkg.Files {
-		files = append(files, f)
+	files := make([]*ast.File, 0, len(dirEntries))
+	for _, entry := range dirEntries {
+		if entry.IsDir() || !strings.HasSuffix(entry.Name(), ".go") {
+			continue
+		}
+		filename := filepath.Join(sdkDir, entry.Name())
+		file, parseErr := parser.ParseFile(fset, filename, nil, parser.ParseComments)
+		if parseErr != nil {
+			return nil, fmt.Errorf("failed to parse sdk file %s: %w", filename, parseErr)
+		}
+		if file.Name == nil || file.Name.Name != "datadogV2" {
+			continue
+		}
+		files = append(files, file)
+	}
+	if len(files) == 0 {
+		return nil, fmt.Errorf("datadogV2 package files not found in %s", sdkDir)
 	}
 
 	for _, f := range files {
@@ -438,9 +449,7 @@ func extractResponseType(fn *ast.FuncDecl) (string, bool) {
 	if builtin[first] {
 		return "interface{}", true
 	}
-	if strings.HasPrefix(first, "*") {
-		first = strings.TrimPrefix(first, "*")
-	}
+	first = strings.TrimPrefix(first, "*")
 	if strings.Contains(first, ".") {
 		parts := strings.Split(first, ".")
 		first = parts[len(parts)-1]
