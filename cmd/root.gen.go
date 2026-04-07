@@ -129,6 +129,12 @@ func Execute() {
 	rootCmd.PersistentFlags().StringVar(&config.AppKey, "app-key", os.Getenv("DD_APP_KEY"), "Datadog App Key")
 	rootCmd.PersistentFlags().StringVar(&config.Site, "site", defaultSite, "Datadog Site")
 	rootCmd.PersistentFlags().BoolVar(&config.Debug, "debug", false, "Enable debug logging")
+	rootCmd.PersistentFlags().BoolVar(
+		&config.EnableUnstableOperations,
+		"enable-unstable-operations",
+		false,
+		"Enable all unstable Datadog API operations",
+	)
 
 	rootCmd.AddCommand(
 		action_connection.Cmd,
