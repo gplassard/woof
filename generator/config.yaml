@@ -76,13 +76,6 @@ bundle_name_overrides:
   OCIIntegration: oci_integration
   ServiceNowIntegration: servicenow_integration
 
-response_type_overrides:
-  AttachmentArray: IncidentAttachmentsResponse
-
-force_response_operations:
-  - GetSignalNotificationRules
-  - GetVulnerabilityNotificationRules
-
 acronyms:
   - DORA
   - AD

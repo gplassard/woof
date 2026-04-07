@@ -96,7 +96,7 @@ func prepareTemplateData(op OperationModel, config *Config) TemplateData {
 	for _, param := range op.Parameters {
 		args = append(args, param.Name)
 		use += fmt.Sprintf(" [%s]", param.Name)
-		argTypes = append(argTypes, normalizeArgumentType(op.OperationID, param.Name, param.GoType, config))
+		argTypes = append(argTypes, normalizeArgumentType(param.GoType))
 	}
 
 	resourceType := op.ResourceType
@@ -107,10 +107,6 @@ func prepareTemplateData(op OperationModel, config *Config) TemplateData {
 	responseTypeGo := op.ResponseTypeGo
 	if responseTypeGo == "" {
 		responseTypeGo = "interface{}"
-	}
-
-	if override, ok := responseTypeOverride(responseTypeGo, config); ok {
-		responseTypeGo = override
 	}
 
 	aliases := computeAliases(op.Bundle, op.OperationID, config)
@@ -140,30 +136,15 @@ func prepareTemplateData(op OperationModel, config *Config) TemplateData {
 	}
 }
 
-func normalizeArgumentType(operationID, paramName, goType string, config *Config) string {
+func normalizeArgumentType(goType string) string {
 	switch goType {
 	case "uuid.UUID", "time.Time", "int64", "float64", "[]string":
 		return goType
-	}
-	if config != nil && config.ArgumentTypeOverrides != nil {
-		if opOverrides, ok := config.ArgumentTypeOverrides[operationID]; ok {
-			if override, ok := opOverrides[paramName]; ok && override != "" {
-				return override
-			}
-		}
 	}
 	if looksLikeSDKAliasType(goType) {
 		return "datadogV2." + goType
 	}
 	return "string"
-}
-
-func responseTypeOverride(typeName string, config *Config) (string, bool) {
-	if config == nil || config.ResponseTypeOverrides == nil {
-		return "", false
-	}
-	override, ok := config.ResponseTypeOverrides[typeName]
-	return override, ok
 }
 
 func looksLikeSDKAliasType(goType string) bool {

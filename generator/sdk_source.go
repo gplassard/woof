@@ -195,9 +195,6 @@ func parseOperation(fn *ast.FuncDecl, recvName string, model *SDKModel, config *
 
 	params := extractParameters(fn, bodyParam, pathParamNames, queryParamNames)
 	responseTypeGo, hasResponse := extractResponseType(fn)
-	if containsString(config.ForceResponseOperations, operationID) {
-		hasResponse = true
-	}
 
 	hasRequestBody := bodyParam != ""
 	requestBodyType := ""
@@ -494,15 +491,6 @@ func humanizeOperationID(operationID string, config *Config) string {
 		return operationID
 	}
 	return strings.ToUpper(phrase[:1]) + phrase[1:]
-}
-
-func containsString(values []string, v string) bool {
-	for _, item := range values {
-		if item == v {
-			return true
-		}
-	}
-	return false
 }
 
 func exprString(expr ast.Expr) string {
