@@ -41,6 +41,7 @@ import (
 	"github.com/gplassard/woof/cmd/error_tracking"
 	"github.com/gplassard/woof/cmd/events"
 	"github.com/gplassard/woof/cmd/fastly_integration"
+	"github.com/gplassard/woof/cmd/feature_flags"
 	"github.com/gplassard/woof/cmd/fleet_automation"
 	"github.com/gplassard/woof/cmd/gcp_integration"
 	"github.com/gplassard/woof/cmd/google_chat_integration"
@@ -103,6 +104,7 @@ import (
 	"github.com/gplassard/woof/cmd/test_optimization"
 	"github.com/gplassard/woof/cmd/usage_metering"
 	"github.com/gplassard/woof/cmd/users"
+	"github.com/gplassard/woof/cmd/widgets"
 	"github.com/gplassard/woof/cmd/workflow_automation"
 	"github.com/gplassard/woof/pkg/config"
 	"os"
@@ -175,6 +177,7 @@ func Execute() {
 		error_tracking.Cmd,
 		events.Cmd,
 		fastly_integration.Cmd,
+		feature_flags.Cmd,
 		fleet_automation.Cmd,
 		gcp_integration.Cmd,
 		google_chat_integration.Cmd,
@@ -237,6 +240,7 @@ func Execute() {
 		test_optimization.Cmd,
 		usage_metering.Cmd,
 		users.Cmd,
+		widgets.Cmd,
 		workflow_automation.Cmd,
 	)
 	err := rootCmd.Execute()
