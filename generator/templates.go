@@ -138,7 +138,7 @@ func prepareTemplateData(op OperationModel, config *Config) TemplateData {
 
 func normalizeArgumentType(goType string) string {
 	switch goType {
-	case "uuid.UUID", "time.Time", "int64", "float64", "[]string":
+	case "uuid.UUID", "time.Time", "int", "int32", "int64", "float64", "[]string":
 		return goType
 	}
 	if looksLikeSDKAliasType(goType) {
