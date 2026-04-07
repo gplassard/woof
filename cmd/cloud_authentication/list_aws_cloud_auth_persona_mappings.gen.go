@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/cloud-authentication/#list-
 		res, _, err = api.ListAWSCloudAuthPersonaMappings(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-aws-cloud-auth-persona-mappings")
 
-		fmt.Println(cmdutil.FormatJSON(res, "cloud_authentication"))
+		fmt.Println(cmdutil.FormatJSON(res, "aws_cloud_auth_config"))
 	},
 }
 

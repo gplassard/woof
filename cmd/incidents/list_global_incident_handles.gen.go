@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/incidents/#list-global-inci
 		res, _, err = api.ListGlobalIncidentHandles(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-global-incident-handles")
 
-		fmt.Println(cmdutil.FormatJSON(res, "incidents"))
+		fmt.Println(cmdutil.FormatJSON(res, "incidents_handles"))
 	},
 }
 

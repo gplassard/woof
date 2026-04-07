@@ -14,8 +14,8 @@ import (
 var DeleteSyntheticsSuitesCmd = &cobra.Command{
 	Use:     "delete-synthetics-suites",
 	Aliases: []string{"delete-suites"},
-	Short:   "Bulk delete suites",
-	Long: `Bulk delete suites
+	Short:   "Delete synthetics suites",
+	Long: `Delete synthetics suites
 Documentation: https://docs.datadoghq.com/api/latest/synthetics/#delete-synthetics-suites`,
 
 	Run: func(cmd *cobra.Command, args []string) {

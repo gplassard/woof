@@ -68,6 +68,14 @@ bundle_aliases:
     - workflow
     - wf
 
+bundle_name_overrides:
+  APM: apm
+  APMRetentionFilters: apm_retention_filters
+  AuthNMappings: authn_mappings
+  HighAvailabilityMultiRegion: high_availability_multiregion
+  OCIIntegration: oci_integration
+  ServiceNowIntegration: servicenow_integration
+
 acronyms:
   - DORA
   - AD

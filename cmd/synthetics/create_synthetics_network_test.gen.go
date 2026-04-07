@@ -14,8 +14,8 @@ import (
 var CreateSyntheticsNetworkTestCmd = &cobra.Command{
 	Use:     "create-synthetics-network-test",
 	Aliases: []string{"create-network-test"},
-	Short:   "Create a Network Path test",
-	Long: `Create a Network Path test
+	Short:   "Create synthetics network test",
+	Long: `Create synthetics network test
 Documentation: https://docs.datadoghq.com/api/latest/synthetics/#create-synthetics-network-test`,
 
 	Run: func(cmd *cobra.Command, args []string) {

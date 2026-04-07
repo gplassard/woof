@@ -14,8 +14,8 @@ import (
 var UpdateSyntheticsNetworkTestCmd = &cobra.Command{
 	Use:     "update-synthetics-network-test [public_id]",
 	Aliases: []string{"update-network-test"},
-	Short:   "Edit a Network Path test",
-	Long: `Edit a Network Path test
+	Short:   "Update synthetics network test",
+	Long: `Update synthetics network test
 Documentation: https://docs.datadoghq.com/api/latest/synthetics/#update-synthetics-network-test`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

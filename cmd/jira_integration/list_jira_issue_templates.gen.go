@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/jira-integration/#list-jira
 		res, _, err = api.ListJiraIssueTemplates(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-jira-issue-templates")
 
-		fmt.Println(cmdutil.FormatJSON(res, "jira_integration"))
+		fmt.Println(cmdutil.FormatJSON(res, "jira-issue-template"))
 	},
 }
 

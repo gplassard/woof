@@ -14,8 +14,8 @@ import (
 var ValidateCsvBudgetCmd = &cobra.Command{
 	Use: "validate-csv-budget",
 
-	Short: "Validate CSV budget",
-	Long: `Validate CSV budget
+	Short: "Validate csv budget",
+	Long: `Validate csv budget
 Documentation: https://docs.datadoghq.com/api/latest/cloud-cost-management/#validate-csv-budget`,
 
 	Run: func(cmd *cobra.Command, args []string) {

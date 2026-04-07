@@ -29,7 +29,7 @@ Documentation: https://docs.datadoghq.com/api/latest/servicenow-integration/#lis
 		res, _, err = api.ListServiceNowBusinessServices(client.NewContext(apiKey, appKey, site), uuid.MustParse(args[0]))
 		cmdutil.HandleError(err, "failed to list-service-now-business-services")
 
-		fmt.Println(cmdutil.FormatJSON(res, "servicenow_integration"))
+		fmt.Println(cmdutil.FormatJSON(res, "business_services"))
 	},
 }
 

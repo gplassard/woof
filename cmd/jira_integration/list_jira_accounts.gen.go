@@ -28,7 +28,7 @@ Documentation: https://docs.datadoghq.com/api/latest/jira-integration/#list-jira
 		res, _, err = api.ListJiraAccounts(client.NewContext(apiKey, appKey, site))
 		cmdutil.HandleError(err, "failed to list-jira-accounts")
 
-		fmt.Println(cmdutil.FormatJSON(res, "jira_integration"))
+		fmt.Println(cmdutil.FormatJSON(res, "jira-account"))
 	},
 }
 
