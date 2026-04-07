@@ -1,11 +1,12 @@
 package config
 
 var (
-	ApiKey  string
-	AppKey  string
-	Site    string
-	Debug   bool
-	Version = "dev"
+	ApiKey                   string
+	AppKey                   string
+	Site                     string
+	Debug                    bool
+	EnableUnstableOperations bool
+	Version                  = "dev"
 )
 
 func GetConfig() (string, string, string) {

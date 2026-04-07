@@ -34,5 +34,13 @@ func NewContext(apiKey, appKey, site string) context.Context {
 func NewAPIClient() *datadog.APIClient {
 	configuration := datadog.NewConfiguration()
 	configuration.Debug = config.Debug
+	if config.EnableUnstableOperations {
+		for _, operation := range configuration.GetUnstableOperations() {
+			if operation == "" {
+				continue
+			}
+			configuration.SetUnstableOperationEnabled(operation, true)
+		}
+	}
 	return datadog.NewAPIClient(configuration)
 }
