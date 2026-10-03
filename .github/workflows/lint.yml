@@ -33,4 +33,4 @@ jobs:
         id: run_golangci-lint
         uses: golangci/golangci-lint-action@db9de0fc1a667e1a49d2291a1a042dff081d78f6
         with:
-          version: v2.13.2
+          version: v2.14.0
